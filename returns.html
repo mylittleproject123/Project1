@@ -1,0 +1,308 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Returns & Refunds - TechZone</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .returns-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .returns-hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            background: var(--background-light);
+            padding: 3rem 2rem;
+            border-radius: var(--border-radius);
+        }
+        .returns-hero h1 {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        .returns-policy {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        .policy-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+        }
+        .policy-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            text-align: center;
+            display: block;
+        }
+        .return-process {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+            margin-bottom: 3rem;
+        }
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .process-step {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--background-light);
+            border-radius: var(--border-radius);
+        }
+        .step-number {
+            background: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+        }
+        .conditions-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        .conditions-section {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+        }
+        .returnable-section {
+            border-left: 4px solid #10b981;
+        }
+        .non-returnable-section {
+            border-left: 4px solid #ef4444;
+        }
+        .condition-list {
+            list-style: none;
+            padding: 0;
+        }
+        .condition-list li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .returnable-section .condition-list li i {
+            color: #10b981;
+        }
+        .non-returnable-section .condition-list li i {
+            color: #ef4444;
+        }
+        @media (max-width: 768px) {
+            .returns-policy, .conditions-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .returns-hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="https://1000logos.net/wp-content/uploads/2023/11/Swappie-Logo.png" alt="TechZone" style="height: 40px; width: auto;">
+                    </a>
+                </div>
+                <nav class="nav-desktop">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="index.html#products" class="nav-link">Products</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </nav>
+                <div class="header-actions">
+                    <a href="index.html" class="btn btn-primary">Shop Now</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="returns-container">
+        <div class="returns-hero">
+            <h1>Returns & Refunds</h1>
+            <p>We stand behind our products with a comprehensive 30-day return policy</p>
+            <div style="margin-top: 2rem;">
+                <div style="display: inline-block; background: var(--primary-color); color: white; padding: 1rem 2rem; border-radius: var(--border-radius); font-weight: 700; font-size: 1.25rem;">
+                    <i class="fas fa-undo-alt"></i> 30-Day Return Guarantee
+                </div>
+            </div>
+        </div>
+
+        <div class="returns-policy">
+            <div class="policy-card">
+                <i class="fas fa-calendar-alt policy-icon"></i>
+                <h3 style="text-align: center; margin-bottom: 1rem;">30-Day Window</h3>
+                <p>You have 30 days from the date of delivery to return your device for a full refund. No questions asked if the device is in original condition.</p>
+            </div>
+
+            <div class="policy-card">
+                <i class="fas fa-money-bill-wave policy-icon"></i>
+                <h3 style="text-align: center; margin-bottom: 1rem;">Full Refund</h3>
+                <p>Receive a complete refund of your purchase price, including original shipping costs. Refunds are processed within 5-7 business days.</p>
+            </div>
+        </div>
+
+        <div class="return-process">
+            <h2 style="text-align: center; margin-bottom: 1rem;">How to Return Your Device</h2>
+            <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem;">Simple 4-step process to return your device</p>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h4>Contact Us</h4>
+                    <p>Call +1 (800) 555-TECH or email returns@techzone-usa.com to initiate your return</p>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h4>Get Return Label</h4>
+                    <p>We'll email you a prepaid return shipping label and packing instructions</p>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h4>Pack & Ship</h4>
+                    <p>Pack your device with all accessories in original packaging and ship it back</p>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h4>Get Refund</h4>
+                    <p>Receive your full refund within 5-7 business days after we receive your return</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="conditions-grid">
+            <div class="conditions-section returnable-section">
+                <h3 style="color: #10b981; margin-bottom: 1rem;">
+                    <i class="fas fa-check-circle"></i> Returnable Conditions
+                </h3>
+                <ul class="condition-list">
+                    <li><i class="fas fa-check"></i> Device in original condition</li>
+                    <li><i class="fas fa-check"></i> All original accessories included</li>
+                    <li><i class="fas fa-check"></i> Original packaging and manuals</li>
+                    <li><i class="fas fa-check"></i> No additional software installed</li>
+                    <li><i class="fas fa-check"></i> Factory reset completed</li>
+                    <li><i class="fas fa-check"></i> No physical damage</li>
+                    <li><i class="fas fa-check"></i> Return within 30 days</li>
+                    <li><i class="fas fa-check"></i> Valid purchase receipt</li>
+                </ul>
+            </div>
+
+            <div class="conditions-section non-returnable-section">
+                <h3 style="color: #ef4444; margin-bottom: 1rem;">
+                    <i class="fas fa-times-circle"></i> Non-Returnable Conditions
+                </h3>
+                <ul class="condition-list">
+                    <li><i class="fas fa-times"></i> Physical damage (drops, cracks)</li>
+                    <li><i class="fas fa-times"></i> Water or liquid damage</li>
+                    <li><i class="fas fa-times"></i> Missing accessories or packaging</li>
+                    <li><i class="fas fa-times"></i> Signs of excessive wear</li>
+                    <li><i class="fas fa-times"></i> Modified or jailbroken devices</li>
+                    <li><i class="fas fa-times"></i> Expired 30-day window</li>
+                    <li><i class="fas fa-times"></i> Cannot verify purchase</li>
+                    <li><i class="fas fa-times"></i> Devices sold "as-is" or final sale</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="background: white; padding: 3rem 2rem; border-radius: var(--border-radius); border: 1px solid var(--border-color); margin-bottom: 3rem;">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Important Return Information</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div style="background: var(--background-light); padding: 1.5rem; border-radius: var(--border-radius);">
+                    <h4><i class="fas fa-shipping-fast" style="color: var(--primary-color); margin-right: 0.5rem;"></i>Free Return Shipping</h4>
+                    <p>We provide prepaid return shipping labels for all returns within our service areas.</p>
+                </div>
+
+                <div style="background: var(--background-light); padding: 1.5rem; border-radius: var(--border-radius);">
+                    <h4><i class="fas fa-clock" style="color: var(--primary-color); margin-right: 0.5rem;"></i>Processing Time</h4>
+                    <p>Returns are processed within 2-3 business days of receipt. Refunds take 5-7 business days.</p>
+                </div>
+
+                <div style="background: var(--background-light); padding: 1.5rem; border-radius: var(--border-radius);">
+                    <h4><i class="fas fa-exchange-alt" style="color: var(--primary-color); margin-right: 0.5rem;"></i>Exchanges</h4>
+                    <p>We offer exchanges for the same model in different colors or storage capacity, subject to availability.</p>
+                </div>
+
+                <div style="background: var(--background-light); padding: 1.5rem; border-radius: var(--border-radius);">
+                    <h4><i class="fas fa-shield-alt" style="color: var(--primary-color); margin-right: 0.5rem;"></i>Warranty vs Returns</h4>
+                    <p>Returns are for unwanted purchases. Defective devices are covered under our warranty policy.</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="background: var(--background-light); padding: 3rem 2rem; border-radius: var(--border-radius); text-align: center;">
+            <h2>Need Help with Your Return?</h2>
+            <p>Our customer service team is here to make your return process as smooth as possible.</p>
+            <div style="margin-top: 2rem;">
+                <a href="contact.html" class="btn btn-primary" style="margin-right: 1rem;">Contact Support</a>
+                <a href="mailto:returns@techzone-usa.com" class="btn btn-secondary">Email Returns Team</a>
+            </div>
+            <div style="margin-top: 1.5rem; color: var(--text-light);">
+                <p><strong>Returns Hotline:</strong> +1 (800) 555-TECH</p>
+                <p><strong>Email:</strong> returns@techzone-usa.com</p>
+                <p><strong>Hours:</strong> Monday to Saturday, 9:00 AM - 8:00 PM</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Company Information</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> TechZone USA, 123 Main Street, Anytown, USA</p>
+                    <p id="footer-phone">
+                        <i class="fas fa-phone"></i>
+                        <span id="footer-country-phone">+1 (800) 555-TECH</span>
+                    </p>
+                    <p><i class="fas fa-envelope"></i> sales@techzone-usa.com</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="support.html">Technical Support</a></li>
+                        <li><a href="warranty.html">Warranty</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TechZone USA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

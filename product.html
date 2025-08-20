@@ -1,0 +1,301 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="product-page-title">Product - TechZone</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="https://1000logos.net/wp-content/uploads/2023/11/Swappie-Logo.png" alt="TechZone" style="height: 40px; width: auto;">
+                    </a>
+                </div>
+                <nav class="nav-desktop">
+                    <a href="index.html" class="nav-link" data-translate="home">Home</a>
+                    <a href="index.html#products" class="nav-link" data-translate="products">Products</a>
+                    <a href="about.html" class="nav-link" data-translate="about">About</a>
+                    <a href="contact.html" class="nav-link" data-translate="contact">Contact</a>
+                </nav>
+                <div class="country-section">
+                    <div class="country-dropdown-wrapper">
+                        <button id="country-dropdown-btn" class="country-switch">
+                            <span class="flag-icon" id="current-flag">🇭🇳</span>
+                            <span id="current-country">Honduras</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div id="country-dropdown" class="country-dropdown hidden">
+                            <button class="country-option" data-country="nicaragua">
+                                <span class="flag-icon">🇳🇮</span>
+                                <span>Nicaragua</span>
+                            </button>
+                            <button class="country-option" data-country="honduras">
+                                <span class="flag-icon">🇭🇳</span>
+                                <span>Honduras</span>
+                            </button>
+                            <button class="country-option" data-country="trinidad">
+                                <span class="flag-icon">🇹🇹</span>
+                                <span>Trinidad and Tobago</span>
+                            </button>
+                            <button class="country-option" data-country="elsalvador">
+                                <span class="flag-icon">🇸🇻</span>
+                                <span>El Salvador</span>
+                            </button>
+                            <button class="country-option" data-country="paraguay">
+                                <span class="flag-icon">🇵🇾</span>
+                                <span>Paraguay</span>
+                            </button>
+                            <button class="country-option" data-country="guatemala">
+                                <span class="flag-icon">🇬🇹</span>
+                                <span>Guatemala</span>
+                            </button>
+                            <button class="country-option" data-country="dominican">
+                                <span class="flag-icon">🇩🇴</span>
+                                <span>Dominican Republic</span>
+                            </button>
+                            <button class="country-option" data-country="usa">
+                                <span class="flag-icon">🇺🇸</span>
+                                <span>USA</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <div class="search-box">
+                        <input type="text" data-translate-placeholder="search_products" placeholder="Search products...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <a href="#" class="user-link">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="#" id="cart-button" class="cart-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count" class="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb">
+        <div class="container">
+            <a href="index.html" data-translate="home">Home</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="index.html#products" data-translate="products">Products</a>
+            <i class="fas fa-chevron-right"></i>
+            <span id="breadcrumb-product">Product</span>
+        </div>
+    </nav>
+
+    <!-- Product Detail -->
+    <main class="container">
+        <div class="product-detail">
+            <!-- Product Images -->
+            <div class="product-images">
+                <div class="thumbnails-container">
+                    <div id="thumbnail-container" class="thumbnails">
+                        <!-- Thumbnails will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Info -->
+            <div class="product-info">
+                <div class="product-header">
+                    <h1 id="product-title">Product Title</h1>
+                    <p id="product-subtitle">Product Subtitle</p>
+                    <div class="product-badges">
+                        <span id="product-discount" class="discount-badge">-25%</span>
+                    </div>
+                </div>
+
+                <div class="product-pricing">
+                    <div class="price-display">
+                        <span id="product-price" class="current-price">$0.00</span>
+                        <span id="product-original-price" class="original-price">$0.00</span>
+                    </div>
+                </div>
+
+                <!-- Color Selection -->
+                <div id="color-selection-container" class="selection-container" style="display: none;">
+                    <h3 data-translate="color">Color</h3>
+                    <select id="product-color-select" class="selection-dropdown">
+                        <!-- Options populated by JavaScript -->
+                    </select>
+                </div>
+
+                <!-- Memory/Storage Selection -->
+                <div id="memory-selection-container" class="selection-container" style="display: none;">
+                    <h3 data-translate="storage">Storage</h3>
+                    <div id="memory-options" class="selection-grid">
+                        <!-- Options populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Condition Selection -->
+                <div id="condition-selection-container" class="selection-container" style="display: none;">
+                    <h3 data-translate="condition">Condition</h3>
+                    <div id="condition-options" class="selection-grid">
+                        <!-- Options populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Quantity and Add to Cart -->
+                <div class="product-actions">
+                    <div class="quantity-selector">
+                        <label for="quantity" data-translate="quantity">Quantity:</label>
+                        <div class="quantity-controls">
+                            <button id="decrease-qty" type="button">-</button>
+                            <input type="number" id="quantity" value="1" min="1" max="10" readonly>
+                            <button id="increase-qty" type="button">+</button>
+                        </div>
+                    </div>
+
+                    <button id="add-to-cart-product" class="btn btn-primary add-to-cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span data-translate="add_to_cart">Add to Cart</span>
+                    </button>
+                </div>
+
+                <!-- Warranty Info -->
+                <div class="warranty-info">
+                    <div class="warranty-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <div>
+                            <h4 data-translate="warranty_title">12 Month Warranty</h4>
+                            <p data-translate="warranty_desc">Full warranty with technical support included</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Free Shipping -->
+                <div class="shipping-info">
+                    <i class="fas fa-shipping-fast"></i>
+                    <span data-translate="free_shipping_all">Free shipping on all orders</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Features -->
+        <section class="product-features-section">
+            <h2 data-translate="key_features">Key Features</h2>
+            <div id="features-grid" class="features-grid">
+                <!-- Features populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Technical Specifications -->
+        <section class="product-specs-section">
+            <h2 data-translate="technical_specs">Technical Specifications</h2>
+            <div id="specifications-grid" class="specifications-grid">
+                <!-- Specifications populated by JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4 data-translate="company_info">Company Information</h4>
+                    <div class="contact-details">
+                        <p id="footer-address">
+                            <i class="fas fa-map-marker-alt"></i>
+                            TechZone Honduras, Tegucigalpa, Honduras
+                        </p>
+                        <p id="footer-phone">
+                            <i class="fas fa-phone"></i>
+                            <span id="footer-country-phone">+504 9756-4382</span>
+                        </p>
+                        <p id="footer-email">
+                            <i class="fas fa-envelope"></i>
+                            sales@techzone-honduras.com
+                        </p>
+                        <p id="footer-hours">
+                            <i class="fas fa-clock"></i>
+                            Monday to Saturday: 9:00 AM - 8:00 PM
+                        </p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4 data-translate="quick_links">Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html" data-translate="about">About Us</a></li>
+                        <li><a href="contact.html" data-translate="contact">Contact</a></li>
+                        <li><a href="support.html" data-translate="support">Technical Support</a></li>
+                        <li><a href="warranty.html" data-translate="warranty">Warranty</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-translate="policies">Policies</h4>
+                    <ul>
+                        <li><a href="privacy.html" data-translate="privacy">Privacy</a></li>
+                        <li><a href="terms.html" data-translate="terms">Terms and Conditions</a></li>
+                        <li><a href="returns.html" data-translate="returns">Returns</a></li>
+                        <li><a href="shipping.html" data-translate="shipping_policy">Shipping</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-translate="payment_methods">Payment Methods</h4>
+                    <p data-translate="payment_info">We accept bank transfers, deposits and cash on delivery.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TechZone Honduras. <span data-translate="rights_reserved">All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-overlay" class="cart-overlay">
+        <div id="cart-sidebar" class="cart-sidebar">
+            <div class="cart-header">
+                <h2 data-translate="shopping_cart">Shopping Cart</h2>
+                <button id="close-cart" aria-label="Close cart">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="cart-items" id="cart-items">
+                <div id="empty-cart-message" class="empty-cart-message">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p data-translate="empty_cart">Your cart is empty</p>
+                </div>
+            </div>
+
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span data-translate="subtotal">Subtotal:</span>
+                    <span id="cart-subtotal">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span data-translate="shipping">Shipping:</span>
+                    <span id="cart-shipping">Free</span>
+                </div>
+                <div class="summary-row total">
+                    <span data-translate="total">Total:</span>
+                    <span id="cart-total">$0.00</span>
+                </div>
+            </div>
+
+            <div class="cart-actions">
+                <button id="continue-shopping" class="btn btn-secondary" data-translate="continue_shopping">Continue Shopping</button>
+                <button id="checkout-btn" class="btn btn-primary" data-translate="checkout">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="telegram-bot.js"></script>
+    <script src="product.js"></script>
+</body>
+</html>

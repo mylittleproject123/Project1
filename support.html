@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Support - TechZone</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .support-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .support-hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .support-hero h1 {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        .support-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        .support-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+        .support-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        .support-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .faq-section {
+            margin-bottom: 3rem;
+        }
+        .faq-item {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        .faq-question {
+            background: var(--background-light);
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+        .faq-answer {
+            padding: 1.5rem;
+            color: var(--text-light);
+            line-height: 1.6;
+            display: none;
+        }
+        .faq-question.active + .faq-answer {
+            display: block;
+        }
+        .contact-support {
+            background: var(--background-light);
+            padding: 3rem 2rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="https://1000logos.net/wp-content/uploads/2023/11/Swappie-Logo.png" alt="TechZone" style="height: 40px; width: auto;">
+                    </a>
+                </div>
+                <nav class="nav-desktop">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="index.html#products" class="nav-link">Products</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </nav>
+                <div class="header-actions">
+                    <a href="index.html" class="btn btn-primary">Shop Now</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="support-container">
+        <div class="support-hero">
+            <h1>Technical Support</h1>
+            <p>We're here to help you get the most out of your TechZone device</p>
+        </div>
+
+        <div class="support-options">
+            <div class="support-card">
+                <div class="support-icon">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <h3>Live Chat</h3>
+                <p>Get instant help from our technical support team</p>
+                <a href="#" class="btn btn-primary">Start Chat</a>
+            </div>
+
+            <div class="support-card">
+                <div class="support-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <h3>Phone Support</h3>
+                <p>Call us for immediate technical assistance</p>
+                <p><strong>+1 (800) 555-TECH</strong></p>
+                <p><small>Mon-Sat: 9:00 AM - 8:00 PM</small></p>
+            </div>
+
+            <div class="support-card">
+                <div class="support-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>Email Support</h3>
+                <p>Send us your technical questions via email</p>
+                <a href="mailto:support@techzone-usa.com" class="btn btn-secondary">Email Us</a>
+            </div>
+
+            <div class="support-card">
+                <div class="support-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <h3>Remote Assistance</h3>
+                <p>Screen sharing support for complex issues</p>
+                <a href="#" class="btn btn-secondary">Request Session</a>
+            </div>
+        </div>
+
+        <div class="faq-section">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do I check my device's warranty status?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>You can check your warranty status by contacting our support team with your device serial number and purchase receipt. All TechZone devices come with a 1-year comprehensive warranty from the date of purchase.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What should I do if my device won't turn on?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>First, try charging your device for at least 30 minutes using the original charger. If it still won't turn on, try a force restart by holding the power button for 10-15 seconds. If the issue persists, contact our technical support team.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do I reset my device to factory settings?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>The process varies by device. For iPhones: Settings > General > Transfer or Reset iPhone > Erase All Content and Settings. For Android: Settings > System > Reset options > Erase all data. Always backup your data before resetting.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What's included in the warranty coverage?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Our warranty covers manufacturing defects, hardware failures, and battery issues (minimum 80% health guarantee). It does not cover physical damage, water damage, or software issues caused by user modifications.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do I transfer data from my old device?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>For iPhone to iPhone: Use Quick Start or iCloud backup. For Android to Android: Use Google Backup or Smart Switch. For cross-platform transfers, use Google Drive, iCloud, or third-party apps like Move to iOS.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can I get a replacement device during repair?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>For warranty repairs expected to take more than 5 business days, we offer loaner devices based on availability. Please contact our support team to check loaner device availability in your area.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-support">
+            <h2>Still Need Help?</h2>
+            <p>Our technical support team is available to assist you with any device-related questions or issues.</p>
+            <div style="margin-top: 2rem;">
+                <a href="contact.html" class="btn btn-primary" style="margin-right: 1rem;">Contact Support</a>
+                <a href="warranty.html" class="btn btn-secondary">Warranty Info</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Company Information</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> TechZone USA, 123 Main Street, Anytown, USA</p>
+                    <p id="footer-phone">
+                        <i class="fas fa-phone"></i>
+                        <span id="footer-country-phone">+1 (800) 555-TECH</span>
+                    </p>
+                    <p><i class="fas fa-envelope"></i> sales@techzone-usa.com</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="support.html">Technical Support</a></li>
+                        <li><a href="warranty.html">Warranty</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TechZone USA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const isActive = this.classList.contains('active');
+                    
+                    // Close all other FAQ items
+                    faqQuestions.forEach(q => q.classList.remove('active'));
+                    
+                    // Toggle current item
+                    if (!isActive) {
+                        this.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

