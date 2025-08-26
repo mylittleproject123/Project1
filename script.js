@@ -788,7 +788,7 @@ function createCheckoutModal() {
                     <div class="bank-info">
                         <p><strong>${(currentLanguage === 'es' ? 'Banco:' : 'Bank:')}</strong> ${getBankName()}</p>
                         <p><strong>${(currentLanguage === 'es' ? 'Número de Cuenta:' : 'Account Number:')}</strong> ${getAccountNumber()}</p>
-                        <p><strong>${(currentLanguage === 'es' ? 'Titular de la Cuenta:' : 'Account Holder:')}</strong> TechZone ${countryConfig[currentCountry].name}</p>
+                        <p><strong>${(currentLanguage === 'es' ? 'Titular de la Cuenta:' : 'Account Holder:')}</strong> Jacenta Althea Hankey ${countryConfig[currentCountry].name}</p>
                         <p><strong>${(currentLanguage === 'es' ? 'Referencia:' : 'Reference:')}</strong> ${checkoutData.orderNumber}</p>
                         <p><strong>${(currentLanguage === 'es' ? 'Total a Transferir:' : 'Amount to Transfer:')}</strong> ${convertPrice(subtotal, false)}</p>
                     </div>
@@ -1765,7 +1765,7 @@ function getBankName() {
     switch (currentCountry) {
         case 'nicaragua': return 'Banco de América Central (BAC)';
         case 'honduras': return 'Banco Atlántida';
-        case 'trinidad': return 'Republic Bank Limited';
+        case 'trinidad': return 'FCB';
         case 'elsalvador': return 'Banco Agrícola';
         case 'paraguay': return 'Banco Continental';
         case 'guatemala': return 'Banco Industrial';
@@ -1779,7 +1779,7 @@ function getAccountNumber() {
     switch (currentCountry) {
         case 'nicaragua': return '1234567890123456';
         case 'honduras': return '2345678901234567';
-        case 'trinidad': return '3456789012345678';
+        case 'trinidad': return '3143313';
         case 'elsalvador': return '4567890123456789';
         case 'paraguay': return '5678901234567890';
         case 'guatemala': return '6789012345678901';
