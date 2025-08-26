@@ -760,14 +760,13 @@ function createCheckoutModal() {
             <div class="payment-section">
                 <h3>${(currentLanguage === 'es' ? 'Método de Pago' : 'Payment Method')}</h3>
                 <div class="payment-methods">
-                    ${currentCountry === 'nicaragua' ? `
                     <label class="payment-option" data-method="bank-transfer">
                         <input type="radio" name="payment-method" value="bank-transfer">
                         <div class="payment-option-content">
                             <i class="fas fa-university"></i>
                             <span>${(currentLanguage === 'es' ? 'Transferencia Bancaria' : 'Bank Transfer')}</span>
                         </div>
-                    </label>` : ''}
+                    </label>
                     <label class="payment-option" data-method="credit-card">
                         <input type="radio" name="payment-method" value="credit-card">
                         <div class="payment-option-content">
