@@ -756,23 +756,28 @@ function createCheckoutModal() {
             </div>
         </div>
 
-        <div class="payment-methods">
-    <label class="payment-option" data-method="bank-transfer">
-        <input type="radio" name="payment-method" value="bank-transfer">
-        <div class="payment-option-content">
-            <i class="fas fa-university"></i>
-            <span>${(currentLanguage === 'es' ? 'Transferencia Bancaria' : 'Bank Transfer')}</span>
-        </div>
-    </label>
-    <label class="payment-option" data-method="credit-card">
-        <input type="radio" name="payment-method" value="credit-card">
-        <div class="payment-option-content">
-            <i class="fas fa-credit-card"></i>
-            <span>${(currentLanguage === 'es' ? 'Tarjeta de Crédito' : 'Credit Card')}</span>
-        </div>
-    </label>
-</div>
-                   <div id="payment-method-instruction" class="payment-instruction" style="text-align: center; padding: 2rem; color: var(--text-light); background: var(--background-light); border-radius: var(--border-radius); margin-top: 1rem;">
+        <div id="checkout-step-3" class="checkout-step">
+            <div class="payment-section">
+                <h3>${(currentLanguage === 'es' ? 'Método de Pago' : 'Payment Method')}</h3>
+                <div class="payment-methods">
+                    ${currentCountry === 'nicaragua' ? `
+                    <label class="payment-option" data-method="bank-transfer">
+                        <input type="radio" name="payment-method" value="bank-transfer">
+                        <div class="payment-option-content">
+                            <i class="fas fa-university"></i>
+                            <span>${(currentLanguage === 'es' ? 'Transferencia Bancaria' : 'Bank Transfer')}</span>
+                        </div>
+                    </label>` : ''}
+                    <label class="payment-option" data-method="credit-card">
+                        <input type="radio" name="payment-method" value="credit-card">
+                        <div class="payment-option-content">
+                            <i class="fas fa-credit-card"></i>
+                            <span>${(currentLanguage === 'es' ? 'Tarjeta de Crédito' : 'Credit Card')}</span>
+                        </div>
+                    </label>
+                </div>
+
+                <div id="payment-method-instruction" class="payment-instruction" style="text-align: center; padding: 2rem; color: var(--text-light); background: var(--background-light); border-radius: var(--border-radius); margin-top: 1rem;">
                     <i class="fas fa-hand-pointer" style="font-size: 2rem; margin-bottom: 1rem; color: var(--primary-color);"></i>
                     <p>${(currentLanguage === 'es' ? 'Por favor selecciona un método de pago para continuar' : 'Please select a payment method to continue')}</p>
                     ${currentCountry !== 'nicaragua' ? `<p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);">${(currentLanguage === 'es' ? 'Nota: Transferencia bancaria solo está disponible en Nicaragua' : 'Note: Bank transfer is only available in Nicaragua')}</p>` : ''}
@@ -783,7 +788,7 @@ function createCheckoutModal() {
                     <div class="bank-info">
                         <p><strong>${(currentLanguage === 'es' ? 'Banco:' : 'Bank:')}</strong> ${getBankName()}</p>
                         <p><strong>${(currentLanguage === 'es' ? 'Número de Cuenta:' : 'Account Number:')}</strong> ${getAccountNumber()}</p>
-                        <p><strong>${(currentLanguage === 'es' ? 'Titular de la Cuenta:' : 'Account Holder:')}</strong> Jacenta Althea Hankey ${countryConfig[currentCountry].name}</p>
+                        <p><strong>${(currentLanguage === 'es' ? 'Titular de la Cuenta:' : 'Account Holder:')}</strong> TechZone ${countryConfig[currentCountry].name}</p>
                         <p><strong>${(currentLanguage === 'es' ? 'Referencia:' : 'Reference:')}</strong> ${checkoutData.orderNumber}</p>
                         <p><strong>${(currentLanguage === 'es' ? 'Total a Transferir:' : 'Amount to Transfer:')}</strong> ${convertPrice(subtotal, false)}</p>
                     </div>
@@ -1760,7 +1765,7 @@ function getBankName() {
     switch (currentCountry) {
         case 'nicaragua': return 'Banco de América Central (BAC)';
         case 'honduras': return 'Banco Atlántida';
-        case 'trinidad': return 'FCB';
+        case 'trinidad': return 'Republic Bank Limited';
         case 'elsalvador': return 'Banco Agrícola';
         case 'paraguay': return 'Banco Continental';
         case 'guatemala': return 'Banco Industrial';
@@ -1774,7 +1779,7 @@ function getAccountNumber() {
     switch (currentCountry) {
         case 'nicaragua': return '1234567890123456';
         case 'honduras': return '2345678901234567';
-        case 'trinidad': return '3143313';
+        case 'trinidad': return '3456789012345678';
         case 'elsalvador': return '4567890123456789';
         case 'paraguay': return '5678901234567890';
         case 'guatemala': return '6789012345678901';
