@@ -772,26 +772,7 @@ function createCheckoutModal() {
         </div>
     </label>
 </div>
-    </label>
-    <label class="payment-option" data-method="credit-card">
-        <input type="radio" name="payment-method" value="credit-card">
-        <div class="payment-option-content">
-            <i class="fas fa-credit-card"></i>
-            <span>${(currentLanguage === 'es' ? 'Tarjeta de Crédito' : 'Credit Card')}</span>
-        </div>
-    </label>
-</div>
-                    </label>
-                    <label class="payment-option" data-method="credit-card">
-                        <input type="radio" name="payment-method" value="credit-card">
-                        <div class="payment-option-content">
-                            <i class="fas fa-credit-card"></i>
-                            <span>${(currentLanguage === 'es' ? 'Tarjeta de Crédito' : 'Credit Card')}</span>
-                        </div>
-                    </label>
-                </div>
-
-                <div id="payment-method-instruction" class="payment-instruction" style="text-align: center; padding: 2rem; color: var(--text-light); background: var(--background-light); border-radius: var(--border-radius); margin-top: 1rem;">
+                   <div id="payment-method-instruction" class="payment-instruction" style="text-align: center; padding: 2rem; color: var(--text-light); background: var(--background-light); border-radius: var(--border-radius); margin-top: 1rem;">
                     <i class="fas fa-hand-pointer" style="font-size: 2rem; margin-bottom: 1rem; color: var(--primary-color);"></i>
                     <p>${(currentLanguage === 'es' ? 'Por favor selecciona un método de pago para continuar' : 'Please select a payment method to continue')}</p>
                     ${currentCountry !== 'nicaragua' ? `<p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);">${(currentLanguage === 'es' ? 'Nota: Transferencia bancaria solo está disponible en Nicaragua' : 'Note: Bank transfer is only available in Nicaragua')}</p>` : ''}
