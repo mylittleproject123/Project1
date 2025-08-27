@@ -766,7 +766,7 @@ function createCheckoutModal() {
                             <i class="fas fa-university"></i>
                             <span>${(currentLanguage === 'es' ? 'Transferencia Bancaria' : 'Bank Transfer')}</span>
                         </div>
-                    </label>` : ''}
+                    </label>
                     <label class="payment-option" data-method="credit-card">
                         <input type="radio" name="payment-method" value="credit-card">
                         <div class="payment-option-content">
