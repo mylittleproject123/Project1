@@ -787,7 +787,8 @@ function createCheckoutModal() {
                     <div class="bank-info">
                         <p><strong>${(currentLanguage === 'es' ? 'Banco:' : 'Bank:')}</strong> ${getBankName()}</p>
                         <p><strong>${(currentLanguage === 'es' ? 'Número de Cuenta:' : 'Account Number:')}</strong> ${getAccountNumber()}</p>
-                        <p><strong>${(currentLanguage === 'es' ? 'Titular de la Cuenta:' : 'Account Holder:')}</strong> Jacenta Althea Hankey</p>
+                        <p><strong>${(currentLanguage === 'es' ? 'Titular de la Cuenta:' : 'Account Holder:')}</strong> ${getAccountHolder()}</p>
+
                         <p><strong>${(currentLanguage === 'es' ? 'Referencia:' : 'Reference:')}</strong> ${checkoutData.orderNumber}</p>
                         <p><strong>${(currentLanguage === 'es' ? 'Total a Transferir:' : 'Amount to Transfer:')}</strong> ${convertPrice(subtotal, false)}</p>
                     </div>
@@ -1785,6 +1786,20 @@ function getAccountNumber() {
         case 'dominican': return '7890123456789012';
         case 'usa': return '8901234567890123';
         default: return '0000000000000000';
+    }
+}
+
+function getAccountHolder() {
+    switch (currentCountry) {
+        case 'nicaragua': return 'TechZone';
+        case 'honduras': return 'TechZone';
+        case 'trinidad': return 'Jacenta Althea Hankey';
+        case 'elsalvador': return 'TechZone';
+        case 'paraguay': return 'TechZone';
+        case 'guatemala': return 'TechZone';
+        case 'dominican': return 'TechZone';
+        case 'usa': return 'TechZone';
+        default: return 'Account Holder';
     }
 }
 
