@@ -12,7 +12,7 @@ if (typeof countryConfig === 'undefined') {
     };
 }
 
-// Translation data - check if already defined to prevent duplicate declaration
+// Transdlation data - check if already defined to prevent duplicate declaration
 const translations = window.translations || {
     es: {
         home: "Inicio",
