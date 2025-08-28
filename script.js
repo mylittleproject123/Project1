@@ -965,7 +965,7 @@ function setupDiscountCode() {
         });
     }
 }
-}
+
 
 function applyDiscountCode() {
     const discountCodeInput = document.getElementById('discount-code');
