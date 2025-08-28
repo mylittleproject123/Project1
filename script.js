@@ -965,6 +965,92 @@ function setupDiscountCode() {
         });
     }
 }
+}
+
+function applyDiscountCode() {
+    const discountCodeInput = document.getElementById('discount-code');
+    const discountMessage = document.getElementById('discount-message');
+    
+    if (!discountCodeInput) return;
+    
+    const code = discountCodeInput.value.trim().toUpperCase();
+    const validCodes = {
+        'SWAPPIE10': { percentage: 10, description: '10% off your order' },
+        'WELCOME15': { percentage: 15, description: '15% off for new customers' },
+        'SAVE20': { percentage: 20, description: '20% off selected items' }
+    };
+    
+    if (validCodes[code]) {
+        const discount = validCodes[code];
+        checkoutData.discountCode = code;
+        checkoutData.discountAmount = (checkoutData.total * discount.percentage) / 100;
+        checkoutData.originalTotal = checkoutData.total;
+        
+        // Update totals display
+        updateCheckoutTotals();
+        
+        // Show success message
+        if (discountMessage) {
+            discountMessage.style.display = 'flex';
+            discountMessage.style.background = '#d1fae5';
+            discountMessage.style.color = '#065f46';
+            discountMessage.style.border = '1px solid #34d399';
+            discountMessage.innerHTML = `<i class="fas fa-check"></i> ${discount.description} applied successfully!`;
+        }
+        
+        // Disable input and button
+        discountCodeInput.disabled = true;
+        const applyBtn = document.getElementById('apply-discount');
+        if (applyBtn) {
+            applyBtn.disabled = true;
+            applyBtn.textContent = 'Applied';
+        }
+        
+    } else {
+        // Show error message
+        if (discountMessage) {
+            discountMessage.style.display = 'flex';
+            discountMessage.style.background = '#fee2e2';
+            discountMessage.style.color = '#991b1b';
+            discountMessage.style.border = '1px solid #f87171';
+            discountMessage.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Invalid discount code. Please try again.`;
+        }
+    }
+}
+
+function updateCheckoutTotals() {
+    const subtotalEl = document.getElementById('checkout-subtotal');
+    const totalEl = document.getElementById('checkout-total');
+    
+    let subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    let finalTotal = subtotal;
+    
+    if (checkoutData.discountAmount > 0) {
+        finalTotal = subtotal - checkoutData.discountAmount;
+        
+        // Add discount row if it doesn't exist
+        const totalsContainer = document.querySelector('.checkout-totals');
+        if (totalsContainer && !document.querySelector('.discount-row')) {
+            const discountRow = document.createElement('div');
+            discountRow.className = 'totals-row discount-row';
+            discountRow.innerHTML = `
+                <span class="totals-label">Discount (${checkoutData.discountCode}):</span>
+                <span class="totals-value discount-value">-${convertPrice(checkoutData.discountAmount, false)}</span>
+            `;
+            
+            // Insert before total row
+            const totalRow = document.querySelector('.total-row');
+            if (totalRow) {
+                totalRow.parentNode.insertBefore(discountRow, totalRow);
+            }
+        }
+    }
+    
+    if (subtotalEl) subtotalEl.textContent = convertPrice(subtotal, false);
+    if (totalEl) totalEl.textContent = convertPrice(finalTotal, false);
+    
+    // Update checkout data
+    checkoutData.total = finalTotal;
 
 function setupCheckoutEventListeners() {
     try {
