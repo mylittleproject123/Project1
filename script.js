@@ -1051,6 +1051,7 @@ function updateCheckoutTotals() {
     
     // Update checkout data
     checkoutData.total = finalTotal;
+	}
 
 function setupCheckoutEventListeners() {
     try {
