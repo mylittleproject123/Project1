@@ -676,15 +676,18 @@ function createCheckoutModal() {
                 </div>
 
                 <div class="summary-section">
-                    <h4>${(currentLanguage === 'es' ? 'Resumen de Costos' : 'Cost Summary')}</h4>
-                    <div class="checkout-totals">
-					'Código de Descuento' : 'Discount Code')}</h4>
-                    <div class="discount-input-group">
-                        <input type="text" id="discount-code" class="discount-input" placeholder="${(currentLanguage === 'es' ? 'Ingresa tu código (ej: SWAPPIE10)' : 'Enter your code (e.g., SWAPPIE10)')}" maxlength="20">
-                        <button type="button" id="apply-discount" class="btn btn-secondary discount-apply-btn">${(currentLanguage === 'es' ? 'Aplicar' : 'Apply')}</button>
-                    </div>
-                    <div id="discount-message" class="discount-message"></div>
-                </div>
+    <h4>${(currentLanguage === 'es' ? 'Código de Descuento' : 'Discount Code')}</h4>
+    <div class="discount-input-group">
+        <input type="text" id="discount-code" class="discount-input" 
+               placeholder="${(currentLanguage === 'es' ? 'Ingresa tu código (ej: SWAPPIE10)' : 'Enter your code (e.g., SWAPPIE10)')}" 
+               maxlength="20">
+        <button type="button" id="apply-discount" class="btn btn-secondary discount-apply-btn">
+            ${(currentLanguage === 'es' ? 'Aplicar' : 'Apply')}
+        </button>
+    </div>
+    <div id="discount-message" class="discount-message"></div>
+</div>
+
 
                 <div class="summary-section">
                     <h4>${(currentLanguage === 'es' ? 'Resumen de Costos' : 'Cost Summary')}</h4>
