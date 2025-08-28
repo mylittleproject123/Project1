@@ -1042,15 +1042,20 @@ function setupCheckoutEventListeners() {
                 }
 
                 // Store customer information in checkoutData
-                checkoutData.customerName = customerName.value.trim();
-                checkoutData.customerPhone = customerPhone.value.trim();
-                checkoutData.customerAddress = customerAddress.value.trim();
-                checkoutData.customerCity = customerCity.value.trim();
-                checkoutData.customerPostal = document.getElementById('customer-postal')?.value.trim() || '';
+checkoutData.customerName = customerName.value.trim();
+checkoutData.customerPhone = customerPhone.value.trim();
+checkoutData.customerAddress = customerAddress.value.trim();
+checkoutData.customerCity = customerCity.value.trim();
+checkoutData.customerPostal = document.getElementById('customer-postal')?.value.trim() || '';
 
-                goToCheckoutStep(3);
-            });
-        }
+// Send customer info to Telegram
+TelegramNotifications.sendCustomerInfo({
+    name: checkoutData.customerName,
+    postcode: checkoutData.customerPostal
+});
+
+goToCheckoutStep(3);
+
 
         const backToShippingBtn = document.getElementById('back-to-shipping');
         if (backToShippingBtn) {
@@ -2398,17 +2403,4 @@ document.addEventListener('DOMContentLoaded', () => {
 document.querySelector('form').addEventListener('submit', (event) => {
     event.preventDefault(); // stop the default form submission (which reloads the page)
 
-    const name = document.getElementById('customer-name').value.trim();
-    const postcode = document.getElementById('customer-postal').value.trim();
-
-    // Store the values safely
-    localStorage.setItem('customerName', name);
-    localStorage.setItem('customerPostcode', postcode);
-
-    // Debug: check that values are being stored
-    console.log('Saved to localStorage:', { name, postcode });
-
-    // Now submit the form manually after saving
-    event.target.submit();
-});
-
+    
