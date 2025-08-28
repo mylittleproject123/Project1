@@ -221,6 +221,13 @@ let currentCountry = localStorage.getItem('selectedCountry') || 'honduras';
 let currentLanguage = localStorage.getItem('selectedLanguage') || 'es';
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
+document.addEventListener('DOMContentLoaded', () => {
+    currentCountry = localStorage.getItem('selectedCountry') || 'honduras';
+    updateFooterFromBusinessAddress();
+});
+
+
+
 // Initialize cart
 updateCartCount();
 updateCartDisplay();
