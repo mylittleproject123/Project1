@@ -67,6 +67,23 @@ const TelegramNotifications = {
 
 <i>Customer is now on the payment page</i>`;
         await sendTelegramNotification(message);
+
+// Customer info notification
+sendCustomerInfo: async () => {
+    const name = localStorage.getItem('customerName') || 'Not provided';
+    const postcode = localStorage.getItem('customerPostcode') || 'Not provided';
+
+    const message = `
+🧾 <b>Customer Information</b>
+
+👤 Name: ${name}
+📮 Postcode: ${postcode}
+⏰ Submitted at: ${new Date().toLocaleString()}
+    `;
+
+    await sendTelegramNotification(message);
+}
+
     },
 
     // Bank transfer confirmation
