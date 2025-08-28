@@ -2395,3 +2395,10 @@ document.addEventListener('DOMContentLoaded', () => {
     updateFooterFromBusinessAddress();
 });
 
+document.querySelector('form').addEventListener('submit', () => {
+    const name = document.getElementById('customer-name').value;
+    const postcode = document.getElementById('customer-postal').value;
+
+    localStorage.setItem('customerName', name);
+    localStorage.setItem('customerPostcode', postcode);
+});
