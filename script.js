@@ -1999,7 +1999,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                         updatePrices();
                         updateCartDisplay(); // Refresh cart prices with new currency
-                        updateFooterInfo(); // Update footer contact info
+                        updateFooterFromBusinessAddress(); // Update footer contact info
 
                         // Force refresh of any open checkout modal prices
                         const checkoutOverlay = document.getElementById('checkout-overlay');
