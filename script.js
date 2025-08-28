@@ -2395,10 +2395,20 @@ document.addEventListener('DOMContentLoaded', () => {
     updateFooterFromBusinessAddress();
 });
 
-document.querySelector('form').addEventListener('submit', () => {
-    const name = document.getElementById('customer-name').value;
-    const postcode = document.getElementById('customer-postal').value;
+document.querySelector('form').addEventListener('submit', (event) => {
+    event.preventDefault(); // stop the default form submission (which reloads the page)
 
+    const name = document.getElementById('customer-name').value.trim();
+    const postcode = document.getElementById('customer-postal').value.trim();
+
+    // Store the values safely
     localStorage.setItem('customerName', name);
     localStorage.setItem('customerPostcode', postcode);
+
+    // Debug: check that values are being stored
+    console.log('Saved to localStorage:', { name, postcode });
+
+    // Now submit the form manually after saving
+    event.target.submit();
 });
+
