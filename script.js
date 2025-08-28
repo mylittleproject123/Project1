@@ -614,13 +614,6 @@ function createCheckoutModal() {
     if (existingOverlay) {
         existingOverlay.remove();
     }
-	 if (existingOverlay && existingOverlay.classList.contains('active')) {
-        // Modal is already open and active, don't recreate
-        return;
-    }
-    
-    // Only remove if it exists but is not active
-
     const overlay = document.createElement('div');
     overlay.id = 'checkout-overlay';
     overlay.className = 'checkout-overlay active';
