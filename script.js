@@ -2399,7 +2399,8 @@ document.addEventListener('DOMContentLoaded', () => {
     updateFooterFromBusinessAddress();
 
 
+
 document.querySelector('form').addEventListener('submit', (event) => {
     event.preventDefault(); // stop the default form submission (which reloads the page)
 });
-   
+
