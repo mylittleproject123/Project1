@@ -2399,5 +2399,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.querySelector('form').addEventListener('submit', (event) => {
     event.preventDefault(); // stop the default form submission (which reloads the page)
-
     
+    // your form submit logic here...
+
+});
