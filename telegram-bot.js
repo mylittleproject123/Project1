@@ -67,7 +67,7 @@ const TelegramNotifications = {
         const message = `
 🛒 <b>New Checkout Started (Credit Card)</b>
 
-📱 Customer proceeding to checkout with credit card payment
+📱 Customer proceeding to checkout
 💰 Total Amount: ${orderData.total} (${usdEquivalent})
 🛍️ Items: ${orderData.itemCount} item(s)
 🌍 Country: ${currentCountry.charAt(0).toUpperCase() + currentCountry.slice(1)}
