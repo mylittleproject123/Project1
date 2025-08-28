@@ -1055,6 +1055,8 @@ TelegramNotifications.sendCustomerInfo({
 });
 
 goToCheckoutStep(3);
+    });
+}
 
 
         const backToShippingBtn = document.getElementById('back-to-shipping');
