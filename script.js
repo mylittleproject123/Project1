@@ -1694,9 +1694,10 @@ function getBusinessAddress() {
             };
         case 'trinidad':
             return {
-                address: '55 Independence Square',
+                address: '17-23 Charles St.',
                 city: 'Port of Spain',
-                country: 'Trinidad and Tobago'
+                country: 'Trinidad and Tobago',
+				phone: '+1 868 472 78575'
             };
         case 'usa':
             return {
