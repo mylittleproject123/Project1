@@ -1186,6 +1186,10 @@ goToCheckoutStep(3);
 
         // Setup card input formatting
         setupCardInputFormatting();
+		   } catch (error) {
+        console.error('Error setting up checkout event listeners:', error);
+    }
+}
 
 
 
