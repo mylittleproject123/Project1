@@ -2336,21 +2336,20 @@ function updateFooterFromBusinessAddress() {
     if (!businessAddress) return;
 
     const fullAddress = `${businessAddress.address}, ${businessAddress.city}, ${businessAddress.country}`;
+    const phoneNumber = businessAddress.phone;
 
-    // Update footer address
     const footerAddressEl = document.getElementById('footer-address');
     if (footerAddressEl) {
-        footerAddressEl.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${fullAddress}`;
+        footerAddressEl.innerHTML = `
+            <i class="fas fa-map-marker-alt"></i> ${fullAddress}<br>
+            <i class="fas fa-phone-alt"></i> <a href="tel:${phoneNumber}">${phoneNumber}</a>
+        `;
     }
-
-    // Update phone (you'll need a similar function or object for phones)
-    // For now, leaving it as-is or you can create getBusinessPhone()
-
-    // Update email if you want (similar logic)
-
-    // Optional: If you want to update the footer phone/email dynamically,
-    // you can create similar functions to get phone/email based on currentCountry.
 }
+
+
+   
+
 
 document.addEventListener('DOMContentLoaded', () => {
     updateFooterFromBusinessAddress();
