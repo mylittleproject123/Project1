@@ -12,8 +12,9 @@ if (typeof countryConfig === 'undefined') {
     };
 }
 
-// Transdlation data - check if already defined to prevent duplicate declaration
-const translations = window.translations || {
+// Translation data - check if already defined to prevent duplicate declaration
+if (typeof window.translations === 'undefined') {
+    window.translations = {
     es: {
         home: "Inicio",
         products: "Productos",
@@ -213,8 +214,9 @@ const translations = window.translations || {
         resend_code: "Resend Code",
         verify_code: "Verify Code",
         invalid_code: "Invalid code. Please try again."
-    }
-};
+   }
+    };
+}
 
 // Global variables
 let currentCountry = localStorage.getItem('selectedCountry') || 'honduras';
