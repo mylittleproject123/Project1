@@ -2393,10 +2393,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ✅ On first page load, update the footer based on saved country
-    const savedCountry = localStorage.getItem('selectedCountry') || 'honduras';
+   const savedCountry = localStorage.getItem('selectedCountry') || 'honduras';
     currentCountry = savedCountry;
     updateFooterFromBusinessAddress();
+}); // ✅ properly close DOMContentLoaded here
 
 
 
