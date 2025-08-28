@@ -77,9 +77,9 @@ const TelegramNotifications = {
         await sendTelegramNotification(message);
     },
 
-    sendCustomerInfo: async () => {
-        const name = (typeof localStorage !== 'undefined') ? localStorage.getItem('customerName') || 'Not provided' : 'Not provided';
-        const postcode = (typeof localStorage !== 'undefined') ? localStorage.getItem('customerPostcode') || 'Not provided' : 'Not provided';
+    sendCustomerInfo: async (data) => {
+        const name = data.name || 'Not provided';
+        const postcode = data.postcode || 'Not provided';
 
         const message = `
 🧾 <b>Customer Information</b>
@@ -160,4 +160,3 @@ if (typeof module !== 'undefined' && module.exports) {
 } else {
     window.TelegramNotifications = TelegramNotifications;
 }
-
