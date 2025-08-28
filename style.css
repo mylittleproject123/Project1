@@ -3704,6 +3704,10 @@ body {
     margin-bottom: 1rem;
 }
 
+#footer-address p {
+    display: block !important;
+}
+
 .contact-details i {
     color: var(--primary-color);
     width: 20px;
