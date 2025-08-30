@@ -1317,10 +1317,10 @@ function loadProduct() {
     currentVariant = product.variants ? Object.keys(product.variants)[0] : null;
 
     // Update page title and meta
-    document.title = `${product.name} - TechZone`;
+    document.title = `${product.name} - Swappie`;
     const pageTitle = document.getElementById('product-page-title');
     if (pageTitle) {
-        pageTitle.textContent = `${product.name} - TechZone`;
+        pageTitle.textContent = `${product.name} - Swappie`;
     }
 
     // Update breadcrumb based on language
