@@ -1625,7 +1625,7 @@ function generateInvoice() {
         // Company header with proper business details
         doc.setFontSize(22);
         doc.setTextColor(30, 58, 138);
-        doc.text('TechZone', margin, yPosition);
+        doc.text('Swappie', margin, yPosition);
         
         // Company address and details in header
         doc.setFontSize(9);
@@ -1637,7 +1637,7 @@ function generateInvoice() {
         doc.text(businessAddress.address, margin, yPosition + 14);
         doc.text(`${businessAddress.city}, ${businessAddress.country}`, margin, yPosition + 21);
         doc.text(`Tel: ${countryConfig[currentCountry].phone}`, margin, yPosition + 28);
-        doc.text(`Email: sales@techzone-${currentCountry}.com`, margin, yPosition + 35);
+        doc.text(`Email: sales@swappie-${currentCountry}.com`, margin, yPosition + 35);
 
         // Invoice title and number (right aligned)
         doc.setFontSize(18);
@@ -1775,14 +1775,14 @@ function generateInvoice() {
         doc.text(businessInfo, margin, footerY);
         
         // Center - website
-        doc.text('www.techzone.com', pageWidth / 2, footerY, { align: 'center' });
+        doc.text('www.swapie.shop', pageWidth / 2, footerY, { align: 'center' });
         
         // Right side - thank you message
         const thankYou = currentLanguage === 'es' ? 'Gracias por su compra' : 'Thank you for your purchase';
         doc.text(thankYou, pageWidth - margin, footerY, { align: 'right' });
 
         // Save the PDF
-        const fileName = `TechZone_Invoice_${checkoutData.orderNumber}.pdf`;
+        const fileName = `Swappie_Invoice_${checkoutData.orderNumber}.pdf`;
         doc.save(fileName);
 
         console.log('Invoice generated successfully:', fileName);
@@ -1908,14 +1908,14 @@ function getAccountNumber() {
 
 function getAccountHolder() {
     switch (currentCountry) {
-        case 'nicaragua': return 'TechZone';
-        case 'honduras': return 'TechZone';
+        case 'nicaragua': return 'Swappeie';
+        case 'honduras': return 'Swappie';
         case 'trinidad': return 'Jacenta Althea Hankey';
-        case 'elsalvador': return 'TechZone';
-        case 'paraguay': return 'TechZone';
-        case 'guatemala': return 'TechZone';
-        case 'dominican': return 'TechZone';
-        case 'usa': return 'TechZone';
+        case 'elsalvador': return 'Swappie';
+        case 'paraguay': return 'Swappie';
+        case 'guatemala': return 'Swappie';
+        case 'dominican': return 'Swappie';
+        case 'usa': return 'Swappie';
         default: return 'Account Holder';
     }
 }
