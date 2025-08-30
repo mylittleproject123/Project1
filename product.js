@@ -220,7 +220,7 @@ const productDatabase = {
         conditionOptions: {
             "great": { name: "Great", priceAdjustment: 0, description: "Light wear, fully functional" },
             "excellent": { name: "Excellent", priceAdjustment: 30, description: "Minor signs of use" },
-            "excellent_new_battery": { name: "Excellent with New Battery", priceAdjustment: 60, description: "Like new with brand new battery" }
+            "new_open_box": { name: "Excellent with New Battery", priceAdjustment: 60, description: "Like new with brand new battery" }
         },
         images: [
             "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/1.jpg?7763",
@@ -303,7 +303,7 @@ const productDatabase = {
         conditionOptions: {
             "great": { name: "Great", priceAdjustment: 0, description: "Light wear, fully functional" },
             "excellent": { name: "Excellent", priceAdjustment: 30, description: "Minor signs of use" },
-            "excellent_new_battery": { name: "Excellent with New Battery", priceAdjustment: 60, description: "Like new with brand new battery" }
+            "new_open_box": { name: "Excellent with New Battery", priceAdjustment: 60, description: "Like new with brand new battery" }
         },
         images: [
             "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/B/B/163129_1713554391.jpg"
@@ -377,7 +377,7 @@ const productDatabase = {
         conditionOptions: {
             "great": { name: "Great", priceAdjustment: 0, description: "Light wear, fully functional" },
             "excellent": { name: "Excellent", priceAdjustment: 30, description: "Minor signs of use" },
-            "excellent_new_battery": { name: "Excellent with New Battery", priceAdjustment: 60, description: "Like new with brand new battery" }
+            "new_open_box": { name: "Excellent with New Battery", priceAdjustment: 60, description: "Like new with brand new battery" }
         },
         images: [
             "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/17/7645104/2.jpg?9725"
@@ -415,8 +415,8 @@ const productDatabase = {
             black: {
                 name: "Negro Titanio",
                 images: [
-                    "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/C/B/67343_1732713967.jpg",
-                    "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/E/Y/67343_1732713999.jpg"
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkAgI28zAfjp7Ul1FlOn7TVRg4Fff-A5lnOMYejXAJx0qdmKxjpYMyJkvkSOnBgb6Fio4&usqp=CAU",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkAgI28zAfjp7Ul1FlOn7TVRg4Fff-A5lnOMYejXAJx0qdmKxjpYMyJkvkSOnBgb6Fio4&usqp=CAU"
                 ]
             },
             silver: {
@@ -446,7 +446,7 @@ const productDatabase = {
         conditionOptions: {
             "great": { name: "Great", priceAdjustment: 0, description: "Light wear, fully functional" },
             "excellent": { name: "Excellent", priceAdjustment: 40, description: "Minor signs of use" },
-            "excellent_new_battery": { name: "Excellent with New Battery", priceAdjustment: 80, description: "Like new with brand new battery" }
+            "new_open_box": { name: "Excellent with New Battery", priceAdjustment: 80, description: "Like new with brand new battery" }
         },
         images: [
             "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/C/B/67343_1732713967.jpg",
@@ -524,7 +524,7 @@ const productDatabase = {
         conditionOptions: {
             "great": { name: "Great", priceAdjustment: 0, description: "Light wear, fully functional" },
             "excellent": { name: "Excellent", priceAdjustment: 35, description: "Minor signs of use" },
-            "excellent_new_battery": { name: "Excellent with New Battery", priceAdjustment: 70, description: "Like new with brand new battery" }
+            "new_open_box": { name: "Excellent with New Battery", priceAdjustment: 70, description: "Like new with brand new battery" }
         },
         images: [
             "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/P/D/67343_1707126048.jpg",
@@ -611,7 +611,7 @@ const productDatabase = {
         conditionOptions: {
              "great": { name: "Great", priceAdjustment: 0, description: "Light wear, fully functional" },
             "excellent": { name: "Excellent", priceAdjustment: 30, description: "Minor signs of use" },
-            "excellent_new_battery": { name: "Excellent with New Battery", priceAdjustment: 60, description: "Like new with brand new battery" }
+            "new_open_box": { name: "Excellent with New Battery", priceAdjustment: 60, description: "Like new with brand new battery" }
         },
         images: [
             "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/Z/T/141488_1684232842.jpg"
@@ -701,7 +701,7 @@ const productDatabase = {
         conditionOptions: {
             "great": { name: "Great", priceAdjustment: 25, description: "Light wear, fully functional" },
             "excellent": { name: "Excellent", priceAdjustment: 50, description: "Minor signs of use" },
-            "excellent_new_battery": { name: "Excellent with New Battery", priceAdjustment: 75, description: "Like new with brand new battery" }
+            "new_open_box": { name: "Excellent with New Battery", priceAdjustment: 75, description: "Like new with brand new battery" }
         },
         images: [
             "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/91/5971252/1.jpg?7934"
@@ -786,7 +786,7 @@ const productDatabase = {
         conditionOptions: {
             "great": { name: "Great", priceAdjustment: 20, description: "Light wear, fully functional" },
             "excellent": { name: "Excellent", priceAdjustment: 40, description: "Minor signs of use" },
-            "excellent_new_battery": { name: "Excellent with New Battery", priceAdjustment: 60, description: "Like new with brand new battery" }
+            "new_open_box": { name: "Excellent with New Battery", priceAdjustment: 60, description: "Like new with brand new battery" }
         },
         images: [
             "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/46/4905482/1.jpg?2892"
@@ -871,7 +871,7 @@ const productDatabase = {
         conditionOptions: {
             "great": { name: "Great", priceAdjustment: 0, description: "Light wear, fully functional" },
             "excellent": { name: "Excellent", priceAdjustment: 30, description: "Minor signs of use" },
-            "excellent_new_battery": { name: "Excellent with New Battery", description: "Like new with brand new battery", priceAdjustment: 60 }
+            "new_open_box": { name: "Excellent with New Battery", description: "Like new with brand new battery", priceAdjustment: 60 }
         },
         images: [
             "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/R/B/163129_1685917309.jpg"
