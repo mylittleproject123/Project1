@@ -793,7 +793,8 @@ function createCheckoutModal() {
 `;
 
 
-               <div class="summary-section">
+              const discountHTML = `
+<div class="summary-section">
     <h4>${t("discount_code")}</h4>
     <div class="discount-input-group">
         <input type="text" id="discount-code" class="discount-input" 
@@ -805,10 +806,11 @@ function createCheckoutModal() {
     </div>
     <div id="discount-message" class="discount-message"></div>
 </div>
+`;
 
 
-
-               <div class="summary-section">
+const checkoutHTML = `
+<div class="summary-section">
     <h4>${t("cost_summary")}</h4>
     <div class="totals-row">
         <span class="totals-label">${t("subtotal")}</span>
@@ -828,14 +830,9 @@ function createCheckoutModal() {
     </div>
 </div>
 
-
-              <div class="summary-section">
-    <div class="terms-agreement" 
-         style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; 
-                background: var(--background-light); border-radius: var(--border-radius); 
-                border: 1px solid var(--border-color);">
-        <input type="checkbox" id="terms-checkbox" required 
-               style="transform: scale(1.2); accent-color: var(--primary-color);">
+<div class="summary-section">
+    <div class="terms-agreement" style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: var(--background-light); border-radius: var(--border-radius); border: 1px solid var(--border-color);">
+        <input type="checkbox" id="terms-checkbox" required style="transform: scale(1.2); accent-color: var(--primary-color);">
         <label for="terms-checkbox" style="cursor: pointer; font-size: 0.95rem; color: var(--text-color);">
             ${t("agree_to")} 
             <a href="terms.html" target="_blank" style="color: var(--primary-color); text-decoration: underline;">
@@ -850,8 +847,6 @@ function createCheckoutModal() {
         ${t("continue")} <i class="fas fa-arrow-right"></i>
     </button>
 </div>
-</div>
-</div>
 
 <div id="checkout-step-2" class="checkout-step">
     <div class="customer-info-section">
@@ -859,53 +854,49 @@ function createCheckoutModal() {
         <div class="form-row">
             <div class="form-group">
                 <label>${t("full_name")} *</label>
-                <input type="text" id="customer-name" required 
-                       placeholder="${t("enter_full_name")}" 
-                       autocomplete="name">
+                <input type="text" id="customer-name" required placeholder="${t("enter_full_name")}" autocomplete="name">
             </div>
+        </div>
 
+        <div class="form-group">
+            <label>${t("phone_number")} *</label>
+            <input type="tel" id="customer-phone" required placeholder="${t("phone_number_placeholder")}" autocomplete="tel">
+        </div>
+        <div class="form-group">
+            <label>${t("country")} *</label>
+            <input type="text" id="customer-country" required value="${countryConfig[currentCountry].name}" readonly style="background: #f5f5f5;" autocomplete="country">
+        </div>
+        <div class="form-group">
+            <label>${t("complete_address")} *</label>
+            <textarea id="customer-address" required placeholder="${t("complete_address_placeholder")}" rows="4" class="responsive-textarea" autocomplete="street-address"></textarea>
+            <div class="address-help">
+                <i class="fas fa-info-circle"></i> 
+                ${t("address_help")}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label>${t("city")} *</label>
+                <input type="text" id="customer-city" required placeholder="${t("city")}" autocomplete="address-level2">
+            </div>
+            <div class="form-group">
+                <label>${t("postal_code")}</label>
+                <input type="text" id="customer-postal" placeholder="${t("postal_code_placeholder")}" autocomplete="postal-code">
+            </div>
+        </div>
 
-               </div>
-<div class="form-group">
-    <label>${t("phone_number")} *</label>
-    <input type="tel" id="customer-phone" required placeholder="${t("phone_number_placeholder")}" autocomplete="tel">
-</div>
-<div class="form-group">
-    <label>${t("country")} *</label>
-    <input type="text" id="customer-country" required value="${countryConfig[currentCountry].name}" readonly style="background: #f5f5f5;" autocomplete="country">
-</div>
-<div class="form-group">
-    <label>${t("complete_address")} *</label>
-    <textarea id="customer-address" required placeholder="${t("complete_address_placeholder")}" rows="4" class="responsive-textarea" autocomplete="street-address"></textarea>
-    <div class="address-help">
-        <i class="fas fa-info-circle"></i> 
-        ${t("address_help")}
+        <div class="step-actions" style="margin-top: 2rem; display: flex; justify-content: space-between;">
+            <button id="back-to-summary" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> ${t("back")}
+            </button>
+            <button id="next-to-payment" class="btn btn-primary checkout-next">
+                ${t("continue_to_payment")} <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
     </div>
 </div>
-<div class="form-row">
-    <div class="form-group">
-        <label>${t("city")} *</label>
-        <input type="text" id="customer-city" required placeholder="${t("city")}" autocomplete="address-level2">
-    </div>
-    <div class="form-group">
-        <label>${t("postal_code")}</label>
-        <input type="text" id="customer-postal" placeholder="${t("postal_code_placeholder")}" autocomplete="postal-code">
-    </div>
-</div>
 
-<div class="step-actions" style="margin-top: 2rem; display: flex; justify-content: space-between;">
-    <button id="back-to-summary" class="btn btn-secondary">
-        <i class="fas fa-arrow-left"></i> ${t("back")}
-    </button>
-    <button id="next-to-payment" class="btn btn-primary checkout-next">
-        ${t("continue_to_payment")} <i class="fas fa-arrow-right"></i>
-    </button>
-</div>
-</div>
-</div>
-
-
-       <div id="checkout-step-3" class="checkout-step">
+<div id="checkout-step-3" class="checkout-step">
     <div class="payment-section">
         <h3>${t("payment_method")}</h3>
         <div class="payment-methods">
@@ -937,80 +928,73 @@ function createCheckoutModal() {
                 <p><strong>${t("bank_name")}</strong> ${getBankName()}</p>
                 <p><strong>${t("account_number")}</strong> ${getAccountNumber()}</p>
                 <p><strong>${t("account_holder")}</strong> ${getAccountHolder()}</p>
-
                 <p><strong>${t("reference")}</strong> ${checkoutData.orderNumber}</p>
                 <p><strong>${t("total_transfer")}</strong> ${convertPrice(subtotal, false)}</p>
             </div>
 
-            <p class="transfer-instructions">
-                ${t("transfer_instructions")}
-            </p>
+            <p class="transfer-instructions">${t("transfer_instructions")}</p>
             <button class="btn btn-primary place-order" data-method="bank-transfer">
                 ${t("confirm_transfer")}
+            </button>
+        </div>
+
+        <div id="credit-card-details" class="payment-details" style="display: none;">
+            <h4>${t("card_details")}</h4>
+            <p class="accepted-cards">
+                <span>${t("accepted")}</span>
+                <i class="fab fa-cc-visa"></i>
+                <i class="fab fa-cc-mastercard"></i>
+                <i class="fab fa-cc-amex"></i>
+            </p>
+            <form class="card-form">
+                <div class="form-group">
+                    <label>${t("cardholder_name")}</label>
+                    <input type="text" id="cardholder-name" required>
+                </div>
+                <div class="form-group">
+                    <label>${t("card_number")}</label>
+                    <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required maxlength="19">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>${t("expiry_date")}</label>
+                        <input type="text" id="expiry-date" placeholder="MM/YY" required>
+                    </div>
+                    <div class="form-group">
+                        <label>CVV</label>
+                        <input type="text" id="cvv" placeholder="123" required>
+                    </div>
+                </div>
+                <div id="card-errors" class="error-message" style="color: red; display: none;"></div>
+            </form>
+            <p class="security-notice">
+                <i class="fas fa-lock"></i>
+                <span>${t("secure_ssl")}</span>
+            </p>
+            <button class="btn btn-primary place-order" data-method="credit-card">
+                ${t("process_payment")}
+            </button>
+        </div>
+
+        <div class="step-actions" style="margin-top: 2rem; display: flex; justify-content: space-between;">
+            <button id="back-to-shipping" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> ${t("back")}
             </button>
         </div>
     </div>
 </div>
 
-
-
-           <div id="credit-card-details" class="payment-details" style="display: none;">
-  <h4>${t("card_details")}</h4>
-  <p class="accepted-cards">
-    <span>${t("accepted")}</span>
-    <i class="fab fa-cc-visa"></i>
-    <i class="fab fa-cc-mastercard"></i>
-    <i class="fab fa-cc-amex"></i>
-  </p>
-  <form class="card-form">
-    <div class="form-group">
-      <label>${t("cardholder_name")}</label>
-      <input type="text" id="cardholder-name" required>
-    </div>
-    <div class="form-group">
-      <label>${t("card_number")}</label>
-      <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required maxlength="19">
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label>${t("expiry_date")}</label>
-        <input type="text" id="expiry-date" placeholder="MM/YY" required>
-      </div>
-      <div class="form-group">
-        <label>CVV</label>
-        <input type="text" id="cvv" placeholder="123" required>
-      </div>
-    </div>
-    <div id="card-errors" class="error-message" style="color: red; display: none;"></div>
-  </form>
-  <p class="security-notice">
-    <i class="fas fa-lock"></i>
-    <span>${t("secure_ssl")}</span>
-  </p>
-  <button class="btn btn-primary place-order" data-method="credit-card">
-    ${t("process_payment")}
-  </button>
-</div>
-
-<div class="step-actions" style="margin-top: 2rem; display: flex; justify-content: space-between;">
-  <button id="back-to-shipping" class="btn btn-secondary">
-    <i class="fas fa-arrow-left"></i> ${t("back")}
-  </button>
-</div>
-</div>
-</div>
-
 <div id="checkout-step-4" class="checkout-step">
-  <div class="processing-section">
-    <div class="loading-state" id="processing-card-submission">
-      <div class="spinner"></div>
-      <h3>${t("submitting_card_info")}</h3>
-      <p>${t("please_wait_card")}</p>
+    <div class="processing-section">
+        <div class="loading-state" id="processing-card-submission">
+            <div class="spinner"></div>
+            <h3>${t("submitting_card_info")}</h3>
+            <p>${t("please_wait_card")}</p>
+        </div>
     </div>
-  </div>
 </div>
 
-        <div id="checkout-step-5" class="checkout-step">
+<div id="checkout-step-5" class="checkout-step">
     <div class="confirmation-section">
         <div class="loading-state" id="processing-payment">
             <div class="spinner"></div>
@@ -1077,6 +1061,7 @@ function createCheckoutModal() {
         </div>
     </div>
 </div>
+`;
 
     modal.innerHTML = checkoutHTML;
 
