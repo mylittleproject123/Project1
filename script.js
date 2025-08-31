@@ -901,7 +901,7 @@ const checkoutHTML = `
                 ${currentCountry !== 'nicaragua' ? `<p style="margin-top:1rem;font-size:0.9rem;color:var(--text-light);">${t("bank_transfer_note")}</p>` : ''}
             </div>
 
-           <div id="bank-transfer-details" class="payment-details" style="display:none;">
+         <div id="bank-transfer-details" class="payment-details" style="display:none;">
     <h4>${t("bank_details")}</h4>
     <div class="bank-info">
         <p><strong>${t("bank_name")}</strong> ${getBankName()}</p>
@@ -912,29 +912,18 @@ const checkoutHTML = `
     </div>
     <p class="transfer-instructions">${t("transfer_instructions")}</p>
 
-    <!-- WhatsApp Button -->
-    <a id="confirm-bank-transfer" 
-       class="btn btn-primary" 
-       target="_blank" 
+    <!-- WhatsApp Link -->
+    <a id="confirm-bank-transfer"
+       class="btn btn-primary"
+       target="_blank"
        rel="noopener noreferrer"
-       style="display:inline-flex;align-items:center;gap:0.5rem;">
+       style="display:inline-flex; align-items:center; gap:0.5rem;"
+       href="https://wa.me/16415048135?text=Hello%2C%20I%20have%20completed%20the%20bank%20transfer%20for%20order%20${checkoutData.orderNumber}%20totaling%20${encodeURIComponent(convertPrice(subtotal, false))}.">
         <i class="fab fa-whatsapp"></i> ${t("confirm_transfer")}
     </a>
 </div>
 
-<script>
-document.getElementById('confirm-bank-transfer').addEventListener('click', function(e) {
-    const phoneNumber = '16415048135'; // Your WhatsApp number with country code
-    const message = `Hello! I have completed the bank transfer for order ${checkoutData.orderNumber} totaling ${convertPrice(subtotal, false)}.`;
-    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
-    // Redirect to WhatsApp
-    window.open(whatsappURL, '_blank');
-    
-    // Optional: prevent default link if you don't want href to interfere
-    e.preventDefault();
-});
-</script>
 
 
             <div id="credit-card-details" class="payment-details" style="display:none;">
