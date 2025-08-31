@@ -918,22 +918,24 @@ function createCheckoutModal() {
                 </div>
 
                 <div id="bank-transfer-details" class="payment-details" style="display: none;">
-                    <h4>${(currentLanguage === 'es' ? 'Datos Bancarios' : 'Bank Details')}</h4>
-                    <div class="bank-info">
-                        <p><strong>${(currentLanguage === 'es' ? 'Banco:' : 'Bank:')}</strong> ${getBankName()}</p>
-                        <p><strong>${(currentLanguage === 'es' ? 'Número de Cuenta:' : 'Account Number:')}</strong> ${getAccountNumber()}</p>
-                        <p><strong>${(currentLanguage === 'es' ? 'Titular de la Cuenta:' : 'Account Holder:')}</strong> ${getAccountHolder()}</p>
+  <h4>${t("bank_details")}</h4>
+  <div class="bank-info">
+    <p><strong>${t("bank_name")}</strong> ${getBankName()}</p>
+    <p><strong>${t("account_number")}</strong> ${getAccountNumber()}</p>
+    <p><strong>${t("account_holder")}</strong> ${getAccountHolder()}</p>
 
-                        <p><strong>${(currentLanguage === 'es' ? 'Referencia:' : 'Reference:')}</strong> ${checkoutData.orderNumber}</p>
-                        <p><strong>${(currentLanguage === 'es' ? 'Total a Transferir:' : 'Amount to Transfer:')}</strong> ${convertPrice(subtotal, false)}</p>
-                    </div>
-<p class="transfer-instructions">
-  ${t("transfer_instructions")}
-</p>
-<button class="btn btn-primary place-order" data-method="bank-transfer">
-  ${t("confirm_transfer")}
-</button>
+    <p><strong>${t("reference")}</strong> ${checkoutData.orderNumber}</p>
+    <p><strong>${t("total_transfer")}</strong> ${convertPrice(subtotal, false)}</p>
+  </div>
+
+  <p class="transfer-instructions">
+    ${t("transfer_instructions")}
+  </p>
+  <button class="btn btn-primary place-order" data-method="bank-transfer">
+    ${t("confirm_transfer")}
+  </button>
 </div>
+
 
 
             <div id="credit-card-details" class="payment-details" style="display: none;">
