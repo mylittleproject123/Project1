@@ -2083,7 +2083,7 @@ const translations = {
   gray: "Gris",
   yellow: "Amarillo",
         available_in: "Disponible en:",
-        free_shipping: "Envío gratis a partir de $200",
+        free_shipping: "Envío gratis a partir",
         free_shipping_all: "Envío gratis en todos los pedidos",
         // Footer
         company_info: "Información de la Empresa",
