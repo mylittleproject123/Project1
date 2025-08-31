@@ -193,7 +193,7 @@ const productDatabase = {
         category: "phone",
         variants: {
             black: {
-                name: "Negro Titanio",
+                name: "Black",
                 images: [
                     "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/1.jpg?7763",
                     "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/3.jpg?7763",
@@ -203,7 +203,7 @@ const productDatabase = {
                 ]
             },
             gold: {
-                name: "Dorado",
+                name: "Rose gold",
                 images: [
                     "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/49/0510004/1.jpg?6300",
                     "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/49/0510004/2.jpg?6300",
@@ -277,19 +277,19 @@ const productDatabase = {
               ]
             },
             blue: {
-                name: "Azul Titanio",
+                name: "Blue",
                 images: [
                     "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/B/B/163129_1713554391.jpg"
                 ]
             },
             white: {
-                name: "Blanco Titanio",
+                name: "White",
                 images: [
                     "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/B/B/163129_1713554391.jpg"
                 ]
             },
             black: {
-                name: "Negro Titanio",
+                name: "Black",
                 images: [
                     "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/B/B/163129_1713554391.jpg"
                 ]
@@ -350,19 +350,19 @@ const productDatabase = {
                 ]
             },
             gold: {
-                name: "Dorado",
+                name: "Rose gold",
                 images: [
                     "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/13/1544104/1.jpg?5804"
                 ]
             },
             spaceblack: {
-                name: "Negro Espacial",
+                name: "Space black",
                 images: [
                     "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/17/7645104/2.jpg?9725"
                 ]
             },
             silver: {
-                name: "Plateado",
+                name: "Silver",
                 images: [
                     "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/17/7645104/2.jpg?9725"
                 ]
@@ -413,26 +413,26 @@ const productDatabase = {
         category: "phone",
         variants: {
             black: {
-                name: "Negro Titanio",
+                name: "Black",
                 images: [
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkAgI28zAfjp7Ul1FlOn7TVRg4Fff-A5lnOMYejXAJx0qdmKxjpYMyJkvkSOnBgb6Fio4&usqp=CAU",
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkAgI28zAfjp7Ul1FlOn7TVRg4Fff-A5lnOMYejXAJx0qdmKxjpYMyJkvkSOnBgb6Fio4&usqp=CAU"
                 ]
             },
             silver: {
-                name: "Plateado Titanio",
+                name: "Silver grey",
                 images: [
                     "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/C/B/67343_1732713967.jpg"
                 ]
             },
             blue: {
-                name: "Azul Titanio",
+                name: "Blue",
                 images: [
                     "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/C/B/67343_1732713967.jpg"
                 ]
             },
             green: {
-                name: "Verde Titanio",
+                name: "Green",
                 images: [
                     "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/C/B/67343_1732713967.jpg"
                 ]
@@ -490,7 +490,7 @@ const productDatabase = {
         category: "phone",
         variants: {
             black: {
-                name: "Negro Titanio",
+                name: "Black",
                 images: [
                     "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/P/D/67343_1707126048.jpg",
                     "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/T/E/67343_1707126076.jpg",
@@ -498,19 +498,19 @@ const productDatabase = {
                 ]
             },
             gray: {
-                name: "Gris Titanio",
+                name: "Grey",
                 images: [
                     "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/P/D/67343_1707126048.jpg"
                 ]
             },
             violet: {
-                name: "Violeta Titanio",
+                name: "Violet",
                 images: [
                     "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/P/D/67343_1707126048.jpg"
                 ]
             },
             yellow: {
-                name: "Amarillo Titanio",
+                name: "Yellow",
                 images: [
                     "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/P/D/67343_1707126048.jpg"
                 ]
@@ -573,13 +573,13 @@ const productDatabase = {
         category: "phone",
         variants: {
             red: {
-                name: "Rojo",
+                name: "Red",
                 images: [
                     "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/Z/T/141488_1684232842.jpg"
                 ]
             },
             skyblue: {
-                name: "Azul Cielo",
+                name: "Sky blue",
                 images: [
                     "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/U/V/141488_1684232622.jpg"
                 ]
@@ -590,14 +590,14 @@ const productDatabase = {
                     "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/Z/T/141488_1684232842.jpg"
                 ]
             },
-            coral: {
-                name: "Coral",
+            lavender: {
+                name: "Lavender",
                 images: [
                     "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/Z/T/141488_1684232842.jpg"
                 ]
             },
             green: {
-                name: "Verde",
+                name: "Green",
                 images: [
                     "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/Z/T/141488_1684232842.jpg"
                 ]
@@ -658,13 +658,13 @@ const productDatabase = {
         category: "phone",
         variants: {
             black: {
-                name: "Negro Fantasma",
+                name: "Black",
                 images: [
                     "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/91/5971252/1.jpg?7934"
                 ]
             },
             purple: {
-                name: "Púrpura",
+                name: "Purple",
                 images: [
                     "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/67/4988493/1.jpg?7063",
                     "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/67/4988493/2.jpg?7063",
@@ -674,19 +674,19 @@ const productDatabase = {
                 ]
             },
             white: {
-                name: "Blanco Fantasma",
+                name: "White",
                 images: [
                     "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/91/5971252/1.jpg?7934"
                 ]
             },
             green: {
-                name: "Verde",
+                name: "Green",
                 images: [
                     "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/91/5971252/1.jpg?7934"
                 ]
             },
             red: {
-                name: "Rojo",
+                name: "Red",
                 images: [
                     "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/91/5971252/1.jpg?7934"
                 ]
@@ -748,31 +748,31 @@ const productDatabase = {
         category: "phone",
         variants: {
             black: {
-                name: "Negro Fantasma",
+                name: "Black",
                 images: [
                     "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/46/4905482/1.jpg?2892"
                 ]
             },
             silver: {
-                name: "Plateado Fantasma",
+                name: "Silver",
                 images: [
                     "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/46/4905482/1.jpg?2892"
                 ]
             },
             violet: {
-                name: "Violeta Fantasma",
+                name: "Violet",
                 images: [
                     "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/46/4905482/1.jpg?2892"
                 ]
             },
             brown: {
-                name: "Marrón Fantasma",
+                name: "Brpwn",
                 images: [
                     "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/46/4905482/1.jpg?2892"
                 ]
             },
             navy: {
-                name: "Azul Marino Fantasma",
+                name: "Navy",
                 images: [
                     "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/46/4905482/1.jpg?2892"
                 ]
