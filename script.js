@@ -321,15 +321,12 @@ if (typeof window.translations === 'undefined') {
 }
 
 function t(key) {
-  // fallback dictionary
-  const translations = {
-    confirm_transfer: currentLanguage === 'es' 
-      ? "He realizado la transferencia" 
-      : "I have made the transfer"
-  };
-
-  return translations[key] || key;
+  const lang = window.currentLanguage || 'en'; // fallback to English if not set
+  return (window.translations[lang] && window.translations[lang][key]) 
+    ? window.translations[lang][key] 
+    : key; // fallback to key if translation is missing
 }
+
 
 
 // Global variables
