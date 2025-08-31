@@ -2164,12 +2164,12 @@ translations.es.great = "Genial";
 translations.es.great_desc = "Desgaste ligero, totalmente funcional";
 translations.es.excellent = "Excelente";
 translations.es.excellent_desc = "Signos menores de uso";
-translations.es.excellent_new_battery = "Excelente con Batería Nueva";
+translations.es.new_open_box = "Caja abierta, nuevo";
 translations.es.excellent_new_battery_desc = "Como nuevo con batería totalmente nueva";
 
 translations.en.great = "Great";
 translations.en.great_desc = "Light wear, fully functional";
 translations.en.excellent = "Excellent";
 translations.en.excellent_desc = "Minor signs of use";
-translations.en.excellent_new_battery = "Excellent with New Battery";
+translations.en.new_open_box = "New open box";
 translations.en.excellent_new_battery_desc = "Like new with brand new battery";
