@@ -585,13 +585,13 @@ const productDatabase = {
                 ]
             },
             black: {
-                name: "Negro Fantasma",
+                name: "Black",
                 images: [
                     "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/Z/T/141488_1684232842.jpg"
                 ]
             },
-            cream: {
-                name: "Crema",
+            coral: {
+                name: "Coral",
                 images: [
                     "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/Z/T/141488_1684232842.jpg"
                 ]
