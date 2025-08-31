@@ -320,6 +320,18 @@ if (typeof window.translations === 'undefined') {
     };
 }
 
+function t(key) {
+  // fallback dictionary
+  const translations = {
+    confirm_transfer: currentLanguage === 'es' 
+      ? "He realizado la transferencia" 
+      : "I have made the transfer"
+  };
+
+  return translations[key] || key;
+}
+
+
 // Global variables
 let currentCountry = localStorage.getItem('selectedCountry') || 'honduras';
 let currentLanguage = localStorage.getItem('selectedLanguage') || 'es';
