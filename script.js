@@ -1070,7 +1070,7 @@ const checkoutHTML = `
 
     setupCheckoutEventListeners();
     setupDiscountCode();
-}
+
 
 function setupDiscountCode() {
     const applyDiscountBtn = document.getElementById('apply-discount');
