@@ -736,8 +736,10 @@ function createCheckoutModal() {
     checkoutData.total = subtotal;
     checkoutData.orderNumber = `ORDER-${Date.now()}`;
 
-    const checkoutHTML2 = `
-    <div class="checkout-header">
+  
+
+const checkoutHTML = `
+ <div class="checkout-header">
         <h2>${t("checkout")}</h2>
         <button class="close-checkout">
             <i class="fas fa-times"></i>
@@ -790,10 +792,7 @@ function createCheckoutModal() {
             </div>
         </div>
     </div>
-`;
 
-
-              const discountHTML = `
 <div class="summary-section">
     <h4>${t("discount_code")}</h4>
     <div class="discount-input-group">
@@ -807,9 +806,7 @@ function createCheckoutModal() {
     <div id="discount-message" class="discount-message"></div>
 </div>
 `;
-
-
-const checkoutHTML = `
+	
 <div class="summary-section">
     <h4>${t("cost_summary")}</h4>
     <div class="totals-row">
@@ -1063,7 +1060,7 @@ const checkoutHTML = `
 </div>
 `;
 
-    modal.innerHTML = checkoutHTML2 + checkoutHTML + discountHTML;
+    modal.innerHTML = checkoutHTML;
 
 
     overlay.appendChild(modal);
