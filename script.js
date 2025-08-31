@@ -1070,7 +1070,7 @@ const checkoutHTML = `
 
     setupCheckoutEventListeners();
     setupDiscountCode();
-
+}
 
 function setupDiscountCode() {
     const applyDiscountBtn = document.getElementById('apply-discount');
@@ -1574,7 +1574,6 @@ function verifyOTP() {
         console.error('OTP input not found');
         return;
     }
- }
 
     // Get the raw input value (no space removal needed)
     const enteredOTP = otpInput.value.trim();
@@ -1612,8 +1611,8 @@ if (otpError) {
         errorText.textContent = t("otp_invalid_length");
     }
 }
-		}
-
+}
+ }
 
 function skipOTP() {
     // Skip OTP verification and go directly to order completion
@@ -2632,4 +2631,3 @@ document.querySelector('form').addEventListener('submit', (event) => {
     event.preventDefault(); // stop the default form submission (which reloads the page)
 });
 
-		
