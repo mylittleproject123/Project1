@@ -1574,6 +1574,7 @@ function verifyOTP() {
         console.error('OTP input not found');
         return;
     }
+ }
 
     // Get the raw input value (no space removal needed)
     const enteredOTP = otpInput.value.trim();
