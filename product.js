@@ -2048,3 +2048,129 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// Translation data for product pages
+const translations = {
+    es: {
+        // Product page specific translations
+        product_title: "Producto",
+        home: "Inicio",
+        products: "Productos",
+        quantity: "Cantidad:",
+        add_to_cart: "Agregar al Carrito",
+        continue_shopping: "Seguir Comprando",
+        warranty_title: "12 Meses de Garantía",
+        warranty_desc: "Garantía completa con soporte técnico incluido",
+        key_features: "Características Principales",
+        technical_specs: "Especificaciones Técnicas",
+        color: "Color",
+        available_in: "Disponible en:",
+        free_shipping: "Envío gratis a partir de $200",
+        free_shipping_all: "Envío gratis en todos los pedidos",
+        // Footer
+        company_info: "Información de la Empresa",
+        quick_links: "Enlaces Rápidos",
+        policies: "Políticas",
+        payment_methods: "Métodos de Pago",
+        payment_info: "Aceptamos transferencias bancarias, depósitos y pagos contra entrega en efectivo.",
+        rights_reserved: "Todos los derechos reservados.",
+        about: "Acerca de Nosotros",
+        contact: "Contacto",
+        support: "Soporte Técnico",
+        warranty: "Garantía",
+        privacy: "Privacidad",
+        terms: "Términos y Condiciones",
+        returns: "Devoluciones",
+        shipping_policy: "Envíos",
+        // Cart
+        shopping_cart: "Carrito de Compras",
+        empty_cart: "Tu carrito está vacío",
+        subtotal: "Subtotal:",
+        shipping: "Envío:",
+        total: "Total:",
+        checkout: "Proceder al Pago",
+        storage: "Almacenamiento",
+        condition: "Condición",
+        required: "*Requerido",
+        condition_guide: "Guía de Condición:",
+        condition_guide_desc: "Mejores condiciones indican menos desgaste y una apariencia superior del dispositivo.",
+         good: "Bueno",
+        good_desc: "Desgaste moderado, funciona perfectamente",
+        great: "Genial",
+        great_desc: "Desgaste ligero, totalmente funcional",
+        excellent: "Excelente",
+        excellent_desc: "Signos menores de uso",
+        pristine: "Impecable",
+        pristine_desc: "Como nuevo - sin desgaste visible",
+        search_products: "Buscar productos..."
+    },
+    en: {
+        // Product page specific translations
+        product_title: "Product",
+        home: "Home",
+        products: "Products",
+        quantity: "Quantity:",
+        add_to_cart: "Add to Cart",
+        continue_shopping: "Continue Shopping",
+        warranty_title: "12 Month Warranty",
+        warranty_desc: "Full warranty with technical support included",
+        key_features: "Key Features",
+        technical_specs: "Technical Specifications",
+        color: "Color",
+        available_in: "Available in:",
+        free_shipping: "Free shipping on orders over $200",
+        free_shipping_all: "Free shipping on all orders",
+        // Footer
+        company_info: "Company Information",
+        quick_links: "Quick Links",
+        policies: "Policies",
+        payment_methods: "Payment Methods",
+        payment_info: "We accept bank transfers, deposits and cash on delivery payments.",
+        rights_reserved: "All rights reserved.",
+        about: "About Us",
+        contact: "Contact",
+        support: "Technical Support",
+        warranty: "Warranty",
+        privacy: "Privacy",
+        terms: "Terms and Conditions",
+        returns: "Returns",
+        shipping_policy: "Shipping",
+        // Product page specific
+        storage: "Storage",
+        condition: "Condition",
+        required: "*Required",
+        condition_guide: "Condition Guide:",
+        condition_guide_desc: "Better conditions indicate less wear and superior device appearance.",
+        // Cart
+        shopping_cart: "Shopping Cart",
+        empty_cart: "Your cart is empty",
+        subtotal: "Subtotal:",
+        shipping: "Shipping:",
+        total: "Total:",
+        checkout: "Proceed to Checkout",
+         good: "Good",
+        good_desc: "Moderate wear, works perfectly",
+        great: "Great",
+        great_desc: "Light wear, fully functional",
+        excellent: "Excellent",
+        excellent_desc: "Minor signs of use",
+        pristine: "Pristine",
+        pristine_desc: "Like new - no visible wear",
+        search_products: "Search products..."
+    }
+};
+
+// Adding the new translations to the dictionary
+translations.es.great = "Genial";
+translations.es.great_desc = "Desgaste ligero, totalmente funcional";
+translations.es.excellent = "Excelente";
+translations.es.excellent_desc = "Signos menores de uso";
+translations.es.new_open_box = "Caja abierta, nuevo";
+translations.es.excellent_new_battery_desc = "Como nuevo con batería totalmente nueva";
+
+translations.en.great = "Great";
+translations.en.great_desc = "Light wear, fully functional";
+translations.en.excellent = "Excellent";
+translations.en.excellent_desc = "Minor signs of use";
+translations.en.new_open_box = "New open box";
+translations.en.excellent_new_battery_desc = "Like new with brand new battery";
