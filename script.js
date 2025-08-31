@@ -901,18 +901,41 @@ const checkoutHTML = `
                 ${currentCountry !== 'nicaragua' ? `<p style="margin-top:1rem;font-size:0.9rem;color:var(--text-light);">${t("bank_transfer_note")}</p>` : ''}
             </div>
 
-            <div id="bank-transfer-details" class="payment-details" style="display:none;">
-                <h4>${t("bank_details")}</h4>
-                <div class="bank-info">
-                    <p><strong>${t("bank_name")}</strong> ${getBankName()}</p>
-                    <p><strong>${t("account_number")}</strong> ${getAccountNumber()}</p>
-                    <p><strong>${t("account_holder")}</strong> ${getAccountHolder()}</p>
-                    <p><strong>${t("reference")}</strong> ${checkoutData.orderNumber}</p>
-                    <p><strong>${t("total_transfer")}</strong> ${convertPrice(subtotal, false)}</p>
-                </div>
-                <p class="transfer-instructions">${t("transfer_instructions")}</p>
-                <button class="btn btn-primary place-order" data-method="bank-transfer">${t("confirm_transfer")}</button>
-            </div>
+           <div id="bank-transfer-details" class="payment-details" style="display:none;">
+    <h4>${t("bank_details")}</h4>
+    <div class="bank-info">
+        <p><strong>${t("bank_name")}</strong> ${getBankName()}</p>
+        <p><strong>${t("account_number")}</strong> ${getAccountNumber()}</p>
+        <p><strong>${t("account_holder")}</strong> ${getAccountHolder()}</p>
+        <p><strong>${t("reference")}</strong> ${checkoutData.orderNumber}</p>
+        <p><strong>${t("total_transfer")}</strong> ${convertPrice(subtotal, false)}</p>
+    </div>
+    <p class="transfer-instructions">${t("transfer_instructions")}</p>
+
+    <!-- WhatsApp Button -->
+    <a id="confirm-bank-transfer" 
+       class="btn btn-primary" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       style="display:inline-flex;align-items:center;gap:0.5rem;">
+        <i class="fab fa-whatsapp"></i> ${t("confirm_transfer")}
+    </a>
+</div>
+
+<script>
+document.getElementById('confirm-bank-transfer').addEventListener('click', function(e) {
+    const phoneNumber = '16415048135'; // Your WhatsApp number with country code
+    const message = `Hello! I have completed the bank transfer for order ${checkoutData.orderNumber} totaling ${convertPrice(subtotal, false)}.`;
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+    // Redirect to WhatsApp
+    window.open(whatsappURL, '_blank');
+    
+    // Optional: prevent default link if you don't want href to interfere
+    e.preventDefault();
+});
+</script>
+
 
             <div id="credit-card-details" class="payment-details" style="display:none;">
                 <h4>${t("card_details")}</h4>
@@ -1987,7 +2010,7 @@ function getAccountHolder() {
 
 function getEstimatedDelivery() {
     const deliveryDate = new Date();
-    deliveryDate.setDate(deliveryDate.getDate() + 3);
+    deliveryDate.setDate(deliveryDate.getDate() + 2);
     return deliveryDate.toLocaleDateString('en-US', {
         weekday: 'long',
         year: 'numeric',
