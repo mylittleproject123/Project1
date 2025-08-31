@@ -720,11 +720,11 @@ let checkoutData = {
 };
 
 function createCheckoutModal() {
-    // Remove existing checkout overlay
+    // Remove existing overlay
     const existingOverlay = document.getElementById('checkout-overlay');
-    if (existingOverlay) {
-        existingOverlay.remove();
-    }
+    if (existingOverlay) existingOverlay.remove();
+
+    // Create overlay and modal
     const overlay = document.createElement('div');
     overlay.id = 'checkout-overlay';
     overlay.className = 'checkout-overlay active';
@@ -732,11 +732,22 @@ function createCheckoutModal() {
     const modal = document.createElement('div');
     modal.className = 'checkout-modal';
 
+    // Calculate subtotal
     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     checkoutData.total = subtotal;
     checkoutData.orderNumber = `ORDER-${Date.now()}`;
+
+    // Insert HTML
+    modal.innerHTML = checkoutHTML; // <-- must be here, where modal exists
+
+    // Add modal to overlay
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+
+    // Setup events
+    setupCheckoutEventListeners();
+    setupDiscountCode();
 }
-  
 
 
 // Calculate subtotal before using it in template
@@ -1002,13 +1013,6 @@ const checkoutHTML = `
 </div>
 `; // End of checkoutHTML
 
-
-modal.innerHTML = checkoutHTML;
-overlay.appendChild(modal);
-document.body.appendChild(overlay);
-
-setupCheckoutEventListeners();
-setupDiscountCode();
 
 
 function setupDiscountCode() {
