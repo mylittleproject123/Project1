@@ -768,26 +768,28 @@ const checkoutHTML = `
         </div>
     </div>
 
-    <div id="checkout-step-1" class="checkout-step active">
-        <div class="order-summary">
-            <div class="summary-section">
-                <h3>${t("order_summary")}</h3>
-                <div class="checkout-items">
-                    ${cart.map(item => {
-                        const isFreeGift = item.price === 0 || item.isFreeGift;
-                        const itemPrice = isFreeGift ? t("free") : convertPrice(item.price * item.quantity, false);
-                        const giftIndicator = isFreeGift ? ' 🎁' : '';
-                        return `
-                            <div class="checkout-item ${isFreeGift ? 'free-gift-checkout-item' : ''}">
-                                <img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px; object-fit: contain; background: var(--background-light); border-radius: 6px; padding: 3px;">
-                                <div class="checkout-item-details">
-                                    <h4>${item.name}${giftIndicator}</h4>
-                                    <p>${t("qty")}: ${item.quantity} × <span class="checkout-item-price">${itemPrice}</span></p>
-                                </div>
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+const checkoutStep1HTML = `
+<div id="checkout-step-1" class="checkout-step active">
+    <div class="order-summary">
+        <div class="summary-section">
+            <h3>${t("order_summary")}</h3>
+            <div class="checkout-items">
+                ${cart.map(item => {
+                    const isFreeGift = item.price === 0 || item.isFreeGift;
+                    const itemPrice = isFreeGift ? t("free") : convertPrice(item.price * item.quantity, false);
+                    const giftIndicator = isFreeGift ? ' 🎁' : '';
+                    return `
+                        <div class="checkout-item ${isFreeGift ? 'free-gift-checkout-item' : ''}">
+                            <img src="${item.image}" alt="${item.name}" style="width:50px;height:50px;object-fit:contain;background:var(--background-light);border-radius:6px;padding:3px;">
+                            <div class="checkout-item-details">
+                                <h4>${item.name}${giftIndicator}</h4>
+                                <p>${t("qty")}: ${item.quantity} × <span class="checkout-item-price">${itemPrice}</span></p>
                             </div>
-                        `;
-                    }).join('')}
-                </div>
+                        </div>
+                    `;
+                }).join('')}
             </div>
         </div>
     </div>
@@ -809,9 +811,7 @@ const checkoutHTML = `
         </div>
         <div class="totals-row shipping-row">
             <span class="totals-label">${t("shipping")}</span>
-            <span class="totals-value free-shipping">
-                <i class="fas fa-shipping-fast"></i> ${t("free")}
-            </span>
+            <span class="totals-value free-shipping"><i class="fas fa-shipping-fast"></i> ${t("free")}</span>
         </div>
         <div class="totals-separator"></div>
         <div class="totals-row total-row">
@@ -821,20 +821,23 @@ const checkoutHTML = `
     </div>
 
     <div class="summary-section">
-        <div class="terms-agreement" style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: var(--background-light); border-radius: var(--border-radius); border: 1px solid var(--border-color);">
+        <div class="terms-agreement" style="display:flex;align-items:center;gap:0.75rem;padding:1rem;background:var(--background-light);border-radius:var(--border-radius);border:1px solid var(--border-color);">
             <input type="checkbox" id="terms-checkbox" required style="transform: scale(1.2); accent-color: var(--primary-color);">
-            <label for="terms-checkbox" style="cursor: pointer; font-size: 0.95rem; color: var(--text-color);">
+            <label for="terms-checkbox" style="cursor:pointer;font-size:0.95rem;color:var(--text-color);">
                 ${t("agree_to")} 
-                <a href="terms.html" target="_blank" style="color: var(--primary-color); text-decoration: underline;">
+                <a href="terms.html" target="_blank" style="color:var(--primary-color);text-decoration:underline;">
                     ${t("terms_and_conditions")}
                 </a>
             </label>
         </div>
     </div>
 
-    <div class="step-actions" style="margin-top: 1.5rem; display: flex; justify-content: center;">
+    <div class="step-actions" style="margin-top:1.5rem;display:flex;justify-content:center;">
         <button id="next-to-shipping" class="btn btn-primary checkout-next" disabled>${t("continue")} <i class="fas fa-arrow-right"></i></button>
     </div>
+</div>
+`;
+
 
     <!-- STEP 2 -->
     <div id="checkout-step-2" class="checkout-step">
