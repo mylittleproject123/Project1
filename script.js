@@ -1476,7 +1476,7 @@ if (!/^\d{3}$/.test(cvv)) {
 
 cardErrors.style.display = 'none'; // Clear errors if valid
 return true;
-
+}
 
 function setupOTPInputs() {
     // Remove existing listeners to prevent duplicates
