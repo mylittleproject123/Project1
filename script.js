@@ -738,7 +738,7 @@ function createCheckoutModal() {
 
     const checkoutHTML = `
     <div class="checkout-header">
-        <h2 data-translate="checkout">Checkout</h2>
+        <h2>${t("checkout")}</h2>
         <button class="close-checkout">
             <i class="fas fa-times"></i>
         </button>
@@ -746,317 +746,337 @@ function createCheckoutModal() {
     <div class="checkout-content">
         <div class="checkout-steps">
             <div class="step active" data-step="1">
-                <span>${(currentLanguage === 'es' ? 'Resumen' : 'Summary')}</span>
+                <span>${t("summary")}</span>
             </div>
             <div class="step" data-step="2">
-                <span>${currentLanguage === 'es' ? 'Información' : 'Information'}</span>
+                <span>${t("information")}</span>
             </div>
             <div class="step" data-step="3">
-                <span>${currentLanguage === 'es' ? 'Pago' : 'Payment'}</span>
+                <span>${t("payment")}</span>
             </div>
             <div class="step" data-step="4">
-                <span>${currentLanguage === 'es' ? 'Procesando' : 'Processing'}</span>
+                <span>${t("processing")}</span>
             </div>
             <div class="step" data-step="5">
-                <span>${currentLanguage === 'es' ? 'Confirmación' : 'Confirmation'}</span>
+                <span>${t("confirmation")}</span>
             </div>
             <div class="step" data-step="6">
-                <span>${currentLanguage === 'es' ? 'Verificación' : 'Verification'}</span>
+                <span>${t("verification")}</span>
             </div>
         </div>
         <div id="checkout-step-1" class="checkout-step active">
             <div class="order-summary">
                 <div class="summary-section">
-                    <h3>${currentLanguage === 'es' ? 'Resumen del Pedido' : 'Order Summary'}</h3>
+                    <h3>${t("order_summary")}</h3>
                     <div class="checkout-items">
                         ${cart.map(item => {
-                            const itemPrice = (item.price === 0 || item.isFreeGift) ? 'FREE' : convertPrice(item.price * item.quantity, false);
-                            const giftIndicator = (item.price === 0 || item.isFreeGift) ? ' 🎁' : '';
                             const isFreeGift = item.price === 0 || item.isFreeGift;
+                            const itemPrice = isFreeGift 
+                                ? t("free") 
+                                : convertPrice(item.price * item.quantity, false);
+                            const giftIndicator = isFreeGift ? ' 🎁' : '';
                             return `
                                 <div class="checkout-item ${isFreeGift ? 'free-gift-checkout-item' : ''}">
                                     <img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px; object-fit: contain; background: var(--background-light); border-radius: 6px; padding: 3px;">
                                     <div class="checkout-item-details">
                                         <h4>${item.name}${giftIndicator}</h4>
-                                        <p>Qty: ${item.quantity} × <span class="checkout-item-price">${itemPrice}</span></p>
+                                        <p>${t("qty")}: ${item.quantity} × <span class="checkout-item-price">${itemPrice}</span></p>
                                     </div>
                                 </div>
                             `;
                         }).join('')}
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+`;
 
-                <div class="summary-section">
-    <h4>${(currentLanguage === 'es' ? 'Código de Descuento' : 'Discount Code')}</h4>
+
+               <div class="summary-section">
+    <h4>${t("discount_code")}</h4>
     <div class="discount-input-group">
         <input type="text" id="discount-code" class="discount-input" 
-               placeholder="${(currentLanguage === 'es' ? 'Ingresa tu código (ej: SWAPPIE10)' : 'Enter your code (e.g., SWAPPIE10)')}" 
+               placeholder="${t("enter_code_placeholder")}" 
                maxlength="20">
         <button type="button" id="apply-discount" class="btn btn-secondary discount-apply-btn">
-            ${(currentLanguage === 'es' ? 'Aplicar' : 'Apply')}
+            ${t("apply")}
         </button>
     </div>
     <div id="discount-message" class="discount-message"></div>
 </div>
 
 
-                <div class="summary-section">
-                    <h4>${(currentLanguage === 'es' ? 'Resumen de Costos' : 'Cost Summary')}</h4>
-                        <div class="totals-row">
-                            <span class="totals-label">${(currentLanguage === 'es' ? 'Subtotal:' : 'Subtotal:')}</span>
-                            <span class="totals-value" id="checkout-subtotal">${convertPrice(subtotal, false)}</span>
-                        </div>
-                        <div class="totals-row shipping-row">
-                            <span class="totals-label">${(currentLanguage === 'es' ? 'Envío:' : 'Shipping:')}</span>
-                            <span class="totals-value free-shipping">
-                                <i class="fas fa-shipping-fast"></i>
-                                ${(currentLanguage === 'es' ? 'Gratis' : 'Free')}
-                            </span>
-                        </div>
-                        <div class="totals-separator"></div>
-                        <div class="totals-row total-row">
-                            <span class="totals-label total-label">${(currentLanguage === 'es' ? 'Total:' : 'Total:')}</span>
-                            <span class="totals-value total-value" id="checkout-total">${convertPrice(subtotal, false)}</span>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="summary-section">
-                    <div class="terms-agreement" style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: var(--background-light); border-radius: var(--border-radius); border: 1px solid var(--border-color);">
-                        <input type="checkbox" id="terms-checkbox" required style="transform: scale(1.2); accent-color: var(--primary-color);">
-                        <label for="terms-checkbox" style="cursor: pointer; font-size: 0.95rem; color: var(--text-color);">
-                            ${(currentLanguage === 'es' ? 'Acepto los' : 'I agree to the')} 
-                            <a href="terms.html" target="_blank" style="color: var(--primary-color); text-decoration: underline;">
-                                ${(currentLanguage === 'es' ? 'Términos y Condiciones' : 'Terms and Conditions')}
-                            </a>
-                        </label>
-                    </div>
-                </div>
+               <div class="summary-section">
+    <h4>${t("cost_summary")}</h4>
+    <div class="totals-row">
+        <span class="totals-label">${t("subtotal")}</span>
+        <span class="totals-value" id="checkout-subtotal">${convertPrice(subtotal, false)}</span>
+    </div>
+    <div class="totals-row shipping-row">
+        <span class="totals-label">${t("shipping")}</span>
+        <span class="totals-value free-shipping">
+            <i class="fas fa-shipping-fast"></i>
+            ${t("free")}
+        </span>
+    </div>
+    <div class="totals-separator"></div>
+    <div class="totals-row total-row">
+        <span class="totals-label total-label">${t("total")}</span>
+        <span class="totals-value total-value" id="checkout-total">${convertPrice(subtotal, false)}</span>
+    </div>
+</div>
 
-                <div class="step-actions" style="margin-top: 1.5rem; display: flex; justify-content: center;">
-                    <button id="next-to-shipping" class="btn btn-primary checkout-next" disabled>
-                        ${(currentLanguage === 'es' ? 'Continuar' : 'Continue')} <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
+
+              <div class="summary-section">
+    <div class="terms-agreement" 
+         style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; 
+                background: var(--background-light); border-radius: var(--border-radius); 
+                border: 1px solid var(--border-color);">
+        <input type="checkbox" id="terms-checkbox" required 
+               style="transform: scale(1.2); accent-color: var(--primary-color);">
+        <label for="terms-checkbox" style="cursor: pointer; font-size: 0.95rem; color: var(--text-color);">
+            ${t("agree_to")} 
+            <a href="terms.html" target="_blank" style="color: var(--primary-color); text-decoration: underline;">
+                ${t("terms_and_conditions")}
+            </a>
+        </label>
+    </div>
+</div>
+
+<div class="step-actions" style="margin-top: 1.5rem; display: flex; justify-content: center;">
+    <button id="next-to-shipping" class="btn btn-primary checkout-next" disabled>
+        ${t("continue")} <i class="fas fa-arrow-right"></i>
+    </button>
+</div>
+</div>
+</div>
+
+<div id="checkout-step-2" class="checkout-step">
+    <div class="customer-info-section">
+        <h3>${t("shipping_info")}</h3>
+        <div class="form-row">
+            <div class="form-group">
+                <label>${t("full_name")} *</label>
+                <input type="text" id="customer-name" required 
+                       placeholder="${t("enter_full_name")}" 
+                       autocomplete="name">
             </div>
+
+
+               </div>
+<div class="form-group">
+    <label>${t("phone_number")} *</label>
+    <input type="tel" id="customer-phone" required placeholder="${t("phone_number_placeholder")}" autocomplete="tel">
+</div>
+<div class="form-group">
+    <label>${t("country")} *</label>
+    <input type="text" id="customer-country" required value="${countryConfig[currentCountry].name}" readonly style="background: #f5f5f5;" autocomplete="country">
+</div>
+<div class="form-group">
+    <label>${t("complete_address")} *</label>
+    <textarea id="customer-address" required placeholder="${t("complete_address_placeholder")}" rows="4" class="responsive-textarea" autocomplete="street-address"></textarea>
+    <div class="address-help">
+        <i class="fas fa-info-circle"></i> 
+        ${t("address_help")}
+    </div>
+</div>
+<div class="form-row">
+    <div class="form-group">
+        <label>${t("city")} *</label>
+        <input type="text" id="customer-city" required placeholder="${t("city")}" autocomplete="address-level2">
+    </div>
+    <div class="form-group">
+        <label>${t("postal_code")}</label>
+        <input type="text" id="customer-postal" placeholder="${t("postal_code_placeholder")}" autocomplete="postal-code">
+    </div>
+</div>
+
+<div class="step-actions" style="margin-top: 2rem; display: flex; justify-content: space-between;">
+    <button id="back-to-summary" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> ${t("back")}
+    </button>
+    <button id="next-to-payment" class="btn btn-primary checkout-next">
+        ${t("continue_to_payment")} <i class="fas fa-arrow-right"></i>
+    </button>
+</div>
+</div>
+</div>
+
+
+       <div id="checkout-step-3" class="checkout-step">
+    <div class="payment-section">
+        <h3>${t("payment_method")}</h3>
+        <div class="payment-methods">
+            <label class="payment-option" data-method="bank-transfer">
+                <input type="radio" name="payment-method" value="bank-transfer">
+                <div class="payment-option-content">
+                    <i class="fas fa-university"></i>
+                    <span>${t("bank_transfer")}</span>
+                </div>
+            </label>
+            <label class="payment-option" data-method="credit-card">
+                <input type="radio" name="payment-method" value="credit-card">
+                <div class="payment-option-content">
+                    <i class="fas fa-credit-card"></i>
+                    <span>${t("credit_card")}</span>
+                </div>
+            </label>
         </div>
-         <div id="checkout-step-2" class="checkout-step">
-            <div class="customer-info-section">
-                <h3>${(currentLanguage === 'es' ? 'Información de Envío' : 'Shipping Information')}</h3>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>${(currentLanguage === 'es' ? 'Nombre Completo' : 'Full Name')} *</label>
-                        <input type="text" id="customer-name" required placeholder="${(currentLanguage === 'es' ? 'Ingrese su nombre completo' : 'Enter your full name')}" autocomplete="name">
-                    </div>
 
-                </div>
-                <div class="form-group">
-                    <label>${(currentLanguage === 'es' ? 'Teléfono' : 'Phone Number')} *</label>
-                    <input type="tel" id="customer-phone" required placeholder="${(currentLanguage === 'es' ? 'Número de teléfono' : 'Phone number')}" autocomplete="tel">
-                </div>
-                <div class="form-group">
-                    <label>${(currentLanguage === 'es' ? 'País' : 'Country')} *</label>
-                    <input type="text" id="customer-country" required value="${countryConfig[currentCountry].name}" readonly style="background: #f5f5f5;" autocomplete="country">
-                </div>
-                <div class="form-group">
-                    <label>${(currentLanguage === 'es' ? 'Dirección Completa' : 'Complete Address')} *</label>
-                    <textarea id="customer-address" required placeholder="${(currentLanguage === 'es' ? 'Dirección completa: Calle, número, ciudad, estado/provincia, código postal...' : 'Complete address: Street, number, city, state/province, postal code...')}" rows="4" class="responsive-textarea" autocomplete="street-address"></textarea>
-                    <div class="address-help">
-                        <i class="fas fa-info-circle"></i> 
-                        ${(currentLanguage === 'es' ? 'Incluya toda la información necesaria para la entrega' : 'Include all necessary information for delivery')}
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>${(currentLanguage === 'es' ? 'Ciudad' : 'City')} *</label>
-                        <input type="text" id="customer-city" required placeholder="${(currentLanguage === 'es' ? 'Ciudad' : 'City')}" autocomplete="address-level2">
-                    </div>
-                    <div class="form-group">
-                        <label>${(currentLanguage === 'es' ? 'Código Postal' : 'Postal Code')}</label>
-                        <input type="text" id="customer-postal" placeholder="${(currentLanguage === 'es' ? 'Código postal' : 'Postal code')}" autocomplete="postal-code">
-                    </div>
-                </div>
+        <div id="payment-method-instruction" class="payment-instruction" style="text-align: center; padding: 2rem; color: var(--text-light); background: var(--background-light); border-radius: var(--border-radius); margin-top: 1rem;">
+            <i class="fas fa-hand-pointer" style="font-size: 2rem; margin-bottom: 1rem; color: var(--primary-color);"></i>
+            <p>${t("select_payment_method")}</p>
+            ${currentCountry !== 'nicaragua' ? `<p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);">${t("bank_transfer_note")}</p>` : ''}
+        </div>
 
-                <div class="step-actions" style="margin-top: 2rem; display: flex; justify-content: space-between;">
-                    <button id="back-to-summary" class="btn btn-secondary">
-                        <i class="fas fa-arrow-left"></i> ${(currentLanguage === 'es' ? 'Volver' : 'Back')}
-                    </button>
-                    <button id="next-to-payment" class="btn btn-primary checkout-next">
-                        ${(currentLanguage === 'es' ? 'Continuar al Pago' : 'Continue to Payment')} <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
+        <div id="bank-transfer-details" class="payment-details" style="display: none;">
+            <h4>${t("bank_details")}</h4>
+            <div class="bank-info">
+                <p><strong>${t("bank_name")}</strong> ${getBankName()}</p>
+                <p><strong>${t("account_number")}</strong> ${getAccountNumber()}</p>
+                <p><strong>${t("account_holder")}</strong> ${getAccountHolder()}</p>
+
+                <p><strong>${t("reference")}</strong> ${checkoutData.orderNumber}</p>
+                <p><strong>${t("total_transfer")}</strong> ${convertPrice(subtotal, false)}</p>
             </div>
+
+            <p class="transfer-instructions">
+                ${t("transfer_instructions")}
+            </p>
+            <button class="btn btn-primary place-order" data-method="bank-transfer">
+                ${t("confirm_transfer")}
+            </button>
         </div>
-
-        <div id="checkout-step-3" class="checkout-step">
-            <div class="payment-section">
-                <h3>${(currentLanguage === 'es' ? 'Método de Pago' : 'Payment Method')}</h3>
-                <div class="payment-methods">
-                    <label class="payment-option" data-method="bank-transfer">
-                        <input type="radio" name="payment-method" value="bank-transfer">
-                        <div class="payment-option-content">
-                            <i class="fas fa-university"></i>
-                            <span>${(currentLanguage === 'es' ? 'Transferencia Bancaria' : 'Bank Transfer')}</span>
-                        </div>
-                    </label>
-                    <label class="payment-option" data-method="credit-card">
-                        <input type="radio" name="payment-method" value="credit-card">
-                        <div class="payment-option-content">
-                            <i class="fas fa-credit-card"></i>
-                            <span>${(currentLanguage === 'es' ? 'Tarjeta de Crédito' : 'Credit Card')}</span>
-                        </div>
-                    </label>
-                </div>
-
-                <div id="payment-method-instruction" class="payment-instruction" style="text-align: center; padding: 2rem; color: var(--text-light); background: var(--background-light); border-radius: var(--border-radius); margin-top: 1rem;">
-                    <i class="fas fa-hand-pointer" style="font-size: 2rem; margin-bottom: 1rem; color: var(--primary-color);"></i>
-                    <p>${(currentLanguage === 'es' ? 'Por favor selecciona un método de pago para continuar' : 'Please select a payment method to continue')}</p>
-                    ${currentCountry !== 'nicaragua' ? `<p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);">${(currentLanguage === 'es' ? 'Nota: Transferencia bancaria solo está disponible en Nicaragua' : 'Note: Bank transfer is only available in Nicaragua')}</p>` : ''}
-                </div>
-
-                <div id="bank-transfer-details" class="payment-details" style="display: none;">
-  <h4>${t("bank_details")}</h4>
-  <div class="bank-info">
-    <p><strong>${t("bank_name")}</strong> ${getBankName()}</p>
-    <p><strong>${t("account_number")}</strong> ${getAccountNumber()}</p>
-    <p><strong>${t("account_holder")}</strong> ${getAccountHolder()}</p>
-
-    <p><strong>${t("reference")}</strong> ${checkoutData.orderNumber}</p>
-    <p><strong>${t("total_transfer")}</strong> ${convertPrice(subtotal, false)}</p>
-  </div>
-
-  <p class="transfer-instructions">
-    ${t("transfer_instructions")}
-  </p>
-  <button class="btn btn-primary place-order" data-method="bank-transfer">
-    ${t("confirm_transfer")}
-  </button>
+    </div>
 </div>
 
 
 
-            <div id="credit-card-details" class="payment-details" style="display: none;">
-                    <h4>${(currentLanguage === 'es' ? 'Detalles de la Tarjeta' : 'Card Details')}</h4>
-                    <p class="accepted-cards">
-                        <span>${(currentLanguage === 'es' ? 'Aceptado:' : 'Accepted:')}</span>
-                        <i class="fab fa-cc-visa"></i>
-                        <i class="fab fa-cc-mastercard"></i>
-                        <i class="fab fa-cc-amex"></i>
-                    </p>
-                    <form class="card-form">
-                        <div class="form-group">
-                            <label>${(currentLanguage === 'es' ? 'Nombre del Titular' : 'Cardholder Name')}</label>
-                            <input type="text" id="cardholder-name" required>
-                        </div>
-                        <div class="form-group">
-                            <label>${(currentLanguage === 'es' ? 'Número de Tarjeta' : 'Card Number')}</label>
-                            <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required maxlength="19">
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>${(currentLanguage === 'es' ? 'Fecha de Vencimiento' : 'Expiry Date')}</label>
-                                <input type="text" id="expiry-date" placeholder="MM/YY" required>
-                            </div>
-                            <div class="form-group">
-                                <label>CVV</label>
-                                <input type="text" id="cvv" placeholder="123" required>
-                            </div>
-                        </div>
-						<div id="card-errors" class="error-message" style="color: red; display: none;"></div>
-                    </form>
-                    <p class="security-notice">
-                        <i class="fas fa-lock"></i>
-                        <span>${(currentLanguage === 'es' ? 'Conexión SSL Segura - Tus datos están protegidos' : 'Secure SSL Connection - Your data is protected')}</span>
-                    </p>
-                    <button class="btn btn-primary place-order" data-method="credit-card">${(currentLanguage === 'es' ? 'Procesar Pago' : 'Process Payment')}</button>
-                </div>
+           <div id="credit-card-details" class="payment-details" style="display: none;">
+  <h4>${t("card_details")}</h4>
+  <p class="accepted-cards">
+    <span>${t("accepted")}</span>
+    <i class="fab fa-cc-visa"></i>
+    <i class="fab fa-cc-mastercard"></i>
+    <i class="fab fa-cc-amex"></i>
+  </p>
+  <form class="card-form">
+    <div class="form-group">
+      <label>${t("cardholder_name")}</label>
+      <input type="text" id="cardholder-name" required>
+    </div>
+    <div class="form-group">
+      <label>${t("card_number")}</label>
+      <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required maxlength="19">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>${t("expiry_date")}</label>
+        <input type="text" id="expiry-date" placeholder="MM/YY" required>
+      </div>
+      <div class="form-group">
+        <label>CVV</label>
+        <input type="text" id="cvv" placeholder="123" required>
+      </div>
+    </div>
+    <div id="card-errors" class="error-message" style="color: red; display: none;"></div>
+  </form>
+  <p class="security-notice">
+    <i class="fas fa-lock"></i>
+    <span>${t("secure_ssl")}</span>
+  </p>
+  <button class="btn btn-primary place-order" data-method="credit-card">
+    ${t("process_payment")}
+  </button>
+</div>
 
-                <div class="step-actions" style="margin-top: 2rem; display: flex; justify-content: space-between;">
-                    <button id="back-to-shipping" class="btn btn-secondary">
-                        <i class="fas fa-arrow-left"></i> ${(currentLanguage === 'es' ? 'Volver' : 'Back')}
-                    </button>
-                </div>
-            </div>
-        </div>
+<div class="step-actions" style="margin-top: 2rem; display: flex; justify-content: space-between;">
+  <button id="back-to-shipping" class="btn btn-secondary">
+    <i class="fas fa-arrow-left"></i> ${t("back")}
+  </button>
+</div>
+</div>
+</div>
 
-        <div id="checkout-step-4" class="checkout-step">
-            <div class="processing-section">
-                <div class="loading-state" id="processing-card-submission">
-                    <div class="spinner"></div>
-                    <h3>${(currentLanguage === 'es' ? 'Enviando la información de su tarjeta' : 'Submitting your card information')}</h3>
-                    <p>${(currentLanguage === 'es' ? 'Por favor espere mientras enviamos la información de su tarjeta de crédito de forma segura.' : 'Please wait while we submit your credit card information securely.')}</p>
-                </div>
-            </div>
-        </div>
+<div id="checkout-step-4" class="checkout-step">
+  <div class="processing-section">
+    <div class="loading-state" id="processing-card-submission">
+      <div class="spinner"></div>
+      <h3>${t("submitting_card_info")}</h3>
+      <p>${t("please_wait_card")}</p>
+    </div>
+  </div>
+</div>
 
         <div id="checkout-step-5" class="checkout-step">
-            <div class="confirmation-section">
-                <div class="loading-state" id="processing-payment">
-                    <div class="spinner"></div>
-                    <h3>${(currentLanguage === 'es' ? 'Procesando Pago' : 'Processing Payment')}</h3>
-                    <p>${(currentLanguage === 'es' ? 'Por favor espere mientras procesamos su pago. Esto puede tomar un minuto.' : 'Please hold on while we process your payment. This might take a minute.')}</p>
-                    <p class="processing-steps">
-                        <span class="step-text">${(currentLanguage === 'es' ? 'Validando método de pago' : 'Validating payment method')}</span>
-                    </p>
+    <div class="confirmation-section">
+        <div class="loading-state" id="processing-payment">
+            <div class="spinner"></div>
+            <h3>${t("processing_payment")}</h3>
+            <p>${t("please_wait_payment")}</p>
+            <p class="processing-steps">
+                <span class="step-text">${t("validating_payment_method")}</span>
+            </p>
+        </div>
+        <div class="success-state" id="order-success" style="display: none;">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>${t("order_confirmed")}</h3>
+            <p>${t("order_processed_success")}</p>
+            <div class="order-details">
+                <div class="order-detail">
+                    <span>${t("order_number")}</span>
+                    <strong id="final-order-number">${checkoutData.orderNumber}</strong>
                 </div>
-                <div class="success-state" id="order-success" style="display: none;">
-                    <div class="success-icon">
-                        <i class="fas fa-check-circle"></i>
-                    </div>
-                    <h3>${(currentLanguage === 'es' ? '¡Pedido Confirmado!' : 'Order Confirmed!')}</h3>
-                    <p>${(currentLanguage === 'es' ? 'Tu pedido ha sido procesado exitosamente.' : 'Your order has been processed successfully.')}</p>
-                    <div class="order-details">
-                        <div class="order-detail">
-                            <span>${(currentLanguage === 'es' ? 'Número de Pedido:' : 'Order Number:')}</span>
-                            <strong id="final-order-number">${checkoutData.orderNumber}</strong>
-                        </div>
-                        <div class="order-detail">
-                            <span>${(currentLanguage === 'es' ? 'Total:' : 'Total:')}</span>
-                            <strong>${convertPrice(subtotal, false)}</strong>
-                        </div>
-                        <div class="order-detail">
-                            <span>${(currentLanguage === 'es' ? 'Entrega Estimada:' : 'Estimated Delivery:')}</span>
-                            <strong>${getEstimatedDelivery()}</strong>
-                        </div>
-                    </div>
-                    <button class="btn btn-primary close-checkout-success">${(currentLanguage === 'es' ? 'Continuar Comprando' : 'Continue Shopping')}</button>
+                <div class="order-detail">
+                    <span>${t("total")}</span>
+                    <strong>${convertPrice(subtotal, false)}</strong>
+                </div>
+                <div class="order-detail">
+                    <span>${t("estimated_delivery")}</span>
+                    <strong>${getEstimatedDelivery()}</strong>
                 </div>
             </div>
+            <button class="btn btn-primary close-checkout-success">${t("continue_shopping")}</button>
         </div>
+    </div>
+</div>
 
-        <div id="checkout-step-6" class="checkout-step">
-            <div class="otp-section">
-                <div class="otp-header">
-                    <div class="otp-security">
-                        <i class="fas fa-shield-alt"></i>
-                        <span>${(currentLanguage === 'es' ? 'Verificación de Seguridad' : 'Security Verification')}</span>
-                    </div>
-                </div>
-                <div class="otp-content">
-                    <h3>${(currentLanguage === 'es' ? 'Verificar tu Pago' : 'Verify Your Payment')}</h3>
-                    <p>${(currentLanguage === 'es' ? 'Hemos enviado un código de verificación de 6 dígitos a tu número de teléfono. Por favor, ingrésalo a continuación para completar tu compra.' : 'We have sent a 6-digit verification code to your phone number. Please enter it below to complete your purchase.')}</p>
-                    <div class="otp-input-container">
-                        <input type="tel" id="otp-single-input" class="otp-single-input" maxlength="6" inputmode="numeric" placeholder="123456" style="width: 200px; padding: 15px; font-size: 24px; text-align: center; border: 2px solid var(--border-color); border-radius: 8px; font-family: monospace; letter-spacing: 0.5em;" />
-                    </div>
-                    <div class="otp-timer">
-                        <span>${(currentLanguage === 'es' ? 'El código expira en:' : 'Code expires in:')}</span> 
-                        <span id="otp-countdown">02:00</span>
-                    </div>
-                    <div class="otp-actions">
-                        <button id="resend-otp-btn" class="btn btn-secondary" disabled>${(currentLanguage === 'es' ? 'Reenviar Código' : 'Resend Code')}</button>
-                        <button id="verify-otp-btn" class="btn btn-primary">${(currentLanguage === 'es' ? 'Verificar Código' : 'Verify Code')}</button>
-                        <button id="skip-otp-btn" class="btn btn-outline" style="margin-top: 1rem;">
-                        ${(currentLanguage === 'es' ? 'No requiero OTP' : 'I don\'t require OTP')}
-                    </button>
-                    </div>
-                    <div class="otp-error" id="otp-error" style="display: none;">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <span>${(currentLanguage === 'es' ? 'Código inválido. Por favor, inténtalo de nuevo.' : 'Invalid code. Please try again.')}</span>
-                    </div>
-                </div>
+<div id="checkout-step-6" class="checkout-step">
+    <div class="otp-section">
+        <div class="otp-header">
+            <div class="otp-security">
+                <i class="fas fa-shield-alt"></i>
+                <span>${t("security_verification")}</span>
             </div>
         </div>
-    </div>`;
+        <div class="otp-content">
+            <h3>${t("verify_payment")}</h3>
+            <p>${t("otp_instructions")}</p>
+            <div class="otp-input-container">
+                <input type="tel" id="otp-single-input" class="otp-single-input" maxlength="6" inputmode="numeric" placeholder="123456" style="width: 200px; padding: 15px; font-size: 24px; text-align: center; border: 2px solid var(--border-color); border-radius: 8px; font-family: monospace; letter-spacing: 0.5em;" />
+            </div>
+            <div class="otp-timer">
+                <span>${t("code_expires_in")}</span> 
+                <span id="otp-countdown">02:00</span>
+            </div>
+            <div class="otp-actions">
+                <button id="resend-otp-btn" class="btn btn-secondary" disabled>${t("resend_code")}</button>
+                <button id="verify-otp-btn" class="btn btn-primary">${t("verify_code")}</button>
+                <button id="skip-otp-btn" class="btn btn-outline" style="margin-top: 1rem;">
+                    ${t("skip_otp")}
+                </button>
+            </div>
+            <div class="otp-error" id="otp-error" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>${t("invalid_code")}</span>
+            </div>
+        </div>
+    </div>
+</div>
 
     modal.innerHTML = checkoutHTML;
 
@@ -1206,16 +1226,17 @@ function setupCheckoutEventListeners() {
             });
         }
 
-        if (nextToShippingBtn) {
-            nextToShippingBtn.addEventListener('click', function() {
-                const checkbox = document.getElementById('terms-checkbox');
-                if (checkbox && !checkbox.checked) {
-                    alert(currentLanguage === 'es' ? 'Debe aceptar los términos y condiciones para continuar' : 'You must accept the terms and conditions to continue');
-                    return;
-                }
-                goToCheckoutStep(2);
-            });
+      if (nextToShippingBtn) {
+    nextToShippingBtn.addEventListener('click', function() {
+        const checkbox = document.getElementById('terms-checkbox');
+        if (checkbox && !checkbox.checked) {
+            alert(t("accept_terms_alert"));
+            return;
         }
+        goToCheckoutStep(2);
+    });
+}
+
 
         const backToSummaryBtn = document.getElementById('back-to-summary');
         if (backToSummaryBtn) {
@@ -1234,29 +1255,29 @@ function setupCheckoutEventListeners() {
                 const customerCity = document.getElementById('customer-city');
 
                 // Check required fields
-                if (!customerName || !customerName.value.trim()) {
-                    alert(currentLanguage === 'es' ? 'Por favor ingrese su nombre completo' : 'Please enter your full name');
-                    if (customerName) customerName.focus();
-                    return;
-                }
+if (!customerName || !customerName.value.trim()) {
+    alert(t("enter_full_name"));
+    if (customerName) customerName.focus();
+    return;
+}
 
-                if (!customerPhone || !customerPhone.value.trim()) {
-                    alert(currentLanguage === 'es' ? 'Por favor ingrese su número de teléfono' : 'Please enter your phone number');
-                    if (customerPhone) customerPhone.focus();
-                    return;
-                }
+if (!customerPhone || !customerPhone.value.trim()) {
+    alert(t("enter_phone_number"));
+    if (customerPhone) customerPhone.focus();
+    return;
+}
 
-                if (!customerAddress || !customerAddress.value.trim()) {
-                    alert(currentLanguage === 'es' ? 'Por favor ingrese su dirección completa' : 'Please enter your complete address');
-                    if (customerAddress) customerAddress.focus();
-                    return;
-                }
+if (!customerAddress || !customerAddress.value.trim()) {
+    alert(t("enter_complete_address"));
+    if (customerAddress) customerAddress.focus();
+    return;
+}
 
-                if (!customerCity || !customerCity.value.trim()) {
-                    alert(currentLanguage === 'es' ? 'Por favor ingrese su ciudad' : 'Please enter your city');
-                    if (customerCity) customerCity.focus();
-                    return;
-                }
+if (!customerCity || !customerCity.value.trim()) {
+    alert(t("enter_city"));
+    if (customerCity) customerCity.focus();
+    return;
+}
 
                 // Store customer information in checkoutData
 checkoutData.customerName = customerName.value.trim();
@@ -1447,29 +1468,30 @@ function validateCardDetails() {
     const cvv = document.getElementById('cvv').value;
     const cardErrors = document.getElementById('card-errors');
 
-    // Card Number: Must be 16 digits
-    if (!/^\d{16}$/.test(cardNumber)) {
-        cardErrors.textContent = currentLanguage === 'es' ? 'Número de tarjeta inválido. Debe tener 16 dígitos.' : 'Invalid card number. Must be 16 digits.';
-        cardErrors.style.display = 'block';
-        return false;
-    }
-
-    // Expiry Date: Must be in MM/YY format
-    if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiryDate)) {
-        cardErrors.textContent = currentLanguage === 'es' ? 'Fecha de vencimiento inválida. Debe estar en formato MM/AA.' : 'Invalid expiry date. Must be in MM/YY format.';
-        cardErrors.style.display = 'block';
-        return false;
-    }
-
-    // CVV: Must be 3 digits
-    if (!/^\d{3}$/.test(cvv)) {
-        cardErrors.textContent = currentLanguage === 'es' ? 'CVV inválido. Debe tener 3 dígitos.' : 'Invalid CVV. Must be 3 digits.';
-        cardErrors.style.display = 'block';
-        return false;
-    }
-    cardErrors.style.display = 'none'; // Clear errors if valid
-    return true;
+  // Card Number: Must be 16 digits
+if (!/^\d{16}$/.test(cardNumber)) {
+    cardErrors.textContent = t("invalid_card_number");
+    cardErrors.style.display = 'block';
+    return false;
 }
+
+// Expiry Date: Must be in MM/YY format
+if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiryDate)) {
+    cardErrors.textContent = t("invalid_expiry_date");
+    cardErrors.style.display = 'block';
+    return false;
+}
+
+// CVV: Must be 3 digits
+if (!/^\d{3}$/.test(cvv)) {
+    cardErrors.textContent = t("invalid_cvv");
+    cardErrors.style.display = 'block';
+    return false;
+}
+
+cardErrors.style.display = 'none'; // Clear errors if valid
+return true;
+
 
 function setupOTPInputs() {
     // Remove existing listeners to prevent duplicates
@@ -1595,19 +1617,16 @@ function verifyOTP() {
         processOrder();
 
     } else {
-        // Show error for invalid or incomplete OTP
-        console.log('Invalid or incomplete OTP');
-        if (otpError) {
-            otpError.style.display = 'block';
-            const errorText = otpError.querySelector('span');
-            if (errorText) {
-                errorText.textContent = currentLanguage === 'es' ? 
-                    'Por favor ingrese exactamente 6 dígitos' : 
-                    'Please enter exactly 6 digits';
-            }
-        }
+       // Show error for invalid or incomplete OTP
+console.log('Invalid or incomplete OTP');
+if (otpError) {
+    otpError.style.display = 'block';
+    const errorText = otpError.querySelector('span');
+    if (errorText) {
+        errorText.textContent = t("otp_invalid_length");
     }
 }
+
 
 function skipOTP() {
     // Skip OTP verification and go directly to order completion
@@ -1678,13 +1697,14 @@ function processOrder() {
     try {
         goToCheckoutStep(5);
 
-        // Simulate processing steps
-        const steps = [
-            { text: currentLanguage === 'es' ? 'Validando método de pago' : 'Validating payment method', delay: 1000 },
-            { text: currentLanguage === 'es' ? 'Confirmando inventario' : 'Confirming inventory', delay: 1500 },
-            { text: currentLanguage === 'es' ? 'Generando orden de compra' : 'Generating purchase order', delay: 2000 },
-            { text: currentLanguage === 'es' ? 'Generando factura' : 'Generating invoice', delay: 1000 }
-        ];
+       // Simulate processing steps
+const steps = [
+    { text: t("validating_payment_method"), delay: 1000 },
+    { text: t("confirming_inventory"), delay: 1500 },
+    { text: t("generating_purchase_order"), delay: 2000 },
+    { text: t("generating_invoice"), delay: 1000 }
+];
+
 
         let currentStep = 0;
 
@@ -1848,10 +1868,11 @@ function generateInvoice() {
         doc.text(convertPrice(subtotal, false), pageWidth - 20, yPosition, { align: 'right' });
         yPosition += 8;
 
-        // Shipping
-        doc.text(`${currentLanguage === 'es' ? 'Envío:' : 'Shipping:'}`, pageWidth - 60, yPosition);
-        doc.text(currentLanguage === 'es' ? 'GRATIS' : 'FREE', pageWidth - 20, yPosition, { align: 'right' });
-        yPosition += 8;
+       // Shipping
+doc.text(t("shipping_label"), pageWidth - 60, yPosition);
+doc.text(t("free_shipping"), pageWidth - 20, yPosition, { align: 'right' });
+yPosition += 8;
+
 
         // Total with emphasis
         doc.line(pageWidth - 80, yPosition, pageWidth - margin, yPosition);
@@ -1863,23 +1884,22 @@ function generateInvoice() {
         doc.text(convertPrice(subtotal, false), pageWidth - 20, yPosition, { align: 'right' });
 
         // Payment method
-        yPosition += 20;
-        doc.setFont(undefined, 'normal');
-        doc.setFontSize(10);
-        doc.setTextColor(0, 0, 0);
-        const paymentMethodText = checkoutData.paymentMethod === 'bank-transfer' ? 
-            (currentLanguage === 'es' ? 'Transferencia Bancaria' : 'Bank Transfer') :
-            (currentLanguage === 'es' ? 'Tarjeta de Crédito' : 'Credit Card');
-        doc.text(`${currentLanguage === 'es' ? 'Método de Pago:' : 'Payment Method:'} ${paymentMethodText}`, margin, yPosition);
+yPosition += 20;
+doc.setFont(undefined, 'normal');
+doc.setFontSize(10);
+doc.setTextColor(0, 0, 0);
 
-        // Terms and conditions
-        yPosition += 15;
-        doc.setFontSize(8);
-        doc.setTextColor(100, 100, 100);
-        const termsText = currentLanguage === 'es' ? 
-            'Términos: Garantía de 12 meses incluida. Devoluciones aceptadas dentro de 30 días.' :
-            'Terms: 12-month warranty included. Returns accepted within 30 days.';
-        doc.text(termsText, margin, yPosition);
+const paymentMethodText = checkoutData.paymentMethod === 'bank-transfer' 
+    ? t("bank_transfer") 
+    : t("credit_card");
+
+doc.text(`${t("payment_method_label")} ${paymentMethodText}`, margin, yPosition);
+
+// Terms and conditions
+yPosition += 15;
+doc.setFontSize(8);
+doc.setTextColor(100, 100, 100);
+doc.text(t("terms_and_conditions_text"), margin, yPosition);
 
         // Footer with business details
         const footerY = pageHeight - 30;
