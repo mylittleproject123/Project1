@@ -915,11 +915,14 @@ function createCheckoutModal() {
                         <p><strong>${(currentLanguage === 'es' ? 'Referencia:' : 'Reference:')}</strong> ${checkoutData.orderNumber}</p>
                         <p><strong>${(currentLanguage === 'es' ? 'Total a Transferir:' : 'Amount to Transfer:')}</strong> ${convertPrice(subtotal, false)}</p>
                     </div>
-                    <p class="transfer-instructions">
-                        ${(currentLanguage === 'es' ? 'Realiza la transferencia por el monto total y confirma cuando hayas completado el pago.' : 'Make the transfer for the total amount and confirm when you have completed the payment.')}
-                    </p>
-                    <button class="btn btn-primary place-order" data-method="bank-transfer">${(currentLanguage === 'es' ? 'He realizado la transferencia' : 'I have made the transfer')}</button>
-                </div>
+<p class="transfer-instructions">
+  ${t("transfer_instructions")}
+</p>
+<button class="btn btn-primary place-order" data-method="bank-transfer">
+  ${t("confirm_transfer")}
+</button>
+</div>
+
 
             <div id="credit-card-details" class="payment-details" style="display: none;">
                     <h4>${(currentLanguage === 'es' ? 'Detalles de la Tarjeta' : 'Card Details')}</h4>
