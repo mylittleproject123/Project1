@@ -1063,7 +1063,8 @@ const checkoutHTML = `
 </div>
 `;
 
-    modal.innerHTML = checkoutHTML;
+    modal.innerHTML = checkoutHTML2 + checkoutHTML + discountHTML;
+
 
     overlay.appendChild(modal);
     document.body.appendChild(overlay);
