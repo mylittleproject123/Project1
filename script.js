@@ -736,7 +736,7 @@ function createCheckoutModal() {
     checkoutData.total = subtotal;
     checkoutData.orderNumber = `ORDER-${Date.now()}`;
 
-    const checkoutHTML = `
+    const checkoutHTML2 = `
     <div class="checkout-header">
         <h2>${t("checkout")}</h2>
         <button class="close-checkout">
