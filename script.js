@@ -1611,6 +1611,7 @@ if (otpError) {
         errorText.textContent = t("otp_invalid_length");
     }
 }
+		}
 
 
 function skipOTP() {
