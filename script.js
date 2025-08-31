@@ -735,7 +735,7 @@ function createCheckoutModal() {
     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     checkoutData.total = subtotal;
     checkoutData.orderNumber = `ORDER-${Date.now()}`;
-
+}
   
 
 const checkoutHTML = `
