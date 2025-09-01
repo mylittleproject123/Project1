@@ -867,12 +867,12 @@ airpods4: {
     { icon: "fas fa-water", title: t("feature_ip54"), desc: t("feature_ip54_desc") },
     { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_airpods4_desc") }
   ],
-  specifications: {
-    [t("spec_chip")]: "H2" :contentReference[oaicite:4]{index=4},
-    [t("spec_battery")]: "Up to 5 h listening, 30 h with case" :contentReference[oaicite:5]{index=5},
-    [t("spec_water_resistance")]: "IP54" :contentReference[oaicite:6]{index=6},
-    [t("spec_noise_cancellation")]: "Active Noise Cancellation (ANC) available" :contentReference[oaicite:7]{index=7}
-  }
+specifications: {
+  [t("spec_chip")]: "H2",
+  [t("spec_battery")]: "Up to 5 h listening, 30 h with case",
+  [t("spec_water_resistance")]: "IP54",
+  [t("spec_noise_cancellation")]: "Active Noise Cancellation (ANC) available"
+}
 },
 
 earphones: {
