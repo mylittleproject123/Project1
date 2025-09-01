@@ -1,1105 +1,820 @@
 // Product database with detailed information
 const productDatabase = {
-    screenprotector: {
-        name: "Premium Gorilla Glass Screen Protector",
-        subtitle: "9H Hardness Tempered Glass with Oleophobic Coating",
-        description: "Professional-grade screen protection with 9H hardness and crystal-clear transparency.",
-        price: 8.99,
-        originalPrice: 19.99,
-        discount: 40,
-        category: "accessories",
-        images: [
-            "https://m.media-amazon.com/images/I/61NGYQsztvL._UF1000,1000_QL80_FMwebp_.jpg"
-        ],
-        conditionOptions: {
-            "new": { name: "New", priceAdjustment: 0, description: "Brand new product" }
+    
+   iphone16promax: {
+    name: "iPhone 16 Pro Max",
+    description: t("iphone_desc"), // Example key: "La máxima expresión de innovación de Apple"
+    price: 769,
+    originalPrice: 1000,
+    discount: 25,
+    category: "phone",
+    variants: {
+        black: {
+            name: t("color_black"),
+            images: [
+                "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/1.jpg?7763",
+                "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/3.jpg?7763",
+                "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/4.jpg?7763",
+                "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/5.jpg?7763",
+                "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/7.jpg?7763"
+            ]
         },
-        features: [
-            { icon: "fas fa-shield-alt", title: "9H Hardness", desc: "Maximum protection" },
-            { icon: "fas fa-eye", title: "Crystal Clear", desc: "Perfect transparency" },
-            { icon: "fas fa-droplet", title: "Oleophobic", desc: "Fingerprint resistant" },
-            { icon: "fas fa-mobile-alt", title: "Bubble Free", desc: "Easy installation" }
-        ],
-        specifications: {
-            "Material": "Tempered Glass",
-            "Hardness": "9H",
-            "Thickness": "0.3mm",
-            "Transparency": "99.9%",
-            "Coating": "Oleophobic",
-            "Installation": "Bubble-free",
-            "Compatibility": "Universal",
-            "Warranty": "1 year"
+        gold: {
+            name: t("color_rose_gold"),
+            images: [
+                "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/49/0510004/1.jpg?6300",
+                "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/49/0510004/2.jpg?6300",
+                "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/49/0510004/3.jpg?6300",
+                "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/49/0510004/4.jpg?6300"
+            ]
         }
     },
-    usbccable: {
-        name: "USB-C Fast Charging Cable",
-        subtitle: "20W Power Adapter with 3ft Cable",
-        description: "Professional-grade USB-C charging cable with fast charging capabilities.",
-        price: 6.99,
-        originalPrice: 12.99,
-        discount: 35,
-        category: "accessories",
-        images: [
-            "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/U/P/209656_1718112776.jpg"
-        ],
-        conditionOptions: {
-            "new": { name: "New", priceAdjustment: 0, description: "Brand new product" }
+    memoryOptions: {
+        "256GB": { price: 769, originalPrice: 1000 },
+        "512GB": { price: 819, originalPrice: 1050 },
+        "1TB": { price: 869, originalPrice: 1100 }
+    },
+    conditionOptions: {
+        great: {
+            name: t("condition_great"),
+            priceAdjustment: 0,
+            description: t("condition_great_desc")
         },
-        features: [
-            { icon: "fas fa-bolt", title: "Fast Charging", desc: "20W power delivery" },
-            { icon: "fas fa-sync", title: "Data Sync", desc: "High-speed transfer" },
-            { icon: "fas fa-certificate", title: "MFi Certified", desc: "Apple approved" },
-            { icon: "fas fa-ruler", title: "3ft Length", desc: "Perfect size" }
-        ],
-        specifications: {
-            "Cable Type": "USB-C to Lightning",
-            "Power": "20W Fast Charging",
-            "Length": "3 feet (1 meter)",
-            "Data Transfer": "480 Mbps",
-            "Certification": "MFi Certified",
-            "Compatibility": "iPhone 8 and later",
-            "Material": "TPE jacket",
-            "Warranty": "1 year"
+        excellent: {
+            name: t("condition_excellent"),
+            priceAdjustment: 30,
+            description: t("condition_excellent_desc")
+        },
+        new_open_box: {
+            name: t("condition_display_piece"),
+            priceAdjustment: 60,
+            description: t("condition_display_piece_desc")
         }
     },
-    powerbank: {
-        name: "Portable Power Bank 5000mAh",
-        subtitle: "Compact Fast Charging Power Bank",
-        description: "Ultra-compact power bank with 5000mAh capacity and fast charging technology.",
-        price: 16,
-        originalPrice: 25,
-        discount: 36,
-        category: "accessories",
-        images: [
-            "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/J/D/190950_1664522191.jpg"
-        ],
-        conditionOptions: {
-            "new": { name: "New", priceAdjustment: 0, description: "Brand new product" }
-        },
-        features: [
-            { icon: "fas fa-battery-full", title: "5000mAh", desc: "High capacity" },
-            { icon: "fas fa-bolt", title: "Fast Charging", desc: "Quick power delivery" },
-            { icon: "fas fa-lightbulb", title: "LED Indicator", desc: "Battery status" },
-            { icon: "fas fa-shield-alt", title: "Safety", desc: "Multiple protections" }
-        ],
-        specifications: {
-            "Capacity": "5000mAh",
-            "Input": "USB-C 5V/2A",
-            "Output": "USB-A 5V/2.4A",
-            "Size": "Compact portable",
-            "Weight": "Light weight",
-            "LED Indicator": "4-level display",
-            "Safety": "Over-charge protection",
-            "Warranty": "1 year"
-        }
-    },
-    jblgoportable: {
-        name: "JBL GO 3 Portable Speaker",
-        subtitle: "Bluetooth Wireless Speaker - Blue",
-        description: "JBL GO 3 Portable Bluetooth Speaker with JBL Pro Sound and IP67 waterproof rating.",
-        price: 19.99,
-        originalPrice: 79,
-        discount: 75,
-        category: "audio",
-        variants: {
-            blue: {
-                name: "Blue",
-                images: [
-                    "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/78/9143073/1.jpg?3903"
-                ]
-            },
-            black: {
-                name: "Black",
-                images: [
-                    "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/78/9143073/1.jpg?3903"
-                ]
-            }
-        },
-        conditionOptions: {
-            "new_open_box": { name: "New - Open Box", priceAdjustment: 0, description: "New product, box opened only" }
-        },
-        images: [
-            "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/78/9143073/1.jpg?3903"
-        ],
-        features: [
-            { icon: "fas fa-music", title: "JBL Pro Sound", desc: "Powerful clear sound" },
-            { icon: "fas fa-droplet", title: "IP67 Waterproof", desc: "Water and dust proof" },
-            { icon: "fas fa-battery-full", title: "5h Battery", desc: "Continuous playback" },
-            { icon: "fas fa-bluetooth-b", title: "Bluetooth 5.1", desc: "Stable connection" }
-        ],
-        specifications: {
-            "Connectivity": "Bluetooth 5.1",
-            "Charging": "USB-C",
-            "Water Resistance": "IP67",
-            "Drivers": "43mm driver",
-            "Frequency Response": "110Hz - 20kHz",
-            "Battery Life": "Up to 5 hours",
-            "Condition": "New - Open Box Only",
-            "Warranty": "Full manufacturer warranty"
-        }
-    },
-    otherearbuds: {
-        name: "Bluetooth TWS Earbuds",
-        subtitle: "Wireless Bluetooth Earbuds with Charging Case",
-        description: "Bluetooth TWS earbuds with HD stereo sound and portable charging case.",
-        price: 12.99,
-        originalPrice: 49,
-        discount: 73,
-        category: "audio",
-        variants: {
-            black: {
-                name: "Black",
-                images: [
-                    "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/78/9143073/1.jpg?3903"
-                ]
-            },
-            white: {
-                name: "White",
-                images: [
-                    "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/78/9143073/1.jpg?3903"
-                ]
-            }
-        },
-        conditionOptions: {
-            "new_open_box": { name: "New - Open Box", priceAdjustment: 0, description: "New product, box opened only" }
-        },
-        images: [
-            "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/78/9143073/1.jpg?3903"
-        ],
-        features: [
-            { icon: "fas fa-music", title: "HD Sound", desc: "High quality stereo audio" },
-            { icon: "fas fa-microphone", title: "Built-in Mic", desc: "Hands-free calls" },
-            { icon: "fas fa-battery-full", title: "20h Battery", desc: "With charging case" },
-            { icon: "fas fa-bluetooth-b", title: "Bluetooth 5.0", desc: "Stable connection" }
-        ],
-        specifications: {
-            "Connectivity": "Bluetooth 5.0",
-            "Charging Case": "USB-C",
-            "Water Resistance": "IPX4",
-            "Drivers": "6mm dynamic",
-            "Frequency Response": "20Hz - 20kHz",
-            "Battery Life": "Up to 20 hours with case",
-            "Condition": "New - Open Box Only",
-            "Warranty": "Full manufacturer warranty"
-        }
-    },
-    iphone16promax: {
-        name: "iPhone 16 Pro Max",
-        subtitle: "Titanio Natural, 256GB - La máxima expresión de innovación de Apple",
-        description: "El iPhone más avanzado hasta la fecha con el revolucionario chip A18 Pro, cámaras profesionales y pantalla Super Retina XDR de 6.9 pulgadas.",
-        price: 769,
-        originalPrice: 1000,
-        discount: 25,
-        category: "phone",
-        variants: {
-            black: {
-                name: "Black",
-                images: [
-                    "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/1.jpg?7763",
-                    "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/3.jpg?7763",
-                    "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/4.jpg?7763",
-                    "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/5.jpg?7763",
-                    "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/7.jpg?7763"
-                ]
-            },
-            gold: {
-                name: "Rose gold",
-                images: [
-                    "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/49/0510004/1.jpg?6300",
-                    "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/49/0510004/2.jpg?6300",
-                    "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/49/0510004/3.jpg?6300",
-                    "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/49/0510004/4.jpg?6300"
-                ]
-            }
-        },
-        memoryOptions: {
-            "256GB": { price: 769, originalPrice: 1000 },
-            "512GB": { price: 819, originalPrice: 1050 },
-            "1TB": { price: 869, originalPrice: 1100 }
-        },
-        conditionOptions: {
-            "great": { name: "Great", priceAdjustment: 0, description: "Light wear, fully functional" },
-            "excellent": { name: "Excellent", priceAdjustment: 30, description: "Minor signs of use" },
-            "new_open_box": { name: "Display piece, never used", priceAdjustment: 60, description: "Display piece, never used, open box" }
-        },
-        images: [
-            "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/1.jpg?7763",
-            "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/3.jpg?7763",
-            "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/4.jpg?7763",
-            "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/5.jpg?7763",
-            "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/7.jpg?7763",
-            "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/49/0510004/1.jpg?6300",
-            "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/49/0510004/2.jpg?6300",
-            "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/49/0510004/3.jpg?6300",
-            "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/49/0510004/4.jpg?6300"
-        ],
-        features: [
-            { icon: "fas fa-battery-full", title: "29h Batería", desc: "Reproducción de video" },
-            { icon: "fas fa-microchip", title: "Chip A18 Pro", desc: "Rendimiento revolucionario" },
-            { icon: "fas fa-camera", title: "Cámara 48MP", desc: "Sistema de cámaras Pro" },
-            { icon: "fas fa-mobile-alt", title: "6.9\" ProMotion", desc: "Super Retina XDR" }
-        ],
-        specifications: {
-            "Pantalla": "6.9\" Super Retina XDR OLED",
-            "Procesador": "Apple A18 Pro",
-            "Almacenamiento": "256GB",
-            "RAM": "8GB",
-            "Cámara Principal": "48MP f/1.78",
-            "Cámara Ultra Wide": "12MP f/2.2",
-            "Cámara Teleobjetivo": "12MP f/2.8",
-            "Batería": "4422 mAh",
-            "Sistema Operativo": "iOS 18",
-            "Conectividad": "5G, Wi-Fi 7, Bluetooth 5.3",
-            "Resistencia": "IP68",
-            "Dimensiones": "159.9 x 76.7 x 8.25 mm",
-            "Peso": "227g",
-            "Estado": "Reacondicionado certificado",
-            "Salud de Batería": "90% garantizada"
-        }
-    },
-    iphone15promax: {
-        name: "iPhone 15 Pro Max",
-        subtitle: "Titanio Natural, 256GB - Potencia extraordinaria",
-        description: "Construido con titanio aeroespacial, cuenta con el potente chip A17 Pro y el nuevo puerto USB-C para una experiencia Pro definitiva.",
-        price: 649,
-        originalPrice: 820,
-        discount: 25,
-        category: "phone",
-        variants: {
-            naturaltitanium: {
-              name: "Titanio Natural",
-              images: [
-                  "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/B/B/163129_1713554391.jpg",
-                  "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/J/G/163129_1713554459.jpg",
-                  "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/P/L/163129_1713554475.jpg",
-                  "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/T/K/163129_1713554492.jpg",
-                  "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/U/A/163129_1713554526.jpg"
-              ]
-            },
-            blue: {
-                name: "Blue",
-                images: [
-                    "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/B/B/163129_1713554391.jpg"
-                ]
-            },
-            white: {
-                name: "White",
-                images: [
-                    "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/B/B/163129_1713554391.jpg"
-                ]
-            },
-            black: {
-                name: "Black",
-                images: [
-                    "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/B/B/163129_1713554391.jpg"
-                ]
-            }
-        },
-        memoryOptions: {
-            "256GB": { price: 649, originalPrice: 820 },
-            "512GB": { price: 699, originalPrice: 870 },
-            "1TB": { price: 749, originalPrice: 920 }
-        },
-        conditionOptions: {
-            "great": { name: "Great", priceAdjustment: 0, description: "Light wear, fully functional" },
-            "excellent": { name: "Excellent", priceAdjustment: 30, description: "Minor signs of use" },
-            "new_open_box": { name: "Display piece, never used", priceAdjustment: 60, description: "Display piece, never used, open box" }
-        },
-        images: [
-            "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/B/B/163129_1713554391.jpg"
-        ],
-        features: [
-            { icon: "fas fa-microchip", title: "Chip A17 Pro", desc: "Rendimiento revolucionario" },
-            { icon: "fas fa-mountain", title: "Titanio", desc: "Construcción aeroespacial" },
-            { icon: "fas fa-usb", title: "USB-C", desc: "Conectividad universal" },
-            { icon: "fas fa-camera", title: "Zoom 5x", desc: "Teleobjetivo profesional" }
-        ],
-        specifications: {
-            "Pantalla": "6.7\" Super Retina XDR OLED",
-            "Procesador": "Apple A17 Pro",
-            "Almacenamiento": "256GB",
-            "RAM": "8GB",
-            "Cámara Principal": "48MP f/1.78",
-            "Cámara Ultra Wide": "12MP f/2.2",
-            "Cámara Teleobjetivo": "12MP f/2.8 (5x)",
-            "Batería": "4441 mAh",
-            "Sistema Operativo": "iOS 17",
-            "Conectividad": "5G, Wi-Fi 6E, Bluetooth 5.3",
-            "Puerto": "USB-C",
-            "Resistencia": "IP68",
-            "Material": "Titanio aeroespacial",
-            "Peso": "221g",
-            "Estado": "Reacondicionado certificado",
-            "Salud de Batería": "90% garantizada"
-        }
-    },
-    iphone14promax: {
-        name: "iPhone 14 Pro Max",
-        subtitle: "Morado Profundo, 128GB - Dynamic Island revolucionario",
-        description: "Presenta el revolucionario Dynamic Island y el chip A16 Bionic para un rendimiento excepcional.",
-        price: 429,
-        originalPrice: 334,
-        discount: 25,
-        category: "phone",
-        variants: {
-            deeppurple: {
-                name: "Morado Profundo",
-                images: [
-                   "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/17/7645104/2.jpg?9725",
-                   "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/17/7645104/1.jpg?9725"
-                ]
-            },
-            gold: {
-                name: "Rose gold",
-                images: [
-                    "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/13/1544104/1.jpg?5804"
-                ]
-            },
-            spaceblack: {
-                name: "Space black",
-                images: [
-                    "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/17/7645104/2.jpg?9725"
-                ]
-            },
-            silver: {
-                name: "Silver",
-                images: [
-                    "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/17/7645104/2.jpg?9725"
-                ]
-            }
-        },
-        memoryOptions: {
-            "128GB": { price: 429, originalPrice: 334 },
-            "256GB": { price: 479, originalPrice: 384 },
-            "512GB": { price: 529, originalPrice: 434 },
-            "1TB": { price: 579, originalPrice: 484 }
-        },
-        conditionOptions: {
-            "great": { name: "Great", priceAdjustment: 0, description: "Light wear, fully functional" },
-            "excellent": { name: "Excellent", priceAdjustment: 30, description: "Minor signs of use" },
-            "new_open_box": { name: "Display piece, never used", priceAdjustment: 60, description: "Display piece, never used, open box" }
-        },
-        images: [
-            "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/17/7645104/2.jpg?9725"
-        ],
-        features: [
-            { icon: "fas fa-circle", title: "Dynamic Island", desc: "Interfaz revolucionaria" },
-            { icon: "fas fa-microchip", title: "Chip A16", desc: "Bionic avanzado" },
-            { icon: "fas fa-camera", title: "48MP", desc: "Cámara principal" },
-            { icon: "fas fa-mobile-alt", title: "6.7\"", desc: "ProMotion 120Hz" }
-        ],
-        specifications: {
-            "Pantalla": "6.7\" Super Retina XDR OLED",
-            "Procesador": "Apple A16 Bionic",
-            "Almacenamiento": "128GB",
-            "RAM": "6GB",
-            "Cámara Principal": "48MP f/1.78",
-            "Dynamic Island": "Sí",
-            "Batería": "4323 mAh",
-            "Sistema Operativo": "iOS 16",
-            "Resistencia": "IP68",
-            "Peso": "240g",
-            "Estado": "Reacondicionado certificado",
-            "Salud de Batería": "90% garantizada"
-        }
-    },
-    galaxys25ultra: {
-        name: "Samsung Galaxy S25 Ultra",
-        subtitle: "Negro Titanio, 512GB - AI revolucionario con S Pen",
-        description: "El Galaxy S más avanzado con inteligencia artificial de próxima generación, S Pen integrado y cámaras profesionales.",
-        price: 719,
-        originalPrice: 999,
-        discount: 28,
-        category: "phone",
-        variants: {
-            black: {
-                name: "Black",
-                images: [
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkAgI28zAfjp7Ul1FlOn7TVRg4Fff-A5lnOMYejXAJx0qdmKxjpYMyJkvkSOnBgb6Fio4&usqp=CAU",
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkAgI28zAfjp7Ul1FlOn7TVRg4Fff-A5lnOMYejXAJx0qdmKxjpYMyJkvkSOnBgb6Fio4&usqp=CAU"
-                ]
-            },
-            silver: {
-                name: "Silver grey",
-                images: [
-                    "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/C/B/67343_1732713967.jpg"
-                ]
-            },
-            blue: {
-                name: "Blue",
-                images: [
-                    "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/C/B/67343_1732713967.jpg"
-                ]
-            },
-            green: {
-                name: "Green",
-                images: [
-                    "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/C/B/67343_1732713967.jpg"
-                ]
-            }
-        },
-        memoryOptions: {
-            "256GB": { price: 669, originalPrice: 949 },
-            "512GB": { price: 719, originalPrice: 999 },
-            "1TB": { price: 819, originalPrice: 1099 }
-        },
-        conditionOptions: {
-            "great": { name: "Great", priceAdjustment: 0, description: "Light wear, fully functional" },
-            "excellent": { name: "Excellent", priceAdjustment: 40, description: "Minor signs of use" },
-            "new_open_box": { name: "Display piece, never used", priceAdjustment: 80, description: "Display piece, never used, open box" }
-        },
-        images: [
-            "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/C/B/67343_1732713967.jpg",
-            "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/E/Y/67343_1732713999.jpg"
-        ],
-        features: [
-            { icon: "fas fa-microchip", title: "Snapdragon 8 Gen 4", desc: "Procesador de vanguardia" },
-            { icon: "fas fa-robot", title: "Galaxy AI avanzado", desc: "IA de siguiente generación" },
-            { icon: "fas fa-pen", title: "S Pen integrado", desc: "Productividad sin límites" },
-            { icon: "fas fa-camera", title: "Cámara 200MP", desc: "Fotografía revolucionaria" }
-        ],
-        specifications: {
-            "Pantalla": "6.8\" Dynamic AMOLED 2X, 120Hz",
-            "Procesador": "Snapdragon 8 Gen 4 para Galaxy",
-            "Almacenamiento": "512GB UFS 4.0",
-            "RAM": "12GB LPDDR5X",
-            "Cámara Principal": "200MP f/1.7 con OIS",
-            "Cámara Ultra Wide": "12MP f/2.2, 120°",
-            "Cámara Teleobjetivo": "50MP f/3.4 (5x zoom óptico)",
-            "Cámara Frontal": "12MP f/2.2",
-            "S Pen": "Sí, integrado con Bluetooth",
-            "Batería": "5000 mAh con carga rápida 45W",
-            "Sistema Operativo": "Android 15 + One UI 7.0",
-            "Conectividad": "5G, Wi-Fi 7, Bluetooth 5.3",
-            "Resistencia": "IP68, Gorilla Glass Victus 3",
-            "Dimensiones": "162.3 x 79.0 x 8.6 mm",
-            "Peso": "230g",
-            "Material": "Marco de titanio",
-            "Seguridad": "Ultrasonico en pantalla, Face ID",
-            "Salud de Batería": "95% garantizada",
-            "Estado": "Reacondicionado certificado"
-        }
-    },
-    galaxys24ultra: {
-        name: "Samsung Galaxy S24 Ultra",
-        subtitle: "Negro, 256GB - Galaxy AI a tu alcance",
-        description: "El smartphone más inteligente de Samsung con Galaxy AI integrado, S Pen incorporado y cámaras profesionales para creadores de contenido.",
-        price: 529,
-        originalPrice: 749,
-        discount: 29,
-        category: "phone",
-        variants: {
-            black: {
-                name: "Black",
-                images: [
-                    "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/P/D/67343_1707126048.jpg",
-                    "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/T/E/67343_1707126076.jpg",
-                    "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/C/K/67343_1707126081.jpg"
-                ]
-            },
-            gray: {
-                name: "Grey",
-                images: [
-                    "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/P/D/67343_1707126048.jpg"
-                ]
-            },
-            violet: {
-                name: "Violet",
-                images: [
-                    "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/P/D/67343_1707126048.jpg"
-                ]
-            },
-            yellow: {
-                name: "Yellow",
-                images: [
-                    "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/P/D/67343_1707126048.jpg"
-                ]
-            }
-        },
-        memoryOptions: {
-            "256GB": { price: 529, originalPrice: 749 },
-            "512GB": { price: 579, originalPrice: 799 },
-            "1TB": { price: 629, originalPrice: 849 }
-        },
-        conditionOptions: {
-            "great": { name: "Great", priceAdjustment: 0, description: "Light wear, fully functional" },
-            "excellent": { name: "Excellent", priceAdjustment: 35, description: "Minor signs of use" },
-            "new_open_box": { name: "Display piece, never used", priceAdjustment: 70, description: "Display piece, never used, open box" }
-        },
-        images: [
-            "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/P/D/67343_1707126048.jpg",
-            "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/T/E/67343_1707126076.jpg",
-            "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/C/K/67343_1707126081.jpg"
-        ],
-        features: [
-            { icon: "fas fa-microchip", title: "Snapdragon 8 Gen 3", desc: "Procesador de elite" },
-            { icon: "fas fa-robot", title: "Galaxy AI", desc: "Inteligencia artificial integrada" },
-            { icon: "fas fa-pen", title: "S Pen", desc: "Incluido en el dispositivo" },
-            { icon: "fas fa-camera", title: "Cámara 200MP", desc: "Fotografía profesional" }
-        ],
-        specifications: {
-            "Pantalla": "6.8\" Dynamic AMOLED 2X, 120Hz, 3120x1440",
-            "Procesador": "Snapdragon 8 Gen 3 para Galaxy",
-            "Almacenamiento": "256GB UFS 4.0",
-            "RAM": "12GB LPDDR5X",
-            "Cámara Principal": "200MP f/1.7 con OIS",
-            "Cámara Ultra Wide": "12MP f/2.2, 120°",
-            "Cámara Teleobjetivo 1": "10MP f/2.4 (3x zoom óptico)",
-            "Cámara Teleobjetivo 2": "50MP f/3.4 (5x zoom óptico)",
-            "Cámara Frontal": "12MP f/2.2",
-            "Zoom Digital": "Hasta 100x Space Zoom",
-            "S Pen": "Sí, integrado con Bluetooth",
-            "Batería": "5000 mAh con carga rápida 45W",
-            "Carga Inalámbrica": "15W, carga inversa 4.5W",
-            "Sistema Operativo": "Android 14 + One UI 6.1",
-            "Galaxy AI": "Traducción en vivo, Circle to Search",
-            "Conectividad": "5G, Wi-Fi 6E, Bluetooth 5.3",
-            "Resistencia": "IP68, Gorilla Glass Armor",
-            "Dimensiones": "162.3 x 79.0 x 8.6 mm",
-            "Peso": "232g",
-            "Material": "Marco de titanio grado aeroespacial",
-            "Seguridad": "Ultrasonico en pantalla, reconocimiento facial",
-            "Salud de Batería": "95% garantizada",
-            "Estado": "Reacondicionado certificado"
-        }
-    },
-    galaxys23ultra: {
-        name: "Samsung Galaxy S23 Ultra",
-        subtitle: "Rojo, 512GB - Captura la noche como nunca antes",
-        description: "Potencia sin límites con cámara de 200MP, S Pen integrado y el procesador Snapdragon 8 Gen 2 optimizado para Galaxy.",
-        price: 329,
-        originalPrice: 529,
-        discount: 38,
-        category: "phone",
-        variants: {
-            red: {
-                name: "Red",
-                images: [
-                    "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/Z/T/141488_1684232842.jpg"
-                ]
-            },
-            skyblue: {
-                name: "Sky blue",
-                images: [
-                    "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/U/V/141488_1684232622.jpg"
-                ]
-            },
-            black: {
-                name: "Black",
-                images: [
-                    "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/Z/T/141488_1684232842.jpg"
-                ]
-            },
-            lavender: {
-                name: "Lavender",
-                images: [
-                    "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/Z/T/141488_1684232842.jpg"
-                ]
-            },
-            green: {
-                name: "Green",
-                images: [
-                    "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/Z/T/141488_1684232842.jpg"
-                ]
-            }
-        },
-        memoryOptions: {
-            "256GB": { price: 299, originalPrice: 499 },
-            "512GB": { price: 329, originalPrice: 529 },
-            "1TB": { price: 379, originalPrice: 579 }
-        },
-        conditionOptions: {
-             "great": { name: "Great", priceAdjustment: 0, description: "Light wear, fully functional" },
-            "excellent": { name: "Excellent", priceAdjustment: 30, description: "Minor signs of use" },
-            "new_open_box": { name: "Display piece, never used", priceAdjustment: 60, description: "Display piece, never used, open box" }
-        },
-        images: [
-            "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/Z/T/141488_1684232842.jpg"
-        ],
-        features: [
-            { icon: "fas fa-microchip", title: "Snapdragon 8 Gen 2", desc: "Para Galaxy optimizado" },
-            { icon: "fas fa-camera", title: "Cámara 200MP", desc: "Máxima resolución" },
-            { icon: "fas fa-pen", title: "S Pen", desc: "Productividad sin límites" },
-            { icon: "fas fa-moon", title: "Nightography", desc: "Fotos nocturnas épicas" }
-        ],
-        specifications: {
-            "Pantalla": "6.8\" Dynamic AMOLED 2X, 120Hz, 3088x1440",
-            "Procesador": "Snapdragon 8 Gen 2 para Galaxy",
-            "Almacenamiento": "512GB UFS 4.0",
-            "RAM": "12GB LPDDR5X",
-            "Cámara Principal": "200MP f/1.7 con OIS",
-            "Cámara Ultra Wide": "12MP f/2.2, 120°",
-            "Cámara Teleobjetivo 1": "10MP f/2.4 (3x zoom óptico)",
-            "Cámara Teleobjetivo 2": "10MP f/4.9 (10x zoom óptico)",
-            "Cámara Frontal": "12MP f/2.2",
-            "Zoom Digital": "Hasta 100x Space Zoom",
-            "Video": "8K a 30fps, 4K a 60fps",
-            "S Pen": "Sí, integrado con Bluetooth",
-            "Batería": "5000 mAh con carga rápida 45W",
-            "Carga Inalámbrica": "15W, carga inversa 4.5W",
-            "Sistema Operativo": "Android 13 + One UI 5.1",
-            "Conectividad": "5G, Wi-Fi 6E, Bluetooth 5.3",
-            "Resistencia": "IP68, Gorilla Glass Victus 2",
-            "Dimensiones": "163.4 x 78.1 x 8.9 mm",
-            "Peso": "234g",
-            "Material": "Marco de aluminio con acabado mate",
-            "Seguridad": "Ultrasonico en pantalla, reconocimiento facial",
-            "Estado": "Reacondicionado certificado",
-            "Salud de Batería": "95% garantizada"
-        }
-    },
-    galaxys22ultra: {
-        name: "Samsung Galaxy S22 Ultra",
-        subtitle: "Negro, 256GB - El Note reinventado con S Pen incorporado",
-        description: "La evolución del Galaxy Note con S Pen integrado, cámara de 108MP y el poder del Snapdragon 8 Gen 1.",
-        price: 229,
-        originalPrice: 399,
-        discount: 43,
-        category: "phone",
-        variants: {
-            black: {
-                name: "Black",
-                images: [
-                    "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/91/5971252/1.jpg?7934"
-                ]
-            },
-            purple: {
-                name: "Purple",
-                images: [
-                    "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/67/4988493/1.jpg?7063",
-                    "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/67/4988493/2.jpg?7063",
-                    "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/67/4988493/3.jpg?7063",
-                    "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/67/4988493/4.jpg?7063",
-                    "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/67/4988493/5.jpg?7063"
-                ]
-            },
-            white: {
-                name: "White",
-                images: [
-                    "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/91/5971252/1.jpg?7934"
-                ]
-            },
-            green: {
-                name: "Green",
-                images: [
-                    "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/91/5971252/1.jpg?7934"
-                ]
-            },
-            red: {
-                name: "Red",
-                images: [
-                    "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/91/5971252/1.jpg?7934"
-                ]
-            }
-        },
-        memoryOptions: {
-            "128GB": { price: 199, originalPrice: 369 },
-            "256GB": { price: 229, originalPrice: 399 },
-            "512GB": { price: 279, originalPrice: 449 },
-            "1TB": { price: 329, originalPrice: 499 }
-        },
-        conditionOptions: {
-            "great": { name: "Great", priceAdjustment: 25, description: "Light wear, fully functional" },
-            "excellent": { name: "Excellent", priceAdjustment: 50, description: "Minor signs of use" },
-            "new_open_box": { name: "Display piece, never used", priceAdjustment: 75, description: "Display piece, never used, open box" }
-        },
-        images: [
-            "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/91/5971252/1.jpg?7934"
-        ],
-        features: [
-            { icon: "fas fa-microchip", title: "Snapdragon 8 Gen 1", desc: "Rendimiento flagship" },
-            { icon: "fas fa-camera", title: "Cámara 108MP", desc: "Detalles increíbles" },
-            { icon: "fas fa-pen", title: "S Pen", desc: "El Note ha vuelto" },
-            { icon: "fas fa-video", title: "8K Video", desc: "Grabación profesional" }
-        ],
-        specifications: {
-            "Pantalla": "6.8\" Dynamic AMOLED 2X, 120Hz, 3088x1440",
-            "Procesador": "Snapdragon 8 Gen 1 (4nm)",
-            "Almacenamiento": "256GB UFS 3.1",
-            "RAM": "12GB LPDDR5",
-            "Cámara Principal": "108MP f/1.8 con OIS",
-            "Cámara Ultra Wide": "12MP f/2.2, 120°",
-            "Cámara Teleobjetivo 1": "10MP f/2.4 (3x zoom óptico)",
-            "Cámara Teleobjetivo 2": "10MP f/4.9 (10x zoom óptico)",
-            "Cámara Frontal": "40MP f/2.2",
-            "Zoom Digital": "Hasta 100x Space Zoom",
-            "Video": "8K a 24fps, 4K a 60fps",
-            "S Pen": "Sí, integrado con Bluetooth",
-            "Batería": "5000 mAh con carga rápida 45W",
-            "Carga Inalámbrica": "15W, carga inversa 4.5W",
-            "Sistema Operativo": "Android 12 + One UI 4.1",
-            "Conectividad": "5G, Wi-Fi 6E, Bluetooth 5.2",
-            "Resistencia": "IP68, Gorilla Glass Victus+",
-            "Dimensiones": "163.3 x 77.9 x 8.9 mm",
-            "Peso": "228g",
-            "Material": "Marco de aluminio con acabado mate",
-            "Seguridad": "Ultrasonico en pantalla, reconocimiento facial",
-            "Estado": "Reacondicionado certificado",
-            "Salud de Batería": "90% garantizada"
-        }
-    },
-    galaxys21ultra: {
-        name: "Samsung Galaxy S21 Ultra",
-        subtitle: "Negro, 128GB - Ultra en todo sentido con zoom 100x",
-        description: "El primer Galaxy S Ultra con zoom espacial 100x, pantalla de 120Hz y compatibilidad con S Pen (vendido por separado).",
-        price: 119,
-        originalPrice: 299,
-        discount: 60,
-        category: "phone",
-        variants: {
-            black: {
-                name: "Black",
-                images: [
-                    "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/46/4905482/1.jpg?2892"
-                ]
-            },
-            silver: {
-                name: "Silver",
-                images: [
-                    "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/46/4905482/1.jpg?2892"
-                ]
-            },
-            violet: {
-                name: "Violet",
-                images: [
-                    "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/46/4905482/1.jpg?2892"
-                ]
-            },
-            brown: {
-                name: "Brpwn",
-                images: [
-                    "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/46/4905482/1.jpg?2892"
-                ]
-            },
-            navy: {
-                name: "Navy",
-                images: [
-                    "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/46/4905482/1.jpg?2892"
-                ]
-            }
-        },
-        memoryOptions: {
-            "128GB": { price: 119, originalPrice: 299 },
-            "256GB": { price: 149, originalPrice: 329 },
-            "512GB": { price: 179, originalPrice: 359 }
-        },
-        conditionOptions: {
-            "great": { name: "Great", priceAdjustment: 20, description: "Light wear, fully functional" },
-            "excellent": { name: "Excellent", priceAdjustment: 40, description: "Minor signs of use" },
-            "new_open_box": { name: "Display piece, never used", priceAdjustment: 60, description: "Display piece, never used, open box" }
-        },
-        images: [
-            "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/46/4905482/1.jpg?2892"
-        ],
-        features: [
-            { icon: "fas fa-microchip", title: "Exynos 2100", desc: "Procesador flagship" },
-            { icon: "fas fa-search-plus", title: "Zoom 100x", desc: "Space Zoom épico" },
-            { icon: "fas fa-mobile-alt", title: "120Hz", desc: "Pantalla suave" },
-            { icon: "fas fa-video", title: "8K Video", desc: "Calidad cinematográfica" }
-        ],
-        specifications: {
-            "Pantalla": "6.8\" Dynamic AMOLED 2X",
-            "Procesador": "Exynos 2100",
-            "Almacenamiento": "128GB",
-            "RAM": "12GB",
-            "Cámara Principal": "108MP f/1.8",
-            "Cámara Ultra Wide": "12MP f/2.2",
-            "Cámara Teleobjetivo": "10MP f/2.4 (3x), 10MP f/4.9 (10x)",
-            "Zoom": "Hasta 100x Space Zoom",
-            "Batería": "5000 mAh",
-            "Sistema Operativo": "Android 11 + One UI 3.1",
-            "Conectividad": "5G, Wi-Fi 6E, Bluetooth 5.0",
-            "Resistencia": "IP68",
-            "Dimensiones": "165.1 x 75.6 x 8.9 mm",
-            "Peso": "227g",
-            "S Pen": "Soporte (vendido por separado)",
-            "Estado": "Reacondicionado certificado"
-        }
-    },
-    iphone13promax: {
-        name: "iPhone 13 Pro Max",
-        subtitle: "Azul Sierra, 128GB - Pro en todos los sentidos",
-        description: "iPhone 13 Pro Max con pantalla Super Retina XDR de 6.7 pulgadas, chip A15 Bionic y sistema de cámaras Pro avanzado.",
-        price: 359,
-        originalPrice: 288,
-        discount: 25,
-        category: "phone",
-        variants: {
-           sierrablue: {
-               name: "Azul Sierra",
-               images: [
-                   "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/R/B/163129_1685917309.jpg",
-                   "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/F/B/163129_1685917324.jpg",
-                   "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/S/G/163129_1685917338.jpg",
-                   "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/A/H/163129_1685917469.jpg"
-               ]
-           },
-           alpinegreen: {
-               name: "Verde Alpino",
-               images: [
-                   "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/T/A/163129_1685917034.jpg",
-                   "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/V/G/163129_1685917049.jpg",
-                   "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/X/G/163129_1685917066.jpg",
-                   "https://www-konga-com-res.cloudinary.com/w_250,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/E/G/163129_1685917083.jpg"
-               ]
-           },
-           gold: {
-               name: "Dorado",
-               images: [
-                   "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/R/B/163129_1685917309.jpg"
-               ]
-           },
-           graphite: {
-               name: "Grafito",
-               images: [
-                   "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/R/B/163129_1685917309.jpg"
-               ]
-           },
-           silver: {
-               name: "Plateado",
-               images: [
-                   "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/R/B/163129_1685917309.jpg"
-               ]
-           }
-        },
-        memoryOptions: {
-            "128GB": { price: 359, originalPrice: 288 },
-            "256GB": { price: 409, originalPrice: 338 },
-            "512GB": { price: 459, originalPrice: 388 },
-            "1TB": { price: 509, originalPrice: 438 }
-        },
-        conditionOptions: {
-            "great": { name: "Great", priceAdjustment: 0, description: "Light wear, fully functional" },
-            "excellent": { name: "Excellent", priceAdjustment: 30, description: "Minor signs of use" },
-            "new_open_box": { name: "Display piece, never used", description: "Display piece, never used, open box", priceAdjustment: 60 }
-        },
-        images: [
-            "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/R/B/163129_1685917309.jpg"
-        ],
-        features: [
-            { icon: "fas fa-microchip", title: "Chip A15 Bionic", desc: "Rendimiento excepcional" },
-            { icon: "fas fa-camera", title: "Sistema ProRAW", desc: "Fotografía profesional" },
-            { icon: "fas fa-mobile-alt", title: "ProMotion 120Hz", desc: "Pantalla fluida" },
-            { icon: "fas fa-video", title: "ProRes Video", desc: "Video cinematográfico" }
-        ],
-        specifications: {
-            "Pantalla": "6.7\" Super Retina XDR OLED",
-            "Procesador": "Apple A15 Bionic",
-            "Almacenamiento": "128GB",
-            "RAM": "6GB",
-            "Cámara Principal": "12MP f/1.5",
-            "Cámara Ultra Wide": "12MP f/1.8",
-            "Cámara Teleobjetivo": "12MP f/2.8 (3x)",
-            "Batería": "4352 mAh",
-            "Sistema Operativo": "iOS 15",
-            "Resistencia": "IP68",
-            "Peso": "238g",
-            "Estado": "Reacondicionado certificado"
-        }
-    },
-    iphone12promax: {
-        name: "iPhone 12 Pro Max",
-        subtitle: "Grafito, 128GB - El primer iPhone 5G",
-        description: "iPhone 12 Pro Max con conectividad 5G, chip A14 Bionic y sistema de cámaras Pro con LiDAR.",
-        price: 219,
-        originalPrice: 640,
-        discount: 25,
-        category: "phone",
-        variants:{
-            graphite: {
-                name: "Grafito",
-                images: [
-                    "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/42/1204812/1.jpg?0962"
-                ]
-            },
-            gold: {
-                name: "Dorado",
-                images: [
-                    "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/24/5605523/1.jpg?3388"
-                ]
-            },
-            silver: {
-                name: "Plateado",
-                images: [
-                    "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/42/1204812/1.jpg?0962"
-                ]
-            },
-            pacificblue: {
-                name: "Azul Pacífico",
-                images: [
-                    "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/42/1204812/1.jpg?0962"
-                ]
-            }
-        },
-        memoryOptions: {
-            "128GB": { price: 219, originalPrice: 640 },
-            "256GB": { price: 269, originalPrice: 690 },
-            "512GB": { price: 319, originalPrice: 740 }
-        },
-        conditionOptions: {
-            "great": { name: "Great", priceAdjustment: 0, description: "Light wear, fully functional" },
-            "excellent": { name: "Excellent", priceAdjustment: 30, description: "Minor signs of use" },
-            "excellent_new_battery": { name: "Excellent with New Battery", description: "Display piece, never used, open box", priceAdjustment: 60 }
-        },
-        images: [
-            "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/42/1204812/1.jpg?0962"
-        ],
-        features: [
-            { icon: "fas fa-microchip", title: "Chip A14 Bionic", desc: "Primer chip 5nm" },
-            { icon: "fas fa-signal", title: "5G ultra rápido", desc: "Conectividad de siguiente generación" },
-            { icon: "fas fa-shield-alt", title: "Ceramic Shield", desc: "4x más resistente a caídas" },
-            { icon: "fas fa-camera", title: "LiDAR Scanner", desc: "Enfoque automático mejorado" }
-        ],
-        specifications: {
-            "Pantalla": "6.7\" Super Retina XDR OLED",
-            "Procesador": "Apple A14 Bionic",
-            "Almacenamiento": "128GB",
-            "RAM": "6GB",
-            "Cámara Principal": "12MP f/1.6",            "Cámara Ultra Wide": "12MP f/2.4",
-            "Cámara Teleobjetivo": "12MP f/2.2 (2.5x)",
-            "Conectividad": "5G, Wi-Fi 6, Bluetooth 5.0",
-            "Batería": "3687 mAh",
-            "Sistema Operativo": "iOS 14",
-            "Resistencia": "IP68",
-            "Peso": "228g",
-            "Estado": "Reacondicionado certificado"
-        }
-    },
-    iphone11promax: {
-        name: "iPhone 11 Pro Max",
-        subtitle: "Verde Noche, 64GB - Cámara triple revolucionaria",
-        description: "iPhone 11 Pro Max con sistema de cámara triple, chip A13 Bionic y pantalla Super Retina XDR.",
-        price: 149,
-        originalPrice: 505,
-        discount: 25,
-        category: "phone",
-        variants:{
-            gold: {
-                name: "Dorado",
-                images: [
-                     "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/82/2566612/1.jpg?1771",
-                     "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/82/2566612/2.jpg?1771"
-                ]
-            },
-            spacegray: {
-                name: "Gris Espacial",
-                images: [
-                    "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/42/7646952/1.jpg?0549"
-                ]
-            },
-            silver: {
-                name: "Plateado",
-                images: [
-                    "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/82/2566612/1.jpg?1771"
-                ]
-            },
-            midnightgreen: {
-                name: "Verde Noche",
-                images: [
-                    "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/42/7646952/1.jpg?0549"
-                ]
-            }
-        },
-        memoryOptions: {
-            "64GB": { price: 149, originalPrice: 505 },
-            "256GB": { price: 199, originalPrice: 555 },
-            "512GB": { price: 249, originalPrice: 605 }
-        },
-        conditionOptions: {
-            "great": { name: "Great", priceAdjustment: 0, description: "Light wear, fully functional" },
-            "excellent": { name: "Excellent", priceAdjustment: 30, description: "Minor signs of use" },
-            "excellent_new_battery": { name: "Excellent with New Battery", description: "Like new with brand new battery", priceAdjustment: 60 }
-        },
-        images: [
-            "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/82/2566612/1.jpg?1771"
-        ],
-        features: [
-            { icon: "fas fa-microchip", title: "Chip A13 Bionic", desc: "El chip más rápido en un smartphone" },
-            { icon: "fas fa-camera", title: "Sistema de cámara triple", desc: "Ultra Wide, Wide y Teleobjetivo" },
-            { icon: "fas fa-mobile-alt", title: "Super Retina XDR", desc: "Pantalla más brillante" },
-            { icon: "fas fa-moon", title: "Modo Noche", desc: "Fotos increíbles en poca luz" }
-        ],
-        specifications: {
-            "Pantalla": "6.5\" Super Retina XDR OLED",
-            "Procesador": "Apple A13 Bionic",
-            "Almacenamiento": "64GB",
-            "RAM": "4GB",
-            "Cámara Principal": "12MP f/1.8",
-            "Cámara Ultra Wide": "12MP f/2.4",
-            "Cámara Teleobjetivo": "12MP f/2.0 (2x)",
-            "Batería": "3969 mAh",
-            "Sistema Operativo": "iOS 13",
-            "Resistencia": "IP68",
-            "Peso": "226g",
-            "Estado": "Reacondicionado certificado"
-        }
-    },
-    airpods4: {
-        name: "Apple AirPods 4",
-        subtitle: "With Active Noise Cancellation - USB-C Charging Case",
-        description: "AirPods 4 With Active Noise Cancellation - USB-C Charging Case",
-        price: 90,
-        originalPrice: 130,
-        discount: 40,
-        category: "audio",
-        images: [
-            "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/31/2933714/1.jpg?9024",
-            "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/31/2933714/2.jpg?9024",
-            "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/31/2933714/4.jpg?9024"
-        ],
-        conditionOptions: {
-            "new_open_box": { name: "Display piece, never used", priceAdjustment: 0, description: "Producto nuevo, solo caja abierta" }
-        },
-        features: [
-            { icon: "fas fa-microchip", title: "H2 chip", desc: "More sound" },
-            { icon: "fas fa-volume-mute", title: "Active Noise Cancellation", desc: "Up to 2x more" },
-            { icon: "fas fa-battery-full", title: "24h battery life", desc: "Extra hours of power" },
-            { icon: "fas fa-magic", title: "Spatial Audio", desc: "Personalised experience" }
-        ],
-        specifications: {
-            "Connectivity": "Bluetooth 5.3",
-            "Charging Case": "USB-C",
-            "Water Resistance": "IPX4",
-            "Spatial Audio": "Personalised",
-            "Noise Cancellation": "Active",
-            "Battery Life": "Up to 24 hours",
-            "Condition": "New - Open Box Only",
-            "Warranty": "Full manufacturer warranty"
-        }
-    },
-     airpod3: {
-        name: "Apple AirPods 3",
-        subtitle: "Los mejores AirPods para uso diario",
-        description: "Los nuevos Apple AirPods 3 con Audio Espacial y batería de larga duración",
-        price: 45,
-        originalPrice: 70,
-        discount: 25,
-        category: "audio",
-        images: [
-            "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/11/4529033/1.jpg?8756",
-            "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/11/4529033/2.jpg?8756",
-            "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/11/4529033/4.jpg?8756"
-        ],
-        conditionOptions: {
-            "new_open_box": { name: "Display piece, never used", priceAdjustment: 0, description: "Producto nuevo, solo caja abierta" }
-        },
-        features: [
-            { icon: "fas fa-microchip", title: "H1 chip", desc: "Sonido superior" },
-            { icon: "fas fa-music", title: "Audio Espacial", desc: "Experiencia inmersiva" },
-            { icon: "fas fa-battery-full", title: "30h batería", desc: "Con estuche de carga" },
-            { icon: "fas fa-droplet", title: "Resistente al sudor", desc: "IPX4 certificado" }
-        ],
-        specifications: {
-            "Connectivity": "Bluetooth 5.0",
-            "Charging Case": "Lightning",
-            "Water Resistance": "IPX4",
-            "Spatial Audio": "Sí, con seguimiento dinámico de cabeza",
-            "Battery Life": "Hasta 30 horas con estuche",
-            "Condition": "Nuevo - Solo Caja Abierta",
-            "Warranty": "Garantía completa del fabricante"
-        }
+    images: [
+        "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/1.jpg?7763",
+        "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/3.jpg?7763",
+        "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/4.jpg?7763",
+        "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/5.jpg?7763",
+        "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/7.jpg?7763",
+        "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/49/0510004/1.jpg?6300",
+        "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/49/0510004/2.jpg?6300",
+        "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/49/0510004/3.jpg?6300",
+        "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/49/0510004/4.jpg?6300"
+    ],
+    features: [
+        { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
+        { icon: "fas fa-microchip", title: t("iphone_feature_chip_title"), desc: t("iphone_feature_chip_desc") },
+        { icon: "fas fa-camera", title: t("iphone_feature_camera_title"), desc: t("iphone_feature_camera_desc") },
+        { icon: "fas fa-mobile-alt", title: t("iphone_feature_display_title"), desc: t("iphone_feature_display_desc") }
+    ],
+    specifications: {
+        [t("spec_display")]: '6.9" Super Retina XDR OLED',
+        [t("spec_processor")]: "Apple A18 Pro",
+        [t("spec_storage")]: "256GB",
+        [t("spec_ram")]: "8GB",
+        [t("spec_main_camera")]: "48MP f/1.78",
+        [t("spec_ultrawide_camera")]: "12MP f/2.2",
+        [t("spec_telephoto_camera")]: "12MP f/2.8",
+        [t("spec_battery")]: "4422 mAh",
+        [t("spec_os")]: "iOS 18",
+        [t("spec_connectivity")]: "5G, Wi-Fi 7, Bluetooth 5.3",
+        [t("spec_resistance")]: "IP68",
+        [t("spec_dimensions")]: "159.9 x 76.7 x 8.25 mm",
+        [t("spec_weight")]: "227g",
+        [t("spec_condition")]: t("spec_condition_certified"),
+        [t("spec_battery_health")]: t("spec_battery_health_value")
     }
-};
+},
+
+    iphone16: {
+  name: t("iphone16_name"),
+  description: t("iphone_desc"),
+  price: 999,
+  originalPrice: 1199,
+  discount: 17,
+  category: "phone",
+  variants: {
+    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/71QkWOSDkmL._AC_SX569_.jpg"] },
+    gold: { name: t("color_rose_gold"), images: ["https://m.media-amazon.com/images/I/71QkWOSDkmL._AC_SX569_.jpg"] }
+  },
+  memoryOptions: {
+    "128GB": { price: 999, originalPrice: 1199 },
+    "256GB": { price: 1099, originalPrice: 1299 }
+  },
+  conditionOptions: {
+    great: { name: t("condition_great"), priceAdjustment: 0, description: t("condition_great_desc") },
+    excellent: { name: t("condition_excellent"), priceAdjustment: 50, description: t("condition_excellent_desc") },
+    new_open_box: { name: t("condition_display_piece"), priceAdjustment: 100, description: t("condition_display_piece_desc") }
+  },
+  images: ["https://m.media-amazon.com/images/I/71QkWOSDkmL._AC_SX569_.jpg"],
+  features: [
+    { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") },
+    { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
+    { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
+    { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") }
+  ],
+  specifications: {
+    [t("spec_display")]: "6.1‑6.7\" OLED",
+    [t("spec_processor")]: "A18 Bionic",
+    [t("spec_storage")]: "128‑512GB",
+    [t("spec_ram")]: "6‑8GB",
+    [t("spec_main_camera")]: "48 MP + Ultra Wide",
+    [t("spec_battery")]: "Up to 4400 mAh est.",
+    [t("spec_connectivity")]: "5G, Wi‑Fi 6/7",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+},
+
+iphone15promax: {
+  name: t("iphone15promax_name"),
+  description: t("iphone_desc"),
+  price: 649,
+  originalPrice: 899,
+  discount: 28,
+  category: "phone",
+  variants: {
+    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/61v5Jay9F5L._AC_SX569_.jpg"] },
+    gold: { name: t("color_rose_gold"), images: ["https://m.media-amazon.com/images/I/61v5Jay9F5L._AC_SX569_.jpg"] }
+  },
+  memoryOptions: {
+    "128GB": { price: 649, originalPrice: 899 },
+    "256GB": { price: 749, originalPrice: 999 }
+  },
+  conditionOptions: { /* same as above */ },
+  images: ["https://m.media-amazon.com/images/I/61v5Jay9F5L._AC_SX569_.jpg"],
+  features: [ /* similar */ ],
+  specifications: {
+    [t("spec_display")]: "6.7\" OLED",
+    [t("spec_processor")]: "A17 Pro",
+    [t("spec_storage")]: "128‑512GB",
+    [t("spec_ram")]: "8GB",
+    [t("spec_main_camera")]: "48 MP + Ultra Wide",
+    [t("spec_battery")]: "Approx. 4300 mAh",
+    [t("spec_connectivity")]: "5G, Wi‑Fi 6",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+},
+
+iphone16e: {
+  name: t("iphone16e_name"),
+  description: t("iphone_desc"),
+  price: 699,
+  originalPrice: 899,
+  discount: 22,
+  category: "phone",
+  variants: {
+    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/51H8+zCj2cL._AC_SX569_.jpg"] }
+  },
+  memoryOptions: {
+    "128GB": { price: 699, originalPrice: 899 }
+  },
+  conditionOptions: { /* same */ },
+  images: ["https://m.media-amazon.com/images/I/51H8+zCj2cL._AC_SX569_.jpg"],
+  features: [ /* similar */ ],
+  specifications: {
+    [t("spec_display")]: "6.1\" OLED",
+    [t("spec_processor")]: "A18 Bionic",
+    [t("spec_storage")]: "128GB",
+    [t("spec_ram")]: "6GB",
+    [t("spec_main_camera")]: "48 MP + Ultra Wide",
+    [t("spec_battery")]: "Approx. 3200 mAh",
+    [t("spec_connectivity")]: "5G, Wi‑Fi 6",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+},
+
+iphone15: {
+  name: t("iphone15_name"),
+  description: t("iphone_desc"),
+  price: 579,
+  originalPrice: 749,
+  discount: 23,
+  category: "phone",
+  variants: {
+    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/51PtFHUPjBL._AC_SY606_.jpg"] }
+  },
+  memoryOptions: {
+    "128GB": { price: 579, originalPrice: 749 },
+    "256GB": { price: 679, originalPrice: 849 }
+  },
+  conditionOptions: { /* same */ },
+  images: ["https://m.media-amazon.com/images/I/51PtFHUPjBL._AC_SY606_.jpg"],
+  features: [ /* similar */ ],
+  specifications: {
+    [t("spec_display")]: "6.1\" OLED",
+    [t("spec_processor")]: "A16 Bionic",
+    [t("spec_storage")]: "128‑256GB",
+    [t("spec_ram")]: "6GB",
+    [t("spec_main_camera")]: "48 MP wide",
+    [t("spec_battery")]: "Approx. 3200 mAh",
+    [t("spec_connectivity")]: "5G, Wi‑Fi 6",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+},
+
+iphone14promax: {
+  name: t("iphone14promax_name"),
+  description: t("iphone_desc"),
+  price: 429,
+  originalPrice: 699,
+  discount: 39,
+  category: "phone",
+  variants: {
+    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/51wqFSpP20L._AC_SL1000_.jpg"] }
+  },
+  memoryOptions: {
+    "128GB": { price: 429, originalPrice: 699 },
+    "256GB": { price: 529, originalPrice: 799 }
+  },
+  conditionOptions: { /* same */ },
+  images: ["https://m.media-amazon.com/images/I/51wqFSpP20L._AC_SL1000_.jpg"],
+  features: [ /* similar */ ],
+  specifications: {
+    [t("spec_display")]: "6.7\" OLED",
+    [t("spec_processor")]: "A16 Bionic",
+    [t("spec_storage")]: "128‑256GB",
+    [t("spec_ram")]: "6GB",
+    [t("spec_main_camera")]: "48 MP + Ultra Wide",
+    [t("spec_battery")]: "Approx. 4323 mAh",
+    [t("spec_connectivity")]: "5G, Wi‑Fi 6",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+},
+
+iphone13promax: {
+  name: t("iphone13promax_name"),
+  description: t("iphone_desc"),
+  price: 359,
+  originalPrice: 599,
+  discount: 40,
+  category: "phone",
+  variants: {
+    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/51UuPZLMaCL._AC_SX569_.jpg"] }
+  },
+  memoryOptions: {
+    "128GB": { price: 359, originalPrice: 599 },
+    "256GB": { price: 459, originalPrice: 699 }
+  },
+  conditionOptions: { /* same */ },
+  images: ["https://m.media-amazon.com/images/I/51UuPZLMaCL._AC_SX569_.jpg"],
+  features: [ /* similar */ ],
+  specifications: {
+    [t("spec_display")]: "6.7\" OLED",
+    [t("spec_processor")]: "A15 Bionic",
+    [t("spec_storage")]: "128‑512GB",
+    [t("spec_ram")]: "6GB",
+    [t("spec_main_camera")]: "12 MP triple camera",
+    [t("spec_battery")]: "Approx. 4352 mAh",
+    [t("spec_connectivity")]: "5G, Wi‑Fi 6",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+},
+
+iphone12promax: {
+  name: t("iphone12promax_name"),
+  description: t("iphone_desc"),
+  price: 219,
+  originalPrice: 499,
+  discount: 56,
+  category: "phone",
+  variants: {
+    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/5109dvnof9L._AC_SY606_.jpg"] }
+  },
+  memoryOptions: {
+    "128GB": { price: 219, originalPrice: 499 },
+    "256GB": { price: 319, originalPrice: 599 }
+  },
+  conditionOptions: { /* same */ },
+  images: ["https://m.media-amazon.com/images/I/5109dvnof9L._AC_SY606_.jpg"],
+  features: [ /* similar */ ],
+  specifications: {
+    [t("spec_display")]: "6.7\" OLED",
+    [t("spec_processor")]: "A14 Bionic",
+    [t("spec_storage")]: "128‑256GB",
+    [t("spec_ram")]: "6GB",
+    [t("spec_main_camera")]: "12 MP triple camera + LiDAR",
+    [t("spec_battery")]: "Approx. 3687 mAh",
+    [t("spec_connectivity")]: "5G, Wi‑Fi 6",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+},
+
+iphone11promax: {
+  name: t("iphone11promax_name"),
+  description: t("iphone_desc"),
+  price: 149,
+  originalPrice: 399,
+  discount: 63,
+  category: "phone",
+  variants: {
+    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/61UC1mk6dfL.__AC_SX300_SY300_QL70_FMwebp_.jpg"] }
+  },
+  memoryOptions: {
+    "64GB": { price: 149, originalPrice: 399 },
+    "128GB": { price: 199, originalPrice: 449 }
+  },
+  conditionOptions: { /* same */ },
+  images: ["https://m.media-amazon.com/images/I/61UC1mk6dfL.__AC_SX300_SY300_QL70_FMwebp_.jpg"],
+  features: [ /* similar */ ],
+  specifications: {
+    [t("spec_display")]: "6.5\" LCD",
+    [t("spec_processor")]: "A13 Bionic",
+    [t("spec_storage")]: "64‑128GB",
+    [t("spec_ram")]: "4GB",
+    [t("spec_main_camera")]: "12 MP triple camera",
+    [t("spec_battery")]: "Approx. 3969 mAh",
+    [t("spec_connectivity")]: "4G LTE",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+},
+
+iphonexr: {
+  name: t("iphonexr_name"),
+  description: t("iphone_desc"),
+  price: 129,
+  originalPrice: 299,
+  discount: 57,
+  category: "phone",
+  variants: {
+    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/51z1UO6N6LL._AC_SX569_.jpg"] }
+  },
+  memoryOptions: {
+    "64GB": { price: 129, originalPrice: 299 },
+    "128GB": { price: 179, originalPrice: 349 }
+  },
+  conditionOptions: { /* same */ },
+  images: ["https://m.media-amazon.com/images/I/51z1UO6N6LL._AC_SX569_.jpg"],
+  features: [ /* similar */ ],
+  specifications: {
+    [t("spec_display")]: "6.1\" LCD",
+    [t("spec_processor")]: "A12 Bionic",
+    [t("spec_storage")]: "64‑128GB",
+    [t("spec_ram")]: "3GB",
+    [t("spec_main_camera")]: "12 MP single camera",
+    [t("spec_battery")]: "Approx. 2942 mAh",
+    [t("spec_connectivity")]: "4G LTE",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+},
+
+galaxys25ultra: {
+  name: t("galaxys25ultra_name"),
+  description: t("samsung_desc"),
+  price: 1299,
+  originalPrice: 1659,
+  discount: 22,
+  category: "phone",
+  variants: {
+    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/61n0lmxP5-L._AC_SX569_.jpg"] },
+    silver: { name: t("color_silver"), images: ["https://m.media-amazon.com/images/I/61n0lmxP5-L._AC_SX569_.jpg"] }
+  },
+  memoryOptions: {
+    "256GB": { price: 1299, originalPrice: 1659 },
+    "512GB": { price: 1399, originalPrice: 1759 },
+    "1TB":   { price: 1499, originalPrice: 1859 }
+  },
+  conditionOptions: { /* same as before: great, excellent, display piece */ },
+  images: ["https://m.media-amazon.com/images/I/61n0lmxP5-L._AC_SX569_.jpg"],
+  features: [
+    { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
+    { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
+    { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") },
+    { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") }
+  ],
+  specifications: {
+    [t("spec_display")]: "6.9\" Dynamic AMOLED 2X, 1440×3120, 120 Hz",
+    [t("spec_processor")]: "Snapdragon 8 Elite for Galaxy",
+    [t("spec_storage")]: "256 GB / 512 GB / 1 TB",
+    [t("spec_ram")]: "12 GB",
+    [t("spec_main_camera")]: "200 MP + 50 MP UW + 10 MP 3× + 50 MP 5×",
+    [t("spec_battery")]: "5 000 mAh",
+    [t("spec_connectivity")]: "5G, Wi‑Fi 7, UWB",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+},
+
+galaxys24ultra: {
+  name: t("galaxys24ultra_name"),
+  description: t("samsung_desc"),
+  price: 999,
+  originalPrice: 1299,
+  discount: 23,
+  category: "phone",
+  variants: {
+    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/51E3rux4DgL.__AC_SX300_SY300_QL70_FMwebp_.jpg"] }
+  },
+  memoryOptions: {
+    "256GB": { price: 999, originalPrice: 1299 },
+    "512GB": { price: 1099, originalPrice: 1399 }
+  },
+  conditionOptions: { /* same */ },
+  images: ["https://m.media-amazon.com/images/I/51E3rux4DgL.__AC_SX300_SY300_QL70_FMwebp_.jpg"],
+  features: [ /* same as above */ ],
+  specifications: {
+    [t("spec_display")]: "6.8\" Dynamic AMOLED 2X, 1440×3120, 120 Hz",
+    [t("spec_processor")]: "Snapdragon 8 Gen 3",
+    [t("spec_storage")]: "256 GB / 512 GB / 1 TB",
+    [t("spec_ram")]: "12 GB",
+    [t("spec_main_camera")]: "200 MP + 50 MP UW + 10 MP 3× + 50 MP 5×",
+    [t("spec_battery")]: "5 000 mAh",
+    [t("spec_connectivity")]: "5G, Wi‑Fi 7",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+},
+
+galaxys24plus: {
+  name: t("galaxys24plus_name"),
+  description: t("samsung_desc"),
+  price: 699,
+  originalPrice: 849,
+  discount: 18,
+  category: "phone",
+  variants: {
+    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/517wd0xP59L.__AC_SX300_SY300_QL70_FMwebp_.jpg"] }
+  },
+  memoryOptions: {
+    "256GB": { price: 699, originalPrice: 849 }
+  },
+  conditionOptions: { /* same */ },
+  images: ["https://m.media-amazon.com/images/I/517wd0xP59L.__AC_SX300_SY300_QL70_FMwebp_.jpg"],
+  features: [ /* same */ ],
+  specifications: {
+    [t("spec_display")]: "6.7\" Dynamic AMOLED 2X, 120 Hz",
+    [t("spec_processor")]: "Snapdragon 8 Gen 3",
+    [t("spec_storage")]: "256 GB / 512 GB",
+    [t("spec_ram")]: "12 GB",
+    [t("spec_main_camera")]: "200 MP + UW + 10 MP + 50 MP",
+    [t("spec_battery")]: "5 000 mAh",
+    [t("spec_connectivity")]: "5G, Wi‑Fi 7",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+},
+
+galaxys23ultra: {
+  name: t("galaxys23ultra_name"),
+  description: t("samsung_desc"),
+  price: 599,
+  originalPrice: 899,
+  discount: 33,
+  category: "phone",
+  variants: {
+    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/513vXUcPFrL._AC_SX569_.jpg"] }
+  },
+  memoryOptions: {
+    "256GB": { price: 599, originalPrice: 899 },
+    "512GB": { price: 699, originalPrice: 999 }
+  },
+  conditionOptions: { /* same */ },
+  images: ["https://m.media-amazon.com/images/I/513vXUcPFrL._AC_SX569_.jpg"],
+  features: [ /* same */ ],
+  specifications: {
+    [t("spec_display")]: "6.8\" Dynamic AMOLED 2X, 120 Hz",
+    [t("spec_processor")]: "Snapdragon 8 Gen 2",
+    [t("spec_storage")]: "256 GB / 512 GB / 1 TB",
+    [t("spec_ram")]: "12 GB",
+    [t("spec_main_camera")]: "200 MP + UW + 10 MP + 50 MP",
+    [t("spec_battery")]: "5 000 mAh",
+    [t("spec_connectivity")]: "5G, Wi‑Fi 7",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+},
+
+galaxys22ultra: {
+  name: t("galaxys22ultra_name"),
+  description: t("samsung_desc"),
+  price: 499,
+  originalPrice: 799,
+  discount: 38,
+  category: "phone",
+  variants: {
+    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/613Fp7fknhL.__AC_SX300_SY300_QL70_FMwebp_.jpg"] }
+  },
+  memoryOptions: {
+    "256GB": { price: 499, originalPrice: 799 }
+  },
+  conditionOptions: { /* same */ },
+  images: ["https://m.media-amazon.com/images/I/613Fp7fknhL.__AC_SX300_SY300_QL70_FMwebp_.jpg"],
+  features: [ /* same */ ],
+  specifications: {
+    [t("spec_display")]: "6.8\" Dynamic AMOLED 2X, 120 Hz",
+    [t("spec_processor")]: "Snapdragon 8 Gen 1",
+    [t("spec_storage")]: "256 GB / 512 GB",
+    [t("spec_ram")]: "12 GB",
+    [t("spec_main_camera")]: "108 MP + UW + 10 MP + 10 MP",
+    [t("spec_battery")]: "5 000 mAh",
+    [t("spec_connectivity")]: "5G, Wi‑Fi 6",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+},
+    galaxya545g: {
+  name: t("galaxya545g_name"),
+  description: t("samsung_desc"),
+  price: 389,
+  originalPrice: 499,
+  discount: 22,
+  category: "phone",
+  variants: {
+    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/51orKJJMfTL.__AC_SX300_SY300_QL70_FMwebp_.jpg"] },
+    peach: { name: t("color_peach"), images: ["https://m.media-amazon.com/images/I/51orKJJMfTL.__AC_SX300_SY300_QL70_FMwebp_.jpg"] }
+  },
+  memoryOptions: {
+    "128GB": { price: 389, originalPrice: 499 },
+    "256GB": { price: 459, originalPrice: 579 }
+  },
+  conditionOptions: {
+    great: { name: t("condition_great"), priceAdjustment: 0, description: t("condition_great_desc") },
+    excellent: { name: t("condition_excellent"), priceAdjustment: 30, description: t("condition_excellent_desc") },
+    new_open_box: { name: t("condition_display_piece"), priceAdjustment: 60, description: t("condition_display_piece_desc") }
+  },
+  images: ["https://m.media-amazon.com/images/I/51orKJJMfTL.__AC_SX300_SY300_QL70_FMwebp_.jpg"],
+  features: [
+    { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
+    { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
+    { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") },
+    { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") }
+  ],
+  specifications: {
+    [t("spec_display")]: "6.4\" Super AMOLED, 1080×2340, 120 Hz",
+    [t("spec_processor")]: "Exynos 1380",
+    [t("spec_storage")]: "128 GB / 256 GB",
+    [t("spec_ram")]: "6 GB / 8 GB",
+    [t("spec_main_camera")]: "50 MP + 12 MP + 5 MP",
+    [t("spec_battery")]: "5 000 mAh",
+    [t("spec_connectivity")]: "5G, Wi‑Fi 6",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+},
+
+galaxya35: {
+  name: t("galaxya35_name"),
+  description: t("samsung_desc"),
+  price: 249,
+  originalPrice: 329,
+  discount: 24,
+  category: "phone",
+  variants: {
+    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/61R5WdNY8LL.__AC_SX300_SY300_QL70_FMwebp_.jpg"] },
+    green: { name: t("color_green"), images: ["https://m.media-amazon.com/images/I/61R5WdNY8LL.__AC_SX300_SY300_QL70_FMwebp_.jpg"] }
+  },
+  memoryOptions: {
+    "128GB": { price: 249, originalPrice: 329 },
+    "256GB": { price: 299, originalPrice: 379 }
+  },
+  conditionOptions: { /* same as above */ },
+  images: ["https://m.media-amazon.com/images/I/61R5WdNY8LL.__AC_SX300_SY300_QL70_FMwebp_.jpg"],
+  features: [ /* same as above */ ],
+  specifications: {
+    [t("spec_display")]: "6.6\" AMOLED, 120 Hz",
+    [t("spec_processor")]: "Exynos 1380",
+    [t("spec_storage")]: "128 GB / 256 GB",
+    [t("spec_ram")]: "6 GB / 8 GB",
+    [t("spec_main_camera")]: "50 MP + 8 MP + 2 MP",
+    [t("spec_battery")]: "5 000 mAh",
+    [t("spec_connectivity")]: "5G, Wi‑Fi 6",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+},
+
+galaxya155g: {
+  name: t("galaxya155g_name"),
+  description: t("samsung_desc"),
+  price: 189,
+  originalPrice: 249,
+  discount: 24,
+  category: "phone",
+  variants: {
+    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/41vU1u8DZXL.__AC_SX300_SY300_QL70_FMwebp_.jpg"] },
+    blue: { name: t("color_blue"), images: ["https://m.media-amazon.com/images/I/41vU1u8DZXL.__AC_SX300_SY300_QL70_FMwebp_.jpg"] }
+  },
+  memoryOptions: {
+    "64GB": { price: 189, originalPrice: 249 },
+    "128GB": { price: 229, originalPrice: 289 }
+  },
+  conditionOptions: { /* same */ },
+  images: ["https://m.media-amazon.com/images/I/41vU1u8DZXL.__AC_SX300_SY300_QL70_FMwebp_.jpg"],
+  features: [ /* same */ ],
+  specifications: {
+    [t("spec_display")]: "6.5\" PLS TFT, 90 Hz",
+    [t("spec_processor")]: "MediaTek Dimensity 700",
+    [t("spec_storage")]: "64 GB / 128 GB",
+    [t("spec_ram")]: "4 GB",
+    [t("spec_main_camera")]: "50 MP + 5 MP + 2 MP",
+    [t("spec_battery")]: "5 000 mAh",
+    [t("spec_connectivity")]: "5G, Wi‑Fi 5",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+},
+
+galaxya05s: {
+  name: t("galaxya05s_name"),
+  description: t("samsung_desc"),
+  price: 199,
+  originalPrice: 279,
+  discount: 29,
+  category: "phone",
+  variants: {
+    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/51neXjpArML.__AC_SX300_SY300_QL70_FMwebp_.jpg"] },
+    green: { name: t("color_green"), images: ["https://m.media-amazon.com/images/I/51neXjpArML.__AC_SX300_SY300_QL70_FMwebp_.jpg"] }
+  },
+  memoryOptions: {
+    "64GB": { price: 199, originalPrice: 279 },
+    "128GB": { price: 239, originalPrice: 319 }
+  },
+  conditionOptions: { /* same */ },
+  images: ["https://m.media-amazon.com/images/I/51neXjpArML.__AC_SX300_SY300_QL70_FMwebp_.jpg"],
+  features: [ /* same */ ],
+  specifications: {
+    [t("spec_display")]: "6.5\" PLS TFT, 90 Hz",
+    [t("spec_processor")]: "MediaTek MT6765 Helio P35",
+    [t("spec_storage")]: "64 GB / 128 GB",
+    [t("spec_ram")]: "4 GB / 6 GB",
+    [t("spec_main_camera")]: "13 MP + 2 MP + 2 MP",
+    [t("spec_battery")]: "5 000 mAh",
+    [t("spec_connectivity")]: "4G, Wi‑Fi 5",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+},
+
+galaxym15: {
+  name: t("galaxym15_name"),
+  description: t("samsung_desc"),
+  price: 229,
+  originalPrice: 299,
+  discount: 23,
+  category: "phone",
+  variants: {
+    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/41k9aSrQRAL._SX300_SY300_QL70_FMwebp_.jpg"] },
+    green: { name: t("color_green"), images: ["https://m.media-amazon.com/images/I/41k9aSrQRAL._SX300_SY300_QL70_FMwebp_.jpg"] }
+  },
+  memoryOptions: {
+    "64GB": { price: 229, originalPrice: 299 },
+    "128GB": { price: 269, originalPrice: 349 }
+  },
+  conditionOptions: { /* same */ },
+  images: ["https://m.media-amazon.com/images/I/41k9aSrQRAL._SX300_SY300_QL70_FMwebp_.jpg"],
+  features: [ /* same */ ],
+  specifications: {
+    [t("spec_display")]: "6.4\" Super AMOLED, 60 Hz",
+    [t("spec_processor")]: "Exynos 1280",
+    [t("spec_storage")]: "64 GB / 128 GB",
+    [t("spec_ram")]: "4 GB / 6 GB",
+    [t("spec_main_camera")]: "50 MP + 5 MP + 2 MP",
+    [t("spec_battery")]: "5 000 mAh",
+    [t("spec_connectivity")]: "5G, Wi‑Fi 5",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+},
+
+galaxym14: {
+  name: t("galaxym14_name"),
+  description: t("samsung_desc"),
+  price: 199,
+  originalPrice: 269,
+  discount: 26,
+  category: "phone",
+  variants: {
+    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/41tFC8GKz8L._SX300_SY300_QL70_FMwebp_.jpg"] },
+    copper: { name: t("color_copper"), images: ["https://m.media-amazon.com/images/I/41tFC8GKz8L._SX300_SY300_QL70_FMwebp_.jpg"] }
+  },
+  memoryOptions: {
+    "64GB": { price: 199, originalPrice: 269 },
+    "128GB": { price: 239, originalPrice: 319 }
+  },
+  conditionOptions: { /* same */ },
+  images: ["https://m.media-amazon.com/images/I/41tFC8GKz8L._SX300_SY300_QL70_FMwebp_.jpg"],
+  features: [ /* same */ ],
+  specifications: {
+    [t("spec_display")]: "6.5\" PLS LCD, 60 Hz",
+    [t("spec_processor")]: "Exynos 1330",
+    [t("spec_storage")]: "64 GB / 128 GB",
+    [t("spec_ram")]: "4 GB / 6 GB",
+    [t("spec_main_camera")]: "50 MP + 5 MP",
+    [t("spec_battery")]: "5 000 mAh",
+    [t("spec_connectivity")]: "4G, Wi‑Fi 5",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+},
+
+    redmi14c: {
+  name: t("redmi14c_name"),
+  description: t("xiaomi_desc"),
+  price: 169,
+  originalPrice: 199,
+  discount: 15,
+  category: "phone",
+  variants: {
+    midnight_black: { name: t("color_midnight_black"), images: ["https://m.media-amazon.com/images/I/612KZF3V+ZL._AC_SY300_SX300_.jpg"] },
+    sage_green: { name: t("color_sage_green"), images: ["https://m.media-amazon.com/images/I/612KZF3V+ZL._AC_SY300_SX300_.jpg"] }
+  },
+  memoryOptions: {
+    "4GB + 128GB": { price: 169, originalPrice: 199 },
+    "6GB + 128GB": { price: 199, originalPrice: 229 },
+    "8GB + 256GB": { price: 229, originalPrice: 269 }
+  },
+  conditionOptions: { /* same structure as others */ },
+  images: ["https://m.media-amazon.com/images/I/612KZF3V+ZL._AC_SY300_SX300_.jpg"],
+  features: [
+    { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") },
+    { icon: "fas fa-microchip", title: t("feature_processor_title"), desc: t("feature_processor_desc") },
+    { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
+    { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") }
+  ],
+  specifications: {
+    [t("spec_display")]: "6.88\" LCD, 720×1640, 120 Hz",
+    [t("spec_processor")]: "Helio G81‑Ultra",
+    [t("spec_storage")]: "128/256 GB (expandable)",
+    [t("spec_ram")]: "4‑8 GB",
+    [t("spec_main_camera")]: "50 MP + 2 MP",
+    [t("spec_battery")]: "5 160 mAh",
+    [t("spec_connectivity")]: "4G LTE, Wi‑Fi 5, NFC",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+},
+    
+redminote14pro5g: {
+  name: t("redminote14pro5g_name"),
+  description: t("xiaomi_desc"),
+  price: 299,
+  originalPrice: 399,
+  discount: 25,
+  category: "phone",
+  variants: {
+    midnight_black: { name: t("color_midnight_black"), images: ["https://m.media-amazon.com/images/I/51AelgZWpaL.__AC_SX300_SY300_QL70_FMwebp_.jpg"] }
+  },
+  memoryOptions: {
+    "8GB + 256GB": { price: 299, originalPrice: 399 },
+    "12GB + 512GB": { price: 359, originalPrice: 479 }
+  },
+  conditionOptions: { /* same */ },
+  images: ["https://m.media-amazon.com/images/I/51AelgZWpaL.__AC_SX300_SY300_QL70_FMwebp_.jpg"],
+  features: [
+    { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
+    { icon: "fas fa-microchip", title: t("feature_processor_title"), desc: t("feature_processor_desc") },
+    { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") },
+    { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") }
+  ],
+  specifications: {
+    [t("spec_display")]: "6.67\" AMOLED, 1.5K, 120 Hz, 3000 nits peak",
+    [t("spec_processor")]: "Dimensity 7300‑Ultra",
+    [t("spec_storage")]: "256/512 GB",
+    [t("spec_ram")]: "8‑12 GB",
+    [t("spec_main_camera")]: "200 MP + 8 MP + 2 MP",
+    [t("spec_battery")]: "5 110 mAh, 45 W",
+    [t("spec_connectivity")]: "5G, Wi‑Fi 6, IP68",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+},
+    pocox7pro: {
+  name: t("pocox7pro_name"),
+  description: t("poco_desc"),
+  price: 249,
+  originalPrice: 329,
+  discount: 24,
+  category: "phone",
+  variants: {
+    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/61qXnVmcxxL.__AC_SX300_SY300_QL70_FMwebp_.jpg"] }
+  },
+  memoryOptions: {
+    "8GB + 256GB": { price: 249, originalPrice: 329 }
+  },
+  conditionOptions: { /* same */ },
+  images: ["https://m.media-amazon.com/images/I/61qXnVmcxxL.__AC_SX300_SY300_QL70_FMwebp_.jpg"],
+  features: [ /* similar features */ ],
+  specifications: {
+    [t("spec_display")]: "6.67\" AMOLED, 120 Hz",
+    [t("spec_processor")]: "Snapdragon 7s Gen 2",
+    [t("spec_storage")]: "256 GB",
+    [t("spec_ram")]: "8 GB",
+    [t("spec_main_camera")]: "108 MP + 8 MP + 2 MP",
+    [t("spec_battery")]: "5 000 mAh, 67 W",
+    [t("spec_connectivity")]: "5G, Wi‑Fi 6",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+}, 
 
 
 // Get product ID from URL parameters
