@@ -928,9 +928,9 @@ const productDatabase = {
   discount: 17,
   category: "phone",
   variants: {
-    black: { name: "Black Titanium",, images: ["https://m.media-amazon.com/images/I/41qsyx+-ffL._AC_SX425_.jpg"] },
-    white: { name: "White",, images: ["https://m.media-amazon.com/images/I/41HCeyEFICL._AC_SX425_.jpg"] }, 
-    teal: { name: "Teal",, images: ["https://m.media-amazon.com/images/I/71dAfxOFDuL._AC_SX425_.jpg"] },  }
+    black: { name: "Black Titanium", images: ["https://m.media-amazon.com/images/I/41qsyx+-ffL._AC_SX425_.jpg"] },
+    white: { name: "White", images: ["https://m.media-amazon.com/images/I/41HCeyEFICL._AC_SX425_.jpg"] }, 
+    teal: { name: "Teal", images: ["https://m.media-amazon.com/images/I/71dAfxOFDuL._AC_SX425_.jpg"] },  }
   },
   memoryOptions: {
     "128GB": { price: 999, originalPrice: 1199 },
@@ -991,8 +991,8 @@ iphone16e: {
   discount: 22,
   category: "phone",
   variants: {
-    black: { name: "Black", images: ["https://m.media-amazon.com/images/I/51H8+zCj2cL._AC_SX425_.jpg"] }
-	   white: { name: "White"), images: ["https://m.media-amazon.com/images/I/61Zsers1VBL._AC_SX425_.jpgg"] }
+    black: { name: "Black", images: ["https://m.media-amazon.com/images/I/51H8+zCj2cL._AC_SX425_.jpg"] },
+	   white: { name: "White", images: ["https://m.media-amazon.com/images/I/61Zsers1VBL._AC_SX425_.jpg"] }
   },
   memoryOptions: {
     "128GB": { price: 410, originalPrice: 599 }
