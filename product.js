@@ -203,9 +203,9 @@ if (typeof window.translations === 'undefined') {
     invalid_code: "Código inválido. Por favor, inténtalo de nuevo.",
     search_products: "Buscar productos...",
     pristine_desc: "Como nuevo - sin desgaste visible",
-		color_black: "Negro",
+		color_black: "Black Titanium",
 color_rose_gold: "Oro Rosa",
-color_black: "Negro",
+color_black: "Black Titanium",
 color_rose_gold: "Oro Rosa",
 
 condition_great: "Excelente",
@@ -857,22 +857,19 @@ const productDatabase = {
     category: "phone",
     variants: {
         black: {
-            name: t("color_black"),
+            name: "Black Titanium",
             images: [
-                "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/1.jpg?7763",
-                "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/3.jpg?7763",
-                "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/4.jpg?7763",
-                "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/5.jpg?7763",
-                "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/7.jpg?7763"
+                "https://m.media-amazon.com/images/I/617OBw7dFnL._AC_SX342_.jpg",
+                "https://m.media-amazon.com/images/I/51FEms6uxOL._AC_SY445_.jpg",
+                "https://m.media-amazon.com/images/I/51IT3RUIUfL._AC_SY445_.jpg",
             ]
         },
         gold: {
-            name: t("color_rose_gold"),
+            name: "Desert Titanium ",
             images: [
-                "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/49/0510004/1.jpg?6300",
-                "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/49/0510004/2.jpg?6300",
-                "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/49/0510004/3.jpg?6300",
-                "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/49/0510004/4.jpg?6300"
+                "https://m.media-amazon.com/images/I/61qYXb0BfXL._AC_SX569_.jpg",
+                "https://m.media-amazon.com/images/I/61Jv4TC20sL._AC_SX425_.jpg",
+                "https://m.media-amazon.com/images/I/51hcQRAZF1L._AC_SX425_.jpg",
             ]
         }
     },
@@ -898,17 +895,6 @@ const productDatabase = {
             description: t("condition_display_piece_desc")
         }
     },
-    images: [
-        "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/1.jpg?7763",
-        "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/3.jpg?7763",
-        "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/4.jpg?7763",
-        "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/5.jpg?7763",
-        "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/41/1505814/7.jpg?7763",
-        "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/49/0510004/1.jpg?6300",
-        "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/49/0510004/2.jpg?6300",
-        "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/49/0510004/3.jpg?6300",
-        "https://ng.jumia.is/unsafe/fit-in/680x680/filters:fill(white)/product/49/0510004/4.jpg?6300"
-    ],
     features: [
         { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
         { icon: "fas fa-microchip", title: t("iphone_feature_chip_title"), desc: t("iphone_feature_chip_desc") },
