@@ -131,6 +131,7 @@ if (typeof window.translations === 'undefined') {
         iphone16promax_name: "iPhone 16 Pro Max",
         iphone_desc: "iPhone reacondicionado premium con rendimiento excelente. 95% de batería garantizada. Incluye 1 año de garantía y 30 días de devolución.",
         iphone16_name: "iPhone 16",
+		samsung_desc: "Rendimiento potente con pantalla impresionante y batería duradera. Perfecto para trabajo, juegos y uso diario.",
         choose_type: "Elegir tipo", 
         new: "Nuevo!",
         // Footer
@@ -286,6 +287,7 @@ if (typeof window.translations === 'undefined') {
 		 iphone16promax_name: "iPhone 16 Pro Max",
         iphone_desc: "Premium refurbished iPhone with excellent performance. 95% battery health guaranteed. Includes 1 year warranty and 30-day return.",
         iphone16_name: "iPhone 16",
+		 samsung_desc: "Powerful performance with stunning display and long-lasting battery. Perfect for work, gaming, and everyday use.",
         choose_type: "Choose Type",
         new: "New!",
         // Footer
