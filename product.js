@@ -923,30 +923,23 @@ const productDatabase = {
     iphone16: {
   name: t("iphone16_name"),
   description: t("iphone_desc"),
-  price: 999,
-  originalPrice: 1199,
+  price: 529,
+  originalPrice: 699,
   discount: 17,
   category: "phone",
   variants: {
-    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/71QkWOSDkmL._AC_SX569_.jpg"] },
-    gold: { name: t("color_rose_gold"), images: ["https://m.media-amazon.com/images/I/71QkWOSDkmL._AC_SX569_.jpg"] }
+    black: { name: "Black Titanium",, images: ["https://m.media-amazon.com/images/I/41qsyx+-ffL._AC_SX425_.jpg"] },
+    white: { name: "White",, images: ["https://m.media-amazon.com/images/I/41HCeyEFICL._AC_SX425_.jpg"] }, 
+    teal: { name: "Teal",, images: ["https://m.media-amazon.com/images/I/71dAfxOFDuL._AC_SX425_.jpg"] },  }
   },
   memoryOptions: {
     "128GB": { price: 999, originalPrice: 1199 },
     "256GB": { price: 1099, originalPrice: 1299 }
   },
   conditionOptions: {
-    great: { name: t("condition_great"), priceAdjustment: 0, description: t("condition_great_desc") },
     excellent: { name: t("condition_excellent"), priceAdjustment: 50, description: t("condition_excellent_desc") },
     new_open_box: { name: t("condition_display_piece"), priceAdjustment: 100, description: t("condition_display_piece_desc") }
   },
-  images: ["https://m.media-amazon.com/images/I/71QkWOSDkmL._AC_SX569_.jpg"],
-  features: [
-    { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") },
-    { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
-    { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
-    { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") }
-  ],
   specifications: {
     [t("spec_display")]: "6.1‑6.7\" OLED",
     [t("spec_processor")]: "A18 Bionic",
