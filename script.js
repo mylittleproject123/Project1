@@ -10,7 +10,7 @@ if (typeof countryConfig === 'undefined') {
         dominican: { flag: '🇩🇴', name: 'Dominican Republic', currency: 'DOP', rate: 58, lang: 'es', phone: '+1 809 234-5678' },
         usa: { flag: '🇺🇸', name: 'USA', currency: 'USD', rate: 1, lang: 'en', phone: '+1 415-762-3849' }
     };
-}
+} 
 
 // Translation data - check if already defined to prevent duplicate declaration
 if (typeof window.translations === 'undefined') {
