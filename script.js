@@ -1416,7 +1416,7 @@ const checkoutHTML = `
         <div class="payment-section">
             <h3>${t("payment_method")}</h3>
             <div class="payment-methods">
-                <label class="payment-option" data-method="bank-transfer">
+				<label class="payment-option" data-method="bank-transfer">
                     <input type="radio" name="payment-method" value="bank-transfer">
                     <div class="payment-option-content"><i class="fas fa-university"></i> <span>${t("bank_transfer")}</span></div>
                 </label>
@@ -1433,14 +1433,15 @@ const checkoutHTML = `
             </div>
 
          <div id="bank-transfer-details" class="payment-details" style="display:none;">
-    <h4>${t("bank_details")}</h4>
-    <div class="bank-info">
-        <p><strong>${t("bank_name")}</strong> ${getBankName()}</p>
-        <p><strong>${t("account_number")}</strong> ${getAccountNumber()}</p>
-        <p><strong>${t("account_holder")}</strong> ${getAccountHolder()}</p>
-        <p><strong>${t("reference")}</strong> ${checkoutData.orderNumber}</p>
-        <p><strong>${t("total_transfer")}</strong> ${convertPrice(subtotal, false)}</p>
-    </div>
+  <div class="alert-message" style="padding:1.2rem; background:#ffe5e5; color:#b30000; border-radius:8px; text-align:center;">
+    Bank transfer is currently not available.<br>
+    Please use credit card payment instead.
+  </div>
+</div>
+
+    <p class="transfer-instructions">${t("transfer_instructions")}</p>
+</div>
+
     <p class="transfer-instructions">${t("transfer_instructions")}</p>
 
     <!-- WhatsApp Link -->
