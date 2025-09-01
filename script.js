@@ -132,7 +132,7 @@ if (typeof window.translations === 'undefined') {
         iphone16promax_desc: "Titanio natural, 256GB. 95% de batería. 1 año de garantía, 30 días de devolución.",
         iphone16_name: "iPhone 16",
         iphone16_desc: "Diseño elegante con rendimiento ultra rápido. Batería mejorada.",
-        choose_type: "Elegir tipo",
+        choose_type: "Elegir tipo", 
         new: "Nuevo!",
         // Footer
         company_info: "Información de la Empresa",
