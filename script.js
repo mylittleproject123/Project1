@@ -129,9 +129,9 @@ if (typeof window.translations === 'undefined') {
         free_shipping: "Envío gratis a partir de $200",
         free_shipping_all: "Envío gratis en todos los pedidos",
         iphone16promax_name: "iPhone 16 Pro Max",
-        iphone16promax_desc: "Titanio natural, 256GB. 95% de batería. 1 año de garantía, 30 días de devolución.",
+        iphone16promax_desc: "Rendimiento superior con cámara y funciones avanzadas. Incluye 1 año de garantía y 30 días de devolución.",
         iphone16_name: "iPhone 16",
-        iphone16_desc: "Diseño elegante con rendimiento ultra rápido. Batería mejorada.",
+        iphone16_desc: "Diseño elegante con rendimiento potente. Incluye 1 año de garantía y 30 días de devolución.",
         choose_type: "Elegir tipo", 
         new: "Nuevo!",
         // Footer
@@ -285,9 +285,9 @@ if (typeof window.translations === 'undefined') {
         free_shipping: "Free shipping on orders over $200",
         free_shipping_all: "Free shipping on all orders",
 		 iphone16promax_name: "iPhone 16 Pro Max",
-        iphone16promax_desc: "Natural Titanium, 256GB. 95% battery health. 1 year warranty, 30 days return.",
+        iphone16promax_desc: "Top-tier performance with advanced camera and features. Includes 1 year warranty and 30 days return..",
         iphone16_name: "iPhone 16",
-        iphone16_desc: "Sleek design with ultra-fast performance. Improved battery life.",
+        iphone16_desc: "Sleek design with powerful performance. Includes 1 year warranty and 30 days return.",
         choose_type: "Choose Type",
         new: "New!",
         // Footer
