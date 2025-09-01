@@ -839,12 +839,13 @@ redminote14pro5g: {
     { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_airpods3_desc") }
   ],
   specifications: {
-    [t("spec_chip")]: "H1",
-    [t("spec_battery")]: "Up to 6 h listening, 30 h with case" :contentReference[oaicite:0]{index=0},
-    [t("spec_water_resistance")]: "IPX4" :contentReference[oaicite:1]{index=1},
-    [t("spec_case")]: "Lightning or MagSafe case" :contentReference[oaicite:2]{index=2},
-    [t("spec_spatial_audio")]: "Personalized Spatial Audio with dynamic head tracking" :contentReference[oaicite:3]{index=3}
-  }
+  [t("spec_chip")]: "H1",
+  [t("spec_battery")]: "Up to 6 h listening, 30 h with case",
+  [t("spec_water_resistance")]: "IPX4",
+  [t("spec_case")]: "Lightning or MagSafe case",
+  [t("spec_spatial_audio")]: "Personalized Spatial Audio with dynamic head tracking"
+}
+
 },
 
 airpods4: {
