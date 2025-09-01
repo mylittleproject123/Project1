@@ -825,7 +825,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 2rem;
     align-items: stretch;      /* ensures all grid items stretch equally */
-    grid-auto-rows: 480px;     /* fixes each row's height, adjust if needed */
+    grid-auto-rows: 600px;     /* fixes each row's height, adjust if needed */
 }
 
 
