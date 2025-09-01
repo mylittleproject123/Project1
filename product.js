@@ -995,7 +995,7 @@ iphone16e: {
 	   white: { name: "White", images: ["https://m.media-amazon.com/images/I/61Zsers1VBL._AC_SX425_.jpg"] }
   },
   memoryOptions: {
-    "128GB": { price: 410, originalPrice: 599 }
+    "128GB": { price: 410, originalPrice: 599 },
 	 "256GB": { price: 470, originalPrice: 699 }
 	
   },
