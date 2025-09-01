@@ -962,11 +962,10 @@ iphone15promax: {
   category: "phone",
   variants: {
     black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/61v5Jay9F5L._AC_SX569_.jpg"] },
-    gold: { name: t("color_rose_gold"), images: ["https://m.media-amazon.com/images/I/61v5Jay9F5L._AC_SX569_.jpg"] }
   },
   memoryOptions: {
-    "128GB": { price: 649, originalPrice: 899 },
-    "256GB": { price: 749, originalPrice: 999 }
+    "256GB": { price: 649, originalPrice: 899 },
+    "512GB": { price: 749, originalPrice: 999 }
   },
   conditionOptions: { /* same as above */ },
   images: ["https://m.media-amazon.com/images/I/61v5Jay9F5L._AC_SX569_.jpg"],
@@ -992,10 +991,13 @@ iphone16e: {
   discount: 22,
   category: "phone",
   variants: {
-    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/51H8+zCj2cL._AC_SX569_.jpg"] }
+    black: { name: "Black", images: ["https://m.media-amazon.com/images/I/51H8+zCj2cL._AC_SX425_.jpg"] }
+	   white: { name: "White"), images: ["https://m.media-amazon.com/images/I/61Zsers1VBL._AC_SX425_.jpgg"] }
   },
   memoryOptions: {
-    "128GB": { price: 699, originalPrice: 899 }
+    "128GB": { price: 410, originalPrice: 599 }
+	 "256GB": { price: 470, originalPrice: 699 }
+	
   },
   conditionOptions: { /* same */ },
   images: ["https://m.media-amazon.com/images/I/51H8+zCj2cL._AC_SX569_.jpg"],
