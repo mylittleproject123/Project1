@@ -1,6 +1,5 @@
 // Product database with detailed information
 const productDatabase = {
-    
    iphone16promax: {
     name: "iPhone 16 Pro Max",
     description: t("iphone_desc"), // Example key: "La máxima expresión de innovación de Apple"
