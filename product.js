@@ -930,7 +930,7 @@ const productDatabase = {
   variants: {
     black: { name: "Black Titanium", images: ["https://m.media-amazon.com/images/I/41qsyx+-ffL._AC_SX425_.jpg"] },
     white: { name: "White", images: ["https://m.media-amazon.com/images/I/41HCeyEFICL._AC_SX425_.jpg"] }, 
-    teal: { name: "Teal", images: ["https://m.media-amazon.com/images/I/71dAfxOFDuL._AC_SX425_.jpg"] },  }
+    teal: { name: "Teal", images: ["https://m.media-amazon.com/images/I/71dAfxOFDuL._AC_SX425_.jpg"] },  
   },
   memoryOptions: {
     "128GB": { price: 999, originalPrice: 1199 },
