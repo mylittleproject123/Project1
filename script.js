@@ -132,6 +132,9 @@ if (typeof window.translations === 'undefined') {
         iphone16promax_desc: "Rendimiento superior con cámara y funciones avanzadas. Incluye 1 año de garantía y 30 días de devolución.",
         iphone16_name: "iPhone 16",
         iphone16_desc: "Diseño elegante con rendimiento potente. Incluye 1 año de garantía y 30 días de devolución.",
+		iphone16e_desc: "Diseño compacto con rendimiento rápido y batería mejorada. Incluye 1 año de garantía y 30 días de devolución.",
+    iphone15promax_desc: "Rendimiento premium con funciones avanzadas y cámara. Incluye 1 año de garantía y 30 días de devolución.",
+    iphone15_desc: "Diseño elegante y potente con batería duradera. Incluye 1 año de garantía y 30 días de devolución.",
         choose_type: "Elegir tipo", 
         new: "Nuevo!",
         // Footer
@@ -288,6 +291,9 @@ if (typeof window.translations === 'undefined') {
         iphone16promax_desc: "Top-tier performance with advanced camera and features. Includes 1 year warranty and 30 days return..",
         iphone16_name: "iPhone 16",
         iphone16_desc: "Sleek design with powerful performance. Includes 1 year warranty and 30 days return.",
+		iphone16e_desc: "Compact design with fast performance and improved battery life. Includes 1 year warranty and 30 days return.",
+    iphone15promax_desc: "Premium performance with advanced features and camera. Includes 1 year warranty and 30 days return.",
+    iphone15_desc: "Sleek and powerful design with long-lasting battery. Includes 1 year warranty and 30 days return.",
         choose_type: "Choose Type",
         new: "New!",
         // Footer
