@@ -933,8 +933,8 @@ const productDatabase = {
     teal: { name: "Teal", images: ["https://m.media-amazon.com/images/I/71dAfxOFDuL._AC_SX425_.jpg"] },  
   },
   memoryOptions: {
-    "128GB": { price: 999, originalPrice: 1199 },
-    "256GB": { price: 1099, originalPrice: 1299 }
+    "128GB": { price: 529, originalPrice: 599 },
+    "256GB": { price: 599, originalPrice: 679 }
   },
   conditionOptions: {
     excellent: { name: t("condition_excellent"), priceAdjustment: 50, description: t("condition_excellent_desc") },
