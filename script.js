@@ -132,6 +132,8 @@ if (typeof window.translations === 'undefined') {
         iphone_desc: "iPhone reacondicionado premium con rendimiento excelente. 95% de batería garantizada. Incluye 1 año de garantía y 30 días de devolución.",
         iphone16_name: "iPhone 16",
 		samsung_desc: "Rendimiento potente con pantalla impresionante y batería duradera. Perfecto para trabajo, juegos y uso diario.",
+		 poco_desc: "Teléfono de alto rendimiento con pantalla fluida y batería duradera. Ideal para juegos y uso diario.",
+		xiaomi_desc: "Rendimiento confiable, batería duradera y pantalla nítida. Perfecto para uso diario y juegos.",
         choose_type: "Elegir tipo", 
         new: "Nuevo!",
         // Footer
@@ -287,6 +289,8 @@ if (typeof window.translations === 'undefined') {
 		 iphone16promax_name: "iPhone 16 Pro Max",
         iphone_desc: "Premium refurbished iPhone with excellent performance. 95% battery health guaranteed. Includes 1 year warranty and 30-day return.",
         iphone16_name: "iPhone 16",
+		 xiaomi_desc: "Reliable performance, long-lasting battery, and sharp display. Perfect for daily use and gaming.",
+		poco_desc: "High-performance phone with smooth display and strong battery life. Ideal for gaming and everyday use.",
 		 samsung_desc: "Powerful performance with stunning display and long-lasting battery. Perfect for work, gaming, and everyday use.",
         choose_type: "Choose Type",
         new: "New!",
