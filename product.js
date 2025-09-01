@@ -814,7 +814,176 @@ redminote14pro5g: {
     [t("spec_condition")]: t("spec_condition_certified"),
     [t("spec_battery_health")]: t("spec_battery_health_value")
   }
-}, 
+},
+
+        airpods3: {
+  name: t("airpods3_name"),
+  description: t("airpods_desc"),
+  price: 149,
+  originalPrice: 179,
+  discount: 17,
+  category: "audio",
+  variants: {
+    white: { name: t("color_white"), images: ["https://m.media-amazon.com/images/I/61jcsHsFN8L.__AC_SY445_SX342_QL70_FMwebp_.jpg"] }
+  },
+  memoryOptions: {},
+  conditionOptions: {
+    great: { name: t("condition_great"), priceAdjustment: 0, description: t("condition_great_desc") },
+    excellent: { name: t("condition_excellent"), priceAdjustment: 20, description: t("condition_excellent_desc") },
+    new_open_box: { name: t("condition_display_piece"), priceAdjustment: 40, description: t("condition_display_piece_desc") }
+  },
+  images: ["https://m.media-amazon.com/images/I/61jcsHsFN8L.__AC_SY445_SX342_QL70_FMwebp_.jpg"],
+  features: [
+    { icon: "fas fa-audio-description", title: t("feature_spatial_audio"), desc: t("feature_spatial_audio_desc") },
+    { icon: "fas fa-microchip", title: t("feature_h1_chip"), desc: t("feature_h1_chip_desc") },
+    { icon: "fas fa-shower", title: t("feature_ipx4"), desc: t("feature_ipx4_desc") },
+    { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_airpods3_desc") }
+  ],
+  specifications: {
+    [t("spec_chip")]: "H1",
+    [t("spec_battery")]: "Up to 6 h listening, 30 h with case" :contentReference[oaicite:0]{index=0},
+    [t("spec_water_resistance")]: "IPX4" :contentReference[oaicite:1]{index=1},
+    [t("spec_case")]: "Lightning or MagSafe case" :contentReference[oaicite:2]{index=2},
+    [t("spec_spatial_audio")]: "Personalized Spatial Audio with dynamic head tracking" :contentReference[oaicite:3]{index=3}
+  }
+},
+
+airpods4: {
+  name: t("airpods4_name"),
+  description: t("airpods_desc"),
+  price: 179,
+  originalPrice: 199,
+  discount: 10,
+  category: "audio",
+  variants: {
+    white: { name: t("color_white"), images: ["https://m.media-amazon.com/images/I/61df2M5+OnL._AC_SX466_.jpg"] }
+  },
+  memoryOptions: {},
+  conditionOptions: { /* same as above */ },
+  images: ["https://m.media-amazon.com/images/I/61df2M5+OnL._AC_SX466_.jpg"],
+  features: [
+    { icon: "fas fa-microchip", title: t("feature_h2_chip"), desc: t("feature_h2_chip_desc") },
+    { icon: "fas fa-bullhorn", title: t("feature_noise_cancellation"), desc: t("feature_noise_cancellation_desc") },
+    { icon: "fas fa-water", title: t("feature_ip54"), desc: t("feature_ip54_desc") },
+    { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_airpods4_desc") }
+  ],
+  specifications: {
+    [t("spec_chip")]: "H2" :contentReference[oaicite:4]{index=4},
+    [t("spec_battery")]: "Up to 5 h listening, 30 h with case" :contentReference[oaicite:5]{index=5},
+    [t("spec_water_resistance")]: "IP54" :contentReference[oaicite:6]{index=6},
+    [t("spec_noise_cancellation")]: "Active Noise Cancellation (ANC) available" :contentReference[oaicite:7]{index=7}
+  }
+},
+
+earphones: {
+  name: t("earphones_name"),
+  description: t("earphones_desc"),
+  price: 9.99,
+  category: "audio",
+  variants: {
+    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/612SeIGYPUL.__AC_SX300_SY300_QL70_FMwebp_.jpg"] }
+  },
+  memoryOptions: {},
+  conditionOptions: { /* same */ },
+  images: ["https://m.media-amazon.com/images/I/612SeIGYPUL.__AC_SX300_SY300_QL70_FMwebp_.jpg"],
+  features: [
+    { icon: "fas fa-volume-up", title: t("feature_tough_build"), desc: t("feature_tough_build_desc") },
+    { icon: "fas fa-music", title: t("feature_clear_sound"), desc: t("feature_clear_sound_desc") }
+  ],
+  specifications: {}
+},
+
+jblheadphones: {
+  name: t("jblheadphones_name"),
+  description: t("jbl_headphones_desc"),
+  price: 49,
+  originalPrice: 79,
+  discount: 38,
+  category: "audio",
+  variants: {
+    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/61EL2AKKcBL.__AC_SX300_SY300_QL70_FMwebp_.jpg"] }
+  },
+  memoryOptions: {},
+  conditionOptions: { /* same */ },
+  images: ["https://m.media-amazon.com/images/I/61EL2AKKcBL.__AC_SX300_SY300_QL70_FMwebp_.jpg"],
+  features: [
+    { icon: "fas fa-bluetooth", title: t("feature_wireless"), desc: t("feature_wireless_desc") },
+    { icon: "fas fa-music", title: t("feature_jbl_sound"), desc: t("feature_jbl_sound_desc") }
+  ],
+  specifications: {}
+},
+
+jblgo: {
+  name: t("jblgo_name"),
+  description: t("jbl_speaker_desc"),
+  price: 19.99,
+  originalPrice: 29.99,
+  discount: 33,
+  category: "audio",
+  variants: {
+    blue: { name: t("color_blue"), images: ["https://m.media-amazon.com/images/I/71kzInVwzgL.__AC_SX300_SY300_QL70_FMwebp_.jpg"] }
+  },
+  memoryOptions: {},
+  conditionOptions: { /* same */ },
+  images: ["https://m.media-amazon.com/images/I/71kzInVwzgL.__AC_SX300_SY300_QL70_FMwebp_.jpg"],
+  features: [
+    { icon: "fas fa-bolt", title: t("feature_portable"), desc: t("feature_portable_desc") },
+    { icon: "fas fa-music", title: t("feature_jbl_sound"), desc: t("feature_jbl_sound_desc") }
+  ],
+  specifications: {}
+},
+jblpulse: {
+  name: t("jblpulse_name"),
+  description: t("jbl_speaker_desc"),
+  price: 99,
+  originalPrice: 129,
+  discount: 23,
+  category: "audio",
+  variants: {
+    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/51gb2hWadiL.__AC_SX300_SY300_QL70_FMwebp_.jpg"] }
+  },
+  memoryOptions: {},
+  conditionOptions: { /* same */ },
+  images: ["https://m.media-amazon.com/images/I/51gb2hWadiL.__AC_SX300_SY300_QL70_FMwebp_.jpg"],
+  features: [
+    { icon: "fas fa-lightbulb", title: t("feature_led_lights"), desc: t("feature_led_lights_desc") },
+    { icon: "fas fa-music", title: t("feature_jbl_sound"), desc: t("feature_jbl_sound_desc") }
+  ],
+  specifications: {}
+},
+cableiphone: {
+  name: t("cableiphone_name"),
+  description: t("cable_iphone_desc"),
+  price: 12,
+  category: "accessories",
+  variants: {
+    white: { name: t("color_white"), images: ["https://m.media-amazon.com/images/I/51ItdSbJFwL._SL1064_.jpg"] }
+  },
+  memoryOptions: {},
+  conditionOptions: { /* same */ },
+  images: ["https://m.media-amazon.com/images/I/51ItdSbJFwL._SL1064_.jpg"],
+  features: [
+    { icon: "fas fa-plug", title: t("feature_mfi"), desc: t("feature_mfi_desc") }
+  ],
+  specifications: {}
+},
+cableusbc: {
+  name: t("cableusbc_name"),
+  description: t("cable_usbc_desc"),
+  price: 9.99,
+  category: "accessories",
+  variants: {
+    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/61AsLefMRqL.__AC_SX300_SY300_QL70_FMwebp_.jpg"] }
+  },
+  memoryOptions: {},
+  conditionOptions: { /* same */ },
+  images: ["https://m.media-amazon.com/images/I/61AsLefMRqL.__AC_SX300_SY300_QL70_FMwebp_.jpg"],
+  features: [
+    { icon: "fas fa-charging-station", title: t("feature_fast_charge"), desc: t("feature_fast_charge_desc") }
+  ],
+  specifications: {}
+}
+}
 
 
 // Get product ID from URL parameters
