@@ -1251,7 +1251,7 @@ iphonexr: {
 
 
 galaxys25ultra: {
-  name: t("galaxys25ultra_name"),
+  name: "Samsung Galaxy S 25 Ultra",
   description: t("samsung_desc"),
   price: 1299,
   originalPrice: 1659,
@@ -1453,7 +1453,7 @@ galaxys24plus: {
 },
 
 galaxys23ultra: {
-  name: "galaxys23ultra_name"),
+  name: "Samsung Galaxy S 23 Ultra",
   description: t("samsung_desc"),
   price: 329,
   originalPrice: 400,
