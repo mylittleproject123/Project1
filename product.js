@@ -1240,7 +1240,8 @@ galaxys24ultra: {
   discount: 23,
   category: "phone",
   variants: {
-    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/51E3rux4DgL.__AC_SX300_SY300_QL70_FMwebp_.jpg"] }
+    violet: { name: "Violet"), images: ["https://m.media-amazon.com/images/I/51E3rux4DgL.__AC_SX300_SY300_QL70_FMwebp_.jpg"] },
+	 black: { name: "Black"), images: ["https://m.media-amazon.com/images/I/51A-Q4eMBxL._AC_SX425_.jpg"] }
   },
   memoryOptions: {
     "256GB": { price: 999, originalPrice: 1299 },
