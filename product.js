@@ -1568,7 +1568,7 @@ galaxys22ultra: {
   }
 },
 galaxys22: {
-  name: "Samsung Galaxy S 22"),
+  name: "Samsung Galaxy S 22",
   description: t("samsung_desc"),
   price: 379,
   originalPrice: 649,
