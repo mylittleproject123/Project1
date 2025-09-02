@@ -2234,20 +2234,6 @@ if (specsGrid) {
 
     }
 
-    // Update specifications
-    const specsGrid = document.getElementById('specifications-grid');
-    if (specsGrid) {
-        specsGrid.innerHTML = '';
-        Object.entries(product.specifications).forEach(([label, value]) => {
-            const specItem = document.createElement('div');
-            specItem.className = 'spec-item';
-            specItem.innerHTML = `
-                <span class="spec-label">${label}:</span>
-                <span class="spec-value">${value}</span>
-            `;
-            specsGrid.appendChild(specItem);
-        });
-    }
 
     // Setup add to cart functionality
     setupAddToCart(product);
