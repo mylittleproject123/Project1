@@ -2234,7 +2234,7 @@ if (featuresGrid) {
     
     // Initialize checkout functionality
     initializeCheckout();
-}
+
 
 // Validation function to check if all required selections are made
 function validateSelections(product) {
