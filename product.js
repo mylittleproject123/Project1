@@ -1018,18 +1018,23 @@ iphone16e: {
 },
 
 iphone15: {
-    name: t("iphone15_name"),
-    description: t("iphone_desc"),
-    price: 579,
-    originalPrice: 749,
-    discount: 23,
-    category: "phone",
-    variants: {
-        black: {
-            name: t("color_black"),
-            images: ["https://m.media-amazon.com/images/I/51PtFHUPjBL._AC_SY606_.jpg"]
-        }
+  name: t("iphone15_name"),
+  description: t("iphone_desc"),
+  price: 579,
+  originalPrice: 749,
+  discount: 23,
+  category: "phone",
+  variants: {
+    black: {
+      name: "Black",
+      images: ["https://m.media-amazon.com/images/I/51PtFHUPjBL._AC_SY606_.jpg"]
     },
+    blue: {
+      name: "Blue",
+      images: ["https://m.media-amazon.com/images/I/51-dI0OmzyL._AC_SX569_.jpg"]
+    }
+  },
+
     memoryOptions: {
         "128GB": { price: 519, originalPrice: 649 },
         "256GB": { price: 599, originalPrice: 849 }
@@ -1055,77 +1060,85 @@ iphone15: {
 
 
 iphone14promax: {
-    name: t("iphone14promax_name"),
-    description: t("iphone_desc"),
-    price: 429,
-    originalPrice: 699,
-    discount: 39,
-    category: "phone",
-    variants: {
-        black: {
-            name: t("color_black"),
-            images: ["https://m.media-amazon.com/images/I/51wqFSpP20L._AC_SL1000_.jpg"]
-        }
+  name: t("iphone14promax_name"),
+  description: t("iphone_desc"),
+  price: 429,
+  originalPrice: 699,
+  discount: 39,
+  category: "phone",
+  variants: {
+    black: {
+      name: "Black",
+      images: ["https://m.media-amazon.com/images/I/51wqFSpP20L._AC_SL1000_.jpg"]
     },
-    memoryOptions: {
-        "256GB": { price: 429, originalPrice: 699 },
-        "512GB": { price: 579, originalPrice: 799 }
-    },
-    features: [
-        { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
-        { icon: "fas fa-microchip", title: t("iphone_feature_chip_title"), desc: t("iphone_feature_chip_desc") },
-        { icon: "fas fa-camera", title: t("iphone_feature_camera_title"), desc: t("iphone_feature_camera_desc") },
-        { icon: "fas fa-mobile-alt", title: t("iphone_feature_display_title"), desc: t("iphone_feature_display_desc") }
-    ],
-    specifications: {
-        [t("spec_display")]: "6.7\" OLED",
-        [t("spec_processor")]: "A16 Bionic",
-        [t("spec_storage")]: "128‑256GB",
-        [t("spec_ram")]: "6GB",
-        [t("spec_main_camera")]: "48 MP + Ultra Wide",
-        [t("spec_battery")]: "Approx. 4323 mAh",
-        [t("spec_connectivity")]: "5G, Wi‑Fi 6",
-        [t("spec_condition")]: t("spec_condition_certified"),
-        [t("spec_battery_health")]: t("spec_battery_health_value")
+    gold: {
+      name: "Gold",
+      images: ["https://m.media-amazon.com/images/I/51GZNF-UxFL._AC_SX569_.jpg"]
     }
+  },
+  memoryOptions: {
+    "256GB": { price: 429, originalPrice: 699 },
+    "512GB": { price: 579, originalPrice: 799 }
+  },
+  features: [
+    { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
+    { icon: "fas fa-microchip", title: t("iphone_feature_chip_title"), desc: t("iphone_feature_chip_desc") },
+    { icon: "fas fa-camera", title: t("iphone_feature_camera_title"), desc: t("iphone_feature_camera_desc") },
+    { icon: "fas fa-mobile-alt", title: t("iphone_feature_display_title"), desc: t("iphone_feature_display_desc") }
+  ],
+  specifications: {
+    [t("spec_display")]: "6.7\" OLED",
+    [t("spec_processor")]: "A16 Bionic",
+    [t("spec_storage")]: "128‑256GB",
+    [t("spec_ram")]: "6GB",
+    [t("spec_main_camera")]: "48 MP + Ultra Wide",
+    [t("spec_battery")]: "Approx. 4323 mAh",
+    [t("spec_connectivity")]: "5G, Wi‑Fi 6",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
 },
 
 
 
 iphone13promax: {
-    name: t("iphone13promax_name"),
-    description: t("iphone_desc"),
-    price: 359,
-    originalPrice: 399,
-    discount: 40,
-    category: "phone",
-    variants: {
-        black: {
-            name: t("color_black"),
-            images: ["https://m.media-amazon.com/images/I/51UuPZLMaCL._AC_SX569_.jpg"]
-        }
+  name: t("iphone13promax_name"),
+  description: t("iphone_desc"),
+  price: 359,
+  originalPrice: 399,
+  discount: 40,
+  category: "phone",
+  variants: {
+    black: {
+      name: "Black",
+      images: ["https://m.media-amazon.com/images/I/51UtM-A3fdL._AC_SX569_.jpg"]
     },
-    memoryOptions: {
-        "128GB": { price: 359, originalPrice: 599 },
-        "256GB": { price: 399, originalPrice: 699 }
-    },
-    features: [
-        { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
-        { icon: "fas fa-microchip", title: t("iphone_feature_chip_title"), desc: t("iphone_feature_chip_desc") },
-        { icon: "fas fa-camera", title: t("iphone_feature_camera_title"), desc: t("iphone_feature_camera_desc") },
-        { icon: "fas fa-mobile-alt", title: t("iphone_feature_display_title"), desc: t("iphone_feature_display_desc") }
-    ],
-    specifications: {
-        [t("spec_display")]: "6.7\" OLED",
-        [t("spec_processor")]: "A15 Bionic",
-        [t("spec_storage")]: "128‑512GB",
-        [t("spec_ram")]: "6GB",
-        [t("spec_main_camera")]: "12 MP triple camera",
-        [t("spec_battery")]: "Approx. 4352 mAh",
-        [t("spec_connectivity")]: "5G, Wi‑Fi 6",
-        [t("spec_condition")]: t("spec_condition_certified"),
-        [t("spec_battery_health")]: t("spec_battery_health_value")
+    sierraBlue: {
+      name: "Sierra_blue",
+      images: ["https://m.media-amazon.com/images/I/51UuPZLMaCL._AC_SX569_.jpg"]
     }
+  },
+  memoryOptions: {
+    "128GB": { price: 359, originalPrice: 599 },
+    "256GB": { price: 399, originalPrice: 699 }
+  },
+  features: [
+    { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
+    { icon: "fas fa-microchip", title: t("iphone_feature_chip_title"), desc: t("iphone_feature_chip_desc") },
+    { icon: "fas fa-camera", title: t("iphone_feature_camera_title"), desc: t("iphone_feature_camera_desc") },
+    { icon: "fas fa-mobile-alt", title: t("iphone_feature_display_title"), desc: t("iphone_feature_display_desc") }
+  ],
+  specifications: {
+    [t("spec_display")]: "6.7\" OLED",
+    [t("spec_processor")]: "A15 Bionic",
+    [t("spec_storage")]: "128‑512GB",
+    [t("spec_ram")]: "6GB",
+    [t("spec_main_camera")]: "12 MP triple camera",
+    [t("spec_battery")]: "Approx. 4352 mAh",
+    [t("spec_connectivity")]: "5G, Wi‑Fi 6",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
 },
 
 iphone12promax: {
@@ -1238,45 +1251,50 @@ iphonexr: {
 
 
 galaxys25ultra: {
-    name: t("galaxys25ultra_name"),
-    description: t("samsung_desc"),
-    price: 1299,
-    originalPrice: 1659,
-    discount: 22,
-    category: "phone",
-    variants: {
-        black: {
-            name: t("color_black"),
-            images: ["https://m.media-amazon.com/images/I/61n0lmxP5-L._AC_SX569_.jpg"]
-        },
-        silver: {
-            name: t("color_silver"),
-            images: ["https://m.media-amazon.com/images/I/61n0lmxP5-L._AC_SX569_.jpg"]
-        }
+  name: t("galaxys25ultra_name"),
+  description: t("samsung_desc"),
+  price: 1299,
+  originalPrice: 1659,
+  discount: 22,
+  category: "phone",
+  variants: {
+    black: {
+      name: "Black",
+      images: ["https://m.media-amazon.com/images/I/61n0lmxP5-L._AC_SX569_.jpg"]
     },
-    memoryOptions: {
-        "256GB": { price: 719, originalPrice: 1659 },
-        "512GB": { price: 829, originalPrice: 1759 },
-        "1TB":   { price: 949, originalPrice: 1859 }
+    silver: {
+      name: "Silver",
+      images: ["https://m.media-amazon.com/images/I/611uRZST+vL._AC_SX569_.jpg"]
     },
-    features: [
-        { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
-        { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
-        { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") },
-        { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") }
-    ],
-    specifications: {
-        [t("spec_display")]: "6.9\" Dynamic AMOLED 2X, 1440×3120, 120 Hz",
-        [t("spec_processor")]: "Snapdragon 8 Elite for Galaxy",
-        [t("spec_storage")]: "256 GB / 512 GB / 1 TB",
-        [t("spec_ram")]: "12 GB",
-        [t("spec_main_camera")]: "200 MP + 50 MP UW + 10 MP 3× + 50 MP 5×",
-        [t("spec_battery")]: "5 000 mAh",
-        [t("spec_connectivity")]: "5G, Wi‑Fi 7, UWB",
-        [t("spec_condition")]: t("spec_condition_certified"),
-        [t("spec_battery_health")]: t("spec_battery_health_value")
+    icyBlue: {
+      name: "Icy Blue",
+      images: ["https://m.media-amazon.com/images/I/61YvMOsT47L._AC_SX569_.jpg"]  // You can replace this with your actual Icy Blue image link
     }
+  },
+  memoryOptions: {
+    "256GB": { price: 719, originalPrice: 1659 },
+    "512GB": { price: 829, originalPrice: 1759 },
+    "1TB": { price: 949, originalPrice: 1859 }
+  },
+  features: [
+    { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
+    { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
+    { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") },
+    { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") }
+  ],
+  specifications: {
+    [t("spec_display")]: "6.9\" Dynamic AMOLED 2X, 1440×3120, 120 Hz",
+    [t("spec_processor")]: "Snapdragon 8 Elite for Galaxy",
+    [t("spec_storage")]: "256 GB / 512 GB / 1 TB",
+    [t("spec_ram")]: "12 GB",
+    [t("spec_main_camera")]: "200 MP + 50 MP UW + 10 MP 3× + 50 MP 5×",
+    [t("spec_battery")]: "5 000 mAh",
+    [t("spec_connectivity")]: "5G, Wi‑Fi 7, UWB",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
 },
+
 galaxys25: {
     name: t("galaxys25_name"),
     description: t("samsung_desc"),
@@ -1286,11 +1304,11 @@ galaxys25: {
     category: "phone",
     variants: {
         black: {
-            name: t("color_black"),
+            name: "Black",
             images: ["https://m.media-amazon.com/images/I/71V--WZVUIL._AC_SX569_.jpg"]
         },
         blue: {
-            name: t("color_blue"),
+            name: "Blue",
             images: ["https://m.media-amazon.com/images/I/71fM0qPqY6L._AC_SX569_.jpg"]
         }
     },
@@ -1367,12 +1385,12 @@ galaxys24: {
     category: "phone",
     variants: {
         black: {
-            name: t("color_black"),
-            images: ["https://m.media-amazon.com/images/I/61ZUlU8CwHL._AC_SX679_.jpg"]
+            name: "Black",
+            images: ["https://m.media-amazon.com/images/I/61uakkLoHxL._AC_SX569_.jpg"]
         },
         gray: {
-            name: t("color_gray"),
-            images: ["https://m.media-amazon.com/images/I/61s6JShRlyL._AC_SX679_.jpg"]
+            name: "Gray",
+            images: ["https://m.media-amazon.com/images/I/61bXUCHBw+L._AC_SX569_.jpg"]
         }
     },
     memoryOptions: {
@@ -1409,7 +1427,7 @@ galaxys24plus: {
   variants: {
     black: {
       name: t("color_black"),
-      images: ["https://m.media-amazon.com/images/I/517wd0xP59L.__AC_SX300_SY300_QL70_FMwebp_.jpg"]
+      images: ["https://m.media-amazon.com/images/I/51bdK6FaR-L._AC_SX569_.jpg"]
     }
   },
   memoryOptions: {
@@ -1443,8 +1461,12 @@ galaxys23ultra: {
   category: "phone",
   variants: {
     black: {
-      name: t("color_black"),
+      name: "Black",
       images: ["https://m.media-amazon.com/images/I/513vXUcPFrL._AC_SX569_.jpg"]
+    },
+    pink: {
+      name: "Pink",
+      images: ["https://m.media-amazon.com/images/I/51GvkWOYjIL._AC_SX569_.jpg"]
     }
   },
   memoryOptions: {
@@ -1480,11 +1502,11 @@ galaxys23ultra: {
   variants: {
     green: {
       name: "Green",
-      images: ["https://m.media-amazon.com/images/I/610N1By4XlL._AC_SY450_.jpg"]
+      images: ["https://m.media-amazon.com/images/I/51xj0EFyXHL._AC_SX522_.jpg"]
     },
     cream: {
       name: "Cream",
-      images: ["https://m.media-amazon.com/images/I/71NAr3cT+oL._AC_SX569_.jpg"]
+      images: ["https://m.media-amazon.com/images/I/61oXcVnOdAL._AC_SX522_.jpg"]
     }
   },
   memoryOptions: {
@@ -1555,7 +1577,7 @@ galaxys22: {
   variants: {
     black: {
       name: t("color_black"),
-      images: ["https://m.media-amazon.com/images/I/61vDLnKRB7L._AC_SX569_.jpg"]
+      images: ["https://m.media-amazon.com/images/I/61M4ndNetDL._AC_SX569_.jpg"]
     }
   },
   memoryOptions: {
@@ -1634,10 +1656,6 @@ galaxya35: {
       name: t("color_black"),
       images: ["https://m.media-amazon.com/images/I/61R5WdNY8LL.__AC_SX300_SY300_QL70_FMwebp_.jpg"]
     },
-    green: {
-      name: t("color_green"),
-      images: ["https://m.media-amazon.com/images/I/61R5WdNY8LL.__AC_SX300_SY300_QL70_FMwebp_.jpg"]
-    }
   },
   memoryOptions: {
     "128GB": { price: 199, originalPrice: 329 },
@@ -1674,10 +1692,6 @@ galaxya155g: {
       name: t("color_black"),
       images: ["https://m.media-amazon.com/images/I/41vU1u8DZXL.__AC_SX300_SY300_QL70_FMwebp_.jpg"]
     },
-    blue: {
-      name: t("color_blue"),
-      images: ["https://m.media-amazon.com/images/I/41vU1u8DZXL.__AC_SX300_SY300_QL70_FMwebp_.jpg"]
-    }
   },
   memoryOptions: {
     "64GB": { price: 189, originalPrice: 249 },
@@ -1715,10 +1729,6 @@ galaxya05s: {
       name: t("color_black"),
       images: ["https://m.media-amazon.com/images/I/51neXjpArML.__AC_SX300_SY300_QL70_FMwebp_.jpg"]
     },
-    green: {
-      name: t("color_green"),
-      images: ["https://m.media-amazon.com/images/I/51neXjpArML.__AC_SX300_SY300_QL70_FMwebp_.jpg"]
-    }
   },
   memoryOptions: {
     "64GB": { price: 129, originalPrice: 279 },
@@ -1755,10 +1765,6 @@ galaxym15: {
       name: t("color_black"),
       images: ["https://m.media-amazon.com/images/I/41k9aSrQRAL._SX300_SY300_QL70_FMwebp_.jpg"]
     },
-    green: {
-      name: t("color_green"),
-      images: ["https://m.media-amazon.com/images/I/41k9aSrQRAL._SX300_SY300_QL70_FMwebp_.jpg"]
-    }
   },
   memoryOptions: {
     "64GB": { price: 169, originalPrice: 299 },
