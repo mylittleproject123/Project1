@@ -2189,9 +2189,11 @@ function loadProduct() {
     }
 
     // Update features
-    const featuresGrid = document.getElementById('features-grid');
-    if (featuresGrid) {
-        featuresGrid.innerHTML = '';
+const featuresGrid = document.getElementById('features-grid');
+if (featuresGrid) {
+    featuresGrid.innerHTML = '';
+
+    if (Array.isArray(product.features)) {
         product.features.forEach(feature => {
             const featureCard = document.createElement('div');
             featureCard.className = 'feature-card';
@@ -2204,6 +2206,9 @@ function loadProduct() {
             `;
             featuresGrid.appendChild(featureCard);
         });
+    }
+}
+
     }
 
     // Update specifications
