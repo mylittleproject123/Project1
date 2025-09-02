@@ -2335,14 +2335,18 @@ function setupAddToCart(product) {
         }
 
         // Get current variant info
-        let productName = product.name;
-        let productImage = product.images[0];
+       let productName = product.name;
+let productImage = product.images?.[0] || "fallback.jpg";
 
-        if (product.variants && currentVariant) {
-            const variant = product.variants[currentVariant];
-            productName = `${product.name} (${variant.name})`;
-            productImage = variant.images[0];
-        }
+if (product.variants && currentVariant && product.variants[currentVariant]) {
+    const variant = product.variants[currentVariant];
+    productName = `${product.name} (${variant.name})`;
+
+    if (variant.images?.[0]) {
+        productImage = variant.images[0];
+    }
+}
+
 
         // Add memory and condition info to product name
         if (currentMemory) {
