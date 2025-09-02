@@ -1313,8 +1313,8 @@ galaxys25: {
         }
     },
     memoryOptions: {
-        "128GB": { price: 599, originalPrice: 1099 },
-        "256GB": { price: 649, originalPrice: 1199 }
+        "256GB": { price: 599, originalPrice: 1099 },
+        "512GB": { price: 649, originalPrice: 1199 }
     },
     features: [
         { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -1394,8 +1394,8 @@ galaxys24: {
         }
     },
     memoryOptions: {
-        "128GB": { price: 449, originalPrice: 999 },
-        "256GB": { price: 529, originalPrice: 1049 }
+        "256GB": { price: 449, originalPrice: 999 },
+        "512GB": { price: 529, originalPrice: 1049 }
     },
     features: [
         { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -1510,8 +1510,8 @@ galaxys23ultra: {
     }
   },
   memoryOptions: {
-    "128GB": { price: 499, originalPrice: 249 },
-    "256GB": { price: 549, originalPrice: 279 }
+    "256GB": { price: 499, originalPrice: 249 },
+    "512GB": { price: 549, originalPrice: 279 }
   },
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
