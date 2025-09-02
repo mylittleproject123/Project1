@@ -848,9 +848,9 @@ function t(key) {
 
 // Product database with detailed information
 const productDatabase = {
-   iphone16promax: {
+  iphone16promax: {
     name: "iPhone 16 Pro Max",
-    description: t("iphone_desc"), // Example key: "La máxima expresión de innovación de Apple"
+    description: t("iphone_desc"),
     price: 769,
     originalPrice: 1000,
     discount: 25,
@@ -861,15 +861,15 @@ const productDatabase = {
             images: [
                 "https://m.media-amazon.com/images/I/617OBw7dFnL._AC_SX342_.jpg",
                 "https://m.media-amazon.com/images/I/51FEms6uxOL._AC_SY445_.jpg",
-                "https://m.media-amazon.com/images/I/51IT3RUIUfL._AC_SY445_.jpg",
+                "https://m.media-amazon.com/images/I/51IT3RUIUfL._AC_SY445_.jpg"
             ]
         },
         gold: {
-            name: "Desert Titanium ",
+            name: "Desert Titanium",
             images: [
                 "https://m.media-amazon.com/images/I/61qYXb0BfXL._AC_SX569_.jpg",
                 "https://m.media-amazon.com/images/I/61Jv4TC20sL._AC_SX425_.jpg",
-                "https://m.media-amazon.com/images/I/51hcQRAZF1L._AC_SX425_.jpg",
+                "https://m.media-amazon.com/images/I/51hcQRAZF1L._AC_SX425_.jpg"
             ]
         }
     },
@@ -877,23 +877,6 @@ const productDatabase = {
         "256GB": { price: 769, originalPrice: 1000 },
         "512GB": { price: 819, originalPrice: 1050 },
         "1TB": { price: 869, originalPrice: 1100 }
-    },
-    conditionOptions: {
-        great: {
-            name: t("condition_great"),
-            priceAdjustment: 0,
-            description: t("condition_great_desc")
-        },
-        excellent: {
-            name: t("condition_excellent"),
-            priceAdjustment: 30,
-            description: t("condition_excellent_desc")
-        },
-        new_open_box: {
-            name: t("condition_display_piece"),
-            priceAdjustment: 60,
-            description: t("condition_display_piece_desc")
-        }
     },
     features: [
         { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
@@ -920,354 +903,500 @@ const productDatabase = {
     }
 },
 
-    iphone16: {
-  name: t("iphone16_name"),
-  description: t("iphone_desc"),
-  price: 529,
-  originalPrice: 699,
-  discount: 17,
-  category: "phone",
-  variants: {
-    black: { name: "Black Titanium", images: ["https://m.media-amazon.com/images/I/41qsyx+-ffL._AC_SX425_.jpg"] },
-    white: { name: "White", images: ["https://m.media-amazon.com/images/I/41HCeyEFICL._AC_SX425_.jpg"] }, 
-    teal: { name: "Teal", images: ["https://m.media-amazon.com/images/I/71dAfxOFDuL._AC_SX425_.jpg"] },  
-  },
-  memoryOptions: {
-    "128GB": { price: 529, originalPrice: 599 },
-    "256GB": { price: 599, originalPrice: 679 }
-  },
-  conditionOptions: {
-    excellent: { name: t("condition_excellent"), priceAdjustment: 50, description: t("condition_excellent_desc") },
-    new_open_box: { name: t("condition_display_piece"), priceAdjustment: 100, description: t("condition_display_piece_desc") }
-  },
-  specifications: {
-    [t("spec_display")]: "6.1‑6.7\" OLED",
-    [t("spec_processor")]: "A18 Bionic",
-    [t("spec_storage")]: "128‑512GB",
-    [t("spec_ram")]: "6‑8GB",
-    [t("spec_main_camera")]: "48 MP + Ultra Wide",
-    [t("spec_battery")]: "Up to 4400 mAh est.",
-    [t("spec_connectivity")]: "5G, Wi‑Fi 6/7",
-    [t("spec_condition")]: t("spec_condition_certified"),
-    [t("spec_battery_health")]: t("spec_battery_health_value")
-  }
+
+  iphone16: {
+    name: t("iphone16_name"),
+    description: t("iphone_desc"),
+    price: 529,
+    originalPrice: 699,
+    discount: 17,
+    category: "phone",
+    variants: {
+        black: { name: "Black Titanium", images: ["https://m.media-amazon.com/images/I/41qsyx+-ffL._AC_SX425_.jpg"] },
+        white: { name: "White", images: ["https://m.media-amazon.com/images/I/41HCeyEFICL._AC_SX425_.jpg"] },
+        teal: { name: "Teal", images: ["https://m.media-amazon.com/images/I/71dAfxOFDuL._AC_SX425_.jpg"] }
+    },
+    memoryOptions: {
+        "128GB": { price: 529, originalPrice: 599 },
+        "256GB": { price: 599, originalPrice: 679 }
+    },
+    features: [
+        { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
+        { icon: "fas fa-microchip", title: t("iphone_feature_chip_title"), desc: t("iphone_feature_chip_desc") },
+        { icon: "fas fa-camera", title: t("iphone_feature_camera_title"), desc: t("iphone_feature_camera_desc") },
+        { icon: "fas fa-mobile-alt", title: t("iphone_feature_display_title"), desc: t("iphone_feature_display_desc") }
+    ],
+    specifications: {
+        [t("spec_display")]: "6.1‑6.7\" OLED",
+        [t("spec_processor")]: "A18 Bionic",
+        [t("spec_storage")]: "128‑512GB",
+        [t("spec_ram")]: "6‑8GB",
+        [t("spec_main_camera")]: "48 MP + Ultra Wide",
+        [t("spec_battery")]: "Up to 4400 mAh est.",
+        [t("spec_connectivity")]: "5G, Wi‑Fi 6/7",
+        [t("spec_condition")]: t("spec_condition_certified"),
+        [t("spec_battery_health")]: t("spec_battery_health_value")
+    }
 },
+
 
 iphone15promax: {
-  name: t("iphone15promax_name"),
-  description: t("iphone_desc"),
-  price: 649,
-  originalPrice: 899,
-  discount: 28,
-  category: "phone",
-  variants: {
-    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/61v5Jay9F5L._AC_SX569_.jpg"] },
-  },
-  memoryOptions: {
-    "256GB": { price: 649, originalPrice: 899 },
-    "512GB": { price: 749, originalPrice: 999 }
-  },
-  conditionOptions: { /* same as above */ },
-  images: ["https://m.media-amazon.com/images/I/61v5Jay9F5L._AC_SX569_.jpg"],
-  features: [ /* similar */ ],
-  specifications: {
-    [t("spec_display")]: "6.7\" OLED",
-    [t("spec_processor")]: "A17 Pro",
-    [t("spec_storage")]: "128‑512GB",
-    [t("spec_ram")]: "8GB",
-    [t("spec_main_camera")]: "48 MP + Ultra Wide",
-    [t("spec_battery")]: "Approx. 4300 mAh",
-    [t("spec_connectivity")]: "5G, Wi‑Fi 6",
-    [t("spec_condition")]: t("spec_condition_certified"),
-    [t("spec_battery_health")]: t("spec_battery_health_value")
-  }
+    name: t("iphone15promax_name"),
+    description: t("iphone_desc"),
+    price: 649,
+    originalPrice: 899,
+    discount: 28,
+    category: "phone",
+    variants: {
+        black: {
+            name: t("color_black"),
+            images: ["https://m.media-amazon.com/images/I/61v5Jay9F5L._AC_SX569_.jpg"]
+        }
+    },
+    memoryOptions: {
+        "256GB": { price: 649, originalPrice: 899 },
+        "512GB": { price: 749, originalPrice: 999 }
+    },
+    features: [
+        { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
+        { icon: "fas fa-microchip", title: t("iphone_feature_chip_title"), desc: t("iphone_feature_chip_desc") },
+        { icon: "fas fa-camera", title: t("iphone_feature_camera_title"), desc: t("iphone_feature_camera_desc") },
+        { icon: "fas fa-mobile-alt", title: t("iphone_feature_display_title"), desc: t("iphone_feature_display_desc") }
+    ],
+    specifications: {
+        [t("spec_display")]: "6.7\" OLED",
+        [t("spec_processor")]: "A17 Pro",
+        [t("spec_storage")]: "128‑512GB",
+        [t("spec_ram")]: "8GB",
+        [t("spec_main_camera")]: "48 MP + Ultra Wide",
+        [t("spec_battery")]: "Approx. 4300 mAh",
+        [t("spec_connectivity")]: "5G, Wi‑Fi 6",
+        [t("spec_condition")]: t("spec_condition_certified"),
+        [t("spec_battery_health")]: t("spec_battery_health_value")
+    }
 },
 
+
 iphone16e: {
-  name: t("iphone16e_name"),
-  description: t("iphone_desc"),
-  price: 699,
-  originalPrice: 899,
-  discount: 22,
-  category: "phone",
-  variants: {
-    black: { name: "Black", images: ["https://m.media-amazon.com/images/I/51H8+zCj2cL._AC_SX425_.jpg"] },
-	   white: { name: "White", images: ["https://m.media-amazon.com/images/I/61Zsers1VBL._AC_SX425_.jpg"] }
-  },
-  memoryOptions: {
-    "128GB": { price: 410, originalPrice: 599 },
-	 "256GB": { price: 470, originalPrice: 699 }
-	
-  },
-  conditionOptions: { /* same */ },
-  images: ["https://m.media-amazon.com/images/I/51H8+zCj2cL._AC_SX569_.jpg"],
-  features: [ /* similar */ ],
-  specifications: {
-    [t("spec_display")]: "6.1\" OLED",
-    [t("spec_processor")]: "A18 Bionic",
-    [t("spec_storage")]: "128GB",
-    [t("spec_ram")]: "6GB",
-    [t("spec_main_camera")]: "48 MP + Ultra Wide",
-    [t("spec_battery")]: "Approx. 3200 mAh",
-    [t("spec_connectivity")]: "5G, Wi‑Fi 6",
-    [t("spec_condition")]: t("spec_condition_certified"),
-    [t("spec_battery_health")]: t("spec_battery_health_value")
-  }
+    name: t("iphone16e_name"),
+    description: t("iphone_desc"),
+    price: 699,
+    originalPrice: 899,
+    discount: 22,
+    category: "phone",
+    variants: {
+        black: {
+            name: "Black",
+            images: ["https://m.media-amazon.com/images/I/51H8+zCj2cL._AC_SX425_.jpg"]
+        },
+        white: {
+            name: "White",
+            images: ["https://m.media-amazon.com/images/I/61Zsers1VBL._AC_SX425_.jpg"]
+        }
+    },
+    memoryOptions: {
+        "128GB": { price: 410, originalPrice: 599 },
+        "256GB": { price: 470, originalPrice: 699 }
+    },
+    features: [
+        { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
+        { icon: "fas fa-microchip", title: t("iphone_feature_chip_title"), desc: t("iphone_feature_chip_desc") },
+        { icon: "fas fa-camera", title: t("iphone_feature_camera_title"), desc: t("iphone_feature_camera_desc") },
+        { icon: "fas fa-mobile-alt", title: t("iphone_feature_display_title"), desc: t("iphone_feature_display_desc") }
+    ],
+    specifications: {
+        [t("spec_display")]: "6.1\" OLED",
+        [t("spec_processor")]: "A18 Bionic",
+        [t("spec_storage")]: "128GB",
+        [t("spec_ram")]: "6GB",
+        [t("spec_main_camera")]: "48 MP + Ultra Wide",
+        [t("spec_battery")]: "Approx. 3200 mAh",
+        [t("spec_connectivity")]: "5G, Wi‑Fi 6",
+        [t("spec_condition")]: t("spec_condition_certified"),
+        [t("spec_battery_health")]: t("spec_battery_health_value")
+    }
 },
 
 iphone15: {
-  name: t("iphone15_name"),
-  description: t("iphone_desc"),
-  price: 579,
-  originalPrice: 749,
-  discount: 23,
-  category: "phone",
-  variants: {
-    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/51PtFHUPjBL._AC_SY606_.jpg"] }
-  },
-  memoryOptions: {
-    "128GB": { price: 579, originalPrice: 749 },
-    "256GB": { price: 679, originalPrice: 849 }
-  },
-  conditionOptions: { /* same */ },
-  images: ["https://m.media-amazon.com/images/I/51PtFHUPjBL._AC_SY606_.jpg"],
-  features: [ /* similar */ ],
-  specifications: {
-    [t("spec_display")]: "6.1\" OLED",
-    [t("spec_processor")]: "A16 Bionic",
-    [t("spec_storage")]: "128‑256GB",
-    [t("spec_ram")]: "6GB",
-    [t("spec_main_camera")]: "48 MP wide",
-    [t("spec_battery")]: "Approx. 3200 mAh",
-    [t("spec_connectivity")]: "5G, Wi‑Fi 6",
-    [t("spec_condition")]: t("spec_condition_certified"),
-    [t("spec_battery_health")]: t("spec_battery_health_value")
-  }
+    name: t("iphone15_name"),
+    description: t("iphone_desc"),
+    price: 579,
+    originalPrice: 749,
+    discount: 23,
+    category: "phone",
+    variants: {
+        black: {
+            name: t("color_black"),
+            images: ["https://m.media-amazon.com/images/I/51PtFHUPjBL._AC_SY606_.jpg"]
+        }
+    },
+    memoryOptions: {
+        "128GB": { price: 579, originalPrice: 749 },
+        "256GB": { price: 679, originalPrice: 849 }
+    },
+    features: [
+        { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
+        { icon: "fas fa-microchip", title: t("iphone_feature_chip_title"), desc: t("iphone_feature_chip_desc") },
+        { icon: "fas fa-camera", title: t("iphone_feature_camera_title"), desc: t("iphone_feature_camera_desc") },
+        { icon: "fas fa-mobile-alt", title: t("iphone_feature_display_title"), desc: t("iphone_feature_display_desc") }
+    ],
+    specifications: {
+        [t("spec_display")]: "6.1\" OLED",
+        [t("spec_processor")]: "A16 Bionic",
+        [t("spec_storage")]: "128‑256GB",
+        [t("spec_ram")]: "6GB",
+        [t("spec_main_camera")]: "48 MP wide",
+        [t("spec_battery")]: "Approx. 3200 mAh",
+        [t("spec_connectivity")]: "5G, Wi‑Fi 6",
+        [t("spec_condition")]: t("spec_condition_certified"),
+        [t("spec_battery_health")]: t("spec_battery_health_value")
+    }
 },
+
 
 iphone14promax: {
-  name: t("iphone14promax_name"),
-  description: t("iphone_desc"),
-  price: 429,
-  originalPrice: 699,
-  discount: 39,
-  category: "phone",
-  variants: {
-    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/51wqFSpP20L._AC_SL1000_.jpg"] }
-  },
-  memoryOptions: {
-    "128GB": { price: 429, originalPrice: 699 },
-    "256GB": { price: 529, originalPrice: 799 }
-  },
-  conditionOptions: { /* same */ },
-  images: ["https://m.media-amazon.com/images/I/51wqFSpP20L._AC_SL1000_.jpg"],
-  features: [ /* similar */ ],
-  specifications: {
-    [t("spec_display")]: "6.7\" OLED",
-    [t("spec_processor")]: "A16 Bionic",
-    [t("spec_storage")]: "128‑256GB",
-    [t("spec_ram")]: "6GB",
-    [t("spec_main_camera")]: "48 MP + Ultra Wide",
-    [t("spec_battery")]: "Approx. 4323 mAh",
-    [t("spec_connectivity")]: "5G, Wi‑Fi 6",
-    [t("spec_condition")]: t("spec_condition_certified"),
-    [t("spec_battery_health")]: t("spec_battery_health_value")
-  }
+    name: t("iphone14promax_name"),
+    description: t("iphone_desc"),
+    price: 429,
+    originalPrice: 699,
+    discount: 39,
+    category: "phone",
+    variants: {
+        black: {
+            name: t("color_black"),
+            images: ["https://m.media-amazon.com/images/I/51wqFSpP20L._AC_SL1000_.jpg"]
+        }
+    },
+    memoryOptions: {
+        "128GB": { price: 429, originalPrice: 699 },
+        "256GB": { price: 529, originalPrice: 799 }
+    },
+    features: [
+        { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
+        { icon: "fas fa-microchip", title: t("iphone_feature_chip_title"), desc: t("iphone_feature_chip_desc") },
+        { icon: "fas fa-camera", title: t("iphone_feature_camera_title"), desc: t("iphone_feature_camera_desc") },
+        { icon: "fas fa-mobile-alt", title: t("iphone_feature_display_title"), desc: t("iphone_feature_display_desc") }
+    ],
+    specifications: {
+        [t("spec_display")]: "6.7\" OLED",
+        [t("spec_processor")]: "A16 Bionic",
+        [t("spec_storage")]: "128‑256GB",
+        [t("spec_ram")]: "6GB",
+        [t("spec_main_camera")]: "48 MP + Ultra Wide",
+        [t("spec_battery")]: "Approx. 4323 mAh",
+        [t("spec_connectivity")]: "5G, Wi‑Fi 6",
+        [t("spec_condition")]: t("spec_condition_certified"),
+        [t("spec_battery_health")]: t("spec_battery_health_value")
+    }
 },
 
+
+
 iphone13promax: {
-  name: t("iphone13promax_name"),
-  description: t("iphone_desc"),
-  price: 359,
-  originalPrice: 599,
-  discount: 40,
-  category: "phone",
-  variants: {
-    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/51UuPZLMaCL._AC_SX569_.jpg"] }
-  },
-  memoryOptions: {
-    "128GB": { price: 359, originalPrice: 599 },
-    "256GB": { price: 459, originalPrice: 699 }
-  },
-  conditionOptions: { /* same */ },
-  images: ["https://m.media-amazon.com/images/I/51UuPZLMaCL._AC_SX569_.jpg"],
-  features: [ /* similar */ ],
-  specifications: {
-    [t("spec_display")]: "6.7\" OLED",
-    [t("spec_processor")]: "A15 Bionic",
-    [t("spec_storage")]: "128‑512GB",
-    [t("spec_ram")]: "6GB",
-    [t("spec_main_camera")]: "12 MP triple camera",
-    [t("spec_battery")]: "Approx. 4352 mAh",
-    [t("spec_connectivity")]: "5G, Wi‑Fi 6",
-    [t("spec_condition")]: t("spec_condition_certified"),
-    [t("spec_battery_health")]: t("spec_battery_health_value")
-  }
+    name: t("iphone13promax_name"),
+    description: t("iphone_desc"),
+    price: 359,
+    originalPrice: 599,
+    discount: 40,
+    category: "phone",
+    variants: {
+        black: {
+            name: t("color_black"),
+            images: ["https://m.media-amazon.com/images/I/51UuPZLMaCL._AC_SX569_.jpg"]
+        }
+    },
+    memoryOptions: {
+        "128GB": { price: 359, originalPrice: 599 },
+        "256GB": { price: 459, originalPrice: 699 }
+    },
+    features: [
+        { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
+        { icon: "fas fa-microchip", title: t("iphone_feature_chip_title"), desc: t("iphone_feature_chip_desc") },
+        { icon: "fas fa-camera", title: t("iphone_feature_camera_title"), desc: t("iphone_feature_camera_desc") },
+        { icon: "fas fa-mobile-alt", title: t("iphone_feature_display_title"), desc: t("iphone_feature_display_desc") }
+    ],
+    specifications: {
+        [t("spec_display")]: "6.7\" OLED",
+        [t("spec_processor")]: "A15 Bionic",
+        [t("spec_storage")]: "128‑512GB",
+        [t("spec_ram")]: "6GB",
+        [t("spec_main_camera")]: "12 MP triple camera",
+        [t("spec_battery")]: "Approx. 4352 mAh",
+        [t("spec_connectivity")]: "5G, Wi‑Fi 6",
+        [t("spec_condition")]: t("spec_condition_certified"),
+        [t("spec_battery_health")]: t("spec_battery_health_value")
+    }
 },
 
 iphone12promax: {
-  name: t("iphone12promax_name"),
-  description: t("iphone_desc"),
-  price: 219,
-  originalPrice: 499,
-  discount: 56,
-  category: "phone",
-  variants: {
-    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/5109dvnof9L._AC_SY606_.jpg"] }
-  },
-  memoryOptions: {
-    "128GB": { price: 219, originalPrice: 499 },
-    "256GB": { price: 319, originalPrice: 599 }
-  },
-  conditionOptions: { /* same */ },
-  images: ["https://m.media-amazon.com/images/I/5109dvnof9L._AC_SY606_.jpg"],
-  features: [ /* similar */ ],
-  specifications: {
-    [t("spec_display")]: "6.7\" OLED",
-    [t("spec_processor")]: "A14 Bionic",
-    [t("spec_storage")]: "128‑256GB",
-    [t("spec_ram")]: "6GB",
-    [t("spec_main_camera")]: "12 MP triple camera + LiDAR",
-    [t("spec_battery")]: "Approx. 3687 mAh",
-    [t("spec_connectivity")]: "5G, Wi‑Fi 6",
-    [t("spec_condition")]: t("spec_condition_certified"),
-    [t("spec_battery_health")]: t("spec_battery_health_value")
-  }
+    name: t("iphone12promax_name"),
+    description: t("iphone_desc"),
+    price: 219,
+    originalPrice: 499,
+    discount: 56,
+    category: "phone",
+    variants: {
+        black: {
+            name: t("color_black"),
+            images: ["https://m.media-amazon.com/images/I/5109dvnof9L._AC_SY606_.jpg"]
+        }
+    },
+    memoryOptions: {
+        "128GB": { price: 219, originalPrice: 499 },
+        "256GB": { price: 319, originalPrice: 599 }
+    },
+    features: [
+        { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
+        { icon: "fas fa-microchip", title: t("iphone_feature_chip_title"), desc: t("iphone_feature_chip_desc") },
+        { icon: "fas fa-camera", title: t("iphone_feature_camera_title"), desc: t("iphone_feature_camera_desc") },
+        { icon: "fas fa-mobile-alt", title: t("iphone_feature_display_title"), desc: t("iphone_feature_display_desc") }
+    ],
+    specifications: {
+        [t("spec_display")]: "6.7\" OLED",
+        [t("spec_processor")]: "A14 Bionic",
+        [t("spec_storage")]: "128‑256GB",
+        [t("spec_ram")]: "6GB",
+        [t("spec_main_camera")]: "12 MP triple camera + LiDAR",
+        [t("spec_battery")]: "Approx. 3687 mAh",
+        [t("spec_connectivity")]: "5G, Wi‑Fi 6",
+        [t("spec_condition")]: t("spec_condition_certified"),
+        [t("spec_battery_health")]: t("spec_battery_health_value")
+    }
 },
 
 iphone11promax: {
-  name: t("iphone11promax_name"),
-  description: t("iphone_desc"),
-  price: 149,
-  originalPrice: 399,
-  discount: 63,
-  category: "phone",
-  variants: {
-    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/61UC1mk6dfL.__AC_SX300_SY300_QL70_FMwebp_.jpg"] }
-  },
-  memoryOptions: {
-    "64GB": { price: 149, originalPrice: 399 },
-    "128GB": { price: 199, originalPrice: 449 }
-  },
-  conditionOptions: { /* same */ },
-  images: ["https://m.media-amazon.com/images/I/61UC1mk6dfL.__AC_SX300_SY300_QL70_FMwebp_.jpg"],
-  features: [ /* similar */ ],
-  specifications: {
-    [t("spec_display")]: "6.5\" LCD",
-    [t("spec_processor")]: "A13 Bionic",
-    [t("spec_storage")]: "64‑128GB",
-    [t("spec_ram")]: "4GB",
-    [t("spec_main_camera")]: "12 MP triple camera",
-    [t("spec_battery")]: "Approx. 3969 mAh",
-    [t("spec_connectivity")]: "4G LTE",
-    [t("spec_condition")]: t("spec_condition_certified"),
-    [t("spec_battery_health")]: t("spec_battery_health_value")
-  }
+    name: t("iphone11promax_name"),
+    description: t("iphone_desc"),
+    price: 149,
+    originalPrice: 399,
+    discount: 63,
+    category: "phone",
+    variants: {
+        black: {
+            name: t("color_black"),
+            images: ["https://m.media-amazon.com/images/I/61UC1mk6dfL.__AC_SX300_SY300_QL70_FMwebp_.jpg"]
+        }
+    },
+    memoryOptions: {
+        "64GB": { price: 149, originalPrice: 399 },
+        "128GB": { price: 199, originalPrice: 449 }
+    },
+    features: [
+        { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
+        { icon: "fas fa-microchip", title: t("iphone_feature_chip_title"), desc: t("iphone_feature_chip_desc") },
+        { icon: "fas fa-camera", title: t("iphone_feature_camera_title"), desc: t("iphone_feature_camera_desc") },
+        { icon: "fas fa-mobile-alt", title: t("iphone_feature_display_title"), desc: t("iphone_feature_display_desc") }
+    ],
+    specifications: {
+        [t("spec_display")]: "6.5\" LCD",
+        [t("spec_processor")]: "A13 Bionic",
+        [t("spec_storage")]: "64‑128GB",
+        [t("spec_ram")]: "4GB",
+        [t("spec_main_camera")]: "12 MP triple camera",
+        [t("spec_battery")]: "Approx. 3969 mAh",
+        [t("spec_connectivity")]: "4G LTE",
+        [t("spec_condition")]: t("spec_condition_certified"),
+        [t("spec_battery_health")]: t("spec_battery_health_value")
+    }
 },
 
 iphonexr: {
-  name: t("iphonexr_name"),
-  description: t("iphone_desc"),
-  price: 129,
-  originalPrice: 299,
-  discount: 57,
-  category: "phone",
-  variants: {
-    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/51z1UO6N6LL._AC_SX569_.jpg"] }
-  },
-  memoryOptions: {
-    "64GB": { price: 129, originalPrice: 299 },
-    "128GB": { price: 179, originalPrice: 349 }
-  },
-  conditionOptions: { /* same */ },
-  images: ["https://m.media-amazon.com/images/I/51z1UO6N6LL._AC_SX569_.jpg"],
-  features: [ /* similar */ ],
-  specifications: {
-    [t("spec_display")]: "6.1\" LCD",
-    [t("spec_processor")]: "A12 Bionic",
-    [t("spec_storage")]: "64‑128GB",
-    [t("spec_ram")]: "3GB",
-    [t("spec_main_camera")]: "12 MP single camera",
-    [t("spec_battery")]: "Approx. 2942 mAh",
-    [t("spec_connectivity")]: "4G LTE",
-    [t("spec_condition")]: t("spec_condition_certified"),
-    [t("spec_battery_health")]: t("spec_battery_health_value")
-  }
+    name: t("iphonexr_name"),
+    description: t("iphone_desc"),
+    price: 129,
+    originalPrice: 299,
+    discount: 57,
+    category: "phone",
+    variants: {
+        black: {
+            name: t("color_black"),
+            images: ["https://m.media-amazon.com/images/I/51z1UO6N6LL._AC_SX569_.jpg"]
+        }
+    },
+    memoryOptions: {
+        "64GB": { price: 129, originalPrice: 299 },
+        "128GB": { price: 179, originalPrice: 349 }
+    },
+    features: [
+        { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
+        { icon: "fas fa-microchip", title: t("iphone_feature_chip_title"), desc: t("iphone_feature_chip_desc") },
+        { icon: "fas fa-camera", title: t("iphone_feature_camera_title"), desc: t("iphone_feature_camera_desc") },
+        { icon: "fas fa-mobile-alt", title: t("iphone_feature_display_title"), desc: t("iphone_feature_display_desc") }
+    ],
+    specifications: {
+        [t("spec_display")]: "6.1\" LCD",
+        [t("spec_processor")]: "A12 Bionic",
+        [t("spec_storage")]: "64‑128GB",
+        [t("spec_ram")]: "3GB",
+        [t("spec_main_camera")]: "12 MP single camera",
+        [t("spec_battery")]: "Approx. 2942 mAh",
+        [t("spec_connectivity")]: "4G LTE",
+        [t("spec_condition")]: t("spec_condition_certified"),
+        [t("spec_battery_health")]: t("spec_battery_health_value")
+    }
 },
+
 
 galaxys25ultra: {
-  name: t("galaxys25ultra_name"),
-  description: t("samsung_desc"),
-  price: 1299,
-  originalPrice: 1659,
-  discount: 22,
-  category: "phone",
-  variants: {
-    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/61n0lmxP5-L._AC_SX569_.jpg"] },
-    silver: { name: t("color_silver"), images: ["https://m.media-amazon.com/images/I/61n0lmxP5-L._AC_SX569_.jpg"] }
-  },
-  memoryOptions: {
-    "256GB": { price: 1299, originalPrice: 1659 },
-    "512GB": { price: 1399, originalPrice: 1759 },
-    "1TB":   { price: 1499, originalPrice: 1859 }
-  },
-  conditionOptions: { /* same as before: great, excellent, display piece */ },
-  images: ["https://m.media-amazon.com/images/I/61n0lmxP5-L._AC_SX569_.jpg"],
-  features: [
-    { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
-    { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
-    { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") },
-    { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") }
-  ],
-  specifications: {
-    [t("spec_display")]: "6.9\" Dynamic AMOLED 2X, 1440×3120, 120 Hz",
-    [t("spec_processor")]: "Snapdragon 8 Elite for Galaxy",
-    [t("spec_storage")]: "256 GB / 512 GB / 1 TB",
-    [t("spec_ram")]: "12 GB",
-    [t("spec_main_camera")]: "200 MP + 50 MP UW + 10 MP 3× + 50 MP 5×",
-    [t("spec_battery")]: "5 000 mAh",
-    [t("spec_connectivity")]: "5G, Wi‑Fi 7, UWB",
-    [t("spec_condition")]: t("spec_condition_certified"),
-    [t("spec_battery_health")]: t("spec_battery_health_value")
-  }
+    name: t("galaxys25ultra_name"),
+    description: t("samsung_desc"),
+    price: 1299,
+    originalPrice: 1659,
+    discount: 22,
+    category: "phone",
+    variants: {
+        black: {
+            name: t("color_black"),
+            images: ["https://m.media-amazon.com/images/I/61n0lmxP5-L._AC_SX569_.jpg"]
+        },
+        silver: {
+            name: t("color_silver"),
+            images: ["https://m.media-amazon.com/images/I/61n0lmxP5-L._AC_SX569_.jpg"]
+        }
+    },
+    memoryOptions: {
+        "256GB": { price: 1299, originalPrice: 1659 },
+        "512GB": { price: 1399, originalPrice: 1759 },
+        "1TB":   { price: 1499, originalPrice: 1859 }
+    },
+    features: [
+        { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
+        { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
+        { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") },
+        { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") }
+    ],
+    specifications: {
+        [t("spec_display")]: "6.9\" Dynamic AMOLED 2X, 1440×3120, 120 Hz",
+        [t("spec_processor")]: "Snapdragon 8 Elite for Galaxy",
+        [t("spec_storage")]: "256 GB / 512 GB / 1 TB",
+        [t("spec_ram")]: "12 GB",
+        [t("spec_main_camera")]: "200 MP + 50 MP UW + 10 MP 3× + 50 MP 5×",
+        [t("spec_battery")]: "5 000 mAh",
+        [t("spec_connectivity")]: "5G, Wi‑Fi 7, UWB",
+        [t("spec_condition")]: t("spec_condition_certified"),
+        [t("spec_battery_health")]: t("spec_battery_health_value")
+    }
+},
+galaxys25: {
+    name: t("galaxys25_name"),
+    description: t("samsung_desc"),
+    price: 899,
+    originalPrice: 1099,
+    discount: 18,
+    category: "phone",
+    variants: {
+        black: {
+            name: t("color_black"),
+            images: ["https://m.media-amazon.com/images/I/71V--WZVUIL._AC_SX569_.jpg"]
+        },
+        blue: {
+            name: t("color_blue"),
+            images: ["https://m.media-amazon.com/images/I/71fM0qPqY6L._AC_SX569_.jpg"]
+        }
+    },
+    memoryOptions: {
+        "128GB": { price: 899, originalPrice: 1099 },
+        "256GB": { price: 999, originalPrice: 1199 }
+    },
+    features: [
+        { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
+        { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
+        { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") },
+        { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") }
+    ],
+    specifications: {
+        [t("spec_display")]: "6.2\" Dynamic AMOLED 2X, 120 Hz",
+        [t("spec_processor")]: "Snapdragon 8 Gen 4 (Galaxy variant)",
+        [t("spec_storage")]: "128GB / 256GB",
+        [t("spec_ram")]: "8 GB",
+        [t("spec_main_camera")]: "50 MP + 12 MP UW + 10 MP telephoto",
+        [t("spec_battery")]: "Approx. 4 000 mAh",
+        [t("spec_connectivity")]: "5G, Wi‑Fi 7",
+        [t("spec_condition")]: t("spec_condition_certified"),
+        [t("spec_battery_health")]: t("spec_battery_health_value")
+    }
 },
 
+
 galaxys24ultra: {
-  name: t("galaxys24ultra_name"),
-  description: t("samsung_desc"),
-  price: 479,
-  originalPrice: 600,
-  discount: 23,
-  category: "phone",
-  variants: {
-  violet: {
-    name: "Violet",
-    images: ["https://m.media-amazon.com/images/I/51E3rux4DgL.__AC_SX300_SY300_QL70_FMwebp_.jpg"]
-  },
-  black: {
-    name: "Black",
-    images: ["https://m.media-amazon.com/images/I/51A-Q4eMBxL._AC_SX425_.jpg"]
-  }
+    name: t("galaxys24ultra_name"),
+    description: t("samsung_desc"),
+    price: 479,
+    originalPrice: 600,
+    discount: 23,
+    category: "phone",
+    variants: {
+        violet: {
+            name: "Violet",
+            images: ["https://m.media-amazon.com/images/I/51E3rux4DgL.__AC_SX300_SY300_QL70_FMwebp_.jpg"]
+        },
+        black: {
+            name: "Black",
+            images: ["https://m.media-amazon.com/images/I/51A-Q4eMBxL._AC_SX425_.jpg"]
+        }
+    },
+    memoryOptions: {
+        "256GB": { price: 479, originalPrice: 600 },
+        "512GB": { price: 524, originalPrice: 630 }
+    },
+    features: [
+        { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
+        { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
+        { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") },
+        { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") }
+    ],
+    specifications: {
+        [t("spec_display")]: "6.8\" Dynamic AMOLED 2X, 1440×3120, 120 Hz",
+        [t("spec_processor")]: "Snapdragon 8 Gen 3",
+        [t("spec_storage")]: "256 GB / 512 GB / 1 TB",
+        [t("spec_ram")]: "12 GB",
+        [t("spec_main_camera")]: "200 MP + 50 MP UW + 10 MP 3× + 50 MP 5×",
+        [t("spec_battery")]: "5 000 mAh",
+        [t("spec_connectivity")]: "5G, Wi‑Fi 7",
+        [t("spec_condition")]: t("spec_condition_certified"),
+        [t("spec_battery_health")]: t("spec_battery_health_value")
+    }
 },
-  memoryOptions: {
-    "256GB": { price: 479, originalPrice: 600 },
-    "512GB": { price: 524, originalPrice: 630 }
-  },
-  conditionOptions: { /* same */ },
-  images: ["https://m.media-amazon.com/images/I/51E3rux4DgL.__AC_SX300_SY300_QL70_FMwebp_.jpg"],
-  features: [ /* same as above */ ],
-  specifications: {
-    [t("spec_display")]: "6.8\" Dynamic AMOLED 2X, 1440×3120, 120 Hz",
-    [t("spec_processor")]: "Snapdragon 8 Gen 3",
-    [t("spec_storage")]: "256 GB / 512 GB / 1 TB",
-    [t("spec_ram")]: "12 GB",
-    [t("spec_main_camera")]: "200 MP + 50 MP UW + 10 MP 3× + 50 MP 5×",
-    [t("spec_battery")]: "5 000 mAh",
-    [t("spec_connectivity")]: "5G, Wi‑Fi 7",
-    [t("spec_condition")]: t("spec_condition_certified"),
-    [t("spec_battery_health")]: t("spec_battery_health_value")
-  }
+galaxys24: {
+    name: t("galaxys24_name"),
+    description: t("samsung_desc"),
+    price: 749,
+    originalPrice: 999,
+    discount: 25,
+    category: "phone",
+    variants: {
+        black: {
+            name: t("color_black"),
+            images: ["https://m.media-amazon.com/images/I/61ZUlU8CwHL._AC_SX679_.jpg"]
+        },
+        gray: {
+            name: t("color_gray"),
+            images: ["https://m.media-amazon.com/images/I/61s6JShRlyL._AC_SX679_.jpg"]
+        }
+    },
+    memoryOptions: {
+        "128GB": { price: 749, originalPrice: 999 },
+        "256GB": { price: 799, originalPrice: 1049 }
+    },
+    features: [
+        { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
+        { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
+        { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") },
+        { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") }
+    ],
+    specifications: {
+        [t("spec_display")]: "6.2\" Dynamic AMOLED 2X, 120 Hz",
+        [t("spec_processor")]: "Snapdragon 8 Gen 3",
+        [t("spec_storage")]: "128GB / 256GB",
+        [t("spec_ram")]: "8 GB",
+        [t("spec_main_camera")]: "50 MP + 12 MP UW + 10 MP telephoto",
+        [t("spec_battery")]: "Approx. 4 000 mAh",
+        [t("spec_connectivity")]: "5G, Wi‑Fi 7",
+        [t("spec_condition")]: t("spec_condition_certified"),
+        [t("spec_battery_health")]: t("spec_battery_health_value")
+    }
 },
+
 
 galaxys24plus: {
   name: t("galaxys24plus_name"),
@@ -1277,14 +1406,20 @@ galaxys24plus: {
   discount: 18,
   category: "phone",
   variants: {
-    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/517wd0xP59L.__AC_SX300_SY300_QL70_FMwebp_.jpg"] }
+    black: {
+      name: t("color_black"),
+      images: ["https://m.media-amazon.com/images/I/517wd0xP59L.__AC_SX300_SY300_QL70_FMwebp_.jpg"]
+    }
   },
   memoryOptions: {
     "256GB": { price: 699, originalPrice: 849 }
   },
-  conditionOptions: { /* same */ },
-  images: ["https://m.media-amazon.com/images/I/517wd0xP59L.__AC_SX300_SY300_QL70_FMwebp_.jpg"],
-  features: [ /* same */ ],
+  features: [
+    { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
+    { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
+    { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") },
+    { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") }
+  ],
   specifications: {
     [t("spec_display")]: "6.7\" Dynamic AMOLED 2X, 120 Hz",
     [t("spec_processor")]: "Snapdragon 8 Gen 3",
@@ -1306,15 +1441,21 @@ galaxys23ultra: {
   discount: 33,
   category: "phone",
   variants: {
-    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/513vXUcPFrL._AC_SX569_.jpg"] }
+    black: {
+      name: t("color_black"),
+      images: ["https://m.media-amazon.com/images/I/513vXUcPFrL._AC_SX569_.jpg"]
+    }
   },
   memoryOptions: {
     "256GB": { price: 599, originalPrice: 899 },
     "512GB": { price: 699, originalPrice: 999 }
   },
-  conditionOptions: { /* same */ },
-  images: ["https://m.media-amazon.com/images/I/513vXUcPFrL._AC_SX569_.jpg"],
-  features: [ /* same */ ],
+  features: [
+    { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
+    { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
+    { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") },
+    { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") }
+  ],
   specifications: {
     [t("spec_display")]: "6.8\" Dynamic AMOLED 2X, 120 Hz",
     [t("spec_processor")]: "Snapdragon 8 Gen 2",
@@ -1328,6 +1469,47 @@ galaxys23ultra: {
   }
 },
 
+	galaxys23: {
+  name: t("galaxys23_name"),
+  description: t("samsung_desc"),
+  price: 499,
+  originalPrice: 699,
+  discount: 29,
+  category: "phone",
+  variants: {
+    green: {
+      name: "Green",
+      images: ["https://m.media-amazon.com/images/I/610N1By4XlL._AC_SY450_.jpg"]
+    },
+    cream: {
+      name: "Cream",
+      images: ["https://m.media-amazon.com/images/I/71NAr3cT+oL._AC_SX569_.jpg"]
+    }
+  },
+  memoryOptions: {
+    "128GB": { price: 499, originalPrice: 699 },
+    "256GB": { price: 549, originalPrice: 749 }
+  },
+  features: [
+    { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
+    { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
+    { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") },
+    { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") }
+  ],
+  specifications: {
+    [t("spec_display")]: "6.1\" AMOLED, FHD+, 120 Hz",
+    [t("spec_processor")]: "Snapdragon 8 Gen 2",
+    [t("spec_storage")]: "128GB / 256GB",
+    [t("spec_ram")]: "8 GB",
+    [t("spec_main_camera")]: "50 MP + 12 MP UW + 10 MP telephoto",
+    [t("spec_battery")]: "3 900 mAh",
+    [t("spec_connectivity")]: "5G, Wi‑Fi 6E",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+},
+
+
 galaxys22ultra: {
   name: t("galaxys22ultra_name"),
   description: t("samsung_desc"),
@@ -1336,14 +1518,20 @@ galaxys22ultra: {
   discount: 38,
   category: "phone",
   variants: {
-    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/613Fp7fknhL.__AC_SX300_SY300_QL70_FMwebp_.jpg"] }
+    black: {
+      name: t("color_black"),
+      images: ["https://m.media-amazon.com/images/I/613Fp7fknhL.__AC_SX300_SY300_QL70_FMwebp_.jpg"]
+    }
   },
   memoryOptions: {
     "256GB": { price: 499, originalPrice: 799 }
   },
-  conditionOptions: { /* same */ },
-  images: ["https://m.media-amazon.com/images/I/613Fp7fknhL.__AC_SX300_SY300_QL70_FMwebp_.jpg"],
-  features: [ /* same */ ],
+  features: [
+    { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
+    { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
+    { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") },
+    { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") }
+  ],
   specifications: {
     [t("spec_display")]: "6.8\" Dynamic AMOLED 2X, 120 Hz",
     [t("spec_processor")]: "Snapdragon 8 Gen 1",
@@ -1356,7 +1544,44 @@ galaxys22ultra: {
     [t("spec_battery_health")]: t("spec_battery_health_value")
   }
 },
-    galaxya545g: {
+galaxys22: {
+  name: t("galaxys22_name"),
+  description: t("samsung_desc"),
+  price: 379,
+  originalPrice: 649,
+  discount: 42,
+  category: "phone",
+  variants: {
+    black: {
+      name: t("color_black"),
+      images: ["https://m.media-amazon.com/images/I/61vDLnKRB7L._AC_SX569_.jpg"]
+    }
+  },
+  memoryOptions: {
+    "128GB": { price: 379, originalPrice: 649 },
+    "256GB": { price: 419, originalPrice: 699 }
+  },
+  features: [
+    { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
+    { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
+    { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") },
+    { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") }
+  ],
+  specifications: {
+    [t("spec_display")]: "6.1\" AMOLED, FHD+, 120 Hz",
+    [t("spec_processor")]: "Snapdragon 8 Gen 1",
+    [t("spec_storage")]: "128GB / 256GB",
+    [t("spec_ram")]: "8 GB",
+    [t("spec_main_camera")]: "50 MP + 12 MP UW + 10 MP telephoto",
+    [t("spec_battery")]: "3 700 mAh",
+    [t("spec_connectivity")]: "5G, Wi‑Fi 6",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+},
+
+
+   galaxya545g: {
   name: t("galaxya545g_name"),
   description: t("samsung_desc"),
   price: 389,
@@ -1364,24 +1589,24 @@ galaxys22ultra: {
   discount: 22,
   category: "phone",
   variants: {
-    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/51orKJJMfTL.__AC_SX300_SY300_QL70_FMwebp_.jpg"] },
-    peach: { name: t("color_peach"), images: ["https://m.media-amazon.com/images/I/51orKJJMfTL.__AC_SX300_SY300_QL70_FMwebp_.jpg"] }
+    black: {
+      name: t("color_black"),
+      images: ["https://m.media-amazon.com/images/I/51orKJJMfTL.__AC_SX300_SY300_QL70_FMwebp_.jpg"]
+    },
+    peach: {
+      name: t("color_peach"),
+      images: ["https://m.media-amazon.com/images/I/51orKJJMfTL.__AC_SX300_SY300_QL70_FMwebp_.jpg"]
+    }
   },
   memoryOptions: {
     "128GB": { price: 389, originalPrice: 499 },
     "256GB": { price: 459, originalPrice: 579 }
   },
-  conditionOptions: {
-    great: { name: t("condition_great"), priceAdjustment: 0, description: t("condition_great_desc") },
-    excellent: { name: t("condition_excellent"), priceAdjustment: 30, description: t("condition_excellent_desc") },
-    new_open_box: { name: t("condition_display_piece"), priceAdjustment: 60, description: t("condition_display_piece_desc") }
-  },
-  images: ["https://m.media-amazon.com/images/I/51orKJJMfTL.__AC_SX300_SY300_QL70_FMwebp_.jpg"],
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
     { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
-    { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") },
-    { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") }
+    { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") },
+    { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") }
   ],
   specifications: {
     [t("spec_display")]: "6.4\" Super AMOLED, 1080×2340, 120 Hz",
@@ -1404,16 +1629,25 @@ galaxya35: {
   discount: 24,
   category: "phone",
   variants: {
-    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/61R5WdNY8LL.__AC_SX300_SY300_QL70_FMwebp_.jpg"] },
-    green: { name: t("color_green"), images: ["https://m.media-amazon.com/images/I/61R5WdNY8LL.__AC_SX300_SY300_QL70_FMwebp_.jpg"] }
+    black: {
+      name: t("color_black"),
+      images: ["https://m.media-amazon.com/images/I/61R5WdNY8LL.__AC_SX300_SY300_QL70_FMwebp_.jpg"]
+    },
+    green: {
+      name: t("color_green"),
+      images: ["https://m.media-amazon.com/images/I/61R5WdNY8LL.__AC_SX300_SY300_QL70_FMwebp_.jpg"]
+    }
   },
   memoryOptions: {
     "128GB": { price: 249, originalPrice: 329 },
     "256GB": { price: 299, originalPrice: 379 }
   },
-  conditionOptions: { /* same as above */ },
-  images: ["https://m.media-amazon.com/images/I/61R5WdNY8LL.__AC_SX300_SY300_QL70_FMwebp_.jpg"],
-  features: [ /* same as above */ ],
+  features: [
+    { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
+    { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
+    { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") },
+    { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") }
+  ],
   specifications: {
     [t("spec_display")]: "6.6\" AMOLED, 120 Hz",
     [t("spec_processor")]: "Exynos 1380",
@@ -1435,16 +1669,25 @@ galaxya155g: {
   discount: 24,
   category: "phone",
   variants: {
-    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/41vU1u8DZXL.__AC_SX300_SY300_QL70_FMwebp_.jpg"] },
-    blue: { name: t("color_blue"), images: ["https://m.media-amazon.com/images/I/41vU1u8DZXL.__AC_SX300_SY300_QL70_FMwebp_.jpg"] }
+    black: {
+      name: t("color_black"),
+      images: ["https://m.media-amazon.com/images/I/41vU1u8DZXL.__AC_SX300_SY300_QL70_FMwebp_.jpg"]
+    },
+    blue: {
+      name: t("color_blue"),
+      images: ["https://m.media-amazon.com/images/I/41vU1u8DZXL.__AC_SX300_SY300_QL70_FMwebp_.jpg"]
+    }
   },
   memoryOptions: {
     "64GB": { price: 189, originalPrice: 249 },
     "128GB": { price: 229, originalPrice: 289 }
   },
-  conditionOptions: { /* same */ },
-  images: ["https://m.media-amazon.com/images/I/41vU1u8DZXL.__AC_SX300_SY300_QL70_FMwebp_.jpg"],
-  features: [ /* same */ ],
+  features: [
+    { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
+    { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
+    { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") },
+    { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") }
+  ],
   specifications: {
     [t("spec_display")]: "6.5\" PLS TFT, 90 Hz",
     [t("spec_processor")]: "MediaTek Dimensity 700",
@@ -1458,6 +1701,7 @@ galaxya155g: {
   }
 },
 
+
 galaxya05s: {
   name: t("galaxya05s_name"),
   description: t("samsung_desc"),
@@ -1466,16 +1710,25 @@ galaxya05s: {
   discount: 29,
   category: "phone",
   variants: {
-    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/51neXjpArML.__AC_SX300_SY300_QL70_FMwebp_.jpg"] },
-    green: { name: t("color_green"), images: ["https://m.media-amazon.com/images/I/51neXjpArML.__AC_SX300_SY300_QL70_FMwebp_.jpg"] }
+    black: {
+      name: t("color_black"),
+      images: ["https://m.media-amazon.com/images/I/51neXjpArML.__AC_SX300_SY300_QL70_FMwebp_.jpg"]
+    },
+    green: {
+      name: t("color_green"),
+      images: ["https://m.media-amazon.com/images/I/51neXjpArML.__AC_SX300_SY300_QL70_FMwebp_.jpg"]
+    }
   },
   memoryOptions: {
     "64GB": { price: 199, originalPrice: 279 },
     "128GB": { price: 239, originalPrice: 319 }
   },
-  conditionOptions: { /* same */ },
-  images: ["https://m.media-amazon.com/images/I/51neXjpArML.__AC_SX300_SY300_QL70_FMwebp_.jpg"],
-  features: [ /* same */ ],
+  features: [
+    { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
+    { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
+    { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") },
+    { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") }
+  ],
   specifications: {
     [t("spec_display")]: "6.5\" PLS TFT, 90 Hz",
     [t("spec_processor")]: "MediaTek MT6765 Helio P35",
@@ -1497,16 +1750,25 @@ galaxym15: {
   discount: 23,
   category: "phone",
   variants: {
-    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/41k9aSrQRAL._SX300_SY300_QL70_FMwebp_.jpg"] },
-    green: { name: t("color_green"), images: ["https://m.media-amazon.com/images/I/41k9aSrQRAL._SX300_SY300_QL70_FMwebp_.jpg"] }
+    black: {
+      name: t("color_black"),
+      images: ["https://m.media-amazon.com/images/I/41k9aSrQRAL._SX300_SY300_QL70_FMwebp_.jpg"]
+    },
+    green: {
+      name: t("color_green"),
+      images: ["https://m.media-amazon.com/images/I/41k9aSrQRAL._SX300_SY300_QL70_FMwebp_.jpg"]
+    }
   },
   memoryOptions: {
     "64GB": { price: 229, originalPrice: 299 },
     "128GB": { price: 269, originalPrice: 349 }
   },
-  conditionOptions: { /* same */ },
-  images: ["https://m.media-amazon.com/images/I/41k9aSrQRAL._SX300_SY300_QL70_FMwebp_.jpg"],
-  features: [ /* same */ ],
+  features: [
+    { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
+    { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
+    { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") },
+    { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") }
+  ],
   specifications: {
     [t("spec_display")]: "6.4\" Super AMOLED, 60 Hz",
     [t("spec_processor")]: "Exynos 1280",
@@ -1520,6 +1782,7 @@ galaxym15: {
   }
 },
 
+
 galaxym14: {
   name: t("galaxym14_name"),
   description: t("samsung_desc"),
@@ -1528,16 +1791,25 @@ galaxym14: {
   discount: 26,
   category: "phone",
   variants: {
-    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/41tFC8GKz8L._SX300_SY300_QL70_FMwebp_.jpg"] },
-    copper: { name: t("color_copper"), images: ["https://m.media-amazon.com/images/I/41tFC8GKz8L._SX300_SY300_QL70_FMwebp_.jpg"] }
+    black: {
+      name: t("color_black"),
+      images: ["https://m.media-amazon.com/images/I/41tFC8GKz8L._SX300_SY300_QL70_FMwebp_.jpg"]
+    },
+    copper: {
+      name: t("color_copper"),
+      images: ["https://m.media-amazon.com/images/I/41tFC8GKz8L._SX300_SY300_QL70_FMwebp_.jpg"]
+    }
   },
   memoryOptions: {
     "64GB": { price: 199, originalPrice: 269 },
     "128GB": { price: 239, originalPrice: 319 }
   },
-  conditionOptions: { /* same */ },
-  images: ["https://m.media-amazon.com/images/I/41tFC8GKz8L._SX300_SY300_QL70_FMwebp_.jpg"],
-  features: [ /* same */ ],
+  features: [
+    { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
+    { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
+    { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") },
+    { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") }
+  ],
   specifications: {
     [t("spec_display")]: "6.5\" PLS LCD, 60 Hz",
     [t("spec_processor")]: "Exynos 1330",
@@ -1551,7 +1823,7 @@ galaxym14: {
   }
 },
 
-    redmi14c: {
+redmi14c: {
   name: t("redmi14c_name"),
   description: t("xiaomi_desc"),
   price: 169,
@@ -1559,16 +1831,20 @@ galaxym14: {
   discount: 15,
   category: "phone",
   variants: {
-    midnight_black: { name: t("color_midnight_black"), images: ["https://m.media-amazon.com/images/I/612KZF3V+ZL._AC_SY300_SX300_.jpg"] },
-    sage_green: { name: t("color_sage_green"), images: ["https://m.media-amazon.com/images/I/612KZF3V+ZL._AC_SY300_SX300_.jpg"] }
+    midnight_black: {
+      name: t("color_midnight_black"),
+      images: ["https://m.media-amazon.com/images/I/612KZF3V+ZL._AC_SY300_SX300_.jpg"]
+    },
+    sage_green: {
+      name: t("color_sage_green"),
+      images: ["https://m.media-amazon.com/images/I/612KZF3V+ZL._AC_SY300_SX300_.jpg"]
+    }
   },
   memoryOptions: {
     "4GB + 128GB": { price: 169, originalPrice: 199 },
     "6GB + 128GB": { price: 199, originalPrice: 229 },
     "8GB + 256GB": { price: 229, originalPrice: 269 }
   },
-  conditionOptions: { /* same structure as others */ },
-  images: ["https://m.media-amazon.com/images/I/612KZF3V+ZL._AC_SY300_SX300_.jpg"],
   features: [
     { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") },
     { icon: "fas fa-microchip", title: t("feature_processor_title"), desc: t("feature_processor_desc") },
@@ -1587,7 +1863,7 @@ galaxym14: {
     [t("spec_battery_health")]: t("spec_battery_health_value")
   }
 },
-    
+
 redminote14pro5g: {
   name: t("redminote14pro5g_name"),
   description: t("xiaomi_desc"),
@@ -1596,14 +1872,15 @@ redminote14pro5g: {
   discount: 25,
   category: "phone",
   variants: {
-    midnight_black: { name: t("color_midnight_black"), images: ["https://m.media-amazon.com/images/I/51AelgZWpaL.__AC_SX300_SY300_QL70_FMwebp_.jpg"] }
+    midnight_black: {
+      name: t("color_midnight_black"),
+      images: ["https://m.media-amazon.com/images/I/51AelgZWpaL.__AC_SX300_SY300_QL70_FMwebp_.jpg"]
+    }
   },
   memoryOptions: {
     "8GB + 256GB": { price: 299, originalPrice: 399 },
     "12GB + 512GB": { price: 359, originalPrice: 479 }
   },
-  conditionOptions: { /* same */ },
-  images: ["https://m.media-amazon.com/images/I/51AelgZWpaL.__AC_SX300_SY300_QL70_FMwebp_.jpg"],
   features: [
     { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
     { icon: "fas fa-microchip", title: t("feature_processor_title"), desc: t("feature_processor_desc") },
@@ -1622,7 +1899,8 @@ redminote14pro5g: {
     [t("spec_battery_health")]: t("spec_battery_health_value")
   }
 },
-    pocox7pro: {
+
+  pocox7pro: {
   name: t("pocox7pro_name"),
   description: t("poco_desc"),
   price: 249,
@@ -1630,14 +1908,20 @@ redminote14pro5g: {
   discount: 24,
   category: "phone",
   variants: {
-    black: { name: t("color_black"), images: ["https://m.media-amazon.com/images/I/61qXnVmcxxL.__AC_SX300_SY300_QL70_FMwebp_.jpg"] }
+    black: {
+      name: t("color_black"),
+      images: ["https://m.media-amazon.com/images/I/61qXnVmcxxL.__AC_SX300_SY300_QL70_FMwebp_.jpg"]
+    }
   },
   memoryOptions: {
     "8GB + 256GB": { price: 249, originalPrice: 329 }
   },
-  conditionOptions: { /* same */ },
-  images: ["https://m.media-amazon.com/images/I/61qXnVmcxxL.__AC_SX300_SY300_QL70_FMwebp_.jpg"],
-  features: [ /* similar features */ ],
+  features: [
+    { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
+    { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
+    { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") },
+    { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") }
+  ],
   specifications: {
     [t("spec_display")]: "6.67\" AMOLED, 120 Hz",
     [t("spec_processor")]: "Snapdragon 7s Gen 2",
@@ -1787,6 +2071,7 @@ jblpulse: {
   ],
   specifications: {}
 },
+	
 cableiphone: {
   name: t("cableiphone_name"),
   description: t("cable_iphone_desc"),
