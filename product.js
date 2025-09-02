@@ -1235,8 +1235,8 @@ galaxys25ultra: {
 galaxys24ultra: {
   name: t("galaxys24ultra_name"),
   description: t("samsung_desc"),
-  price: 999,
-  originalPrice: 1299,
+  price: 479,
+  originalPrice: 600,
   discount: 23,
   category: "phone",
   variants: {
@@ -1244,8 +1244,8 @@ galaxys24ultra: {
 	 black: { name: "Black"), images: ["https://m.media-amazon.com/images/I/51A-Q4eMBxL._AC_SX425_.jpg"] }
   },
   memoryOptions: {
-    "256GB": { price: 999, originalPrice: 1299 },
-    "512GB": { price: 1099, originalPrice: 1399 }
+    "256GB": { price: 479, originalPrice: 600 },
+    "512GB": { price: 524, originalPrice: 630 }
   },
   conditionOptions: { /* same */ },
   images: ["https://m.media-amazon.com/images/I/51E3rux4DgL.__AC_SX300_SY300_QL70_FMwebp_.jpg"],
