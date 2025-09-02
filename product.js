@@ -2188,7 +2188,9 @@ function loadProduct() {
         }
     }
 
-    // Update features
+	// ---------------------
+// Render Features
+// ---------------------
 const featuresGrid = document.getElementById('features-grid');
 if (featuresGrid) {
     featuresGrid.innerHTML = '';
@@ -2208,6 +2210,27 @@ if (featuresGrid) {
         });
     }
 }
+
+// ---------------------
+// Render Specifications
+// ---------------------
+const specsGrid = document.getElementById('specifications-grid');
+if (specsGrid) {
+    specsGrid.innerHTML = '';
+
+    if (product.specifications && typeof product.specifications === 'object') {
+        Object.entries(product.specifications).forEach(([label, value]) => {
+            const specItem = document.createElement('div');
+            specItem.className = 'spec-item';
+            specItem.innerHTML = `
+                <span class="spec-label">${label}:</span>
+                <span class="spec-value">${value}</span>
+            `;
+            specsGrid.appendChild(specItem);
+        });
+    }
+}
+
 
     }
 
