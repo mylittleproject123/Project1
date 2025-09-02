@@ -987,7 +987,7 @@ iphone16e: {
     variants: {
         black: {
             name: "Black",
-            images: ["https://m.media-amazon.com/images/I/51H8+zCj2cL._AC_SX425_.jpg"]
+            images: ["https://m.media-amazon.com/images/I/51H8+zCj2cL._AC_SX569_.jpg"]
         },
         white: {
             name: "White",
