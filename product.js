@@ -874,8 +874,8 @@ const productDatabase = {
         }
     },
     memoryOptions: {
-        "256GB": { price: 769, originalPrice: 1000 },
-        "512GB": { price: 819, originalPrice: 1050 },
+        "256GB": { price: 769, originalPrice: 890 },
+        "512GB": { price: 819, originalPrice: 950 },
         "1TB": { price: 869, originalPrice: 1100 }
     },
     features: [
@@ -917,8 +917,8 @@ const productDatabase = {
         teal: { name: "Teal", images: ["https://m.media-amazon.com/images/I/71dAfxOFDuL._AC_SX425_.jpg"] }
     },
     memoryOptions: {
-        "128GB": { price: 529, originalPrice: 599 },
-        "256GB": { price: 599, originalPrice: 679 }
+        "128GB": { price: 635, originalPrice: 699 },
+        "256GB": { price: 765, originalPrice: 799 }
     },
     features: [
         { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
@@ -954,8 +954,8 @@ iphone15promax: {
         }
     },
     memoryOptions: {
-        "256GB": { price: 649, originalPrice: 899 },
-        "512GB": { price: 749, originalPrice: 999 }
+        "256GB": { price: 649, originalPrice: 799 },
+        "512GB": { price: 749, originalPrice: 849 }
     },
     features: [
         { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
@@ -995,8 +995,8 @@ iphone16e: {
         }
     },
     memoryOptions: {
-        "128GB": { price: 410, originalPrice: 599 },
-        "256GB": { price: 470, originalPrice: 699 }
+        "128GB": { price: 539, originalPrice: 599 },
+        "256GB": { price: 619, originalPrice: 699 }
     },
     features: [
         { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
@@ -1031,8 +1031,8 @@ iphone15: {
         }
     },
     memoryOptions: {
-        "128GB": { price: 579, originalPrice: 749 },
-        "256GB": { price: 679, originalPrice: 849 }
+        "128GB": { price: 519, originalPrice: 649 },
+        "256GB": { price: 599, originalPrice: 849 }
     },
     features: [
         { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
@@ -1068,8 +1068,8 @@ iphone14promax: {
         }
     },
     memoryOptions: {
-        "128GB": { price: 429, originalPrice: 699 },
-        "256GB": { price: 529, originalPrice: 799 }
+        "256GB": { price: 429, originalPrice: 699 },
+        "512GB": { price: 579, originalPrice: 799 }
     },
     features: [
         { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
@@ -1096,7 +1096,7 @@ iphone13promax: {
     name: t("iphone13promax_name"),
     description: t("iphone_desc"),
     price: 359,
-    originalPrice: 599,
+    originalPrice: 399,
     discount: 40,
     category: "phone",
     variants: {
@@ -1107,7 +1107,7 @@ iphone13promax: {
     },
     memoryOptions: {
         "128GB": { price: 359, originalPrice: 599 },
-        "256GB": { price: 459, originalPrice: 699 }
+        "256GB": { price: 399, originalPrice: 699 }
     },
     features: [
         { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
@@ -1132,7 +1132,7 @@ iphone12promax: {
     name: t("iphone12promax_name"),
     description: t("iphone_desc"),
     price: 219,
-    originalPrice: 499,
+    originalPrice: 299,
     discount: 56,
     category: "phone",
     variants: {
@@ -1142,8 +1142,8 @@ iphone12promax: {
         }
     },
     memoryOptions: {
-        "128GB": { price: 219, originalPrice: 499 },
-        "256GB": { price: 319, originalPrice: 599 }
+        "256GB": { price: 219, originalPrice: 299 },
+        "512GB": { price: 319, originalPrice: 399 }
     },
     features: [
         { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
@@ -1255,9 +1255,9 @@ galaxys25ultra: {
         }
     },
     memoryOptions: {
-        "256GB": { price: 1299, originalPrice: 1659 },
-        "512GB": { price: 1399, originalPrice: 1759 },
-        "1TB":   { price: 1499, originalPrice: 1859 }
+        "256GB": { price: 719, originalPrice: 1659 },
+        "512GB": { price: 829, originalPrice: 1759 },
+        "1TB":   { price: 949, originalPrice: 1859 }
     },
     features: [
         { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -1295,8 +1295,8 @@ galaxys25: {
         }
     },
     memoryOptions: {
-        "128GB": { price: 899, originalPrice: 1099 },
-        "256GB": { price: 999, originalPrice: 1199 }
+        "128GB": { price: 599, originalPrice: 1099 },
+        "256GB": { price: 649, originalPrice: 1199 }
     },
     features: [
         { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -1336,8 +1336,9 @@ galaxys24ultra: {
         }
     },
     memoryOptions: {
-        "256GB": { price: 479, originalPrice: 600 },
-        "512GB": { price: 524, originalPrice: 630 }
+        "256GB": { price: 599, originalPrice: 600 },
+        "512GB": { price: 624, originalPrice: 630 },
+		"1TB": { price: 699, originalPrice: 600 },
     },
     features: [
         { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -1360,7 +1361,7 @@ galaxys24ultra: {
 galaxys24: {
     name: t("galaxys24_name"),
     description: t("samsung_desc"),
-    price: 749,
+    price: 529,
     originalPrice: 999,
     discount: 25,
     category: "phone",
@@ -1375,8 +1376,8 @@ galaxys24: {
         }
     },
     memoryOptions: {
-        "128GB": { price: 749, originalPrice: 999 },
-        "256GB": { price: 799, originalPrice: 1049 }
+        "128GB": { price: 449, originalPrice: 999 },
+        "256GB": { price: 529, originalPrice: 1049 }
     },
     features: [
         { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -1412,7 +1413,7 @@ galaxys24plus: {
     }
   },
   memoryOptions: {
-    "256GB": { price: 699, originalPrice: 849 }
+    "256GB": { price: 559, originalPrice: 649 }
   },
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -1436,8 +1437,8 @@ galaxys24plus: {
 galaxys23ultra: {
   name: t("galaxys23ultra_name"),
   description: t("samsung_desc"),
-  price: 599,
-  originalPrice: 899,
+  price: 329,
+  originalPrice: 400,
   discount: 33,
   category: "phone",
   variants: {
@@ -1447,8 +1448,8 @@ galaxys23ultra: {
     }
   },
   memoryOptions: {
-    "256GB": { price: 599, originalPrice: 899 },
-    "512GB": { price: 699, originalPrice: 999 }
+    "256GB": { price: 329, originalPrice: 399 },
+    "512GB": { price: 379, originalPrice: 439 }
   },
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -1487,8 +1488,8 @@ galaxys23ultra: {
     }
   },
   memoryOptions: {
-    "128GB": { price: 499, originalPrice: 699 },
-    "256GB": { price: 549, originalPrice: 749 }
+    "128GB": { price: 499, originalPrice: 249 },
+    "256GB": { price: 549, originalPrice: 279 }
   },
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -1524,7 +1525,7 @@ galaxys22ultra: {
     }
   },
   memoryOptions: {
-    "256GB": { price: 499, originalPrice: 799 }
+    "256GB": { price: 229, originalPrice: 300 }
   },
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -1558,8 +1559,8 @@ galaxys22: {
     }
   },
   memoryOptions: {
-    "128GB": { price: 379, originalPrice: 649 },
-    "256GB": { price: 419, originalPrice: 699 }
+    "128GB": { price: 149, originalPrice: 649 },
+    "256GB": { price: 179, originalPrice: 699 }
   },
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -1599,8 +1600,8 @@ galaxys22: {
     }
   },
   memoryOptions: {
-    "128GB": { price: 389, originalPrice: 499 },
-    "256GB": { price: 459, originalPrice: 579 }
+    "128GB": { price: 349, originalPrice: 499 },
+    "256GB": { price: 399, originalPrice: 579 }
   },
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -1639,8 +1640,8 @@ galaxya35: {
     }
   },
   memoryOptions: {
-    "128GB": { price: 249, originalPrice: 329 },
-    "256GB": { price: 299, originalPrice: 379 }
+    "128GB": { price: 199, originalPrice: 329 },
+    "256GB": { price: 229, originalPrice: 379 }
   },
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -1720,8 +1721,8 @@ galaxya05s: {
     }
   },
   memoryOptions: {
-    "64GB": { price: 199, originalPrice: 279 },
-    "128GB": { price: 239, originalPrice: 319 }
+    "64GB": { price: 129, originalPrice: 279 },
+    "128GB": { price: 149, originalPrice: 319 }
   },
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -1760,8 +1761,8 @@ galaxym15: {
     }
   },
   memoryOptions: {
-    "64GB": { price: 229, originalPrice: 299 },
-    "128GB": { price: 269, originalPrice: 349 }
+    "64GB": { price: 169, originalPrice: 299 },
+    "128GB": { price: 209, originalPrice: 349 }
   },
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -1801,8 +1802,8 @@ galaxym14: {
     }
   },
   memoryOptions: {
-    "64GB": { price: 199, originalPrice: 269 },
-    "128GB": { price: 239, originalPrice: 319 }
+    "64GB": { price: 139, originalPrice: 269 },
+    "128GB": { price: 179, originalPrice: 319 }
   },
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -1841,9 +1842,9 @@ redmi14c: {
     }
   },
   memoryOptions: {
-    "4GB + 128GB": { price: 169, originalPrice: 199 },
-    "6GB + 128GB": { price: 199, originalPrice: 229 },
-    "8GB + 256GB": { price: 229, originalPrice: 269 }
+    "4GB + 128GB": { price: 129, originalPrice: 199 },
+    "6GB + 128GB": { price: 179, originalPrice: 229 },
+    "8GB + 256GB": { price: 209, originalPrice: 269 }
   },
   features: [
     { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") },
@@ -1878,8 +1879,8 @@ redminote14pro5g: {
     }
   },
   memoryOptions: {
-    "8GB + 256GB": { price: 299, originalPrice: 399 },
-    "12GB + 512GB": { price: 359, originalPrice: 479 }
+    "8GB + 256GB": { price: 249, originalPrice: 399 },
+    "12GB + 512GB": { price: 319, originalPrice: 479 }
   },
   features: [
     { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
@@ -1914,7 +1915,7 @@ redminote14pro5g: {
     }
   },
   memoryOptions: {
-    "8GB + 256GB": { price: 249, originalPrice: 329 }
+    "8GB + 256GB": { price: 179, originalPrice: 329 }
   },
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -1934,12 +1935,151 @@ redminote14pro5g: {
     [t("spec_battery_health")]: t("spec_battery_health_value")
   }
 },
+redminote14pro5g: {
+  name: t("redminote14pro5g_name"),
+  description: t("xiaomi_desc"),
+  price: 199,
+  originalPrice: 249,
+  discount: 20,
+  category: "phone",
+  variants: {
+    black: {
+      name: t("color_black"),
+      images: ["https://m.media-amazon.com/images/I/51AelgZWpaL.__AC_SX300_SY300_QL70_FMwebp_.jpg"]
+    }
+  },
+  memoryOptions: {
+    "8GB + 256GB": { price: 199, originalPrice: 249 }
+  },
+  features: [
+    { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
+    { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
+    { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") },
+    { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") }
+  ],
+  specifications: {
+    [t("spec_display")]: "6.67\" AMOLED, 120 Hz",
+    [t("spec_processor")]: "Snapdragon 7 Gen 3",
+    [t("spec_storage")]: "256 GB",
+    [t("spec_ram")]: "8 GB",
+    [t("spec_main_camera")]: "200 MP + 8 MP + 2 MP",
+    [t("spec_battery")]: "5 000 mAh, 67 W",
+    [t("spec_connectivity")]: "5G, Wi‑Fi 6",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+},
 
+	redminote14: {
+  name: t("redminote14_name"),
+  description: t("xiaomi_desc"),
+  price: 207,
+  originalPrice: 259,
+  discount: 20,
+  category: "phone",
+  variants: {
+    gray: {
+      name: t("color_gray"),
+      images: ["https://m.media-amazon.com/images/I/81L4MbrSEBL.__AC_SX300_SY300_QL70_FMwebp_.jpg"]
+    }
+  },
+  memoryOptions: {
+    "6GB + 128GB": { price: 207, originalPrice: 259 }
+  },
+  features: [
+    { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
+    { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
+    { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") },
+    { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") }
+  ],
+  specifications: {
+    [t("spec_display")]: "6.67\" AMOLED, 120 Hz",
+    [t("spec_processor")]: "MediaTek Helio G99",
+    [t("spec_storage")]: "128 GB",
+    [t("spec_ram")]: "6 GB",
+    [t("spec_main_camera")]: "108 MP + 2 MP",
+    [t("spec_battery")]: "5 000 mAh, 33 W",
+    [t("spec_connectivity")]: "4G, Wi‑Fi 5",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+},
+redminote13pro: {
+  name: t("redminote13pro_name"),
+  description: t("xiaomi_desc"),
+  price: 223,
+  originalPrice: 279,
+  discount: 20,
+  category: "phone",
+  variants: {
+    black: {
+      name: t("color_black"),
+      images: ["https://m.media-amazon.com/images/I/71ZjanVe7oL.__AC_SX300_SY300_QL70_FMwebp_.jpg"]
+    }
+  },
+  memoryOptions: {
+    "8GB + 256GB": { price: 223, originalPrice: 279 }
+  },
+  features: [
+    { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
+    { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
+    { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") },
+    { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") }
+  ],
+  specifications: {
+    [t("spec_display")]: "6.67\" AMOLED, 120 Hz",
+    [t("spec_processor")]: "Snapdragon 7s Gen 2",
+    [t("spec_storage")]: "256 GB",
+    [t("spec_ram")]: "8 GB",
+    [t("spec_main_camera")]: "200 MP + 8 MP + 2 MP",
+    [t("spec_battery")]: "5 100 mAh, 67 W",
+    [t("spec_connectivity")]: "5G, Wi‑Fi 6",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+},
+
+	redminote13: {
+  name: t("redminote13_name"),
+  description: t("xiaomi_desc"),
+  price: 183,
+  originalPrice: 229,
+  discount: 20,
+  category: "phone",
+  variants: {
+    blue: {
+      name: t("color_blue"),
+      images: ["https://m.media-amazon.com/images/I/31WbsYNtasL._AC_SX569_.jpg"]
+    }
+  },
+  memoryOptions: {
+    "6GB + 128GB": { price: 183, originalPrice: 229 }
+  },
+  features: [
+    { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
+    { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
+    { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") },
+    { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") }
+  ],
+  specifications: {
+    [t("spec_display")]: "6.6\" AMOLED, 120 Hz",
+    [t("spec_processor")]: "MediaTek Dimensity 6100+",
+    [t("spec_storage")]: "128 GB",
+    [t("spec_ram")]: "6 GB",
+    [t("spec_main_camera")]: "100 MP + 2 MP",
+    [t("spec_battery")]: "5 000 mAh, 33 W",
+    [t("spec_connectivity")]: "5G, Wi‑Fi 5",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+},
+
+	
         airpods3: {
   name: t("airpods3_name"),
   description: t("airpods_desc"),
-  price: 149,
-  originalPrice: 179,
+  price: 99,
+  originalPrice: 129,
   discount: 17,
   category: "audio",
   variants: {
@@ -1971,7 +2111,7 @@ redminote14pro5g: {
 airpods4: {
   name: t("airpods4_name"),
   description: t("airpods_desc"),
-  price: 179,
+  price: 129,
   originalPrice: 199,
   discount: 10,
   category: "audio",
@@ -2016,7 +2156,7 @@ earphones: {
 jblheadphones: {
   name: t("jblheadphones_name"),
   description: t("jbl_headphones_desc"),
-  price: 49,
+  price: 39,
   originalPrice: 79,
   discount: 38,
   category: "audio",
