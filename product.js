@@ -1114,7 +1114,7 @@ iphone13promax: {
       images: ["https://m.media-amazon.com/images/I/51UtM-A3fdL._AC_SX569_.jpg"]
     },
     sierraBlue: {
-      name: "Sierra_blue",
+      name: "Sierra Blue",
       images: ["https://m.media-amazon.com/images/I/51UuPZLMaCL._AC_SX569_.jpg"]
     }
   },
@@ -1296,7 +1296,7 @@ galaxys25ultra: {
 },
 
 galaxys25: {
-    name: t("galaxys25_name"),
+    name: "Samsung Galaxy S 25",
     description: t("samsung_desc"),
     price: 899,
     originalPrice: 1099,
@@ -1377,7 +1377,7 @@ galaxys24ultra: {
     }
 },
 galaxys24: {
-    name: t("galaxys24_name"),
+    name: "Samsung Galaxy S 24",
     description: t("samsung_desc"),
     price: 529,
     originalPrice: 999,
@@ -1453,7 +1453,7 @@ galaxys24plus: {
 },
 
 galaxys23ultra: {
-  name: t("galaxys23ultra_name"),
+  name: "galaxys23ultra_name"),
   description: t("samsung_desc"),
   price: 329,
   originalPrice: 400,
@@ -1493,7 +1493,7 @@ galaxys23ultra: {
 },
 
 	galaxys23: {
-  name: t("galaxys23_name"),
+  name: "Samsung Galaxy S 23",
   description: t("samsung_desc"),
   price: 499,
   originalPrice: 699,
@@ -1568,7 +1568,7 @@ galaxys22ultra: {
   }
 },
 galaxys22: {
-  name: t("galaxys22_name"),
+  name: "Samsung Galaxy S 22"),
   description: t("samsung_desc"),
   price: 379,
   originalPrice: 649,
