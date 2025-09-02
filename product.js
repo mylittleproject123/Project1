@@ -2228,13 +2228,8 @@ if (specsGrid) {
             `;
             specsGrid.appendChild(specItem);
         });
-    }
-}
 
-
-    }
-
-
+		
     // Setup add to cart functionality
     setupAddToCart(product);
     
@@ -2243,6 +2238,13 @@ if (specsGrid) {
     
     // Initialize checkout functionality
     initializeCheckout();
+
+    }
+}
+
+
+    }
+
 
 
 // Validation function to check if all required selections are made
