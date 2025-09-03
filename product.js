@@ -1119,8 +1119,8 @@ iphone13promax: {
     }
   },
   memoryOptions: {
-    "128GB": { price: 359, originalPrice: 599 },
-    "256GB": { price: 399, originalPrice: 699 }
+    "256GB": { price: 359, originalPrice: 599 },
+    "512GB": { price: 399, originalPrice: 699 }
   },
   features: [
     { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
