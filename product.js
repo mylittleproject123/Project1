@@ -954,8 +954,8 @@ iphone15promax: {
         }
     },
     memoryOptions: {
-        "256GB": { price: 649, originalPrice: 799 },
-        "512GB": { price: 749, originalPrice: 849 }
+        "256GB": { price: 629, originalPrice: 699 },
+        "512GB": { price: 729, originalPrice: 799 }
     },
     features: [
         { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
