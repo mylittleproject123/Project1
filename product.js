@@ -1510,8 +1510,8 @@ galaxys23ultra: {
     }
   },
   memoryOptions: {
-    "256GB": { price: 499, originalPrice: 249 },
-    "512GB": { price: 549, originalPrice: 279 }
+    "256GB": { price: 249, originalPrice: 299 },
+    "512GB": { price: 279, originalPrice: 329 }
   },
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
