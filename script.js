@@ -1567,12 +1567,16 @@ const checkoutHTML = `
                 ${currentCountry !== 'nicaragua' ? `<p style="margin-top:1rem;font-size:0.9rem;color:var(--text-light);">${t("bank_transfer_note")}</p>` : ''}
             </div>
 
-         <div id="bank-transfer-details" class="payment-details" style="display:none;">
-  <div class="alert-message" style="padding:1.2rem; background:#ffe5e5; color:#b30000; border-radius:8px; text-align:center;">
-    Bank transfer is currently not available.<br>
-    Please use credit card payment instead.
+        <div id="bank-transfer-details" class="payment-details" style="display:none;">
+  <div style="padding:1.2rem; background:#e6f7ff; color:#003366; border-radius:8px; text-align:center;">
+    <strong>Bank Transfer Details</strong><br><br>
+    <div>Account Name: <strong>Duane Alonzo</strong></div>
+    <div>Account Number: <strong>011000001423</strong></div>
+    <div>Bank Name: <strong>JMMB Bank</strong></div>
+    <div>Account Type: <strong>Savings</strong></div>
   </div>
 </div>
+
 
     <p class="transfer-instructions">${t("transfer_instructions")}</p>
 </div>
