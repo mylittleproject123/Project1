@@ -1191,8 +1191,8 @@ iphone11promax: {
         }
     },
     memoryOptions: {
-        "64GB": { price: 149, originalPrice: 399 },
-        "128GB": { price: 199, originalPrice: 449 }
+        "128GB": { price: 149, originalPrice: 399 },
+        "256GB": { price: 199, originalPrice: 449 }
     },
     features: [
         { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
