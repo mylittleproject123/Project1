@@ -1346,9 +1346,9 @@ galaxyS25: {
     discount: 18,
     category: "phone",
     variants: {
-        black: {
-            name: "Black",
-            images: ["https://m.media-amazon.com/images/I/71V--WZVUIL._AC_SX569_.jpg"]
+        silver: {
+            name: "Silver",
+            images: ["https://m.media-amazon.com/images/I/4148hrqqC+L._AC_SX425_.jpg"]
         },
         blue: {
             name: "Blue",
