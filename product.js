@@ -1120,8 +1120,8 @@ iphone14: {
   },
 
   memoryOptions: {
-    "256GB": { price: 399, originalPrice: 599 },
-    "512GB": { price: 549, originalPrice: 749 }
+    "256GB": { price: 379, originalPrice: 599 },
+    "512GB": { price: 429, originalPrice: 749 }
   },
 
   features: [
