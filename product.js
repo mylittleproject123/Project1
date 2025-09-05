@@ -1100,6 +1100,49 @@ iphone14promax: {
 },
 
 
+iphone14: {
+  name: "iPhone 14",
+  description: t("iphone_desc"),
+  price: 399,
+  originalPrice: 599,
+  discount: 33,
+  category: "phone",
+
+  variants: {
+    black: {
+      name: "Black",
+      images: ["https://m.media-amazon.com/images/I/51Yz9FaNIGL._AC_SL1000_.jpg"]
+    },
+    starlight: {
+      name: "Starlight",
+      images: ["https://m.media-amazon.com/images/I/51UE4EzWMDL._AC_SY606_.jpg"]
+    }
+  },
+
+  memoryOptions: {
+    "256GB": { price: 399, originalPrice: 599 },
+    "512GB": { price: 549, originalPrice: 749 }
+  },
+
+  features: [
+    { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
+    { icon: "fas fa-microchip", title: t("iphone_feature_chip_title"), desc: t("iphone_feature_chip_desc") },
+    { icon: "fas fa-camera", title: t("iphone_feature_camera_title"), desc: t("iphone_feature_camera_desc") },
+    { icon: "fas fa-mobile-alt", title: t("iphone_feature_display_title"), desc: t("iphone_feature_display_desc") }
+  ],
+
+  specifications: {
+    [t("spec_display")]: "6.1\" OLED",
+    [t("spec_processor")]: "A15 Bionic",
+    [t("spec_storage")]: "256‑512GB",
+    [t("spec_ram")]: "6GB",
+    [t("spec_main_camera")]: "12MP Dual Camera",
+    [t("spec_battery")]: "Approx. 3279 mAh",
+    [t("spec_connectivity")]: "5G, Wi‑Fi 6",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+},
 
 iphone13promax: {
   name: t("iphone13promax_name"),
