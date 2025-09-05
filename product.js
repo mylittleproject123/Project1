@@ -1352,7 +1352,7 @@ galaxyS25: {
         },
         blue: {
             name: "Blue",
-            images: ["https://m.media-amazon.com/images/I/71fM0qPqY6L._AC_SX569_.jpg"]
+            images: ["https://m.media-amazon.com/images/I/61C17Al0dhL._AC_SX425_.jpg"]
         }
     },
     memoryOptions: {
