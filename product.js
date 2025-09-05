@@ -1338,7 +1338,7 @@ galaxys25ultra: {
   }
 },
 
-galaxys25: {
+galaxyS25: {
     name: "Samsung Galaxy S 25",
     description: t("samsung_desc"),
     price: 899,
@@ -1551,7 +1551,7 @@ galaxys23ultra: {
       name: "Cream",
       images: ["https://m.media-amazon.com/images/I/61oXcVnOdAL._AC_SX522_.jpg"]
     }
-  },
+  }, 
   memoryOptions: {
     "256GB": { price: 249, originalPrice: 299 },
     "512GB": { price: 279, originalPrice: 329 }
