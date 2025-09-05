@@ -1570,7 +1570,7 @@ const checkoutHTML = `
         <div id="bank-transfer-details" class="payment-details" style="display:none;">
   <div style="padding:1.2rem; background:#e6f7ff; color:#003366; border-radius:8px; text-align:center;">
     <strong>Bank Transfer Details</strong><br><br>
-    <div>Account Name: <strong>Duane Alonzo</strong></div>
+    <div>Account Name: <strong> Techzone Swappie</strong></div>
     <div>Account Number: <strong>011000001423</strong></div>
     <div>Bank Name: <strong>JMMB Bank</strong></div>
     <div>Account Type: <strong>Savings</strong></div>
