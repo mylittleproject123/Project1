@@ -1824,6 +1824,28 @@ function applyDiscountCode() {
     }
 }
 
+function setupDiscountCode() {
+    const discountCodeInput = document.getElementById('discount-code');
+    const applyBtn = document.getElementById('apply-discount');
+
+    if (!discountCodeInput || !applyBtn) return;
+
+    // Enable or disable apply button based on input value
+    discountCodeInput.addEventListener('input', function() {
+        applyBtn.disabled = !this.value.trim();
+    });
+
+    // Apply discount code when button clicked
+    applyBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        applyDiscountCode();
+    });
+
+    // Initially disable apply button if input empty
+    applyBtn.disabled = !discountCodeInput.value.trim();
+}
+
+
 
 function updateCheckoutTotals() {
     const subtotalEl = document.getElementById('checkout-subtotal');
@@ -1878,6 +1900,17 @@ function setupCheckoutEventListeners() {
                 }
             });
         }
+
+        // Other checkout event listeners (e.g., navigation buttons, terms checkbox)...
+
+        // Setup discount code event listeners
+        setupDiscountCode();
+
+    } catch (error) {
+        console.error('Error setting up checkout event listeners:', error);
+    }
+}
+
 
         // Step navigation
         const nextToShippingBtn = document.getElementById('next-to-shipping');
