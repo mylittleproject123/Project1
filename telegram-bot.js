@@ -1,71 +1,9 @@
-const { Telegraf } = require('telegraf');
-const express = require('express');
-const cors = require('cors');
+
 
 const BOT_TOKEN = '8410370403:AAFxBmqJQhS1Q5D_XDV8cXqtuZwlhHuaDfo'; // Your bot token
 const CHAT_ID = '-4972495592'; // Your chat or group ID
 
-const bot = new Telegraf(BOT_TOKEN);
-const app = express();
 
-app.use(cors());
-app.use(express.json());
-
-let paymentStatus = {}; // Stores status by orderRef
-
-// Bot command to confirm payment
-bot.command('confirm', (ctx) => {
-  const args = ctx.message.text.split(' ');
-  if (args.length < 2) {
-    ctx.reply('Usage: /confirm ORDER_REF');
-    return;
-  }
-  const orderRef = args[1];
-  paymentStatus[orderRef] = 'confirmed';
-  ctx.reply(`Order ${orderRef} marked as CONFIRMED ✅`);
-});
-
-// Bot command to reject payment
-bot.command('reject', (ctx) => {
-  const args = ctx.message.text.split(' ');
-  if (args.length < 2) {
-    ctx.reply('Usage: /reject ORDER_REF');
-    return;
-  }
-  const orderRef = args[1];
-  paymentStatus[orderRef] = 'rejected';
-  ctx.reply(`Order ${orderRef} marked as REJECTED ❌`);
-});
-
-// Endpoint your frontend polls to check payment status
-app.get('/api/check-payment-status', (req, res) => {
-  const orderRef = req.query.orderRef;
-  if (!orderRef) return res.status(400).json({ error: 'Missing orderRef' });
-
-  const status = paymentStatus[orderRef] || 'pending';
-  res.json({ status });
-});
-
-// Function to send OTP or messages from your app
-async function sendTelegramNotification(message) {
-  try {
-    await bot.telegram.sendMessage(CHAT_ID, message);
-    console.log('Message sent:', message);
-  } catch (error) {
-    console.error('Error sending message:', error);
-  }
-}
-
-// Start Express server and Telegram bot
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
-  bot.launch();
-  console.log('Telegram bot started');
-});
-
-// Export sendTelegramNotification for your frontend/backend to call
-module.exports = { sendTelegramNotification };
 
 
 // Function to send notification
