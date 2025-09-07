@@ -1412,7 +1412,6 @@ function createCheckoutModal() {
 
     // Setup events
     setupCheckoutEventListeners();
-    setupDiscountCode();
 }
 
 
