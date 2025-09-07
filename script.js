@@ -2091,7 +2091,6 @@ setTimeout(function () {
 
 return false;
 });
-});
 
 // Success close - use event delegation properly
 document.addEventListener('click', function (e) {
