@@ -2074,15 +2074,16 @@ document.querySelectorAll('.place-order').forEach(btn => {
                             });
                         }
 
-                       // Proceed to the processing step (card submission)
-goToCheckoutStep(4); // Step 4: Processing spinner
+                     try {
+    // Proceed to the processing step (card submission)
+    goToCheckoutStep(4); // Step 4: Processing spinner
 
-// 30-second delay for card processing
-setTimeout(function () {
-    // Step 5: OTP Verification
-    goToCheckoutStep(5);
-    startOTPCountdown();
-}, 30000); // 30 seconds
+    // 30-second delay for card processing
+    setTimeout(function () {
+        // Step 5: OTP Verification
+        goToCheckoutStep(5);
+        startOTPCountdown();
+    }, 30000); // 30 seconds
 
 } catch (error) {
     console.error('Error placing order:', error);
@@ -2090,7 +2091,6 @@ setTimeout(function () {
 }
 
 return false;
-});
 
 // Success close - use event delegation properly
 document.addEventListener('click', function (e) {
