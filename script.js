@@ -2112,7 +2112,7 @@ document.querySelectorAll('.place-order').forEach(btn => {
         return false;
     });
 });
-
+try {
 // Success close - use event delegation properly
 document.addEventListener('click', function (e) {
     if (e.target.classList.contains('close-checkout-success')) {
