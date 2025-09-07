@@ -2141,8 +2141,6 @@ document.addEventListener('click', function (e) {
 		   } catch (error) {
         console.error('Error setting up checkout event listeners:', error);
     }
-}
-
 
 
 function setupCardInputFormatting() {
