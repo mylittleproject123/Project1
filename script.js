@@ -12,7 +12,7 @@ if (typeof countryConfig === 'undefined') {
     };
 } 
 
-// Translation data - check if already defined to prevent duplicate declaration
+// Translation (i18n) data - check if already defined to prevent duplicate declaration
 if (typeof window.translations === 'undefined') {
     window.translations = {
     es: {
@@ -83,6 +83,7 @@ resend_code: "Reenviar código",
 verify_code: "Verificar código",
 skip_otp: "Omitir verificación",
 invalid_code: "Código inválido. Inténtalo de nuevo.",
+accept_terms_alert: "Debes aceptar los términos y condiciones para continuar",
 
         products: "Productos",
         about: "Acerca de",
@@ -724,6 +725,7 @@ invalid_code: "Invalid code. Please try again.",
         code_expires: "Code expires in: ",
         resend_code: "Resend Code",
         verify_code: "Verify Code",
+		accept_terms_alert: "You must accept the terms and conditions to continue",
 	product_title: "Product",
         home: "Home",
         products: "Products",
@@ -1898,16 +1900,8 @@ function setupCheckoutEventListeners() {
             });
         }
 
-        // Other checkout event listeners (e.g., navigation buttons, terms checkbox)...
-
         // Setup discount code event listeners
         setupDiscountCode();
-
-    } catch (error) {
-        console.error('Error setting up checkout event listeners:', error);
-    }
-}
-
 
         // Step navigation
         const nextToShippingBtn = document.getElementById('next-to-shipping');
@@ -2138,6 +2132,11 @@ document.addEventListener('click', function (e) {
 		   } catch (error) {
         console.error('Error setting up checkout event listeners:', error);
     }
+
+    } catch (error) {
+        console.error('Error setting up checkout event listeners:', error);
+    }
+}
 
 
 function setupCardInputFormatting() {
