@@ -1403,22 +1403,8 @@ function createCheckoutModal() {
     checkoutData.total = subtotal;
     checkoutData.orderNumber = `ORDER-${Date.now()}`;
 
-    // Insert HTML
-    modal.innerHTML = checkoutHTML; // <-- must be here, where modal exists
-
-    // Add modal to overlay
-    overlay.appendChild(modal);
-    document.body.appendChild(overlay);
-
-    // Setup events
-    setupCheckoutEventListeners();
-}
-
-
-// Calculate subtotal before using it in template
-const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-
-const checkoutHTML = `
+    // Define checkoutHTML inside the function to avoid ReferenceError and use local subtotal
+    const checkoutHTML = `
 <div class="checkout-header">
     <h2>${t("checkout")}</h2>
     <button class="close-checkout">
@@ -1771,6 +1757,17 @@ const checkoutHTML = `
     </div>
 </div>
 `; // End of checkoutHTML
+
+    // Insert HTML
+    modal.innerHTML = checkoutHTML;
+
+    // Add modal to overlay
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+
+    // Setup events
+    setupCheckoutEventListeners();
+}
 
 
 
@@ -3241,4 +3238,3 @@ document.addEventListener('DOMContentLoaded', () => {
 document.querySelector('form').addEventListener('submit', (event) => {
     event.preventDefault(); // stop the default form submission (which reloads the page)
 });
-
