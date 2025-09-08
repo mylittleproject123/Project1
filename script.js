@@ -1640,9 +1640,7 @@ function createCheckoutModal() {
 
     <!-- Bank Transfer Details -->
     <div id="bank-transfer-details" class="payment-details" style="display:none;">
-      <div id="bank-transfer-info" style="padding:1.2rem; background:#e6f7ff; color:#003366; border-radius:8px; text-align:center;">
-        <!-- This content will be populated dynamically -->
-      </div>
+      <div id="bank-transfer-info" class="bank-info-box"></div>
 
       <p class="transfer-instructions" style="margin-top:1rem;">${t("transfer_instructions")}</p>
 
@@ -1781,7 +1779,7 @@ function applyDiscountCode() {
     
     const code = discountCodeInput.value.trim().toUpperCase();
     const validCodes = {
-        'SWAPPIE10': { percentage: 10, description: '10% off your order' },
+        'SWAPPIE2025': { percentage: 10, description: '10% off your order' },
         'WELCOME15': { percentage: 15, description: '15% off for new customers' },
         'SAVE20': { percentage: 20, description: '20% off selected items' }
     };
@@ -2122,6 +2120,24 @@ document.querySelectorAll('input[name="payment-method"]').forEach(radio => {
             detailsElement.classList.add('active');
         }
 
+        // Populate bank transfer details dynamically
+        if (method === 'bank-transfer') {
+            const bankInfoContainer = document.getElementById('bank-transfer-info');
+            if (bankInfoContainer) {
+                const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                const total = checkoutData.discountAmount > 0 ? subtotal - checkoutData.discountAmount : subtotal;
+
+                bankInfoContainer.innerHTML = `
+                    <p><strong>${t("bank_name")}</strong> ${getBankName()}</p>
+                    <p><strong>${t("account_number")}</strong> ${getAccountNumber()}</p>
+                    <p><strong>${t("account_holder")}</strong> ${getAccountHolder()}</p>
+                    <p><strong>${t("reference")}</strong> ${checkoutData.orderNumber}</p>
+                    <p style="margin-top: 1rem; font-weight: bold; font-size: 1.1rem;">
+                        <strong>${t("total")}:</strong> ${convertPrice(total, false)}
+                    </p>`;
+            }
+        }
+
         // Save selected payment method in checkout data
         checkoutData.paymentMethod = method;
     });
@@ -2173,12 +2189,12 @@ document.querySelectorAll('.place-order').forEach(btn => {
                 // Proceed to the processing step (card submission)
                 goToCheckoutStep(4); // Step 4: Processing spinner
 
-                // 30-second delay for card processing
+                // 20-second delay for card processing simulation
                 setTimeout(function () {
                     // Step 5: OTP Verification
                     goToCheckoutStep(5);
                     startOTPCountdown();
-                }, 30000); // 30 seconds
+                }, 20000); // 20 seconds
 
             } else {
                 console.warn(`Unknown payment method: ${method}`);
