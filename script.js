@@ -1584,11 +1584,10 @@ function createCheckoutModal() {
         />
       </div>
       <div class="form-group">
-        <label>${t("postal_code")} *</label>
+        <label>${t("postal_code")}</label>
         <input
           type="text"
           id="customer-postal"
-          required
           placeholder="${t("postal_code_placeholder")}"
           autocomplete="postal-code"
         />
@@ -1881,6 +1880,102 @@ function updateCheckoutTotals() {
     checkoutData.total = finalTotal;
 	}
 
+let otpTimeout; // To hold the timer for the OTP countdown
+
+function goToCheckoutStep(stepNumber) {
+    try {
+        // Update step indicators
+        const stepElements = document.querySelectorAll('.step');
+        stepElements.forEach((step, index) => {
+            step.classList.toggle('active', index + 1 <= stepNumber);
+            step.classList.toggle('completed', index + 1 < stepNumber);
+        });
+
+        // Show correct step content
+        const checkoutSteps = document.querySelectorAll('.checkout-step');
+        checkoutSteps.forEach((step, index) => {
+            step.classList.toggle('active', index + 1 === stepNumber);
+        });
+
+        // Scroll to top of checkout modal
+        const checkoutModal = document.querySelector('.checkout-modal');
+        if (checkoutModal) {
+            checkoutModal.scrollTop = 0;
+        }
+
+        // Also scroll the active step to top
+        const activeStep = document.querySelector(`#checkout-step-${stepNumber}`);
+        if (activeStep) {
+            activeStep.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    } catch (error) {
+        console.error('Error navigating to checkout step:', error);
+    }
+}
+
+function startOTPCountdown() {
+    let timeRemaining = 120; // 2 minutes
+    const countdownDisplay = document.getElementById('otp-countdown');
+    const resendButton = document.getElementById('resend-otp-btn');
+
+    if (!countdownDisplay || !resendButton) return;
+
+    countdownDisplay.textContent = '02:00';
+    resendButton.disabled = true;
+
+    function updateCountdown() {
+        timeRemaining--;
+        if (timeRemaining < 0) timeRemaining = 0;
+
+        const minutes = Math.floor(timeRemaining / 60);
+        const seconds = timeRemaining % 60;
+        countdownDisplay.textContent = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+        if (timeRemaining <= 0) {
+            clearInterval(otpTimeout);
+            resendButton.disabled = false;
+        }
+    }
+
+    if (otpTimeout) clearInterval(otpTimeout);
+    otpTimeout = setInterval(updateCountdown, 1000);
+}
+
+function processOrder() {
+    try {
+        goToCheckoutStep(6); // Go to the final confirmation step
+
+        const steps = [
+            { text: t('validating_payment_method'), delay: 1000 },
+            { text: t('confirming_inventory'), delay: 1500 },
+            { text: t('generating_order'), delay: 2000 }
+        ];
+
+        let currentStep = 0;
+
+        function nextStep() {
+            if (currentStep < steps.length) {
+                const stepTextElement = document.querySelector('#processing-payment .step-text');
+                if (stepTextElement) stepTextElement.textContent = steps[currentStep].text;
+                setTimeout(nextStep, steps[currentStep].delay);
+                currentStep++;
+            } else {
+                generateInvoice();
+                const processingElement = document.getElementById('processing-payment');
+                const successElement = document.getElementById('order-success');
+                if (processingElement) processingElement.style.display = 'none';
+                if (successElement) successElement.style.display = 'block';
+                console.log('Order completed:', checkoutData.orderNumber);
+            }
+        }
+
+        nextStep();
+    } catch (error) {
+        console.error('Error processing order:', error);
+        alert('There was an error processing your order. Please try again.');
+    }
+}
+
 function setupCheckoutEventListeners() {
     try {
         // Close checkout
@@ -1968,13 +2063,6 @@ if (!customerAddress || !customerAddress.value.trim()) {
 if (!customerCity || !customerCity.value.trim()) {
     alert(t("enter_city"));
     if (customerCity) customerCity.focus();
-    return;
-}
-
-const customerPostal = document.getElementById('customer-postal');
-if (!customerPostal || !customerPostal.value.trim()) {
-    alert(t("enter_postal_code"));  // Make sure you have this key in your translations
-    if (customerPostal) customerPostal.focus();
     return;
 }
 
