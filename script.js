@@ -86,7 +86,9 @@ invalid_code: "Código inválido. Inténtalo de nuevo.",
 accept_terms_alert: "Debes aceptar los términos y condiciones para continuar",
 invalid_card_number: "Número de tarjeta inválido. Debe tener 16 dígitos.",
 invalid_expiry_date: "Fecha de vencimiento inválida. Debe estar en formato MM/AA.",
-invalid_cvv: "CVV inválido. Debe tener 3 dígitos.",
+invalid_cvv: "CVV inválido. Debe tener 3 o 4 dígitos.",
+invalid_expiry_year: "El año de vencimiento debe ser 2025 o posterior.",
+card_expired: "La tarjeta ha expirado.",
 
         products: "Productos",
         about: "Acerca de",
@@ -633,7 +635,9 @@ skip_otp: "Skip Verification",
 invalid_code: "Invalid code. Please try again.",
 invalid_card_number: "Invalid card number. Must be 16 digits.",
 invalid_expiry_date: "Invalid expiry date. Must be in MM/YY format.",
-invalid_cvv: "Invalid CVV. Must be 3 digits.",
+invalid_cvv: "Invalid CVV. Must be 3 or 4 digits.",
+invalid_expiry_year: "Expiry year must be 2025 or later.",
+card_expired: "Card has expired.",
 
         products: "Products",
         about: "About",
@@ -2255,29 +2259,31 @@ function setupCardInputFormatting() {
 
     if (cardNumberInput) {
         cardNumberInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, ''); // Remove non-digits
-            value = value.substring(0, 16); // Limit to 16 digits
-            value = value.replace(/(\d{4})(?=\d)/g, '$1 '); // Add spaces every 4 digits
-            e.target.value = value;
+            let value = e.target.value.replace(/\D/g, '');
+            value = value.substring(0, 16);
+            let formattedValue = '';
+            for (let i = 0; i < value.length; i++) {
+                if (i > 0 && i % 4 === 0) {
+                    formattedValue += ' ';
+                }
+                formattedValue += value[i];
+            }
+            e.target.value = formattedValue;
         });
     }
 
     if (expiryDateInput) {
         expiryDateInput.addEventListener('input', function(e) {
-            // Automatically format as MM/YY
             let value = e.target.value.replace(/\D/g, '');
             if (value.length > 2) {
-                e.target.value = value.slice(0, 2) + '/' + value.slice(2, 4);
-            } else {
-                e.target.value = value;
+                value = value.substring(0, 2) + '/' + value.substring(2, 4);
             }
+            e.target.value = value;
         });
     }
 
     if (cvvInput) {
-        cvvInput.addEventListener('input', function(e) {
-            e.target.value = e.target.value.replace(/\D/g, '').substring(0, 4); // Only digits, max 4 for Amex
-        });
+        // CVV is limited by maxlength in HTML, no special formatting needed.
     }
 }
 
@@ -2289,33 +2295,44 @@ function validateCardDetails() {
 
     if (!cardErrors) {
         console.error("Card errors element not found in the DOM!");
-        // Prevent submission if the error element is missing, as we can't show errors.
         return false;
     }
 
-  // Card Number: Must be 16 digits
-if (!/^\d{16}$/.test(cardNumber)) {
-    cardErrors.textContent = t("invalid_card_number");
-    cardErrors.style.display = 'block';
-    return false;
-}
+    // Card Number: Must be 16 digits
+    if (!/^\d{16}$/.test(cardNumber)) {
+        cardErrors.textContent = t("invalid_card_number");
+        cardErrors.style.display = 'block';
+        return false;
+    }
 
-// Expiry Date: Must be in MM/YY format
-if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiryDate)) {
-    cardErrors.textContent = t("invalid_expiry_date");
-    cardErrors.style.display = 'block';
-    return false;
-}
+    // Expiry Date: Must be in MM/YY format
+    if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiryDate)) {
+        cardErrors.textContent = t("invalid_expiry_date");
+        cardErrors.style.display = 'block';
+        return false;
+    }
 
-// CVV: Must be 3 digits
-if (!/^\d{3}$/.test(cvv)) {
-    cardErrors.textContent = t("invalid_cvv");
-    cardErrors.style.display = 'block';
-    return false;
-}
+    // Expiry Date: Check if the year is valid and not in the past
+    const [month, year] = expiryDate.split('/');
+    const expiryYear = parseInt(year, 10);
+    const currentYear = new Date().getFullYear() % 100;
 
-cardErrors.style.display = 'none'; // Clear errors if valid
-return true;
+    // Requirement: Year must be 25 or higher
+    if (expiryYear < 25) {
+        cardErrors.textContent = t("invalid_expiry_year");
+        cardErrors.style.display = 'block';
+        return false;
+    }
+
+    // CVV: Must be 3 or 4 digits
+    if (!/^\d{3,4}$/.test(cvv)) {
+        cardErrors.textContent = t("invalid_cvv");
+        cardErrors.style.display = 'block';
+        return false;
+    }
+
+    cardErrors.style.display = 'none'; // Clear errors if valid
+    return true;
 }
 
 // Setup OTP input and submit button behavior
