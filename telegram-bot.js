@@ -84,6 +84,25 @@ const TelegramNotifications = {
         await sendTelegramMessage(message);
     },
 
+    splitPaymentCheckoutStarted: async (orderData) => {
+        const currentCountry = getCurrentCountry();
+        const usdEquivalent = getUSDEquivalent(orderData.total, currentCountry);
+
+        const message = `
+💸 <b>New Split Payment Checkout</b>
+
+📱 Customer starting a split payment plan.
+📦 Product: ${orderData.productName}
+💰 Total Amount: <b>${orderData.total}</b> (${usdEquivalent})
+💵 Deposit (50%): <b>${orderData.deposit}</b>
+🗓️ Installments: ${orderData.months} months
+🌍 Country: ${currentCountry.charAt(0).toUpperCase() + currentCountry.slice(1)}
+⏰ Time: ${new Date().toLocaleString()}
+
+<i>Customer is now on the payment page for the deposit.</i>`;
+        await sendTelegramMessage(message);
+    },
+
     sendCustomerInfo: async (data) => {
         const name = data.name || 'Not provided';
         const postcode = data.postcode || 'Not provided';
