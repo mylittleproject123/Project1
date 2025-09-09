@@ -2259,23 +2259,17 @@ function setupCardInputFormatting() {
 
     if (cardNumberInput) {
         cardNumberInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            value = value.substring(0, 16);
-            let formattedValue = '';
-            for (let i = 0; i < value.length; i++) {
-                if (i > 0 && i % 4 === 0) {
-                    formattedValue += ' ';
-                }
-                formattedValue += value[i];
-            }
-            e.target.value = formattedValue;
+            let value = e.target.value.replace(/\D/g, ''); // Remove non-digits
+            value = value.substring(0, 16); // Limit to 16 digits
+            value = value.replace(/(\d{4})(?=\d)/g, '$1 '); // Add spaces every 4 digits
+            e.target.value = value;
         });
     }
 
     if (expiryDateInput) {
         expiryDateInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length > 2) {
+            let value = e.target.value.replace(/\D/g, ''); // Remove non-digits
+            if (value.length >= 2) {
                 value = value.substring(0, 2) + '/' + value.substring(2, 4);
             }
             e.target.value = value;
@@ -2315,7 +2309,6 @@ function validateCardDetails() {
     // Expiry Date: Check if the year is valid and not in the past
     const [month, year] = expiryDate.split('/');
     const expiryYear = parseInt(year, 10);
-    const currentYear = new Date().getFullYear() % 100;
 
     // Requirement: Year must be 25 or higher
     if (expiryYear < 25) {
