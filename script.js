@@ -1682,11 +1682,11 @@ function createCheckoutModal() {
         <div class="form-row">
           <div class="form-group">
             <label>${t("expiry_date")}</label>
-            <input type="text" id="expiry-date" placeholder="MM/YY" required>
+                                <input type="text" id="expiry-date" placeholder="MM/YY" required maxlength="5">
           </div>
           <div class="form-group">
             <label>CVV</label>
-            <input type="text" id="cvv" placeholder="123" required>
+                                <input type="text" id="cvv" placeholder="123" required maxlength="4">
           </div>
         </div>
         <div id="card-errors" class="error-message" style="color:red;display:none;"></div>
