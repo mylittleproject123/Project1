@@ -2269,8 +2269,9 @@ function setupCardInputFormatting() {
     if (expiryDateInput) {
         expiryDateInput.addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, ''); // Remove non-digits
-            if (value.length >= 2) {
-                value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            value = value.substring(0, 4); // Limit to MMYY
+            if (value.length > 2) {
+                value = value.slice(0, 2) + '/' + value.slice(2);
             }
             e.target.value = value;
         });
