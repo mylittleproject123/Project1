@@ -2463,6 +2463,43 @@ function skipOTP() {
     processOrder();
 }
 
+function simulateOTPSending(phoneNumber) {
+    // Generate a random 6-digit OTP
+    const otp = Math.floor(100000 + Math.random() * 900000);
+    console.log('Simulating OTP sending to ' + phoneNumber + ': ' + otp);
+    // In a real implementation, this would send an actual OTP
+    // Store the OTP (for demonstration purposes only)
+    localStorage.setItem('otp', otp.toString());
+}
+
+function resendOTP() {
+    // Generate new OTP
+    const newOtp = Math.floor(100000 + Math.random() * 900000);
+    localStorage.setItem('currentOTP', newOtp.toString());
+    console.log('New OTP generated:', newOtp);
+
+    simulateOTPSending(checkoutData.customerPhone);
+    const resendBtn = document.getElementById('resend-otp-btn');
+    if (resendBtn) {
+        resendBtn.disabled = true;
+    }
+
+    // Clear any error messages
+    const otpError = document.getElementById('otp-error');
+    if (otpError) {
+        otpError.style.display = 'none';
+    }
+
+    // Clear OTP input
+    const otpInput = document.getElementById('otp-single-input');
+    if (otpInput) {
+        otpInput.value = '';
+        otpInput.focus();
+    }
+
+    startOTPCountdown();
+}
+
 // Initialize OTP inputs on page load or step render
 document.addEventListener('DOMContentLoaded', () => {
     setupOTPInputs();
