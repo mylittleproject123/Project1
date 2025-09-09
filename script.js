@@ -1192,7 +1192,6 @@ goToCheckoutStep(3);
         const skipOtpBtn = document.getElementById('skip-otp-btn');
         const resendOtpBtn = document.getElementById('resend-otp-btn');
 
-        if (verifyOtpBtn) verifyOtpBtn.addEventListener('click', verifyOTP);
         if (skipOtpBtn) skipOtpBtn.addEventListener('click', skipOTP);
         if (resendOtpBtn) resendOtpBtn.addEventListener('click', resendOTP);
 
@@ -1300,6 +1299,13 @@ function setupOTPInputs() {
     otpInput.addEventListener('keydown', function(e) {
         if (e.key === 'Enter' && verifyBtn && !verifyBtn.disabled) {
             e.preventDefault();
+            verifyOTP();
+        }
+    });
+
+    // Add the click listener directly here for robustness
+    verifyBtn.addEventListener('click', function() {
+        if (!this.disabled) {
             verifyOTP();
         }
     });
