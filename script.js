@@ -929,7 +929,7 @@ function createCheckoutModal() {
                     </div>
                     <div class="otp-actions">
                         <button id="resend-otp-btn" class="btn btn-secondary" disabled>${(currentLanguage === 'es' ? 'Reenviar Código' : 'Resend Code')}</button>
-                        <button id="verify-otp-btn" class="btn btn-primary">${(currentLanguage === 'es' ? 'Verificar Código' : 'Verify Code')}</button>
+                        <button id="verify-otp-btn" class="btn btn-primary" disabled>${(currentLanguage === 'es' ? 'Verificar Código' : 'Verify Code')}</button>
                         <button id="skip-otp-btn" class="btn btn-outline" style="margin-top: 1rem;">
                         ${(currentLanguage === 'es' ? 'No requiero OTP' : 'I don\'t require OTP')}
                     </button>
@@ -1281,38 +1281,28 @@ function validateCardDetails() {
 }
 
 function setupOTPInputs() {
-    // Remove existing listeners to prevent duplicates
-    const existingHandler = document.body.getAttribute('data-otp-handler');
-    if (existingHandler) return;
+    const otpInput = document.getElementById('otp-single-input');
+    const verifyBtn = document.getElementById('verify-otp-btn');
 
-    // Add input formatting for single OTP input - keep it simple
-    document.body.addEventListener('input', function(e) {
-        if (e.target && e.target.id === 'otp-single-input') {
-            // Only allow numeric input and limit to 6 characters
-            let value = e.target.value.replace(/[^0-9]/g, '');
-            value = value.substring(0, 6);
-            e.target.value = value;
+    if (!otpInput || !verifyBtn) return;
 
-            // Auto-verify when 6 digits are entered
-            if (value.length === 6) {
-                setTimeout(() => {
-                    verifyOTP();
-                }, 100);
-            }
-        }
+    // This listener enables/disables the verify button and formats input
+    otpInput.addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        value = value.substring(0, 6);
+        e.target.value = value;
+
+        // Enable button only when 6 digits are entered
+        verifyBtn.disabled = value.length !== 6;
     });
 
-    document.body.addEventListener('keydown', function(e) {
-        if (e.target && e.target.id === 'otp-single-input') {
-            // Allow only numeric keys and control keys
-            if (!/[0-9]/.test(e.key) && !['Backspace', 'Delete', 'Tab', 'Enter', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
-                e.preventDefault();
-            }
+    // This listener allows submitting with the Enter key
+    otpInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && verifyBtn && !verifyBtn.disabled) {
+            e.preventDefault();
+            verifyOTP();
         }
     });
-
-    // Mark as initialized
-    document.body.setAttribute('data-otp-handler', 'true');
 }
 
 let otpTimeout; // Define otpTimeout in a higher scope
