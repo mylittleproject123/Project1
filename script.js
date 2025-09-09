@@ -242,6 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+
 // Initialize cart
 updateCartCount();
 updateCartDisplay();
