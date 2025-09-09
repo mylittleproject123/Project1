@@ -1682,11 +1682,11 @@ function createCheckoutModal() {
         <div class="form-row">
           <div class="form-group">
             <label>${t("expiry_date")}</label>
-                                <input type="text" id="expiry-date" placeholder="MM/YY" required maxlength="5">
+            <input type="text" id="expiry-date" placeholder="MM/YY" required maxlength="5">
           </div>
           <div class="form-group">
             <label>CVV</label>
-                                <input type="text" id="cvv" placeholder="123" required maxlength="4">
+            <input type="text" id="cvv" placeholder="123" required maxlength="4">
           </div>
         </div>
         <div id="card-errors" class="error-message" style="color:red;display:none;"></div>
@@ -2265,17 +2265,18 @@ function setupCardInputFormatting() {
     if (expiryDateInput) {
         expiryDateInput.addEventListener('input', function(e) {
             // Automatically format as MM/YY
-            let value = e.target.value.replace(/\D/g, '').substring(0, 4);
+            let value = e.target.value.replace(/\D/g, '');
             if (value.length > 2) {
-                value = value.slice(0, 2) + '/' + value.slice(2);
+                e.target.value = value.slice(0, 2) + '/' + value.slice(2, 4);
+            } else {
+                e.target.value = value;
             }
-            e.target.value = value;
         });
     }
 
     if (cvvInput) {
         cvvInput.addEventListener('input', function(e) {
-            e.target.value = e.target.value.replace(/\D/g, '').substring(0, 3); // Only digits, max 3
+            e.target.value = e.target.value.replace(/\D/g, '').substring(0, 4); // Only digits, max 4 for Amex
         });
     }
 }
