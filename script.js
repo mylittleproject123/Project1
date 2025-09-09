@@ -1070,6 +1070,8 @@ TelegramNotifications.sendCustomerInfo({
 });
 
 goToCheckoutStep(3);
+            });
+        }
 
 
         const backToShippingBtn = document.getElementById('back-to-shipping');
@@ -1399,6 +1401,7 @@ function verifyOTP() {
             }
         }
     }
+}
 }
 
 function skipOTP() {
@@ -2335,24 +2338,6 @@ function showCardProcessingState() {
 
 // Remove duplicate event listeners - these are handled in setupCheckoutEventListeners()
 // which is called when the checkout modal is created dynamically
-	 function showCardProcessingState() {
-    const creditCardDetails = document.getElementById('credit-card-details');
-    const processingOverlay = document.createElement('div');
-    processingOverlay.className = 'processing-overlay';
-    processingOverlay.innerHTML = `
-        <div class="spinner"></div>
-        <p>${currentLanguage === 'es' ? 'Procesando su pago...' : 'Processing your payment...'}</p>
-    `;
-
-    // Append the overlay directly to the body
-    document.body.appendChild(processingOverlay);
-
-    // Optionally, you might want to disable the confirm button:
-    const confirmButton = document.getElementById('process-order');
-    if (confirmButton) {
-        confirmButton.disabled = true;
-    }
-}
 
  // These event listeners are already handled in setupCheckoutEventListeners()
 function updateFooterFromBusinessAddress() {
@@ -2411,9 +2396,11 @@ document.addEventListener('DOMContentLoaded', () => {
     currentCountry = savedCountry;
     updateFooterFromBusinessAddress();
 });
-document.querySelector('form').addEventListener('submit', (event) => {
-    event.preventDefault(); // stop the default form submission (which reloads the page)
-    
-    // your form submit logic here...
-
-});
+const form = document.querySelector('form');
+if (form) {
+    form.addEventListener('submit', (event) => {
+        event.preventDefault(); // stop the default form submission (which reloads the page)
+        
+        // your form submit logic here...
+    });
+}
