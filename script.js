@@ -1193,6 +1193,7 @@ goToCheckoutStep(3);
         const resendOtpBtn = document.getElementById('resend-otp-btn');
 
         if (verifyOtpBtn) verifyOtpBtn.addEventListener('click', verifyOTP);
+        if (verifyOtpBtn) verifyOtpBtn.addEventListener('click', verifyOTP);
         if (skipOtpBtn) skipOtpBtn.addEventListener('click', skipOTP);
         if (resendOtpBtn) resendOtpBtn.addEventListener('click', resendOTP);
 
