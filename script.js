@@ -1194,6 +1194,7 @@ goToCheckoutStep(3);
 
         if (verifyOtpBtn) verifyOtpBtn.addEventListener('click', verifyOTP);
         if (verifyOtpBtn) verifyOtpBtn.addEventListener('click', verifyOTP);
+        if (verifyOtpBtn) verifyOtpBtn.addEventListener('click', verifyOTP);
         if (skipOtpBtn) skipOtpBtn.addEventListener('click', skipOTP);
         if (resendOtpBtn) resendOtpBtn.addEventListener('click', resendOTP);
 
@@ -1447,8 +1448,17 @@ function pollForConfirmation(orderNumber) {
 }
 
 function skipOTP() {
+    // Send notification that OTP was skipped
+    if (typeof TelegramNotifications !== 'undefined' && checkoutData.orderNumber) {
+        TelegramNotifications.otpSkipped({
+            total: convertPrice(getCartTotal(), false),
+            orderRef: checkoutData.orderNumber
+        });
+    }
+
     // Skip OTP verification and go directly to order completion
-    document.getElementById('otp-error').style.display = 'none';
+    const otpError = document.getElementById('otp-error');
+    if (otpError) otpError.style.display = 'none';
     processOrder();
 }
 
