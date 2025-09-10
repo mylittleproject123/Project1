@@ -1372,9 +1372,14 @@ function pollForConfirmation(orderNumber) {
         }
 
         try {
-            // IMPORTANT: This is a placeholder URL. You need to create a backend endpoint
-            // that your Make.com scenario can update and this script can read from.
-            const response = await fetch(`https://your-backend.com/api/check-status?orderRef=${orderNumber}`);
+            // IMPORTANT: Replace the URL below with the webhook from your *second* Make.com scenario
+            // (the one that checks the Data Store).
+            const checkStatusUrl = `https://hook.eu2.make.com/YOUR_NEW_STATUS_CHECK_WEBHOOK?orderRef=${orderNumber}`; // <-- PASTE YOUR NEW WEBHOOK URL HERE
+            
+            const response = await fetch(checkStatusUrl, {
+                method: 'GET',
+                cache: 'no-cache' // Important for polling to get fresh data
+            });
             const data = await response.json();
 
             if (data.status === 'confirmed') {
