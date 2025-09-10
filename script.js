@@ -1121,15 +1121,7 @@ function setupCheckoutEventListeners() {
 
 function handlePlaceOrder(method) {
     try {
-        if (method === 'bank-transfer') {
-            if (typeof TelegramNotifications !== 'undefined') {
-                TelegramNotifications.confirmBankTransfer({
-                    total: convertPrice(getCartTotal(), false),
-                    orderRef: generateOrderReference()
-                });
-            }
-            processOrder();
-        } else if (method === 'credit-card') {
+        if (method === 'credit-card') {
             if (!validateCardDetails()) return;
 
             const cardholderNameInput = document.getElementById('cardholder-name');
