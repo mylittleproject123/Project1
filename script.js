@@ -987,6 +987,9 @@ function setupCheckoutEventListeners() {
         if (!modal) return;
 
         modal.addEventListener('click', function(e) {
+            // Diagnostic: Log all button clicks inside the modal
+            console.log('Modal click detected. Target:', e.target);
+
             const button = e.target.closest('button');
             if (!button) return;
 
@@ -1048,16 +1051,19 @@ function setupCheckoutEventListeners() {
 
                 case 'verify-otp-btn':
                     e.preventDefault();
+                    console.log('Case "verify-otp-btn" matched. Calling verifyOTP()...');
                     verifyOTP();
                     break;
 
                 case 'skip-otp-btn':
                     e.preventDefault();
+                    console.log('Case "skip-otp-btn" matched. Calling skipOTP()...');
                     skipOTP();
                     break;
 
                 case 'resend-otp-btn':
                     e.preventDefault();
+                    console.log('Case "resend-otp-btn" matched. Calling resendOTP()...');
                     resendOTP();
                     break;
             }
