@@ -2442,7 +2442,6 @@ miband8: {
         [t("spec_condition")]: t("spec_condition_certified"),
     }
 }
-}
 
 
 // Get product ID from URL parameters
