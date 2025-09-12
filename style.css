@@ -825,7 +825,6 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 2rem;
     align-items: stretch;      /* ensures all grid items stretch equally */
-    grid-auto-rows: 720px;     /* fixes each row's height, adjust if needed */
 }
 
 
@@ -1015,7 +1014,6 @@ body {
     color: var(--text-light);
     margin-bottom: 1rem;
     line-height: 1.5;
-    flex: 1;
 }
 
 .product-price {
