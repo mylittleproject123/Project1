@@ -647,6 +647,26 @@ body {
     }
 }
 
+/* iPhone 17 Pre-order Banner */
+.iphone-17-preorder-banner {
+    background-color: #f0f0f0;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.iphone-17-preorder-banner img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.iphone-17-preorder-banner h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+
 /* WhatsApp Contact Section */
 .whatsapp-contact-section {
     padding: 2rem 0;
