@@ -2205,10 +2205,10 @@ miband8: {
 
 
 // Get product ID from URL parameters
-function getProductId() {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('id') || 'iphone16promax'; // Default product if no ID is found in the URL
-}
+//function getProductId() {
+    //const urlParams = new URLSearchParams(window.location.search);
+    //return urlParams.get('id') || 'iphone16promax'; // Default product if no ID is found in the URL
+
 
 // Country configuration (reuse from main script)
 const countryConfig = {
