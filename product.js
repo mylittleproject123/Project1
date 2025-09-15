@@ -2205,13 +2205,13 @@ miband8: {
 
 
 // Get product ID from URL parameters
-function getProductId() {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('id') || 'iphone16promax'; // Default product
+//function getProductId() {
+    //const urlParams = new URLSearchParams(window.location.search);
+    //return urlParams.get('id') || 'iphone16promax'; // Default product
     // To make this page always show the same product, you can "hardcode" the ID here.
     // The line below will always load the 'iphone16promax'.
     // You can change 'iphone16promax' to any other product ID from your database.
-    return 'iphone16promax';
+   // return 'iphone16promax';
 
     // To restore the original behavior (loading from URL), delete the line above and uncomment the two lines below:
     // const urlParams = new URLSearchParams(window.location.search);
