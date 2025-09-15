@@ -2205,17 +2205,9 @@ miband8: {
 
 
 // Get product ID from URL parameters
-//function getProductId() {
-    //const urlParams = new URLSearchParams(window.location.search);
-    //return urlParams.get('id') || 'iphone16promax'; // Default product
-    // To make this page always show the same product, you can "hardcode" the ID here.
-    // The line below will always load the 'iphone16promax'.
-    // You can change 'iphone16promax' to any other product ID from your database.
-   // return 'iphone16promax';
-
-    // To restore the original behavior (loading from URL), delete the line above and uncomment the two lines below:
-    // const urlParams = new URLSearchParams(window.location.search);
-    // return urlParams.get('id') || 'iphone16promax'; // Default product
+function getProductId() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('id') || 'iphone16promax'; // Default product if no ID is found in the URL
 }
 
 // Country configuration (reuse from main script)
@@ -2294,9 +2286,7 @@ function convertPrice(price, showBoth = true) {
 
 // Load and display product
 function loadProduct() {
-    // To show a specific product on this page, hardcode its ID here.
-    // This ID must exist in the 'productDatabase' object.
-    const productId = 'iphone16promax';
+    const productId = getProductId();
     const product = productDatabase[productId];
 
     if (!product) {
@@ -2365,13 +2355,6 @@ function loadProduct() {
     if (discountEl) discountEl.textContent = `-${product.discount}%`;
 
     updatePricing();
-
-    // Update main image
-    const mainImage = document.getElementById('main-product-image');
-    if (mainImage) {
-        mainImage.src = product.images[0];
-        mainImage.alt = product.name;
-    }
 
     // Setup condition selection
     const conditionContainer = document.getElementById('condition-selection-container');
@@ -2540,11 +2523,20 @@ function loadProduct() {
     }
 
     function updateProductImages(images) {
+        const mainImage = document.getElementById('main-product-image');
         const thumbnailContainer = document.getElementById('thumbnail-container');
 
         if (!images || images.length === 0) {
             console.log('No images provided for product');
+            if (mainImage) mainImage.src = 'https://via.placeholder.com/400x400?text=No+Image';
+            if (thumbnailContainer) thumbnailContainer.innerHTML = '';
             return;
+        }
+
+        // Set the main image to the first image in the array
+        if (mainImage) {
+            mainImage.src = images[0];
+            mainImage.alt = product.name;
         }
 
         if (thumbnailContainer) {
@@ -2571,6 +2563,11 @@ function loadProduct() {
                     });
                     thumbnail.classList.add('active');
                     thumbnail.style.borderColor = 'var(--primary-color)';
+
+                    // Update the main product image when a thumbnail is clicked
+                    if (mainImage) {
+                        mainImage.src = image;
+                    }
                 });
 
                 fragment.appendChild(thumbnail);
