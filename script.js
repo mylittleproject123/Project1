@@ -37,9 +37,17 @@ const translations = window.translations || {
         benefit_return_desc: "Reembolso completo garantizado",
         benefit_accessories: "Accesorios Incluidos",
         benefit_accessories_desc: "Cable, caja y protector de pantalla gratis",
-        whatsapp_title: "¿Quieres cambiar por un modelo inferior o necesitas más información?",
-        whatsapp_subtitle: "Chatea con nuestros expertos en WhatsApp para recomendaciones personalizadas y soporte instantáneo",
+
+        // WhatsApp & Banners
+        whatsapp_title: "¿Tienes Preguntas?",
+        whatsapp_subtitle: "Chatea con nuestros expertos para obtener recomendaciones y soporte instantáneo.",
         whatsapp_button: "Chatear en WhatsApp",
+        whatsapp_general_greeting: "¡Hola! Tengo una pregunta sobre sus productos.",
+        iphone17_banner_title: "El Futuro te Llama: iPhone 17",
+        iphone17_banner_subtitle: "Sé el primero en saber. Chatea con nosotros para recibir información exclusiva de preventa y ofertas de lanzamiento.",
+        iphone17_banner_button: "Notifícame en WhatsApp",
+        whatsapp_preorder_iphone17: "¡Hola! Me interesa el iPhone 17. Por favor, notifíquenme sobre la preventa y disponibilidad.",
+
         featured_products: "Productos Destacados",
         all: "Todos",
         iphones: "iPhones",
@@ -144,9 +152,17 @@ const translations = window.translations || {
         benefit_return_desc: "Full refund guaranteed",
         benefit_accessories: "Accessories Included",
         benefit_accessories_desc: "Cable, box and free screen protector",
-        whatsapp_title: "Want to swap for a lower model or need more information?",
-        whatsapp_subtitle: "Chat with our experts on WhatsApp for personalized recommendations and instant support",
+
+        // WhatsApp & Banners
+        whatsapp_title: "Have Questions?",
+        whatsapp_subtitle: "Chat with our experts for personalized recommendations and instant support.",
         whatsapp_button: "Chat on WhatsApp",
+        whatsapp_general_greeting: "Hello! I have a question about your products.",
+        iphone17_banner_title: "The Future is Calling: iPhone 17",
+        iphone17_banner_subtitle: "Be the first to know. Chat with us for exclusive pre-order info and launch day deals.",
+        iphone17_banner_button: "Notify Me on WhatsApp",
+        whatsapp_preorder_iphone17: "Hello! I'm interested in the iPhone 17. Please notify me about pre-orders and availability.",
+
         featured_products: "Featured Products",
         all: "All",
         iphones: "iPhones",
@@ -301,6 +317,28 @@ function updateLanguage(lang) {
             element.setAttribute('placeholder', translations[lang][key]);
         }
     });
+}
+
+// Setup dynamic WhatsApp links
+function setupDynamicWhatsAppLinks() {
+    const config = countryConfig[currentCountry];
+    if (!config || !config.phone) return;
+
+    const phoneNumber = config.phone.replace(/\D/g, '');
+
+    // For the iPhone 17 banner link
+    const iphone17Link = document.getElementById('iphone17-whatsapp-link');
+    if (iphone17Link) {
+        const message = encodeURIComponent(t('whatsapp_preorder_iphone17'));
+        iphone17Link.href = `https://wa.me/${phoneNumber}?text=${message}`;
+    }
+
+    // For the general WhatsApp chat link in the footer/contact section
+    const generalChatLink = document.getElementById('whatsapp-chat-link');
+    if (generalChatLink) {
+        const message = encodeURIComponent(t('whatsapp_general_greeting'));
+        generalChatLink.href = `https://wa.me/${phoneNumber}?text=${message}`;
+    }
 }
 
 // Update prices based on country
@@ -1905,6 +1943,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Update prices
         updatePrices();
+        setupDynamicWhatsAppLinks();
 
         // Country dropdown functionality
         const countryDropdownBtn = document.getElementById('country-dropdown-btn');
@@ -1967,6 +2006,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         updatePrices();
                         updateCartDisplay(); // Refresh cart prices with new currency
                         updateFooterFromBusinessAddress(); // Update footer contact info
+                        setupDynamicWhatsAppLinks(); // Update WhatsApp links for the new country
 
                         // Force refresh of any open checkout modal prices
                         const checkoutOverlay = document.getElementById('checkout-overlay');
