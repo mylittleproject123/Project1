@@ -2498,9 +2498,19 @@ function loadProduct() {
             return;
         }
 
-        // Set the main image to the first image in the array
+        // Helper to get a higher resolution image from Amazon URLs
+        const getHighResImageUrl = (url) => {
+            if (typeof url === 'string') {
+                // This regex removes the size constraint part of an Amazon image URL (e.g., ._AC_SX466_)
+                // to request a higher resolution version. It's safer than replacing with a fixed size.
+                return url.replace(/\._AC_.*?_/, '');
+            }
+            return url;
+        };
+
+        // Set the main image to the high-resolution version of the first image
         if (mainImage) {
-            mainImage.src = images[0];
+            mainImage.src = getHighResImageUrl(images[0]);
             mainImage.alt = product.name;
         }
 
@@ -2510,11 +2520,16 @@ function loadProduct() {
 
             images.forEach((image, index) => {
                 const thumbnail = document.createElement('img');
-                thumbnail.src = image;
+                thumbnail.src = image; // Use original (smaller) image for fast-loading thumbnails
                 thumbnail.alt = `${product.name} view ${index + 1}`;
                 thumbnail.className = `thumbnail ${index === 0 ? 'active' : ''}`;
                 thumbnail.loading = 'lazy';
                 thumbnail.decoding = 'async';
+                // Defensive styling to ensure thumbnails are not too small
+                thumbnail.style.width = '80px';
+                thumbnail.style.height = '80px';
+                thumbnail.style.objectFit = 'contain';
+                thumbnail.style.cursor = 'pointer';
 
                 thumbnail.onerror = function() {
                     console.log('Failed to load thumbnail:', image);
@@ -2530,8 +2545,8 @@ function loadProduct() {
                     thumbnail.style.borderColor = 'var(--primary-color)';
 
                     // Update the main product image when a thumbnail is clicked
-                    if (mainImage) {
-                        mainImage.src = image;
+                    if (mainImage) { // Load the high-resolution version on click
+                        mainImage.src = getHighResImageUrl(image);
                     }
                 });
 
