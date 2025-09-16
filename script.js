@@ -1740,7 +1740,7 @@ function getBankName() {
     switch (currentCountry) {
         case 'nicaragua': return 'Banco de América Central (BAC)';
         case 'honduras': return 'Banco Atlántida';
-        case 'trinidad': return 'FCB';
+        case 'trinidad': return 'Republic Bank';
         case 'elsalvador': return 'Banco Agrícola';
         case 'paraguay': return 'Banco Continental';
         case 'guatemala': return 'Banco Industrial';
@@ -1754,7 +1754,7 @@ function getAccountNumber() {
     switch (currentCountry) {
         case 'nicaragua': return '1234567890123456';
         case 'honduras': return '2345678901234567';
-        case 'trinidad': return '3143313';
+        case 'trinidad': return '950036849701 (Chequins)';
         case 'elsalvador': return '4567890123456789';
         case 'paraguay': return '5678901234567890';
         case 'guatemala': return '6789012345678901';
@@ -1768,7 +1768,7 @@ function getAccountHolder() {
     switch (currentCountry) {
         case 'nicaragua': return 'TechZone';
         case 'honduras': return 'TechZone';
-        case 'trinidad': return 'Jacenta Althea Hankey';
+        case 'trinidad': return 'Jolie Xavier';
         case 'elsalvador': return 'TechZone';
         case 'paraguay': return 'TechZone';
         case 'guatemala': return 'TechZone';
