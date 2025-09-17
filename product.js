@@ -2604,14 +2604,13 @@ function loadProduct() {
         // Helper to get a higher resolution image from Amazon URLs
         const getHighResImageUrl = (url) => {
             if (typeof url === 'string') {
-                // This regex removes the size constraint part of an Amazon image URL (e.g., ._AC_SX466_ or .__AC_SX300_)
-                // to request a higher resolution version. The `.*` handles variations like one or two underscores.
-                return url.replace(/\._.*AC_.*?_/, '');
+                // This more generic regex removes various size constraints from Amazon image URLs
+                // (e.g., ._AC_SX466_, .__AC_SY300_, ._SL1064_) to request the full-resolution version.
+                return url.replace(/\._{1,2}.*?_/, '');
             }
             return url;
         };
 
-        // Set the main image to the high-resolution version of the first image
         if (mainImage) {
             const highResSrc = getHighResImageUrl(images[0]);
             mainImage.src = highResSrc;
