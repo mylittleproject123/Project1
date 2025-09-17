@@ -2544,50 +2544,50 @@ function loadProduct() {
         memoryContainer.appendChild(optionsContainer);
     }
 
-    // Setup color selection if variants exist
+    // --- Image and Color Selection Logic ---
+
+    // 1. Determine the initial set of images to display.
+    // This logic finds the images for the first variant, or falls back to the product's top-level images.
+    let initialImages = [];
+    if (product.variants && currentVariant && product.variants[currentVariant]) {
+        initialImages = product.variants[currentVariant].images;
+    } else if (product.images && product.images.length > 0) {
+        initialImages = product.images;
+    }
+
+    // 2. Render the initial product images immediately.
+    // This ensures images are displayed even if the color selector is not present in the HTML.
+    updateProductImages(initialImages);
+
+    // 3. Set up the color selector UI and its event listeners, if the elements exist.
     const colorContainer = document.getElementById('color-selection-container');
     const colorSelect = document.getElementById('product-color-select');
 
     if (product.variants && colorContainer && colorSelect) {
         colorContainer.style.display = 'block';
         colorSelect.innerHTML = '';
-
+ 
         Object.entries(product.variants).forEach(([key, variant]) => {
             const option = document.createElement('option');
             option.value = key;
             option.textContent = variant.name;
             colorSelect.appendChild(option);
         });
-
-        // Set initial value
-        if (currentVariant) {
-            colorSelect.value = currentVariant;
-        }
-
+ 
+        if (currentVariant) colorSelect.value = currentVariant;
+ 
         colorSelect.addEventListener('change', function() {
             currentVariant = this.value;
             const variant = product.variants[currentVariant];
-
-            // Update main image and thumbnails
-            updateProductImages(variant.images);
-
-            // Update product name
-            const titleEl = document.getElementById('product-title');
-            if (titleEl) {
-                titleEl.textContent = `${product.name} (${variant.name})`;
+ 
+            if (variant) {
+                // Update images and product title when a new color is selected.
+                updateProductImages(variant.images || []);
+                const titleEl = document.getElementById('product-title');
+                if (titleEl) titleEl.textContent = `${product.name} (${variant.name})`;
+                validateSelections(product);
             }
-
-            validateSelections(product);
         });
-
-        // Initialize with current variant
-        const currentVariantData = product.variants[currentVariant];
-        if (currentVariantData) {
-            updateProductImages(currentVariantData.images);
-        }
-    } else {
-        // Use default images if no variants
-        updateProductImages(product.images);
     }
 
     function updateProductImages(images) {
