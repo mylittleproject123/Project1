@@ -2594,8 +2594,9 @@ function loadProduct() {
         const mainImage = document.getElementById('main-product-image');
         const thumbnailContainer = document.getElementById('thumbnail-container');
 
-        if (!images || images.length === 0) {
-            console.log('No images provided for product');
+        // Use a more robust check to ensure `images` is a non-empty array
+        if (!Array.isArray(images) || images.length === 0) {
+            console.error('No valid images array provided for product. Clearing image containers.');
             if (mainImage) mainImage.src = 'https://via.placeholder.com/400x400?text=No+Image';
             if (thumbnailContainer) thumbnailContainer.innerHTML = '';
             return;
@@ -2638,6 +2639,7 @@ function loadProduct() {
                 thumbnail.style.height = '80px';
                 thumbnail.style.objectFit = 'contain';
                 thumbnail.style.cursor = 'pointer';
+                thumbnail.style.display = 'block'; // Ensure visibility, overriding potential CSS issues
 
                 thumbnail.onerror = function() {
                     console.log('Failed to load thumbnail:', image);
