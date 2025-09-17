@@ -926,23 +926,22 @@ body {
     position: relative;
     cursor: pointer;
     transition: var(--transition);
-    min-height: 360px;
-    max-height: 360px;
+    aspect-ratio: 1 / 1; /* Creates a responsive square container */
     overflow: hidden;
 }
 
 .product-image:hover {
     background: #f0f0f0;
-    transform: scale(1.02);
+    /* transform: scale(1.02); */ /* Can cause layout shift, disabled for now */
 }
 
 .product-image img {
-    width: 100% !important;
-    height: 100% !important;
+    max-width: 100%;
+    max-height: 100%;
     object-fit: contain;
     object-position: center;
     transition: var(--transition);
-    padding: 1rem !important;
+    padding: 0.5rem !important; /* Reduced padding for more image space */
 }
 
 .product-image:hover img {
@@ -3990,13 +3989,6 @@ body {
     }
 }
 
-.product-image img {
-    width: 100% !important;
-    height: 200px !important;
-    object-fit: contain !important;
-    object-position: center !important;
-}
-
 .section-header h2 {
     font-size: 1.5rem;
 }
@@ -4504,9 +4496,9 @@ body {
 
 /* Force image loading optimization */
 img {
-    image-rendering: auto !important;
-    image-rendering: crisp-edges !important;
-    image-rendering: -webkit-optimize-contrast !important;
+    /* The 'crisp-edges' and 'optimize-contrast' values can degrade photo quality. */
+    /* 'auto' is the default and best for photos. */
+    image-rendering: auto;
     backface-visibility: hidden !important;
     transform: translateZ(0) !important;
 }
