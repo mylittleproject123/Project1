@@ -1846,6 +1846,109 @@ redminote13pro: {
     [t("spec_battery_health")]: t("spec_battery_health_value")
   }
 },
+redminote14: {
+  name: t("redminote14_name"),
+  description: t("xiaomi_desc"),
+  price: 207,
+  originalPrice: 259,
+  discount: 20,
+  category: "phone",
+  variants: {
+    gray: {
+      name: t("color_gray"),
+      images: ["https://m.media-amazon.com/images/I/81L4MbrSEBL.__AC_SX300_SY300_QL70_FMwebp_.jpg"]
+    }
+  },
+  memoryOptions: {
+    "6GB + 128GB": { price: 207, originalPrice: 259 }
+  },
+  features: [
+    { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
+    { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
+    { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") },
+    { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") }
+  ],
+  specifications: {
+    [t("spec_display")]: "6.67\" AMOLED, 120 Hz",
+    [t("spec_processor")]: "MediaTek Helio G99",
+    [t("spec_storage")]: "128 GB",
+    [t("spec_ram")]: "6 GB",
+    [t("spec_main_camera")]: "108 MP + 2 MP",
+    [t("spec_battery")]: "5 000 mAh, 33 W",
+    [t("spec_connectivity")]: "4G, Wi‑Fi 5",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+},
+redminote13pro: {
+  name: t("redminote13pro_name"),
+  description: t("xiaomi_desc"),
+  price: 223,
+  originalPrice: 279,
+  discount: 20,
+  category: "phone",
+  variants: {
+    black: {
+      name: t("color_black"),
+      images: ["https://m.media-amazon.com/images/I/71ZjanVe7oL.__AC_SX300_SY300_QL70_FMwebp_.jpg"]
+    }
+  },
+  memoryOptions: {
+    "8GB + 256GB": { price: 223, originalPrice: 279 }
+  },
+  features: [
+    { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
+    { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
+    { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") },
+    { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") }
+  ],
+  specifications: {
+    [t("spec_display")]: "6.67\" AMOLED, 120 Hz",
+    [t("spec_processor")]: "Snapdragon 7s Gen 2",
+    [t("spec_storage")]: "256 GB",
+    [t("spec_ram")]: "8 GB",
+    [t("spec_main_camera")]: "200 MP + 8 MP + 2 MP",
+    [t("spec_battery")]: "5 100 mAh, 67 W",
+    [t("spec_connectivity")]: "5G, Wi‑Fi 6",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+},
+
+	redminote13: {
+  name: t("redminote13_name"),
+  description: t("xiaomi_desc"),
+  price: 183,
+  originalPrice: 229,
+  discount: 20,
+  category: "phone",
+  variants: {
+    blue: {
+      name: t("color_blue"),
+      images: ["https://m.media-amazon.com/images/I/31WbsYNtasL._AC_SX569_.jpg"]
+    }
+  },
+  memoryOptions: {
+    "6GB + 128GB": { price: 183, originalPrice: 229 }
+  },
+  features: [
+    { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
+    { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
+    { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") },
+    { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") }
+  ],
+  specifications: {
+    [t("spec_display")]: "6.6\" AMOLED, 120 Hz",
+    [t("spec_processor")]: "MediaTek Dimensity 6100+",
+    [t("spec_storage")]: "128 GB",
+    [t("spec_ram")]: "6 GB",
+    [t("spec_main_camera")]: "100 MP + 2 MP",
+    [t("spec_battery")]: "5 000 mAh, 33 W",
+    [t("spec_connectivity")]: "5G, Wi‑Fi 5",
+    [t("spec_condition")]: t("spec_condition_certified"),
+    [t("spec_battery_health")]: t("spec_battery_health_value")
+  }
+},
 
 	
         airpods3: {
