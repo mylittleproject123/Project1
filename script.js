@@ -265,12 +265,6 @@ let currentSearchTerm = '';
 let currentSortBy = 'featured'; // 'featured', 'price-low', 'price-high'
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    currentCountry = localStorage.getItem('selectedCountry') || 'honduras';
-    updateFooterFromBusinessAddress();
-});
-
-
 
 
 // Initialize cart
@@ -2048,6 +2042,7 @@ document.addEventListener('DOMContentLoaded', function() {
         updatePrices();
         setupDynamicWhatsAppLinks();
         createAndInsertPreorderBanner();
+        updateFooterFromBusinessAddress();
 
         if (desktopSearchInput) desktopSearchInput.addEventListener('input', handleSearchInput);
         if (mobileSearchInput) mobileSearchInput.addEventListener('input', handleSearchInput);
@@ -2450,46 +2445,6 @@ function updateFooterFromBusinessAddress() {
     }
 }
 
-
-   
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    updateFooterFromBusinessAddress();
-});
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    const countryButtons = document.querySelectorAll('.country-option');
-    
-    countryButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const newCountry = button.getAttribute('data-country');
-            
-            // Save new country and update global variable
-            localStorage.setItem('selectedCountry', newCountry);
-            currentCountry = newCountry;
-
-            // Optional: update the visible flag and country name in top bar
-            const countryName = button.querySelector('span:nth-child(2)').textContent;
-            const flag = button.querySelector('.flag-icon').textContent;
-
-            document.getElementById('current-country').textContent = countryName;
-            document.getElementById('current-flag').textContent = flag;
-
-            // Close the dropdown (if you have JS for that)
-            document.getElementById('country-dropdown').classList.add('hidden');
-
-            // ✅ Update the footer right away
-            updateFooterFromBusinessAddress();
-        });
-    });
-
-    // ✅ On first page load, update the footer based on saved country
-    const savedCountry = localStorage.getItem('selectedCountry') || 'honduras';
-    currentCountry = savedCountry;
-    updateFooterFromBusinessAddress();
-});
 const form = document.querySelector('form');
 if (form) {
     form.addEventListener('submit', (event) => {
