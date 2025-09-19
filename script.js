@@ -127,7 +127,7 @@ const translations = window.translations || {
         code_expires: "El código expira en: ",
         resend_code: "Reenviar Código",
         verify_code: "Verificar Código",
-        invalid_code: "Código inválido. Por favor, inténtalo de nuevo."
+        invalid_code: "Código inválido. Por favor, inténtalo de nuevo.",
         reviews: "Reseñas"
     },
     en: {
@@ -245,7 +245,7 @@ const translations = window.translations || {
         code_expires: "Code expires in: ",
         resend_code: "Resend Code",
         verify_code: "Verify Code",
-        invalid_code: "Invalid code. Please try again."
+        invalid_code: "Invalid code. Please try again.",
         reviews: "Reviews"
     }
 };
