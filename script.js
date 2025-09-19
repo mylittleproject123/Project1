@@ -336,10 +336,17 @@ function setupDynamicWhatsAppLinks() {
     const phoneNumber = config.phone.replace(/\D/g, '');
 
     // For the general WhatsApp chat link in the footer/contact section
-    const generalChatLink = document.getElementById('whatsapp-chat-link');
+    const generalChatLink = document.getElementById('whatsapp-chat-link'); // This might be used elsewhere, so we keep it.
     if (generalChatLink) {
         const message = encodeURIComponent(t('whatsapp_general_greeting'));
         generalChatLink.href = `https://wa.me/${phoneNumber}?text=${message}`;
+    }
+
+    // For the smaller contact/swap banner button
+    const contactBtn = document.getElementById('whatsapp-contact-btn');
+    if (contactBtn) {
+        const message = encodeURIComponent(t('whatsapp_general_greeting'));
+        contactBtn.href = `https://wa.me/${phoneNumber}?text=${message}`;
     }
 }
 
