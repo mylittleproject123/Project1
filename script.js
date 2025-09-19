@@ -644,7 +644,9 @@ function createAndInsertPreorderBanner() {
     banner.innerHTML = `
         <div class="container">
             <div class="preorder-banner">
-                <div class="preorder-image"></div>
+                <div class="preorder-image">
+                    <img src="https://citymagazine.b-cdn.net/wp-content/uploads/2025/08/hero-series-iphone17-2025-0-1400x933.webp" alt="iPhone 17 Pre-order">
+                </div>
                 <div class="preorder-content">
                     <span class="preorder-subtitle" data-translate="preorder_subtitle">${t('preorder_subtitle')}</span>
                     <h2 data-translate="preorder_title">${t('preorder_title')}</h2>
