@@ -45,7 +45,7 @@ const translations = window.translations || {
         whatsapp_general_greeting: "¡Hola! Tengo una pregunta sobre sus productos.",
         preorder_subtitle: "Sé el Primero",
         preorder_title: "¡La Preventa del iPhone 17 ya está Activa!",
-        preorder_description: "Vive el futuro. Asegura tu iPhone 17 hoy y obtén bonos exclusivos de preventa. Contáctanos en WhatsApp para hacer tu pedido al instante.",
+        preorder_description: "Asegura tu iPhone 17 hoy y obtén ofertas exclusivas de lanzamiento. Contáctanos por WhatsApp para realizar tu pedido al instante.",
         preorder_button_text: "Reservar en WhatsApp",
         whatsapp_preorder_iphone17: "¡Hola! Me interesa el iPhone 17. Por favor, notifíquenme sobre la preventa y disponibilidad.",
 
@@ -161,7 +161,7 @@ const translations = window.translations || {
         whatsapp_general_greeting: "Hello! I have a question about your products.",
         preorder_subtitle: "Be the First",
         preorder_title: "iPhone 17 Pre-Order Is Live!",
-        preorder_description: "Experience the future. Secure your iPhone 17 today and get exclusive pre-order bonuses. Contact us on WhatsApp to place your order instantly.",
+        preorder_description: "Secure your iPhone 17 today for exclusive launch day offers. Contact us on WhatsApp to place your order instantly.",
         preorder_button_text: "Pre-Order on WhatsApp",
         whatsapp_preorder_iphone17: "Hello! I'm interested in the iPhone 17. Please notify me about pre-orders and availability.",
 
@@ -247,6 +247,13 @@ const translations = window.translations || {
         invalid_code: "Invalid code. Please try again."
     }
 };
+
+function t(key) {
+    const lang = currentLanguage || 'en'; // fallback to English if not set
+    return (translations[lang] && translations[lang][key])
+        ? translations[lang][key]
+        : key; // fallback to key if translation is missing
+}
 
 // Global variables
 let currentCountry = localStorage.getItem('selectedCountry') || 'honduras';
@@ -603,6 +610,47 @@ function showAddToCartFeedback() {
     setTimeout(() => {
         notification.remove();
     }, 3000);
+}
+
+function createAndInsertPreorderBanner() {
+    const whatsappSection = document.querySelector('.whatsapp-contact-section');
+    if (!whatsappSection) {
+        console.warn('WhatsApp contact section not found. Cannot insert pre-order banner.');
+        return;
+    }
+
+    // Remove any existing banner to ensure it's always fresh and has the correct link
+    const existingBanner = document.querySelector('.preorder-section');
+    if (existingBanner) {
+        existingBanner.remove();
+    }
+
+    const config = countryConfig[currentCountry];
+    if (!config || !config.phone) return;
+
+    const phoneNumber = config.phone.replace(/\D/g, '');
+    const preorderMessage = encodeURIComponent(t('whatsapp_preorder_iphone17'));
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${preorderMessage}`;
+
+    const banner = document.createElement('section');
+    banner.className = 'preorder-section';
+    banner.innerHTML = `
+        <div class="container">
+            <div class="preorder-banner">
+                <div class="preorder-image"></div>
+                <div class="preorder-content">
+                    <span class="preorder-subtitle" data-translate="preorder_subtitle">${t('preorder_subtitle')}</span>
+                    <h2 data-translate="preorder_title">${t('preorder_title')}</h2>
+                    <p class="preorder-description" data-translate="preorder_description">${t('preorder_description')}</p>
+                    <a href="${whatsappUrl}" class="preorder-btn" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-whatsapp"></i> <span data-translate="preorder_button_text">${t('preorder_button_text')}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    `;
+
+    whatsappSection.parentNode.insertBefore(banner, whatsappSection);
 }
 
 // Checkout functionality
@@ -2002,6 +2050,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         updatePrices();
                         updateCartDisplay(); // Refresh cart prices with new currency
                         updateFooterFromBusinessAddress(); // Update footer contact info
+                        createAndInsertPreorderBanner(); // Re-create banner with new country info
                         setupDynamicWhatsAppLinks(); // Update WhatsApp links for the new country
 
                         // Force refresh of any open checkout modal prices
