@@ -653,159 +653,71 @@ body {
 }
 
 /* iPhone 17 Pre-order Banner */
-.iphone-17-preorder-banner {
-    padding: 2.5rem 2rem;
-    background: linear-gradient(135deg, #232526 0%, #414345 100%);
-    color: white;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.iphone-17-preorder-banner::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    opacity: 0.03;
-    z-index: 1;
-}
-
-.preorder-banner-content {
-    position: relative;
-    z-index: 2;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.iphone-17-preorder-banner h2 {
-    font-size: clamp(2.2rem, 5vw, 3.5rem);
-    font-weight: 800;
-    margin-bottom: 1rem;
-    line-height: 1.2;
-    text-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
-    letter-spacing: -0.02em;
-    background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.preorder-subtitle {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #a5b4fc;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-bottom: 0.75rem;
-    display: block;
-}
-
-.preorder-description {
-    font-size: 1.125rem;
-    color: rgba(255, 255, 255, 0.85);
-    margin-bottom: 2.5rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.6;
-}
-
-.preorder-banner-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    background: #25D366;
-    color: white;
-    padding: 1rem 2.5rem;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1.1rem;
-    transition: all 0.3s ease;
-    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.preorder-banner-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
-    background: #128C7E;
-}
-
-.preorder-banner-btn i {
-    font-size: 1.4rem;
-}
-
-/* WhatsApp Contact Section */
-.whatsapp-contact-section {
-    padding: 4rem 0;
+.preorder-section {
+    padding: 3rem 0;
     background: var(--background-light);
 }
 
-.whatsapp-banner {
+.preorder-banner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 2rem;
     background: white;
     border-radius: var(--border-radius);
-    padding: 0;
-    backdrop-filter: none;
-    border: 1px solid var(--border-color);
-    overflow: hidden;
     box-shadow: var(--shadow);
+    overflow: hidden;
     transition: var(--transition);
 }
 
-.whatsapp-banner:hover {
-    box-shadow: var(--shadow-hover);
+.preorder-banner:hover {
     transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
 }
 
-.whatsapp-content {
-    display: grid;
-    grid-template-columns: 350px 1fr;
-    align-items: center;
-    gap: 0;
-    flex-wrap: nowrap;
-}
-
-.whatsapp-icon {
-    font-size: 0;
-    background-image: url('https://images.unsplash.com/photo-1557844352-761f2565b576?q=80&w=2592&auto=format&fit=crop');
+.preorder-image {
+    background-image: url('https://www.apple.com/v/iphone-15-pro/c/images/overview/closer-look/natural_titanium__ccl12n2ed92a_large.jpg');
     background-size: cover;
     background-position: center;
     height: 100%;
-    min-height: 300px;
-    align-self: stretch;
+    min-height: 380px;
 }
 
-.whatsapp-text {
-    flex: 1;
-    color: var(--text-color);
+.preorder-content {
     padding: 2rem 3rem;
+    text-align: left;
 }
 
-.whatsapp-text h3 {
-    font-size: 2rem;
+.preorder-content .preorder-subtitle {
+    font-size: 0.9rem;
     font-weight: 700;
-    margin-bottom: 1rem;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.preorder-content h2 {
+    font-size: 2.25rem;
+    font-weight: 800;
     color: var(--secondary-color);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    background: none;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: initial;
+    background-clip: initial;
 }
 
-.whatsapp-text p {
-    font-size: 1.1rem;
-    opacity: 1;
-    margin: 0 0 2rem 0;
-    line-height: 1.6;
+.preorder-content .preorder-description {
     color: var(--text-light);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
 }
 
-.whatsapp-btn {
+.preorder-btn {
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;
@@ -821,44 +733,107 @@ body {
     border: none;
 }
 
-.whatsapp-btn:hover {
-    background: #128C7E;
-    color: white;
+.preorder-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+    background: #128C7E;
 }
 
-.whatsapp-btn i {
+.preorder-btn i {
     font-size: 1.4rem;
 }
 
 @media (max-width: 992px) {
-    .whatsapp-content {
-        grid-template-columns: 250px 1fr;
+    .preorder-banner {
+        grid-template-columns: 1fr;
     }
-    .whatsapp-text {
+    .preorder-image {
+        min-height: 250px;
+    }
+    .preorder-content {
         padding: 2rem;
+        text-align: center;
     }
-    .whatsapp-text h3 {
-        font-size: 1.5rem;
-    }
-    .whatsapp-text p {
-        font-size: 1rem;
-    }
+}
+
+/* WhatsApp Contact Section */
+.whatsapp-contact-section {
+    padding: 2rem 0;
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+}
+
+.whatsapp-banner {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.whatsapp-content {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.whatsapp-icon {
+    font-size: 3rem;
+    color: white;
+    flex-shrink: 0;
+}
+
+.whatsapp-text {
+    flex: 1;
+    color: white;
+}
+
+.whatsapp-text h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.whatsapp-text p {
+    font-size: 1rem;
+    opacity: 0.9;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: white;
+    color: #25D366;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+}
+
+.whatsapp-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    background: #f8f9fa;
+    color: #128C7E;
+}
+
+.whatsapp-btn i {
+    font-size: 1.3rem;
 }
 
 @media (max-width: 768px) {
     .whatsapp-content {
-        grid-template-columns: 1fr;
+        flex-direction: column;
         text-align: center;
-    }
-
-    .whatsapp-icon {
-        min-height: 200px;
-    }
-
-    .whatsapp-text {
-        padding: 2rem 1.5rem;
+        gap: 1.5rem;
     }
 
     .whatsapp-text h3 {
@@ -870,10 +845,13 @@ body {
     }
 
     .whatsapp-btn {
-        width: auto;
+        width: 100%;
         justify-content: center;
+        font-size: 1rem;
+        padding: 0.875rem 1.5rem;
     }
 }
+
 
 /* Products Section */
 .products-section {
