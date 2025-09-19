@@ -832,7 +832,20 @@ feature_mfi: "MFi Certified",
 feature_mfi_desc: "Apple‑approved accessories",
 feature_fast_charge: "Fast Charging",
 feature_fast_charge_desc: "Quick power top‑up"
-
+    },
+    // Add new spec value translations here
+    spec_iphone16promax_display_value: '6.9" Super Retina XDR OLED',
+    spec_iphone16promax_processor_value: "Apple A18 Pro",
+    spec_iphone16promax_ram_value: "8GB",
+    spec_iphone16promax_main_camera_value: "48MP f/1.78",
+    spec_iphone16promax_ultrawide_camera_value: "12MP f/2.2",
+    spec_iphone16promax_telephoto_camera_value: "12MP f/2.8",
+    spec_iphone16promax_battery_value: "4422 mAh",
+    spec_iphone16promax_os_value: "iOS 18",
+    spec_iphone16promax_connectivity_value: "5G, Wi-Fi 7, Bluetooth 5.3",
+    spec_iphone16promax_resistance_value: "IP68",
+    spec_iphone16promax_dimensions_value: "159.9 x 76.7 x 8.25 mm",
+    spec_iphone16promax_weight_value: "227g"
  }
     };
 }
@@ -847,9 +860,10 @@ function t(key) {
 
 
 // Product database with detailed information
-const productDatabase = {
+function getProductDatabase() {
+    return {
   iphone16promax: {
-    name: "iPhone 16 Pro Max",
+    name: t("iphone16promax_name"),
     description: t("iphone_desc"),
     price: 769,
     originalPrice: 1000,
@@ -885,19 +899,19 @@ const productDatabase = {
         { icon: "fas fa-mobile-alt", title: t("iphone_feature_display_title"), desc: t("iphone_feature_display_desc") }
     ],
     specifications: {
-        [t("spec_display")]: '6.9" Super Retina XDR OLED',
-        [t("spec_processor")]: "Apple A18 Pro",
+        [t("spec_display")]: t('spec_iphone16promax_display_value'),
+        [t("spec_processor")]: t('spec_iphone16promax_processor_value'),
         [t("spec_storage")]: "256GB",
-        [t("spec_ram")]: "8GB",
-        [t("spec_main_camera")]: "48MP f/1.78",
-        [t("spec_ultrawide_camera")]: "12MP f/2.2",
-        [t("spec_telephoto_camera")]: "12MP f/2.8",
-        [t("spec_battery")]: "4422 mAh",
-        [t("spec_os")]: "iOS 18",
-        [t("spec_connectivity")]: "5G, Wi-Fi 7, Bluetooth 5.3",
-        [t("spec_resistance")]: "IP68",
-        [t("spec_dimensions")]: "159.9 x 76.7 x 8.25 mm",
-        [t("spec_weight")]: "227g",
+        [t("spec_ram")]: t('spec_iphone16promax_ram_value'),
+        [t("spec_main_camera")]: t('spec_iphone16promax_main_camera_value'),
+        [t("spec_ultrawide_camera")]: t('spec_iphone16promax_ultrawide_camera_value'),
+        [t("spec_telephoto_camera")]: t('spec_iphone16promax_telephoto_camera_value'),
+        [t("spec_battery")]: t('spec_iphone16promax_battery_value'),
+        [t("spec_os")]: t('spec_iphone16promax_os_value'),
+        [t("spec_connectivity")]: t('spec_iphone16promax_connectivity_value'),
+        [t("spec_resistance")]: t('spec_iphone16promax_resistance_value'),
+        [t("spec_dimensions")]: t('spec_iphone16promax_dimensions_value'),
+        [t("spec_weight")]: t('spec_iphone16promax_weight_value'),
         [t("spec_condition")]: t("spec_condition_certified"),
         [t("spec_battery_health")]: t("spec_battery_health_value")
     }
@@ -1101,7 +1115,7 @@ iphone14promax: {
 
 
 iphone14: {
-  name: "iPhone 14",
+  name: t("iphone14_name"),
   description: t("iphone_desc"),
   price: 399,
   originalPrice: 599,
@@ -1294,7 +1308,7 @@ iphonexr: {
 
 
 galaxys25ultra: {
-  name: "Samsung Galaxy S 25 Ultra",
+  name: t("galaxys25ultra_name"),
   description: t("samsung_desc"),
   price: 1299,
   originalPrice: 1659,
@@ -1339,7 +1353,7 @@ galaxys25ultra: {
 },
 
 galaxyS25: {
-    name: "Samsung Galaxy S 25",
+    name: t("galaxys25_name"),
     description: t("samsung_desc"),
     price: 899,
     originalPrice: 1099,
@@ -1420,7 +1434,7 @@ galaxys24ultra: {
     }
 },
 galaxys24: {
-    name: "Samsung Galaxy S 24",
+    name: t("galaxys24_name"),
     description: t("samsung_desc"),
     price: 529,
     originalPrice: 999,
@@ -1496,7 +1510,7 @@ galaxys24plus: {
 },
 
 galaxys23ultra: {
-  name: "Samsung Galaxy S 23 Ultra",
+  name: t("galaxys23ultra_name"),
   description: t("samsung_desc"),
   price: 329,
   originalPrice: 400,
@@ -1536,7 +1550,7 @@ galaxys23ultra: {
 },
 
 	galaxys23: {
-  name: "Samsung Galaxy S 23",
+  name: t("galaxys23_name"),
   description: t("samsung_desc"),
   price: 499,
   originalPrice: 699,
@@ -1611,7 +1625,7 @@ galaxys22ultra: {
   }
 },
 galaxys22: {
-  name: "Samsung Galaxy S 22",
+  name: t("galaxys22_name"),
   description: t("samsung_desc"),
   price: 379,
   originalPrice: 649,
@@ -2293,6 +2307,7 @@ cableusbc: {
   ],
   specifications: {}
 }
+    }
 }
 
 
@@ -2379,7 +2394,8 @@ function convertPrice(price, showBoth = true) {
 // Load and display product
 function loadProduct() {
     const productId = getProductId();
-    const product = productDatabase[productId];
+    const productDb = getProductDatabase();
+    const product = productDb[productId];
 
     if (!product) {
         const container = document.querySelector('.product-detail-container');
