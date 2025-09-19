@@ -2372,6 +2372,7 @@ const countryConfig = {
 let currentCountry = localStorage.getItem('selectedCountry') || 'honduras';
 let currentLanguage = localStorage.getItem('selectedLanguage') || countryConfig[currentCountry]?.lang || 'es';
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
+let productDatabase;
 
 // Global selection state
 let currentMemory = null;
@@ -2674,14 +2675,14 @@ function loadProduct() {
 
         if (!images || images.length === 0) {
             console.log('No images provided for product');
-            if (mainImage) mainImage.src = 'https://via.placeholder.com/400x400?text=No+Image';
+            if (mainImage) mainImage.src = 'https://placehold.co/400x400?text=No+Image';
             if (thumbnailContainer) thumbnailContainer.innerHTML = '';
             return;
         }
 
         // Helper to get a higher resolution image from Amazon URLs
         const getHighResImageUrl = (url) => {
-            if (typeof url === 'string') {
+            if (typeof url === 'string' && url.includes('amazon.com')) {
                 // This regex removes the size constraint part of an Amazon image URL (e.g., ._AC_SX466_)
                 // to request a higher resolution version. It's safer than replacing with a fixed size.
                 return url.replace(/\._AC_.*?_/, '');
@@ -2715,7 +2716,7 @@ function loadProduct() {
 
                 thumbnail.onerror = function() {
                     console.log('Failed to load thumbnail:', image);
-                    this.src = 'https://via.placeholder.com/120x120?text=No+Image';
+                    this.src = 'https://placehold.co/120x120?text=No+Image';
                 };
 
                 thumbnail.addEventListener('click', () => {
@@ -2779,16 +2780,6 @@ if (specsGrid) {
             `;
             specsGrid.appendChild(specItem);
         });
-
-		
-    // Setup add to cart functionality
-    setupAddToCart(product);
-    
-    // Initialize cart display
-    updateCartDisplay();
-    
-    // Initialize checkout functionality
-    initializeCheckout();
 
     }
 }
@@ -2977,7 +2968,7 @@ if (product.variants && currentVariant && product.variants[currentVariant]) {
 
             cartItemDiv.innerHTML = `
             <div class="cart-item-image">
-                <img src="${item.image || 'https://via.placeholder.com/60x60'}" alt="${item.name}" loading="lazy">
+                <img src="${item.image || 'https://placehold.co/60x60'}" alt="${item.name}" loading="lazy">
                 ${isFreeGift ? '<div class="gift-overlay"><i class="fas fa-gift"></i></div>' : ''}
             </div>
             <div class="cart-item-details">
@@ -3097,7 +3088,7 @@ function updateCartDisplay() {
 
     if (cart.length === 0) {
         const emptyMessage = currentLanguage === 'es' ? 'Tu carrito está vacío' : 'Your cart is empty';
-        cartItems.innerHTML = `
+        cartItems.innerHTML = /*html*/`
             <div id="empty-cart-message" class="empty-cart-message">
                 <i class="fas fa-shopping-cart"></i>
                 <p>${emptyMessage}</p>
@@ -3118,10 +3109,10 @@ function updateCartDisplay() {
         const isFreeGift = item.isFreeGift || item.price === 0;
         const priceDisplay = isFreeGift ? 'FREE' : convertPrice(itemTotal, false);
 
-        cartHTML += `
+        cartHTML += /*html*/`
             <div class="cart-item ${isFreeGift ? 'free-gift-item' : ''}" data-item-id="${item.id}">
                 <div class="cart-item-image">
-                    <img src="${item.image || 'https://via.placeholder.com/60x60'}" alt="${item.name}" loading="lazy" class="cart-product-image">
+                    <img src="${item.image || 'https://placehold.co/60x60'}" alt="${item.name}" loading="lazy" class="cart-product-image">
                     ${isFreeGift ? '<div class="gift-overlay"><i class="fas fa-gift"></i></div>' : ''}
                 </div>
                 <div class="cart-item-details">
@@ -3252,6 +3243,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         updateLanguage(currentLanguage);
     }
+
+    // Initialize product database after language is set
+    productDatabase = getProductDatabase();
 
     loadProduct();
     updateCartCount();
