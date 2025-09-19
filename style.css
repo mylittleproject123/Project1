@@ -4917,23 +4917,33 @@ img {
     padding: 1rem 0;
 }
 
-/* Styles for the main product image on the details page */
-#main-product-image {
+/* NEW: Styles for the container of the main product image.
+   This creates a responsive, square "frame" for the image. */
+.product-images > *:first-child {
+    display: block; /* Ensures the container behaves like a block (important if it's an <a> tag) */
+    position: relative;
     width: 100%;
-    height: auto;
-    aspect-ratio: 1 / 1; /* This ensures the container is always square */
-    object-fit: contain;
+    aspect-ratio: 1 / 1;
     background: var(--background-light);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
-    padding: 1rem;
-    transition: transform 0.3s ease;
     box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
 }
 
-#main-product-image:hover {
-    transform: scale(1.02);
+.product-images > *:first-child:hover {
     box-shadow: var(--shadow-hover);
+}
+
+/* Styles for the main product image on the details page */
+#main-product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 1rem; /* Apply padding within the container */
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
 }
 
 .thumbnails-container {
