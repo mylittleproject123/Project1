@@ -474,7 +474,9 @@ feature_led_lights_desc: "Efectos visuales con la música",
 feature_mfi: "Certificado MFi",
 feature_mfi_desc: "Accesorios aprobados por Apple",
 feature_fast_charge: "Carga Rápida",
-feature_fast_charge_desc: "Recarga veloz"
+feature_fast_charge_desc: "Recarga veloz",
+powerbank_name: "Batería Portátil 5000mAh",
+powerbank_desc: "Batería compacta de 5000mAh. Carga rápida para teléfonos y dispositivos pequeños. Indicador LED y sistemas de protección múltiple."
 			
     },
     en: {
@@ -831,7 +833,9 @@ feature_led_lights_desc: "Visuals that sync with music",
 feature_mfi: "MFi Certified",
 feature_mfi_desc: "Apple‑approved accessories",
 feature_fast_charge: "Fast Charging",
-feature_fast_charge_desc: "Quick power top‑up"
+feature_fast_charge_desc: "Quick power top‑up",
+powerbank_name: "Portable Power Bank 5000mAh",
+powerbank_desc: "Compact 5000mAh power bank. Fast charging for phones and small devices. LED battery indicator and multiple protection systems."
     },
     // Add new spec value translations here
     spec_iphone16promax_display_value: '6.9" Super Retina XDR OLED',
@@ -2306,6 +2310,41 @@ cableusbc: {
     { icon: "fas fa-charging-station", title: t("feature_fast_charge"), desc: t("feature_fast_charge_desc") }
   ],
   specifications: {}
+},
+powerbank: {
+    name: t("powerbank_name"),
+    description: t("powerbank_desc"),
+    price: 16,
+    category: "accessories",
+    images: ["https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/J/D/190950_1664522191.jpg"],
+    features: [
+        { icon: "fas fa-check", title: "5000mAh Capacity" },
+        { icon: "fas fa-check", title: "Fast Charging" },
+        { icon: "fas fa-check", title: "LED Indicator" }
+    ],
+    specifications: {
+        "Capacity": "5000mAh",
+        "Output": "5V/2.1A",
+        "Input": "5V/2A"
+    }
+},
+
+screenprotector: {
+    name: "Premium Gorilla Glass Screen Protection",
+    description: "Professional-grade 9H hardness tempered glass screen protector with oleophobic coating technology. Crystal-clear transparency with advanced bubble-free installation system for seamless device protection.",
+    price: 11.99,
+    category: "accessories",
+    images: ["https://m.media-amazon.com/images/I/61NGYQsztvL._UF1000,1000_QL80_FMwebp_.jpg"],
+    features: [
+        { icon: "fas fa-check", title: "9H Hardness" },
+        { icon: "fas fa-check", title: "Bubble-Free" },
+        { icon: "fas fa-check", title: "Crystal Clear" }
+    ],
+    specifications: {
+        "Material": "Tempered Glass",
+        "Hardness": "9H",
+        "Compatibility": "Universal (check size)"
+    }
 }
     }
 }
