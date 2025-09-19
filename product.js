@@ -2640,11 +2640,6 @@ function loadProduct() {
             const highResSrc = getHighResImageUrl(images[0]);
             mainImage.src = highResSrc;
             mainImage.alt = product.name;
-            // Defensive styling to ensure the image is large enough and scales properly
-            mainImage.style.maxHeight = '500px';
-            mainImage.style.width = 'auto';
-            mainImage.style.maxWidth = '100%';
-            mainImage.style.objectFit = 'contain';
         }
 
         if (thumbnailContainer) {
