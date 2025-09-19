@@ -1945,6 +1945,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
     try {
         // Set initial country display
+        // --- Logic specific to the main products page (index.html) ---
+        const productsGridContainer = document.querySelector('.products-grid');
+        if (productsGridContainer) {
+            // Add a single, delegated event listener for all product card clicks
+            productsGridContainer.addEventListener('click', function(e) {
+                // Check if the click was on an image or a product name link
+                const productLink = e.target.closest('.product-image, .product-name a');
+                if (productLink) {
+                    const productCard = productLink.closest('.product-card[data-product-id]');
+                    if (productCard) {
+                        e.preventDefault(); // Prevent default link behavior
+                        window.location.href = `product.html?id=${productCard.dataset.productId}`;
+                    }
+                }
+            });
+        }
+
         const currentFlag = document.getElementById('current-flag');
         const currentCountryEl = document.getElementById('current-country');
         const initialConfig = countryConfig[currentCountry];
@@ -1956,76 +1973,79 @@ document.addEventListener('DOMContentLoaded', function() {
             updateLanguage(currentLanguage);
         }
 
-        // --- Product Filtering, Searching, and Sorting ---
+        // --- Logic specific to the main products page (index.html) ---
+        if (productsGridContainer) {
+            // Master function to update the product grid based on current state
+            function updateProductGrid() {
+                const productsContainer = document.querySelector('.products-grid');
+                if (!productsContainer) return;
 
-        // Master function to update the product grid based on current state
-        function updateProductGrid() {
-            const productsContainer = document.querySelector('.products-grid');
-            if (!productsContainer) return;
+                const products = Array.from(productsContainer.querySelectorAll('.product-card'));
+                const searchTerm = currentSearchTerm.toLowerCase().trim();
 
-            const products = Array.from(productsContainer.querySelectorAll('.product-card'));
-            const searchTerm = currentSearchTerm.toLowerCase().trim();
+                // Step 1: Filter products based on category and search term
+                const filteredProducts = products.filter(product => {
+                    const productCategory = product.getAttribute('data-category') || '';
+                    const productNameElement = product.querySelector('.product-name a');
+                    const productName = productNameElement ? productNameElement.textContent.toLowerCase() : '';
 
-            // Step 1: Filter products based on category and search term
-            const filteredProducts = products.filter(product => {
-                const productCategory = product.getAttribute('data-category') || '';
-                const productNameElement = product.querySelector('.product-name a');
-                const productName = productNameElement ? productNameElement.textContent.toLowerCase() : '';
+                    // Check category
+                    let categoryMatch = false;
+                    if (currentFilterCategory === 'all') {
+                        categoryMatch = true;
+                    } else if (currentFilterCategory === 'audio') {
+                        categoryMatch = (productCategory === 'audio' || productCategory === 'airpods');
+                    } else {
+                        categoryMatch = productCategory === currentFilterCategory;
+                    }
 
-                // Check category
-                let categoryMatch = false;
-                if (currentFilterCategory === 'all') {
-                    categoryMatch = true;
-                } else if (currentFilterCategory === 'audio') {
-                    categoryMatch = (productCategory === 'audio' || productCategory === 'airpods');
-                } else {
-                    categoryMatch = productCategory === currentFilterCategory;
-                }
+                    // Check search term
+                    const searchMatch = productName.includes(searchTerm);
 
-                // Check search term
-                const searchMatch = productName.includes(searchTerm);
+                    return categoryMatch && searchMatch;
+                });
 
-                return categoryMatch && searchMatch;
-            });
+                // Step 2: Sort the filtered products
+                filteredProducts.sort((a, b) => {
+                    const priceTextA = a.querySelector('.current-price').textContent;
+                    const priceTextB = b.querySelector('.current-price').textContent;
+                    
+                    const priceA = parseFloat(priceTextA.replace(/[^0-9.]/g, ''));
+                    const priceB = parseFloat(priceTextB.replace(/[^0-9.]/g, ''));
 
-            // Step 2: Sort the filtered products
-            filteredProducts.sort((a, b) => {
-                const priceTextA = a.querySelector('.current-price').textContent;
-                const priceTextB = b.querySelector('.current-price').textContent;
-                
-                const priceA = parseFloat(priceTextA.replace(/[^0-9.]/g, ''));
-                const priceB = parseFloat(priceTextB.replace(/[^0-9.]/g, ''));
+                    if (currentSortBy === 'price-low') {
+                        return priceA - priceB;
+                    } else if (currentSortBy === 'price-high') {
+                        return priceB - priceA;
+                    }
+                    return 0; // Default 'featured' order
+                });
 
-                if (currentSortBy === 'price-low') {
-                    return priceA - priceB;
-                } else if (currentSortBy === 'price-high') {
-                    return priceB - priceA;
-                }
-                return 0; // Default 'featured' order
-            });
-
-            // Step 3: Update the DOM
-            products.forEach(product => product.style.display = 'none'); // Hide all first
-            filteredProducts.forEach(product => {
-                product.style.display = 'flex'; // Show filtered products
-                productsContainer.appendChild(product); // Re-order in the DOM
-            });
-        }
-
-        // --- Event Listeners for Grid Controls ---
-
-        // Search Inputs
-        const desktopSearchInput = document.getElementById('desktop-search-input');
-        const mobileSearchInput = document.getElementById('mobile-search-input');
-
-        function handleSearchInput(e) {
-            currentSearchTerm = e.target.value;
-            // Sync both search bars
-            if (desktopSearchInput && mobileSearchInput) {
-                if (e.target === desktopSearchInput) mobileSearchInput.value = currentSearchTerm;
-                else desktopSearchInput.value = currentSearchTerm;
+                // Step 3: Update the DOM
+                products.forEach(product => product.style.display = 'none'); // Hide all first
+                filteredProducts.forEach(product => {
+                    product.style.display = 'flex'; // Show filtered products
+                    productsContainer.appendChild(product); // Re-order in the DOM
+                });
             }
-            updateProductGrid();
+
+            // --- Event Listeners for Grid Controls ---
+            // Search Inputs
+            const desktopSearchInput = document.getElementById('desktop-search-input');
+            const mobileSearchInput = document.getElementById('mobile-search-input');
+
+            function handleSearchInput(e) {
+                currentSearchTerm = e.target.value;
+                // Sync both search bars
+                if (desktopSearchInput && mobileSearchInput) {
+                    if (e.target === desktopSearchInput) mobileSearchInput.value = currentSearchTerm;
+                    else desktopSearchInput.value = currentSearchTerm;
+                }
+                updateProductGrid();
+            }
+
+            if (desktopSearchInput) desktopSearchInput.addEventListener('input', handleSearchInput);
+            if (mobileSearchInput) mobileSearchInput.addEventListener('input', handleSearchInput);
         }
 
         // Initialize cart
@@ -2042,10 +2062,6 @@ document.addEventListener('DOMContentLoaded', function() {
         updatePrices();
         setupDynamicWhatsAppLinks();
         createAndInsertPreorderBanner();
-        updateFooterFromBusinessAddress();
-
-        if (desktopSearchInput) desktopSearchInput.addEventListener('input', handleSearchInput);
-        if (mobileSearchInput) mobileSearchInput.addEventListener('input', handleSearchInput);
 
         // Country dropdown functionality
         const countryDropdownBtn = document.getElementById('country-dropdown-btn');
@@ -2443,7 +2459,7 @@ function updateFooterFromBusinessAddress() {
     if (footerEmailEl) {
         footerEmailEl.innerHTML = `<i class="fas fa-envelope"></i> <a href="mailto:${email}" style="color: inherit; text-decoration: none;">${email}</a>`;
     }
-} 
+}
 
 const form = document.querySelector('form');
 if (form) {
