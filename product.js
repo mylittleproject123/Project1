@@ -851,7 +851,6 @@ reviews: "Reviews"
     spec_iphone16promax_resistance_value: "IP68",
     spec_iphone16promax_dimensions_value: "159.9 x 76.7 x 8.25 mm",
     spec_iphone16promax_weight_value: "227g"
- }
     };
 }
 
