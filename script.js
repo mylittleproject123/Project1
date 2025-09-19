@@ -128,6 +128,7 @@ const translations = window.translations || {
         resend_code: "Reenviar Código",
         verify_code: "Verificar Código",
         invalid_code: "Código inválido. Por favor, inténtalo de nuevo."
+        reviews: "Reseñas"
     },
     en: {
         home: "Home",
@@ -245,6 +246,7 @@ const translations = window.translations || {
         resend_code: "Resend Code",
         verify_code: "Verify Code",
         invalid_code: "Invalid code. Please try again."
+        reviews: "Reviews"
     }
 };
 
