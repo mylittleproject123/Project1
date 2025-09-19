@@ -4909,9 +4909,31 @@ img {
 }
 
 .product-images {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     position: sticky;
     top: 2rem;
     padding: 1rem 0;
+}
+
+/* Styles for the main product image on the details page */
+#main-product-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1; /* This ensures the container is always square */
+    object-fit: contain;
+    background: var(--background-light);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    transition: transform 0.3s ease;
+    box-shadow: var(--shadow);
+}
+
+#main-product-image:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-hover);
 }
 
 .thumbnails-container {
