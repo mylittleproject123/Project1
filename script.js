@@ -1740,8 +1740,7 @@ function getBusinessAddress() {
             return {
                 address: '17-23 Charles St.',
                 city: 'Port of Spain',
-                country: 'Trinidad and Tobago',
-				phone: '+1 868 472 78575'
+                country: 'Trinidad and Tobago'
             };
         case 'usa':
             return {
@@ -2429,17 +2428,25 @@ function showCardProcessingState() {
  // These event listeners are already handled in setupCheckoutEventListeners()
 function updateFooterFromBusinessAddress() {
     const businessAddress = getBusinessAddress();
-    if (!businessAddress) return;
+    const countryInfo = countryConfig[currentCountry];
+    if (!businessAddress || !countryInfo) return;
 
     const fullAddress = `${businessAddress.address}, ${businessAddress.city}, ${businessAddress.country}`;
-    const phoneNumber = businessAddress.phone;
+    const phoneNumber = countryInfo.phone;
+    const email = `sales@techzone-${currentCountry}.com`;
 
     const footerAddressEl = document.getElementById('footer-address');
+    const footerPhoneEl = document.getElementById('footer-phone');
+    const footerEmailEl = document.getElementById('footer-email');
+
     if (footerAddressEl) {
-        footerAddressEl.innerHTML = `
-            <i class="fas fa-map-marker-alt"></i> ${fullAddress}<br>
-            <i class="fas fa-phone-alt"></i> <a href="tel:${phoneNumber}">${phoneNumber}</a>
-        `;
+        footerAddressEl.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${fullAddress}`;
+    }
+    if (footerPhoneEl) {
+        footerPhoneEl.innerHTML = `<i class="fas fa-phone"></i> <a href="tel:${phoneNumber.replace(/\s/g, '')}" style="color: inherit; text-decoration: none;">${phoneNumber}</a>`;
+    }
+    if (footerEmailEl) {
+        footerEmailEl.innerHTML = `<i class="fas fa-envelope"></i> <a href="mailto:${email}" style="color: inherit; text-decoration: none;">${email}</a>`;
     }
 }
 
