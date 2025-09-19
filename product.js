@@ -476,8 +476,8 @@ feature_mfi_desc: "Accesorios aprobados por Apple",
 feature_fast_charge: "Carga Rápida",
 feature_fast_charge_desc: "Recarga veloz",
 powerbank_name: "Batería Portátil 5000mAh",
-powerbank_desc: "Batería compacta de 5000mAh. Carga rápida para teléfonos y dispositivos pequeños. Indicador LED y sistemas de protección múltiple."
-			
+powerbank_desc: "Batería compacta de 5000mAh. Carga rápida para teléfonos y dispositivos pequeños. Indicador LED y sistemas de protección múltiple.",
+reviews: "Reseñas"
     },
     en: {
         home: "Home",
@@ -835,7 +835,8 @@ feature_mfi_desc: "Apple‑approved accessories",
 feature_fast_charge: "Fast Charging",
 feature_fast_charge_desc: "Quick power top‑up",
 powerbank_name: "Portable Power Bank 5000mAh",
-powerbank_desc: "Compact 5000mAh power bank. Fast charging for phones and small devices. LED battery indicator and multiple protection systems."
+powerbank_desc: "Compact 5000mAh power bank. Fast charging for phones and small devices. LED battery indicator and multiple protection systems.",
+reviews: "Reviews"
     },
     // Add new spec value translations here
     spec_iphone16promax_display_value: '6.9" Super Retina XDR OLED',
