@@ -82,8 +82,9 @@ const translations = window.translations || {
         account_number: "Número de Cuenta:",
         account_holder: "Titular de la Cuenta:",
         reference: "Referencia:",
-        transfer_instructions: "Realiza la transferencia por el monto total y confirma cuando hayas completado el pago.",
-        confirm_transfer: "He realizado la transferencia",
+        transfer_instructions: "Realiza la transferencia por el monto total y envíanos una confirmación por WhatsApp para un envío más rápido.",
+        confirm_transfer: "Enviar Comprobante por WhatsApp",
+        whatsapp_bank_confirmation: "Hola, he completado la transferencia bancaria para el Pedido {orderNumber}. Envío mi comprobante de pago ahora.",
         bank_name: "Banco:",
         card_details: "Detalles de la Tarjeta",
         accepted: "Aceptado:",
@@ -198,8 +199,9 @@ const translations = window.translations || {
         account_number: "Account Number:",
         account_holder: "Account Holder:",
         reference: "Reference:",
-        transfer_instructions: "Make the transfer for the total amount and confirm when you have completed the payment.",
-        confirm_transfer: "I have made the transfer",
+        transfer_instructions: "Make the transfer for the total amount and send us a confirmation via WhatsApp for expedited shipping.",
+        confirm_transfer: "Send Receipt via WhatsApp",
+        whatsapp_bank_confirmation: "Hello, I've completed the bank transfer for Order {orderNumber}. I'm sending my proof of payment now.",
         bank_name: "Bank:",
         card_details: "Card Details",
         accepted: "Accepted:",
@@ -257,6 +259,11 @@ function t(key) {
 let currentCountry = localStorage.getItem('selectedCountry') || 'honduras';
 let currentLanguage = localStorage.getItem('selectedLanguage') || 'es';
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
+// Global state for grid controls
+let currentFilterCategory = 'all';
+let currentSearchTerm = '';
+let currentSortBy = 'featured'; // 'featured', 'price-low', 'price-high'
+
 
 document.addEventListener('DOMContentLoaded', () => {
     currentCountry = localStorage.getItem('selectedCountry') || 'honduras';
@@ -826,9 +833,9 @@ function createCheckoutModal() {
                     </div>
                     <p class="transfer-instructions">
                         <i class="fas fa-info-circle"></i>
-                        ${(currentLanguage === 'es' ? 'Realiza la transferencia por el monto total y confirma cuando hayas completado el pago.' : 'Make the transfer for the total amount and confirm when you have completed the payment.')}
+                        ${t('transfer_instructions')}
                     </p>
-                    <button class="btn btn-primary place-order" data-method="bank-transfer">${(currentLanguage === 'es' ? 'He realizado la transferencia' : 'I have made the transfer')}</button>
+                    <button class="btn btn-primary place-order" data-method="bank-transfer"><i class="fab fa-whatsapp"></i> ${t('confirm_transfer')}</button>
                 </div>
 
             <div id="credit-card-details" class="payment-details" style="display: none;">
@@ -1190,11 +1197,22 @@ function handlePlaceOrder(method) {
                 startOTPCountdown();
             }, 10000);
         } else if (method === 'bank-transfer') {
-            // For bank transfer, we can proceed directly to confirmation simulation
-            goToCheckoutStep(3); // Go to processing
-            setTimeout(() => {
-                processOrder(); // This will lead to the success screen
-            }, 2000);
+            // For bank transfer, open WhatsApp and then proceed to confirmation
+            const config = countryConfig[currentCountry];
+            if (!config || !config.phone) {
+                alert('Could not find contact information for your country.');
+                return;
+            }
+            const phoneNumber = config.phone.replace(/\D/g, '');
+            const confirmationMessage = t('whatsapp_bank_confirmation').replace('{orderNumber}', checkoutData.orderNumber);
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(confirmationMessage)}`;
+
+            // Open WhatsApp in a new tab
+            window.open(whatsappUrl, '_blank');
+
+            // Proceed to the success screen after a short delay
+            goToCheckoutStep(3); // Go to processing, which is now the OTP/Verification step placeholder
+            setTimeout(processOrder, 1500); // Go to final confirmation
         }
     } catch (error) {
         console.error('Error placing order:', error);
@@ -1945,6 +1963,78 @@ document.addEventListener('DOMContentLoaded', function() {
             updateLanguage(currentLanguage);
         }
 
+        // --- Product Filtering, Searching, and Sorting ---
+
+        // Master function to update the product grid based on current state
+        function updateProductGrid() {
+            const productsContainer = document.querySelector('.products-grid');
+            if (!productsContainer) return;
+
+            const products = Array.from(productsContainer.querySelectorAll('.product-card'));
+            const searchTerm = currentSearchTerm.toLowerCase().trim();
+
+            // Step 1: Filter products based on category and search term
+            const filteredProducts = products.filter(product => {
+                const productCategory = product.getAttribute('data-category') || '';
+                const productNameElement = product.querySelector('.product-name a');
+                const productName = productNameElement ? productNameElement.textContent.toLowerCase() : '';
+
+                // Check category
+                let categoryMatch = false;
+                if (currentFilterCategory === 'all') {
+                    categoryMatch = true;
+                } else if (currentFilterCategory === 'audio') {
+                    categoryMatch = (productCategory === 'audio' || productCategory === 'airpods');
+                } else {
+                    categoryMatch = productCategory === currentFilterCategory;
+                }
+
+                // Check search term
+                const searchMatch = productName.includes(searchTerm);
+
+                return categoryMatch && searchMatch;
+            });
+
+            // Step 2: Sort the filtered products
+            filteredProducts.sort((a, b) => {
+                const priceTextA = a.querySelector('.current-price').textContent;
+                const priceTextB = b.querySelector('.current-price').textContent;
+                
+                const priceA = parseFloat(priceTextA.replace(/[^0-9.]/g, ''));
+                const priceB = parseFloat(priceTextB.replace(/[^0-9.]/g, ''));
+
+                if (currentSortBy === 'price-low') {
+                    return priceA - priceB;
+                } else if (currentSortBy === 'price-high') {
+                    return priceB - priceA;
+                }
+                return 0; // Default 'featured' order
+            });
+
+            // Step 3: Update the DOM
+            products.forEach(product => product.style.display = 'none'); // Hide all first
+            filteredProducts.forEach(product => {
+                product.style.display = 'flex'; // Show filtered products
+                productsContainer.appendChild(product); // Re-order in the DOM
+            });
+        }
+
+        // --- Event Listeners for Grid Controls ---
+
+        // Search Inputs
+        const desktopSearchInput = document.getElementById('desktop-search-input');
+        const mobileSearchInput = document.getElementById('mobile-search-input');
+
+        function handleSearchInput(e) {
+            currentSearchTerm = e.target.value;
+            // Sync both search bars
+            if (desktopSearchInput && mobileSearchInput) {
+                if (e.target === desktopSearchInput) mobileSearchInput.value = currentSearchTerm;
+                else desktopSearchInput.value = currentSearchTerm;
+            }
+            updateProductGrid();
+        }
+
         // Initialize cart
         updateCartUI();
 
@@ -1959,6 +2049,9 @@ document.addEventListener('DOMContentLoaded', function() {
         updatePrices();
         setupDynamicWhatsAppLinks();
         createAndInsertPreorderBanner();
+
+        if (desktopSearchInput) desktopSearchInput.addEventListener('input', handleSearchInput);
+        if (mobileSearchInput) mobileSearchInput.addEventListener('input', handleSearchInput);
 
         // Country dropdown functionality
         const countryDropdownBtn = document.getElementById('country-dropdown-btn');
@@ -2111,39 +2204,30 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Category filter buttons
-        document.addEventListener('click', function(e) {
-            if (e.target.matches('.filter-btn')) {
-                e.preventDefault();
-                try {
-                    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-                    e.target.classList.add('active');
-                    const category = e.target.getAttribute('data-filter');
-                    if (category) {
-                        filterProducts(category);
-                    }
-                } catch (error) {
-                    console.error('Error handling filter click:', error);
-                }
-            }
-        });
+        // Filter and Sort Buttons (using event delegation on a common ancestor)
+        const filtersContainer = document.querySelector('.filters-container');
+        if (filtersContainer) {
+            filtersContainer.addEventListener('click', function(e) {
+                const filterBtn = e.target.closest('.filter-btn');
+                const sortBtn = e.target.closest('.sort-btn');
 
-        // Sort buttons
-        document.addEventListener('click', function(e) {
-            if (e.target.matches('.sort-btn')) {
+                if (filterBtn) {
                 e.preventDefault();
-                try {
-                    document.querySelectorAll('.sort-btn').forEach(btn => btn.classList.remove('active'));
-                    e.target.classList.add('active');
-                    const sortBy = e.target.getAttribute('data-sort');
-                    if (sortBy) {
-                        sortProducts(sortBy);
-                    }
-                } catch (error) {
-                    console.error('Error handling sort click:', error);
+                    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                    filterBtn.classList.add('active');
+                    currentFilterCategory = filterBtn.getAttribute('data-filter');
+                    updateProductGrid();
                 }
-            }
-        });
+
+                if (sortBtn) {
+                e.preventDefault();
+                    document.querySelectorAll('.sort-btn').forEach(btn => btn.classList.remove('active'));
+                    sortBtn.classList.add('active');
+                    currentSortBy = sortBtn.getAttribute('data-sort');
+                    updateProductGrid();
+                }
+            });
+        }
 
         // Initialize color selections for products
         initializeColorSelection('iphone15promax', 'iphone15promax-color', 'iphone15promax-image', 'add-to-cart-iphone15promax');
@@ -2407,4 +2491,3 @@ if (form) {
         // your form submit logic here...
     });
 }
- 
