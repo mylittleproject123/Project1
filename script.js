@@ -1193,7 +1193,7 @@ function handlePlaceOrder(method) {
 
             goToCheckoutStep(3); // Go to processing
             setTimeout(() => {
-                goToCheckoutStep(4); // Go to OTP
+                goToCheckoutStep(5); // Go to OTP
                 startOTPCountdown();
             }, 10000);
         } else if (method === 'bank-transfer') {
