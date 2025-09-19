@@ -435,6 +435,16 @@ pocox7pro_name: "Xiaomi Poco X7 Pro",
 color_midnight_black: "Negro Medianoche",
 color_sage_green: "Verde Salvia",
 
+galaxys25_name: "Samsung Galaxy S25",
+galaxys24_name: "Samsung Galaxy S24",
+galaxys23_name: "Samsung Galaxy S23",
+galaxys22_name: "Samsung Galaxy S22",
+redminote14_name: "Xiaomi Redmi Note 14",
+redminote13pro_name: "Xiaomi Redmi Note 13 Pro",
+redminote13_name: "Xiaomi Redmi Note 13",
+cable_iphone_desc: "Cable de carga certificado para iPhone, compatible con carga rápida.",
+cable_usbc_desc: "Cable USB-C a USB-C duradero para carga rápida y transferencia de datos.",
+jbl_speaker_desc: "Altavoz Bluetooth portátil con sonido potente y diseño resistente al agua.",
 feature_processor_title: "Procesador eficiente",
 feature_processor_desc: "Equilibrio entre rendimiento y batería",
 airpods3_name: "AirPods 3ª Generación",
@@ -793,6 +803,17 @@ pocox7pro_name: "Xiaomi Poco X7 Pro",
 
 color_midnight_black: "Midnight Black",
 color_sage_green: "Sage Green",
+
+galaxys25_name: "Samsung Galaxy S25",
+galaxys24_name: "Samsung Galaxy S24",
+galaxys23_name: "Samsung Galaxy S23",
+galaxys22_name: "Samsung Galaxy S22",
+redminote14_name: "Xiaomi Redmi Note 14",
+redminote13pro_name: "Xiaomi Redmi Note 13 Pro",
+redminote13_name: "Xiaomi Redmi Note 13",
+cable_iphone_desc: "Certified charging cable for iPhone, supports fast charging.",
+cable_usbc_desc: "Durable USB-C to USB-C cable for fast charging and data transfer.",
+jbl_speaker_desc: "Portable Bluetooth speaker with powerful sound and waterproof design.",
 
 feature_processor_title: "Efficient Processor",  
 feature_processor_desc: "Balanced performance and battery life",
@@ -2345,6 +2366,92 @@ screenprotector: {
         "Hardness": "9H",
         "Compatibility": "Universal (check size)"
     }
+},
+
+motogstylus5g: {
+    name: t("motogstylus5g_name"),
+    description: t("motorola_desc"),
+    price: 179,
+    category: "phone",
+    images: ["https://m.media-amazon.com/images/I/71VLA-564KL._AC_SX679_.jpg"],
+    memoryOptions: {},
+    features: [],
+    specifications: {}
+},
+
+applewatchse2: {
+    name: t("applewatchse2_name"),
+    description: t("wearable_desc"),
+    price: 189,
+    category: "wearables",
+    images: ["https://m.media-amazon.com/images/I/71LfnkRgZ4L._AC_SX679_.jpg"],
+    memoryOptions: {},
+    features: [],
+    specifications: {}
+},
+
+galaxywatch6: {
+    name: t("galaxywatch6_name"),
+    description: t("wearable_desc"),
+    price: 229,
+    category: "wearables",
+    images: ["https://m.media-amazon.com/images/I/61n+2Y5qLUL._AC_SX679_.jpg"],
+    memoryOptions: {},
+    features: [],
+    specifications: {}
+},
+
+miband8: {
+    name: t("miband8_name"),
+    description: t("wearable_desc"),
+    price: 39,
+    category: "wearables",
+    images: ["https://m.media-amazon.com/images/I/61JW1k2n2KL._AC_SX679_.jpg"],
+    memoryOptions: {},
+    features: [],
+    specifications: {}
+},
+
+pocof6: {
+    name: t("pocof6_name"),
+    description: t("poco_desc"),
+    price: 329,
+    category: "phone",
+    images: ["https://m.media-amazon.com/images/I/61O1Ey0bwxL.__AC_SX300_SY300_QL70_FMwebp_.jpg"],
+    memoryOptions: {},
+    features: [
+        { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
+        { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") },
+        { icon: "fas fa-battery-full", title: t("feature_battery_title"), desc: t("feature_battery_desc") }
+    ],
+    specifications: {
+        [t("spec_display")]: "6.67\" AMOLED, 120Hz",
+        [t("spec_processor")]: "Snapdragon 8s Gen 3",
+        [t("spec_ram")]: "8GB / 12GB",
+        [t("spec_main_camera")]: "50MP + 8MP",
+        [t("spec_battery")]: "5000 mAh"
+    }
+},
+
+airpodspro2: {
+    name: t("airpodspro2_name"),
+    description: t("airpods_desc"),
+    price: 179,
+    originalPrice: 249,
+    category: "audio",
+    images: ["https://m.media-amazon.com/images/I/61SUj2aKoEL._AC_SX679_.jpg"],
+    memoryOptions: {},
+    features: [
+        { icon: "fas fa-microchip", title: t("feature_h2_chip"), desc: t("feature_h2_chip_desc") },
+        { icon: "fas fa-bullhorn", title: t("feature_noise_cancellation"), desc: t("feature_noise_cancellation_desc") },
+        { icon: "fas fa-water", title: t("feature_ip54"), desc: t("feature_ip54_desc") }
+    ],
+    specifications: {
+        "Chip": "H2",
+        "Battery": "Up to 6h listening, 30h with case",
+        "Water Resistance": "IP54",
+        "Noise Cancellation": "Active Noise Cancellation & Adaptive Transparency"
+    }
 }
     }
 }
@@ -2358,14 +2465,14 @@ function getProductId() {
 
 // Country configuration (reuse from main script)
 const countryConfig = {
-    nicaragua: { flag: '🇳🇮', name: 'Nicaragua', currency: 'NIO', rate: 37, lang: 'es', phone: '+50584608069' },
-    honduras: { flag: '🇭🇳', name: 'Honduras', currency: 'HNL', rate: 25, lang: 'es', phone: '+504 9756-4382' },
-    trinidad: { flag: '🇹🇹', name: 'Trinidad and Tobago', currency: 'TTD', rate: 6.8, lang: 'en', phone: '+1 868 472-7875' },
-    elsalvador: { flag: '🇸🇻', name: "El Salvador", currency: 'USD', rate: 1, lang: 'es', phone: '+503 7345-6789' },
-    paraguay: { flag: '🇵🇾', name: 'Paraguay', currency: 'PYG', rate: 7500, lang: 'es', phone: '+595 21 456-789' },
-    guatemala: { flag: '🇬🇹', name: 'Guatemala', currency: 'GTQ', rate: 7.8, lang: 'es', phone: '+502 2345-6789' },
-    dominican: { flag: '🇩🇴', name: 'Dominican Republic', currency: 'DOP', rate: 58, lang: 'es', phone: '+1 809 234-5678' },
-    usa: { flag: '🇺🇸', name: 'USA', currency: 'USD', rate: 1, lang: 'en', phone: '+1 415-762-3849' }
+    nicaragua: { flag: '🇳🇮', name: 'Nicaragua', currency: 'NIO', rate: 37, lang: 'es', phone: '+50584608069', code: 'ni' },
+    honduras: { flag: '🇭🇳', name: 'Honduras', currency: 'HNL', rate: 25, lang: 'es', phone: '+504 9756-4382', code: 'hn' },
+    trinidad: { flag: '🇹🇹', name: 'Trinidad and Tobago', currency: 'TTD', rate: 6.8, lang: 'en', phone: '+1 868 472-7875', code: 'tt' },
+    elsalvador: { flag: '🇸🇻', name: "El Salvador", currency: 'USD', rate: 1, lang: 'es', phone: '+503 7345-6789', code: 'sv' },
+    paraguay: { flag: '🇵🇾', name: 'Paraguay', currency: 'PYG', rate: 7500, lang: 'es', phone: '+595 21 456-789', code: 'py' },
+    guatemala: { flag: '🇬🇹', name: 'Guatemala', currency: 'GTQ', rate: 7.8, lang: 'es', phone: '+502 2345-6789', code: 'gt' },
+    dominican: { flag: '🇩🇴', name: 'Dominican Republic', currency: 'DOP', rate: 58, lang: 'es', phone: '+1 809 234-5678', code: 'do' },
+    usa: { flag: '🇺🇸', name: 'USA', currency: 'USD', rate: 1, lang: 'en', phone: '+1 415-762-3849', code: 'us' }
 };
 
 // Global variables
@@ -3222,6 +3329,28 @@ function openCheckout() {
     }
 }
 
+function setupCountrySwitcherLinks() {
+    const productId = getProductId();
+    const dropdown = document.getElementById('country-dropdown');
+    if (!dropdown || !productId) return;
+
+    dropdown.innerHTML = ''; // Clear any static content
+
+    Object.entries(countryConfig).forEach(([key, config]) => {
+        const link = document.createElement('a');
+        link.href = `?id=${productId}&country=${config.code}`;
+        link.className = 'country-option';
+        link.dataset.country = key;
+        
+        link.innerHTML = `
+            <span class="flag-icon">${config.flag}</span>
+            <span>${config.name}</span>
+        `;
+        
+        dropdown.appendChild(link);
+    });
+}
+
 // Initialize page
 document.addEventListener('DOMContentLoaded', function() {
     // Scroll to top of page immediately
@@ -3229,11 +3358,38 @@ document.addEventListener('DOMContentLoaded', function() {
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
 
-    // Set initial country display and language
+    // --- Country Initialization from URL or Local Storage ---
+    function initializeCountry() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const countryCode = urlParams.get('country');
+        const productId = urlParams.get('id'); // Keep the product ID
+
+        if (countryCode) {
+            const countryKey = Object.keys(countryConfig).find(key => countryConfig[key].code === countryCode);
+            if (countryKey) {
+                // Set and save the new country from URL
+                currentCountry = countryKey;
+                currentLanguage = countryConfig[countryKey].lang;
+                localStorage.setItem('selectedCountry', currentCountry);
+                localStorage.setItem('selectedLanguage', currentLanguage);
+
+                // Clean the URL, but preserve the product ID
+                const newUrl = `${window.location.pathname}?id=${productId}`;
+                history.replaceState(null, '', newUrl);
+                return;
+            }
+        }
+
+        // Fallback to localStorage or default
+        currentCountry = localStorage.getItem('selectedCountry') || 'honduras';
+        currentLanguage = localStorage.getItem('selectedLanguage') || countryConfig[currentCountry]?.lang || 'es';
+    }
+
+    initializeCountry();
+
     const currentFlag = document.getElementById('current-flag');
     const currentCountryEl = document.getElementById('current-country');
     const initialConfig = countryConfig[currentCountry];
-
     if (initialConfig) {
         currentLanguage = initialConfig.lang;
 
@@ -3243,6 +3399,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         updateLanguage(currentLanguage);
     }
+
+    setupCountrySwitcherLinks();
 
     // Initialize product database after language is set
     productDatabase = getProductDatabase();
@@ -3267,41 +3425,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Country selection
-        const countryOptions = document.querySelectorAll('.country-option');
-        countryOptions.forEach(option => {
-            option.addEventListener('click', function(e) {
-                e.preventDefault();
-                const country = this.getAttribute('data-country');
-                const config = countryConfig[country];
-
-                if (config) {
-                    currentCountry = country;
-                    currentLanguage = config.lang;
-                    const currentFlag = document.getElementById('current-flag');
-                    const currentCountryEl = document.getElementById('current-country');
-
-                    if (currentFlag) currentFlag.textContent = config.flag;
-                    if (currentCountryEl) currentCountryEl.textContent = config.name;
-
-                    // Save to localStorage immediately
-                    localStorage.setItem('selectedCountry', country);
-                    localStorage.setItem('selectedLanguage', currentLanguage);
-
-                    // Update language and prices
-                    updateLanguage(currentLanguage);
-                    loadProduct(); // Reload product with new currency
-
-                //Fix US pricing
-                if (country === 'usa') {
-                  currentLanguage = 'en';
-                  updateLanguage(currentLanguage);
-                }
-                    updateCartCount(); // Update cart display
-                    countryDropdown.classList.add('hidden');
-                }
-            });
-        });
     }
 
     // Cart functionality
