@@ -43,9 +43,10 @@ const translations = window.translations || {
         whatsapp_subtitle: "Chatea con nuestros expertos para obtener recomendaciones y soporte instantáneo.",
         whatsapp_button: "Chatear en WhatsApp",
         whatsapp_general_greeting: "¡Hola! Tengo una pregunta sobre sus productos.",
-        iphone17_banner_title: "El Futuro te Llama: iPhone 17",
-        iphone17_banner_subtitle: "Sé el primero en saber. Chatea con nosotros para recibir información exclusiva de preventa y ofertas de lanzamiento.",
-        iphone17_banner_button: "Notifícame en WhatsApp",
+        preorder_subtitle: "Sé el Primero",
+        preorder_title: "¡La Preventa del iPhone 17 ya está Activa!",
+        preorder_description: "Vive el futuro. Asegura tu iPhone 17 hoy y obtén bonos exclusivos de preventa. Contáctanos en WhatsApp para hacer tu pedido al instante.",
+        preorder_button_text: "Reservar en WhatsApp",
         whatsapp_preorder_iphone17: "¡Hola! Me interesa el iPhone 17. Por favor, notifíquenme sobre la preventa y disponibilidad.",
 
         featured_products: "Productos Destacados",
@@ -158,9 +159,10 @@ const translations = window.translations || {
         whatsapp_subtitle: "Chat with our experts for personalized recommendations and instant support.",
         whatsapp_button: "Chat on WhatsApp",
         whatsapp_general_greeting: "Hello! I have a question about your products.",
-        iphone17_banner_title: "The Future is Calling: iPhone 17",
-        iphone17_banner_subtitle: "Be the first to know. Chat with us for exclusive pre-order info and launch day deals.",
-        iphone17_banner_button: "Notify Me on WhatsApp",
+        preorder_subtitle: "Be the First",
+        preorder_title: "iPhone 17 Pre-Order Is Live!",
+        preorder_description: "Experience the future. Secure your iPhone 17 today and get exclusive pre-order bonuses. Contact us on WhatsApp to place your order instantly.",
+        preorder_button_text: "Pre-Order on WhatsApp",
         whatsapp_preorder_iphone17: "Hello! I'm interested in the iPhone 17. Please notify me about pre-orders and availability.",
 
         featured_products: "Featured Products",
@@ -325,13 +327,6 @@ function setupDynamicWhatsAppLinks() {
     if (!config || !config.phone) return;
 
     const phoneNumber = config.phone.replace(/\D/g, '');
-
-    // For the iPhone 17 banner link
-    const iphone17Link = document.getElementById('iphone17-whatsapp-link');
-    if (iphone17Link) {
-        const message = encodeURIComponent(t('whatsapp_preorder_iphone17'));
-        iphone17Link.href = `https://wa.me/${phoneNumber}?text=${message}`;
-    }
 
     // For the general WhatsApp chat link in the footer/contact section
     const generalChatLink = document.getElementById('whatsapp-chat-link');
@@ -1944,6 +1939,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Update prices
         updatePrices();
         setupDynamicWhatsAppLinks();
+        createAndInsertPreorderBanner();
 
         // Country dropdown functionality
         const countryDropdownBtn = document.getElementById('country-dropdown-btn');
