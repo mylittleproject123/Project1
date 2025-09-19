@@ -676,11 +676,25 @@ body {
 }
 
 .preorder-image {
-    background-image: url('https://www.apple.com/v/iphone-15-pro/c/images/overview/closer-look/natural_titanium__ccl12n2ed92a_large.jpg');
-    background-size: cover;
-    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 100%;
     min-height: 380px;
+    overflow: hidden;
+    background-color: var(--background-light);
+}
+
+.preorder-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+.preorder-banner:hover .preorder-image img {
+    transform: scale(1.03);
 }
 
 .preorder-content {
