@@ -1,13 +1,13 @@
 // Country configuration - check if already defined to prevent duplicate declaration
 const countryConfig = {
-    nicaragua: { flag: '🇳🇮', name: 'Nicaragua', currency: 'NIO', rate: 37, lang: 'es', phone: '+50584608069' },
-    honduras: { flag: '🇭🇳', name: 'Honduras', currency: 'HNL', rate: 25, lang: 'es', phone: '+504 9756-4382' },
-    trinidad: { flag: '🇹🇹', name: 'Trinidad and Tobago', currency: 'TTD', rate: 6.8, lang: 'en', phone: '+1 868 472-7875' },
-    elsalvador: { flag: '🇸🇻', name: 'El Salvador', currency: 'USD', rate: 1, lang: 'es', phone: '+503 7345-6789' },
-    paraguay: { flag: '🇵🇾', name: 'Paraguay', currency: 'PYG', rate: 7500, lang: 'es', phone: '+595 21 456-789' },
-    guatemala: { flag: '🇬🇹', name: 'Guatemala', currency: 'GTQ', rate: 7.8, lang: 'es', phone: '+502 2345-6789' },
-    dominican: { flag: '🇩🇴', name: 'Dominican Republic', currency: 'DOP', rate: 58, lang: 'es', phone: '+1 809 234-5678' },
-    usa: { flag: '🇺🇸', name: 'USA', currency: 'USD', rate: 1, lang: 'en', phone: '+1 415-762-3849' }
+    nicaragua: { flag: '🇳🇮', name: 'Nicaragua', currency: 'NIO', rate: 37, lang: 'es', phone: '+50584608069', code: 'ni' },
+    honduras: { flag: '🇭🇳', name: 'Honduras', currency: 'HNL', rate: 25, lang: 'es', phone: '+504 9756-4382', code: 'hn' },
+    trinidad: { flag: '🇹🇹', name: 'Trinidad and Tobago', currency: 'TTD', rate: 6.8, lang: 'en', phone: '+1 868 472-7875', code: 'tt' },
+    elsalvador: { flag: '🇸🇻', name: 'El Salvador', currency: 'USD', rate: 1, lang: 'es', phone: '+503 7345-6789', code: 'sv' },
+    paraguay: { flag: '🇵🇾', name: 'Paraguay', currency: 'PYG', rate: 7500, lang: 'es', phone: '+595 21 456-789', code: 'py' },
+    guatemala: { flag: '🇬🇹', name: 'Guatemala', currency: 'GTQ', rate: 7.8, lang: 'es', phone: '+502 2345-6789', code: 'gt' },
+    dominican: { flag: '🇩🇴', name: 'Dominican Republic', currency: 'DOP', rate: 58, lang: 'es', phone: '+1 809 234-5678', code: 'do' },
+    usa: { flag: '🇺🇸', name: 'USA', currency: 'USD', rate: 1, lang: 'en', phone: '+1 415-762-3849', code: 'us' }
 };
 
 // Transdlation data - check if already defined to prevent duplicate declaration
@@ -530,7 +530,7 @@ function updateCartDisplay() {
         cartHTML += `
             <div class="cart-item ${isFreeGift ? 'free-gift-item' : ''}" data-item-id="${item.id}">
                 <div class="cart-item-image">
-                    <img src="${item.image || 'https://via.placeholder.com/60x60'}" alt="${item.name}" loading="lazy" class="cart-product-image">
+                    <img src="${item.image || 'https://placehold.co/60x60'}" alt="${item.name}" loading="lazy" class="cart-product-image">
                     ${isFreeGift ? '<div class="gift-overlay"><i class="fas fa-gift"></i></div>' : ''}
                 </div>
                 <div class="cart-item-details">
@@ -1941,9 +1941,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
     scriptInitialized = true;
 
+    // --- Country Initialization from URL or Local Storage ---
+    function initializeCountry() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const countryCode = urlParams.get('country');
+
+        if (countryCode) {
+            const countryKey = Object.keys(countryConfig).find(key => countryConfig[key].code === countryCode);
+            if (countryKey) {
+                // Set and save the new country from URL
+                currentCountry = countryKey;
+                currentLanguage = countryConfig[countryKey].lang;
+                localStorage.setItem('selectedCountry', currentCountry);
+                localStorage.setItem('selectedLanguage', currentLanguage);
+
+                // Clean the URL to avoid issues on subsequent navigation
+                const newUrl = window.location.pathname; // Remove all query params
+                history.replaceState(null, '', newUrl);
+                return;
+            }
+        }
+
+        // Fallback to localStorage or default if no valid URL parameter is found
+        currentCountry = localStorage.getItem('selectedCountry') || 'honduras';
+        currentLanguage = localStorage.getItem('selectedLanguage') || 'es';
+    }
+
     try {
-        // Set initial country display
-        // --- Logic specific to the main products page (index.html) ---
+        initializeCountry();
+
         const productsGridContainer = document.querySelector('.products-grid');
         if (productsGridContainer) {
             // Add a single, delegated event listener for all product card clicks
@@ -2078,68 +2104,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
 
-            // Country selection
-            const countryOptions = document.querySelectorAll('.country-option');
-            countryOptions.forEach(option => {
-                option.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const country = this.getAttribute('data-country');
-                    const config = countryConfig[country];
-
-                    if (config) {
-                        currentCountry = country;
-                        currentLanguage = config.lang;
-                        const currentFlag = document.getElementById('current-flag');
-                        const currentCountryEl = document.getElementById('current-country');
-
-                        if (currentFlag) currentFlag.textContent = config.flag;
-                        if (currentCountryEl) currentCountryEl.textContent = config.name;
-
-                        // Save to localStorage immediately
-                        localStorage.setItem('selectedCountry', country);
-                        localStorage.setItem('selectedLanguage', currentLanguage);
-
-                        // Update language and all prices throughout the page
-                        updateLanguage(currentLanguage);
-
-                        // Force refresh all product prices with new currency
-                        document.querySelectorAll('.current-price').forEach(priceElement => {
-                            const usdPrice = parseFloat(priceElement.getAttribute('data-usd-price'));
-                            if (!isNaN(usdPrice)) {
-                                priceElement.textContent = convertPrice(usdPrice, false);
-                            } else {
-                                // Extract USD price from text and store it
-                                const priceText = priceElement.textContent;
-                                const usdMatch = priceText.match(/Starting from \$(\d+(?:\.\d{2})?)/);
-                                if (usdMatch) {
-                                    const price = parseFloat(usdMatch[1]);
-                                    priceElement.setAttribute('data-usd-price', price);
-                                    priceElement.textContent = `Starting from ${convertPrice(price, false)}`;
-                                }
-                            }
-                        });
-
-                        updatePrices();
-                        updateCartDisplay(); // Refresh cart prices with new currency
-                        updateFooterFromBusinessAddress(); // Update footer contact info
-                        createAndInsertPreorderBanner(); // Re-create banner with new country info
-                        setupDynamicWhatsAppLinks(); // Update WhatsApp links for the new country
-
-                        // Force refresh of any open checkout modal prices
-                        const checkoutOverlay = document.getElementById('checkout-overlay');
-                        if (checkoutOverlay && checkoutOverlay.classList.contains('active')) {
-                            // Refresh checkout totals
-                            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-                            const checkoutSubtotal = document.getElementById('checkout-subtotal');
-                            const checkoutTotal = document.getElementById('checkout-total');
-                            if (checkoutSubtotal) checkoutSubtotal.textContent = convertPrice(subtotal, false);
-                            if (checkoutTotal) checkoutTotal.textContent = convertPrice(subtotal, false);
-                        }
-
-                        countryDropdown.classList.add('hidden');
-                    }
-                });
-            });
         }
 
         // Cart functionality with enhanced event handling
