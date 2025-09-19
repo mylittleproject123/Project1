@@ -2443,7 +2443,7 @@ function updateFooterFromBusinessAddress() {
     if (footerEmailEl) {
         footerEmailEl.innerHTML = `<i class="fas fa-envelope"></i> <a href="mailto:${email}" style="color: inherit; text-decoration: none;">${email}</a>`;
     }
-}
+} 
 
 const form = document.querySelector('form');
 if (form) {
