@@ -1060,10 +1060,6 @@ function setupCheckoutEventListeners() {
                     goToCheckoutStep(2);
                     break;
 
-                case 'next-to-payment':
-                    e.preventDefault();
-                    const customerName = document.getElementById('customer-name');
-
                 case 'verify-otp-btn':
                     e.preventDefault();
                     console.log('Case "verify-otp-btn" matched. Calling verifyOTP()...');
