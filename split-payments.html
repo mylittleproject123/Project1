@@ -90,7 +90,31 @@
                         </div>
                     </div>
                 </div>
-
+                
+                <!-- Step 4: Terms and Agreement -->
+                <div id="terms-section" style="margin-top: 2rem; border-top: 1px solid #eee; padding-top: 2rem; display: none;">
+                    <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem;">Installment Plan Agreement</h3>
+                    <div class="terms-box" style="height: 150px; overflow-y: scroll; border: 1px solid #ddd; padding: 1rem; border-radius: 8px; font-size: 0.9rem; margin-bottom: 1rem; background: #f9f9f9;">
+                        <p>By proceeding, you agree to the following terms:</p>
+                        <ol style="padding-left: 1.5rem;">
+                            <li style="margin-bottom: 0.5rem;">You agree to pay a non-refundable 50% deposit of the total amount today.</li>
+                            <li style="margin-bottom: 0.5rem;">The remaining balance will be paid in equal monthly installments over the selected period.</li>
+                            <li style="margin-bottom: 0.5rem;">An interest rate, as specified in the summary, is applied to the original product price.</li>
+                            <li style="margin-bottom: 0.5rem;">Failure to make monthly payments on time may result in late fees or cancellation of the plan.</li>
+                            <li style="margin-bottom: 0.5rem;">The product will be delivered upon full payment of all installments.</li>
+                            <li>All payments are final. Please review our full <a href="terms.html" target="_blank" style="color: var(--primary-color);">Terms and Conditions</a> for more details.</li>
+                        </ol>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                        <div class="form-check" style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="checkbox" id="terms-agree-checkbox" style="transform: scale(1.2);">
+                            <label for="terms-agree-checkbox" style="font-weight: 600; cursor: pointer;">I agree to the terms and conditions.</label>
+                        </div>
+                        <button id="download-agreement-btn" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.9rem;" disabled>
+                            <i class="fas fa-file-pdf"></i> Download Agreement
+                        </button>
+                    </div>
+                </div>
                 <!-- Checkout Button -->
                 <div class="text-center" style="margin-top: 2.5rem;">
                     <button id="proceed-to-checkout" class="btn btn-primary" style="width: 100%; max-width: 400px; padding: 1rem; font-size: 1.2rem;" disabled>
