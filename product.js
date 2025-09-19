@@ -899,19 +899,19 @@ function getProductDatabase() {
         { icon: "fas fa-mobile-alt", title: t("iphone_feature_display_title"), desc: t("iphone_feature_display_desc") }
     ],
     specifications: {
-        [t("spec_display")]: t('spec_iphone16promax_display_value'),
-        [t("spec_processor")]: t('spec_iphone16promax_processor_value'),
+        [t("spec_display")]: '6.9" Super Retina XDR OLED',
+        [t("spec_processor")]: "Apple A18 Pro",
         [t("spec_storage")]: "256GB",
-        [t("spec_ram")]: t('spec_iphone16promax_ram_value'),
-        [t("spec_main_camera")]: t('spec_iphone16promax_main_camera_value'),
-        [t("spec_ultrawide_camera")]: t('spec_iphone16promax_ultrawide_camera_value'),
-        [t("spec_telephoto_camera")]: t('spec_iphone16promax_telephoto_camera_value'),
-        [t("spec_battery")]: t('spec_iphone16promax_battery_value'),
-        [t("spec_os")]: t('spec_iphone16promax_os_value'),
-        [t("spec_connectivity")]: t('spec_iphone16promax_connectivity_value'),
-        [t("spec_resistance")]: t('spec_iphone16promax_resistance_value'),
-        [t("spec_dimensions")]: t('spec_iphone16promax_dimensions_value'),
-        [t("spec_weight")]: t('spec_iphone16promax_weight_value'),
+        [t("spec_ram")]: "8GB",
+        [t("spec_main_camera")]: "48MP f/1.78",
+        [t("spec_ultrawide_camera")]: "12MP f/2.2",
+        [t("spec_telephoto_camera")]: "12MP f/2.8",
+        [t("spec_battery")]: "4422 mAh",
+        [t("spec_os")]: "iOS 18",
+        [t("spec_connectivity")]: "5G, Wi-Fi 7, Bluetooth 5.3",
+        [t("spec_resistance")]: "IP68",
+        [t("spec_dimensions")]: "159.9 x 76.7 x 8.25 mm",
+        [t("spec_weight")]: "227g",
         [t("spec_condition")]: t("spec_condition_certified"),
         [t("spec_battery_health")]: t("spec_battery_health_value")
     }
@@ -2394,8 +2394,7 @@ function convertPrice(price, showBoth = true) {
 // Load and display product
 function loadProduct() {
     const productId = getProductId();
-    const productDb = getProductDatabase();
-    const product = productDb[productId];
+    const product = productDatabase[productId];
 
     if (!product) {
         const container = document.querySelector('.product-detail-container');
