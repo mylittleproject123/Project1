@@ -920,7 +920,7 @@ function getProductDatabase() {
         black: {
             name: "Black Titanium",
             images: [
-                "https://photos5.appleinsider.com/gallery/59990-123011-iPhone-16-Pro-Max-xl.jpg",
+                "https://m.media-amazon.com/images/I/61UMlmDXG+L.AC_SX466.jpg",
                 "https://m.media-amazon.com/images/I/51FEms6uxOL._AC_SY445_.jpg",
                 "https://m.media-amazon.com/images/I/51IT3RUIUfL._AC_SY445_.jpg"
             ]
@@ -973,7 +973,7 @@ function getProductDatabase() {
     discount: 17,
     category: "phone",
     variants: {
-        black: { name: "Black Titanium", images: ["https://9to5mac.com/wp-content/uploads/sites/6/2024/02/iphone-16-camera-render-2.jpg"] },
+        black: { name: "Black Titanium", images: ["https://m.media-amazon.com/images/I/419CpsXXGQL.AC_SX466.jpg"] },
         white: { name: "White", images: ["https://m.media-amazon.com/images/I/41HCeyEFICL._AC_SX425_.jpg"] },
         teal: { name: "Teal", images: ["https://m.media-amazon.com/images/I/71dAfxOFDuL._AC_SX425_.jpg"] }
     },
@@ -1048,7 +1048,7 @@ iphone16e: {
     variants: {
         black: {
             name: "Black",
-            images: ["https://i.ytimg.com/vi/ChSJoLakw2s/maxresdefault.jpg"]
+            images: ["https://m.media-amazon.com/images/I/51H8+zCj2cL._AC_SX569_.jpg"]
         },
         white: {
             name: "White",
@@ -1392,7 +1392,7 @@ galaxys25ultra: {
   variants: {
     black: {
       name: "Black",
-      images: ["https://www.tomsguide.com/files/styles/social_inline_share_1200x630/public/2024-05/samsung-galaxy-s25-ultra-render-front.jpg"]
+      images: ["https://m.media-amazon.com/images/I/61n0lmxP5-L._AC_SX569_.jpg"]
     },
     silver: {
       name: "Silver",
@@ -1437,11 +1437,11 @@ galaxyS25: {
     variants: {
         silver: {
             name: "Silver",
-            images: ["https://i.ytimg.com/vi/gAfMrPuQcM4/maxresdefault.jpg"]
+            images: ["https://m.media-amazon.com/images/I/61C17Al0dhL._AC_SX569_.jpg"]
         },
         blue: {
             name: "Blue",
-            images: ["https://m.media-amazon.com/images/I/61C17Al0dhL._AC_SX425_.jpg"]
+            images: ["https://m.media-amazon.com/images/I/61C17Al0dhL._AC_SX569_.jpg"]
         }
     },
     memoryOptions: {
@@ -2390,7 +2390,7 @@ powerbank: {
     variants: {
         default: {
             name: "Black",
-            images: ["https://m.media-amazon.com/images/I/61-dvT7LqVL._AC_SX679_.jpg"]
+            images: ["https://m.media-amazon.com/images/I/61vXihj6QjL._AC_SX679_.jpg"]
         }
     },
     features: [
@@ -2436,7 +2436,7 @@ motogstylus5g: {
     variants: {
         default: {
             name: "Default",
-            images: ["https://m.media-amazon.com/images/I/71VLA-564KL._AC_SX679_.jpg"]
+            images: ["https://m.media-amazon.com/images/I/61LE9-6KxdL._AC_SX569_.jpg"]
         }
     },
     memoryOptions: {},
@@ -2468,7 +2468,7 @@ galaxywatch6: {
     variants: {
         default: {
             name: "Default",
-            images: ["https://m.media-amazon.com/images/I/61n+2Y5qLUL._AC_SX679_.jpg"]
+            images: ["https://m.media-amazon.com/images/I/81Dm65eja8L._AC_SX425_.jpg"]
         }
     },
     memoryOptions: {},
@@ -2484,7 +2484,7 @@ miband8: {
     variants: {
         default: {
             name: "Default",
-            images: ["https://m.media-amazon.com/images/I/61JW1k2n2KL._AC_SX679_.jpg"]
+            images: ["https://m.media-amazon.com/images/I/41zIT8cTQcL._AC_SX425_.jpg"]
         }
     },
     memoryOptions: {},
@@ -2580,8 +2580,9 @@ galaxynote10lite: {
     price: 122,
     category: "phone",
     variants: {
+        red: { name: "Aura Red", images: ["https://m.media-amazon.com/images/I/515c2WbyRJL._AC_SX679_.jpg"] },
         glow: { name: "Aura Glow", images: ["https://m.media-amazon.com/images/I/71T0S6sQiKL._AC_SX679_.jpg"] },
-        black: { name: "Aura Black", images: ["https://m.media-amazon.com/images/I/71T0S6sQiKL._AC_SX679_.jpg"] },
+        black: { name: "Aura Black", images: ["https://m.media-amazon.com/images/I/71T0S6sQiKL._AC_SX679_.jpg"] }
     },
     memoryOptions: {
         "128GB": { price: 122, originalPrice: 160 },
@@ -2608,7 +2609,7 @@ galaxynote10: {
     price: 135,
     category: "phone",
     variants: {
-        glow: { name: "Aura Glow", images: ["https://m.media-amazon.com/images/I/71znGo26AbL._AC_SX679_.jpg"] }
+        glow: { name: "Aura Glow", images: ["https://m.media-amazon.com/images/I/61gJyqFqX9L._AC_SX679_.jpg"] }
     },
     memoryOptions: {
         "256GB": { price: 135, originalPrice: 180 },
@@ -2635,7 +2636,7 @@ galaxynote10plus: {
     price: 184,
     category: "phone",
     variants: {
-        glow: { name: "Aura Glow", images: ["https://m.media-amazon.com/images/I/61Ym1d69a4L._AC_SX679_.jpg"] }
+        glow: { name: "Aura Glow", images: ["https://m.media-amazon.com/images/I/51S--oy0ASL._AC_SX679_.jpg"] }
     },
     memoryOptions: {
         "512GB": { price: 184, originalPrice: 240 },
@@ -2689,7 +2690,7 @@ galaxys20fe: {
     price: 170,
     category: "phone",
     variants: {
-        navy: { name: "Cloud Navy", images: ["https://m.media-amazon.com/images/I/61kbkL2K5vL._AC_SX679_.jpg"] }
+        navy: { name: "Cloud Navy", images: ["https://m.media-amazon.com/images/I/51yxI5nkPWL._AC_SX569_.jpg"] }
     },
     memoryOptions: {
         "128GB": { price: 170, originalPrice: 220 },
