@@ -57,9 +57,15 @@
                     <select id="storage-select" class="form-control" style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid #ddd;"></select>
                 </div>
 
+                <!-- Step 3: Color Selection -->
+                <div class="form-group" style="margin-bottom: 1.5rem; display: none;" id="color-group">
+                    <label for="color-select" style="font-weight: 600; display: block; margin-bottom: 0.5rem;">3. Select Color</label>
+                    <select id="color-select" class="form-control" style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid #ddd;"></select>
+                </div>
+
                 <!-- Step 3: Installment Plan -->
                 <div class="form-group" style="margin-bottom: 1.5rem; display: none;" id="months-group">
-                    <label for="months-select" style="font-weight: 600; display: block; margin-bottom: 0.5rem;">3. Choose Your Plan</label>
+                    <label for="months-select" style="font-weight: 600; display: block; margin-bottom: 0.5rem;">4. Choose Your Plan</label>
                     <select id="months-select" class="form-control" style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid #ddd;">
                         <option value="1">1 Month (+2% interest)</option>
                         <option value="2">2 Months (+3% interest)</option>
@@ -93,7 +99,7 @@
                 
                 <!-- Step 4: Your Information -->
                 <div id="customer-info-section" style="margin-top: 2rem; border-top: 1px solid #eee; padding-top: 2rem; display: none;">
-                    <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem;">4. Your Information</h3>
+                    <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem;">5. Your Information</h3>
                     <p style="font-size: 0.9rem; color: #555; margin-bottom: 1.5rem;">Please provide your details. This information is required to process your installment plan.</p>
                     <form id="customer-info-form">
                         <div class="form-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
@@ -125,7 +131,7 @@
                 </div>
                 <!-- Step 5: Terms and Agreement -->
                 <div id="terms-section" style="margin-top: 2rem; border-top: 1px solid #eee; padding-top: 2rem; display: none;">
-                    <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem;">5. Installment Plan Agreement</h3>
+                    <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem;">6. Installment Plan Agreement</h3>
                     <div class="terms-box" style="height: 150px; overflow-y: scroll; border: 1px solid #ddd; padding: 1rem; border-radius: 8px; font-size: 0.9rem; margin-bottom: 1rem; background: #f9f9f9;">
                         <p>By proceeding, you agree to the following terms:</p>
                         <ol style="padding-left: 1.5rem;">
