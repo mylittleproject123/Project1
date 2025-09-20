@@ -33,6 +33,24 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* Announcement Banner */
+.announcement-banner {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+.announcement-banner a {
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+.announcement-banner a:hover {
+    opacity: 0.9;
+    text-decoration: underline;
+}
 .container {
     max-width: 1200px;
     margin: 0 auto;
