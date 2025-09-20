@@ -3851,7 +3851,7 @@ function openCheckout() {
         // Set a flag in sessionStorage to trigger checkout on the main page
         sessionStorage.setItem('startCheckout', 'true');
         // Redirect to the main page where the full checkout modal logic exists
-        window.location.href = 'index.html';
+        window.location.href = '/index.html';
     } catch (error) {
         console.error('Error opening checkout:', error);
         alert('Error opening checkout. Please try again.');
