@@ -1,5 +1,5 @@
 // Translation data - check if already defined to prevent duplicate declaration
-if (typeof window.translations === 'undefined') {
+if (typeof window.translations === 'undefined') { 
     window.translations = {
     es: {
         home: "Inicio",
