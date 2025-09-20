@@ -20,6 +20,21 @@ document.addEventListener('DOMContentLoaded', () => {
     let selectedVariant = null;
     let selectedColor = null;
 
+    function populateMonths() {
+        if (!monthsSelect) return;
+        monthsSelect.innerHTML = ''; // Clear existing
+        for (let i = 1; i <= 6; i++) {
+            const option = document.createElement('option');
+            option.value = i;
+            const interest = i + 1;
+            let text = t('split_payment_month_interest');
+            text = text.replace('{months}', i).replace('{interest}', interest);
+            option.textContent = text;
+            if (i === 6) option.selected = true;
+            monthsSelect.appendChild(option);
+        }
+    }
+
     // 1. Populate Product Dropdown
     if (typeof productsForSplitPayment !== 'undefined') {
         productsForSplitPayment.forEach(product => {
@@ -30,13 +45,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    populateMonths();
+
     // 2. Handle Product Selection
     productSelect.addEventListener('change', () => {
         const productId = productSelect.value;
         selectedProduct = productsForSplitPayment.find(p => p.id === productId);
 
         if (selectedProduct) {
-            storageSelect.innerHTML = '<option value="">-- Choose storage --</option>';
+            storageSelect.innerHTML = `<option value="">${t('split_payment_choose_storage')}</option>`;
             selectedProduct.variants.forEach(variant => {
                 const option = document.createElement('option');
                 option.value = variant.storage;
@@ -72,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
             // Populate and show color dropdown
             if (selectedProduct && selectedProduct.colors) {
-                colorSelect.innerHTML = '<option value="">-- Choose color --</option>';
+                colorSelect.innerHTML = `<option value="">${t('split_payment_choose_color')}</option>`;
                 selectedProduct.colors.forEach(color => {
                     const option = document.createElement('option');
                     option.value = color;
@@ -152,6 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const deposit = totalPrice * 0.5;
         const remaining = totalPrice - deposit;
         const monthlyPayment = remaining / months;
+        const monthlyText = t('split_payment_monthly_value') || '{price} x {months} months';
 
         // Update summary display
         document.getElementById('summary-price').textContent = convertPrice(basePrice, false);
@@ -160,7 +178,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('summary-total-price').textContent = convertPrice(totalPrice, false);
         document.getElementById('summary-deposit').textContent = convertPrice(deposit, false);
         document.getElementById('summary-remaining').textContent = convertPrice(remaining, false);
-        document.getElementById('summary-monthly').textContent = `${convertPrice(monthlyPayment, false)} x ${months} months`;
+        document.getElementById('summary-monthly').textContent = monthlyText
+            .replace('{price}', convertPrice(monthlyPayment, false))
+            .replace('{months}', months);
 
         summary.style.display = 'block';
         customerInfoSection.style.display = 'block';
@@ -312,23 +332,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (y > 700) { doc.addPage(); y = 60; }
 
-        addSectionHeader('4. Ownership & Risk');
-        addParagraph('Ownership of the phone remains with Techzone Ltd until the Buyer has paid the full balance. The Buyer assumes all risk of loss or damage to the phone upon delivery.');
-        addSectionHeader('5. Late Payments & Default');
-        addParagraph('A late fee of $25 applies for payments more than 7 days late. If Buyer misses two consecutive payments, this Agreement shall be considered in default, and the Seller may repossess the phone.');
-        addSectionHeader('6. Warranty');
-        addParagraph('This product carries the standard 1 year Swappie warranty. The warranty excludes damage caused by misuse, water, accidents, or physical impact after delivery.');
-        addSectionHeader('7. Illegal Use Clause');
-        addParagraph('The Buyer agrees that the purchased phone will not be used for fraudulent, illegal, or money laundering purposes. The Seller is not liable for any misuse of the phone by the Buyer.');
-        addSectionHeader('8. Entire Agreement');
-        addParagraph('This Agreement represents the entire understanding between both parties. Any modifications must be in writing and signed by both parties.');
-        y += 20;
-        addSectionHeader('9. Agreement Acceptance');
-        addParagraph('By paying the 50% deposit, the Buyer acknowledges they have read and agree to all terms and conditions outlined in this Installment Sales Pre-Agreement. A final copy will be provided for signature upon delivery of the product.');
+        addSectionHeader('4. duct will be shipped to the Buyer\'s provided address immediately after the Seller confirms receipt and verification of the down payment.');
 
+        addSectionHeader('5. Ownership & Risk');
+        addParagraph('Ownership of the phone remains with Techzone Ltd until the Buyer has paid the full balance. The Buyer assumes all risk of loss or damage to the phone upon delivery.');
+        addSectionHeader('6. Late Payments & Default');epayments more than 7 days late. If Buyer misses two consecutive payments, this Agreement shall be considered in default, and the Seller may repossess the phone.');
+        addSectionHeader('7. Warranty');
+        addParagraph('This product carries the standard 1 year Swappie warranty. The warranty excludes damage caused by misuse, water, accidents, or physical impact after delivery.');
+        addSectionHeader('Buyer agrees that the purchased phone will not be used for fraudulent, illegal, or money laundering purposes. The Seller is not liable for any misuse of the phone by the Buyer.');
+        addSectionHeader('9. Entire Agreement');
+        addParagraph('This
+        addSectionHeader('10. Agreement Acceptance');
+        addParagraph('By i
         doc.save(`Pre-Agreement-${buyerInfo.name.replace(/ /g, '_')}-${today.toISOString().slice(0,10)}.pdf`);
     }
-
     // 5. Proceed to Checkout
     checkoutBtn.addEventListener('click', () => {
         if (!selectedProduct || !selectedVariant || !selectedColor || !validateCustomerInfo()) return;
