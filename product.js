@@ -912,7 +912,7 @@ function getProductDatabase() {
   iphone16promax: {
     name: t("iphone16promax_name"),
     description: t("iphone_desc"),
-    price: 769,
+    price: 799,
     originalPrice: 1000,
     discount: 25,
     category: "phone",
@@ -935,9 +935,9 @@ function getProductDatabase() {
         }
     },
     memoryOptions: {
-        "256GB": { price: 769, originalPrice: 890 },
-        "512GB": { price: 819, originalPrice: 950 },
-        "1TB": { price: 869, originalPrice: 1100 }
+        "256GB": { price: 799, originalPrice: 890 },
+        "512GB": { price: 849, originalPrice: 950 },
+        "1TB": { price: 920, originalPrice: 1100 }
     },
     features: [
         { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
@@ -968,7 +968,7 @@ function getProductDatabase() {
   iphone16: {
     name: t("iphone16_name"),
     description: t("iphone_desc"),
-    price: 529,
+    price: 650,
     originalPrice: 699,
     discount: 17,
     category: "phone",
@@ -978,8 +978,8 @@ function getProductDatabase() {
         teal: { name: "Teal", images: ["https://m.media-amazon.com/images/I/71dAfxOFDuL._AC_SX425_.jpg"] }
     },
     memoryOptions: {
-        "128GB": { price: 635, originalPrice: 699 },
-        "256GB": { price: 765, originalPrice: 799 }
+        "128GB": { price: 650, originalPrice: 699 },
+        "256GB": { price: 725, originalPrice: 799 }
     },
     features: [
         { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
@@ -1004,7 +1004,7 @@ function getProductDatabase() {
 iphone15promax: {
     name: t("iphone15promax_name"),
     description: t("iphone_desc"),
-    price: 649,
+    price: 699,
     originalPrice: 899,
     discount: 28,
     category: "phone",
@@ -1015,8 +1015,8 @@ iphone15promax: {
         }
     },
     memoryOptions: {
-        "256GB": { price: 629, originalPrice: 699 },
-        "512GB": { price: 729, originalPrice: 799 }
+        "256GB": { price: 699, originalPrice: 799 },
+        "512GB": { price: 759, originalPrice: 859 }
     },
     features: [
         { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
@@ -1041,7 +1041,7 @@ iphone15promax: {
 iphone16e: {
     name: t("iphone16e_name"),
     description: t("iphone_desc"),
-    price: 699,
+    price: 509,
     originalPrice: 899,
     discount: 22,
     category: "phone",
@@ -1056,8 +1056,8 @@ iphone16e: {
         }
     },
     memoryOptions: {
-        "128GB": { price: 539, originalPrice: 599 },
-        "256GB": { price: 619, originalPrice: 699 }
+        "128GB": { price: 509, originalPrice: 599 },
+        "256GB": { price: 620, originalPrice: 699 }
     },
     features: [
         { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
@@ -1123,7 +1123,7 @@ iphone15: {
 iphone14promax: {
   name: t("iphone14promax_name"),
   description: t("iphone_desc"),
-  price: 429,
+  price: 529,
   originalPrice: 699,
   discount: 39,
   category: "phone",
@@ -1138,8 +1138,8 @@ iphone14promax: {
     }
   },
   memoryOptions: {
-    "256GB": { price: 429, originalPrice: 699 },
-    "512GB": { price: 579, originalPrice: 799 }
+    "256GB": { price: 529, originalPrice: 699 },
+    "512GB": { price: 600, originalPrice: 799 }
   },
   features: [
     { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
@@ -1248,7 +1248,7 @@ iphone13promax: {
 iphone12promax: {
     name: t("iphone12promax_name"),
     description: t("iphone_desc"),
-    price: 219,
+    price: 249,
     originalPrice: 299,
     discount: 56,
     category: "phone",
@@ -1259,8 +1259,8 @@ iphone12promax: {
         }
     },
     memoryOptions: {
-        "256GB": { price: 219, originalPrice: 299 },
-        "512GB": { price: 319, originalPrice: 399 }
+        "256GB": { price: 249, originalPrice: 299 },
+        "512GB": { price: 279, originalPrice: 399 }
     },
     features: [
         { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
@@ -1356,14 +1356,14 @@ iphonexr: {
 iphonexsmax: {
     name: t("iphonexsmax_name"),
     description: t("iphone_desc"),
-    price: 130,
+    price: 170,
     category: "phone",
     variants: {
         spacegray: { name: "Space Gray", images: ["https://m.media-amazon.com/images/I/518PnIKjQ3L._AC_SY606_.jpg"] },
         gold: { name: "Gold", images: ["https://m.media-amazon.com/images/I/61k3k4QZftL._AC_SY606_.jpg"] }
     },
     memoryOptions: {
-        "512GB": { price: 130, originalPrice: 180 }
+        "512GB": { price: 170, originalPrice: 220 }
     },
     features: [
         { icon: "fas fa-mobile-alt", title: "6.5\" Super Retina", desc: "Large OLED display" },
@@ -1488,7 +1488,7 @@ galaxys24ultra: {
     memoryOptions: {
         "256GB": { price: 599, originalPrice: 600 },
         "512GB": { price: 624, originalPrice: 630 },
-		"1TB": { price: 699, originalPrice: 600 },
+		"1TB": { price: 799, originalPrice: 850 },
     },
     features: [
         { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -1587,7 +1587,7 @@ galaxys24plus: {
 galaxys23ultra: {
   name: t("galaxys23ultra_name"),
   description: t("samsung_desc"),
-  price: 329,
+  price: 349,
   originalPrice: 400,
   discount: 33,
   category: "phone",
@@ -1602,8 +1602,8 @@ galaxys23ultra: {
     }
   },
   memoryOptions: {
-    "256GB": { price: 329, originalPrice: 399 },
-    "512GB": { price: 379, originalPrice: 439 }
+    "256GB": { price: 349, originalPrice: 399 },
+    "512GB": { price: 399, originalPrice: 439 }
   },
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -1668,7 +1668,7 @@ galaxys23ultra: {
 galaxys22ultra: {
   name: t("galaxys22ultra_name"),
   description: t("samsung_desc"),
-  price: 499,
+  price: 239,
   originalPrice: 799,
   discount: 38,
   category: "phone",
@@ -1679,7 +1679,7 @@ galaxys22ultra: {
     }
   },
   memoryOptions: {
-    "256GB": { price: 229, originalPrice: 300 }
+    "256GB": { price: 239, originalPrice: 300 }
   },
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -2794,14 +2794,14 @@ galaxys21plus: {
 galaxys21ultra: {
     name: t("galaxys21ultra_name"),
     description: t("samsung_desc"),
-    price: 216,
+    price: 246,
     category: "phone",
     variants: {
         black: { name: "Phantom Black", images: ["https://m.media-amazon.com/images/I/610KvwSCMYL._AC_SX466_.jpg"] },
         navy: { name: "Phantom Navy", images: ["https://m.media-amazon.com/images/I/51gfaY6FQwL._AC_SX569_.jpg"] }
     },
     memoryOptions: {
-        "512GB": { price: 216, originalPrice: 290 },
+        "512GB": { price: 246, originalPrice: 290 },
     },
     features: [
         { icon: "fas fa-search-plus", title: "Dual-Tele Zoom", desc: "100x Space Zoom" },
