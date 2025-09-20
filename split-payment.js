@@ -7,6 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const summary = document.getElementById('calculation-summary');
     const checkoutBtn = document.getElementById('proceed-to-checkout');
     const termsSection = document.getElementById('terms-section');
+    const customerInfoSection = document.getElementById('customer-info-section');
+    const customerInfoForm = document.getElementById('customer-info-form');
+    const idUpload = document.getElementById('id-upload');
+    const idPreview = document.getElementById('id-preview');
     const termsCheckbox = document.getElementById('terms-agree-checkbox');
     const downloadBtn = document.getElementById('download-agreement-btn');
 
@@ -40,12 +44,14 @@ document.addEventListener('DOMContentLoaded', () => {
             storageGroup.style.display = 'block';
             monthsGroup.style.display = 'none';
             summary.style.display = 'none';
+            customerInfoSection.style.display = 'none';
             termsSection.style.display = 'none';
             checkoutBtn.disabled = true;
         } else {
             storageGroup.style.display = 'none';
             monthsGroup.style.display = 'none';
             summary.style.display = 'none';
+            customerInfoSection.style.display = 'none';
             termsSection.style.display = 'none';
             checkoutBtn.disabled = true;
         }
@@ -64,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             selectedVariant = null;
             monthsGroup.style.display = 'none';
+            customerInfoSection.style.display = 'none';
             summary.style.display = 'none';
             termsSection.style.display = 'none';
             checkoutBtn.disabled = true;
@@ -71,6 +78,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     monthsSelect.addEventListener('change', updateCalculations);
+
+    // Handle customer form validation and ID preview
+    customerInfoForm.addEventListener('input', () => {
+        if (validateCustomerInfo()) {
+            termsSection.style.display = 'block';
+            checkoutBtn.disabled = !termsCheckbox.checked;
+        } else {
+            termsSection.style.display = 'none';
+            checkoutBtn.disabled = true;
+        }
+    });
+
+    idUpload.addEventListener('change', () => {
+        const file = idUpload.files[0];
+        if (file && idPreview) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                idPreview.style.display = 'block';
+                idPreview.querySelector('img').src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+        // Trigger a form input event to re-validate
+        customerInfoForm.dispatchEvent(new Event('input', { bubbles: true }));
+    });
 
     // 4. Update Calculations
     function updateCalculations() {
@@ -96,17 +128,30 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('summary-monthly').textContent = `${convertPrice(monthlyPayment, false)} x ${months} months`;
 
         summary.style.display = 'block';
-        termsSection.style.display = 'block';
+        customerInfoSection.style.display = 'block';
         downloadBtn.disabled = false;
 
-        // Checkout button is now controlled by the checkbox
-        checkoutBtn.disabled = !termsCheckbox.checked;
+        // Checkout button is now controlled by the form and checkbox
+        if (validateCustomerInfo()) {
+            termsSection.style.display = 'block';
+            checkoutBtn.disabled = !termsCheckbox.checked;
+        } else {
+            termsSection.style.display = 'none';
+            checkoutBtn.disabled = true;
+        }
+    }
+
+    function validateCustomerInfo() {
+        const name = document.getElementById('customer-name').value.trim();
+        const email = document.getElementById('customer-email').value.trim();
+        const phone = document.getElementById('customer-phone').value.trim();
+        const address = document.getElementById('customer-address').value.trim();
+        return name !== '' && email !== '' && phone !== '' && address !== '' && idUpload.files.length > 0;
     }
 
     // 5. Add event listener for the checkbox
     termsCheckbox.addEventListener('change', () => {
-        // Only enable checkout if a variant is selected and checkbox is checked
-        checkoutBtn.disabled = !selectedVariant || !termsCheckbox.checked;
+        checkoutBtn.disabled = !selectedVariant || !validateCustomerInfo() || !termsCheckbox.checked;
     });
 
     // 6. Add event listener for download button
