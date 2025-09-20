@@ -2116,6 +2116,7 @@ document.addEventListener('DOMContentLoaded', async function() { // Make the lis
         updatePrices();
         setupDynamicWhatsAppLinks();
         createAndInsertPreorderBanner();
+        updateFooterFromBusinessAddress();
 
         // Country dropdown functionality
         const countryDropdownBtn = document.getElementById('country-dropdown-btn');
@@ -2436,11 +2437,13 @@ function updateFooterFromBusinessAddress() {
 
     const fullAddress = `${businessAddress.address}, ${businessAddress.city}, ${businessAddress.country}`;
     const phoneNumber = countryInfo.phone;
-    const email = `sales@techzone-${currentCountry}.com`;
+    const email = `sales@swappie.shop`; // Standardizing to match logo
+    const companyName = `Swappie ${countryInfo.name}`;
 
     const footerAddressEl = document.getElementById('footer-address');
     const footerPhoneEl = document.getElementById('footer-phone');
     const footerEmailEl = document.getElementById('footer-email');
+    const footerBottomEl = document.querySelector('.footer-bottom p');
 
     if (footerAddressEl) {
         footerAddressEl.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${fullAddress}`;
@@ -2450,6 +2453,9 @@ function updateFooterFromBusinessAddress() {
     }
     if (footerEmailEl) {
         footerEmailEl.innerHTML = `<i class="fas fa-envelope"></i> <a href="mailto:${email}" style="color: inherit; text-decoration: none;">${email}</a>`;
+    }
+    if (footerBottomEl) {
+        footerBottomEl.innerHTML = `&copy; 2024 ${companyName}. <span data-translate="rights_reserved">All rights reserved.</span>`;
     }
 }
 
