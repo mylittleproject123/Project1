@@ -1933,7 +1933,7 @@ function sortProducts(sortBy) {
 let scriptInitialized = false;
 
 // Initialize page functionality
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() { // Make the listener async
     if (scriptInitialized) {
         return;
     }
@@ -1946,33 +1946,59 @@ document.addEventListener('DOMContentLoaded', function() {
     scriptInitialized = true;
 
     // --- Country Initialization from URL or Local Storage ---
-    function initializeCountry() {
+    async function initializeCountry() {
         const urlParams = new URLSearchParams(window.location.search);
-        const countryCode = urlParams.get('country');
+        const countryCodeFromUrl = urlParams.get('country');
+        const countryFromStorage = localStorage.getItem('selectedCountry');
 
-        if (countryCode) {
-            const countryKey = Object.keys(countryConfig).find(key => countryConfig[key].code === countryCode);
+        // Priority 1: URL Parameter
+        if (countryCodeFromUrl) {
+            const countryKey = Object.keys(countryConfig).find(key => countryConfig[key].code === countryCodeFromUrl);
             if (countryKey) {
                 // Set and save the new country from URL
                 currentCountry = countryKey;
                 currentLanguage = countryConfig[countryKey].lang;
                 localStorage.setItem('selectedCountry', currentCountry);
                 localStorage.setItem('selectedLanguage', currentLanguage);
-
-                // Clean the URL to avoid issues on subsequent navigation
-                const newUrl = window.location.pathname; // Remove all query params
+                const newUrl = window.location.pathname;
                 history.replaceState(null, '', newUrl);
-                return;
+                return; // Found country, exit
             }
         }
 
-        // Fallback to localStorage or default if no valid URL parameter is found
-        currentCountry = localStorage.getItem('selectedCountry') || 'honduras';
-        currentLanguage = localStorage.getItem('selectedLanguage') || 'es';
+        // Priority 2: Local Storage
+        if (countryFromStorage && countryConfig[countryFromStorage]) {
+            currentCountry = countryFromStorage;
+            currentLanguage = localStorage.getItem('selectedLanguage') || countryConfig[currentCountry].lang;
+            return; // Found country, exit
+        }
+
+        // Priority 3: IP Geolocation
+        try {
+            const response = await fetch('https://ipapi.co/json/');
+            if (!response.ok) throw new Error('IP API request failed');
+            const data = await response.json();
+            const countryCodeFromIP = data.country_code.toLowerCase();
+            const countryKey = Object.keys(countryConfig).find(key => countryConfig[key].code === countryCodeFromIP);
+
+            if (countryKey) {
+                currentCountry = countryKey;
+                currentLanguage = countryConfig[countryKey].lang;
+                localStorage.setItem('selectedCountry', currentCountry);
+                localStorage.setItem('selectedLanguage', currentLanguage);
+                return; // Found country, exit
+            }
+        } catch (error) {
+            console.error("IP Geolocation failed, falling back to default:", error);
+        }
+
+        // Priority 4: Default
+        currentCountry = 'honduras';
+        currentLanguage = countryConfig[currentCountry].lang;
     }
 
     try {
-        initializeCountry();
+        await initializeCountry(); // Await the async function
 
         const productsGridContainer = document.querySelector('.products-grid');
         if (productsGridContainer) {
