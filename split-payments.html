@@ -45,83 +45,76 @@
                 
                 <!-- Step 1: Product Selection -->
                 <div class="form-group" style="margin-bottom: 1.5rem;">
-                    <label for="product-select" style="font-weight: 600; display: block; margin-bottom: 0.5rem;">1. Select a Product</label>
+                    <label for="product-select" style="font-weight: 600; display: block; margin-bottom: 0.5rem;" data-translate="split_payment_select_product">1. Select a Product</label>
                     <select id="product-select" class="form-control" style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid #ddd;">
-                        <option value="">-- Choose a product --</option>
+                        <option value="" data-translate="split_payment_choose_product">-- Choose a product --</option>
                     </select>
                 </div>
 
                 <!-- Step 2: Variant Selection -->
                 <div class="form-group" style="margin-bottom: 1.5rem; display: none;" id="storage-group">
-                    <label for="storage-select" style="font-weight: 600; display: block; margin-bottom: 0.5rem;">2. Select Storage</label>
+                    <label for="storage-select" style="font-weight: 600; display: block; margin-bottom: 0.5rem;" data-translate="split_payment_select_storage">2. Select Storage</label>
                     <select id="storage-select" class="form-control" style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid #ddd;"></select>
                 </div>
 
                 <!-- Step 3: Color Selection -->
                 <div class="form-group" style="margin-bottom: 1.5rem; display: none;" id="color-group">
-                    <label for="color-select" style="font-weight: 600; display: block; margin-bottom: 0.5rem;">3. Select Color</label>
+                    <label for="color-select" style="font-weight: 600; display: block; margin-bottom: 0.5rem;" data-translate="split_payment_select_color">3. Select Color</label>
                     <select id="color-select" class="form-control" style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid #ddd;"></select>
                 </div>
 
                 <!-- Step 3: Installment Plan -->
                 <div class="form-group" style="margin-bottom: 1.5rem; display: none;" id="months-group">
-                    <label for="months-select" style="font-weight: 600; display: block; margin-bottom: 0.5rem;">4. Choose Your Plan</label>
-                    <select id="months-select" class="form-control" style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid #ddd;">
-                        <option value="1">1 Month (+2% interest)</option>
-                        <option value="2">2 Months (+3% interest)</option>
-                        <option value="3">3 Months (+4% interest)</option>
-                        <option value="4">4 Months (+5% interest)</option>
-                        <option value="5">5 Months (+6% interest)</option>
-                        <option value="6" selected>6 Months (+7% interest)</option>
-                    </select>
+                    <label for="months-select" style="font-weight: 600; display: block; margin-bottom: 0.5rem;" data-translate="split_payment_choose_plan">4. Choose Your Plan</label>
+                    <select id="months-select" class="form-control" style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid #ddd;"></select>
                 </div>
 
                 <!-- Calculation Display -->
                 <div id="calculation-summary" style="margin-top: 2rem; border-top: 1px solid #eee; padding-top: 2rem; display: none;">
-                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; text-align: center;">Payment Summary</h3>
+                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; text-align: center;" data-translate="split_payment_summary">Payment Summary</h3>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; font-size: 1.1rem;">
                         
                         <!-- Left Column -->
                         <div style="padding-right: 1rem; border-right: 1px solid #eee;">
-                            <p style="margin-bottom: 0.75rem;"><strong>Product Price:</strong> <span id="summary-price"></span></p>
-                            <p style="margin-bottom: 0.75rem;"><strong>Interest (<span id="summary-interest-rate"></span>%):</strong> <span id="summary-interest-amount"></span></p>
-                            <p style="margin-bottom: 0.75rem; font-weight: bold;"><strong>New Total Price:</strong> <span id="summary-total-price"></span></p>
+                            <p style="margin-bottom: 0.75rem;"><strong data-translate="split_payment_product_price">Product Price:</strong> <span id="summary-price"></span></p>
+                            <p style="margin-bottom: 0.75rem;"><strong data-translate="split_payment_interest_rate">Interest</strong> (<span id="summary-interest-rate"></span>%): <span id="summary-interest-amount"></span></p>
+                            <p style="margin-bottom: 0.75rem; font-weight: bold;"><strong data-translate="split_payment_new_total">New Total Price:</strong> <span id="summary-total-price"></span></p>
                         </div>
 
                         <!-- Right Column -->
                         <div>
-                            <p style="margin-bottom: 0.75rem;"><strong>Deposit (50%):</strong> <span id="summary-deposit" style="color: #28a745; font-weight: bold;"></span></p>
-                            <p style="margin-bottom: 0.75rem;"><strong>Remaining Balance:</strong> <span id="summary-remaining"></span></p>
-                            <p style="margin-bottom: 0.75rem; font-weight: bold;"><strong>Monthly Payment:</strong> <span id="summary-monthly"></span></p>
+                            <p style="margin-bottom: 0.75rem;"><strong data-translate="split_payment_deposit">Deposit (50%):</strong> <span id="summary-deposit" style="color: #28a745; font-weight: bold;"></span></p>
+                            <p style="margin-bottom: 0.75rem;"><strong data-translate="split_payment_remaining">Remaining Balance:</strong> <span id="summary-remaining"></span></p>
+                            <p style="margin-bottom: 0.75rem; font-weight: bold;"><strong data-translate="split_payment_monthly">Monthly Payment:</strong> <span id="summary-monthly"></span></p>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Step 4: Your Information -->
                 <div id="customer-info-section" style="margin-top: 2rem; border-top: 1px solid #eee; padding-top: 2rem; display: none;">
-                    <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem;">5. Your Information</h3>
-                    <p style="font-size: 0.9rem; color: #555; margin-bottom: 1.5rem;">Please provide your details. This information is required to process your installment plan.</p>
+                    <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem;" data-translate="split_payment_your_info">5. Your Information</h3>
+                    <p style="font-size: 0.9rem; color: #555; margin-bottom: 1.5rem;" data-translate="split_payment_info_desc">Please provide your details. This information is required to process your installment plan.</p>
                     <form id="customer-info-form">
                         <div class="form-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
                             <div class="form-group">
-                                <label for="customer-name" style="font-weight: 600; display: block; margin-bottom: 0.5rem;">Full Name</label>
+                                <label for="customer-name" style="font-weight: 600; display: block; margin-bottom: 0.5rem;" data-translate="split_payment_full_name">Full Name</label>
                                 <input type="text" id="customer-name" class="form-control" required style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid #ddd;">
                             </div>
                             <div class="form-group">
-                                <label for="customer-email" style="font-weight: 600; display: block; margin-bottom: 0.5rem;">Email Address</label>
+                                <label for="customer-email" style="font-weight: 600; display: block; margin-bottom: 0.5rem;" data-translate="split_payment_email">Email Address</label>
                                 <input type="email" id="customer-email" class="form-control" required style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid #ddd;">
                             </div>
                         </div>
                         <div class="form-group" style="margin-top: 1rem;">
-                            <label for="customer-phone" style="font-weight: 600; display: block; margin-bottom: 0.5rem;">Phone Number (WhatsApp)</label>
+                            <label for="customer-phone" style="font-weight: 600; display: block; margin-bottom: 0.5rem;" data-translate="split_payment_phone">Phone Number (WhatsApp)</label>
                             <input type="tel" id="customer-phone" class="form-control" required style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid #ddd;">
                         </div>
                         <div class="form-group" style="margin-top: 1rem;">
-                            <label for="customer-address" style="font-weight: 600; display: block; margin-bottom: 0.5rem;">Full Delivery Address</label>
+                            <label for="customer-address" style="font-weight: 600; display: block; margin-bottom: 0.5rem;" data-translate="split_payment_address">Full Delivery Address</label>
                             <textarea id="customer-address" class="form-control" rows="3" required style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid #ddd; resize: vertical;"></textarea>
                         </div>
                         <div class="form-group" style="margin-top: 1rem;">
-                            <label for="id-upload" style="font-weight: 600; display: block; margin-bottom: 0.5rem;">Upload a Picture of Your ID</label>
+                            <label for="id-upload" style="font-weight: 600; display: block; margin-bottom: 0.5rem;" data-translate="split_payment_upload_id">Upload a Picture of Your ID</label>
                             <input type="file" id="id-upload" class="form-control" accept="image/*" required style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid #ddd;">
                             <div id="id-preview" style="margin-top: 1rem; display: none; text-align: center; background: #f9f9f9; padding: 1rem; border-radius: 8px;">
                                 <img src="" alt="ID Preview" style="max-width: 200px; max-height: 150px; border-radius: 8px; border: 1px solid #ddd;">
@@ -131,36 +124,36 @@
                 </div>
                 <!-- Step 5: Terms and Agreement -->
                 <div id="terms-section" style="margin-top: 2rem; border-top: 1px solid #eee; padding-top: 2rem; display: none;">
-                    <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem;">6. Installment Plan Agreement</h3>
+                    <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem;" data-translate="split_payment_agreement_title">6. Installment Plan Agreement</h3>
                     <div class="terms-box" style="height: 150px; overflow-y: scroll; border: 1px solid #ddd; padding: 1rem; border-radius: 8px; font-size: 0.9rem; margin-bottom: 1rem; background: #f9f9f9;">
-                        <p>By proceeding, you agree to the following terms:</p>
+                        <p data-translate="split_payment_agreement_intro">By proceeding, you agree to the following terms:</p>
                         <ol style="padding-left: 1.5rem;">
-                            <li style="margin-bottom: 0.5rem;">You agree to pay a 50% deposit of the total amount today. This deposit is refundable under our 30-day money-back guarantee.</li>
-                            <li style="margin-bottom: 0.5rem;">The remaining balance will be paid in equal monthly installments over the selected period.</li>
-                            <li style="margin-bottom: 0.5rem;">An interest rate, as specified in the summary, is applied to the original product price.</li>
-                            <li style="margin-bottom: 0.5rem;">Failure to make monthly payments on time may result in late fees or cancellation of the plan.</li>
-                            <li style="margin-bottom: 0.5rem;">The product will be delivered upon full payment of all installments.</li>
-                            <li>All payments are subject to our 30-day money-back guarantee. Please review our full <a href="terms.html" target="_blank" style="color: var(--primary-color);">Terms and Conditions</a> for more details.</li>
+                            <li style="margin-bottom: 0.5rem;" data-translate="split_payment_term_1">You agree to pay a 50% deposit of the total amount today. This deposit is refundable under our 30-day money-back guarantee.</li>
+                            <li style="margin-bottom: 0.5rem;" data-translate="split_payment_term_2">The remaining balance will be paid in equal monthly installments over the selected period.</li>
+                            <li style="margin-bottom: 0.5rem;" data-translate="split_payment_term_3">An interest rate, as specified in the summary, is applied to the original product price.</li>                            
+                            <li style="margin-bottom: 0.5rem;" data-translate="split_payment_term_4">The product will be shipped immediately after the 50% deposit payment is confirmed.</li>
+                            <li style="margin-bottom: 0.5rem;" data-translate="split_payment_term_5">Failure to make monthly payments on time may result in late fees or repossession of the device.</li>
+                            <li data-translate="split_payment_term_6">All payments are subject to our 30-day money-back guarantee. Please review our full <a href="terms.html" target="_blank" style="color: var(--primary-color);">Terms and Conditions</a> for more details.</li>
                         </ol>
                     </div>
                     <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
                         <div class="form-check" style="display: flex; align-items: center; gap: 0.5rem;">
                             <input type="checkbox" id="terms-agree-checkbox" style="transform: scale(1.2);">
-                            <label for="terms-agree-checkbox" style="font-weight: 600; cursor: pointer;">I have read the agreement and I agree to the terms by proceeding with the deposit payment.</label>
+                            <label for="terms-agree-checkbox" style="font-weight: 600; cursor: pointer;" data-translate="split_payment_agree_checkbox">I have read and agree to the terms by proceeding with the deposit payment.</label>
                         </div>
                         <button id="download-agreement-btn" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.9rem;" disabled>
-                            <i class="fas fa-file-pdf"></i> Download Agreement Draft
+                            <i class="fas fa-file-pdf"></i> <span data-translate="split_payment_download_draft">Download Agreement Draft</span>
                         </button>
                     </div>
                     <p style="margin-top: 1.5rem; font-size: 0.9rem; color: #555; background: #f0f8ff; padding: 1rem; border-radius: 8px; border-left: 4px solid var(--primary-color);">
-                        <strong>What happens next?</strong> After you pay the 50% deposit, your application is complete. Our team will review it and contact you via WhatsApp within 24 hours to confirm your installment plan. 
+                        <strong data-translate="split_payment_what_next">What happens next?</strong><span data-translate="split_payment_what_next_desc"> After you pay the 50% deposit, our team will contact you via WhatsApp to confirm your payment. Once confirmed, your phone will be shipped immediately.</span>
                         <br><br>
-                        A final copy of the agreement will be provided by the carrier for your signature upon delivery of the device.
+                        <span data-translate="split_payment_what_next_signature">A final copy of the agreement will be provided for your signature upon delivery.</span>
                     </p>
                 </div>
                 <!-- Checkout Button -->
                 <div class="text-center" style="margin-top: 2.5rem;">
-                    <button id="proceed-to-checkout" class="btn btn-primary" style="width: 100%; max-width: 400px; padding: 1rem; font-size: 1.2rem;" disabled>
+                    <button id="proceed-to-checkout" class="btn btn-primary" style="width: 100%; max-width: 400px; padding: 1rem; font-size: 1.2rem;" disabled data-translate="split_payment_pay_deposit">
                         Pay Deposit & Start Plan
                     </button>
                 </div>
