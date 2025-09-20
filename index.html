@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,16 +9,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" href="style.css" as="style">
-    <link rel="preload" href="script.js" as="script">
-    <!-- Announcement Banner CSS -->
-    <style>
-        .announcement-banner {
-            background-color: #007bff; /* Example: Blue background */
-            color: white;
-            text-align: center;
-            padding: 10px;
-        }
-    </style>
 
     <link rel="preload" href="hero background.png" as="image">
     <link rel="preconnect" href="https://ng.jumia.is">
@@ -29,7 +19,9 @@
     <div class="top-bar">
     <!-- Announcement Banner -->
     <div class="announcement-banner">
-        🔥 iPhone 17 Pre-orders are NOW OPEN! Secure yours today! 🔥
+        <a href="split-payments.html">
+            <span data-translate="split_payment_title">Pay in Installments</span> - <span data-translate="split_payment_desc">Pay a 50% deposit today and split the rest over up to 6 months.</span>
+        </a>
     </div>
 
         <div class="container">
@@ -124,6 +116,7 @@
                 <div class="mobile-menu-content">
                     <a href="index.html" class="mobile-menu-link" data-translate="home">Home</a>
                     <a href="#products" class="mobile-menu-link" data-translate="products">Products</a>
+                    <a href="split-payments.html" class="mobile-menu-link" data-translate="split_payment">Split Payment</a>
                     <a href="about.html" class="mobile-menu-link" data-translate="about">About</a>
                     <a href="contact.html" class="mobile-menu-link" data-translate="contact">Contact</a>
                 </div>
@@ -1519,6 +1512,11 @@ Verify Code
     s0.parentNode.insertBefore(s1,s0);
     })();
     </script>
+    <!-- Mobile Floating Action Button for Split Payments -->
+    <a href="split-payments.html" class="mobile-fab">
+        <i class="fas fa-credit-card"></i>
+        <span data-translate="split_payment">Split Payment</span>
+    </a>
     <!--End of Tawk.to Script-->
 </body>
 </html>
