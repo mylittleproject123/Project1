@@ -1,5 +1,5 @@
 // Translation data - check if already defined to prevent duplicate declaration
-if (typeof window.translations === 'undefined') { 
+if (typeof window.translations === 'undefined') {
     window.translations = {
     es: {
         home: "Inicio",
@@ -2785,7 +2785,7 @@ galaxys21ultra: {
 // Get product ID from URL path
 function getProductId() {
     const pathParts = window.location.pathname.split('/').filter(p => p);
-    
+
     // Handles /product/id and /country/product/id
     if (pathParts.length >= 2 && pathParts[pathParts.length - 2] === 'product') {
         return pathParts[pathParts.length - 1];
@@ -2793,15 +2793,13 @@ function getProductId() {
 
     // Fallback for old ?id=... URLs
     const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('id') || 'iphone16promax'; // Default product
     const idFromParam = urlParams.get('id');
     if (idFromParam) {
-        // Clean the URL to the new format
-        history.replaceState(null, '', `/product/${idFromParam}`);
+        // The URL will be cleaned up later in the DOMContentLoaded handler
         return idFromParam;
     }
 
-    return 'iphone16promax'; // Default product
+    return 'iphone16promax'; // Default product if no ID is found
 }
 
 // Country configuration (reuse from main script)
@@ -3704,29 +3702,28 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- Country Initialization from URL or Local Storage ---
     // --- Country and Product Initialization from Path ---
     function initializeCountry() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const countryCode = urlParams.get('country');
-        const productId = urlParams.get('id'); // Keep the product ID
         const pathParts = window.location.pathname.split('/').filter(p => p);
-        let countryCode = null;
+        let countryCodeFromPath = null;
 
-        // Check for /ni/product/iphone16 format
-        if (pathParts.length === 3 && pathParts[1] === 'product') {
-            countryCode = pathParts[0];
+        // Check for country code in path, e.g., /ni/product/iphone16
+        if (pathParts.length >= 2 && pathParts[pathParts.length - 2] === 'product') {
+            const potentialCode = pathParts[0];
+            if (Object.values(countryConfig).some(c => c.code === potentialCode)) {
+                countryCodeFromPath = potentialCode;
+            }
         }
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const countryCodeFromParam = urlParams.get('country');
+        const countryCode = countryCodeFromPath || countryCodeFromParam;
 
         if (countryCode) {
             const countryKey = Object.keys(countryConfig).find(key => countryConfig[key].code === countryCode);
             if (countryKey) {
-                // Set and save the new country from URL
                 currentCountry = countryKey;
                 currentLanguage = countryConfig[countryKey].lang;
                 localStorage.setItem('selectedCountry', currentCountry);
                 localStorage.setItem('selectedLanguage', currentLanguage);
-
-                // Clean the URL, but preserve the product ID
-                const newUrl = `${window.location.pathname}?id=${productId}`;
-                history.replaceState(null, '', newUrl);
                 return;
             }
         }
@@ -3753,7 +3750,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Clean the URL to the standard /product/id format after initialization
     const productId = getProductId();
-    history.replaceState(null, '', `/product/${productId}`);
+    const countryCodeForUrl = countryConfig[currentCountry]?.code || 'us';
+    history.replaceState(null, '', `/${countryCodeForUrl}/product/${productId}`);
 
     setupCountrySwitcherLinks();
 
