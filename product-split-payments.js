@@ -7,6 +7,7 @@ const productsForSplitPayment = [
             { storage: '512GB', price: 869 },
             { storage: '1TB', price: 969 },
         ],
+        colors: ['Natural Titanium', 'Blue Titanium', 'White Titanium', 'Black Titanium'],
         image: 'https://m.media-amazon.com/images/I/61UMlmDXG+L._AC_SX466_.jpg'
     },
     {
@@ -17,6 +18,7 @@ const productsForSplitPayment = [
             { storage: '512GB', price: 729 },
             { storage: '1TB', price: 829 },
         ],
+        colors: ['Natural Titanium', 'Blue Titanium', 'White Titanium', 'Black Titanium'],
         image: 'https://m.media-amazon.com/images/I/61v5Jay9F5L._AC_SX569_.jpg'
     },
     {
@@ -27,6 +29,7 @@ const productsForSplitPayment = [
             { storage: '512GB', price: 819 },
             { storage: '1TB', price: 919 },
         ],
+        colors: ['Titanium Gray', 'Titanium Black', 'Titanium Violet', 'Titanium Yellow'],
         image: 'https://m.media-amazon.com/images/I/61n0lmxP5-L._AC_SX569_.jpg'
     },
     {
@@ -36,6 +39,7 @@ const productsForSplitPayment = [
             { storage: '256GB', price: 599 },
             { storage: '512GB', price: 699 },
         ],
+        colors: ['Titanium Gray', 'Titanium Black', 'Titanium Violet', 'Titanium Yellow'],
         image: 'https://m.media-amazon.com/images/I/51E3rux4DgL.__AC_SX300_SY300_QL70_FMwebp_.jpg'
     },
     {
@@ -44,6 +48,7 @@ const productsForSplitPayment = [
         variants: [
             { storage: 'Standard', price: 129 }
         ],
+        colors: ['White'],
         image: 'https://m.media-amazon.com/images/I/61df2M5+OnL._AC_SX466_.jpg'
     }
 ];
