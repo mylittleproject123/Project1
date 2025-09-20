@@ -91,9 +91,41 @@
                     </div>
                 </div>
                 
-                <!-- Step 4: Terms and Agreement -->
+                <!-- Step 4: Your Information -->
+                <div id="customer-info-section" style="margin-top: 2rem; border-top: 1px solid #eee; padding-top: 2rem; display: none;">
+                    <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem;">4. Your Information</h3>
+                    <p style="font-size: 0.9rem; color: #555; margin-bottom: 1.5rem;">Please provide your details. This information is required to process your installment plan.</p>
+                    <form id="customer-info-form">
+                        <div class="form-row" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                            <div class="form-group">
+                                <label for="customer-name" style="font-weight: 600; display: block; margin-bottom: 0.5rem;">Full Name</label>
+                                <input type="text" id="customer-name" class="form-control" required style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid #ddd;">
+                            </div>
+                            <div class="form-group">
+                                <label for="customer-email" style="font-weight: 600; display: block; margin-bottom: 0.5rem;">Email Address</label>
+                                <input type="email" id="customer-email" class="form-control" required style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid #ddd;">
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top: 1rem;">
+                            <label for="customer-phone" style="font-weight: 600; display: block; margin-bottom: 0.5rem;">Phone Number (WhatsApp)</label>
+                            <input type="tel" id="customer-phone" class="form-control" required style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid #ddd;">
+                        </div>
+                        <div class="form-group" style="margin-top: 1rem;">
+                            <label for="customer-address" style="font-weight: 600; display: block; margin-bottom: 0.5rem;">Full Delivery Address</label>
+                            <textarea id="customer-address" class="form-control" rows="3" required style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid #ddd; resize: vertical;"></textarea>
+                        </div>
+                        <div class="form-group" style="margin-top: 1rem;">
+                            <label for="id-upload" style="font-weight: 600; display: block; margin-bottom: 0.5rem;">Upload a Picture of Your ID</label>
+                            <input type="file" id="id-upload" class="form-control" accept="image/*" required style="width: 100%; padding: 0.75rem; border-radius: 8px; border: 1px solid #ddd;">
+                            <div id="id-preview" style="margin-top: 1rem; display: none; text-align: center; background: #f9f9f9; padding: 1rem; border-radius: 8px;">
+                                <img src="" alt="ID Preview" style="max-width: 200px; max-height: 150px; border-radius: 8px; border: 1px solid #ddd;">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- Step 5: Terms and Agreement -->
                 <div id="terms-section" style="margin-top: 2rem; border-top: 1px solid #eee; padding-top: 2rem; display: none;">
-                    <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem;">Installment Plan Agreement</h3>
+                    <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem;">5. Installment Plan Agreement</h3>
                     <div class="terms-box" style="height: 150px; overflow-y: scroll; border: 1px solid #ddd; padding: 1rem; border-radius: 8px; font-size: 0.9rem; margin-bottom: 1rem; background: #f9f9f9;">
                         <p>By proceeding, you agree to the following terms:</p>
                         <ol style="padding-left: 1.5rem;">
@@ -114,6 +146,9 @@
                             <i class="fas fa-file-pdf"></i> Download Agreement
                         </button>
                     </div>
+                    <p style="margin-top: 1.5rem; font-size: 0.9rem; color: #555; background: #f0f8ff; padding: 1rem; border-radius: 8px; border-left: 4px solid var(--primary-color);">
+                        <strong>What happens next?</strong> After you pay the 50% deposit, our team will review your application. We will contact you via WhatsApp within 24 hours to confirm your plan and arrange the next steps for your monthly payments.
+                    </p>
                 </div>
                 <!-- Checkout Button -->
                 <div class="text-center" style="margin-top: 2.5rem;">
