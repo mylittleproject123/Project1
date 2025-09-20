@@ -920,7 +920,7 @@ function getProductDatabase() {
         black: {
             name: "Black Titanium",
             images: [
-                "https://m.media-amazon.com/images/I/617OBw7dFnL._AC_SX342_.jpg",
+                "https://www.gizmochina.com/wp-content/uploads/2023/12/iPhone-16-Pro-1.jpg",
                 "https://m.media-amazon.com/images/I/51FEms6uxOL._AC_SY445_.jpg",
                 "https://m.media-amazon.com/images/I/51IT3RUIUfL._AC_SY445_.jpg"
             ]
@@ -973,7 +973,7 @@ function getProductDatabase() {
     discount: 17,
     category: "phone",
     variants: {
-        black: { name: "Black Titanium", images: ["https://m.media-amazon.com/images/I/41qsyx+-ffL._AC_SX425_.jpg"] },
+        black: { name: "Black Titanium", images: ["https://www.mactrast.com/wp-content/uploads/2023/12/iPhone_16_render_MacRumors.jpg"] },
         white: { name: "White", images: ["https://m.media-amazon.com/images/I/41HCeyEFICL._AC_SX425_.jpg"] },
         teal: { name: "Teal", images: ["https://m.media-amazon.com/images/I/71dAfxOFDuL._AC_SX425_.jpg"] }
     },
@@ -1048,7 +1048,7 @@ iphone16e: {
     variants: {
         black: {
             name: "Black",
-            images: ["https://m.media-amazon.com/images/I/51H8+zCj2cL._AC_SX569_.jpg"]
+            images: ["https://i.ytimg.com/vi/ChSJoLakw2s/maxresdefault.jpg"]
         },
         white: {
             name: "White",
@@ -1359,8 +1359,8 @@ iphonexsmax: {
     price: 130,
     category: "phone",
     variants: {
-        spacegray: { name: "Space Gray", images: ["https://m.media-amazon.com/images/I/71i4T1W9bQL._AC_SX679_.jpg"] },
-        gold: { name: "Gold", images: ["https://m.media-amazon.com/images/I/71i4T1W9bQL._AC_SX679_.jpg"] }
+        spacegray: { name: "Space Gray", images: ["https://m.media-amazon.com/images/I/518PnIKjQ3L._AC_SY606_.jpg"] },
+        gold: { name: "Gold", images: ["https://m.media-amazon.com/images/I/61k3k4QZftL._AC_SY606_.jpg"] }
     },
     memoryOptions: {
         "512GB": { price: 130, originalPrice: 180 }
@@ -1392,7 +1392,7 @@ galaxys25ultra: {
   variants: {
     black: {
       name: "Black",
-      images: ["https://m.media-amazon.com/images/I/61n0lmxP5-L._AC_SX569_.jpg"]
+      images: ["https://www.sammyfans.com/wp-content/uploads/2024/05/samsung-galaxy-s25-ultra-concept-render-by-technizo-concept-video.jpg"]
     },
     silver: {
       name: "Silver",
@@ -1437,7 +1437,7 @@ galaxyS25: {
     variants: {
         silver: {
             name: "Silver",
-            images: ["https://m.media-amazon.com/images/I/4148hrqqC+L._AC_SX425_.jpg"]
+            images: ["https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/galaxy_s25_concept_1.jpg"]
         },
         blue: {
             name: "Blue",
@@ -2387,7 +2387,12 @@ powerbank: {
     description: t("powerbank_desc"),
     price: 16,
     category: "accessories",
-    images: ["https://www-konga-com-res.cloudinary.com/w_300,f_auto,fl_lossy,dpr_auto,q_auto/media/catalog/product/J/D/190950_1664522191.jpg"],
+    variants: {
+        default: {
+            name: "Black",
+            images: ["https://m.media-amazon.com/images/I/61-dvT7LqVL._AC_SX679_.jpg"]
+        }
+    },
     features: [
         { icon: "fas fa-check", title: "5000mAh Capacity" },
         { icon: "fas fa-check", title: "Fast Charging" },
@@ -2405,7 +2410,12 @@ screenprotector: {
     description: "Professional-grade 9H hardness tempered glass screen protector with oleophobic coating technology. Crystal-clear transparency with advanced bubble-free installation system for seamless device protection.",
     price: 11.99,
     category: "accessories",
-    images: ["https://m.media-amazon.com/images/I/61NGYQsztvL._UF1000,1000_QL80_FMwebp_.jpg"],
+    variants: {
+        default: {
+            name: "Clear",
+            images: ["https://m.media-amazon.com/images/I/61NGYQsztvL._UF1000,1000_QL80_FMwebp_.jpg"]
+        }
+    },
     features: [
         { icon: "fas fa-check", title: "9H Hardness" },
         { icon: "fas fa-check", title: "Bubble-Free" },
@@ -2423,7 +2433,12 @@ motogstylus5g: {
     description: t("motorola_desc"),
     price: 179,
     category: "phone",
-    images: ["https://m.media-amazon.com/images/I/71VLA-564KL._AC_SX679_.jpg"],
+    variants: {
+        default: {
+            name: "Default",
+            images: ["https://m.media-amazon.com/images/I/71VLA-564KL._AC_SX679_.jpg"]
+        }
+    },
     memoryOptions: {},
     features: [],
     specifications: {}
@@ -2434,7 +2449,12 @@ applewatchse2: {
     description: t("wearable_desc"),
     price: 189,
     category: "wearables",
-    images: ["https://m.media-amazon.com/images/I/71LfnkRgZ4L._AC_SX679_.jpg"],
+    variants: {
+        default: {
+            name: "Default",
+            images: ["https://m.media-amazon.com/images/I/71LfnkRgZ4L._AC_SX679_.jpg"]
+        }
+    },
     memoryOptions: {},
     features: [],
     specifications: {}
@@ -2445,7 +2465,12 @@ galaxywatch6: {
     description: t("wearable_desc"),
     price: 229,
     category: "wearables",
-    images: ["https://m.media-amazon.com/images/I/61n+2Y5qLUL._AC_SX679_.jpg"],
+    variants: {
+        default: {
+            name: "Default",
+            images: ["https://m.media-amazon.com/images/I/61n+2Y5qLUL._AC_SX679_.jpg"]
+        }
+    },
     memoryOptions: {},
     features: [],
     specifications: {}
@@ -2456,7 +2481,12 @@ miband8: {
     description: t("wearable_desc"),
     price: 39,
     category: "wearables",
-    images: ["https://m.media-amazon.com/images/I/61JW1k2n2KL._AC_SX679_.jpg"],
+    variants: {
+        default: {
+            name: "Default",
+            images: ["https://m.media-amazon.com/images/I/61JW1k2n2KL._AC_SX679_.jpg"]
+        }
+    },
     memoryOptions: {},
     features: [],
     specifications: {}
@@ -2467,7 +2497,12 @@ pocof6: {
     description: t("poco_desc"),
     price: 329,
     category: "phone",
-    images: ["https://m.media-amazon.com/images/I/61O1Ey0bwxL.__AC_SX300_SY300_QL70_FMwebp_.jpg"],
+    variants: {
+        default: {
+            name: "Default",
+            images: ["https://m.media-amazon.com/images/I/61O1Ey0bwxL.__AC_SX300_SY300_QL70_FMwebp_.jpg"]
+        }
+    },
     memoryOptions: {},
     features: [
         { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -2489,7 +2524,12 @@ airpodspro2: {
     price: 179,
     originalPrice: 249,
     category: "audio",
-    images: ["https://m.media-amazon.com/images/I/61SUj2aKoEL._AC_SX679_.jpg"],
+    variants: {
+        default: {
+            name: "White",
+            images: ["https://m.media-amazon.com/images/I/61SUj2aKoEL._AC_SX679_.jpg"]
+        }
+    },
     memoryOptions: {},
     features: [
         { icon: "fas fa-microchip", title: t("feature_h2_chip"), desc: t("feature_h2_chip_desc") },
@@ -2513,6 +2553,7 @@ galaxynote20: {
     variants: {
         bronze: { name: "Mystic Bronze", images: ["https://m.media-amazon.com/images/I/81S-XYJ0-gL._AC_SX679_.jpg"] },
         green: { name: "Mystic Green", images: ["https://m.media-amazon.com/images/I/816nFzoZ-SL._AC_SX679_.jpg"] },
+        black: { name: "Mystic Black", images: ["https://i.ebayimg.com/images/g/u78AAOSwDsdh2WXb/s-l960.webp"] }
     },
     memoryOptions: {
         "256GB": { price: 108, originalPrice: 149 },
@@ -2621,7 +2662,7 @@ galaxys10: {
     price: 114,
     category: "phone",
     variants: {
-        black: { name: "Prism Black", images: ["https://m.media-amazon.com/images/I/612s7LqT-RL._AC_SX679_.jpg"] }
+        white: { name: "Prism White", images: ["https://www-konga-com-res.cloudinary.com/image/upload/f_auto,fl_lossy,dpr_auto,q_auto,w_1080/media/catalog/product/C/V/163129_1675444177.jpg"] }
     },
     memoryOptions: {
         "128GB": { price: 114, originalPrice: 150 },
@@ -2675,7 +2716,7 @@ galaxys20plus: {
     price: 192,
     category: "phone",
     variants: {
-        gray: { name: "Cosmic Gray", images: ["https://m.media-amazon.com/images/I/71-29aR7NML._AC_SX679_.jpg"] }
+        black: { name: "Cosmic Black", images: ["https://m.media-amazon.com/images/I/71C4k+Ej67L._AC_SX466_.jpg"] }
     },
     memoryOptions: {
         "128GB": { price: 192, originalPrice: 250 },
@@ -2702,7 +2743,7 @@ galaxys20ultra: {
     price: 211,
     category: "phone",
     variants: {
-        gray: { name: "Cosmic Gray", images: ["https://m.media-amazon.com/images/I/71-6n4M4cIL._AC_SX679_.jpg"] }
+        gray: { name: "Cosmic Gray", images: ["https://m.media-amazon.com/images/I/51Tsn0W3XFL._AC_SX522_.jpg"] }
     },
     memoryOptions: {
         "512GB": { price: 211, originalPrice: 280 },
@@ -2729,7 +2770,7 @@ galaxys21plus: {
     price: 195,
     category: "phone",
     variants: {
-        black: { name: "Phantom Black", images: ["https://m.media-amazon.com/images/I/81u8oHz3+QS._AC_SX679_.jpg"] }
+        silver: { name: "Phantom Silver", images: ["https://m.media-amazon.com/images/I/61yn+RcQ08S._AC_SX569_.jpg"] }
     },
     memoryOptions: {
         "256GB": { price: 195, originalPrice: 260 },
@@ -2756,7 +2797,8 @@ galaxys21ultra: {
     price: 216,
     category: "phone",
     variants: {
-        black: { name: "Phantom Black", images: ["https://m.media-amazon.com/images/I/81kfA-Gt-wL._AC_SX679_.jpg"] }
+        black: { name: "Phantom Black", images: ["https://m.media-amazon.com/images/I/610KvwSCMYL._AC_SX466_.jpg"] },
+        navy: { name: "Phantom Navy", images: ["https://m.media-amazon.com/images/I/51gfaY6FQwL._AC_SX569_.jpg"] }
     },
     memoryOptions: {
         "512GB": { price: 216, originalPrice: 290 },
