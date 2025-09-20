@@ -128,7 +128,44 @@ const translations = window.translations || {
         resend_code: "Reenviar Código",
         verify_code: "Verificar Código",
         invalid_code: "Código inválido. Por favor, inténtalo de nuevo.",
-        reviews: "Reseñas"
+        reviews: "Reseñas",
+        split_payment_select_product: "1. Selecciona un Producto",
+        split_payment_choose_product: "-- Elige un producto --",
+        split_payment_select_storage: "2. Selecciona Almacenamiento",
+        split_payment_choose_storage: "-- Elige almacenamiento --",
+        split_payment_select_color: "3. Selecciona Color",
+        split_payment_choose_color: "-- Elige color --",
+        split_payment_choose_plan: "4. Elige Tu Plan",
+        split_payment_month_interest: "{months} Meses (+{interest}% interés)",
+        split_payment_summary: "Resumen de Pago",
+        split_payment_product_price: "Precio del Producto:",
+        split_payment_interest_rate: "Interés",
+        split_payment_new_total: "Nuevo Precio Total:",
+        split_payment_deposit: "Depósito (50%):",
+        split_payment_remaining: "Saldo Restante:",
+        split_payment_monthly: "Pago Mensual:",
+        split_payment_your_info: "5. Tu Información",
+        split_payment_info_desc: "Por favor, proporciona tus datos. Esta información es necesaria para procesar tu plan de cuotas.",
+        split_payment_full_name: "Nombre Completo",
+        split_payment_email: "Correo Electrónico",
+        split_payment_phone: "Número de Teléfono (WhatsApp)",
+        split_payment_address: "Dirección de Entrega Completa",
+        split_payment_upload_id: "Sube una Foto de tu Identificación",
+        split_payment_agreement_title: "6. Acuerdo del Plan de Cuotas",
+        split_payment_agreement_intro: "Al continuar, aceptas los siguientes términos:",
+        split_payment_term_1: "Aceptas pagar un depósito del 50% del monto total hoy. Este depósito es reembolsable bajo nuestra garantía de devolución de 30 días.",
+        split_payment_term_2: "El saldo restante se pagará en cuotas mensuales iguales durante el período seleccionado.",
+        split_payment_term_3: "Se aplica una tasa de interés, como se especifica en el resumen, al precio original del producto.",
+        split_payment_term_4: "El producto se enviará inmediatamente después de confirmar el pago del depósito del 50%.",
+        split_payment_term_5: "No realizar los pagos mensuales a tiempo puede resultar en cargos por mora o la recuperación del dispositivo.",
+        split_payment_term_6: "Todos los pagos están sujetos a nuestra garantía de devolución de 30 días. Por favor, revisa nuestros Términos y Condiciones completos para más detalles.",
+        split_payment_agree_checkbox: "He leído y acepto los términos al proceder con el pago del depósito.",
+        split_payment_download_draft: "Descargar Borrador del Acuerdo",
+        split_payment_what_next: "¿Qué sigue ahora?",
+        split_payment_what_next_desc: "Después de pagar el depósito del 50%, nuestro equipo te contactará por WhatsApp para confirmar tu pago. Una vez confirmado, tu teléfono será enviado de inmediato.",
+        split_payment_what_next_signature: "Se proporcionará una copia final del acuerdo para tu firma al momento de la entrega.",
+        split_payment_pay_deposit: "Pagar Depósito y Empezar Plan",
+        split_payment_monthly_value: "{price} x {months} meses"
     },
     en: {
         home: "Home",
@@ -246,7 +283,44 @@ const translations = window.translations || {
         resend_code: "Resend Code",
         verify_code: "Verify Code",
         invalid_code: "Invalid code. Please try again.",
-        reviews: "Reviews"
+        reviews: "Reviews",
+        split_payment_select_product: "1. Select a Product",
+        split_payment_choose_product: "-- Choose a product --",
+        split_payment_select_storage: "2. Select Storage",
+        split_payment_choose_storage: "-- Choose storage --",
+        split_payment_select_color: "3. Select Color",
+        split_payment_choose_color: "-- Choose color --",
+        split_payment_choose_plan: "4. Choose Your Plan",
+        split_payment_month_interest: "{months} Months (+{interest}% interest)",
+        split_payment_summary: "Payment Summary",
+        split_payment_product_price: "Product Price:",
+        split_payment_interest_rate: "Interest",
+        split_payment_new_total: "New Total Price:",
+        split_payment_deposit: "Deposit (50%):",
+        split_payment_remaining: "Remaining Balance:",
+        split_payment_monthly: "Monthly Payment:",
+        split_payment_your_info: "5. Your Information",
+        split_payment_info_desc: "Please provide your details. This information is required to process your installment plan.",
+        split_payment_full_name: "Full Name",
+        split_payment_email: "Email Address",
+        split_payment_phone: "Phone Number (WhatsApp)",
+        split_payment_address: "Full Delivery Address",
+        split_payment_upload_id: "Upload a Picture of Your ID",
+        split_payment_agreement_title: "6. Installment Plan Agreement",
+        split_payment_agreement_intro: "By proceeding, you agree to the following terms:",
+        split_payment_term_1: "You agree to pay a 50% deposit of the total amount today. This deposit is refundable under our 30-day money-back guarantee.",
+        split_payment_term_2: "The remaining balance will be paid in equal monthly installments over the selected period.",
+        split_payment_term_3: "An interest rate, as specified in the summary, is applied to the original product price.",
+        split_payment_term_4: "The product will be shipped immediately after the 50% deposit payment is confirmed.",
+        split_payment_term_5: "Failure to make monthly payments on time may result in late fees or repossession of the device.",
+        split_payment_term_6: "All payments are subject to our 30-day money-back guarantee. Please review our full Terms and Conditions for more details.",
+        split_payment_agree_checkbox: "I have read and agree to the terms by proceeding with the deposit payment.",
+        split_payment_download_draft: "Download Agreement Draft",
+        split_payment_what_next: "What happens next?",
+        split_payment_what_next_desc: "After you pay the 50% deposit, our team will contact you via WhatsApp to confirm your payment. Once confirmed, your phone will be shipped immediately.",
+        split_payment_what_next_signature: "A final copy of the agreement will be provided for your signature upon delivery.",
+        split_payment_pay_deposit: "Pay Deposit & Start Plan",
+        split_payment_monthly_value: "{price} x {months} months"
     }
 };
 
@@ -801,6 +875,7 @@ function createCheckoutModal() {
                             <span>${(currentLanguage === 'es' ? 'Transferencia Bancaria' : 'Bank Transfer')}</span>
                         </div>
                     </label>
+                    ${currentCountry !== 'trinidad' ? `
                     <label class="payment-option" data-method="credit-card">
                         <input type="radio" name="payment-method" value="credit-card">
                         <div class="payment-option-content">
@@ -808,12 +883,12 @@ function createCheckoutModal() {
                             <span>${(currentLanguage === 'es' ? 'Tarjeta de Crédito' : 'Credit Card')}</span>
                         </div>
                     </label>
+                    ` : ''}
                 </div>
 
                 <div id="payment-method-instruction" class="payment-instruction" style="text-align: center; padding: 2rem; color: var(--text-light); background: var(--background-light); border-radius: var(--border-radius); margin-top: 1rem;">
                     <i class="fas fa-hand-pointer" style="font-size: 2rem; margin-bottom: 1rem; color: var(--primary-color);"></i>
                     <p>${(currentLanguage === 'es' ? 'Por favor selecciona un método de pago para continuar' : 'Please select a payment method to continue')}</p>
-                    ${currentCountry !== 'nicaragua' ? `<p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light);">${(currentLanguage === 'es' ? 'Nota: Transferencia bancaria solo está disponible en Nicaragua' : 'Note: Bank transfer is only available in Nicaragua')}</p>` : ''}
                 </div>
 
                 <div id="bank-transfer-details" class="payment-details" style="display: none;">
@@ -1007,6 +1082,15 @@ function createCheckoutModal() {
 
     setupCheckoutEventListeners();
     setupDiscountCode();
+
+    // For Trinidad, auto-select Bank Transfer as it's the only option
+    if (currentCountry === 'trinidad') {
+        const bankTransferRadio = document.querySelector('input[name="payment-method"][value="bank-transfer"]');
+        if (bankTransferRadio) {
+            bankTransferRadio.checked = true;
+            bankTransferRadio.dispatchEvent(new Event('change', { 'bubbles': true }));
+        }
+    }
 }
 
 function setupDiscountCode() {
