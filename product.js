@@ -488,7 +488,18 @@ feature_fast_charge_desc: "Recarga veloz",
 powerbank_name: "Batería Portátil 5000mAh",
 powerbank_desc: "Batería compacta de 5000mAh. Carga rápida para teléfonos y dispositivos pequeños. Indicador LED y sistemas de protección múltiple.",
 reviews: "Reseñas"
-    },
+        ,
+        galaxys21ultra_name: "Samsung Galaxy S21 Ultra 5G",
+        galaxys21plus_name: "Samsung Galaxy S21+ 5G",
+        galaxys20ultra_name: "Samsung Galaxy S20 Ultra 5G",
+        galaxys20plus_name: "Samsung Galaxy S20+ 5G",
+        galaxys20fe_name: "Samsung Galaxy S20 FE",
+        galaxys10_name: "Samsung Galaxy S10",
+        galaxynote20_name: "Samsung Galaxy Note 20",
+        galaxynote10lite_name: "Samsung Galaxy Note 10 Lite",
+        galaxynote10_name: "Samsung Galaxy Note 10",
+        galaxynote10plus_name: "Samsung Galaxy Note 10+ 5G",
+        iphonexsmax_name: "iPhone XS Max"    },
     en: {
         home: "Home",
         products: "Products",
@@ -858,7 +869,18 @@ feature_fast_charge_desc: "Quick power top‑up",
 powerbank_name: "Portable Power Bank 5000mAh",
 powerbank_desc: "Compact 5000mAh power bank. Fast charging for phones and small devices. LED battery indicator and multiple protection systems.",
 reviews: "Reviews"
-    },
+        ,
+        galaxys21ultra_name: "Samsung Galaxy S21 Ultra 5G",
+        galaxys21plus_name: "Samsung Galaxy S21+ 5G",
+        galaxys20ultra_name: "Samsung Galaxy S20 Ultra 5G",
+        galaxys20plus_name: "Samsung Galaxy S20+ 5G",
+        galaxys20fe_name: "Samsung Galaxy S20 FE",
+        galaxys10_name: "Samsung Galaxy S10",
+        galaxynote20_name: "Samsung Galaxy Note 20",
+        galaxynote10lite_name: "Samsung Galaxy Note 10 Lite",
+        galaxynote10_name: "Samsung Galaxy Note 10",
+        galaxynote10plus_name: "Samsung Galaxy Note 10+ 5G",
+        iphonexsmax_name: "iPhone XS Max"    },
     // Add new spec value translations here
     spec_iphone16promax_display_value: '6.9" Super Retina XDR OLED',
     spec_iphone16promax_processor_value: "Apple A18 Pro",
@@ -1202,7 +1224,7 @@ iphone13promax: {
   },
   memoryOptions: {
     "256GB": { price: 359, originalPrice: 599 },
-    "512GB": { price: 399, originalPrice: 699 }
+    "512GB": { price: 549, originalPrice: 749 }
   },
   features: [
     { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
@@ -1326,6 +1348,34 @@ iphonexr: {
         [t("spec_main_camera")]: "12 MP single camera",
         [t("spec_battery")]: "Approx. 2942 mAh",
         [t("spec_connectivity")]: "4G LTE",
+        [t("spec_condition")]: t("spec_condition_certified"),
+        [t("spec_battery_health")]: t("spec_battery_health_value")
+    }
+},
+
+iphonexsmax: {
+    name: t("iphonexsmax_name"),
+    description: t("iphone_desc"),
+    price: 130,
+    category: "phone",
+    variants: {
+        spacegray: { name: "Space Gray", images: ["https://m.media-amazon.com/images/I/71i4T1W9bQL._AC_SX679_.jpg"] },
+        gold: { name: "Gold", images: ["https://m.media-amazon.com/images/I/71i4T1W9bQL._AC_SX679_.jpg"] }
+    },
+    memoryOptions: {
+        "512GB": { price: 130, originalPrice: 180 }
+    },
+    features: [
+        { icon: "fas fa-mobile-alt", title: "6.5\" Super Retina", desc: "Large OLED display" },
+        { icon: "fas fa-microchip", title: "A12 Bionic Chip", desc: "Fast and efficient" },
+        { icon: "fas fa-camera", title: "Dual 12MP cameras", desc: "With Portrait Mode" }
+    ],
+    specifications: {
+        [t("spec_display")]: "6.5\" OLED",
+        [t("spec_processor")]: "A12 Bionic",
+        [t("spec_ram")]: "4GB",
+        [t("spec_main_camera")]: "12MP Dual Camera",
+        [t("spec_battery")]: "3174 mAh",
         [t("spec_condition")]: t("spec_condition_certified"),
         [t("spec_battery_health")]: t("spec_battery_health_value")
     }
@@ -2453,14 +2503,305 @@ airpodspro2: {
         "Noise Cancellation": "Active Noise Cancellation & Adaptive Transparency"
     }
 }
+    ,
+
+galaxynote20: {
+    name: t("galaxynote20_name"),
+    description: t("samsung_desc"),
+    price: 108,
+    category: "phone",
+    variants: {
+        bronze: { name: "Mystic Bronze", images: ["https://m.media-amazon.com/images/I/81S-XYJ0-gL._AC_SX679_.jpg"] },
+        green: { name: "Mystic Green", images: ["https://m.media-amazon.com/images/I/816nFzoZ-SL._AC_SX679_.jpg"] },
+    },
+    memoryOptions: {
+        "256GB": { price: 108, originalPrice: 149 },
+    },
+    features: [
+        { icon: "fas fa-pen-fancy", title: "S-Pen Included", desc: "Precision and control" },
+        { icon: "fas fa-camera", title: "Pro-Grade Camera", desc: "Capture stunning photos" },
+        { icon: "fas fa-battery-full", title: "All-Day Battery", desc: "Power through your day" }
+    ],
+    specifications: {
+        [t("spec_display")]: "6.7\" Super AMOLED Plus",
+        [t("spec_processor")]: "Exynos 990",
+        [t("spec_ram")]: "8GB",
+        [t("spec_main_camera")]: "12MP + 64MP + 12MP",
+        [t("spec_battery")]: "4300 mAh",
+        [t("spec_condition")]: t("spec_condition_certified"),
+        [t("spec_battery_health")]: t("spec_battery_health_value")
+    }
+},
+
+galaxynote10lite: {
+    name: t("galaxynote10lite_name"),
+    description: t("samsung_desc"),
+    price: 122,
+    category: "phone",
+    variants: {
+        glow: { name: "Aura Glow", images: ["https://m.media-amazon.com/images/I/71T0S6sQiKL._AC_SX679_.jpg"] },
+        black: { name: "Aura Black", images: ["https://m.media-amazon.com/images/I/71T0S6sQiKL._AC_SX679_.jpg"] },
+    },
+    memoryOptions: {
+        "128GB": { price: 122, originalPrice: 160 },
+    },
+    features: [
+        { icon: "fas fa-pen-fancy", title: "S-Pen Included", desc: "For notes and drawing" },
+        { icon: "fas fa-camera", title: "Triple Camera System", desc: "Versatile photography" },
+        { icon: "fas fa-battery-full", title: "Large Battery", desc: "Long-lasting power" }
+    ],
+    specifications: {
+        [t("spec_display")]: "6.7\" Super AMOLED",
+        [t("spec_processor")]: "Exynos 9810",
+        [t("spec_ram")]: "8GB",
+        [t("spec_main_camera")]: "12MP + 12MP + 12MP",
+        [t("spec_battery")]: "4500 mAh",
+        [t("spec_condition")]: t("spec_condition_certified"),
+        [t("spec_battery_health")]: t("spec_battery_health_value")
+    }
+},
+
+galaxynote10: {
+    name: t("galaxynote10_name"),
+    description: t("samsung_desc"),
+    price: 135,
+    category: "phone",
+    variants: {
+        glow: { name: "Aura Glow", images: ["https://m.media-amazon.com/images/I/71znGo26AbL._AC_SX679_.jpg"] }
+    },
+    memoryOptions: {
+        "256GB": { price: 135, originalPrice: 180 },
+    },
+    features: [
+        { icon: "fas fa-pen-fancy", title: "S-Pen Included", desc: "Remote control features" },
+        { icon: "fas fa-film", title: "Cinematic Display", desc: "Edge-to-edge screen" },
+        { icon: "fas fa-camera", title: "Pro-Grade Camera", desc: "Live focus video" }
+    ],
+    specifications: {
+        [t("spec_display")]: "6.3\" Dynamic AMOLED",
+        [t("spec_processor")]: "Exynos 9825",
+        [t("spec_ram")]: "8GB",
+        [t("spec_main_camera")]: "12MP + 12MP + 16MP",
+        [t("spec_battery")]: "3500 mAh",
+        [t("spec_condition")]: t("spec_condition_certified"),
+        [t("spec_battery_health")]: t("spec_battery_health_value")
+    }
+},
+
+galaxynote10plus: {
+    name: t("galaxynote10plus_name"),
+    description: t("samsung_desc"),
+    price: 184,
+    category: "phone",
+    variants: {
+        glow: { name: "Aura Glow", images: ["https://m.media-amazon.com/images/I/61Ym1d69a4L._AC_SX679_.jpg"] }
+    },
+    memoryOptions: {
+        "512GB": { price: 184, originalPrice: 240 },
+    },
+    features: [
+        { icon: "fas fa-pen-fancy", title: "Advanced S-Pen", desc: "Air actions and more" },
+        { icon: "fas fa-expand", title: "Large 6.8\" Display", desc: "Immersive viewing" },
+        { icon: "fas fa-camera-retro", title: "DepthVision Camera", desc: "For 3D scanning" }
+    ],
+    specifications: {
+        [t("spec_display")]: "6.8\" Dynamic AMOLED",
+        [t("spec_processor")]: "Exynos 9825",
+        [t("spec_ram")]: "12GB",
+        [t("spec_main_camera")]: "12MP + 12MP + 16MP + TOF",
+        [t("spec_battery")]: "4300 mAh",
+        [t("spec_condition")]: t("spec_condition_certified"),
+        [t("spec_battery_health")]: t("spec_battery_health_value")
+    }
+},
+
+galaxys10: {
+    name: t("galaxys10_name"),
+    description: t("samsung_desc"),
+    price: 114,
+    category: "phone",
+    variants: {
+        black: { name: "Prism Black", images: ["https://m.media-amazon.com/images/I/612s7LqT-RL._AC_SX679_.jpg"] }
+    },
+    memoryOptions: {
+        "128GB": { price: 114, originalPrice: 150 },
+    },
+    features: [
+        { icon: "fas fa-fingerprint", title: "Ultrasonic Fingerprint", desc: "Secure and fast" },
+        { icon: "fas fa-camera", title: "Triple Camera System", desc: "Ultra-wide lens" },
+        { icon: "fas fa-share-alt", title: "Wireless PowerShare", desc: "Charge other devices" }
+    ],
+    specifications: {
+        [t("spec_display")]: "6.1\" Dynamic AMOLED",
+        [t("spec_processor")]: "Exynos 9820",
+        [t("spec_ram")]: "8GB",
+        [t("spec_main_camera")]: "12MP + 12MP + 16MP",
+        [t("spec_battery")]: "3400 mAh",
+        [t("spec_condition")]: t("spec_condition_certified"),
+        [t("spec_battery_health")]: t("spec_battery_health_value")
+    }
+},
+
+galaxys20fe: {
+    name: t("galaxys20fe_name"),
+    description: t("samsung_desc"),
+    price: 170,
+    category: "phone",
+    variants: {
+        navy: { name: "Cloud Navy", images: ["https://m.media-amazon.com/images/I/61kbkL2K5vL._AC_SX679_.jpg"] }
+    },
+    memoryOptions: {
+        "128GB": { price: 170, originalPrice: 220 },
+    },
+    features: [
+        { icon: "fas fa-tachometer-alt", title: "120Hz Display", desc: "Super smooth scrolling" },
+        { icon: "fas fa-camera", title: "Pro-Grade Triple Camera", desc: "30x Space Zoom" },
+        { icon: "fas fa-battery-full", title: "All-Day Battery", desc: "4500 mAh capacity" }
+    ],
+    specifications: {
+        [t("spec_display")]: "6.5\" Super AMOLED, 120Hz",
+        [t("spec_processor")]: "Snapdragon 865",
+        [t("spec_ram")]: "6GB",
+        [t("spec_main_camera")]: "12MP + 8MP + 12MP",
+        [t("spec_battery")]: "4500 mAh",
+        [t("spec_condition")]: t("spec_condition_certified"),
+        [t("spec_battery_health")]: t("spec_battery_health_value")
+    }
+},
+
+galaxys20plus: {
+    name: t("galaxys20plus_name"),
+    description: t("samsung_desc"),
+    price: 192,
+    category: "phone",
+    variants: {
+        gray: { name: "Cosmic Gray", images: ["https://m.media-amazon.com/images/I/71-29aR7NML._AC_SX679_.jpg"] }
+    },
+    memoryOptions: {
+        "128GB": { price: 192, originalPrice: 250 },
+    },
+    features: [
+        { icon: "fas fa-video", title: "8K Video Snap", desc: "High-resolution video" },
+        { icon: "fas fa-camera", title: "64MP High-Res Camera", desc: "30x Space Zoom" },
+        { icon: "fas fa-tachometer-alt", title: "120Hz Display", desc: "Smooth and responsive" }
+    ],
+    specifications: {
+        [t("spec_display")]: "6.7\" Dynamic AMOLED 2X, 120Hz",
+        [t("spec_processor")]: "Exynos 990",
+        [t("spec_ram")]: "12GB",
+        [t("spec_main_camera")]: "12MP + 64MP + 12MP + TOF",
+        [t("spec_battery")]: "4500 mAh",
+        [t("spec_condition")]: t("spec_condition_certified"),
+        [t("spec_battery_health")]: t("spec_battery_health_value")
+    }
+},
+
+galaxys20ultra: {
+    name: t("galaxys20ultra_name"),
+    description: t("samsung_desc"),
+    price: 211,
+    category: "phone",
+    variants: {
+        gray: { name: "Cosmic Gray", images: ["https://m.media-amazon.com/images/I/71-6n4M4cIL._AC_SX679_.jpg"] }
+    },
+    memoryOptions: {
+        "512GB": { price: 211, originalPrice: 280 },
+    },
+    features: [
+        { icon: "fas fa-search-plus", title: "100x Space Zoom", desc: "Get incredibly close" },
+        { icon: "fas fa-camera", title: "108MP High-Res Camera", desc: "Stunning detail" },
+        { icon: "fas fa-video", title: "8K Video Recording", desc: "Cinema-quality video" }
+    ],
+    specifications: {
+        [t("spec_display")]: "6.9\" Dynamic AMOLED 2X, 120Hz",
+        [t("spec_processor")]: "Exynos 990",
+        [t("spec_ram")]: "12GB",
+        [t("spec_main_camera")]: "108MP + 48MP + 12MP + TOF",
+        [t("spec_battery")]: "5000 mAh",
+        [t("spec_condition")]: t("spec_condition_certified"),
+        [t("spec_battery_health")]: t("spec_battery_health_value")
+    }
+},
+
+galaxys21plus: {
+    name: t("galaxys21plus_name"),
+    description: t("samsung_desc"),
+    price: 195,
+    category: "phone",
+    variants: {
+        black: { name: "Phantom Black", images: ["https://m.media-amazon.com/images/I/81u8oHz3+QS._AC_SX679_.jpg"] }
+    },
+    memoryOptions: {
+        "256GB": { price: 195, originalPrice: 260 },
+    },
+    features: [
+        { icon: "fas fa-video", title: "8K Video Snap", desc: "Pull stills from video" },
+        { icon: "fas fa-camera", title: "Pro-Grade Camera", desc: "64MP telephoto lens" },
+        { icon: "fas fa-tachometer-alt", title: "120Hz Adaptive Display", desc: "Smooth and efficient" }
+    ],
+    specifications: {
+        [t("spec_display")]: "6.7\" Dynamic AMOLED 2X, 120Hz",
+        [t("spec_processor")]: "Exynos 2100",
+        [t("spec_ram")]: "8GB",
+        [t("spec_main_camera")]: "12MP + 64MP + 12MP",
+        [t("spec_battery")]: "4800 mAh",
+        [t("spec_condition")]: t("spec_condition_certified"),
+        [t("spec_battery_health")]: t("spec_battery_health_value")
+    }
+},
+
+galaxys21ultra: {
+    name: t("galaxys21ultra_name"),
+    description: t("samsung_desc"),
+    price: 216,
+    category: "phone",
+    variants: {
+        black: { name: "Phantom Black", images: ["https://m.media-amazon.com/images/I/81kfA-Gt-wL._AC_SX679_.jpg"] }
+    },
+    memoryOptions: {
+        "512GB": { price: 216, originalPrice: 290 },
+    },
+    features: [
+        { icon: "fas fa-search-plus", title: "Dual-Tele Zoom", desc: "100x Space Zoom" },
+        { icon: "fas fa-pen-fancy", title: "S-Pen Compatible", desc: "First for Galaxy S" },
+        { icon: "fas fa-camera", title: "108MP Pro Sensor", desc: "Bright night photos" }
+    ],
+    specifications: {
+        [t("spec_display")]: "6.8\" Dynamic AMOLED 2X, 120Hz",
+        [t("spec_processor")]: "Exynos 2100",
+        [t("spec_ram")]: "12GB",
+        [t("spec_main_camera")]: "108MP + 10MP + 10MP + 12MP",
+        [t("spec_battery")]: "5000 mAh",
+        [t("spec_condition")]: t("spec_condition_certified"),
+        [t("spec_battery_health")]: t("spec_battery_health_value")
+    }
+}
+
     }
 }
 
 
 // Get product ID from URL parameters
+// Get product ID from URL path
 function getProductId() {
+    const pathParts = window.location.pathname.split('/').filter(p => p);
+    
+    // Handles /product/id and /country/product/id
+    if (pathParts.length >= 2 && pathParts[pathParts.length - 2] === 'product') {
+        return pathParts[pathParts.length - 1];
+    }
+
+    // Fallback for old ?id=... URLs
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get('id') || 'iphone16promax'; // Default product
+    const idFromParam = urlParams.get('id');
+    if (idFromParam) {
+        // Clean the URL to the new format
+        history.replaceState(null, '', `/product/${idFromParam}`);
+        return idFromParam;
+    }
+
+    return 'iphone16promax'; // Default product
 }
 
 // Country configuration (reuse from main script)
@@ -3335,10 +3676,12 @@ function setupCountrySwitcherLinks() {
     if (!dropdown || !productId) return;
 
     dropdown.innerHTML = ''; // Clear any static content
+    dropdown.innerHTML = ''; // Clear static content
 
     Object.entries(countryConfig).forEach(([key, config]) => {
         const link = document.createElement('a');
         link.href = `?id=${productId}&country=${config.code}`;
+        link.href = `/${config.code}/product/${productId}`;
         link.className = 'country-option';
         link.dataset.country = key;
         
@@ -3359,10 +3702,18 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.scrollTop = 0;
 
     // --- Country Initialization from URL or Local Storage ---
+    // --- Country and Product Initialization from Path ---
     function initializeCountry() {
         const urlParams = new URLSearchParams(window.location.search);
         const countryCode = urlParams.get('country');
         const productId = urlParams.get('id'); // Keep the product ID
+        const pathParts = window.location.pathname.split('/').filter(p => p);
+        let countryCode = null;
+
+        // Check for /ni/product/iphone16 format
+        if (pathParts.length === 3 && pathParts[1] === 'product') {
+            countryCode = pathParts[0];
+        }
 
         if (countryCode) {
             const countryKey = Object.keys(countryConfig).find(key => countryConfig[key].code === countryCode);
@@ -3399,6 +3750,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         updateLanguage(currentLanguage);
     }
+
+    // Clean the URL to the standard /product/id format after initialization
+    const productId = getProductId();
+    history.replaceState(null, '', `/product/${productId}`);
 
     setupCountrySwitcherLinks();
 
