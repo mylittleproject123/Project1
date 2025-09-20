@@ -920,7 +920,7 @@ function getProductDatabase() {
         black: {
             name: "Black Titanium",
             images: [
-                "https://www.gizmochina.com/wp-content/uploads/2023/12/iPhone-16-Pro-1.jpg",
+                "https://photos5.appleinsider.com/gallery/59990-123011-iPhone-16-Pro-Max-xl.jpg",
                 "https://m.media-amazon.com/images/I/51FEms6uxOL._AC_SY445_.jpg",
                 "https://m.media-amazon.com/images/I/51IT3RUIUfL._AC_SY445_.jpg"
             ]
@@ -973,7 +973,7 @@ function getProductDatabase() {
     discount: 17,
     category: "phone",
     variants: {
-        black: { name: "Black Titanium", images: ["https://www.mactrast.com/wp-content/uploads/2023/12/iPhone_16_render_MacRumors.jpg"] },
+        black: { name: "Black Titanium", images: ["https://9to5mac.com/wp-content/uploads/sites/6/2024/02/iphone-16-camera-render-2.jpg"] },
         white: { name: "White", images: ["https://m.media-amazon.com/images/I/41HCeyEFICL._AC_SX425_.jpg"] },
         teal: { name: "Teal", images: ["https://m.media-amazon.com/images/I/71dAfxOFDuL._AC_SX425_.jpg"] }
     },
@@ -1392,7 +1392,7 @@ galaxys25ultra: {
   variants: {
     black: {
       name: "Black",
-      images: ["https://www.sammyfans.com/wp-content/uploads/2024/05/samsung-galaxy-s25-ultra-concept-render-by-technizo-concept-video.jpg"]
+      images: ["https://www.tomsguide.com/files/styles/social_inline_share_1200x630/public/2024-05/samsung-galaxy-s25-ultra-render-front.jpg"]
     },
     silver: {
       name: "Silver",
@@ -1437,7 +1437,7 @@ galaxyS25: {
     variants: {
         silver: {
             name: "Silver",
-            images: ["https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/galaxy_s25_concept_1.jpg"]
+            images: ["https://i.ytimg.com/vi/gAfMrPuQcM4/maxresdefault.jpg"]
         },
         blue: {
             name: "Blue",
