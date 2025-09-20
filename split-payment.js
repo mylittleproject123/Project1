@@ -271,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
             y += 15;
         };
 
-        addTitle('Phone Installment Sales Agreement');
+        addTitle('Installment Sales Pre-Agreement');
         doc.setFontSize(10);
         doc.text(`Date: ${todayFormatted}`, margin, y);
         y += 30;
@@ -322,14 +322,11 @@ document.addEventListener('DOMContentLoaded', () => {
         addParagraph('The Buyer agrees that the purchased phone will not be used for fraudulent, illegal, or money laundering purposes. The Seller is not liable for any misuse of the phone by the Buyer.');
         addSectionHeader('8. Entire Agreement');
         addParagraph('This Agreement represents the entire understanding between both parties. Any modifications must be in writing and signed by both parties.');
-        y += 30;
-        addSectionHeader('9. Signatures');
-        doc.text('Seller (Authorized Representative):', margin, y); doc.text('Buyer:', pageWidth / 2 + 30, y); y += 20;
-        doc.text(`Name: ${sellerInfo.representative}`, margin, y); doc.text(`Name: ${buyerInfo.name}`, pageWidth / 2 + 30, y); y += 30;
-        doc.text('Signature: __________________________', margin, y); doc.text('Signature: __________________________', pageWidth / 2 + 30, y); y += 20;
-        doc.text(`Date: ${todayFormatted}`, margin, y); doc.text(`Date: ${todayFormatted}`, pageWidth / 2 + 30, y);
+        y += 20;
+        addSectionHeader('9. Agreement Acceptance');
+        addParagraph('By paying the 50% deposit, the Buyer acknowledges they have read and agree to all terms and conditions outlined in this Installment Sales Pre-Agreement. A final copy will be provided for signature upon delivery of the product.');
 
-        doc.save(`Installment_Agreement-${buyerInfo.name.replace(/ /g, '_')}-${today.toISOString().slice(0,10)}.pdf`);
+        doc.save(`Pre-Agreement-${buyerInfo.name.replace(/ /g, '_')}-${today.toISOString().slice(0,10)}.pdf`);
     }
 
     // 5. Proceed to Checkout
