@@ -2824,6 +2824,72 @@ galaxys21ultra: {
 }
 
 
+// Helper function to get business address
+function getBusinessAddress() {
+    switch(currentCountry) {
+        case 'honduras':
+            return {
+                address: 'Col. Palmira, Avenida República de Chile',
+                city: 'Tegucigalpa',
+                country: 'Honduras'
+            };
+        case 'nicaragua':
+            return {
+                address: 'Plaza España, Módulo E-4',
+                city: 'Managua',
+                country: 'Nicaragua'
+            };
+        case 'trinidad':
+            return {
+                address: '17-23 Charles St.',
+                city: 'Port of Spain',
+                country: 'Trinidad and Tobago'
+            };
+        case 'usa':
+            return {
+                address: '1234 Tech Boulevard, Suite 100',
+                city: 'Miami, FL 33101',
+                country: 'United States'
+            };
+        default:
+            // Fallback for other countries
+            return {
+                address: 'Main Technology Center',
+                city: 'Central District',
+                country: countryConfig[currentCountry]?.name || currentCountry
+            };
+    }
+}
+
+function updateFooterFromBusinessAddress() {
+    const businessAddress = getBusinessAddress();
+    const countryInfo = countryConfig[currentCountry];
+    if (!businessAddress || !countryInfo) return;
+
+    const fullAddress = `${businessAddress.address}, ${businessAddress.city}, ${businessAddress.country}`;
+    const phoneNumber = countryInfo.phone;
+    const email = `sales@swappie.shop`; // Standardizing to match logo
+    const companyName = `Swappie ${countryInfo.name}`;
+
+    const footerAddressEl = document.getElementById('footer-address');
+    const footerPhoneEl = document.getElementById('footer-phone');
+    const footerEmailEl = document.getElementById('footer-email');
+    const footerBottomEl = document.querySelector('.footer-bottom p');
+
+    if (footerAddressEl) {
+        footerAddressEl.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${fullAddress}`;
+    }
+    if (footerPhoneEl) {
+        footerPhoneEl.innerHTML = `<i class="fas fa-phone"></i> <a href="tel:${phoneNumber.replace(/\s/g, '')}" style="color: inherit; text-decoration: none;">${phoneNumber}</a>`;
+    }
+    if (footerEmailEl) {
+        footerEmailEl.innerHTML = `<i class="fas fa-envelope"></i> <a href="mailto:${email}" style="color: inherit; text-decoration: none;">${email}</a>`;
+    }
+    if (footerBottomEl) {
+        footerBottomEl.innerHTML = `&copy; 2024 ${companyName}. <span data-translate="rights_reserved">All rights reserved.</span>`;
+    }
+}
+
 // Get product ID from URL parameters
 // Get product ID from URL path
 function getProductId() {
@@ -3826,6 +3892,7 @@ document.addEventListener('DOMContentLoaded', async function() { // Make async
     const countryCodeForUrl = countryConfig[currentCountry]?.code || 'us';
     history.replaceState(null, '', `/${countryCodeForUrl}/product/${productId}`);
 
+    updateFooterFromBusinessAddress();
     setupCountrySwitcherLinks();
 
     // Initialize product database after language is set
