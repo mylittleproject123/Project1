@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const productSelect = document.getElementById('product-select');
     const storageGroup = document.getElementById('storage-group');
     const storageSelect = document.getElementById('storage-select');
+    const colorGroup = document.getElementById('color-group');
+    const colorSelect = document.getElementById('color-select');
     const monthsGroup = document.getElementById('months-group');
     const monthsSelect = document.getElementById('months-select');
     const summary = document.getElementById('calculation-summary');
@@ -16,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let selectedProduct = null;
     let selectedVariant = null;
+    let selectedColor = null;
 
     // 1. Populate Product Dropdown
     if (typeof productsForSplitPayment !== 'undefined') {
@@ -42,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 storageSelect.appendChild(option);
             });
             storageGroup.style.display = 'block';
+            colorGroup.style.display = 'none';
             monthsGroup.style.display = 'none';
             summary.style.display = 'none';
             customerInfoSection.style.display = 'none';
@@ -49,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
             checkoutBtn.disabled = true;
         } else {
             storageGroup.style.display = 'none';
+            colorGroup.style.display = 'none';
             monthsGroup.style.display = 'none';
             summary.style.display = 'none';
             customerInfoSection.style.display = 'none';
@@ -65,10 +70,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 storage: selectedOption.value,
                 price: parseFloat(selectedOption.dataset.price)
             };
-            monthsGroup.style.display = 'block';
-            updateCalculations();
+            // Populate and show color dropdown
+            if (selectedProduct && selectedProduct.colors) {
+                colorSelect.innerHTML = '<option value="">-- Choose color --</option>';
+                selectedProduct.colors.forEach(color => {
+                    const option = document.createElement('option');
+                    option.value = color;
+                    option.textContent = color;
+                    colorSelect.appendChild(option);
+                });
+                colorGroup.style.display = 'block';
+            } else {
+                colorGroup.style.display = 'none';
+                selectedColor = 'Default'; // Set a default if no colors
+                monthsGroup.style.display = 'block';
+                updateCalculations();
+            }
+            // Reset downstream elements
+            monthsGroup.style.display = 'none';
         } else {
             selectedVariant = null;
+            colorGroup.style.display = 'none';
             monthsGroup.style.display = 'none';
             customerInfoSection.style.display = 'none';
             summary.style.display = 'none';
@@ -77,6 +99,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    colorSelect.addEventListener('change', () => {
+        selectedColor = colorSelect.value;
+        if (selectedColor) {
+            monthsGroup.style.display = 'block';
+            updateCalculations();
+        } else {
+            monthsGroup.style.display = 'none';
+            customerInfoSection.style.display = 'none';
+            summary.style.display = 'none';
+            termsSection.style.display = 'none';
+            checkoutBtn.disabled = true;
+        }
+    });
     monthsSelect.addEventListener('change', updateCalculations);
 
     // Handle customer form validation and ID preview
@@ -106,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 4. Update Calculations
     function updateCalculations() {
-        if (!selectedVariant) return;
+        if (!selectedVariant || !selectedColor) return;
 
         const basePrice = selectedVariant.price;
         const months = parseInt(monthsSelect.value);
@@ -146,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = document.getElementById('customer-email').value.trim();
         const phone = document.getElementById('customer-phone').value.trim();
         const address = document.getElementById('customer-address').value.trim();
-        return name !== '' && email !== '' && phone !== '' && address !== '' && idUpload.files.length > 0;
+        return name !== '' && email !== '' && phone !== '' && address !== '' && idUpload.files.length > 0 && selectedColor;
     }
 
     // 5. Add event listener for the checkbox
@@ -158,12 +193,47 @@ document.addEventListener('DOMContentLoaded', () => {
     downloadBtn.addEventListener('click', generateAgreementPDF);
 
     function generateAgreementPDF() {
-        if (!selectedProduct || !selectedVariant) return;
+        // Validation
+        if (!selectedProduct || !selectedVariant || !selectedColor || !validateCustomerInfo()) {
+            alert("Please complete all steps before downloading the agreement.");
+            return;
+        }
 
         const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
+        const doc = new jsPDF({ unit: 'pt', format: 'a4' });
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const margin = 40;
+        let y = 60;
 
-        // Get all the calculated values
+        // --- Data Gathering ---
+        const sellerInfo = { // This should be dynamic based on country in a real app
+            name: "Techzone Ltd under franchise of Swappie.com",
+            regNo: "T7190442",
+            address: "17–23 Charles St., Port of Spain, Trinidad and Tobago",
+            email: "info@swapie.shop",
+            phone: "+1 (868) 472-7875",
+            representative: "Rajesh Kumar"
+        };
+
+        const buyerInfo = {
+            name: document.getElementById('customer-name').value.trim(),
+            address: document.getElementById('customer-address').value.trim(),
+            phone: document.getElementById('customer-phone').value.trim(),
+        };
+
+        const productInfo = {
+            model: selectedProduct.name,
+            storage: selectedVariant.storage,
+            color: selectedColor,
+            imei: "To be assigned upon delivery"
+        };
+
+        const today = new Date();
+        const todayFormatted = today.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+        const firstPaymentDate = new Date(new Date().setMonth(today.getMonth() + 1));
+        const firstPaymentDateFormatted = firstPaymentDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+        // Financial Calculations
         const basePrice = selectedVariant.price;
         const months = parseInt(monthsSelect.value);
         const interestRate = months + 1;
@@ -173,28 +243,98 @@ document.addEventListener('DOMContentLoaded', () => {
         const remaining = totalPrice - deposit;
         const monthlyPayment = remaining / months;
 
-        // PDF Content
-        doc.setFontSize(18);
-        doc.text('Installment Plan Agreement', 20, 20);
-        doc.setFontSize(12);
-        doc.text(`Date: ${new Date().toLocaleDateString()}`, 20, 30);
-        doc.text(`Product: ${selectedProduct.name} (${selectedVariant.storage})`, 20, 40);
-        doc.setFontSize(14);
-        doc.text('Payment Summary', 20, 60);
-        doc.setFontSize(11);
-        doc.text(`- Total Price: ${convertPrice(totalPrice, false)} | Deposit (50%): ${convertPrice(deposit, false)} | Monthly: ${convertPrice(monthlyPayment, false)} x ${months} months`, 20, 70);
-        doc.setFontSize(14);
-        doc.text('Terms and Conditions', 20, 90);
-        doc.setFontSize(10);
-        const terms = doc.splitTextToSize(`1. You agree to pay a non-refundable 50% deposit of the total amount today. 2. The remaining balance will be paid in equal monthly installments over the selected period. 3. An interest rate, as specified in the summary, is applied to the original product price. 4. Failure to make monthly payments on time may result in late fees or cancellation of the plan. 5. The product will be delivered upon full payment of all installments.`, 170);
-        doc.text(terms, 20, 100);
+        // --- PDF Generation ---
+        const addTitle = (text) => {
+            doc.setFontSize(16);
+            doc.setFont(undefined, 'bold');
+            doc.text(text, pageWidth / 2, y, { align: 'center' });
+            y += 30;
+        };
+        const addSectionHeader = (text) => {
+            doc.setFontSize(11);
+            doc.setFont(undefined, 'bold');
+            doc.text(text, margin, y);
+            y += 20;
+            doc.setFont(undefined, 'normal');
+            doc.setFontSize(10);
+        };
+        const addParagraph = (text) => {
+            const lines = doc.splitTextToSize(text, pageWidth - margin * 2);
+            doc.text(lines, margin, y);
+            y += lines.length * 12 + 10;
+        };
+        const addLineItem = (label, value) => {
+            doc.setFont(undefined, 'bold');
+            doc.text(label, margin, y);
+            doc.setFont(undefined, 'normal');
+            doc.text(value, margin + 150, y);
+            y += 15;
+        };
 
-        doc.save(`Agreement-${selectedProduct.id}-${new Date().toISOString().slice(0,10)}.pdf`);
+        addTitle('Phone Installment Sales Agreement');
+        doc.setFontSize(10);
+        doc.text(`Date: ${todayFormatted}`, margin, y);
+        y += 30;
+
+        doc.setFont(undefined, 'bold'); doc.text('Seller:', margin, y); doc.setFont(undefined, 'normal');
+        doc.text(sellerInfo.name, margin + 50, y); y += 15;
+        doc.text(`Business Registration No.: ${sellerInfo.regNo}`, margin + 50, y); y += 15;
+        doc.text(`Address: ${sellerInfo.address}`, margin + 50, y); y += 15;
+        doc.text(`Email: ${sellerInfo.email}`, margin + 50, y); y += 15;
+        doc.text(`Phone: ${sellerInfo.phone}`, margin + 50, y); y += 25;
+
+        doc.setFont(undefined, 'bold'); doc.text('Buyer:', margin, y); doc.setFont(undefined, 'normal');
+        doc.text(buyerInfo.name, margin + 50, y); y += 15;
+        doc.text(`Address: ${buyerInfo.address}`, margin + 50, y); y += 15;
+        doc.text(`Phone: ${buyerInfo.phone}`, margin + 50, y); y += 30;
+
+        addSectionHeader('1. Product Details');
+        addLineItem('Model:', productInfo.model);
+        addLineItem('Storage Capacity:', productInfo.storage);
+        addLineItem('Color:', productInfo.color);
+        addLineItem('IMEI:', productInfo.imei);
+        y += 10;
+
+        addSectionHeader('2. Purchase Price');
+        addLineItem('Base Price:', convertPrice(basePrice, false));
+        addLineItem(`Financing Fee (${interestRate}%):`, convertPrice(interestAmount, false));
+        addLineItem('Total Price (Installment Plan):', convertPrice(totalPrice, false));
+        y += 10;
+
+        addSectionHeader('3. Payment Terms');
+        addLineItem('Down Payment (Due at signing):', convertPrice(deposit, false));
+        addLineItem('Remaining Balance:', convertPrice(remaining, false));
+        addLineItem('Installment Schedule:', `Buyer shall pay ${months} equal monthly installments of ${convertPrice(monthlyPayment, false)}.`);
+        addLineItem('Due Date:', `On or before the ${today.getDate()}th day of each month, starting from ${firstPaymentDateFormatted}.`);
+        addLineItem('Payment Method:', 'Payments shall be made remotely via bank transfer, as agreed in writing.');
+        y += 10;
+        addParagraph('Proof of Payment Clause: The Buyer agrees to send proof of each monthly payment (bank transfer receipt or screenshot) immediately after payment to the Seller via email (info@swapie.shop) or WhatsApp (+1 868 472-7875). The Seller shall confirm receipt in writing within 24 hours, which shall serve as acknowledgment of payment.');
+
+        if (y > 700) { doc.addPage(); y = 60; }
+
+        addSectionHeader('4. Ownership & Risk');
+        addParagraph('Ownership of the phone remains with Techzone Ltd until the Buyer has paid the full balance. The Buyer assumes all risk of loss or damage to the phone upon delivery.');
+        addSectionHeader('5. Late Payments & Default');
+        addParagraph('A late fee of $25 applies for payments more than 7 days late. If Buyer misses two consecutive payments, this Agreement shall be considered in default, and the Seller may repossess the phone.');
+        addSectionHeader('6. Warranty');
+        addParagraph('This product carries the standard 1 year Swappie warranty. The warranty excludes damage caused by misuse, water, accidents, or physical impact after delivery.');
+        addSectionHeader('7. Illegal Use Clause');
+        addParagraph('The Buyer agrees that the purchased phone will not be used for fraudulent, illegal, or money laundering purposes. The Seller is not liable for any misuse of the phone by the Buyer.');
+        addSectionHeader('8. Entire Agreement');
+        addParagraph('This Agreement represents the entire understanding between both parties. Any modifications must be in writing and signed by both parties.');
+        y += 30;
+        addSectionHeader('9. Signatures');
+        doc.text('Seller (Authorized Representative):', margin, y); doc.text('Buyer:', pageWidth / 2 + 30, y); y += 20;
+        doc.text(`Name: ${sellerInfo.representative}`, margin, y); doc.text(`Name: ${buyerInfo.name}`, pageWidth / 2 + 30, y); y += 30;
+        doc.text('Signature: __________________________', margin, y); doc.text('Signature: __________________________', pageWidth / 2 + 30, y); y += 20;
+        doc.text(`Date: ${todayFormatted}`, margin, y); doc.text(`Date: ${todayFormatted}`, pageWidth / 2 + 30, y);
+
+        doc.save(`Installment_Agreement-${buyerInfo.name.replace(/ /g, '_')}-${today.toISOString().slice(0,10)}.pdf`);
     }
 
     // 5. Proceed to Checkout
     checkoutBtn.addEventListener('click', () => {
-        if (!selectedProduct || !selectedVariant) return;
+        if (!selectedProduct || !selectedVariant || !selectedColor || !validateCustomerInfo()) return;
 
         const basePrice = selectedVariant.price;
         const months = parseInt(monthsSelect.value);
@@ -203,20 +343,30 @@ document.addEventListener('DOMContentLoaded', () => {
         const totalPrice = basePrice + interestAmount;
         const deposit = totalPrice * 0.5;
 
+        // Gather customer data
+        const customerData = {
+            name: document.getElementById('customer-name').value.trim(),
+            email: document.getElementById('customer-email').value.trim(),
+            phone: document.getElementById('customer-phone').value.trim(),
+            address: document.getElementById('customer-address').value.trim(),
+            idProvided: idUpload.files.length > 0 ? `Yes (${idUpload.files[0].name})` : 'No'
+        };
+
         // Send Telegram Notification
         if (typeof TelegramNotifications !== 'undefined' && TelegramNotifications.splitPaymentCheckoutStarted) {
             TelegramNotifications.splitPaymentCheckoutStarted({
-                productName: `${selectedProduct.name} (${selectedVariant.storage})`,
+                productName: `${selectedProduct.name} (${selectedVariant.storage} - ${selectedColor})`,
                 total: convertPrice(totalPrice, false),
                 deposit: convertPrice(deposit, false),
-                months: months
+                months: months,
+                customer: customerData
             });
         }
 
         // Prepare cart for checkout modal (with deposit amount)
         cart = [{
             id: `split_deposit_${selectedProduct.id}`,
-            name: `50% Deposit for ${selectedProduct.name} (${selectedVariant.storage})`,
+            name: `50% Deposit for ${selectedProduct.name} (${selectedVariant.storage} - ${selectedColor})`,
             price: deposit,
             image: selectedProduct.image,
             quantity: 1
