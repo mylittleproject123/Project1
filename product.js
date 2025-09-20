@@ -3740,47 +3740,73 @@ function setupCountrySwitcherLinks() {
 }
 
 // Initialize page
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() { // Make async
     // Scroll to top of page immediately
     window.scrollTo(0, 0);
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
 
-    // --- Country Initialization from URL or Local Storage ---
-    // --- Country and Product Initialization from Path ---
-    function initializeCountry() {
+    // --- Country and Product Initialization ---
+    async function initializeCountry() {
         const pathParts = window.location.pathname.split('/').filter(p => p);
         let countryCodeFromPath = null;
 
-        // Check for country code in path, e.g., /ni/product/iphone16
+        // Priority 1: Path (e.g., /ni/product/iphone16)
         if (pathParts.length >= 2 && pathParts[pathParts.length - 2] === 'product') {
             const potentialCode = pathParts[0];
             if (Object.values(countryConfig).some(c => c.code === potentialCode)) {
                 countryCodeFromPath = potentialCode;
             }
         }
-
+        
         const urlParams = new URLSearchParams(window.location.search);
         const countryCodeFromParam = urlParams.get('country');
-        const countryCode = countryCodeFromPath || countryCodeFromParam;
+        const countryCodeFromUrl = countryCodeFromPath || countryCodeFromParam;
 
-        if (countryCode) {
-            const countryKey = Object.keys(countryConfig).find(key => countryConfig[key].code === countryCode);
+        if (countryCodeFromUrl) {
+            const countryKey = Object.keys(countryConfig).find(key => countryConfig[key].code === countryCodeFromUrl);
             if (countryKey) {
                 currentCountry = countryKey;
                 currentLanguage = countryConfig[countryKey].lang;
                 localStorage.setItem('selectedCountry', currentCountry);
                 localStorage.setItem('selectedLanguage', currentLanguage);
-                return;
+                return; // Found country, exit
             }
         }
 
-        // Fallback to localStorage or default
-        currentCountry = localStorage.getItem('selectedCountry') || 'honduras';
-        currentLanguage = localStorage.getItem('selectedLanguage') || countryConfig[currentCountry]?.lang || 'es';
+        // Priority 2: Local Storage
+        const countryFromStorage = localStorage.getItem('selectedCountry');
+        if (countryFromStorage && countryConfig[countryFromStorage]) {
+            currentCountry = countryFromStorage;
+            currentLanguage = localStorage.getItem('selectedLanguage') || countryConfig[currentCountry].lang;
+            return; // Found country, exit
+        }
+
+        // Priority 3: IP Geolocation
+        try {
+            const response = await fetch('https://ipapi.co/json/');
+            if (!response.ok) throw new Error('IP API request failed');
+            const data = await response.json();
+            const countryCodeFromIP = data.country_code.toLowerCase();
+            const countryKey = Object.keys(countryConfig).find(key => countryConfig[key].code === countryCodeFromIP);
+
+            if (countryKey) {
+                currentCountry = countryKey;
+                currentLanguage = countryConfig[countryKey].lang;
+                localStorage.setItem('selectedCountry', currentCountry);
+                localStorage.setItem('selectedLanguage', currentLanguage);
+                return; // Found country, exit
+            }
+        } catch (error) {
+            console.error("IP Geolocation failed, falling back to default:", error);
+        }
+
+        // Priority 4: Default
+        currentCountry = 'honduras';
+        currentLanguage = countryConfig[currentCountry].lang;
     }
 
-    initializeCountry();
+    await initializeCountry(); // Await the async function
 
     const currentFlag = document.getElementById('current-flag');
     const currentCountryEl = document.getElementById('current-country');
