@@ -2094,7 +2094,7 @@ document.addEventListener('DOMContentLoaded', async function() { // Make the lis
                     const productCard = productLink.closest('.product-card[data-product-id]');
                     if (productCard) {
                         e.preventDefault(); // Prevent default link behavior
-                        window.location.href = `product.html?id=${productCard.dataset.productId}`;
+                        window.location.href = `/product.html?id=${productCard.dataset.productId}`;
                     }
                 }
             });
@@ -2201,6 +2201,15 @@ document.addEventListener('DOMContentLoaded', async function() { // Make the lis
         setupDynamicWhatsAppLinks();
         createAndInsertPreorderBanner();
         updateFooterFromBusinessAddress();
+
+        // --- Auto-open checkout if redirected from another page ---
+        if (sessionStorage.getItem('startCheckout') === 'true') {
+            sessionStorage.removeItem('startCheckout'); // Clear the flag
+            if (cart.length > 0) {
+                // Use a small timeout to ensure the page is fully rendered before opening the modal
+                setTimeout(openCheckout, 100);
+            }
+        }
 
         // Country dropdown functionality
         const countryDropdownBtn = document.getElementById('country-dropdown-btn');
