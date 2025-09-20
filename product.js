@@ -2903,6 +2903,10 @@ function getCurrencySymbol(country) {
 }
 
 function convertPrice(price, showBoth = true) {
+    if (typeof price !== 'number' || isNaN(price)) {
+        return ''; // Return empty string if price is not a valid number
+    }
+
     const config = countryConfig[currentCountry];
     if (!config) return `$${price.toFixed(2)}`;
 
