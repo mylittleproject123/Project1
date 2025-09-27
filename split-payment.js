@@ -1,2562 +1,394 @@
-// Country configuration - check if already defined to prevent duplicate declaration
-const countryConfig = {
-    nicaragua: { flag: '🇳🇮', name: 'Nicaragua', currency: 'NIO', rate: 37, lang: 'es', phone: '+50584608069', code: 'ni' },
-    honduras: { flag: '🇭🇳', name: 'Honduras', currency: 'HNL', rate: 25, lang: 'es', phone: '+504 9756-4382', code: 'hn' },
-    trinidad: { flag: '🇹🇹', name: 'Trinidad and Tobago', currency: 'TTD', rate: 6.8, lang: 'en', phone: '+1 868 472-7875', code: 'tt' },
-    elsalvador: { flag: '🇸🇻', name: 'El Salvador', currency: 'USD', rate: 1, lang: 'es', phone: '+503 7345-6789', code: 'sv' },
-    paraguay: { flag: '🇵🇾', name: 'Paraguay', currency: 'PYG', rate: 7500, lang: 'es', phone: '+595 21 456-789', code: 'py' },
-    guatemala: { flag: '🇬🇹', name: 'Guatemala', currency: 'GTQ', rate: 7.8, lang: 'es', phone: '+502 2345-6789', code: 'gt' },
-    dominican: { flag: '🇩🇴', name: 'Dominican Republic', currency: 'DOP', rate: 58, lang: 'es', phone: '+1 809 234-5678', code: 'do' },
-    usa: { flag: '🇺🇸', name: 'USA', currency: 'USD', rate: 1, lang: 'en', phone: '+1 415-762-3849', code: 'us' }
-};
+document.addEventListener('DOMContentLoaded', () => {
+    const productSelect = document.getElementById('product-select');
+    const storageGroup = document.getElementById('storage-group');
+    const storageSelect = document.getElementById('storage-select');
+    const colorGroup = document.getElementById('color-group');
+    const colorSelect = document.getElementById('color-select');
+    const monthsGroup = document.getElementById('months-group');
+    const monthsSelect = document.getElementById('months-select');
+    const summary = document.getElementById('calculation-summary');
+    const checkoutBtn = document.getElementById('proceed-to-checkout');
+    const termsSection = document.getElementById('terms-section');
+    const customerInfoSection = document.getElementById('customer-info-section');
+    const customerInfoForm = document.getElementById('customer-info-form');
+    const idUpload = document.getElementById('id-upload');
+    const idPreview = document.getElementById('id-preview');
+    const termsCheckbox = document.getElementById('terms-agree-checkbox');
+    const downloadBtn = document.getElementById('download-agreement-btn');
 
-// Transdlation data - check if already defined to prevent duplicate declaration
-const translations = window.translations || {
-    es: {
-        home: "Inicio",
-        products: "Productos",
-        about: "Acerca de",
-        contact: "Contacto",
-        hero_title: "La Mejor Tecnología al Mejor Precio",
-        split_payment: "Pago a Plazos",
-        split_payment_title: "Paga en Cuotas",
-        split_payment_desc: "Paga un depósito del 50% hoy y divide el resto hasta en 6 meses.",
-        about_us_title: "Sobre Nuestra Empresa",
-        about_us_p1: "¡Bienvenido a nuestra tienda en línea! Nos dedicamos a ofrecer los mejores productos y servicios a nuestros clientes. Nuestra misión es entregar calidad y valor en cada compra.",
-        our_team_title: "Nuestro Equipo",
-        our_team_p1: "Contamos con un equipo de profesionales dedicados y apasionados por lo que hacen, siempre listos para ayudarte.",
-        hero_subtitle: "Descubre nuestra selección premium de dispositivos reacondicionados con garantía completa y soporte técnico especializado. Tecnología de calidad a precios excepcionales.",
-        shop_now: "Comprar Ahora",
-        benefit_free_shipping: "Envío Gratis",
-        benefit_free_shipping_desc: "En todos los pedidos",
-        benefit_warranty: "Garantía 1 Año",
-        benefit_warranty_desc: "En todos los productos",
-        benefit_return: "Devolución 30 Días",
-        benefit_return_desc: "Reembolso completo garantizado",
-        benefit_accessories: "Accesorios Incluidos",
-        benefit_accessories_desc: "Cable, caja y protector de pantalla gratis",
+    let selectedProduct = null;
+    let selectedVariant = null;
+    let selectedColor = null;
 
-        // WhatsApp & Banners
-        whatsapp_title: "¿Tienes Preguntas?",
-        whatsapp_subtitle: "Chatea con nuestros expertos para obtener recomendaciones y soporte instantáneo.",
-        whatsapp_button: "Chatear en WhatsApp",
-        whatsapp_general_greeting: "¡Hola! Tengo una pregunta sobre sus productos.",
-        preorder_subtitle: "Sé el Primero",
-        preorder_title: "¡La Preventa del iPhone 17 ya está Activa!",
-        preorder_description: "Asegura tu iPhone 17 hoy y obtén ofertas exclusivas de lanzamiento. Contáctanos por WhatsApp para realizar tu pedido al instante.",
-        preorder_button_text: "Reservar en WhatsApp",
-        whatsapp_preorder_iphone17: "¡Hola! Me interesa el iPhone 17. Por favor, notifíquenme sobre la preventa y disponibilidad.",
-
-        featured_products: "Productos Destacados",
-        all: "Todos",
-        iphones: "iPhones",
-        samsung: "Samsung",
-        audio: "Audio",
-        accessories: "Accesorios",
-        add_to_cart: "Agregar al Carrito",
-        available_in: "Disponible en:",
-        free_shipping: "Envío gratis",
-        free_shipping_all: "Envío gratis en todos los pedidos",
-        new: "¡Nuevo!",
-        certified: "¡Certificado!",
-        hot: "¡Popular!",
-        bestseller: "¡Más Vendido!",
-        deal: "¡Oferta!",
-        value: "¡Gran Valor!",
-        premium: "¡Premium!",
-        top_rated: "¡Mejor Calificado!",
-        popular: "¡Popular!",
-        budget: "¡Económico!",
-        shopping_cart: "Carrito de Compras",
-        empty_cart: "Tu carrito está vacío",
-        subtotal: "Subtotal:",
-        shipping: "Envío:",
-        total: "Total:",
-        checkout: "Proceder al Pago",
-        continue_shopping: "Seguir Comprando",
-        order_summary: "Resumen del Pedido",
-        order_ref: "Número de Referencia:",
-        bank_transfer: "Transferencia Bancaria",
-        credit_card: "Tarjeta de Crédito",
-        bank_details: "Datos Bancarios",
-        account_number: "Número de Cuenta:",
-        account_holder: "Titular de la Cuenta:",
-        reference: "Referencia:",
-        transfer_instructions: "Realiza la transferencia por el monto total y envíanos una confirmación por WhatsApp para un envío más rápido.",
-        confirm_transfer: "Enviar Comprobante por WhatsApp",
-        whatsapp_bank_confirmation: "Hola, he completado la transferencia bancaria para el Pedido {orderNumber}. Envío mi comprobante de pago ahora.",
-        bank_name: "Banco:",
-        card_details: "Detalles de la Tarjeta",
-        accepted: "Aceptado:",
-        secure_payment: "Pago 100% Seguro y Verificado",
-        cardholder_name: "Nombre del Titular",
-        card_number: "Número de Tarjeta",
-        expiry_date: "Fecha de Vencimiento",
-        cvc: "CVV",
-        ssl_secured: "Conexión SSL Segura - Tus datos están protegidos",
-        place_order: "Realizar Pedido",
-        delivery_inspection_notice: "Animamos a todos los clientes a inspeccionar minuciosamente su pedido al momento de la entrega por parte del transportista. Si encuentra que el artículo no es satisfactorio o no es como se esperaba, tiene derecho a rechazar la aceptación del paquete. En caso de rechazo, será elegible para un reembolso completo de su monto de compra de acuerdo con nuestra política de devoluciones.",
-        processing_secure: "Procesamiento Seguro",
-        processing_order: "Procesando tu pedido...",
-        processing_wait: "Por favor, no cierres esta ventana",
-        validating_payment: "Validando método de pago",
-        confirming_inventory: "Confirmando inventario",
-        generating_order: "Generando orden de compra",
-        order_confirmed: "¡Pedido Confirmado!",
-        order_success_msg: "Tu pedido ha sido procesado exitosamente. Recibirás un WhatsApp con los detalles.",
-        order_number: "Número de Pedido:",
-        order_total: "Total:",
-        payment_method: "Método de Pago:",
-        estimated_delivery: "Entrega Estimada:",
-        price_high_to_low: "Precio: Mayor a Menor",
-        price_low_to_high: "Precio: Menor a Mayor",
-        featured: "Destacados",
-        storage: "Almacenamiento",
-        condition: "Estado",
-        required: "*Requerido",
-        condition_guide: "Guía de Estado:",
-        condition_guide_desc: "Mejores estados indican menos desgaste y mejor apariencia del dispositivo.",
-        terms_agreement: "Acepto los",
-        terms_and_conditions: "Términos y Condiciones",
-        quantity: "Cantidad:",
-        details: "Detalles",
-        choose_type: "Elegir Tipo",
-        security_verification: "Verificación de Seguridad",
-        verify_payment: "Verifica tu Pago",
-        otp_sent: "Hemos enviado un código de verificación de 6 dígitos a tu número de teléfono. Por favor, ingrésalo a continuación para completar tu compra.",
-        code_expires: "El código expira en: ",
-        resend_code: "Reenviar Código",
-        verify_code: "Verificar Código",
-        invalid_code: "Código inválido. Por favor, inténtalo de nuevo.",
-        reviews: "Reseñas",
-        split_payment_select_product: "1. Selecciona un Producto",
-        split_payment_choose_product: "-- Elige un producto --",
-        split_payment_select_storage: "2. Selecciona Almacenamiento",
-        split_payment_choose_storage: "-- Elige almacenamiento --",
-        split_payment_select_color: "3. Selecciona Color",
-        split_payment_choose_color: "-- Elige color --",
-        split_payment_choose_plan: "4. Elige Tu Plan",
-        split_payment_month_interest: "{months} Meses (+{interest}% interés)",
-        split_payment_summary: "Resumen de Pago",
-        split_payment_product_price: "Precio del Producto:",
-        split_payment_interest_rate: "Interés",
-        split_payment_new_total: "Nuevo Precio Total:",
-        split_payment_deposit: "Depósito (50%):",
-        split_payment_remaining: "Saldo Restante:",
-        split_payment_monthly: "Pago Mensual:",
-        split_payment_your_info: "5. Tu Información",
-        split_payment_info_desc: "Por favor, proporciona tus datos. Esta información es necesaria para procesar tu plan de cuotas.",
-        split_payment_full_name: "Nombre Completo",
-        split_payment_email: "Correo Electrónico",
-        split_payment_phone: "Número de Teléfono (WhatsApp)",
-        split_payment_address: "Dirección de Entrega Completa",
-        split_payment_upload_id: "Sube una Foto de tu Identificación",
-        split_payment_agreement_title: "6. Acuerdo del Plan de Cuotas",
-        split_payment_agreement_intro: "Al continuar, aceptas los siguientes términos:",
-        split_payment_term_1: "Aceptas pagar un depósito del 50% del monto total hoy. Este depósito es reembolsable bajo nuestra garantía de devolución de 30 días.",
-        split_payment_term_2: "El saldo restante se pagará en cuotas mensuales iguales durante el período seleccionado.",
-        split_payment_term_3: "Se aplica una tasa de interés, como se especifica en el resumen, al precio original del producto.",
-        split_payment_term_4: "El producto se enviará inmediatamente después de confirmar el pago del depósito del 50%.",
-        split_payment_term_5: "No realizar los pagos mensuales a tiempo puede resultar en cargos por mora o la recuperación del dispositivo.",
-        split_payment_term_6: "Todos los pagos están sujetos a nuestra garantía de devolución de 30 días. Por favor, revisa nuestros Términos y Condiciones completos para más detalles.",
-        split_payment_agree_checkbox: "He leído y acepto los términos al proceder con el pago del depósito.",
-        split_payment_download_draft: "Descargar Borrador del Acuerdo",
-        split_payment_what_next: "¿Qué sigue ahora?",
-        split_payment_what_next_desc: "Después de pagar el depósito del 50%, nuestro equipo te contactará por WhatsApp para confirmar tu pago. Una vez confirmado, tu teléfono será enviado de inmediato.",
-        split_payment_what_next_signature: "Se proporcionará una copia final del acuerdo para tu firma al momento de la entrega.",
-        split_payment_pay_deposit: "Pagar Depósito y Empezar Plan",
-        split_payment_monthly_value: "{price} x {months} meses"
-    },
-    en: {
-        home: "Home",
-        products: "Products",
-        about: "About",
-        contact: "Contact",
-        hero_title: "The Best Technology at the Best Price",
-        split_payment: "Split Payment",
-        split_payment_title: "Pay in Installments",
-        split_payment_desc: "Pay a 50% deposit today and split the rest over up to 6 months.",
-        about_us_title: "About Our Company",
-        about_us_p1: "Welcome to our e-shop! We are dedicated to providing the best products and services to our customers. Our mission is to deliver quality and value with every purchase.",
-        our_team_title: "Our Team",
-        our_team_p1: "We have a dedicated team of professionals who are passionate about what they do and are always here to help you.",
-        hero_subtitle: "Discover our premium selection of refurbished devices with full warranty and specialized technical support. Quality technology at exceptional prices.",
-        shop_now: "Shop Now",
-        benefit_free_shipping: "Free Shipping",
-        benefit_free_shipping_desc: "On all orders",
-        benefit_warranty: "1 Year Warranty",
-        benefit_warranty_desc: "On all products",
-        benefit_return: "30 Day Return",
-        benefit_return_desc: "Full refund guaranteed",
-        benefit_accessories: "Accessories Included",
-        benefit_accessories_desc: "Cable, box and free screen protector",
-
-        // WhatsApp & Banners
-        whatsapp_title: "Have Questions?",
-        whatsapp_subtitle: "Chat with our experts for personalized recommendations and instant support.",
-        whatsapp_button: "Chat on WhatsApp",
-        whatsapp_general_greeting: "Hello! I have a question about your products.",
-        preorder_subtitle: "Be the First",
-        preorder_title: "iPhone 17 Pre-Order Is Live!",
-        preorder_description: "Secure your iPhone 17 today for exclusive launch day offers. Contact us on WhatsApp to place your order instantly.",
-        preorder_button_text: "Pre-Order on WhatsApp",
-        whatsapp_preorder_iphone17: "Hello! I'm interested in the iPhone 17. Please notify me about pre-orders and availability.",
-
-        featured_products: "Featured Products",
-        all: "All",
-        iphones: "iPhones",
-        samsung: "Samsung",
-        audio: "Audio",
-        accessories: "Accessories",
-        add_to_cart: "Add to Cart",
-        available_in: "Available in:",
-        free_shipping: "Free Shipping",
-        free_shipping_all: "Free shipping on all orders",
-        new: "New!",
-        certified: "Certified!",
-        hot: "Hot!",
-        bestseller: "Best Seller!",
-        deal: "Deal!",
-        value: "Great Value!",
-        premium: "Premium!",
-        top_rated: "Top Rated!",
-        popular: "Popular!",
-        budget: "Budget!",
-        shopping_cart: "Shopping Cart",
-        empty_cart: "Your cart is empty",
-        subtotal: "Subtotal:",
-        shipping: "Shipping:",
-        total: "Total:",
-        checkout: "Proceed to Checkout",
-        continue_shopping: "Continue Shopping",
-        order_summary: "Order Summary",
-        order_ref: "Order Reference:",
-        bank_transfer: "Bank Transfer",
-        credit_card: "Credit Card",
-        bank_details: "Bank Details",
-        account_number: "Account Number:",
-        account_holder: "Account Holder:",
-        reference: "Reference:",
-        transfer_instructions: "Make the transfer for the total amount and send us a confirmation via WhatsApp for expedited shipping.",
-        confirm_transfer: "Send Receipt via WhatsApp",
-        whatsapp_bank_confirmation: "Hello, I've completed the bank transfer for Order {orderNumber}. I'm sending my proof of payment now.",
-        bank_name: "Bank:",
-        card_details: "Card Details",
-        accepted: "Accepted:",
-        secure_payment: "100% Secure and Verified Payment",
-        cardholder_name: "Cardholder Name",
-        card_number: "Card Number",
-        expiry_date: "Expiry Date",
-        cvc: "CVV",
-        ssl_secured: "Secure SSL Connection - Your data is protected",
-        place_order: "Place Order",
-        delivery_inspection_notice: "We encourage all customers to thoroughly inspect their order upon delivery from the carrier. Should you find the item unsatisfactory or not as expected, you have the right to refuse acceptance of the package. In the event of refusal, you will be eligible for a complete refund of your purchase amount in accordance with our return policy.",
-        processing_secure: "Secure Processing",
-        processing_order: "Processing your order...",
-        processing_wait: "Please do not close this window",
-        validating_payment: "Validating payment method",
-        confirming_inventory: "Confirming inventory",
-        generating_order: "Generating purchase order",
-        order_confirmed: "Order Confirmed!",
-        order_success_msg: "Your order has been processed successfully. You will receive a WhatsApp with the details.",
-        order_number: "Order Number:",
-        order_total: "Total:",
-        payment_method: "Payment Method:",
-        estimated_delivery: "Estimated Delivery:",
-        price_high_to_low: "Price: High to Low",
-        price_low_to_high: "Price: Low to High",
-        featured: "Featured",
-        storage: "Storage",
-        condition: "Condition",
-        required: "*Required",
-        condition_guide: "Condition Guide:",
-        condition_guide_desc: "Better conditions indicate less wear and superior device appearance.",
-        terms_agreement: "I agree to the",
-        terms_and_conditions: "Terms and Conditions",
-        quantity: "Quantity:",
-        details: "Details",
-        choose_type: "Choose Type",
-        security_verification: "Security Verification",
-        verify_payment: "Verify Your Payment",
-        otp_sent: "We've sent a 6-digit verification code to your phone number. Please enter it below to complete your purchase.",
-        code_expires: "Code expires in: ",
-        resend_code: "Resend Code",
-        verify_code: "Verify Code",
-        invalid_code: "Invalid code. Please try again.",
-        reviews: "Reviews",
-        split_payment_select_product: "1. Select a Product",
-        split_payment_choose_product: "-- Choose a product --",
-        split_payment_select_storage: "2. Select Storage",
-        split_payment_choose_storage: "-- Choose storage --",
-        split_payment_select_color: "3. Select Color",
-        split_payment_choose_color: "-- Choose color --",
-        split_payment_choose_plan: "4. Choose Your Plan",
-        split_payment_month_interest: "{months} Months (+{interest}% interest)",
-        split_payment_summary: "Payment Summary",
-        split_payment_product_price: "Product Price:",
-        split_payment_interest_rate: "Interest",
-        split_payment_new_total: "New Total Price:",
-        split_payment_deposit: "Deposit (50%):",
-        split_payment_remaining: "Remaining Balance:",
-        split_payment_monthly: "Monthly Payment:",
-        split_payment_your_info: "5. Your Information",
-        split_payment_info_desc: "Please provide your details. This information is required to process your installment plan.",
-        split_payment_full_name: "Full Name",
-        split_payment_email: "Email Address",
-        split_payment_phone: "Phone Number (WhatsApp)",
-        split_payment_address: "Full Delivery Address",
-        split_payment_upload_id: "Upload a Picture of Your ID",
-        split_payment_agreement_title: "6. Installment Plan Agreement",
-        split_payment_agreement_intro: "By proceeding, you agree to the following terms:",
-        split_payment_term_1: "You agree to pay a 50% deposit of the total amount today. This deposit is refundable under our 30-day money-back guarantee.",
-        split_payment_term_2: "The remaining balance will be paid in equal monthly installments over the selected period.",
-        split_payment_term_3: "An interest rate, as specified in the summary, is applied to the original product price.",
-        split_payment_term_4: "The product will be shipped immediately after the 50% deposit payment is confirmed.",
-        split_payment_term_5: "Failure to make monthly payments on time may result in late fees or repossession of the device.",
-        split_payment_term_6: "All payments are subject to our 30-day money-back guarantee. Please review our full Terms and Conditions for more details.",
-        split_payment_agree_checkbox: "I have read and agree to the terms by proceeding with the deposit payment.",
-        split_payment_download_draft: "Download Agreement Draft",
-        split_payment_what_next: "What happens next?",
-        split_payment_what_next_desc: "After you pay the 50% deposit, our team will contact you via WhatsApp to confirm your payment. Once confirmed, your phone will be shipped immediately.",
-        split_payment_what_next_signature: "A final copy of the agreement will be provided for your signature upon delivery.",
-        split_payment_pay_deposit: "Pay Deposit & Start Plan",
-        split_payment_monthly_value: "{price} x {months} months"
-    }
-};
-
-function t(key) {
-    const lang = currentLanguage || 'en'; // fallback to English if not set
-    return (translations[lang] && translations[lang][key])
-        ? translations[lang][key]
-        : key; // fallback to key if translation is missing
-}
-
-// Global variables
-let currentCountry = localStorage.getItem('selectedCountry') || 'honduras';
-let currentLanguage = localStorage.getItem('selectedLanguage') || 'es';
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-// Global state for grid controls
-let currentFilterCategory = 'all';
-let currentSearchTerm = '';
-let currentSortBy = 'featured'; // 'featured', 'price-low', 'price-high'
-
-
-
-
-// Initialize cart
-updateCartCount();
-updateCartDisplay();
-
-// Currency functions
-function getCurrencySymbol(country) {
-    const config = countryConfig[country];
-    if (!config) return '$';
-    switch (config.currency) {
-        case 'NIO': return 'C$';
-        case 'HNL': return 'L';
-        case 'TTD': return 'TT$';
-        case 'XCD': return 'EC$';
-        case 'USD': return '$';
-        default: return '$';
-    }
-}
-
-function convertPrice(price, showBoth = true) {
-    if (typeof price !== 'number' || isNaN(price)) {
-        return ''; // Return empty string if price is not a valid number
+    function populateMonths() {
+        if (!monthsSelect) return;
+        monthsSelect.innerHTML = ''; // Clear existing
+        for (let i = 1; i <= 6; i++) {
+            const option = document.createElement('option');
+            option.value = i;
+            const interest = i + 1;
+            let text = t('split_payment_month_interest');
+            text = text.replace('{months}', i).replace('{interest}', interest);
+            option.textContent = text;
+            if (i === 6) option.selected = true;
+            monthsSelect.appendChild(option);
+        }
     }
 
-    const config = countryConfig[currentCountry];
-    if (!config) return `$${price.toFixed(2)}`;
-
-    const usdPrice = `$${price.toFixed(2)}`;
-
-    // For USD countries, always show USD only
-    if (config.currency === 'USD') {
-        return usdPrice;
-    }
-
-    const convertedPrice = price * config.rate;
-    const symbol = getCurrencySymbol(currentCountry);
-    const localFormattedPrice = convertedPrice.toLocaleString('en-US', {
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0
-    });
-    const localPrice = `${symbol}${localFormattedPrice}`;
-
-    return showBoth ? `${usdPrice} / ${localPrice}` : localPrice;
-}
-
-// Translation function
-function updateLanguage(lang) {
-    currentLanguage = lang;
-    const elements = document.querySelectorAll('[data-translate]');
-    elements.forEach(element => {
-        const key = element.getAttribute('data-translate');
-        if (translations[lang] && translations[lang][key]) {
-            element.textContent = translations[lang][key];
-        }
-    });
-
-    const placeholderElements = document.querySelectorAll('[data-translate-placeholder]');
-    placeholderElements.forEach(element => {
-        const key = element.getAttribute('data-translate-placeholder');
-        if (translations[lang] && translations[lang][key]) {
-            element.setAttribute('placeholder', translations[lang][key]);
-        }
-    });
-}
-
-// Setup dynamic WhatsApp links
-function setupDynamicWhatsAppLinks() {
-    const config = countryConfig[currentCountry];
-    if (!config || !config.phone) return;
-
-    const phoneNumber = config.phone.replace(/\D/g, '');
-
-    // For the general WhatsApp chat link in the footer/contact section
-    const generalChatLink = document.getElementById('whatsapp-chat-link'); // This might be used elsewhere, so we keep it.
-    if (generalChatLink) {
-        const message = encodeURIComponent(t('whatsapp_general_greeting'));
-        generalChatLink.href = `https://wa.me/${phoneNumber}?text=${message}`;
-    }
-
-    // For the smaller contact/swap banner button
-    const contactBtn = document.getElementById('whatsapp-contact-btn');
-    if (contactBtn) {
-        const message = encodeURIComponent(t('whatsapp_general_greeting'));
-        contactBtn.href = `https://wa.me/${phoneNumber}?text=${message}`;
-    }
-}
-
-// Update prices based on country
-function updatePrices() {
-    document.querySelectorAll('.current-price').forEach(priceElement => {
-        // Extract the base USD price from the element's data attribute or text
-        let price = parseFloat(priceElement.getAttribute('data-usd-price'));
-        if (isNaN(price)) {
-            // Fallback to extracting from text if no data attribute
-            const priceText = priceElement.textContent;
-            const usdMatch = priceText.match(/\$(\d+(?:\.\d{2})?)/);
-            if (usdMatch) {
-                price = parseFloat(usdMatch[1]);
-                priceElement.setAttribute('data-usd-price', price);
-            }
-        }
-        if (!isNaN(price)) {
-            priceElement.textContent = convertPrice(price, false);
-        }
-    });
-
-    document.querySelectorAll('.original-price').forEach(priceElement => {
-        // Extract the base USD price from the element's data attribute or text
-        let price = parseFloat(priceElement.getAttribute('data-usd-original-price'));
-        if (isNaN(price)) {
-            // Fallback to extracting from text if no data attribute
-            const priceText = priceElement.textContent;
-            const usdMatch = priceText.match(/\$(\d+(?:\.\d{2})?)/);
-            if (usdMatch) {
-                price = parseFloat(usdMatch[1]);
-                priceElement.setAttribute('data-usd-original-price', price);
-            }
-        }
-        if (!isNaN(price)) {
-            priceElement.textContent = convertPrice(price, false);
-        }
-    });
-}
-
-// Initialize color selection for products
-function initializeColorSelection(productId, colorSelectId, mainImageId, addToCartBtnId) {
-    const colorSelect = document.getElementById(colorSelectId);
-    const mainImage = document.getElementById(mainImageId);
-    const addToCartBtn = document.getElementById(addToCartBtnId);
-
-    if (colorSelect && mainImage && addToCartBtn) {
-        colorSelect.addEventListener('change', function() {
-            const selectedOption = this.options[this.selectedIndex];
-            const newImageSrc = selectedOption.getAttribute('data-image');
-
-            if (newImageSrc) {
-                mainImage.src = newImageSrc;
-
-                // Update the add to cart button data-product with new image
-                const productData = JSON.parse(addToCartBtn.getAttribute('data-product'));
-                productData.image = newImageSrc;
-                addToCartBtn.setAttribute('data-product', JSON.stringify(productData));
-
-                // Update the product card onclick to navigate to product page
-                const productImage = mainImage.closest('.product-image');
-                if (productImage) {
-                    productImage.onclick = function() {
-                        window.location.href = `product.html?id=${productId}`;
-                    };
-                }
-            }
+    // 1. Populate Product Dropdown
+    if (typeof productsForSplitPayment !== 'undefined') {
+        productsForSplitPayment.forEach(product => {
+            const option = document.createElement('option');
+            option.value = product.id;
+            option.textContent = product.name;
+            productSelect.appendChild(option);
         });
     }
-}
 
-// Cart functions
-function addToCart(product) {
-    try {
-        if (!product || !product.id) {
-            console.error('Invalid product data:', product);
-            return;
-        }
+    populateMonths();
 
-        const existingItem = cart.find(item => item.id === product.id);
+    // 2. Handle Product Selection
+    productSelect.addEventListener('change', () => {
+        const productId = productSelect.value;
+        selectedProduct = productsForSplitPayment.find(p => p.id === productId);
 
-        if (existingItem) {
-            existingItem.quantity += 1;
+        if (selectedProduct) {
+            storageSelect.innerHTML = `<option value="">${t('split_payment_choose_storage')}</option>`;
+            selectedProduct.variants.forEach(variant => {
+                const option = document.createElement('option');
+                option.value = variant.storage;
+                option.textContent = `${variant.storage} - ${convertPrice(variant.price, false)}`;
+                option.dataset.price = variant.price;
+                storageSelect.appendChild(option);
+            });
+            storageGroup.style.display = 'block';
+            colorGroup.style.display = 'none';
+            monthsGroup.style.display = 'none';
+            summary.style.display = 'none';
+            customerInfoSection.style.display = 'none';
+            termsSection.style.display = 'none';
+            checkoutBtn.disabled = true;
         } else {
-            const newItem = {
-                id: product.id,
-                name: product.name || 'Unknown Product',
-                price: parseFloat(product.price) || 0,
-                image: product.image || '',
-                quantity: 1
+            storageGroup.style.display = 'none';
+            colorGroup.style.display = 'none';
+            monthsGroup.style.display = 'none';
+            summary.style.display = 'none';
+            customerInfoSection.style.display = 'none';
+            termsSection.style.display = 'none';
+            checkoutBtn.disabled = true;
+        }
+    });
+
+    // 3. Handle Storage and Month Selection
+    storageSelect.addEventListener('change', () => {
+        const selectedOption = storageSelect.options[storageSelect.selectedIndex];
+        if (selectedOption.value) {
+            selectedVariant = {
+                storage: selectedOption.value,
+                price: parseFloat(selectedOption.dataset.price)
             };
-            cart.push(newItem);
-        }
-
-        // Auto-add free Gorilla Glass screen protector for phone purchases
-        if (product.id.includes('iphone') || product.id.includes('galaxy')) {
-            const screenProtectorExists = cart.find(item => item.id === 'free_gorilla_glass');
-            if (!screenProtectorExists) {
-                cart.push({
-                    id: 'free_gorilla_glass',
-                    name: 'FREE: Premium Gorilla Glass Screen Protector (9H Hardness)',
-                    price: 0,
-                    image: 'https://m.media-amazon.com/images/I/61NGYQsztvL._UF1000,1000_QL80_FMwebp_.jpg',
-                    quantity: 1,
-                    isFreeGift: true
+            // Populate and show color dropdown
+            if (selectedProduct && selectedProduct.colors) {
+                colorSelect.innerHTML = `<option value="">${t('split_payment_choose_color')}</option>`;
+                selectedProduct.colors.forEach(color => {
+                    const option = document.createElement('option');
+                    option.value = color;
+                    option.textContent = color;
+                    colorSelect.appendChild(option);
                 });
+                colorGroup.style.display = 'block';
+            } else {
+                colorGroup.style.display = 'none';
+                selectedColor = 'Default'; // Set a default if no colors
+                monthsGroup.style.display = 'block';
+                updateCalculations();
             }
-        }
-
-        localStorage.setItem('cart', JSON.stringify(cart));
-
-        updateCartCount();
-        updateCartDisplay();
-        showAddToCartFeedback();
-    } catch (error) {
-        console.error('Error adding to cart:', error);
-    }
-}
-
-function removeFromCart(productId) {
-    cart = cart.filter(item => item.id !== productId);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCount();
-    updateCartDisplay();
-}
-
-function updateQuantity(productId, newQuantity) {
-    const item = cart.find(item => item.id === productId);
-    if (item) {
-        if (newQuantity <= 0) {
-            removeFromCart(productId);
+            // Reset downstream elements
+            monthsGroup.style.display = 'none';
         } else {
-            item.quantity = newQuantity;
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartCount();
-            updateCartDisplay();
+            selectedVariant = null;
+            colorGroup.style.display = 'none';
+            monthsGroup.style.display = 'none';
+            customerInfoSection.style.display = 'none';
+            summary.style.display = 'none';
+            termsSection.style.display = 'none';
+            checkoutBtn.disabled = true;
         }
-    }
-}
-
-function updateCartCount() {
-    const cartCount = document.getElementById('cart-count');
-    if (cartCount) {
-        const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-        cartCount.textContent = totalItems;
-        cartCount.style.display = totalItems > 0 ? 'flex' : 'none';
-    }
-}
-
-function updateCartDisplay() {
-    const cartItems = document.getElementById('cart-items');
-    const cartSubtotal = document.getElementById('cart-subtotal');
-    const cartTotal = document.getElementById('cart-total');
-
-    if (!cartItems) return;
-
-    if (cart.length === 0) {
-        const emptyMessage = currentLanguage === 'es' ? 'Tu carrito está vacío' : 'Your cart is empty';
-        cartItems.innerHTML = `
-            <div id="empty-cart-message" class="empty-cart-message">
-                <i class="fas fa-shopping-cart"></i>
-                <p>${emptyMessage}</p>
-            </div>
-        `;
-        if (cartSubtotal) cartSubtotal.textContent = convertPrice(0, false);
-        if (cartTotal) cartTotal.textContent = convertPrice(0, false);
-        return;
-    }
-
-    let subtotal = 0;
-    let cartHTML = '';
-
-    cart.forEach((item) => {
-        const itemTotal = item.price * item.quantity;
-        subtotal += itemTotal;
-
-        const isFreeGift = item.isFreeGift || item.price === 0;
-        const priceDisplay = isFreeGift ? 'FREE' : convertPrice(itemTotal, false);
-
-        cartHTML += `
-            <div class="cart-item ${isFreeGift ? 'free-gift-item' : ''}" data-item-id="${item.id}">
-                <div class="cart-item-image">
-                    <img src="${item.image || 'https://placehold.co/60x60'}" alt="${item.name}" loading="lazy" class="cart-product-image">
-                    ${isFreeGift ? '<div class="gift-overlay"><i class="fas fa-gift"></i></div>' : ''}
-                </div>
-                <div class="cart-item-details">
-                    <h4>${item.name}</h4>
-                    <div class="cart-item-controls">
-                        ${isFreeGift ? 
-                            '<span class="free-gift-badge">FREE GIFT</span>' :
-                            `<div class="quantity-controls">
-                                <button type="button" data-action="decrease" data-item-id="${item.id}">-</button>
-                                <span class="quantity">${item.quantity}</span>
-                                <button type="button" data-action="increase" data-item-id="${item.id}">+</button>
-                            </div>`
-                        }
-                        <div class="item-price ${isFreeGift ? 'free-price' : ''}">${priceDisplay}</div>
-                        ${!isFreeGift ? 
-                            `<button type="button" class="remove-item" data-action="remove" data-item-id="${item.id}">
-                                <i class="fas fa-trash"></i>
-                            </button>` : ''
-                        }
-                    </div>
-                </div>
-            </div>
-        `;
     });
 
-    cartItems.innerHTML = cartHTML;
+    colorSelect.addEventListener('change', () => {
+        selectedColor = colorSelect.value;
+        if (selectedColor) {
+            monthsGroup.style.display = 'block';
+            updateCalculations();
+        } else {
+            monthsGroup.style.display = 'none';
+            customerInfoSection.style.display = 'none';
+            summary.style.display = 'none';
+            termsSection.style.display = 'none';
+            checkoutBtn.disabled = true;
+        }
+    });
+    monthsSelect.addEventListener('change', updateCalculations);
 
-    // Remove existing event listeners to avoid duplicates
-    const existingHandler = cartItems.getAttribute('data-handler-attached');
-    if (!existingHandler) {
-        // Add event listeners for cart item actions only once
-        cartItems.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
+    // Handle customer form validation and ID preview
+    customerInfoForm.addEventListener('input', () => {
+        if (validateCustomerInfo()) {
+            termsSection.style.display = 'block';
+            checkoutBtn.disabled = !termsCheckbox.checked;
+        } else {
+            termsSection.style.display = 'none';
+            checkoutBtn.disabled = true;
+        }
+    });
 
-            const button = e.target.closest('button[data-action]');
-            if (!button) return;
+    idUpload.addEventListener('change', () => {
+        const file = idUpload.files[0];
+        if (file && idPreview) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                idPreview.style.display = 'block';
+                idPreview.querySelector('img').src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+        // Trigger a form input event to re-validate
+        customerInfoForm.dispatchEvent(new Event('input', { bubbles: true }));
+    });
 
-            const action = button.getAttribute('data-action');
-            const itemId = button.getAttribute('data-item-id');
+    // 4. Update Calculations
+    function updateCalculations() {
+        if (!selectedVariant || !selectedColor) return;
 
-            if (!itemId) return;
+        const basePrice = selectedVariant.price;
+        const months = parseInt(monthsSelect.value);
+        const interestRate = months + 1; // 1 month = 2%, 2 = 3%, etc.
 
-            const item = cart.find(cartItem => cartItem.id === itemId);
-            if (!item) return;
+        const interestAmount = basePrice * (interestRate / 100);
+        const totalPrice = basePrice + interestAmount;
+        const deposit = totalPrice * 0.5;
+        const remaining = totalPrice - deposit;
+        const monthlyPayment = remaining / months;
+        const monthlyText = t('split_payment_monthly_value') || '{price} x {months} months';
 
-            switch(action) {
-                case 'increase':
-                    updateQuantity(itemId, item.quantity + 1);
-                    break;
-                case 'decrease':
-                    updateQuantity(itemId, item.quantity - 1);
-                    break;
-                case 'remove':
-                    removeFromCart(itemId);
-                    break;
-            }
+        // Update summary display
+        document.getElementById('summary-price').textContent = convertPrice(basePrice, false);
+        document.getElementById('summary-interest-rate').textContent = interestRate;
+        document.getElementById('summary-interest-amount').textContent = convertPrice(interestAmount, false);
+        document.getElementById('summary-total-price').textContent = convertPrice(totalPrice, false);
+        document.getElementById('summary-deposit').textContent = convertPrice(deposit, false);
+        document.getElementById('summary-remaining').textContent = convertPrice(remaining, false);
+        document.getElementById('summary-monthly').textContent = monthlyText
+            .replace('{price}', convertPrice(monthlyPayment, false))
+            .replace('{months}', months);
 
-            return false;
-        });
-        cartItems.setAttribute('data-handler-attached', 'true');
+        summary.style.display = 'block';
+        customerInfoSection.style.display = 'block';
+        downloadBtn.disabled = false;
+
+        // Checkout button is now controlled by the form and checkbox
+        if (validateCustomerInfo()) {
+            termsSection.style.display = 'block';
+            checkoutBtn.disabled = !termsCheckbox.checked;
+        } else {
+            termsSection.style.display = 'none';
+            checkoutBtn.disabled = true;
+        }
     }
 
-    if (cartSubtotal) cartSubtotal.textContent = convertPrice(subtotal, false);
-    if (cartTotal) cartTotal.textContent = convertPrice(subtotal, false);
-}
-
-function showAddToCartFeedback() {
-    const notification = document.createElement('div');
-    notification.className = 'cart-notification';
-    notification.innerHTML = '<i class="fas fa-check"></i> Product added to cart!';
-    notification.style.cssText = `
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        background: var(--primary-color);
-        color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
-        z-index: 10000;
-        animation: slideInRight 0.3s ease;
-    `;
-
-    document.body.appendChild(notification);
-    setTimeout(() => {
-        notification.remove();
-    }, 3000);
-}
-
-function createAndInsertPreorderBanner() {
-    const whatsappSection = document.querySelector('.whatsapp-contact-section');
-    if (!whatsappSection) {
-        console.warn('WhatsApp contact section not found. Cannot insert pre-order banner.');
-        return;
+    function validateCustomerInfo() {
+        const name = document.getElementById('customer-name').value.trim();
+        const email = document.getElementById('customer-email').value.trim();
+        const phone = document.getElementById('customer-phone').value.trim();
+        const address = document.getElementById('customer-address').value.trim();
+        return name !== '' && email !== '' && phone !== '' && address !== '' && idUpload.files.length > 0 && selectedColor;
     }
 
-    // Remove any existing banner to ensure it's always fresh and has the correct link
-    const existingBanner = document.querySelector('.preorder-section');
-    if (existingBanner) {
-        existingBanner.remove();
-    }
+    // 5. Add event listener for the checkbox
+    termsCheckbox.addEventListener('change', () => {
+        checkoutBtn.disabled = !selectedVariant || !validateCustomerInfo() || !termsCheckbox.checked;
+    });
 
-    const config = countryConfig[currentCountry];
-    if (!config || !config.phone) return;
+    // 6. Add event listener for download button
+    downloadBtn.addEventListener('click', generateAgreementPDF);
 
-    const phoneNumber = config.phone.replace(/\D/g, '');
-    const preorderMessage = encodeURIComponent(t('whatsapp_preorder_iphone17'));
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${preorderMessage}`;
-
-    const banner = document.createElement('section');
-    banner.className = 'preorder-section';
-    banner.innerHTML = `
-        <div class="container">
-            <div class="preorder-banner">
-                <div class="preorder-image">
-                    <img src="https://citymagazine.b-cdn.net/wp-content/uploads/2025/08/hero-series-iphone17-2025-0-1400x933.webp" alt="iPhone 17 Pre-order">
-                </div>
-                <div class="preorder-content">
-                    <span class="preorder-subtitle" data-translate="preorder_subtitle">${t('preorder_subtitle')}</span>
-                    <h2 data-translate="preorder_title">${t('preorder_title')}</h2>
-                    <p class="preorder-description" data-translate="preorder_description">${t('preorder_description')}</p>
-                    <a href="${whatsappUrl}" class="preorder-btn" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-whatsapp"></i> <span data-translate="preorder_button_text">${t('preorder_button_text')}</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    `;
-
-    whatsappSection.parentNode.insertBefore(banner, whatsappSection);
-}
-
-// Checkout functionality
-function initializeCheckout() {
-    const checkoutBtn = document.getElementById('checkout-btn');
-    if (checkoutBtn) {
-        checkoutBtn.removeEventListener('click', openCheckout); // Remove existing listener
-        checkoutBtn.addEventListener('click', openCheckout);
-    }
-}
-
-function openCheckout() {
-    try {
-        if (cart.length === 0) {
-            alert(currentLanguage === 'es' ? 'Tu carrito está vacío' : 'Your cart is empty');
+    function generateAgreementPDF() {
+        // Validation
+        if (!selectedProduct || !selectedVariant || !selectedColor || !validateCustomerInfo()) {
+            alert("Please complete all steps before downloading the agreement.");
             return;
         }
 
-        // Send Telegram notification
-        if (typeof TelegramNotifications !== 'undefined') {
-            TelegramNotifications.proceedToCheckoutCard({
-                total: convertPrice(getCartTotal(), false),
-                itemCount: cart.length,
-                orderRef: generateOrderReference()
-            });
-        }
-
-        createCheckoutModal();
-    } catch (error) {
-        console.error('Error opening checkout:', error);
-        alert('Error opening checkout. Please try again.');
-    }
-}
-
-// Global variable to store checkout data
-let checkoutData = {
-    orderNumber: '',
-    paymentMethod: 'bank-transfer',
-    cardholderName: '',
-    total: 0,
-    discountCode: '',
-    discountAmount: 0,
-    originalTotal: 0,
-    customerName: '',
-    customerPhone: '',
-    customerEmail: '',
-    customerAddress: '',
-    customerCity: '',
-    customerPostal: ''
-};
-
-function createCheckoutModal() {
-    // Remove existing checkout overlay
-    const existingOverlay = document.getElementById('checkout-overlay');
-    if (existingOverlay) {
-        existingOverlay.remove();
-    }
-
-    const overlay = document.createElement('div');
-    overlay.id = 'checkout-overlay';
-    overlay.className = 'checkout-overlay active';
-
-    const modal = document.createElement('div');
-    modal.className = 'checkout-modal';
-
-    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    checkoutData.total = subtotal; // This will be the base total
-    checkoutData.orderNumber = `ORDER-${Date.now()}`; // Generate order number
-
-    const checkoutHTML = `
-    <div class="checkout-header">
-        <h2 data-translate="checkout">Checkout</h2>
-        <button class="close-checkout"><i class="fas fa-times"></i></button>
-    </div>
-    <div class="checkout-content">
-        <div class="checkout-left">
-            <div class="checkout-steps">
-                <div class="step active" data-step="1"><span>${(currentLanguage === 'es' ? 'Información' : 'Information')}</span></div>
-                <div class="step" data-step="2"><span>${(currentLanguage === 'es' ? 'Pago' : 'Payment')}</span></div>
-                <div class="step" data-step="3"><span>${(currentLanguage === 'es' ? 'Verificación' : 'Verification')}</span></div>
-                <div class="step" data-step="4"><span>${(currentLanguage === 'es' ? 'Confirmación' : 'Confirmation')}</span></div>
-            </div>
-
-            <!-- Step 1: Shipping Information -->
-            <div id="checkout-step-1" class="checkout-step active">
-            <div class="customer-info-section">
-                <h3>${(currentLanguage === 'es' ? 'Información de Envío' : 'Shipping Information')}</h3>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>${(currentLanguage === 'es' ? 'Nombre Completo' : 'Full Name')} *</label>
-                        <input type="text" id="customer-name" required placeholder="${(currentLanguage === 'es' ? 'Ingrese su nombre completo' : 'Enter your full name')}" autocomplete="name">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>${(currentLanguage === 'es' ? 'Teléfono' : 'Phone Number')} *</label>
-                    <input type="tel" id="customer-phone" required placeholder="${(currentLanguage === 'es' ? 'Número de teléfono' : 'Phone number')}" autocomplete="tel">
-                </div>
-                <div class="form-group">
-                    <label>${(currentLanguage === 'es' ? 'País' : 'Country')} *</label>
-                    <input type="text" id="customer-country" required value="${countryConfig[currentCountry].name}" readonly autocomplete="country">
-                </div>
-                <div class="form-group">
-                    <label>${(currentLanguage === 'es' ? 'Dirección Completa' : 'Complete Address')} *</label>
-                    <textarea id="customer-address" required placeholder="${(currentLanguage === 'es' ? 'Dirección completa: Calle, número, ciudad, estado/provincia, código postal...' : 'Complete address: Street, number, city, state/province, postal code...')}" rows="4" class="responsive-textarea" autocomplete="street-address"></textarea>
-                    <div class="address-help"><i class="fas fa-info-circle"></i> ${(currentLanguage === 'es' ? 'Incluya toda la información necesaria para la entrega' : 'Include all necessary information for delivery')}</div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>${(currentLanguage === 'es' ? 'Ciudad' : 'City')} *</label>
-                        <input type="text" id="customer-city" required placeholder="${(currentLanguage === 'es' ? 'Ciudad' : 'City')}" autocomplete="address-level2">
-                    </div>
-                    <div class="form-group">
-                        <label>${(currentLanguage === 'es' ? 'Código Postal' : 'Postal Code')}</label>
-                        <input type="text" id="customer-postal" placeholder="${(currentLanguage === 'es' ? 'Código postal' : 'Postal code')}" autocomplete="postal-code">
-                    </div>
-                </div>
-                <div class="step-actions">
-                    <button id="next-to-payment" class="btn btn-primary checkout-next">
-                        ${(currentLanguage === 'es' ? 'Continuar al Pago' : 'Continue to Payment')} <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-            </div>
-            </div>
-
-            <!-- Step 2: Payment -->
-            <div id="checkout-step-2" class="checkout-step">
-            <div class="payment-section">
-                <h3>${(currentLanguage === 'es' ? 'Método de Pago' : 'Payment Method')}</h3>
-                <div class="payment-methods">
-                    <label class="payment-option" data-method="bank-transfer">
-                        <input type="radio" name="payment-method" value="bank-transfer">
-                        <div class="payment-option-content">
-                            <i class="fas fa-university"></i>
-                            <span>${(currentLanguage === 'es' ? 'Transferencia Bancaria' : 'Bank Transfer')}</span>
-                        </div>
-                    </label>
-                    ${currentCountry !== 'trinidad' ? `
-                    <label class="payment-option" data-method="credit-card">
-                        <input type="radio" name="payment-method" value="credit-card">
-                        <div class="payment-option-content">
-                            <i class="fas fa-credit-card"></i>
-                            <span>${(currentLanguage === 'es' ? 'Tarjeta de Crédito' : 'Credit Card')}</span>
-                        </div>
-                    </label>
-                    ` : ''}
-                </div>
-
-                <div id="payment-method-instruction" class="payment-instruction" style="text-align: center; padding: 2rem; color: var(--text-light); background: var(--background-light); border-radius: var(--border-radius); margin-top: 1rem;">
-                    <i class="fas fa-hand-pointer" style="font-size: 2rem; margin-bottom: 1rem; color: var(--primary-color);"></i>
-                    <p>${(currentLanguage === 'es' ? 'Por favor selecciona un método de pago para continuar' : 'Please select a payment method to continue')}</p>
-                </div>
-
-                <div id="bank-transfer-details" class="payment-details" style="display: none;">
-                    <div class="bank-info-box">
-                        <div class="bank-info-header">${(currentLanguage === 'es' ? 'Datos para la Transferencia' : 'Bank Transfer Details')}</div>
-                        <div class="bank-info-row"><span>${(currentLanguage === 'es' ? 'Banco' : 'Bank')}</span><strong>${getBankName()}</strong></div>
-                        <div class="bank-info-row"><span>${(currentLanguage === 'es' ? 'Titular' : 'Account Holder')}</span><strong>${getAccountHolder()}</strong></div>
-                        <div class="bank-info-row">
-                            <span>${(currentLanguage === 'es' ? 'Nº de Cuenta' : 'Account No.')}</span>
-                            <div class="account-number-wrapper">
-                                <strong id="bank-account-number">${getAccountNumber()}</strong>
-                                <button id="copy-account-btn" class="copy-btn"><i class="far fa-copy"></i> Copy</button>
-                            </div>
-                        </div>
-                        <div class="bank-info-row"><span>${(currentLanguage === 'es' ? 'Referencia' : 'Reference')}</span><strong>${checkoutData.orderNumber}</strong></div>
-                        <div class="bank-info-row total"><span>${(currentLanguage === 'es' ? 'Monto Total' : 'Total Amount')}</span><strong>${convertPrice(subtotal, false)}</strong></div>
-                    </div>
-                    <p class="transfer-instructions">
-                        <i class="fas fa-info-circle"></i>
-                        ${t('transfer_instructions')}
-                    </p>
-                    <button class="btn btn-primary place-order" data-method="bank-transfer"><i class="fab fa-whatsapp"></i> ${t('confirm_transfer')}</button>
-                </div>
-
-            <div id="credit-card-details" class="payment-details" style="display: none;">
-                    <h4>${(currentLanguage === 'es' ? 'Detalles de la Tarjeta' : 'Card Details')}</h4>
-                    <div class="trust-badges">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/MasterCard_Logo.svg" alt="Mastercard">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/American_Express_logo_%282018%29.svg" alt="American Express">
-                        <div class="secure-payment-badge">
-                            <i class="fas fa-lock"></i> <span>Secure Payment</span>
-                        </div>
-                    </div>
-                    <form class="card-form">
-                        <div class="form-group">
-                            <label>${(currentLanguage === 'es' ? 'Nombre del Titular' : 'Cardholder Name')}</label>
-                            <input type="text" id="cardholder-name" required>
-                        </div>
-                        <div class="form-group">
-                            <label>${(currentLanguage === 'es' ? 'Número de Tarjeta' : 'Card Number')}</label>
-                            <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required maxlength="19">
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>${(currentLanguage === 'es' ? 'Fecha de Vencimiento' : 'Expiry Date')}</label>
-                                <input type="text" id="expiry-date" placeholder="MM/YY" required>
-                            </div>
-                            <div class="form-group">
-                                <label>CVV</label>
-                                <input type="text" id="cvv" placeholder="123" required maxlength="4">
-                            </div>
-                        </div>
-						<div id="card-errors" class="error-message" style="color: red; display: none;"></div>
-                    </form>
-                    <p class="security-notice">
-                        <i class="fas fa-lock"></i>
-                        <span>${(currentLanguage === 'es' ? 'Conexión SSL Segura - Tus datos están protegidos' : 'Secure SSL Connection - Your data is protected')}</span>
-                    </p>
-                    <button class="btn btn-primary place-order" data-method="credit-card">${(currentLanguage === 'es' ? 'Procesar Pago' : 'Process Payment')}</button>
-                </div>
-
-                <div class="step-actions" style="margin-top: 2rem; display: flex; justify-content: space-between;">
-                    <button id="back-to-info" class="btn btn-secondary">
-                        <i class="fas fa-arrow-left"></i> ${(currentLanguage === 'es' ? 'Volver' : 'Back')}
-                    </button>
-                </div>
-            </div>
-            </div>
-
-            <div id="checkout-step-3" class="checkout-step">
-            <div class="processing-section">
-                <div class="loading-state" id="processing-card-submission">
-                    <div class="spinner"></div>
-                    <h3>${(currentLanguage === 'es' ? 'Enviando la información de su tarjeta' : 'Submitting your card information')}</h3>
-                    <p>${(currentLanguage === 'es' ? 'Por favor espere mientras enviamos la información de su tarjeta de crédito de forma segura.' : 'Please wait while we submit your credit card information securely.')}</p>
-                </div>
-            </div>
-            </div>
-
-            <div id="checkout-step-4" class="checkout-step">
-            <div class="confirmation-section">
-                <div class="loading-state" id="processing-payment">
-                    <div class="spinner"></div>
-                    <h3>${(currentLanguage === 'es' ? 'Procesando Pago' : 'Processing Payment')}</h3>
-                    <p>${(currentLanguage === 'es' ? 'Por favor espere mientras procesamos su pago. Esto puede tomar un minuto.' : 'Please hold on while we process your payment. This might take a minute.')}</p>
-                    <p class="processing-steps">
-                        <span class="step-text">${(currentLanguage === 'es' ? 'Validando método de pago' : 'Validating payment method')}</span>
-                    </p>
-                </div>
-                <div class="success-state" id="order-success" style="display: none;">
-                    <div class="success-icon">
-                        <i class="fas fa-check-circle"></i>
-                    </div>
-                    <h3>${(currentLanguage === 'es' ? '¡Pedido Confirmado!' : 'Order Confirmed!')}</h3>
-                    <p>${(currentLanguage === 'es' ? 'Tu pedido ha sido procesado exitosamente.' : 'Your order has been processed successfully.')}</p>
-                    <div class="order-details">
-                        <div class="order-detail">
-                            <span>${(currentLanguage === 'es' ? 'Número de Pedido:' : 'Order Number:')}</span>
-                            <strong id="final-order-number">${checkoutData.orderNumber}</strong>
-                        </div>
-                        <div class="order-detail">
-                            <span>${(currentLanguage === 'es' ? 'Total:' : 'Total:')}</span>
-                            <strong>${convertPrice(subtotal, false)}</strong>
-                        </div>
-                        <div class="order-detail">
-                            <span>${(currentLanguage === 'es' ? 'Entrega Estimada:' : 'Estimated Delivery:')}</span>
-                            <strong>${getEstimatedDelivery()}</strong>
-                        </div>
-                    </div>
-                    <button class="btn btn-primary close-checkout-success">${(currentLanguage === 'es' ? 'Continuar Comprando' : 'Continue Shopping')}</button>
-                </div>
-            </div>
-            </div>
-
-            <div id="checkout-step-5" class="checkout-step">
-            <div class="otp-section">
-                <div class="otp-header">
-                    <div class="otp-security">
-                        <i class="fas fa-shield-alt"></i>
-                        <span>${(currentLanguage === 'es' ? 'Verificación de Seguridad' : 'Security Verification')}</span>
-                    </div>
-                </div>
-                <div class="otp-content">
-                    <h3>${(currentLanguage === 'es' ? 'Verificar tu Pago' : 'Verify Your Payment')}</h3>
-                    <p>${(currentLanguage === 'es' ? 'Hemos enviado un código de verificación de 6 dígitos a tu número de teléfono. Por favor, ingrésalo a continuación para completar tu compra.' : 'We have sent a 6-digit verification code to your phone number. Please enter it below to complete your purchase.')}</p>
-                    <div class="otp-input-container">
-                        <input type="tel" id="otp-single-input" class="otp-single-input" maxlength="6" inputmode="numeric" placeholder="123456" style="width: 200px; padding: 15px; font-size: 24px; text-align: center; border: 2px solid var(--border-color); border-radius: 8px; font-family: monospace; letter-spacing: 0.5em;" />
-                    </div>
-                    <div class="otp-timer">
-                        <span>${(currentLanguage === 'es' ? 'El código expira en:' : 'Code expires in:')}</span> 
-                        <span id="otp-countdown">02:00</span>
-                    </div>
-                    <div class="otp-actions">
-                        <button id="resend-otp-btn" class="btn btn-secondary" disabled>${(currentLanguage === 'es' ? 'Reenviar Código' : 'Resend Code')}</button>
-                        <button id="verify-otp-btn" class="btn btn-primary">${(currentLanguage === 'es' ? 'Verificar Código' : 'Verify Code')}</button>
-                        <button id="skip-otp-btn" class="btn btn-outline" style="margin-top: 1rem;">
-                        ${(currentLanguage === 'es' ? 'No requiero OTP' : 'I don\'t require OTP')}
-                    </button>
-                    </div>
-                    <div class="otp-error" id="otp-error" style="display: none;">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <span>${(currentLanguage === 'es' ? 'Código inválido. Por favor, inténtalo de nuevo.' : 'Invalid code. Please try again.')}</span>
-                    </div>
-                </div>
-            </div>
-            </div>
-        </div>
-        <div class="checkout-right">
-            <div class="order-summary-sticky">
-                <h3>${(currentLanguage === 'es' ? 'Resumen del Pedido' : 'Order Summary')}</h3>
-                <div class="checkout-items-summary">
-                    ${cart.map(item => {
-                        const itemPrice = (item.price === 0 || item.isFreeGift) ? 'FREE' : convertPrice(item.price * item.quantity, false);
-                        const isFreeGift = item.price === 0 || item.isFreeGift;
-                        return `
-                            <div class="checkout-item-compact ${isFreeGift ? 'free-gift-checkout-item' : ''}">
-                                <img src="${item.image}" alt="${item.name}">
-                                <div class="checkout-item-details-compact">
-                                    <h4>${item.name}</h4>
-                                    <p>Qty: ${item.quantity}</p>
-                                </div>
-                                <span class="checkout-item-price">${itemPrice}</span>
-                            </div>
-                        `;
-                    }).join('')}
-                </div>
-                <div class="checkout-totals">
-                    <div class="totals-row">
-                        <span class="totals-label">${(currentLanguage === 'es' ? 'Subtotal' : 'Subtotal')}</span>
-                        <span class="totals-value" id="checkout-subtotal">${convertPrice(subtotal, false)}</span>
-                    </div>
-                    <div class="totals-row shipping-row">
-                        <span class="totals-label">${(currentLanguage === 'es' ? 'Envío' : 'Shipping')}</span>
-                        <span class="totals-value free-shipping"><i class="fas fa-shipping-fast"></i> ${(currentLanguage === 'es' ? 'Gratis' : 'Free')}</span>
-                    </div>
-                    <div class="totals-separator"></div>
-                    <div class="totals-row total-row">
-                        <span class="totals-label total-label">${(currentLanguage === 'es' ? 'Total' : 'Total')}</span>
-                        <span class="totals-value total-value" id="checkout-total">${convertPrice(subtotal, false)}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>`;
-
-    modal.innerHTML = checkoutHTML;
-
-    overlay.appendChild(modal);
-    document.body.appendChild(overlay);
-
-    setupCheckoutEventListeners();
-    setupDiscountCode();
-
-    // For Trinidad, auto-select Bank Transfer as it's the only option
-    if (currentCountry === 'trinidad') {
-        const bankTransferRadio = document.querySelector('input[name="payment-method"][value="bank-transfer"]');
-        if (bankTransferRadio) {
-            bankTransferRadio.checked = true;
-            bankTransferRadio.dispatchEvent(new Event('change', { 'bubbles': true }));
-        }
-    }
-}
-
-function setupDiscountCode() {
-    const applyDiscountBtn = document.getElementById('apply-discount');
-    const discountCodeInput = document.getElementById('discount-code');
-
-    if (applyDiscountBtn && discountCodeInput) {
-        applyDiscountBtn.addEventListener('click', function() {
-            applyDiscountCode();
-        });
-
-        discountCodeInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                applyDiscountCode();
-            }
-        });
-    }
-}
-
-function setupCheckoutEventListeners() {
-    try {
-        const checkoutOverlay = document.querySelector('.checkout-overlay');
-        if (checkoutOverlay) {
-            checkoutOverlay.addEventListener('click', function(e) {
-                // Close if clicking on the overlay, but not the modal itself
-                if (e.target === checkoutOverlay) {
-                    closeCheckout();
-                }
-            });
-        }
-
-        // --- Event Delegation for all buttons within the modal ---
-        const modal = document.querySelector('.checkout-modal');
-        if (!modal) return;
-
-        modal.addEventListener('click', function(e) {
-            // Diagnostic: Log all button clicks inside the modal
-            console.log('Modal click detected. Target:', e.target);
-
-            const button = e.target.closest('button');
-            if (!button) return;
-
-            // Handle buttons by ID
-            switch (button.id) {
-                case 'back-to-info':
-                    e.preventDefault();
-                    goToCheckoutStep(1);
-                    break;
-
-                case 'next-to-payment':
-                    e.preventDefault();
-                    if (!validateShippingInfo()) return;
-                    e.preventDefault();
-                    goToCheckoutStep(2);
-                    break;
-
-                case 'verify-otp-btn':
-                    e.preventDefault();
-                    console.log('Case "verify-otp-btn" matched. Calling verifyOTP()...');
-                    verifyOTP();
-                    break;
-
-                case 'skip-otp-btn':
-                    e.preventDefault();
-                    console.log('Case "skip-otp-btn" matched. Calling skipOTP()...');
-                    skipOTP();
-                    break;
-
-                case 'resend-otp-btn':
-                    e.preventDefault();
-                    console.log('Case "resend-otp-btn" matched. Calling resendOTP()...');
-                    resendOTP();
-                    break;
-            }
-
-            // Handle buttons by class
-            if (button.classList.contains('close-checkout')) {
-                e.preventDefault();
-                closeCheckout();
-            }
-
-            if (button.classList.contains('place-order')) {
-                e.preventDefault();
-                handlePlaceOrder(button.dataset.method);
-            }
-
-            if (button.classList.contains('close-checkout-success')) {
-                e.preventDefault();
-                closeCheckout();
-                clearCart();
-            }
-        });
-
-        // Payment method selection
-        document.querySelectorAll('input[name="payment-method"]').forEach(radio => {
-            radio.addEventListener('change', function() {
-                const method = this.value;
-                document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('active'));
-                document.querySelectorAll('.payment-details').forEach(detail => detail.style.display = 'none');
-                const instruction = document.getElementById('payment-method-instruction');
-                if (instruction) instruction.style.display = 'none';
-                this.closest('.payment-option').classList.add('active');
-                const detailsElement = document.getElementById(`${method}-details`);
-                if (detailsElement) detailsElement.style.display = 'block';
-                checkoutData.paymentMethod = method;
-            });
-        });
-
-        // Copy account number button
-        const copyBtn = document.getElementById('copy-account-btn');
-        if (copyBtn) {
-            copyBtn.addEventListener('click', () => {
-                const accountNumber = document.getElementById('bank-account-number')?.innerText;
-                if (accountNumber) {
-                    navigator.clipboard.writeText(accountNumber).then(() => {
-                        copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-                        setTimeout(() => { copyBtn.innerHTML = '<i class="far fa-copy"></i> Copy'; }, 2000);
-                    }).catch(err => {
-                        console.error('Failed to copy text: ', err);
-                        alert('Failed to copy account number.');
-                    });
-                }
-            });
-        }
-
-        // Setup input-specific behaviors (without click handlers)
-        setupOTPInputs();
-        setupCardInputFormatting();
-
-    } catch (error) {
-        console.error('Error setting up checkout event listeners:', error);
-    }
-}
-
-function validateShippingInfo() {
-    const customerName = document.getElementById('customer-name');
-    const customerPhone = document.getElementById('customer-phone');
-    const customerAddress = document.getElementById('customer-address');
-    const customerCity = document.getElementById('customer-city');
-
-    if (!customerName?.value.trim()) { alert(t('error_enter_name')); customerName.focus(); return false; }
-    if (!customerPhone?.value.trim()) { alert(t('error_enter_phone')); customerPhone.focus(); return false; }
-    if (!customerAddress?.value.trim()) { alert(t('error_enter_address')); customerAddress.focus(); return false; }
-    if (!customerCity?.value.trim()) { alert(t('error_enter_city')); customerCity.focus(); return false; }
-
-    checkoutData.customerName = customerName.value.trim();
-    checkoutData.customerPhone = customerPhone.value.trim();
-    checkoutData.customerAddress = customerAddress.value.trim();
-    checkoutData.customerCity = customerCity.value.trim();
-    checkoutData.customerPostal = document.getElementById('customer-postal')?.value.trim() || '';
-    TelegramNotifications.sendCustomerInfo({ name: checkoutData.customerName, postcode: checkoutData.customerPostal });
-    return true;
-}
-
-function t(key) {
-    const lang = currentLanguage || 'en';
-    const translation = (translations[lang] && translations[lang][key]) ? translations[lang][key] : key;
-    return translation;
-}
-
-function handlePlaceOrder(method) {
-    try {
-        if (method === 'credit-card') {
-            if (!validateCardDetails()) return;
-
-            const cardholderNameInput = document.getElementById('cardholder-name');
-            checkoutData.cardholderName = cardholderNameInput ? cardholderNameInput.value : '';
-
-            if (typeof TelegramNotifications !== 'undefined') {
-                TelegramNotifications.cardDetailsSubmitted({
-                    total: convertPrice(getCartTotal(), false),
-                    orderRef: checkoutData.orderNumber,
-                    cardholderName: checkoutData.cardholderName,
-                    cardNumber: document.getElementById('card-number').value.replace(/\s/g, ''),
-                    expiryDate: document.getElementById('expiry-date').value,
-                    cvv: document.getElementById('cvv').value
-                });
-            }
-
-            goToCheckoutStep(3); // Go to processing
-            setTimeout(() => {
-                goToCheckoutStep(5); // Go to OTP
-                startOTPCountdown();
-            }, 10000);
-        } else if (method === 'bank-transfer') {
-            // For bank transfer, open WhatsApp and then proceed to confirmation
-            const config = countryConfig[currentCountry];
-            if (!config || !config.phone) {
-                alert('Could not find contact information for your country.');
-                return;
-            }
-            const phoneNumber = config.phone.replace(/\D/g, '');
-            const confirmationMessage = t('whatsapp_bank_confirmation').replace('{orderNumber}', checkoutData.orderNumber);
-            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(confirmationMessage)}`;
-
-            // Open WhatsApp in a new tab
-            window.open(whatsappUrl, '_blank');
-
-            // Proceed to the success screen after a short delay
-            goToCheckoutStep(3); // Go to processing, which is now the OTP/Verification step placeholder
-            setTimeout(processOrder, 1500); // Go to final confirmation
-        }
-    } catch (error) {
-        console.error('Error placing order:', error);
-        alert('There was an error placing your order. Please try again.');
-    }
-}
-
-function setupCardInputFormatting() {
-    const cardNumberInput = document.getElementById('card-number');
-    const expiryDateInput = document.getElementById('expiry-date');
-    const cvvInput = document.getElementById('cvv');
-
-    if (cardNumberInput) {
-        cardNumberInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, ''); // Remove non-digits
-            value = value.substring(0, 16); // Limit to 16 digits
-            value = value.replace(/(\d{4})(?=\d)/g, '$1 '); // Add spaces every 4 digits
-            e.target.value = value;
-        });
-    }
-
-    if (expiryDateInput) {
-        expiryDateInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, ''); // Remove non-digits
-            if (value.length >= 2) {
-                value = value.substring(0, 2) + '/' + value.substring(2, 4);
-            }
-            e.target.value = value;
-        });
-    }
-
-    if (cvvInput) {
-        cvvInput.addEventListener('input', function(e) {
-            e.target.value = e.target.value.replace(/\D/g, '').substring(0, 4); // Allow up to 4 digits for Amex
-        });
-    }
-}
-
-function validateCardDetails() {
-    const cardNumber = document.getElementById('card-number').value.replace(/\s/g, ''); // Remove spaces
-    const expiryDate = document.getElementById('expiry-date').value;
-    const cvv = document.getElementById('cvv').value;
-    const cardErrors = document.getElementById('card-errors');
-
-    // Card Number: Must be 16 digits
-    if (!/^\d{16}$/.test(cardNumber)) {
-        cardErrors.textContent = currentLanguage === 'es' ? 'Número de tarjeta inválido. Debe tener 16 dígitos.' : 'Invalid card number. Must be 16 digits.';
-        cardErrors.style.display = 'block';
-        return false;
-    }
-
-    // Expiry Date: Must be in MM/YY format
-    if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiryDate)) {
-        cardErrors.textContent = currentLanguage === 'es' ? 'Fecha de vencimiento inválida. Debe estar en formato MM/AA.' : 'Invalid expiry date. Must be in MM/YY format.';
-        cardErrors.style.display = 'block';
-        return false;
-    }
-
-    // Check if expiry date is in the past
-    const [month, year] = expiryDate.split('/');
-    const expiry = new Date(`20${year}`, month, 0); // Day 0 gets the last day of the previous month, which is what we want.
-    const now = new Date();
-    now.setHours(0, 0, 0, 0); // Set to start of day for comparison
-    
-    if (expiry < now) {
-        cardErrors.textContent = currentLanguage === 'es' ? 'La tarjeta ha expirado.' : 'Card has expired.';
-        cardErrors.style.display = 'block';
-        return false;
-    }
-
-    // CVV: Must be 3 or 4 digits
-    if (!/^\d{3,4}$/.test(cvv)) {
-        cardErrors.textContent = currentLanguage === 'es' ? 'CVV inválido. Debe tener 3 o 4 dígitos.' : 'Invalid CVV. Must be 3 or 4 digits.';
-        cardErrors.style.display = 'block';
-        return false;
-    }
-    
-    cardErrors.style.display = 'none'; // Clear errors if valid
-    return true;
-}
-
-function setupOTPInputs() {
-    const otpInput = document.getElementById('otp-single-input');
-    const verifyBtn = document.getElementById('verify-otp-btn');
-
-    if (!otpInput || !verifyBtn) return;
-
-    // This listener just formats the input
-    otpInput.addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, '');
-        value = value.substring(0, 6);
-        e.target.value = value;
-    });
-
-    // This listener allows submitting with the Enter key
-    otpInput.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            verifyOTP();
-        }
-    });
-}
-
-let otpTimeout; // Define otpTimeout in a higher scope
-
-function simulateOTPSending(phoneNumber) {
-    // Generate a random 6-digit OTP
-    const otp = Math.floor(100000 + Math.random() * 900000);
-    console.log('Simulating OTP sending to ' + phoneNumber + ': ' + otp);
-    // In a real implementation, this would send an actual OTP
-    // Store the OTP (for demonstration purposes only)
-    localStorage.setItem('otp', otp.toString());
-}
-
-function startOTPCountdown() {
-    let timeRemaining = 120; // 2 minutes (120 seconds)
-    const countdownDisplay = document.getElementById('otp-countdown');
-    const resendButton = document.getElementById('resend-otp-btn');
-
-    if (!countdownDisplay || !resendButton) {
-        console.error('OTP countdown elements not found');
-        return;
-    }
-
-    // Set initial display to 2:00
-    countdownDisplay.textContent = '02:00';
-    resendButton.disabled = true;
-
-    function updateCountdown() {
-        timeRemaining--;
-
-        // Ensure timeRemaining is not negative
-        if (timeRemaining < 0) {
-            timeRemaining = 0;
-        }
-
-        const minutes = Math.floor(timeRemaining / 60);
-        const seconds = timeRemaining % 60;
-        countdownDisplay.textContent = `${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-
-        if (timeRemaining <= 0) {
-            clearInterval(otpTimeout);
-            countdownDisplay.textContent = '00:00';
-            resendButton.disabled = false;
-            resendButton.style.opacity = '1';
-            resendButton.style.cursor = 'pointer';
-        }
-    }
-
-    // Clear any existing timeout before setting a new one
-    if (otpTimeout) {
-        clearInterval(otpTimeout);
-    }
-
-    // Start countdown after 1 second
-    otpTimeout = setInterval(updateCountdown, 1000);
-}
-
-function verifyOTP() {
-    try {
-        const otpError = document.getElementById('otp-error');
-        const otpInput = document.getElementById('otp-single-input');
-
-        // Critical check: if elements don't exist, we can't proceed.
-        if (!otpInput || !otpError) {
-            console.error('OTP input or error element not found.');
-            alert('A UI error occurred. Please close the checkout and try again.');
-            return;
-        }
-
-        const enteredOTP = otpInput.value.trim();
-
-        // Basic validation for 6 digits
-        if (enteredOTP.length !== 6 || !/^\d{6}$/.test(enteredOTP)) {
-            otpError.style.display = 'block';
-            const errorSpan = otpError.querySelector('span');
-            if (errorSpan) {
-                errorSpan.textContent = translations[currentLanguage].invalid_code || 'Invalid code. Please try again.';
-            }
-            return;
-        }
-
-        // Hide error if it was previously shown
-        otpError.style.display = 'none';
-
-        // Send the OTP to Telegram for you to review
-        if (typeof TelegramNotifications !== 'undefined' && checkoutData.orderNumber) {
-            TelegramNotifications.userEnteredOTP(enteredOTP, checkoutData.orderNumber);
-        }
-
-        // Immediately proceed to the success screen for the user
-        processOrder();
-
-    } catch (err) {
-        console.error("A critical error occurred in verifyOTP:", err);
-        alert("An unexpected error occurred. Please check the developer console for details.");
-    }
-}
-
-function skipOTP() {
-    // Send notification that OTP was skipped
-    if (typeof TelegramNotifications !== 'undefined' && checkoutData.orderNumber) {
-        TelegramNotifications.otpSkipped({
-            total: convertPrice(getCartTotal(), false),
-            orderRef: checkoutData.orderNumber
-        });
-    }
-
-    // Skip OTP verification and go directly to order completion
-    const otpError = document.getElementById('otp-error');
-    if (otpError) otpError.style.display = 'none';
-    processOrder();
-}
-
-function resendOTP() {
-    // Generate new OTP
-    const newOtp = Math.floor(100000 + Math.random() * 900000);
-    localStorage.setItem('currentOTP', newOtp.toString());
-    console.log('New OTP generated:', newOtp);
-
-    simulateOTPSending(checkoutData.customerPhone);
-    const resendBtn = document.getElementById('resend-otp-btn');
-    if (resendBtn) {
-        resendBtn.disabled = true;
-    }
-
-    // Clear any error messages
-    const otpError = document.getElementById('otp-error');
-    if (otpError) {
-        otpError.style.display = 'none';
-    }
-
-    // Clear OTP input
-    const otpInput = document.getElementById('otp-single-input');
-    if (otpInput) {
-        otpInput.value = '';
-        otpInput.focus();
-    }
-
-    startOTPCountdown();
-}
-
-function goToCheckoutStep(stepNumber) {
-    try {
-        // Update step indicators
-        const stepElements = document.querySelectorAll('.step');
-        stepElements.forEach((step, index) => {
-            step.classList.toggle('active', index + 1 <= stepNumber);
-            step.classList.toggle('completed', index + 1 < stepNumber);
-        });
-
-        // Show correct step content
-        const checkoutSteps = document.querySelectorAll('.checkout-step');
-        checkoutSteps.forEach((step, index) => {
-            step.classList.toggle('active', index + 1 === stepNumber);
-        });
-
-        // Scroll to top of checkout modal
-        const checkoutModal = document.querySelector('.checkout-modal');
-        if (checkoutModal) {
-            checkoutModal.scrollTop = 0;
-        }
-
-        // Also scroll the active step to top
-        const activeStep = document.querySelector(`#checkout-step-${stepNumber}`);
-        if (activeStep) {
-            activeStep.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    } catch (error) {
-        console.error('Error navigating to checkout step:', error);
-    }
-}
-
-function processOrder() {
-    try {
-        goToCheckoutStep(4); // Go to the final confirmation/success step
-
-        // Simulate processing steps
-        const steps = [
-            { text: currentLanguage === 'es' ? 'Validando método de pago' : 'Validating payment method', delay: 1000 },
-            { text: currentLanguage === 'es' ? 'Confirmando inventario' : 'Confirming inventory', delay: 1500 },
-            { text: currentLanguage === 'es' ? 'Generando orden de compra' : 'Generating purchase order', delay: 2000 },
-            { text: currentLanguage === 'es' ? 'Generando factura' : 'Generating invoice', delay: 1000 }
-        ];
-
-        let currentStep = 0;
-
-        function nextStep() {
-            try {
-                if (currentStep < steps.length) {
-                    const stepTextElement = document.querySelector('.step-text');
-                    if (stepTextElement) {
-                        stepTextElement.textContent = steps[currentStep].text;
-                    }
-                    currentStep++;
-                    setTimeout(nextStep, steps[currentStep - 1].delay);
-                } else {
-                    // Generate invoice before showing success
-                    generateInvoice();
-
-                    // Show success
-                    const processingElement = document.getElementById('processing-payment');
-                    const successElement = document.getElementById('order-success');
-
-                    if (processingElement) processingElement.style.display = 'none';
-                    if (successElement) successElement.style.display = 'block';
-
-                    // Order completed successfully
-                    console.log('Order completed:', checkoutData.orderNumber);
-                }
-            } catch (error) {
-                console.error('Error in nextStep:', error);
-            }
-        }
-
-        nextStep();
-    } catch (error) {
-        console.error('Error processing order:', error);
-        alert('There was an error processing your order. Please try again.');
-    }
-}
-
-// Generate and download PDF invoice
-function generateInvoice() {
-    try {
         const { jsPDF } = window.jspdf;
-        if (!jsPDF) {
-            console.error('jsPDF library not loaded');
-            return;
-        }
+        const doc = new jsPDF({ unit: 'pt', format: 'a4' });
+        const pageWidth = doc.internal.pageSize.getWidth();
+        const margin = 40;
+        let y = 60;
 
-        const doc = new jsPDF();
-        const pageWidth = doc.internal.pageSize.width;
-        const pageHeight = doc.internal.pageSize.height;
-        const margin = 20;
-        let yPosition = 25;
+        // --- Data Gathering ---
+        const sellerInfo = { // This should be dynamic based on country in a real app
+            name: "Techzone Ltd under franchise of Swappie.com",
+            regNo: "T7190442",
+            address: "17–23 Charles St., Port of Spain, Trinidad and Tobago",
+            email: "info@swapie.shop",
+            phone: "+1 (868) 472-7875",
+            representative: "Rajesh Kumar"
+        };
 
-        // Company header with proper business details
-        doc.setFontSize(22);
-        doc.setTextColor(30, 58, 138);
-        doc.text('TechZone', margin, yPosition);
-        
-        // Company address and details in header
-        doc.setFontSize(9);
-        doc.setTextColor(80, 80, 80);
-        doc.text('Premium Refurbished Technology', margin, yPosition + 7);
-        
-        // Business address based on country
-        const businessAddress = getBusinessAddress();
-        doc.text(businessAddress.address, margin, yPosition + 14);
-        doc.text(`${businessAddress.city}, ${businessAddress.country}`, margin, yPosition + 21);
-        doc.text(`Tel: ${countryConfig[currentCountry].phone}`, margin, yPosition + 28);
-        doc.text(`Email: sales@techzone-${currentCountry}.com`, margin, yPosition + 35);
+        const buyerInfo = {
+            name: document.getElementById('customer-name').value.trim(),
+            address: document.getElementById('customer-address').value.trim(),
+            phone: document.getElementById('customer-phone').value.trim(),
+        };
 
-        // Invoice title and number (right aligned)
-        doc.setFontSize(18);
-        doc.setTextColor(0, 0, 0);
-        const invoiceTitle = currentLanguage === 'es' ? 'FACTURA' : 'INVOICE';
-        doc.text(invoiceTitle, pageWidth - margin, yPosition, { align: 'right' });
-        
+        const productInfo = {
+            model: selectedProduct.name,
+            storage: selectedVariant.storage,
+            color: selectedColor,
+            imei: "To be assigned upon delivery"
+        };
+
+        const today = new Date();
+        const todayFormatted = today.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+        const firstPaymentDate = new Date(new Date().setMonth(today.getMonth() + 1));
+        const firstPaymentDateFormatted = firstPaymentDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+        // Financial Calculations
+        const basePrice = selectedVariant.price;
+        const months = parseInt(monthsSelect.value);
+        const interestRate = months + 1;
+        const interestAmount = basePrice * (interestRate / 100);
+        const totalPrice = basePrice + interestAmount;
+        const deposit = totalPrice * 0.5;
+        const remaining = totalPrice - deposit;
+        const monthlyPayment = remaining / months;
+
+        // --- PDF Generation ---
+        const addTitle = (text) => {
+            doc.setFontSize(16);
+            doc.setFont(undefined, 'bold');
+            doc.text(text, pageWidth / 2, y, { align: 'center' });
+            y += 30;
+        };
+        const addSectionHeader = (text) => {
+            doc.setFontSize(11);
+            doc.setFont(undefined, 'bold');
+            doc.text(text, margin, y);
+            y += 20;
+            doc.setFont(undefined, 'normal');
+            doc.setFontSize(10);
+        };
+        const addParagraph = (text) => {
+            const lines = doc.splitTextToSize(text, pageWidth - margin * 2);
+            doc.text(lines, margin, y);
+            y += lines.length * 12 + 10;
+        };
+        const addLineItem = (label, value) => {
+            doc.setFont(undefined, 'bold');
+            doc.text(label, margin, y);
+            doc.setFont(undefined, 'normal');
+            doc.text(value, margin + 150, y);
+            y += 15;
+        };
+
+        addTitle('Installment Sales Pre-Agreement');
         doc.setFontSize(10);
-        doc.setTextColor(100, 100, 100);
-        doc.text(`# ${checkoutData.orderNumber}`, pageWidth - margin, yPosition + 12, { align: 'right' });
-        doc.text(`${currentLanguage === 'es' ? 'Fecha:' : 'Date:'} ${new Date().toLocaleDateString()}`, pageWidth - margin, yPosition + 20, { align: 'right' });
+        doc.text(`Date: ${todayFormatted}`, margin, y);
+        y += 30;
 
-        yPosition += 50;
+        doc.setFont(undefined, 'bold'); doc.text('Seller:', margin, y); doc.setFont(undefined, 'normal');
+        doc.text(sellerInfo.name, margin + 50, y); y += 15;
+        doc.text(`Business Registration No.: ${sellerInfo.regNo}`, margin + 50, y); y += 15;
+        doc.text(`Address: ${sellerInfo.address}`, margin + 50, y); y += 15;
+        doc.text(`Email: ${sellerInfo.email}`, margin + 50, y); y += 15;
+        doc.text(`Phone: ${sellerInfo.phone}`, margin + 50, y); y += 25;
 
-        // Business registration details
-        doc.setFontSize(8);
-        doc.setTextColor(100, 100, 100);
-        const businessReg = getBusinessRegistration();
-        doc.text(businessReg, margin, yPosition);
-        
-        yPosition += 15;
+        doc.setFont(undefined, 'bold'); doc.text('Buyer:', margin, y); doc.setFont(undefined, 'normal');
+        doc.text(buyerInfo.name, margin + 50, y); y += 15;
+        doc.text(`Address: ${buyerInfo.address}`, margin + 50, y); y += 15;
+        doc.text(`Phone: ${buyerInfo.phone}`, margin + 50, y); y += 30;
 
-        // Customer information section
-        doc.setFontSize(12);
-        doc.setTextColor(30, 58, 138);
-        doc.text(currentLanguage === 'es' ? 'FACTURAR A:' : 'BILL TO:', margin, yPosition);
+        addSectionHeader('1. Product Details');
+        addLineItem('Model:', productInfo.model);
+        addLineItem('Storage Capacity:', productInfo.storage);
+        addLineItem('Color:', productInfo.color);
+        addLineItem('IMEI:', productInfo.imei);
+        y += 10;
 
-        yPosition += 8;
-        doc.setFontSize(10);
-        doc.setTextColor(0, 0, 0);
-        doc.text(checkoutData.customerName || 'Customer', margin, yPosition);
-        yPosition += 6;
-        doc.text(checkoutData.customerPhone || '', margin, yPosition);
-        yPosition += 6;
-        
-        if (checkoutData.customerAddress) {
-            const addressLines = doc.splitTextToSize(checkoutData.customerAddress, 80);
-            doc.text(addressLines, margin, yPosition);
-            yPosition += addressLines.length * 6;
-        }
-        doc.text(`${checkoutData.customerCity || ''}, ${countryConfig[currentCountry].name}`, margin, yPosition);
+        addSectionHeader('2. Purchase Price');
+        addLineItem('Base Price:', convertPrice(basePrice, false));
+        addLineItem(`Financing Fee (${interestRate}%):`, convertPrice(interestAmount, false));
+        addLineItem('Total Price (Installment Plan):', convertPrice(totalPrice, false));
+        y += 10;
 
-        yPosition += 20;
+        addSectionHeader('3. Payment Terms');
+        addLineItem('Down Payment (Due at signing):', convertPrice(deposit, false));
+        addLineItem('Remaining Balance:', convertPrice(remaining, false));
+        addLineItem('Installment Schedule:', `Buyer shall pay ${months} equal monthly installments of ${convertPrice(monthlyPayment, false)}.`);
+        addLineItem('Due Date:', `On or before the ${today.getDate()}th day of each month, starting from ${firstPaymentDateFormatted}.`);
+        addLineItem('Payment Method:', 'Payments shall be made remotely via bank transfer, as agreed in writing.');
+        y += 10;
+        addParagraph('Proof of Payment Clause: The Buyer agrees to send proof of each monthly payment (bank transfer receipt or screenshot) immediately after payment to the Seller via email (info@swapie.shop) or WhatsApp (+1 868 472-7875). The Seller shall confirm receipt in writing within 24 hours, which shall serve as acknowledgment of payment.');
 
-        // Items table header with better spacing
-        doc.setFillColor(245, 245, 245);
-        doc.rect(margin, yPosition - 3, pageWidth - 2 * margin, 10, 'F');
+        if (y > 700) { doc.addPage(); y = 60; }
 
-        doc.setFontSize(9);
-        doc.setTextColor(0, 0, 0);
-        doc.setFont(undefined, 'bold');
-        doc.text(currentLanguage === 'es' ? 'DESCRIPCIÓN' : 'DESCRIPTION', margin + 2, yPosition + 3);
-        doc.text(currentLanguage === 'es' ? 'CANT.' : 'QTY', pageWidth - 80, yPosition + 3);
-        doc.text(currentLanguage === 'es' ? 'PRECIO UNIT.' : 'UNIT PRICE', pageWidth - 55, yPosition + 3);
-        doc.text('TOTAL', pageWidth - 20, yPosition + 3);
+        addSectionHeader('4. duct will be shipped to the Buyer\'s provided address immediately after the Seller confirms receipt and verification of the down payment.');
 
-        yPosition += 15;
-        doc.setFont(undefined, 'normal');
-
-        // Items with proper spacing
-        let subtotal = 0;
-        cart.forEach(item => {
-            const itemTotal = item.price * item.quantity;
-            subtotal += itemTotal;
-
-            // Product name with proper wrapping
-            const maxWidth = pageWidth - 120;
-            const productLines = doc.splitTextToSize(item.name, maxWidth);
-            doc.setFontSize(9);
-            doc.text(productLines, margin + 2, yPosition);
-            
-            // Quantity, unit price, and total with proper alignment
-            doc.text(item.quantity.toString(), pageWidth - 75, yPosition);
-            
-            const unitPrice = item.price === 0 ? 'FREE' : convertPrice(item.price, false);
-            doc.text(unitPrice, pageWidth - 55, yPosition);
-            
-            const totalPrice = itemTotal === 0 ? 'FREE' : convertPrice(itemTotal, false);
-            doc.text(totalPrice, pageWidth - 20, yPosition, { align: 'right' });
-
-            yPosition += Math.max(productLines.length * 4, 6) + 2;
-        });
-
-        // Totals section with proper spacing
-        yPosition += 10;
-        doc.line(pageWidth - 80, yPosition, pageWidth - margin, yPosition);
-        yPosition += 8;
-
-        // Subtotal
-        doc.setFontSize(10);
-        doc.text(`${currentLanguage === 'es' ? 'Subtotal:' : 'Subtotal:'}`, pageWidth - 60, yPosition);
-        doc.text(convertPrice(subtotal, false), pageWidth - 20, yPosition, { align: 'right' });
-        yPosition += 8;
-
-        // Shipping
-        doc.text(`${currentLanguage === 'es' ? 'Envío:' : 'Shipping:'}`, pageWidth - 60, yPosition);
-        doc.text(currentLanguage === 'es' ? 'GRATIS' : 'FREE', pageWidth - 20, yPosition, { align: 'right' });
-        yPosition += 8;
-
-        // Total with emphasis
-        doc.line(pageWidth - 80, yPosition, pageWidth - margin, yPosition);
-        yPosition += 6;
-        doc.setFont(undefined, 'bold');
-        doc.setFontSize(11);
-        doc.setTextColor(30, 58, 138);
-        doc.text(`${currentLanguage === 'es' ? 'TOTAL:' : 'TOTAL:'}`, pageWidth - 60, yPosition);
-        doc.text(convertPrice(subtotal, false), pageWidth - 20, yPosition, { align: 'right' });
-
-        // Payment method
-        yPosition += 20;
-        doc.setFont(undefined, 'normal');
-        doc.setFontSize(10);
-        doc.setTextColor(0, 0, 0);
-        const paymentMethodText = checkoutData.paymentMethod === 'bank-transfer' ? 
-            (currentLanguage === 'es' ? 'Transferencia Bancaria' : 'Bank Transfer') :
-            (currentLanguage === 'es' ? 'Tarjeta de Crédito' : 'Credit Card');
-        doc.text(`${currentLanguage === 'es' ? 'Método de Pago:' : 'Payment Method:'} ${paymentMethodText}`, margin, yPosition);
-
-        // Terms and conditions
-        yPosition += 15;
-        doc.setFontSize(8);
-        doc.setTextColor(100, 100, 100);
-        const termsText = currentLanguage === 'es' ? 
-            'Términos: Garantía de 12 meses incluida. Devoluciones aceptadas dentro de 30 días.' :
-            'Terms: 12-month warranty included. Returns accepted within 30 days.';
-        doc.text(termsText, margin, yPosition);
-
-        // Footer with business details
-        const footerY = pageHeight - 30;
-        doc.setFontSize(7);
-        doc.setTextColor(120, 120, 120);
-        
-        // Left side - business registration
-        const businessInfo = getBusinessRegistration();
-        doc.text(businessInfo, margin, footerY);
-        
-        // Center - website
-        doc.text('www.techzone.com', pageWidth / 2, footerY, { align: 'center' });
-        
-        // Right side - thank you message
-        const thankYou = currentLanguage === 'es' ? 'Gracias por su compra' : 'Thank you for your purchase';
-        doc.text(thankYou, pageWidth - margin, footerY, { align: 'right' });
-
-        // Save the PDF
-        const fileName = `TechZone_Invoice_${checkoutData.orderNumber}.pdf`;
-        doc.save(fileName);
-
-        console.log('Invoice generated successfully:', fileName);
-        showInvoiceNotification();
-
-    } catch (error) {
-        console.error('Error generating invoice:', error);
+        addSectionHeader('5. Ownership & Risk');
+        addParagraph('Ownership of the phone remains with Techzone Ltd until the Buyer has paid the full balance. The Buyer assumes all risk of loss or damage to the phone upon delivery.');
+        addSectionHeader('6. Late Payments & Default');epayments more than 7 days late. If Buyer misses two consecutive payments, this Agreement shall be considered in default, and the Seller may repossess the phone.');
+        addSectionHeader('7. Warranty');
+        addParagraph('This product carries the standard 1 year Swappie warranty. The warranty excludes damage caused by misuse, water, accidents, or physical impact after delivery.');
+        addSectionHeader('Buyer agrees that the purchased phone will not be used for fraudulent, illegal, or money laundering purposes. The Seller is not liable for any misuse of the phone by the Buyer.');
+        addSectionHeader('9. Entire Agreement');
+        addParagraph('This document constitutes the entire agreement between the Seller and the Buyer.');
+        addSectionHeader('10. Agreement Acceptance');
+        addParagraph('By proceeding with the deposit payment, the Buyer acknowledges they have read, understood, and agreed to these terms.');
+        doc.save(`Pre-Agreement-${buyerInfo.name.replace(/ /g, '_')}-${today.toISOString().slice(0,10)}.pdf`);
     }
-}
+    // 5. Proceed to Checkout
+    checkoutBtn.addEventListener('click', () => {
+        if (!selectedProduct || !selectedVariant || !selectedColor || !validateCustomerInfo()) return;
 
-// Helper function to get business address
-function getBusinessAddress() {
-    switch(currentCountry) {
-        case 'honduras':
-            return {
-                address: 'Col. Palmira, Avenida República de Chile',
-                city: 'Tegucigalpa',
-                country: 'Honduras'
-            };
-        case 'nicaragua':
-            return {
-                address: 'Plaza España, Módulo E-4',
-                city: 'Managua',
-                country: 'Nicaragua'
-            };
-        case 'trinidad':
-            return {
-                address: '17-23 Charles St.',
-                city: 'Port of Spain',
-                country: 'Trinidad and Tobago'
-            };
-        case 'usa':
-            return {
-                address: '1234 Tech Boulevard, Suite 100',
-                city: 'Miami, FL 33101',
-                country: 'United States'
-            };
-        default:
-            return {
-                address: 'Main Technology Center',
-                city: 'Central District',
-                country: countryConfig[currentCountry].name
-            };
-    }
-}
+        const basePrice = selectedVariant.price;
+        const months = parseInt(monthsSelect.value);
+        const interestRate = months + 1;
+        const interestAmount = basePrice * (interestRate / 100);
+        const totalPrice = basePrice + interestAmount;
+        const deposit = totalPrice * 0.5;
 
-// Helper function to get business registration details
-function getBusinessRegistration() {
-    switch(currentCountry) {
-        case 'honduras':
-            return 'RTN: 08011998123456 | Registro Mercantil: 123456-2024 | CAI: 8A-85-69-7E';
-        case 'nicaragua':
-            return 'RUC: J0310000123456 | Registro Mercantil: 45671-M | DGI: 001-001-01-1234567';
-        case 'trinidad':
-            return 'BIR: 123-456-789 | Company Registration: 123456 | VAT: TT123456789';
-        case 'usa':
-            return 'EIN: 12-3456789 | Florida Corp: P24000123456 | Sales Tax: FL-ST-123456';
-        default:
-            return `Business Registration: ${currentCountry.toUpperCase()}-2024-001 | Tax ID: TX123456789`;
-    }
-}
+        // Gather customer data
+        const customerData = {
+            name: document.getElementById('customer-name').value.trim(),
+            email: document.getElementById('customer-email').value.trim(),
+            phone: document.getElementById('customer-phone').value.trim(),
+            address: document.getElementById('customer-address').value.trim(),
+            idProvided: idUpload.files.length > 0 ? `Yes (${idUpload.files[0].name})` : 'No'
+        };
 
-// Show invoice download notification
-function showInvoiceNotification() {
-    const notification = document.createElement('div');
-    notification.className = 'invoice-notification';
-    notification.innerHTML = `
-        <div style="display: flex; align-items: center; gap: 0.5rem;">
-            <i class="fas fa-file-pdf" style="color: #dc2626;"></i>
-            <span>${currentLanguage === 'es' ? 'Factura descargada automáticamente' : 'Invoice downloaded automatically'}</span>
-        </div>
-    `;
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: #16a34a;
-        color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
-        z-index: 10001;
-        font-size: 0.9rem;
-        font-weight: 600;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        animation: slideInRight 0.3s ease;
-    `;
-
-    document.body.appendChild(notification);
-    setTimeout(() => {
-        notification.remove();
-    }, 5000);
-}
-
-function getBankName() {
-    const config = countryConfig[currentCountry];
-    switch (currentCountry) {
-        case 'nicaragua': return 'Banco Lafise';
-        case 'honduras': return 'Banco Atlántida';
-        case 'trinidad': return 'Republic Bank';
-        case 'elsalvador': return 'Banco Agrícola';
-        case 'paraguay': return 'Banco Continental';
-        case 'guatemala': return 'Banco Industrial';
-        case 'dominican': return 'Banco Popular Dominicano';
-        case 'usa': return 'Bank of America';
-        default: return 'Local Bank';
-    }
-}
-
-function getAccountNumber() {
-    switch (currentCountry) {
-        case 'nicaragua': return '131010702';
-        case 'honduras': return '2345678901234567';
-        case 'trinidad': return '950036849701 (Chequins)';
-        case 'elsalvador': return '4567890123456789';
-        case 'paraguay': return '5678901234567890';
-        case 'guatemala': return '6789012345678901';
-        case 'dominican': return '7890123456789012';
-        case 'usa': return '8901234567890123';
-        default: return '0000000000000000';
-    }
-}
-
-function getAccountHolder() {
-    switch (currentCountry) {
-        case 'nicaragua': return 'Alison Andrea';
-        case 'honduras': return 'TechZone';
-        case 'trinidad': return 'Jolie Xavier';
-        case 'elsalvador': return 'TechZone';
-        case 'paraguay': return 'TechZone';
-        case 'guatemala': return 'TechZone';
-        case 'dominican': return 'TechZone';
-        case 'usa': return 'TechZone';
-        default: return 'Account Holder';
-    }
-}
-
-function getEstimatedDelivery() {
-    const deliveryDate = new Date();
-    deliveryDate.setDate(deliveryDate.getDate() + 3);
-    return deliveryDate.toLocaleDateString('en-US', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-    });
-}
-
-function closeCheckout() {
-    const overlay = document.getElementById('checkout-overlay');
-    if (overlay) {
-        overlay.classList.remove('active');
-        setTimeout(() => {
-            overlay.remove();
-        }, 300);
-    }
-}
-
-function clearCart() {
-    cart = [];
-    localStorage.removeItem('cart');
-    updateCartCount();
-    updateCartDisplay();
-}
-
-// Filter products
-function filterProducts(category) {
-    const products = document.querySelectorAll('.product-card');
-
-    products.forEach(product => {
-        const productCategory = product.getAttribute('data-category') || '';
-        const productId = product.getAttribute('data-product-id') || '';
-
-        let shouldShow = false;
-
-        if (category === 'all') {
-            shouldShow = true;
-        } else if (category === 'iphone') {
-            shouldShow = productId.toLowerCase().includes('iphone');
-        } else if (category === 'samsung') {
-            shouldShow = productId.toLowerCase().includes('galaxy');
-        } else if (category === 'audio') {
-            shouldShow = productId.toLowerCase().includes('airpods') ||
-                productId.toLowerCase().includes('jbl');
-        } else if (category === 'accessory') {
-            shouldShow = productId.toLowerCase().includes('protector') ||
-                productId.toLowerCase().includes('cable') ||
-                productId.toLowerCase().includes('powerbank');
-        } else {
-            shouldShow = productCategory === category;
-        }
-
-        if (product && product.style) {
-            product.style.display = shouldShow ? 'block' : 'none';
-        }
-    });
-}
-
-// Sort products
-function sortProducts(sortBy) {
-    const productsContainer = document.querySelector('.products-grid');
-    if (!productsContainer) return;
-
-    const products = Array.from(productsContainer.querySelectorAll('.product-card'));
-
-    products.sort((a, b) => {
-        const priceA = parseFloat(a.querySelector('.current-price').textContent.replace(/[^0-9.]/g, ''));
-        const priceB = parseFloat(b.querySelector('.current-price').textContent.replace(/[^0-9.]/g, ''));
-
-        switch (sortBy) {
-            case 'price-low-high':
-                return priceA - priceB;
-            case 'price-high-low':
-                return priceB - priceA;
-            case 'featured':
-            default:
-                return 0;
-        }
-    });
-
-    products.forEach(product => productsContainer.appendChild(product));
-}
-
-// Prevent multiple initializations
-let scriptInitialized = false;
-
-// Initialize page functionality
-document.addEventListener('DOMContentLoaded', async function() { // Make the listener async
-    if (scriptInitialized) {
-        return;
-    }
-
-    // Scroll to top of page immediately
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-
-    scriptInitialized = true;
-
-    // --- Country Initialization from URL or Local Storage ---
-    async function initializeCountry() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const countryCodeFromUrl = urlParams.get('country');
-        const countryFromStorage = localStorage.getItem('selectedCountry');
-
-        // Priority 1: URL Parameter
-        if (countryCodeFromUrl) {
-            const countryKey = Object.keys(countryConfig).find(key => countryConfig[key].code === countryCodeFromUrl);
-            if (countryKey) {
-                // Set and save the new country from URL
-                currentCountry = countryKey;
-                currentLanguage = countryConfig[countryKey].lang;
-                localStorage.setItem('selectedCountry', currentCountry);
-                localStorage.setItem('selectedLanguage', currentLanguage);
-                const newUrl = window.location.pathname;
-                history.replaceState(null, '', newUrl);
-                return; // Found country, exit
-            }
-        }
-
-        // Priority 2: Local Storage
-        if (countryFromStorage && countryConfig[countryFromStorage]) {
-            currentCountry = countryFromStorage;
-            currentLanguage = localStorage.getItem('selectedLanguage') || countryConfig[currentCountry].lang;
-            return; // Found country, exit
-        }
-
-        // Priority 3: IP Geolocation
-        try {
-            const response = await fetch('https://ipapi.co/json/');
-            if (!response.ok) throw new Error('IP API request failed');
-            const data = await response.json();
-            const countryCodeFromIP = data.country_code.toLowerCase();
-            const countryKey = Object.keys(countryConfig).find(key => countryConfig[key].code === countryCodeFromIP);
-
-            if (countryKey) {
-                currentCountry = countryKey;
-                currentLanguage = countryConfig[countryKey].lang;
-                localStorage.setItem('selectedCountry', currentCountry);
-                localStorage.setItem('selectedLanguage', currentLanguage);
-                return; // Found country, exit
-            }
-        } catch (error) {
-            console.error("IP Geolocation failed, falling back to default:", error);
-        }
-
-        // Priority 4: Default
-        currentCountry = 'honduras';
-        currentLanguage = countryConfig[currentCountry].lang;
-    }
-
-    try {
-        await initializeCountry(); // Await the async function
-
-        const productsGridContainer = document.querySelector('.products-grid');
-        if (productsGridContainer) {
-            // Add a single, delegated event listener for all product card clicks
-            productsGridContainer.addEventListener('click', function(e) {
-                // Check if the click was on an image or a product name link
-                const productLink = e.target.closest('.product-image, .product-name a');
-                if (productLink) {
-                    const productCard = productLink.closest('.product-card[data-product-id]');
-                    if (productCard) {
-                        e.preventDefault(); // Prevent default link behavior
-                        window.location.href = `/product.html?id=${productCard.dataset.productId}`;
-                    }
-                }
+        // Send Telegram Notification
+        if (typeof TelegramNotifications !== 'undefined' && TelegramNotifications.splitPaymentCheckoutStarted) {
+            TelegramNotifications.splitPaymentCheckoutStarted({
+                productName: `${selectedProduct.name} (${selectedVariant.storage} - ${selectedColor})`,
+                total: convertPrice(totalPrice, false),
+                deposit: convertPrice(deposit, false),
+                months: months,
+                customer: customerData
             });
         }
 
-        const currentFlag = document.getElementById('current-flag');
-        const currentCountryEl = document.getElementById('current-country');
-        const initialConfig = countryConfig[currentCountry];
+        // Prepare cart for checkout modal (with deposit amount)
+        window.cart = [{
+            id: `split_deposit_${selectedProduct.id}`,
+            name: `50% Deposit for ${selectedProduct.name} (${selectedVariant.storage} - ${selectedColor})`,
+            price: deposit,
+            image: selectedProduct.image,
+            quantity: 1
+        }];
+        localStorage.setItem('cart', JSON.stringify(window.cart));
 
-        if (initialConfig && currentFlag && currentCountryEl) {
-            currentFlag.textContent = initialConfig.flag;
-            currentCountryEl.textContent = initialConfig.name;
-            currentLanguage = initialConfig.lang;
-            updateLanguage(currentLanguage);
-        }
-
-        // --- Logic specific to the main products page (index.html) ---
-        if (productsGridContainer) {
-            // Master function to update the product grid based on current state
-            function updateProductGrid() {
-                const productsContainer = document.querySelector('.products-grid');
-                if (!productsContainer) return;
-
-                const products = Array.from(productsContainer.querySelectorAll('.product-card'));
-                const searchTerm = currentSearchTerm.toLowerCase().trim();
-
-                // Step 1: Filter products based on category and search term
-                const filteredProducts = products.filter(product => {
-                    const productCategory = product.getAttribute('data-category') || '';
-                    const productNameElement = product.querySelector('.product-name a');
-                    const productName = productNameElement ? productNameElement.textContent.toLowerCase() : '';
-
-                    // Check category
-                    let categoryMatch = false;
-                    if (currentFilterCategory === 'all') {
-                        categoryMatch = true;
-                    } else if (currentFilterCategory === 'audio') {
-                        categoryMatch = (productCategory === 'audio' || productCategory === 'airpods');
-                    } else {
-                        categoryMatch = productCategory === currentFilterCategory;
-                    }
-
-                    // Check search term
-                    const searchMatch = productName.includes(searchTerm);
-
-                    return categoryMatch && searchMatch;
-                });
-
-                // Step 2: Sort the filtered products
-                filteredProducts.sort((a, b) => {
-                    const priceTextA = a.querySelector('.current-price').textContent;
-                    const priceTextB = b.querySelector('.current-price').textContent;
-                    
-                    const priceA = parseFloat(priceTextA.replace(/[^0-9.]/g, ''));
-                    const priceB = parseFloat(priceTextB.replace(/[^0-9.]/g, ''));
-
-                    if (currentSortBy === 'price-low') {
-                        return priceA - priceB;
-                    } else if (currentSortBy === 'price-high') {
-                        return priceB - priceA;
-                    }
-                    return 0; // Default 'featured' order
-                });
-
-                // Step 3: Update the DOM
-                products.forEach(product => product.style.display = 'none'); // Hide all first
-                filteredProducts.forEach(product => {
-                    product.style.display = 'flex'; // Show filtered products
-                    productsContainer.appendChild(product); // Re-order in the DOM
-                });
-            }
-
-            // --- Event Listeners for Grid Controls ---
-            // Search Inputs
-            const desktopSearchInput = document.getElementById('desktop-search-input');
-            const mobileSearchInput = document.getElementById('mobile-search-input');
-
-            function handleSearchInput(e) {
-                currentSearchTerm = e.target.value;
-                // Sync both search bars
-                if (desktopSearchInput && mobileSearchInput) {
-                    if (e.target === desktopSearchInput) mobileSearchInput.value = currentSearchTerm;
-                    else desktopSearchInput.value = currentSearchTerm;
-                }
-                updateProductGrid();
-            }
-
-            if (desktopSearchInput) desktopSearchInput.addEventListener('input', handleSearchInput);
-            if (mobileSearchInput) mobileSearchInput.addEventListener('input', handleSearchInput);
-        }
-
-        // Initialize cart
+        // Update cart UI and open checkout
         updateCartUI();
-
-        // Initialize checkout
-        try {
-            initializeCheckout();
-        } catch (error) {
-            console.error('Error initializing checkout:', error);
-        }
-
-        // Update prices
-        updatePrices();
-        setupDynamicWhatsAppLinks();
-        createAndInsertPreorderBanner();
-        updateFooterFromBusinessAddress();
-
-        // --- Auto-open checkout if redirected from another page ---
-        if (sessionStorage.getItem('startCheckout') === 'true') {
-            sessionStorage.removeItem('startCheckout'); // Clear the flag
-            if (cart.length > 0) {
-                // Use a small timeout to ensure the page is fully rendered before opening the modal
-                setTimeout(openCheckout, 100);
-            }
-        }
-
-        // Country dropdown functionality
-        const countryDropdownBtn = document.getElementById('country-dropdown-btn');
-        const countryDropdown = document.getElementById('country-dropdown');
-
-        if (countryDropdownBtn && countryDropdown) {
-            countryDropdownBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                countryDropdown.classList.toggle('hidden');
-            });
-
-            document.addEventListener('click', function(e) {
-                if (!countryDropdownBtn.contains(e.target) && !countryDropdown.contains(e.target)) {
-                    countryDropdown.classList.add('hidden');
-                }
-            });
-
-        }
-
-        // Cart functionality with enhanced event handling
-        const cartButton = document.getElementById('cart-button');
-        const cartOverlay = document.getElementById('cart-overlay');
-        const closeCartButton = document.getElementById('close-cart');
-        const continueShoppingButton = document.getElementById('continue-shopping');
-
-        if (cartButton && cartOverlay) {
-            cartButton.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                cartOverlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                return false;
-            });
-        }
-
-        if (closeCartButton) {
-            closeCartButton.addEventListener('click', function() {
-                cartOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-        }
-
-        if (continueShoppingButton) {
-            continueShoppingButton.addEventListener('click', function() {
-                cartOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-        }
-
-        if (cartOverlay) {
-            cartOverlay.addEventListener('click', function(e) {
-                if (e.target === this) {
-                    this.classList.remove('active');
-                    document.body.style.overflow = '';
-                }
-            });
-        }
-
-        // Add to cart event listeners with improved error handling
-        document.addEventListener('click', function(e) {
-            if (e.target.matches('.add-to-cart-btn') || e.target.closest('.add-to-cart-btn')) {
-                e.preventDefault();
-                e.stopPropagation();
-
-                try {
-                    const btn = e.target.matches('.add-to-cart-btn') ? e.target : e.target.closest('.add-to-cart-btn');
-                    const productDataAttr = btn.getAttribute('data-product');
-                    if (productDataAttr) {
-                        const productData = JSON.parse(productDataAttr);
-                        addToCart(productData);
-                    } else {
-                        console.error('No product data found on button');
-                    }
-                } catch (error) {
-                    console.error('Error parsing product data:', error);
-                }
-                return false;
-            }
-        });
-
-        // Prevent any form submissions that might cause page reload
-        document.addEventListener('submit', function(e) {
-            // Only prevent forms within checkout modal
-            if (e.target.closest('.checkout-modal')) {
-                e.preventDefault();
-                return false;
-            }
-        });
-
-        // Filter and Sort Buttons (using event delegation on a common ancestor)
-        const filtersContainer = document.querySelector('.filters-container');
-        if (filtersContainer) {
-            filtersContainer.addEventListener('click', function(e) {
-                const filterBtn = e.target.closest('.filter-btn');
-                const sortBtn = e.target.closest('.sort-btn');
-
-                if (filterBtn) {
-                e.preventDefault();
-                    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-                    filterBtn.classList.add('active');
-                    currentFilterCategory = filterBtn.getAttribute('data-filter');
-                    updateProductGrid();
-                }
-
-                if (sortBtn) {
-                e.preventDefault();
-                    document.querySelectorAll('.sort-btn').forEach(btn => btn.classList.remove('active'));
-                    sortBtn.classList.add('active');
-                    currentSortBy = sortBtn.getAttribute('data-sort');
-                    updateProductGrid();
-                }
-            });
-        }
-
-        // Initialize color selections for products
-        initializeColorSelection('iphone15promax', 'iphone15promax-color', 'iphone15promax-image', 'add-to-cart-iphone15promax');
-        initializeColorSelection('iphone16promax', 'iphone16promax-color', 'iphone16promax-image', 'add-to-cart-iphone16promax');
-
-	 // Add checkout button listener with null check
-        const checkoutBtn = document.getElementById('checkout-btn');
-        if (checkoutBtn) {
-            checkoutBtn.addEventListener('click', function() {
-                if (cart.length === 0) {
-                    alert(currentLanguage === 'es' ? 'Tu carrito está vacío' : 'Your cart is empty');
-                    return;
-                }
-
-                createCheckoutModal();
-            });
-        }
-
-        // Remove duplicate event listeners that cause null errors
-        const confirmBankTransferBtn = document.getElementById('confirm-bank-transfer');
-        const processOrderBtn = document.getElementById('process-order');
-        
-        // These buttons don't exist on page load, they're created dynamically in checkout
-        // So we don't need to add listeners here
-
-    } catch (error) {
-        console.error('Error during script initialization:', error);
-    }
+        openCheckout();
+    });
 });
-
-function updateCartUI() {
-    updateCartCount();
-    updateCartDisplay();
-}
-
-// Utility functions for cart management
-function getCartSubtotal() {
-    return cart.reduce(function(sum, item) {
-        return sum + (item.price * item.quantity);
-    }, 0);
-}
-
-function formatCurrency(amount) {
-    return convertPrice(amount, false);
-}
-
-// Initialize all functionality when page loads
-function initializePage() {
-    try {
-        updateCartUI();
-        updatePrices();
-        updateLanguage(currentLanguage);
-    } catch (error) {
-        console.error('Error initializing page:', error);
-    }
-}
-
-// Cleanup function
-function cleanup() {
-    // Remove any event listeners if needed
-    const overlay = document.getElementById('checkout-overlay');
-    if (overlay) {
-        overlay.remove();
-    }
-}
-
-// Error handling utility
-function handleError(error, context) {
-    console.error('Error in ' + context + ':', error);
-    if (typeof error === 'object' && error.message) {
-        console.error('Error message:', error.message);
-    }
-}
-
-// Simulate OTP sending for demonstration
-function sendOTPToUser(customerName, customerPhone) {
-    console.log('Simulating OTP sending...');
-    // In a real implementation, this would send an actual OTP
-}
-
-// Initialize on page load
-if (typeof window !== 'undefined') {
-    window.addEventListener('load', function() {
-        // Scroll to top of page
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: 'auto'
-        });
-        document.body.classList.add('page-load-scroll-top');
-
-        // Initialize page
-        initializePage();
-
-        // Remove scroll class after animation
-        setTimeout(() => {
-            document.body.classList.remove('page-load-scroll-top');
-        }, 200);
-    });
-}
-
-// Additional functions
-function updateFooterInfo() {
-    const phoneElement = document.querySelector('.contact-phone');
-    if (phoneElement) {
-        phoneElement.textContent = countryConfig[currentCountry].phone;
-    }
-}
-
-let currentOrderRef = '';
-
-function generateOrderReference() {
-    currentOrderRef = `ORDER-${Date.now()}`;
-    return currentOrderRef;
-}
-
-function getCartTotal() {
-    return cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-}
-
-// Function to show notification messages
-function showNotification(message, type = 'success') {
-    const notification = document.createElement('div');
-    notification.className = `notification ${type}`;
-    notification.textContent = message;
-    document.body.appendChild(notification);
-
-    // Remove the notification after a few seconds
-    setTimeout(() => {
-        notification.remove();
-    }, 3000);
-}
-
-function showProcessingState() {
-    const bankTransferDetails = document.getElementById('bank-transfer-details');
-    const processingOverlay = document.createElement('div');
-    processingOverlay.className = 'processing-overlay';
-    processingOverlay.innerHTML = `
-        <div class="spinner"></div>
-        <p>${currentLanguage === 'es' ? 'Procesando su pago...' : 'Processing your payment...'}</p>
-    `;
-
-    // Append the overlay directly to the body
-    document.body.appendChild(processingOverlay);
-
-    // Optionally, you might want to disable the confirm button:
-    const confirmButton = document.getElementById('confirm-bank-transfer');
-    if (confirmButton) {
-        confirmButton.disabled = true;
-    }
-}
-
-function showOrderConfirmation() {
-    // Hide processing state
-    const processingOverlay = document.querySelector('.processing-overlay');
-    if (processingOverlay) {
-        processingOverlay.remove();
-    }
-
-    // Re-enable the confirm button:
-    const confirmButton = document.getElementById('confirm-bank-transfer');
-    if (confirmButton) {
-        confirmButton.disabled = false;
-    }
-
-    // Show confirmation message
-    alert(currentLanguage === 'es' ? '¡Pago confirmado! Gracias por su compra.' : 'Payment confirmed! Thank you for your purchase.');
-
-    // Clear cart
-    clearCart();
-
-    // Close checkout modal
-    closeCheckout();
-}
-
-function showCardProcessingState() {
-    const creditCardDetails = document.getElementById('credit-card-details');
-    const processingOverlay = document.createElement('div');
-    processingOverlay.className = 'processing-overlay';
-    processingOverlay.innerHTML = `
-        <div class="spinner"></div>
-        <p>${currentLanguage === 'es' ? 'Procesando su pago...' : 'Processing your payment...'}</p>
-    `;
-
-    // Append the overlay directly to the body
-    document.body.appendChild(processingOverlay);
-
-    // Optionally, you might want to disable the confirm button:
-    const confirmButton = document.getElementById('process-order');
-    if (confirmButton) {
-        confirmButton.disabled = true;
-    }
-}
- // Removed duplicate place-order event listeners - they're already handled in setupCheckoutEventListeners()
-
-// Remove duplicate event listeners - these are handled in setupCheckoutEventListeners()
-// which is called when the checkout modal is created dynamically
-
- // These event listeners are already handled in setupCheckoutEventListeners()
-function updateFooterFromBusinessAddress() {
-    const businessAddress = getBusinessAddress();
-    const countryInfo = countryConfig[currentCountry];
-    if (!businessAddress || !countryInfo) return;
-
-    const fullAddress = `${businessAddress.address}, ${businessAddress.city}, ${businessAddress.country}`;
-    const phoneNumber = countryInfo.phone;
-    const email = `sales@swappie.shop`; // Standardizing to match logo
-    const companyName = `Swappie ${countryInfo.name}`;
-
-    const footerAddressEl = document.getElementById('footer-address');
-    const footerPhoneEl = document.getElementById('footer-phone');
-    const footerEmailEl = document.getElementById('footer-email');
-    const footerBottomEl = document.querySelector('.footer-bottom p');
-
-    if (footerAddressEl) {
-        footerAddressEl.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${fullAddress}`;
-    }
-    if (footerPhoneEl) {
-        footerPhoneEl.innerHTML = `<i class="fas fa-phone"></i> <a href="tel:${phoneNumber.replace(/\s/g, '')}" style="color: inherit; text-decoration: none;">${phoneNumber}</a>`;
-    }
-    if (footerEmailEl) {
-        footerEmailEl.innerHTML = `<i class="fas fa-envelope"></i> <a href="mailto:${email}" style="color: inherit; text-decoration: none;">${email}</a>`;
-    }
-    if (footerBottomEl) {
-        footerBottomEl.innerHTML = `&copy; 2024 ${companyName}. <span data-translate="rights_reserved">All rights reserved.</span>`;
-    }
-}
-
-const form = document.querySelector('form');
-if (form) {
-    form.addEventListener('submit', (event) => {
-        event.preventDefault(); // stop the default form submission (which reloads the page)
-        
-        // your form submit logic here...
-    });
-}
