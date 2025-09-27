@@ -23,23 +23,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function populateMonths() {
         if (!monthsSelect) return;
         monthsSelect.innerHTML = ''; // Clear existing
-        for (let i = 1; i <= 6; i++) {
         const plans = [
             { months: 3, interest: 3 },
             { months: 6, interest: 5 }
         ];
         plans.forEach(plan => {
             const option = document.createElement('option');
-            option.value = i;
-            const interest = i + 1;
-            let text = t('split_payment_month_interest');
-            text = text.replace('{months}', i).replace('{interest}', interest);
             option.value = plan.months;
             let text = t('split_payment_month_interest').replace('{months}', plan.months).replace('{interest}', plan.interest);
             option.textContent = text;
-            if (i === 6) option.selected = true;
             monthsSelect.appendChild(option);
-        }
         });
     }
 
@@ -170,7 +163,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const basePrice = selectedVariant.price;
         const months = parseInt(monthsSelect.value);
-        const interestRate = months + 1; // 1 month = 2%, 2 = 3%, etc.
         let interestRate;
 
         if (months <= 3) {
@@ -240,7 +232,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const margin = 40;
         let y = 60;
 
-        // --- Data Gathering ---
         // --- Recopilación de Datos ---
         const sellerInfo = { // This should be dynamic based on country in a real app
             name: "Techzone Ltd under franchise of Swappie.com",
@@ -270,10 +261,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const firstPaymentDateFormatted = firstPaymentDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
         // Financial Calculations
-        const basePrice = selectedVariant.price;
         const basePrice = selectedVariant.price; 
         const months = parseInt(monthsSelect.value);
-        const interestRate = months + 1;
         let interestRate;
         if (months <= 3) {
             interestRate = 3;
@@ -286,7 +275,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const deposit = totalPrice * 0.5;
         const remaining = totalPrice - deposit;
         const monthlyPayment = remaining / months;
-
         
         // --- PDF Generation ---
         const addTitle = (text) => {
@@ -316,60 +304,36 @@ document.addEventListener('DOMContentLoaded', () => {
             y += 15;
         };
 
-        addTitle('Installment Sales Pre-Agreement');
         addTitle('Pre-Acuerdo de Venta a Plazos');
         doc.setFontSize(10);
-        doc.text(`Date: ${todayFormatted}`, margin, y);
         doc.text(`Fecha: ${todayFormatted}`, margin, y);
         y += 30;
 
-        doc.setFont(undefined, 'bold'); doc.text('Seller:', margin, y); doc.setFont(undefined, 'normal');
         doc.setFont(undefined, 'bold'); doc.text('Vendedor:', margin, y); doc.setFont(undefined, 'normal');
         doc.text(sellerInfo.name, margin + 50, y); y += 15;
-        doc.text(`Business Registration No.: ${sellerInfo.regNo}`, margin + 50, y); y += 15;
-        doc.text(`Address: ${sellerInfo.address}`, margin + 50, y); y += 15;
-        doc.text(`Email: ${sellerInfo.email}`, margin + 50, y); y += 15;
-        doc.text(`Phone: ${sellerInfo.phone}`, margin + 50, y); y += 25;
         doc.text(`Registro de Empresa No.: ${sellerInfo.regNo}`, margin + 50, y); y += 15;
         doc.text(`Dirección: ${sellerInfo.address}`, margin + 50, y); y += 15;
         doc.text(`Correo Electrónico: ${sellerInfo.email}`, margin + 50, y); y += 15;
         doc.text(`Teléfono: ${sellerInfo.phone}`, margin + 50, y); y += 25;
 
-        doc.setFont(undefined, 'bold'); doc.text('Buyer:', margin, y); doc.setFont(undefined, 'normal');
         doc.setFont(undefined, 'bold'); doc.text('Comprador:', margin, y); doc.setFont(undefined, 'normal');
         doc.text(buyerInfo.name, margin + 50, y); y += 15;
-        doc.text(`Address: ${buyerInfo.address}`, margin + 50, y); y += 15;
-        doc.text(`Phone: ${buyerInfo.phone}`, margin + 50, y); y += 30;
         doc.text(`Dirección: ${buyerInfo.address}`, margin + 50, y); y += 15;
         doc.text(`Teléfono: ${buyerInfo.phone}`, margin + 50, y); y += 30;
 
-        addSectionHeader('1. Product Details');
-        addLineItem('Model:', productInfo.model);
-        addLineItem('Storage Capacity:', productInfo.storage);
         addSectionHeader('1. Detalles del Producto');
         addLineItem('Modelo:', productInfo.model);
         addLineItem('Capacidad:', productInfo.storage);
         addLineItem('Color:', productInfo.color);
-        addLineItem('IMEI:', productInfo.imei);
         addLineItem('IMEI:', 'A ser asignado en la entrega');
         y += 10;
 
-        addSectionHeader('2. Purchase Price');
-        addLineItem('Base Price:', convertPrice(basePrice, false));
-        addLineItem(`Financing Fee (${interestRate}%):`, convertPrice(interestAmount, false));
-        addLineItem('Total Price (Installment Plan):', convertPrice(totalPrice, false));
         addSectionHeader('2. Precio de Compra');
         addLineItem('Precio Base:', convertPrice(basePrice, false));
         addLineItem(`Cargo por Financiamiento (${interestRate}%):`, convertPrice(interestAmount, false));
         addLineItem('Precio Total (Plan a Plazos):', convertPrice(totalPrice, false));
         y += 10;
 
-        addSectionHeader('3. Payment Terms');
-        addLineItem('Down Payment (Due at signing):', convertPrice(deposit, false));
-        addLineItem('Remaining Balance:', convertPrice(remaining, false));
-        addLineItem('Installment Schedule:', `Buyer shall pay ${months} equal monthly installments of ${convertPrice(monthlyPayment, false)}.`);
-        addLineItem('Due Date:', `On or before the ${today.getDate()}th day of each month, starting from ${firstPaymentDateFormatted}.`);
-        addLineItem('Payment Method:', 'Payments shall be made remotely via bank transfer, as agreed in writing.');
         addSectionHeader('3. Términos de Pago');
         addLineItem('Pago Inicial (al firmar):', convertPrice(deposit, false));
         addLineItem('Saldo Restante:', convertPrice(remaining, false));
@@ -377,28 +341,13 @@ document.addEventListener('DOMContentLoaded', () => {
         addLineItem('Fecha de Vencimiento:', `A más tardar el día ${today.getDate()} de cada mes, comenzando desde el ${firstPaymentDateFormatted}.`);
         addLineItem('Método de Pago:', 'Los pagos se realizarán de forma remota mediante transferencia bancaria, según lo acordado por escrito.');
         y += 10;
-        addParagraph('Proof of Payment Clause: The Buyer agrees to send proof of each monthly payment (bank transfer receipt or screenshot) immediately after payment to the Seller via email (info@swapie.shop) or WhatsApp (+1 868 472-7875). The Seller shall confirm receipt in writing within 24 hours, which shall serve as acknowledgment of payment.');
         addParagraph('Cláusula de Comprobante de Pago: El Comprador se compromete a enviar un comprobante de cada pago mensual (recibo de transferencia bancaria o captura de pantalla) inmediatamente después de realizar el pago al Vendedor por correo electrónico (info@swapie.shop) o WhatsApp (+1 868 472-7875). El Vendedor confirmará la recepción por escrito en un plazo de 24 horas, lo que servirá como acuse de recibo del pago.');
 
         if (y > 700) { doc.addPage(); y = 60; }
 
-        addSectionHeader('4. Delivery');
-        addParagraph('The product will be shipped to the Buyer\'s provided address immediately after the Seller confirms receipt and verification of the down payment.');
         addSectionHeader('4. Entrega');
         addParagraph('El producto será enviado a la dirección proporcionada por el Comprador inmediatamente después de que el Vendedor confirme la recepción y verificación del pago inicial.');
 
-        addSectionHeader('5. Ownership & Risk');
-        addParagraph('Ownership of the phone remains with Techzone Ltd until the Buyer has paid the full balance. The Buyer assumes all risk of loss or damage to the phone upon delivery.');
-        addSectionHeader('6. Late Payments & Default');
-        addParagraph('Late payments more than 7 days late. If Buyer misses two consecutive payments, this Agreement shall be considered in default, and the Seller may repossess the phone.');
-        addSectionHeader('7. Warranty');
-        addParagraph('This product carries the standard 1 year Swappie warranty. The warranty excludes damage caused by misuse, water, accidents, or physical impact after delivery.');
-        addSectionHeader('Buyer agrees that the purchased phone will not be used for fraudulent, illegal, or money laundering purposes. The Seller is not liable for any misuse of the phone by the Buyer.');
-        addSectionHeader('9. Entire Agreement');
-        addParagraph('This document constitutes the entire agreement between the Seller and the Buyer.');
-        addSectionHeader('10. Agreement Acceptance');
-        addParagraph('By proceeding with the deposit payment, the Buyer acknowledges they have read, understood, and agreed to these terms.');
-        doc.save(`Pre-Agreement-${buyerInfo.name.replace(/ /g, '_')}-${today.toISOString().slice(0,10)}.pdf`);
         addSectionHeader('5. Propiedad y Riesgo');
         addParagraph('La propiedad del teléfono permanece con Techzone Ltd hasta que el Comprador haya pagado el saldo total. El Comprador asume todo el riesgo de pérdida o daño del teléfono a partir de la entrega.');
         addSectionHeader('6. Pagos Atrasados e Incumplimiento');
@@ -419,7 +368,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const basePrice = selectedVariant.price;
         const months = parseInt(monthsSelect.value);
-        const interestRate = months + 1;
         let interestRate;
         if (months <= 3) {
             interestRate = 3;
