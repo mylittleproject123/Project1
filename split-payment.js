@@ -332,11 +332,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (y > 700) { doc.addPage(); y = 60; }
 
-        addSectionHeader('4. duct will be shipped to the Buyer\'s provided address immediately after the Seller confirms receipt and verification of the down payment.');
+        addSectionHeader('4. Delivery');
+        addParagraph('The product will be shipped to the Buyer\'s provided address immediately after the Seller confirms receipt and verification of the down payment.');
 
         addSectionHeader('5. Ownership & Risk');
         addParagraph('Ownership of the phone remains with Techzone Ltd until the Buyer has paid the full balance. The Buyer assumes all risk of loss or damage to the phone upon delivery.');
-        addSectionHeader('6. Late Payments & Default');epayments more than 7 days late. If Buyer misses two consecutive payments, this Agreement shall be considered in default, and the Seller may repossess the phone.');
+        addSectionHeader('6. Late Payments & Default');
+        addParagraph('Late payments more than 7 days late. If Buyer misses two consecutive payments, this Agreement shall be considered in default, and the Seller may repossess the phone.');
         addSectionHeader('7. Warranty');
         addParagraph('This product carries the standard 1 year Swappie warranty. The warranty excludes damage caused by misuse, water, accidents, or physical impact after delivery.');
         addSectionHeader('Buyer agrees that the purchased phone will not be used for fraudulent, illegal, or money laundering purposes. The Seller is not liable for any misuse of the phone by the Buyer.');
