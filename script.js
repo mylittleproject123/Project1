@@ -2199,7 +2199,7 @@ document.addEventListener('DOMContentLoaded', async function() { // Make the lis
         // Update prices
         updatePrices();
         setupDynamicWhatsAppLinks();
-        createAndInsertPreorderBanner();
+        // createAndInsertPreorderBanner(); // Removed as per user request
         updateFooterFromBusinessAddress();
 
         // --- Auto-open checkout if redirected from another page ---
