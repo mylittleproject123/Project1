@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const colorSelect = document.getElementById('color-select');
     const monthsGroup = document.getElementById('months-group');
     const monthsSelect = document.getElementById('months-select');
+    const summaryPrice = document.getElementById('summary-price');
+    const summaryMonthly = document.getElementById('summary-monthly');
     const summary = document.getElementById('calculation-summary');
     const submitBtn = document.getElementById('submit-application-btn');
     const termsSection = document.getElementById('terms-section');
@@ -20,6 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const employmentStatusSelect = document.getElementById('employment-status');
     const employerGroup = document.getElementById('employer-group');
 
+    let basePrice = 0;
+    let monthlyPayment = 0;
     let selectedProduct = null;
     let selectedVariant = null;
     let selectedColor = null;
@@ -137,6 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateCalculations() {
         if (!selectedVariant || !selectedColor) return;
+        summary.style.display = 'block';
 
         const basePrice = selectedVariant.price;
         const selectedMonthOption = monthsSelect.options[monthsSelect.selectedIndex];
@@ -145,8 +150,10 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const interestAmount = basePrice * (interestRate / 100);
         const totalPrice = basePrice + interestAmount;
-        const monthlyPayment = totalPrice / months;
+        monthlyPayment = totalPrice / months;
         const monthlyText = t('split_payment_monthly_value');
+
+        summaryPrice.textContent = convertPrice(basePrice, false) + " Kč";
 
         document.getElementById('summary-price').textContent = convertPrice(basePrice, false);
         document.getElementById('summary-interest-rate').textContent = interestRate;
@@ -154,8 +161,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('summary-total-price').textContent = convertPrice(totalPrice, false);
         document.getElementById('summary-monthly').textContent = monthlyText
             .replace('{price}', convertPrice(monthlyPayment, false))
-            .replace('{months}', months);
+            .replace('{months}', months) + " Kč";
 
+        console.log('basePrice', basePrice);
+        console.log('monthlyPayment', monthlyPayment);
         summary.style.display = 'block';
         customerInfoSection.style.display = 'block';
         checkFormCompletion();
