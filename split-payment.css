@@ -1,0 +1,220 @@
+/* === Scoped Modern Styles for Split Payment Page === */
+.split-payment-page {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Typography */
+.split-payment-page h1,
+.split-payment-page h2,
+.split-payment-page h3,
+.split-payment-page h4 {
+    color: #222;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.split-payment-page p {
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+/* Wizard Steps */
+.split-payment-page .wizard-steps {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 2rem;
+}
+
+.split-payment-page .step {
+    flex: 1;
+    text-align: center;
+    padding: 1rem 0;
+    font-weight: 600;
+    color: #999;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.split-payment-page .step.active {
+    color: #007bff;
+    border-color: #007bff;
+}
+
+/* Section Headers */
+.split-payment-page .section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Product Grid */
+.split-payment-page .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Configuration Section */
+.split-payment-page .configuration-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.split-payment-page #selected-product-summary {
+    flex: 1;
+    background-color: #fff;
+    padding: 1rem;
+    border: 1px solid #eee;
+    border-radius: 8px;
+}
+
+.split-payment-page .configuration-options {
+    flex: 1;
+    min-width: 250px;
+}
+
+/* Form Styling */
+.split-payment-page .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.split-payment-page .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.split-payment-page .form-control {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #fff;
+}
+
+/* Form Row */
+.split-payment-page .form-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.split-payment-page .form-row .form-group {
+    flex: 1;
+    min-width: 250px;
+}
+
+/* Summary Details */
+.split-payment-page #calculation-summary {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.split-payment-page .summary-details p {
+    margin-bottom: 0.5rem;
+}
+
+.split-payment-page .total-row {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #222;
+}
+
+.split-payment-page .monthly-row {
+    font-size: 1.1rem;
+    color: #007bff;
+}
+
+/* Buttons */
+.split-payment-page .btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.split-payment-page .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.split-payment-page .btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.split-payment-page .btn-secondary {
+    background-color: #e2e6ea;
+    color: #333;
+}
+
+.split-payment-page .btn-secondary:hover {
+    background-color: #cfd4d9;
+}
+
+/* Terms & Agreement */
+.split-payment-page .terms-box {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.split-payment-page .form-check {
+    margin-bottom: 2rem;
+}
+
+/* Success Step */
+.split-payment-page #wizard-success-step {
+    background: #fff;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.split-payment-page #wizard-success-step i {
+    font-size: 4rem;
+    color: #28a745;
+    margin-bottom: 1rem;
+}
+
+/* Footer */
+.split-payment-page .footer {
+    background-color: #fff;
+    padding: 2rem 0;
+    border-top: 1px solid #eee;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.split-payment-page .footer p {
+    color: #777;
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .split-payment-page .form-row {
+        flex-direction: column;
+    }
+
+    .split-payment-page .configuration-grid {
+        flex-direction: column;
+    }
+
+    .split-payment-page .nav-desktop {
+        display: none;
+    }
+}
