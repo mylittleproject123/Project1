@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // This script is for the wizard-style split payment page (iphone17-split-payment.html)
 
     // Define products locally for this page
-    const productsForSplitPaymentIphone17 = [
+    const productsForSplitPaymentIphone17 = [ 
         {
             id: 'iphone17',
             name: 'iPhone 17',
