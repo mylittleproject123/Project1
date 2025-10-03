@@ -351,14 +351,3 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- START ---
     initializePage();
 });
-
-function goToStep(step) {
-    state.currentStep = step;
-    wizardSteps.forEach(s => s.classList.remove('active'));
-    const stepId = (step === 'success') ? 'wizard-success-step' : `wizard-step-${step}`;
-    document.getElementById(stepId).classList.add('active');
-    stepIndicators.forEach((ind, i) => {
-        ind.classList.toggle('active', (typeof step === 'number' && i < step));
-    });
-    window.scrollTo(0, 0);
-}
