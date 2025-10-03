@@ -1,13 +1,9 @@
 // Country configuration - check if already defined to prevent duplicate declaration
 const countryConfig = {
-    nicaragua: { flag: '🇳🇮', name: 'Nicaragua', currency: 'NIO', rate: 37, lang: 'es', phone: '+50584608069', code: 'ni' },
-    honduras: { flag: '🇭🇳', name: 'Honduras', currency: 'HNL', rate: 25, lang: 'es', phone: '+504 9756-4382', code: 'hn' },
-    trinidad: { flag: '🇹🇹', name: 'Trinidad and Tobago', currency: 'TTD', rate: 6.8, lang: 'en', phone: '+1 868 472-7875', code: 'tt' },
-    elsalvador: { flag: '🇸🇻', name: 'El Salvador', currency: 'USD', rate: 1, lang: 'es', phone: '+503 7345-6789', code: 'sv' },
-    paraguay: { flag: '🇵🇾', name: 'Paraguay', currency: 'PYG', rate: 7500, lang: 'es', phone: '+595 21 456-789', code: 'py' },
-    guatemala: { flag: '🇬🇹', name: 'Guatemala', currency: 'GTQ', rate: 7.8, lang: 'es', phone: '+502 2345-6789', code: 'gt' },
-    dominican: { flag: '🇩🇴', name: 'Dominican Republic', currency: 'DOP', rate: 58, lang: 'es', phone: '+1 809 234-5678', code: 'do' },
-    usa: { flag: '🇺🇸', name: 'USA', currency: 'USD', rate: 1, lang: 'en', phone: '+1 415-762-3849', code: 'us' }
+    cs: { flag: '🇨🇿', name: 'Česko', currency: 'CZK', rate: 25, lang: 'cs', phone: '+420 123 456 789', code: 'cs' },
+    sk: { flag: '🇸🇰', name: 'Slovensko', currency: 'EUR', rate: 1, lang: 'sk', phone: '+421 123 456 789', code: 'sk' },
+    hu: { flag: '🇭🇺', name: 'Magyarország', currency: 'HUF', rate: 390, lang: 'hu', phone: '+36 1 123 4567', code: 'hu' },
+    at: { flag: '🇦🇹', name: 'Österreich', currency: 'EUR', rate: 1, lang: 'de', phone: '+43 1 1234567', code: 'at' }
 };
 
 // Transdlation data - check if already defined to prevent duplicate declaration
@@ -332,8 +328,8 @@ function t(key) {
 }
 
 // Global variables
-let currentCountry = localStorage.getItem('selectedCountry') || 'honduras';
-let currentLanguage = localStorage.getItem('selectedLanguage') || 'es';
+let currentCountry = localStorage.getItem('selectedCountry') || 'cs';
+let currentLanguage = localStorage.getItem('selectedLanguage') || 'cs';
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 // Global state for grid controls
 let currentFilterCategory = 'all';
@@ -351,29 +347,28 @@ updateCartDisplay();
 function getCurrencySymbol(country) {
     const config = countryConfig[country];
     if (!config) return '$';
-    switch (config.currency) {
-        case 'NIO': return 'C$';
-        case 'HNL': return 'L';
-        case 'TTD': return 'TT$';
-        case 'XCD': return 'EC$';
-        case 'USD': return '$';
-        default: return '$';
+    switch (config.currency) {        case 'EUR': return '€';
+        case 'CZK': return 'Kč';
+        case 'HUF': return 'Ft';
+        default: return config.currency;
     }
 }
 
-function convertPrice(price, showBoth = true) {
+function convertPrice(priceInUSD, showBoth = false) {
+    const priceInEUR = priceInUSD * 0.92; // Approximate conversion from USD to EUR
+
     if (typeof price !== 'number' || isNaN(price)) {
         return ''; // Return empty string if price is not a valid number
     }
 
     const config = countryConfig[currentCountry];
-    if (!config) return `$${price.toFixed(2)}`;
+    if (!config) return `${priceInEUR.toFixed(2)} €`;
 
-    const usdPrice = `$${price.toFixed(2)}`;
+    const eurPrice = `${priceInEUR.toFixed(2)} €`;
 
-    // For USD countries, always show USD only
-    if (config.currency === 'USD') {
-        return usdPrice;
+    // For EUR countries, show EUR only
+    if (config.currency === 'EUR') {
+        return eurPrice;
     }
 
     const convertedPrice = price * config.rate;
@@ -384,7 +379,7 @@ function convertPrice(price, showBoth = true) {
     });
     const localPrice = `${symbol}${localFormattedPrice}`;
 
-    return showBoth ? `${usdPrice} / ${localPrice}` : localPrice;
+    return showBoth ? `${eurPrice} / ${localPrice}` : localPrice;
 }
 
 // Translation function
@@ -2077,8 +2072,8 @@ document.addEventListener('DOMContentLoaded', async function() { // Make the lis
         }
 
         // Priority 4: Default
-        currentCountry = 'honduras';
-        currentLanguage = countryConfig[currentCountry].lang;
+        currentCountry = 'cs';
+        currentLanguage = 'cs';
     }
 
     try {
