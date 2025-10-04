@@ -1,16 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
     // This script is for the wizard-style split payment page (iphone17-split-payment.html)
 
-    // Define products locally for this page
+    // Define products locally for this page (Slovak version)
     const productsForSplitPaymentIphone17 = [
         {
             id: 'iphone17',
             name: 'iPhone 17',
             variants: [
-                { storage: '128GB', price: 1099 },
+                { storage: '128GB', price: 1099 }, // Prices in EUR
                 { storage: '256GB', price: 1199 },
             ],
-            colors: ['Polaris', 'Cosmic Black', 'Desert Gold'],
+            colors: ['Polárna žiara', 'Kozmická čierna', 'Púštne zlato'],
             image: 'https://citymagazine.b-cdn.net/wp-content/uploads/2025/08/hero-series-iphone17-2025-0-1400x933.webp'
         },
         {
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 { storage: '128GB', price: 1199 },
                 { storage: '256GB', price: 1299 },
             ],
-            colors: ['Polaris', 'Cosmic Black', 'Desert Gold'],
+            colors: ['Polárna žiara', 'Kozmická čierna', 'Púštne zlato'],
             image: 'https://citymagazine.b-cdn.net/wp-content/uploads/2025/08/hero-series-iphone17-2025-0-1400x933.webp'
         },
         {
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 { storage: '512GB', price: 1599 },
                 { storage: '1TB', price: 1799 },
             ],
-            colors: ['Titanium Black', 'Natural Titanium', 'Desert Titanium'],
+            colors: ['Titánová čierna', 'Prírodný titán', 'Púštny titán'],
             image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_display_pro_large.jpg'
         },
         {
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 { storage: '512GB', price: 1699 },
                 { storage: '1TB', price: 1899 },
             ],
-            colors: ['Titanium Black', 'Natural Titanium', 'Desert Titanium'],
+            colors: ['Titánová čierna', 'Prírodný titán', 'Púštny titán'],
             image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_display_pro_max_large.jpg'
         }
     ];
@@ -98,9 +98,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="product-info">
                     <h3 class="product-name">${product.name}</h3>
                     <div class="product-price">
-                        <span class="current-price">${t('starting_from') || 'From'} ${convertPrice(product.variants[0].price, false)}</span>
+                        <span class="current-price">Od ${convertPrice(product.variants[0].price, false)}</span>
                     </div>
-                    <button class="btn btn-primary select-product-btn" data-product-id="${product.id}">${t('select_product') || 'Select Product'}</button>
+                    <button class="btn btn-primary select-product-btn" data-product-id="${product.id}">Vybrať Produkt</button>
                 </div>
             `;
             productGrid.appendChild(card);
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
         plans.forEach(plan => {
             const option = document.createElement('option');
             option.value = plan.months;
-            option.textContent = t('split_payment_month_interest').replace('{months}', plan.months).replace('{interest}', plan.interest) || `${plan.months} Months (+${plan.interest}%)`;
+            option.textContent = `${plan.months} Mesiacov (+${plan.interest}%)`;
             option.dataset.interest = plan.interest;
             monthsSelect.appendChild(option);
         });
@@ -187,12 +187,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         selectedProductSummary.innerHTML = `<img src="${state.selectedProduct.image}" alt="${state.selectedProduct.name}"><h3>${state.selectedProduct.name}</h3>`;
 
-        storageSelect.innerHTML = `<option value="">${t('split_payment_choose_storage') || '-- Choose storage --'}</option>`;
+        storageSelect.innerHTML = `<option value="">-- Vyberte úložisko --</option>`;
         state.selectedProduct.variants.forEach(v => {
             storageSelect.innerHTML += `<option value="${v.storage}" data-price="${v.price}">${v.storage} - ${convertPrice(v.price, false)}</option>`;
         });
 
-        colorSelect.innerHTML = `<option value="">${t('split_payment_choose_color') || '-- Choose color --'}</option>`;
+        colorSelect.innerHTML = `<option value="">-- Vyberte farbu --</option>`;
         state.selectedProduct.colors.forEach(c => {
             colorSelect.innerHTML += `<option value="${c}">${c}</option>`;
         });
@@ -264,7 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function submitApplication() {
         if (!state.selectedProduct || !state.selectedVariant || !state.selectedColor || !validateCustomerInfo() || !termsCheckbox.checked) {
-            alert(t('error_fill_all_fields') || "Please fill all required fields and agree to the terms.");
+            alert("Prosím, vyplňte všetky povinné polia a súhlaste s podmienkami.");
             return;
         }
 
