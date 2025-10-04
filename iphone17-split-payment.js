@@ -33,18 +33,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- INITIALIZATION ---
     function initializePage() {
-        // The main script.js handles language and currency. We just need to build the UI.
-        populateProductGrid();
+        // Pass the product data directly to the functions that need it.
+        populateProductGrid(productsForSplitPaymentIphone17);
         populateMonths();
-        setupEventListeners();
+        setupEventListeners(productsForSplitPaymentIphone17);
         goToStep(1); // Start at step 1
     }
 
     // --- UI POPULATION ---
-    function populateProductGrid() {
+    function populateProductGrid(products) {
         if (!productGrid) return;
         productGrid.innerHTML = '';
-        productsForSplitPaymentIphone17.forEach(product => {
+        products.forEach(product => {
             const card = document.createElement('div');
             card.className = 'product-card';
             card.innerHTML = `
@@ -82,12 +82,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- EVENT LISTENERS ---
-    function setupEventListeners() {
+    function setupEventListeners(products) {
         // Product selection
         productGrid?.addEventListener('click', e => {
             if (e.target.classList.contains('select-product-btn')) {
                 const productId = e.target.dataset.productId;
-                state.selectedProduct = productsForSplitPaymentIphone17.find(p => p.id === productId);
+                state.selectedProduct = products.find(p => p.id === productId);
                 if (state.selectedProduct) {
                     goToStep(2);
                     configureProductStep();
