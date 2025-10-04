@@ -4,6 +4,44 @@ document.addEventListener('DOMContentLoaded', () => {
     // Define products locally for this page to ensure it's self-contained.
     const productsForSplitPaymentIphone17 = [
         {
+            id: 'galaxys25ultra',
+            name: 'Samsung Galaxy S25 Ultra',
+            variants: [
+                { storage: '256GB', price: 1250 },
+                { storage: '512GB', price: 1350 },
+            ],
+            colors: [
+                { name: 'Titanium Black', image: 'https://m.media-amazon.com/images/I/71I-leJ7QVL._AC_SX679_.jpg' }
+            ],
+            defaultImage: 'https://m.media-amazon.com/images/I/71I-leJ7QVL._AC_SX679_.jpg'
+        },
+        {
+            id: 'galaxys25',
+            name: 'Samsung Galaxy S25',
+            variants: [
+                { storage: '128GB', price: 950 },
+                { storage: '256GB', price: 1050 },
+            ],
+            colors: [
+                { name: 'Titanium Black', image: 'https://m.media-amazon.com/images/I/61C17Al0dhL._AC_SX569_.jpg' }
+            ],
+            defaultImage: 'https://m.media-amazon.com/images/I/61C17Al0dhL._AC_SX569_.jpg'
+        },
+        {
+            id: 'iphone16promax',
+            name: 'iPhone 16 Pro Max',
+            variants: [
+                { storage: '256GB', price: 1200 },
+                { storage: '512GB', price: 1350 },
+                { storage: '1TB', price: 1500 },
+            ],
+            colors: [
+                { name: 'Čierny titán', image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_hero_black_titanium__e4y3a1p2ozia_large.jpg' },
+                { name: 'Púštny titán', image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_hero_natural_titanium__b73a68n5a626_large.jpg' }
+            ],
+            defaultImage: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_display_pro_max_large.jpg'
+        },
+        {
             id: 'iphone17',
             name: 'iPhone 17',
             variants: [
@@ -130,16 +168,19 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!monthsSelect) return;
         monthsSelect.innerHTML = '';
         const plans = [
-            { months: 6, interest: 2.5 }, 
-            { months: 12, interest: 3.5 }, 
-            { months: 20, interest: 4.9 }, 
-            { months: 24, interest: 6 },
-            { months: 48, interest: 8.9 }
+            { months: 12, interest: 0 }, 
+            { months: 24, interest: 2.5 },
+            { months: 48, interest: 4.9 }
         ];
         plans.forEach(plan => {
             const option = document.createElement('option');
             option.value = plan.months;
-            option.textContent = `${plan.months} Mesiacov (+${plan.interest}%)`;
+            // Custom text for 0% interest
+            if (plan.interest === 0) {
+                option.textContent = `${plan.months} Mesiacov (bez navýšenia)`;
+            } else {
+                option.textContent = `${plan.months} Mesiacov (+${plan.interest}%)`;
+            }
             option.dataset.interest = plan.interest;
             monthsSelect.appendChild(option);
         });
