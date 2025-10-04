@@ -1,16 +1,107 @@
 /*
 ==============================================
-  SIMPLE STYLES for split-payments.html
+  STYLES for iphone17-split-payment.html wizard
 ==============================================
 */
- 
+
 .split-payment-calculator {
-    background: white;
+    background: linear-gradient(145deg, var(--background) 0%, var(--background-light) 100%);
     padding: clamp(1.5rem, 4vw, 2.5rem);
     border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
+
+/* --- Wizard Steps --- */
+.wizard-steps {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.wizard-steps::before {
+    content: '';
+    position: absolute;
+    top: 1.25rem;
+    left: 10%;
+    width: 80%;
+    height: 3px;
+    background-color: var(--border-color);
+    z-index: 1;
+}
+
+.wizard-steps .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    position: relative;
+    z-index: 2;
+    background: none;
+    border: none;
+    padding: 0;
+    flex: 1;
+    text-align: center;
+    cursor: default;
+}
+
+.wizard-steps .step::before {
+    content: attr(data-step);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-color: var(--background);
+    border: 3px solid var(--border-color);
+    font-weight: 700;
+    color: var(--text-muted);
+    transition: all 0.4s ease;
+}
+
+.wizard-steps .step.completed::before {
+    content: '\f00c'; /* Font Awesome checkmark */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    background-color: #28a745;
+    border-color: #28a745;
+    color: white;
+}
+
+.wizard-steps .step.active::before {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 0 0 8px rgba(30, 58, 138, 0.1);
+}
+
+.wizard-steps .step span {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    transition: color 0.3s ease;
+}
+
+.wizard-steps .step.active span, .wizard-steps .step.completed span {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* --- General Wizard Step Styling --- */
+.wizard-step {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* --- Form & Configuration Styling --- */
 
 .split-payment-calculator .form-control {
     width: 100%;
@@ -28,22 +119,74 @@
     box-shadow: 0 0 0 4px rgba(30, 58, 138, 0.1);
 }
 
+.configuration-grid {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 2.5rem;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+#selected-product-summary {
+    text-align: center;
+    padding: 1.5rem;
+    background: white;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 100px;
+}
+
+#selected-product-summary img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+}
+
+#selected-product-summary h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+}
+
+/* --- Calculation Summary --- */
 #calculation-summary {
     margin-top: 2rem;
-    border-top: 1px solid var(--border-color);
-    padding-top: 2rem;
+    padding: 2rem;
+    background: white;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
 }
 
 #calculation-summary h3 {
     font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
     text-align: center;
+    color: var(--secondary-color);
 }
 
-#calculation-summary .summary-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    font-size: 1.1rem;
+.summary-details p {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #e9ecef;
+    font-size: 1rem;
 }
+
+.summary-details p:last-child { border-bottom: none; }
+
+.summary-details .total-row, .summary-details .monthly-row {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 2px solid var(--primary-color);
+}
+
+.summary-details .monthly-row span { color: var(--primary-color); }
