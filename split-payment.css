@@ -90,6 +90,14 @@
     font-weight: 700;
 }
 
+/* Responsive benefits grid */
+@media (max-width: 600px) {
+    .benefits-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+
 /* --- General Wizard Step Styling --- */
 .wizard-step {
     animation: fadeIn 0.5s ease-in-out;
