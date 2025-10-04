@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
             id: 'iphone17',
             name: 'iPhone 17',
             variants: [
-                { storage: '128GB', price: 1099 }, // Prices in EUR
-                { storage: '256GB', price: 1199 },
+                { storage: '128GB', price: 1049 }, // Prices in EUR
+                { storage: '256GB', price: 1149 },
             ],
             colors: ['Polárna žiara', 'Kozmická čierna', 'Púštne zlato'],
             image: 'https://cdn.mos.cms.futurecdn.net/YdM93rG2s4gWp22s8R8gqM-1200-80.jpg'
@@ -17,8 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
             id: 'iphone17plus',
             name: 'iPhone 17 Plus',
             variants: [
-                { storage: '128GB', price: 1199 },
-                { storage: '256GB', price: 1299 },
+                { storage: '128GB', price: 1149 },
+                { storage: '256GB', price: 1249 },
             ],
             colors: ['Polárna žiara', 'Kozmická čierna', 'Púštne zlato'],
             image: 'https://cdn.mos.cms.futurecdn.net/YdM93rG2s4gWp22s8R8gqM-1200-80.jpg'
@@ -27,9 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
             id: 'iphone17pro',
             name: 'iPhone 17 Pro',
             variants: [
-                { storage: '256GB', price: 1399 },
-                { storage: '512GB', price: 1599 },
-                { storage: '1TB', price: 1799 },
+                { storage: '256GB', price: 1349 },
+                { storage: '512GB', price: 1549 },
+                { storage: '1TB', price: 1749 },
             ],
             colors: ['Titánová čierna', 'Prírodný titán', 'Púštny titán'],
             image: 'https://i.ytimg.com/vi/gS7-F3x3f3g/maxresdefault.jpg'
@@ -38,9 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
             id: 'iphone17promax',
             name: 'iPhone 17 Pro Max',
             variants: [
-                { storage: '256GB', price: 1499 },
-                { storage: '512GB', price: 1699 },
-                { storage: '1TB', price: 1899 },
+                { storage: '256GB', price: 1449 },
+                { storage: '512GB', price: 1649 },
+                { storage: '1TB', price: 1849 },
             ],
             colors: ['Titánová čierna', 'Prírodný titán', 'Púštny titán'],
             image: 'https://i.ytimg.com/vi/gS7-F3x3f3g/maxresdefault.jpg'
