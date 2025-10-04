@@ -7,42 +7,32 @@ document.addEventListener('DOMContentLoaded', () => {
             id: 'iphone17',
             name: 'iPhone 17',
             variants: [
-                { storage: '128GB', price: 1049 }, // Prices in EUR
-                { storage: '256GB', price: 1149 },
+                { storage: '256GB', price: 950 },
+                { storage: '512GB', price: 1220 },
             ],
-            colors: ['Polárna žiara', 'Kozmická čierna', 'Púštne zlato'],
-            image: 'https://cdn.mos.cms.futurecdn.net/YdM93rG2s4gWp22s8R8gqM-1200-80.jpg'
-        },
-        {
-            id: 'iphone17plus',
-            name: 'iPhone 17 Plus',
-            variants: [
-                { storage: '128GB', price: 1149 },
-                { storage: '256GB', price: 1249 },
-            ],
-            colors: ['Polárna žiara', 'Kozmická čierna', 'Púštne zlato'],
-            image: 'https://cdn.mos.cms.futurecdn.net/YdM93rG2s4gWp22s8R8gqM-1200-80.jpg'
+            colors: ['Salviovo zelený', 'Hmlovo modrý', 'Čierny'],
+            // Using a representative image, can be updated per color if needed
+            image: 'https://image.alza.cz/products/RI054c4/RI054c4.jpg?width=500&height=500'
         },
         {
             id: 'iphone17pro',
             name: 'iPhone 17 Pro',
             variants: [
-                { storage: '256GB', price: 1349 },
-                { storage: '512GB', price: 1549 },
-                { storage: '1TB', price: 1749 },
+                { storage: '256GB', price: 1300 },
+                { storage: '512GB', price: 1550 },
             ],
-            colors: ['Titánová čierna', 'Prírodný titán', 'Púštny titán'],
+            colors: ['Strieborný', 'Polnočný', 'Kozmický oranžový'],
             image: 'https://i.ytimg.com/vi/gS7-F3x3f3g/maxresdefault.jpg'
         },
         {
             id: 'iphone17promax',
             name: 'iPhone 17 Pro Max',
             variants: [
-                { storage: '256GB', price: 1449 },
-                { storage: '512GB', price: 1649 },
-                { storage: '1TB', price: 1849 },
+                { storage: '256GB', price: 1400 },
+                { storage: '512GB', price: 1700 },
+                { storage: '1TB', price: 1900 },
             ],
-            colors: ['Titánová čierna', 'Prírodný titán', 'Púštny titán'],
+            colors: ['Strieborný', 'Polnočný', 'Kozmický oranžový'],
             image: 'https://i.ytimg.com/vi/gS7-F3x3f3g/maxresdefault.jpg'
         }
     ];
@@ -110,7 +100,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function populateMonths() {
         if (!monthsSelect) return;
         monthsSelect.innerHTML = '';
-        const plans = [{ months: 6, interest: 2 }, { months: 12, interest: 4 }, { months: 18, interest: 5 }, { months: 24, interest: 6 }];
+        const plans = [
+            { months: 6, interest: 2.5 }, 
+            { months: 12, interest: 3.5 }, 
+            { months: 20, interest: 4.9 }, 
+            { months: 24, interest: 6 }
+        ];
         plans.forEach(plan => {
             const option = document.createElement('option');
             option.value = plan.months;
