@@ -15,6 +15,16 @@ document.addEventListener('DOMContentLoaded', () => {
             image: 'https://image.alza.cz/products/RI054c4/RI054c4.jpg?width=500&height=500'
         },
         {
+            id: 'iphone17plus',
+            name: 'iPhone 17 Plus',
+            variants: [
+                { storage: '256GB', price: 1050 },
+                { storage: '512GB', price: 1320 },
+            ],
+            colors: ['Salviovo zelený', 'Hmlovo modrý', 'Čierny'],
+            image: 'https://image.alza.cz/products/RI054c4/RI054c4.jpg?width=500&height=500'
+        },
+        {
             id: 'iphone17pro',
             name: 'iPhone 17 Pro',
             variants: [
