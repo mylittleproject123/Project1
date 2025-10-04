@@ -126,6 +126,33 @@
 
 /* --- Form & Configuration Styling --- */
 
+.detailed-form .form-section-header {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--primary-light);
+}
+
+.detailed-form .form-subsection-header {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.conditional-section {
+    display: none; /* Initially hidden */
+    padding: 1.5rem;
+    background-color: var(--background-light);
+    border-radius: var(--border-radius);
+    margin-top: 1rem;
+    border: 1px solid var(--border-color);
+}
+
 .split-payment-calculator .form-control {
     width: 100%;
     padding: 0.875rem 1rem;
