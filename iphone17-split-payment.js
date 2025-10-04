@@ -79,6 +79,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const submitBtn = document.getElementById('submit-application-btn');
 
     // --- INITIALIZATION ---
+
+    // Local currency conversion function to avoid dependency on external scripts
+    function convertPrice(price, showBoth = false) {
+        if (typeof price !== 'number' || isNaN(price)) {
+            return '';
+        }
+        // Assuming EUR for this page as it's for SK/CS context
+        return `€${price.toFixed(2)}`;
+    }
+
+
     function initializePage() {
         // Pass the product data directly to the functions that need it.
         populateProductGrid(productsForSplitPaymentIphone17);
