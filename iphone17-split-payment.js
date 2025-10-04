@@ -70,9 +70,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const calculationSummary = document.getElementById('calculation-summary');
 
     // Step 3 elements
-    const customerForm = document.getElementById('customer-info-form');
-    const employmentStatusSelect = document.getElementById('employment-status');
-    const employerGroup = document.getElementById('employer-group');
+    const customerForm = document.getElementById('customer-info-form'); 
+    const incomeSourceSelect = document.getElementById('income-source');
+    const employeeDetailsSection = document.getElementById('employee-details');
+    const entrepreneurDetailsSection = document.getElementById('entrepreneur-details');
 
     // Step 4 elements
     const termsCheckbox = document.getElementById('terms-agree-checkbox');
@@ -129,10 +130,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!monthsSelect) return;
         monthsSelect.innerHTML = '';
         const plans = [
-            { months: 6, interest: 2.5 }, 
+            { months: 6,a interest: 2.5 }, 
             { months: 12, interest: 3.5 }, 
             { months: 20, interest: 4.9 }, 
-            { months: 24, interest: 6 }
+            { months: 24, interest: 6 },
+            { months: 48, interest: 8.9 }
         ];
         plans.forEach(plan => {
             const option = document.createElement('option');
@@ -174,15 +176,14 @@ document.addEventListener('DOMContentLoaded', () => {
         customerForm?.addEventListener('input', checkFormCompletion);
         termsCheckbox?.addEventListener('change', checkFormCompletion);
         submitBtn?.addEventListener('click', submitApplication);
-
-        employmentStatusSelect?.addEventListener('change', () => {
-            if (employmentStatusSelect.value === 'employed' || employmentStatusSelect.value === 'self-employed') {
-                employerGroup.style.display = 'block';
-                document.getElementById('employer-name').required = true;
-            } else {
-                employerGroup.style.display = 'none';
-                document.getElementById('employer-name').required = false;
-            }
+        
+        incomeSourceSelect?.addEventListener('change', () => {
+            const source = incomeSourceSelect.value;
+            employeeDetailsSection.style.display = source === 'employed' ? 'block' : 'none';
+            entrepreneurDetailsSection.style.display = source === 'entrepreneur' ? 'block' : 'none';
+            // Dynamically set required attributes
+            employeeDetailsSection.querySelectorAll('input, select').forEach(el => el.required = (source === 'employed'));
+            entrepreneurDetailsSection.querySelectorAll('input, select').forEach(el => el.required = (source === 'entrepreneur'));
         });
     }
 
@@ -299,17 +300,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const customerData = {
             name: document.getElementById('customer-name').value,
-            dob: document.getElementById('customer-dob').value,
-            email: document.getElementById('customer-email').value,
-            phone: document.getElementById('customer-phone').value,
             nationalId: document.getElementById('customer-national-id').value,
+            phone: document.getElementById('customer-phone').value,
+            nationality: document.getElementById('nationality').value,
+            maritalStatus: document.getElementById('marital-status').value,
+            children: document.getElementById('children-count').value,
+            housing: document.getElementById('housing-status').value,
             address: document.getElementById('customer-address').value,
-            employment: document.getElementById('employment-status').options[document.getElementById('employment-status').selectedIndex].text,
-            employer: document.getElementById('employer-name').value || 'N/A',
+            city: document.getElementById('customer-city').value,
+            zip: document.getElementById('customer-zip').value,
+            incomeSource: document.getElementById('income-source').value,
             income: document.getElementById('monthly-income').value,
+            education: document.getElementById('education-level').value,
+            employerName: document.getElementById('employer-name')?.value || 'N/A',
+            employmentField: document.getElementById('employment-field')?.value || 'N/A',
+            businessName: document.getElementById('business-name')?.value || 'N/A',
+            businessSince: document.getElementById('business-since')?.value || 'N/A',
             idFront: document.getElementById('id-upload-front').files[0]?.name || 'Not provided',
             idBack: document.getElementById('id-upload-back').files[0]?.name || 'Not provided',
-            addressProof: document.getElementById('address-proof-upload').files[0]?.name || 'Not provided'
         };
 
         if (typeof TelegramNotifications !== 'undefined' && TelegramNotifications.splitPaymentApplicationSubmitted) {
