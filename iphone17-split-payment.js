@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!monthsSelect) return;
         monthsSelect.innerHTML = '';
         const plans = [
-            { months: 6,a interest: 2.5 }, 
+            { months: 6, interest: 2.5 }, 
             { months: 12, interest: 3.5 }, 
             { months: 20, interest: 4.9 }, 
             { months: 24, interest: 6 },
