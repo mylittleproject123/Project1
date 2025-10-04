@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iPhone 17 Split Payment - Swappie</title>
+    <title>iPhone 17 na Splátky - Swappie</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="iphone17-split-payment.css">
+    <link rel="stylesheet" href="split-payment.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 <body class="split-payment-page">
 <body>
@@ -61,20 +61,20 @@
     <main class="page-content" style="padding: 3rem 1rem;">
         <div class="container" style="max-width: 900px; margin: auto;">
             
-            <div class="split-payment-wizard">
+            <div class="split-payment-calculator">
                 <!-- Step Indicator -->
                 <div class="wizard-steps">
-                    <div class="step active" data-step="1"><span data-translate="step_1_product">Product</span></div>
-                    <div class="step" data-step="2"><span data-translate="step_2_configure">Configure</span></div>
-                    <div class="step" data-step="3"><span data-translate="step_3_details">Details</span></div>
-                    <div class="step" data-step="4"><span data-translate="step_4_submit">Submit</span></div>
+                    <div class="step active" data-step="1"><span>Produkt</span></div>
+                    <div class="step" data-step="2"><span>Konfigurácia</span></div>
+                    <div class="step" data-step="3"><span>Údaje</span></div>
+                    <div class="step" data-step="4"><span>Odoslať</span></div>
                 </div>
 
                 <!-- Step 1: Product Selection -->
                 <div id="wizard-step-1" class="wizard-step active">
                     <div class="section-header" style="text-align: center; margin-bottom: 2rem;">
-                        <h1 data-translate="split_payment_iphone17_title">iPhone 17 on Installments</h1>
-                        <p data-translate="split_payment_select_product_desc" style="font-size: 1.1rem; color: #555;">First, choose the iPhone 17 model you are interested in.</p>
+                        <h1>iPhone 17 na Splátky</h1>
+                        <p style="font-size: 1.1rem; color: #555;">Najprv si vyberte model iPhone 17, o ktorý máte záujem.</p>
                     </div>
                     <div id="product-selection-grid" class="products-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
                         <!-- Product cards will be injected here by JS -->
@@ -84,8 +84,8 @@
                 <!-- Step 2: Configuration and Plan -->
                 <div id="wizard-step-2" class="wizard-step">
                     <div class="section-header" style="text-align: center; margin-bottom: 2rem;">
-                        <h2 data-translate="step_2_configure_title">Configure Your iPhone & Plan</h2>
-                        <p data-translate="step_2_configure_desc">Select storage, color, and your preferred payment plan.</p>
+                        <h2>Nakonfigurujte si svoj iPhone a splátkový plán</h2>
+                        <p>Vyberte si úložisko, farbu a preferovaný splátkový plán.</p>
                     </div>
                     <div class="configuration-grid">
                         <div id="selected-product-summary">
@@ -93,101 +93,101 @@
                         </div>
                         <div class="configuration-options">
                             <div class="form-group">
-                                <label for="storage-select" data-translate="split_payment_select_storage">Storage</label>
+                                <label for="storage-select">Úložisko</label>
                                 <select id="storage-select" class="form-control"></select>
                             </div>
                             <div class="form-group">
-                                <label for="color-select" data-translate="split_payment_select_color">Color</label>
+                                <label for="color-select">Farba</label>
                                 <select id="color-select" class="form-control"></select>
                             </div>
                             <div class="form-group">
-                                <label for="months-select" data-translate="split_payment_choose_plan">Installment Plan</label>
+                                <label for="months-select">Splátkový Plán</label>
                                 <select id="months-select" class="form-control"></select>
                             </div>
                         </div>
                     </div>
                     <div id="calculation-summary" style="display: none;">
-                        <h3 data-translate="split_payment_summary">Installment Summary</h3>
+                        <h3>Súhrn Splátok</h3>
                         <div class="summary-details">
-                            <p><strong data-translate="split_payment_product_price">Product Price:</strong> <span id="summary-price"></span></p>
-                            <p><strong data-translate="split_payment_interest_rate">Interest</strong> (<span id="summary-interest-rate"></span>%): <span id="summary-interest-amount"></span></p>
-                            <p class="total-row"><strong data-translate="split_payment_new_total">Total Price:</strong> <span id="summary-total-price"></span></p>
-                            <p class="monthly-row"><strong data-translate="split_payment_monthly">Monthly Payment:</strong> <span id="summary-monthly"></span></p>
+                            <p><strong>Cena produktu:</strong> <span id="summary-price"></span></p>
+                            <p><strong>Úrok</strong> (<span id="summary-interest-rate"></span>%): <span id="summary-interest-amount"></span></p>
+                            <p class="total-row"><strong>Celková cena:</strong> <span id="summary-total-price"></span></p>
+                            <p class="monthly-row"><strong>Mesačná splátka:</strong> <span id="summary-monthly"></span></p>
                         </div>
                     </div>
                     <div class="wizard-actions">
-                        <button class="btn btn-secondary" data-action="prev"><i class="fas fa-arrow-left"></i> <span data-translate="back">Back</span></button>
-                        <button class="btn btn-primary" data-action="next" disabled><span data-translate="next">Next</span> <i class="fas fa-arrow-right"></i></button>
+                        <button class="btn btn-secondary" data-action="prev"><i class="fas fa-arrow-left"></i> <span>Späť</span></button>
+                        <button class="btn btn-primary" data-action="next" disabled><span>Ďalej</span> <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
 
                 <!-- Step 3: Personal Details -->
                 <div id="wizard-step-3" class="wizard-step">
                     <div class="section-header" style="text-align: center; margin-bottom: 2rem;">
-                        <h2 data-translate="split_payment_your_info">Your Personal Details</h2>
-                        <p data-translate="split_payment_info_desc">This information is required to assess your financing application.</p>
+                        <h2>Vaše Osobné Údaje</h2>
+                        <p>Tieto informácie sú potrebné na posúdenie vašej žiadosti o financovanie.</p>
                     </div>
                     <form id="customer-info-form">
                         <div class="form-row">
-                            <div class="form-group"><label for="customer-name" data-translate="split_payment_full_name">Full Name</label><input type="text" id="customer-name" class="form-control" required></div>
-                            <div class="form-group"><label for="customer-dob" data-translate="split_payment_dob">Date of Birth</label><input type="date" id="customer-dob" class="form-control" required></div>
+                            <div class="form-group"><label for="customer-name">Celé Meno</label><input type="text" id="customer-name" class="form-control" required></div>
+                            <div class="form-group"><label for="customer-dob">Dátum Narodenia</label><input type="date" id="customer-dob" class="form-control" required></div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group"><label for="customer-email" data-translate="split_payment_email">Email Address</label><input type="email" id="customer-email" class="form-control" required></div>
-                            <div class="form-group"><label for="customer-phone" data-translate="split_payment_phone">Phone Number</label><input type="tel" id="customer-phone" class="form-control" required></div>
+                            <div class="form-group"><label for="customer-email">Emailová Adresa</label><input type="email" id="customer-email" class="form-control" required></div>
+                            <div class="form-group"><label for="customer-phone">Telefónne Číslo</label><input type="tel" id="customer-phone" class="form-control" required></div>
                         </div>
-                        <div class="form-group"><label for="customer-national-id" data-translate="split_payment_national_id">National ID / Birth Number</label><input type="text" id="customer-national-id" class="form-control" required></div>
-                        <div class="form-group"><label for="customer-address" data-translate="split_payment_address">Full Residential Address</label><textarea id="customer-address" class="form-control" rows="3" required></textarea></div>
+                        <div class="form-group"><label for="customer-national-id">Rodné Číslo</label><input type="text" id="customer-national-id" class="form-control" required></div>
+                        <div class="form-group"><label for="customer-address">Úplná Adresa Bydliska</label><textarea id="customer-address" class="form-control" rows="3" required></textarea></div>
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="employment-status" data-translate="split_payment_employment_status">Employment Status</label>
+                                <label for="employment-status">Status Zamestnania</label>
                                 <select id="employment-status" class="form-control" required>
-                                    <option value="" data-translate="split_payment_employment_status_choose">-- Select status --</option>
-                                    <option value="employed" data-translate="split_payment_employment_employed">Employed</option>
-                                    <option value="self-employed" data-translate="split_payment_employment_self_employed">Self-Employed</option>
-                                    <option value="student" data-translate="split_payment_employment_student">Student</option>
-                                    <option value="retired" data-translate="split_payment_employment_retired">Retired</option>
-                                    <option value="unemployed" data-translate="split_payment_employment_unemployed">Unemployed</option>
+                                    <option value="">-- Vyberte status --</option>
+                                    <option value="employed">Zamestnaný</option>
+                                    <option value="self-employed">Živnostník</option>
+                                    <option value="student">Študent</option>
+                                    <option value="retired">Dôchodca</option>
+                                    <option value="unemployed">Nezamestnaný</option>
                                 </select>
                             </div>
-                            <div class="form-group"><label for="monthly-income" data-translate="split_payment_monthly_income">Net Monthly Income</label><input type="number" id="monthly-income" class="form-control" required></div>
+                            <div class="form-group"><label for="monthly-income">Čistý Mesačný Príjem</label><input type="number" id="monthly-income" class="form-control" required></div>
                         </div>
-                        <div class="form-group" id="employer-group" style="display: none;"><label for="employer-name" data-translate="split_payment_employer_name">Employer Name</label><input type="text" id="employer-name" class="form-control"></div>
-                        <h4 data-translate="document_uploads">Document Uploads</h4>
+                        <div class="form-group" id="employer-group" style="display: none;"><label for="employer-name">Názov Zamestnávateľa</label><input type="text" id="employer-name" class="form-control"></div>
+                        <h4>Nahranie Dokumentov</h4>
                         <div class="form-row">
-                            <div class="form-group"><label for="id-upload-front" data-translate="split_payment_upload_id_front">Upload ID (Front)</label><input type="file" id="id-upload-front" class="form-control" accept="image/*" required></div>
-                            <div class="form-group"><label for="id-upload-back" data-translate="split_payment_upload_id_back">Upload ID (Back)</label><input type="file" id="id-upload-back" class="form-control" accept="image/*" required></div>
+                            <div class="form-group"><label for="id-upload-front">Nahrať OP (predná strana)</label><input type="file" id="id-upload-front" class="form-control" accept="image/*" required></div>
+                            <div class="form-group"><label for="id-upload-back">Nahrať OP (zadná strana)</label><input type="file" id="id-upload-back" class="form-control" accept="image/*" required></div>
                         </div>
-                        <div class="form-group"><label for="address-proof-upload" data-translate="split_payment_upload_address_proof">Upload Proof of Address</label><input type="file" id="address-proof-upload" class="form-control" accept="image/*,application/pdf"></div>
+                        <div class="form-group"><label for="address-proof-upload">Nahrať Doklad o Adrese</label><input type="file" id="address-proof-upload" class="form-control" accept="image/*,application/pdf"></div>
                     </form>
                     <div class="wizard-actions">
-                        <button class="btn btn-secondary" data-action="prev"><i class="fas fa-arrow-left"></i> <span data-translate="back">Back</span></button>
-                        <button class="btn btn-primary" data-action="next" disabled><span data-translate="next">Next</span> <i class="fas fa-arrow-right"></i></button>
+                        <button class="btn btn-secondary" data-action="prev"><i class="fas fa-arrow-left"></i> <span>Späť</span></button>
+                        <button class="btn btn-primary" data-action="next" disabled><span>Ďalej</span> <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
 
                 <!-- Step 4: Submission -->
                 <div id="wizard-step-4" class="wizard-step">
                     <div class="section-header" style="text-align: center; margin-bottom: 2rem;">
-                        <h2 data-translate="split_payment_agreement_title">Agreement and Submission</h2>
+                        <h2>Súhlas a Odoslanie</h2>
                     </div>
                     <div class="terms-box">
-                        <p data-translate="split_payment_agreement_intro">By submitting this form, you agree to the following terms:</p>
+                        <p>Odoslaním tohto formulára súhlasíte s nasledujúcimi podmienkami:</p>
                         <ol>
-                            <li data-translate="split_payment_term_1">I agree to the processing of my personal data for the purpose of assessing this financing application.</li>
-                            <li data-translate="split_payment_term_2">I confirm that all information provided is true and accurate.</li>
-                            <li data-translate="split_payment_term_3">I understand that submitting this application does not guarantee financing approval. I will be notified of the outcome.</li>
-                            <li data-translate="split_payment_term_4">I agree to be contacted by a company representative regarding this application.</li>
+                            <li>Súhlasím so spracovaním mojich osobných údajov za účelom posúdenia tejto žiadosti o financovanie.</li>
+                            <li>Potvrdzujem, že všetky poskytnuté informácie sú pravdivé a presné.</li>
+                            <li>Rozumiem, že odoslanie tejto žiadosti nezaručuje schválenie financovania. O výsledku budem informovaný.</li>
+                            <li>Súhlasím s tým, aby ma kontaktoval zástupca spoločnosti ohľadom tejto žiadosti.</li>
                         </ol>
                     </div>
                     <div class="form-check">
                         <input type="checkbox" id="terms-agree-checkbox">
-                        <label for="terms-agree-checkbox" data-translate="split_payment_agree_checkbox">I have read and agree to the terms.</label>
+                        <label for="terms-agree-checkbox">Prečítal som si podmienky a súhlasím s nimi.</label>
                     </div>
                     <div class="wizard-actions">
-                        <button class="btn btn-secondary" data-action="prev"><i class="fas fa-arrow-left"></i> <span data-translate="back">Back</span></button>
+                        <button class="btn btn-secondary" data-action="prev"><i class="fas fa-arrow-left"></i> <span>Späť</span></button>
                         <button id="submit-application-btn" class="btn btn-primary" disabled>
-                            <i class="fas fa-paper-plane"></i> <span data-translate="split_payment_submit_application">Submit Application</span>
+                            <i class="fas fa-paper-plane"></i> <span>Odoslať Žiadosť</span>
                         </button>
                     </div>
                 </div>
@@ -195,9 +195,9 @@
                 <!-- Success Message -->
                 <div id="wizard-success-step" class="wizard-step" style="text-align: center;">
                     <i class="fas fa-check-circle" style="font-size: 4rem; color: #28a745; margin-bottom: 1rem;"></i>
-                    <h2 data-translate="thank_you_title">Thank You for Your Application!</h2>
-                    <p data-translate="thank_you_desc">Your financing application has been successfully submitted. Our team will now review it and contact you shortly with the outcome.</p>
-                    <a href="index.html" class="btn btn-primary" style="margin-top: 2rem;" data-translate="back_to_home">Back to Homepage</a>
+                    <h2>Ďakujeme za Vašu Žiadosť!</h2>
+                    <p>Vaša žiadosť o financovanie bola úspešne odoslaná. Náš tím ju teraz skontroluje a čoskoro vás bude kontaktovať s výsledkom.</p>
+                    <a href="index.html" class="btn btn-primary" style="margin-top: 2rem;">Späť na Domovskú Stránku</a>
                 </div>
             </div>
         </div>
