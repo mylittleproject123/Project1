@@ -106,38 +106,133 @@
                         <h2>Vaše Osobné Údaje</h2>
                         <p>Tieto informácie sú potrebné na posúdenie vašej žiadosti o financovanie.</p>
                     </div>
-                    <form id="customer-info-form">
+                    <form id="customer-info-form" class="detailed-form">
+                        <!-- Základné údaje -->
+                        <h4 class="form-section-header">Základné údaje</h4>
                         <div class="form-row">
                             <div class="form-group"><label for="customer-name">Celé Meno</label><input type="text" id="customer-name" class="form-control" required></div>
-                            <div class="form-group"><label for="customer-dob">Dátum Narodenia</label><input type="date" id="customer-dob" class="form-control" required></div>
+                            <div class="form-group"><label for="customer-national-id">Rodné Číslo</label><input type="text" id="customer-national-id" class="form-control" required></div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group"><label for="customer-email">Emailová Adresa</label><input type="email" id="customer-email" class="form-control" required></div>
                             <div class="form-group"><label for="customer-phone">Telefónne Číslo</label><input type="tel" id="customer-phone" class="form-control" required></div>
+                            <div class="form-group">
+                                <label for="nationality">Štátna príslušnosť</label>
+                                <select id="nationality" class="form-control" required>
+                                    <option value="sk">Slovenská republika</option>
+                                    <option value="other">Iná</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-group"><label for="customer-national-id">Rodné Číslo</label><input type="text" id="customer-national-id" class="form-control" required></div>
-                        <div class="form-group"><label for="customer-address">Úplná Adresa Bydliska</label><textarea id="customer-address" class="form-control" rows="3" required></textarea></div>
+
+                        <!-- Rodina a Bývanie -->
+                        <h4 class="form-section-header">Rodina a Bývanie</h4>
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="employment-status">Status Zamestnania</label>
-                                <select id="employment-status" class="form-control" required>
-                                    <option value="">-- Vyberte status --</option>
-                                    <option value="employed">Zamestnaný</option>
-                                    <option value="self-employed">Živnostník</option>
-                                    <option value="student">Študent</option>
-                                    <option value="retired">Dôchodca</option>
-                                    <option value="unemployed">Nezamestnaný</option>
+                                <label for="marital-status">Rodinný stav</label>
+                                <select id="marital-status" class="form-control" required>
+                                    <option value="">-- Vyberte --</option>
+                                    <option value="single">Slobodný/á</option>
+                                    <option value="married">Ženatý/vydatá</option>
+                                    <option value="divorced">Rozvedený/á</option>
+                                    <option value="partner">Druh/družka</option>
+                                    <option value="widowed">Vdovec/vdova</option>
+                                    <option value="registered">Registrovaný/á</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="children-count">Počet vyživovaných detí</label>
+                                <select id="children-count" class="form-control" required>
+                                    <option value="0">Žiadne</option>
+                                    <option value="1">1 dieťa</option>
+                                    <option value="2">2 deti</option>
+                                    <option value="3+">Viac</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="housing-status">Kde bývate?</label>
+                                <select id="housing-status" class="form-control" required>
+                                    <option value="">-- Vyberte --</option>
+                                    <option value="owner">Vlastný dom/byt</option>
+                                    <option value="rent">Podnájom</option>
+                                    <option value="parents">U rodičov</option>
+                                </select>
+                            </div>
+                            <div class="form-group"><label for="customer-address">Úplná Adresa Bydliska</label><input type="text" id="customer-address" class="form-control" required></div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group"><label for="customer-city">Obec</label><input type="text" id="customer-city" class="form-control" required></div>
+                            <div class="form-group"><label for="customer-zip">PSČ</label><input type="text" id="customer-zip" class="form-control" required></div>
+                        </div>
+
+                        <!-- Príjem a Zamestnanie -->
+                        <h4 class="form-section-header">Príjem a Zamestnanie</h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="income-source">Aký je váš hlavný zdroj príjmu?</label>
+                                <select id="income-source" class="form-control" required>
+                                    <option value="">-- Vyberte zdroj --</option>
+                                    <option value="employed">Zamestnanec</option>
+                                    <option value="entrepreneur">Podnikateľ (SZČO)</option>
+                                    <option value="maternity">Materská/Rodičovská dov.</option>
+                                    <option value="other">Iné</option>
                                 </select>
                             </div>
                             <div class="form-group"><label for="monthly-income">Čistý Mesačný Príjem</label><input type="number" id="monthly-income" class="form-control" required></div>
                         </div>
-                        <div class="form-group" id="employer-group" style="display: none;"><label for="employer-name">Názov Zamestnávateľa</label><input type="text" id="employer-name" class="form-control"></div>
-                        <h4>Nahranie Dokumentov</h4>
+
+                        <!-- Podmienená sekcia pre Zamestnanca -->
+                        <div id="employee-details" class="conditional-section">
+                            <h5 class="form-subsection-header">Údaje o zamestnaní</h5>
+                            <div class="form-group"><label for="employer-name">Názov zamestnávateľa</label><input type="text" id="employer-name" class="form-control"></div>
+                            <div class="form-row">
+                                <div class="form-group"><label for="employment-field">Odbor zamestnania</label><input type="text" id="employment-field" class="form-control"></div>
+                                <div class="form-group"><label for="employment-position">Pracovná pozícia</label><input type="text" id="employment-position" class="form-control"></div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group"><label for="contract-type">Typ pracovnej zmluvy</label><select id="contract-type" class="form-control"><option value="permanent">Na dobu neurčitú</option><option value="fixed">Na dobu určitú</option></select></div>
+                                <div class="form-group"><label for="employed-since">V súčasnom zamestnaní pracujem od</label><input type="month" id="employed-since" class="form-control"></div>
+                            </div>
+                        </div>
+
+                        <!-- Podmienená sekcia pre Podnikateľa -->
+                        <div id="entrepreneur-details" class="conditional-section">
+                            <h5 class="form-subsection-header">Údaje o podnikaní</h5>
+                            <div class="form-group"><label for="business-name">Názov spoločnosti / Meno SZČO</label><input type="text" id="business-name" class="form-control"></div>
+                            <div class="form-group"><label for="business-address">Adresa podnikania</label><input type="text" id="business-address" class="form-control"></div>
+                            <div class="form-row">
+                                <div class="form-group"><label for="business-since">Podnikám od</label><input type="month" id="business-since" class="form-control"></div>
+                                <div class="form-group"><label for="business-field">Odbor podnikania</label><input type="text" id="business-field" class="form-control"></div>
+                            </div>
+                        </div>
+
+                        <!-- Vzdelanie a Súhlasy -->
+                        <h4 class="form-section-header">Doplňujúce údaje</h4>
+                        <div class="form-group">
+                            <label for="education-level">Aké je vaše najvyššie dosiahnuté vzdelanie?</label>
+                            <select id="education-level" class="form-control" required>
+                                <option value="">-- Vyberte vzdelanie --</option>
+                                <option value="primary">Základné</option>
+                                <option value="vocational">Učňovské</option>
+                                <option value="secondary">Mám maturitu</option>
+                                <option value="university">Mám vysokoškolský diplom</option>
+                            </select>
+                        </div>
+
+                        <h4 class="form-section-header">Nahranie Dokumentov</h4>
                         <div class="form-row">
                             <div class="form-group"><label for="id-upload-front">Nahrať OP (predná strana)</label><input type="file" id="id-upload-front" class="form-control" accept="image/*" required></div>
                             <div class="form-group"><label for="id-upload-back">Nahrať OP (zadná strana)</label><input type="file" id="id-upload-back" class="form-control" accept="image/*" required></div>
                         </div>
-                        <div class="form-group"><label for="address-proof-upload">Nahrať Doklad o Adrese</label><input type="file" id="address-proof-upload" class="form-control" accept="image/*,application/pdf"></div>
+
+                        <h4 class="form-section-header">Súhlasy</h4>
+                        <div class="form-check">
+                            <input type="checkbox" id="pep-checkbox" required><label for="pep-checkbox">Nie som politicky exponovaná osoba a ani nekonám v jej prospech.</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" id="credit-check-checkbox" required><label for="credit-check-checkbox">Súhlasím so spracovaním údajov pre overenie bonity v úverových registroch.</label>
+                        </div>
                     </form>
                     <div class="wizard-actions">
                         <button class="btn btn-secondary" data-action="prev"><i class="fas fa-arrow-left"></i> <span>Späť</span></button>
