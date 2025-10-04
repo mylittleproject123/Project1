@@ -7,43 +7,44 @@ document.addEventListener('DOMContentLoaded', () => {
             id: 'iphone17',
             name: 'iPhone 17',
             variants: [
-                { storage: '128GB', price: 1099 },
                 { storage: '256GB', price: 1199 },
+                { storage: '512GB', price: 1349 },
             ],
-            colors: ['Polárna žiara', 'Vesmírna čierna', 'Púštna zlatá'],
-            image: 'https://citymagazine.b-cdn.net/wp-content/uploads/2025/08/hero-series-iphone17-2025-0-1400x933.webp'
-        },
-        {
-            id: 'iphone17plus',
-            name: 'iPhone 17 Plus',
-            variants: [
-                { storage: '128GB', price: 1199 },
-                { storage: '256GB', price: 1299 },
+            colors: [
+                { name: 'Polárna žiara', image: 'https://www.apple.com/v/iphone-15/c/images/overview/design/design_hero_pink__f71c1v66xneu_large.jpg' },
+                { name: 'Vesmírna čierna', image: 'https://www.apple.com/v/iphone-15/c/images/overview/design/design_hero_black__db2i9l1e554i_large.jpg' },
+                { name: 'Púštna zlatá', image: 'https://www.apple.com/v/iphone-15/c/images/overview/design/design_hero_green__edc21rtztim6_large.jpg' }
             ],
-            colors: ['Polárna žiara', 'Vesmírna čierna', 'Púštna zlatá'],
-            image: 'https://citymagazine.b-cdn.net/wp-content/uploads/2025/08/hero-series-iphone17-2025-0-1400x933.webp'
+            defaultImage: 'https://citymagazine.b-cdn.net/wp-content/uploads/2025/08/hero-series-iphone17-2025-0-1400x933.webp'
         },
         {
             id: 'iphone17pro',
             name: 'iPhone 17 Pro',
             variants: [
                 { storage: '256GB', price: 1399 },
-                { storage: '512GB', price: 1599 },
-                { storage: '1TB', price: 1799 },
+                { storage: '512GB', price: 1649 },
+                { storage: '1TB', price: 1899 },
             ],
-            colors: ['Titánová čierna', 'Prírodný titán', 'Púštny titán'],
-            image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_display_pro_large.jpg'
+            colors: [
+                { name: 'Titánová čierna', image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_hero_black_titanium__e4y3a1p2ozia_large.jpg' },
+                { name: 'Prírodný titán', image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_hero_natural_titanium__b73a68n5a626_large.jpg' },
+                { name: 'Púštny titán', image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_hero_blue_titanium__w9g1ozg33m2e_large.jpg' }
+            ],
+            defaultImage: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_display_pro_large.jpg'
         },
         {
             id: 'iphone17promax',
             name: 'iPhone 17 Pro Max',
             variants: [
-                { storage: '256GB', price: 1499 },
-                { storage: '512GB', price: 1699 },
-                { storage: '1TB', price: 1899 },
+                { storage: '512GB', price: 1799 },
+                { storage: '1TB', price: 2099 },
             ],
-            colors: ['Titánová čierna', 'Prírodný titán', 'Púštny titán'],
-            image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_display_pro_max_large.jpg'
+            colors: [
+                { name: 'Titánová čierna', image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_hero_black_titanium__e4y3a1p2ozia_large.jpg' },
+                { name: 'Prírodný titán', image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_hero_natural_titanium__b73a68n5a626_large.jpg' },
+                { name: 'Púštny titán', image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_hero_blue_titanium__w9g1ozg33m2e_large.jpg' }
+            ],
+            defaultImage: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_display_pro_max_large.jpg'
         }
     ];
 
@@ -91,14 +92,20 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!productGrid) return;
         productGrid.innerHTML = '';
         products.forEach(product => {
+            const minPrice = product.variants[0].price;
+            const interestRate = 4.9; // Based on the 20-month plan
+            const totalMinPrice = minPrice + (minPrice * (interestRate / 100));
+            const minMonthlyPayment = totalMinPrice / 20;
+
             const card = document.createElement('div');
             card.className = 'product-card';
             card.innerHTML = `
-                <div class="product-image"><img src="${product.image}" alt="${product.name}"></div>
+                <div class="product-image"><img src="${product.defaultImage}" alt="${product.name}"></div>
                 <div class="product-info">
                     <h3 class="product-name">${product.name}</h3>
                     <div class="product-price">
-                        <span class="current-price">Od ${convertPrice(product.variants[0].price, false)}</span>
+                        <span class="current-price">od ${convertPrice(minMonthlyPayment, false)} / mesiac</span>
+                        <span class="original-price" style="font-size: 0.9rem; color: var(--text-light);">Celkovo od ${convertPrice(totalMinPrice, false)}</span>
                     </div>
                     <button class="btn btn-primary select-product-btn" data-product-id="${product.id}">Vybrať Produkt</button>
                 </div>
@@ -190,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function configureProductStep() {
         if (!selectedProductSummary || !storageSelect || !colorSelect) return;
 
-        selectedProductSummary.innerHTML = `<img src="${state.selectedProduct.image}" alt="${state.selectedProduct.name}"><h3>${state.selectedProduct.name}</h3>`;
+        selectedProductSummary.innerHTML = `<img src="${state.selectedProduct.defaultImage}" alt="${state.selectedProduct.name}"><h3>${state.selectedProduct.name}</h3>`;
 
         storageSelect.innerHTML = `<option value="">-- Vyberte úložisko --</option>`;
         state.selectedProduct.variants.forEach(v => {
@@ -199,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         colorSelect.innerHTML = `<option value="">-- Vyberte farbu --</option>`;
         state.selectedProduct.colors.forEach(c => {
-            colorSelect.innerHTML += `<option value="${c}">${c}</option>`;
+            colorSelect.innerHTML += `<option value="${c.name}" data-image="${c.image}">${c.name}</option>`;
         });
 
         resetConfig();
@@ -222,7 +229,13 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             state.selectedVariant = null;
         }
-        state.selectedColor = colorSelect.value || null;
+
+        const colorOption = colorSelect.options[colorSelect.selectedIndex];
+        state.selectedColor = colorOption.value || null;
+        if (colorOption && colorOption.dataset.image) {
+            const summaryImage = selectedProductSummary.querySelector('img');
+            if (summaryImage) summaryImage.src = colorOption.dataset.image;
+        }
 
         const planOption = monthsSelect.options[monthsSelect.selectedIndex];
         state.selectedPlan = {
