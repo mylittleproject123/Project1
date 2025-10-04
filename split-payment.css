@@ -100,6 +100,19 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* --- Product Selection Grid (2x2) --- */
+.products-grid-2x2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    align-items: stretch; /* Ensures cards in the same row have the same height */
+}
+
+.products-grid-2x2 .product-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
 
 /* --- Form & Configuration Styling --- */
 
