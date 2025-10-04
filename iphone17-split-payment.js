@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 { storage: '256GB', price: 1199 },
             ],
             colors: ['Polárna žiara', 'Kozmická čierna', 'Púštne zlato'],
-            image: 'https://citymagazine.b-cdn.net/wp-content/uploads/2025/08/hero-series-iphone17-2025-0-1400x933.webp'
+            image: 'https://cdn.mos.cms.futurecdn.net/YdM93rG2s4gWp22s8R8gqM-1200-80.jpg'
         },
         {
             id: 'iphone17plus',
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 { storage: '256GB', price: 1299 },
             ],
             colors: ['Polárna žiara', 'Kozmická čierna', 'Púštne zlato'],
-            image: 'https://citymagazine.b-cdn.net/wp-content/uploads/2025/08/hero-series-iphone17-2025-0-1400x933.webp'
+            image: 'https://cdn.mos.cms.futurecdn.net/YdM93rG2s4gWp22s8R8gqM-1200-80.jpg'
         },
         {
             id: 'iphone17pro',
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 { storage: '1TB', price: 1799 },
             ],
             colors: ['Titánová čierna', 'Prírodný titán', 'Púštny titán'],
-            image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_display_pro_large.jpg'
+            image: 'https://i.ytimg.com/vi/gS7-F3x3f3g/maxresdefault.jpg'
         },
         {
             id: 'iphone17promax',
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 { storage: '1TB', price: 1899 },
             ],
             colors: ['Titánová čierna', 'Prírodný titán', 'Púštny titán'],
-            image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_display_pro_max_large.jpg'
+            image: 'https://i.ytimg.com/vi/gS7-F3x3f3g/maxresdefault.jpg'
         }
     ];
 
