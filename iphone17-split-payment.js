@@ -85,9 +85,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 { storage: '512GB', price: 1349 },
             ],
             colors: [
-                { name: 'Polárna žiara', image: 'https://www.apple.com/v/iphone-15/c/images/overview/design/design_hero_pink__f71c1v66xneu_large.jpg' },
-                { name: 'Vesmírna čierna', image: 'https://www.apple.com/v/iphone-15/c/images/overview/design/design_hero_black__db2i9l1e554i_large.jpg' },
-                { name: 'Púštna zlatá', image: 'https://www.apple.com/v/iphone-15/c/images/overview/design/design_hero_green__edc21rtztim6_large.jpg' }
+                { name: 'Hmlovo modrý', image: 'https://image.alza.cz/products/RI054b3/RI054b3.jpg?width=500&height=500' },
+                { name: 'Salviovo zelený', image: 'https://image.alza.cz/products/RI054c4/RI054c4.jpg?width=500&height=500' },
+                { name: 'Čierny', image: 'https://image.alza.cz/products/RI054b1/RI054b1-SK.jpg?width=500&height=500' }
             ],
             defaultImage: 'https://citymagazine.b-cdn.net/wp-content/uploads/2025/08/hero-series-iphone17-2025-0-1400x933.webp'
         },
@@ -100,9 +100,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 { storage: '1TB', price: 1899 },
             ],
             colors: [
-                { name: 'Titánová čierna', image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_hero_black_titanium__e4y3a1p2ozia_large.jpg' },
-                { name: 'Prírodný titán', image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_hero_natural_titanium__b73a68n5a626_large.jpg' },
-                { name: 'Púštny titán', image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_hero_blue_titanium__w9g1ozg33m2e_large.jpg' }
+                { name: 'Polnočný', image: 'https://image.alza.cz/products/RI055b1/RI055b1.jpg?width=500&height=500' },
+                { name: 'Kozmicky oranžový', image: 'https://image.alza.cz/products/RI055b2/RI055b2.jpg?width=500&height=500' },
+                { name: 'Strieborný', image: 'https://image.alza.cz/products/RI055c3/RI055c3.jpg?width=500&height=500' }
             ],
             defaultImage: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_display_pro_large.jpg'
         },
@@ -114,9 +114,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 { storage: '1TB', price: 2099 },
             ],
             colors: [
-                { name: 'Titánová čierna', image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_hero_black_titanium__e4y3a1p2ozia_large.jpg' },
-                { name: 'Prírodný titán', image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_hero_natural_titanium__b73a68n5a626_large.jpg' },
-                { name: 'Púštny titán', image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_hero_blue_titanium__w9g1ozg33m2e_large.jpg' }
+                { name: 'Polnočný', image: 'https://image.alza.cz/products/RI056c3/RI056c3.jpg?width=500&height=500' },
+                { name: 'Kozmicky oranžový', image: 'https://image.alza.cz/products/RI056b2/RI056b2.jpg?width=500&height=500' },
+                { name: 'Strieborný', image: 'https://image.alza.cz/products/RI056b1/RI056b1.jpg?width=500&height=500' }
             ],
             defaultImage: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_display_pro_max_large.jpg'
         }
