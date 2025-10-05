@@ -326,6 +326,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (summaryImage) summaryImage.src = colorOption.dataset.image;
         }
 
+        // Update the image in the summary when a color is selected
+        if (state.selectedColor && state.selectedProduct) {
+            const summaryImage = selectedProductSummary.querySelector('img');
+            if (summaryImage) summaryImage.src = colorOption.dataset.image;
+        }
+
         const planOption = monthsSelect.options[monthsSelect.selectedIndex];
         state.selectedPlan = {
             months: parseInt(planOption.value),
