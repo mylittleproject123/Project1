@@ -2,7 +2,76 @@ document.addEventListener('DOMContentLoaded', () => {
     // This script is for the wizard-style split payment page (iphone17-split-payment.html)
 
     // Define products locally for this page to ensure it's self-contained.
-    const productsForSplitPaymentIphone17 = [
+    const productsForSplitPaymentIphone17 = [        
+        {
+            id: 'iphone17',
+            name: 'iPhone 17',
+            variants: [
+                { storage: '256GB', price: 1199 },
+                { storage: '512GB', price: 1349 },
+            ],
+            colors: [
+                { name: 'Hmlovo modrý', image: 'https://image.alza.cz/products/RI054b3/RI054b3.jpg?width=500&height=500' },
+                { name: 'Salviovo zelený', image: 'https://image.alza.cz/products/RI054c4/RI054c4.jpg?width=500&height=500' },
+                { name: 'Čierny', image: 'https://image.alza.cz/products/RI054b1/RI054b1-SK.jpg?width=500&height=500' }
+            ],
+            defaultImage: 'https://image.alza.cz/products/RI054b1/RI054b1-SK.jpg?width=500&height=500'
+        },
+        {
+            id: 'iphone17pro',
+            name: 'iPhone 17 Pro',
+            variants: [
+                { storage: '256GB', price: 1399 },
+                { storage: '512GB', price: 1649 },
+                { storage: '1TB', price: 1899 },
+            ],
+            colors: [
+                { name: 'Polnočný', image: 'https://image.alza.cz/products/RI055b1/RI055b1.jpg?width=500&height=500' },
+                { name: 'Kozmicky oranžový', image: 'https://image.alza.cz/products/RI055b2/RI055b2.jpg?width=500&height=500' },
+                { name: 'Strieborný', image: 'https://image.alza.cz/products/RI055c3/RI055c3.jpg?width=500&height=500' }
+            ],
+            defaultImage: 'https://image.alza.cz/products/RI055b2/RI055b2.jpg?width=500&height=500'
+        },
+        {
+            id: 'iphone17promax',
+            name: 'iPhone 17 Pro Max',
+            variants: [
+                { storage: '512GB', price: 1799 },
+                { storage: '1TB', price: 2099 },
+            ],
+            colors: [
+                { name: 'Polnočný', image: 'https://image.alza.cz/products/RI056c3/RI056c3.jpg?width=500&height=500' },
+                { name: 'Kozmicky oranžový', image: 'https://image.alza.cz/products/RI056b2/RI056b2.jpg?width=500&height=500' },
+                { name: 'Strieborný', image: 'https://image.alza.cz/products/RI056b1/RI056b1.jpg?width=500&height=500' }
+            ],
+            defaultImage: 'https://image.alza.cz/products/RI056b2/RI056b2.jpg?width=500&height=500'
+        },
+        {
+            id: 'iphone16promax',
+            name: 'iPhone 16 Pro Max',
+            variants: [
+                { storage: '256GB', price: 1200 },
+                { storage: '512GB', price: 1350 },
+                { storage: '1TB', price: 1500 },
+            ],
+            colors: [
+                { name: 'Čierny titán', image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_hero_black_titanium__e4y3a1p2ozia_large.jpg' },
+                { name: 'Púštny titán', image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_hero_natural_titanium__b73a68n5a626_large.jpg' }
+            ],
+            defaultImage: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_display_pro_max_large.jpg'
+        },
+        {
+            id: 'iphone15promax',
+            name: 'iPhone 15 Pro Max',
+            variants: [
+                { storage: '256GB', price: 1100 },
+                { storage: '512GB', price: 1250 },
+            ],
+            colors: [
+                { name: 'Čierny titán', image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_hero_black_titanium__e4y3a1p2ozia_large.jpg' }
+            ],
+            defaultImage: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_display_pro_max_large.jpg'
+        },
         {
             id: 'galaxys25ultra',
             name: 'Samsung Galaxy S25 Ultra',
@@ -50,75 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 { name: 'Onyx Black', image: 'https://m.media-amazon.com/images/I/61uakkLoHxL._AC_SX569_.jpg' }
             ],
             defaultImage: 'https://m.media-amazon.com/images/I/61uakkLoHxL._AC_SX569_.jpg'
-        },
-        {
-            id: 'iphone16promax',
-            name: 'iPhone 16 Pro Max',
-            variants: [
-                { storage: '256GB', price: 1200 },
-                { storage: '512GB', price: 1350 },
-                { storage: '1TB', price: 1500 },
-            ],
-            colors: [
-                { name: 'Čierny titán', image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_hero_black_titanium__e4y3a1p2ozia_large.jpg' },
-                { name: 'Púštny titán', image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_hero_natural_titanium__b73a68n5a626_large.jpg' }
-            ],
-            defaultImage: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_display_pro_max_large.jpg'
-        },
-        {
-            id: 'iphone15promax',
-            name: 'iPhone 15 Pro Max',
-            variants: [
-                { storage: '256GB', price: 1100 },
-                { storage: '512GB', price: 1250 },
-            ],
-            colors: [
-                { name: 'Čierny titán', image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_hero_black_titanium__e4y3a1p2ozia_large.jpg' }
-            ],
-            defaultImage: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_display_pro_max_large.jpg'
-        },
-        {
-            id: 'iphone17',
-            name: 'iPhone 17',
-            variants: [
-                { storage: '256GB', price: 1199 },
-                { storage: '512GB', price: 1349 },
-            ],
-            colors: [
-                { name: 'Hmlovo modrý', image: 'https://image.alza.cz/products/RI054b3/RI054b3.jpg?width=500&height=500' },
-                { name: 'Salviovo zelený', image: 'https://image.alza.cz/products/RI054c4/RI054c4.jpg?width=500&height=500' },
-                { name: 'Čierny', image: 'https://image.alza.cz/products/RI054b1/RI054b1-SK.jpg?width=500&height=500' }
-            ],
-            defaultImage: 'https://citymagazine.b-cdn.net/wp-content/uploads/2025/08/hero-series-iphone17-2025-0-1400x933.webp'
-        },
-        {
-            id: 'iphone17pro',
-            name: 'iPhone 17 Pro',
-            variants: [
-                { storage: '256GB', price: 1399 },
-                { storage: '512GB', price: 1649 },
-                { storage: '1TB', price: 1899 },
-            ],
-            colors: [
-                { name: 'Polnočný', image: 'https://image.alza.cz/products/RI055b1/RI055b1.jpg?width=500&height=500' },
-                { name: 'Kozmicky oranžový', image: 'https://image.alza.cz/products/RI055b2/RI055b2.jpg?width=500&height=500' },
-                { name: 'Strieborný', image: 'https://image.alza.cz/products/RI055c3/RI055c3.jpg?width=500&height=500' }
-            ],
-            defaultImage: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_display_pro_large.jpg'
-        },
-        {
-            id: 'iphone17promax',
-            name: 'iPhone 17 Pro Max',
-            variants: [
-                { storage: '512GB', price: 1799 },
-                { storage: '1TB', price: 2099 },
-            ],
-            colors: [
-                { name: 'Polnočný', image: 'https://image.alza.cz/products/RI056c3/RI056c3.jpg?width=500&height=500' },
-                { name: 'Kozmicky oranžový', image: 'https://image.alza.cz/products/RI056b2/RI056b2.jpg?width=500&height=500' },
-                { name: 'Strieborný', image: 'https://image.alza.cz/products/RI056b1/RI056b1.jpg?width=500&height=500' }
-            ],
-            defaultImage: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_display_pro_max_large.jpg'
         }
     ];
 
