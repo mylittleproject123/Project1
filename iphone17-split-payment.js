@@ -11,9 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 { storage: '512GB', price: 1350 },
             ],
             colors: [
-                { name: 'Titanium Black', image: 'https://m.media-amazon.com/images/I/71I-leJ7QVL._AC_SX679_.jpg' }
+                { name: 'Titanium Black', image: 'https://m.media-amazon.com/images/I/71I-leJ7QVL._AC_SL1500_.jpg' }
             ],
-            defaultImage: 'https://m.media-amazon.com/images/I/71I-leJ7QVL._AC_SX679_.jpg'
+            defaultImage: 'https://m.media-amazon.com/images/I/71I-leJ7QVL._AC_SL1500_.jpg'
         },
         {
             id: 'galaxys25',
@@ -35,9 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 { storage: '512GB', price: 1250 },
             ],
             colors: [
-                { name: 'Titanium Black', image: 'https://m.media-amazon.com/images/I/71I-leJ7QVL._AC_SX679_.jpg' }
+                { name: 'Titanium Black', image: 'https://m.media-amazon.com/images/I/71I-leJ7QVL._AC_SL1500_.jpg' }
             ],
-            defaultImage: 'https://m.media-amazon.com/images/I/71I-leJ7QVL._AC_SX679_.jpg'
+            defaultImage: 'https://m.media-amazon.com/images/I/71I-leJ7QVL._AC_SL1500_.jpg'
         },
         {
             id: 'galaxys24',
