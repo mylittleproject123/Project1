@@ -55,10 +55,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 { storage: '1TB', price: 1500 },
             ],
             colors: [
-                { name: 'Čierny titán', image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_hero_black_titanium__e4y3a1p2ozia_large.jpg' },
-                { name: 'Púštny titán', image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_hero_natural_titanium__b73a68n5a626_large.jpg' }
+                { name: 'Čierny titán', image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-7inch-blacktitanium?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1692845702174' },
+                { name: 'Púštny titán', image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-7inch-naturaltitanium?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1692845702174' }
             ],
-            defaultImage: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_display_pro_max_large.jpg'
+            defaultImage: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-7inch-blacktitanium?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1692845702174'
         },
         {
             id: 'iphone15promax',
@@ -68,9 +68,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 { storage: '512GB', price: 1250 },
             ],
             colors: [
-                { name: 'Čierny titán', image: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_hero_black_titanium__e4y3a1p2ozia_large.jpg' }
+                { name: 'Čierny titán', image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-7inch-blacktitanium?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1692845702174' }
             ],
-            defaultImage: 'https://www.apple.com/v/iphone-15-pro/c/images/overview/design/design_display_pro_max_large.jpg'
+            defaultImage: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-7inch-blacktitanium?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1692845702174'
         },
         {
             id: 'galaxys25ultra',
@@ -80,9 +80,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 { storage: '512GB', price: 1350 },
             ],
             colors: [
-                { name: 'Titanium Black', image: 'https://m.media-amazon.com/images/I/71I-leJ7QVL._AC_SL1500_.jpg' }
+                { name: 'Titanium Black', image: 'https://images.samsung.com/is/image/samsung/p6pim/sk/2401/gallery/sk-galaxy-s24-ultra-sm-s928-478315-sm-s928bztgskc-539300069?$650_519_PNG$' }
             ],
-            defaultImage: 'https://m.media-amazon.com/images/I/71I-leJ7QVL._AC_SL1500_.jpg'
+            defaultImage: 'https://images.samsung.com/is/image/samsung/p6pim/sk/2401/gallery/sk-galaxy-s24-ultra-sm-s928-478315-sm-s928bztgskc-539300069?$650_519_PNG$'
         },
         {
             id: 'galaxys25',
@@ -104,9 +104,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 { storage: '512GB', price: 1250 },
             ],
             colors: [
-                { name: 'Titanium Black', image: 'https://m.media-amazon.com/images/I/71I-leJ7QVL._AC_SL1500_.jpg' }
+                { name: 'Titanium Black', image: 'https://images.samsung.com/is/image/samsung/p6pim/sk/2401/gallery/sk-galaxy-s24-ultra-sm-s928-478315-sm-s928bztgskc-539300069?$650_519_PNG$' }
             ],
-            defaultImage: 'https://m.media-amazon.com/images/I/71I-leJ7QVL._AC_SL1500_.jpg'
+            defaultImage: 'https://images.samsung.com/is/image/samsung/p6pim/sk/2401/gallery/sk-galaxy-s24-ultra-sm-s928-478315-sm-s928bztgskc-539300069?$650_519_PNG$'
         },
         {
             id: 'galaxys24',
