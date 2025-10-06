@@ -177,14 +177,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function populateProductGrid(products) {
         if (!productSelectionContainer) return;
 
-        const row1 = document.getElementById('product-row-iphones-17');
-        const row2 = document.getElementById('product-row-iphones-16-15');
-        const row3 = document.getElementById('product-row-samsung-25');
-        const row4 = document.getElementById('product-row-samsung-24');
-        const otherRow = document.getElementById('product-row-other');
+        const row1 = document.getElementById('product-row-iphones-17'); // Correct ID from HTML
+        const row2 = document.getElementById('product-row-iphones-16-15'); // Correct ID from HTML
+        const row3 = document.getElementById('product-row-samsung-25'); // Correct ID from HTML
+        const row4 = document.getElementById('product-row-samsung-24'); // Correct ID from HTML
 
         // Clear only existing rows to prevent errors if one is not found
-        [row1, row2, row3, row4, otherRow].forEach(row => {
+        [row1, row2, row3, row4].forEach(row => {
             if (row) row.innerHTML = '';
         });
 
