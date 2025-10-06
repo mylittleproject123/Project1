@@ -134,7 +134,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- DOM ELEMENTS ---
     const wizardSteps = document.querySelectorAll('.wizard-step');
     const stepIndicators = document.querySelectorAll('.step');
-    const productGrid = document.getElementById('product-selection-grid');
     
     // Step 2 elements
     const selectedProductSummary = document.getElementById('selected-product-summary');
@@ -175,28 +174,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- UI POPULATION ---
     function populateProductGrid(products) {
-        if (!productGrid) return;
-        productGrid.innerHTML = '';
-        products.forEach(product => {
+        const row1 = document.getElementById('product-row-iphones-17'); // Correct ID from HTML
+        const row2 = document.getElementById('product-row-iphones-16-15'); // Correct ID from HTML
+        const row3 = document.getElementById('product-row-samsung-25'); // Correct ID from HTML
+        const row4 = document.getElementById('product-row-samsung-24'); // Correct ID from HTML
+
+        // Clear only existing rows to prevent errors if one is not found
+        [row1, row2, row3, row4].forEach(row => {
+            if (row) row.innerHTML = '';
+        });
+
+        const createCardHTML = (product) => {
             const minPrice = product.variants[0].price;
             const interestRate = 4.9; // Based on the 20-month plan
             const totalMinPrice = minPrice + (minPrice * (interestRate / 100));
             const minMonthlyPayment = totalMinPrice / 20;
-
-            const card = document.createElement('div');
-            card.className = 'product-card';
-            card.innerHTML = `
+            return `
+            <div class="product-card">
                 <div class="product-image"><img src="${product.defaultImage}" alt="${product.name}"></div>
                 <div class="product-info">
                     <h3 class="product-name">${product.name}</h3>
                     <div class="product-price">
-                        <span class="current-price">od ${convertPrice(minMonthlyPayment, false)} / mesiac</span>
-                        <span class="original-price" style="font-size: 0.9rem; color: var(--text-light);">Celkovo od ${convertPrice(totalMinPrice, false)}</span>
+                        <span class="current-price">od ${convertPrice(minMonthlyPayment, false)} / mes.</span>
+                        <span class="original-price">Celkovo od ${convertPrice(totalMinPrice, false)}</span>
                     </div>
                     <button class="btn btn-primary select-product-btn" data-product-id="${product.id}">Vybrať Produkt</button>
                 </div>
-            `;
-            productGrid.appendChild(card);
+            </div>`;
+        };
+
+        products.forEach(product => {
+            const cardHTML = createCardHTML(product);
+            if (['iphone17', 'iphone17pro', 'iphone17promax'].includes(product.id)) {
+                if (row1) row1.innerHTML += cardHTML;
+            } else if (['iphone16promax', 'iphone15promax'].includes(product.id)) {
+                if (row2) row2.innerHTML += cardHTML;
+            } else if (['galaxys25ultra', 'galaxys25'].includes(product.id)) {
+                if (row3) row3.innerHTML += cardHTML;
+            } else if (['galaxys24ultra', 'galaxys24'].includes(product.id)) {
+                if (row4) row4.innerHTML += cardHTML;
+            }
         });
     }
 
@@ -227,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- EVENT LISTENERS ---
     function setupEventListeners(products) {
         // Product selection
-        productGrid?.addEventListener('click', e => {
+        document.getElementById('wizard-step-1')?.addEventListener('click', e => {
             if (e.target.classList.contains('select-product-btn')) {
                 const productId = e.target.dataset.productId;
                 state.selectedProduct = products.find(p => p.id === productId);
