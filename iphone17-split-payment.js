@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 { storage: '1TB', price: 1500 },
             ],
             colors: [
-                { name: 'Čierny titán', image: 'https://m.media-amazon.com/images/I/61UMlmDXG+L.AC_SX466.jpg' },
+                { name: 'Čierny titán', image: 'https://m.media-amazon.com/images/I/61UMlmDXG+L._AC_SX466_.jpg' },
                 { name: 'Púštny titán', image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-7inch-naturaltitanium?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1692845702174' }
             ],
             defaultImage: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-7inch-blacktitanium?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1692845702174'
