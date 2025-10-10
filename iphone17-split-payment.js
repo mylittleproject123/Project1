@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 { storage: '1TB', price: 1500 },
             ],
             colors: [
-                { name: 'Čierny titán', image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-7inch-blacktitanium?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1692845702174' },
+                { name: 'Čierny titán', image: 'https://cdn.myshoptet.com/usr/swipeshopeu/user/shop/big/253-1_iphone-15-pro-max-black-titanium-finish-select-2023.webp?654f3c5e' },
                 { name: 'Púštny titán', image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-7inch-naturaltitanium?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1692845702174' }
             ],
             defaultImage: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-7inch-blacktitanium?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1692845702174'
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 { storage: '512GB', price: 1250 },
             ],
             colors: [
-                { name: 'Čierny titán', image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-7inch-blacktitanium?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1692845702174' }
+                { name: 'Čierny titán', image: 'https://cdn.myshoptet.com/usr/swipeshopeu/user/shop/big/253-1_iphone-15-pro-max-black-titanium-finish-select-2023.webp?654f3c5e' }
             ],
             defaultImage: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-7inch-blacktitanium?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1692845702174'
         },
@@ -92,9 +92,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 { storage: '256GB', price: 1050 },
             ],
             colors: [
-                { name: 'Titanium Black', image: 'https://m.media-amazon.com/images/I/61C17Al0dhL._AC_SX569_.jpg' }
+                { name: 'Titanium Black', image: 'https://cdn.myshoptet.com/usr/swipeshopeu/user/shop/big/453_samsung-galaxy-s24-5g-sm-s921-256gb-black-44547.jpg?65c9815a' }
+                { name: 'Onyx Black', image: 'https://images.samsung.com/is/image/samsung/p6pim/sk/2401/gallery/sk-galaxy-s24-plus-sm-s926-sm-s926nzkoskc-539299731?$650_519_PNG$' }
             ],
-            defaultImage: 'https://m.media-amazon.com/images/I/61C17Al0dhL._AC_SX569_.jpg'
+            defaultImage: 'https://images.samsung.com/is/image/samsung/p6pim/sk/2401/gallery/sk-galaxy-s24-plus-sm-s926-sm-s926nzkoskc-539299731?$650_519_PNG$'
         },
         {
             id: 'galaxys24ultra',
@@ -116,9 +117,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 { storage: '256GB', price: 950 },
             ],
             colors: [
-                { name: 'Onyx Black', image: 'https://m.media-amazon.com/images/I/61uakkLoHxL._AC_SX569_.jpg' }
+                { name: 'Onyx Black', image: 'https://cdn.myshoptet.com/usr/swipeshopeu/user/shop/big/450_samsung-galaxy-s24-sm-s921-128gb-black-44544.jpg?65c98159' }
+                { name: 'Onyx Black', image: 'https://images.samsung.com/is/image/samsung/p6pim/sk/2401/gallery/sk-galaxy-s24-plus-sm-s926-sm-s926nzkoskc-539299731?$650_519_PNG$' }
             ],
-            defaultImage: 'https://m.media-amazon.com/images/I/61uakkLoHxL._AC_SX569_.jpg'
+            defaultImage: 'https://images.samsung.com/is/image/samsung/p6pim/sk/2401/gallery/sk-galaxy-s24-plus-sm-s926-sm-s926nzkoskc-539299731?$650_519_PNG$'
         }
     ];
 
@@ -187,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const createCardHTML = (product) => {
             const minPrice = product.variants[0].price;
             const interestRate = 4.9; // Based on the 20-month plan
-            const totalMinPrice = minPrice + (minPrice * (interestRate / 100));
+            const totalMinPrice = minPrice + (minPrice * (interestRate / 100)); //4.9% interest rate
             const minMonthlyPayment = totalMinPrice / 20;
             return `
             <div class="product-card">
@@ -450,3 +452,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- START ---
     initializePage();
 });
+
+
+//The interest rate is set to 4.9% which matches "Nízky úrok 4,9% p.a.".
