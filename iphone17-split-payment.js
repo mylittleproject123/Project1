@@ -92,7 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 { storage: '256GB', price: 1050 },
             ],
             colors: [
-                { name: 'Titanium Black', image: 'https://cdn.myshoptet.com/usr/swipeshopeu/user/shop/big/453_samsung-galaxy-s24-5g-sm-s921-256gb-black-44547.jpg?65c9815a' }
                 { name: 'Onyx Black', image: 'https://images.samsung.com/is/image/samsung/p6pim/sk/2401/gallery/sk-galaxy-s24-plus-sm-s926-sm-s926nzkoskc-539299731?$650_519_PNG$' }
             ],
             defaultImage: 'https://images.samsung.com/is/image/samsung/p6pim/sk/2401/gallery/sk-galaxy-s24-plus-sm-s926-sm-s926nzkoskc-539299731?$650_519_PNG$'
@@ -117,7 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 { storage: '256GB', price: 950 },
             ],
             colors: [
-                { name: 'Onyx Black', image: 'https://cdn.myshoptet.com/usr/swipeshopeu/user/shop/big/450_samsung-galaxy-s24-sm-s921-128gb-black-44544.jpg?65c98159' }
                 { name: 'Onyx Black', image: 'https://images.samsung.com/is/image/samsung/p6pim/sk/2401/gallery/sk-galaxy-s24-plus-sm-s926-sm-s926nzkoskc-539299731?$650_519_PNG$' }
             ],
             defaultImage: 'https://images.samsung.com/is/image/samsung/p6pim/sk/2401/gallery/sk-galaxy-s24-plus-sm-s926-sm-s926nzkoskc-539299731?$650_519_PNG$'
