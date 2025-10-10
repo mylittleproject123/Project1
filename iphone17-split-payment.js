@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 { storage: '1TB', price: 1500 },
             ],
             colors: [
-                { name: 'Čierny titán', image: 'https://cdn.myshoptet.com/usr/swipeshopeu/user/shop/big/253-1_iphone-15-pro-max-black-titanium-finish-select-2023.webp?654f3c5e' },
+                { name: 'Čierny titán', image: 'https://m.media-amazon.com/images/I/61UMlmDXG+L.AC_SX466.jpg' },
                 { name: 'Púštny titán', image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-7inch-naturaltitanium?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1692845702174' }
             ],
             defaultImage: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-7inch-blacktitanium?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1692845702174'
@@ -68,9 +68,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 { storage: '512GB', price: 1250 },
             ],
             colors: [
-                { name: 'Čierny titán', image: 'https://cdn.myshoptet.com/usr/swipeshopeu/user/shop/big/253-1_iphone-15-pro-max-black-titanium-finish-select-2023.webp?654f3c5e' }
+                { name: 'Čierny titán', image: 'https://m.media-amazon.com/images/I/61v5Jay9F5L._AC_SX569_.jpg' }
             ],
-            defaultImage: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-7inch-blacktitanium?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1692845702174'
+            defaultImage: 'https://m.media-amazon.com/images/I/61v5Jay9F5L._AC_SX569_.jpg'
         },
         {
             id: 'galaxys25ultra',
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 { storage: '128GB', price: 950 },
                 { storage: '256GB', price: 1050 },
             ],
-            colors: [
+              colors: [
                 { name: 'Onyx Black', image: 'https://images.samsung.com/is/image/samsung/p6pim/sk/2401/gallery/sk-galaxy-s24-plus-sm-s926-sm-s926nzkoskc-539299731?$650_519_PNG$' }
             ],
             defaultImage: 'https://images.samsung.com/is/image/samsung/p6pim/sk/2401/gallery/sk-galaxy-s24-plus-sm-s926-sm-s926nzkoskc-539299731?$650_519_PNG$'
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 { storage: '128GB', price: 850 },
                 { storage: '256GB', price: 950 },
             ],
-            colors: [
+             colors: [
                 { name: 'Onyx Black', image: 'https://images.samsung.com/is/image/samsung/p6pim/sk/2401/gallery/sk-galaxy-s24-plus-sm-s926-sm-s926nzkoskc-539299731?$650_519_PNG$' }
             ],
             defaultImage: 'https://images.samsung.com/is/image/samsung/p6pim/sk/2401/gallery/sk-galaxy-s24-plus-sm-s926-sm-s926nzkoskc-539299731?$650_519_PNG$'
