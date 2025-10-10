@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 { storage: '512GB', price: 1350 },
             ],
             colors: [
-                { name: 'Titanium Black', image: 'https://images.samsung.com/is/image/samsung/p6pim/sk/2401/gallery/sk-galaxy-s24-ultra-sm-s928-478315-sm-s928bztgskc-539300069?$650_519_PNG$' }
+                { name: 'Titanium Black', image: 'https://m.media-amazon.com/images/I/61n0lmxP5-L._AC_SX569_.jpg' }
             ],
             defaultImage: 'https://images.samsung.com/is/image/samsung/p6pim/sk/2401/gallery/sk-galaxy-s24-ultra-sm-s928-478315-sm-s928bztgskc-539300069?$650_519_PNG$'
         },
@@ -91,11 +91,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 { storage: '128GB', price: 950 },
                 { storage: '256GB', price: 1050 },
             ],
-              colors: [
-                { name: 'Onyx Black', image: 'https://images.samsung.com/is/image/samsung/p6pim/sk/2401/gallery/sk-galaxy-s24-plus-sm-s926-sm-s926nzkoskc-539299731?$650_519_PNG$' }
+            colors: [
+                { name: 'Onyx Black', image: 'https://m.media-amazon.com/images/I/61n0lmxP5-L._AC_SX569_.jpg' }
             ],
-            defaultImage: 'https://images.samsung.com/is/image/samsung/p6pim/sk/2401/gallery/sk-galaxy-s24-plus-sm-s926-sm-s926nzkoskc-539299731?$650_519_PNG$'
-        },
+           defaultImage: 'https://m.media-amazon.com/images/I/61n0lmxP5-L._AC_SX569_.jpg'
+       },
         {
             id: 'galaxys24ultra',
             name: 'Samsung Galaxy S24 Ultra',
@@ -103,11 +103,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 { storage: '256GB', price: 1150 },
                 { storage: '512GB', price: 1250 },
             ],
-            colors: [
-                { name: 'Titanium Black', image: 'https://images.samsung.com/is/image/samsung/p6pim/sk/2401/gallery/sk-galaxy-s24-ultra-sm-s928-478315-sm-s928bztgskc-539300069?$650_519_PNG$' }
+           colors: [
+                { name: 'Titanium Black', image: 'https://m.media-amazon.com/images/I/51E3rux4DgL.__AC_SX300_SY300_QL70_FMwebp_.jpg' }
             ],
-            defaultImage: 'https://images.samsung.com/is/image/samsung/p6pim/sk/2401/gallery/sk-galaxy-s24-ultra-sm-s928-478315-sm-s928bztgskc-539300069?$650_519_PNG$'
-        },
+           defaultImage: 'https://m.media-amazon.com/images/I/51E3rux4DgL.__AC_SX300_SY300_QL70_FMwebp_.jpg'
+       },
         {
             id: 'galaxys24',
             name: 'Samsung Galaxy S24',
@@ -115,10 +115,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 { storage: '128GB', price: 850 },
                 { storage: '256GB', price: 950 },
             ],
-             colors: [
-                { name: 'Onyx Black', image: 'https://images.samsung.com/is/image/samsung/p6pim/sk/2401/gallery/sk-galaxy-s24-plus-sm-s926-sm-s926nzkoskc-539299731?$650_519_PNG$' }
+           colors: [
+                { name: 'Onyx Black', image: 'https://m.media-amazon.com/images/I/51bdK6FaR-L._AC_SX569_.jpg' }
             ],
-            defaultImage: 'https://images.samsung.com/is/image/samsung/p6pim/sk/2401/gallery/sk-galaxy-s24-plus-sm-s926-sm-s926nzkoskc-539299731?$650_519_PNG$'
+           defaultImage: 'https://m.media-amazon.com/images/I/51bdK6FaR-L._AC_SX569_.jpg'
         }
     ];
 
