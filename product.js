@@ -1,7 +1,7 @@
 // Translation data - check if already defined to prevent duplicate declaration
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     if (typeof window.translations === 'undefined') {
-    window.translations = {
+        window.translations = {
     es: {
         home: "Inicio",
         products: "Productos",
@@ -3695,7 +3695,6 @@ function setupCountrySwitcherLinks() {
 }
 
 // Initialize page
-document.addEventListener('DOMContentLoaded', async () => {    // Only run this code on the product.html page
     if (!document.querySelector('.product-detail')) {
         return;
     }
