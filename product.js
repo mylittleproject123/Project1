@@ -3265,6 +3265,40 @@ galaxys21ultra: {
     }
 }
 
+function getBusinessAddress() {
+    switch(currentCountry) {
+        case 'cs':
+            return {
+                address: 'Václavské náměstí 1',
+                city: 'Praha 1',
+                country: 'Česká republika'
+            };
+        case 'sk':
+            return {
+                address: 'Obchodná 25',
+                city: 'Bratislava',
+                country: 'Slovensko'
+            };
+        case 'hu':
+            return {
+                address: 'Váci utca 10',
+                city: 'Budapest',
+                country: 'Maďarsko'
+            };
+        case 'at':
+            return {
+                address: 'Mariahilfer Str. 5',
+                city: 'Wien',
+                country: 'Rakúsko'
+            };
+        default:
+            return {
+                address: 'Hlavná Technologická Ulica 1',
+                city: 'Hlavné Mesto',
+                country: countryConfig[currentCountry].name
+            };
+    }
+}
 function updateFooterFromBusinessAddress() {
     const businessAddress = getBusinessAddress();
     const countryInfo = countryConfig[currentCountry];
