@@ -161,7 +161,164 @@ const translations = window.translations || {
         split_payment_what_next_desc: "Después de pagar el depósito del 50%, nuestro equipo te contactará por WhatsApp para confirmar tu pago. Una vez confirmado, tu teléfono será enviado de inmediato.",
         split_payment_what_next_signature: "Se proporcionará una copia final del acuerdo para tu firma al momento de la entrega.",
         split_payment_pay_deposit: "Pagar Depósito y Empezar Plan",
-        split_payment_monthly_value: "{price} x {months} meses"
+        split_payment_monthly_value: "{price} x {months} meses",
+        rights_reserved: "Todos los derechos reservados."
+    },
+    sk: {
+        home: "Domov",
+        products: "Produkty",
+        about: "O nás",
+        contact: "Kontakt",
+        hero_title: "Najlepšia Technológia za Najlepšiu Cenu",
+        split_payment: "Platba na splátky",
+        split_payment_title: "Zaplatiť na splátky",
+        split_payment_desc: "Zaplaťte dnes 50% zálohu a zvyšok si rozdeľte až na 6 mesiacov.",
+        about_us_title: "O našej spoločnosti",
+        about_us_p1: "Vitajte v našom e-shope! Sme odhodlaní poskytovať našim zákazníkom tie najlepšie produkty a služby. Našou misiou je prinášať kvalitu a hodnotu pri každom nákupe.",
+        our_team_title: "Náš tím",
+        our_team_p1: "Máme oddaný tím profesionálov, ktorí sú nadšení pre to, čo robia, a sú vždy pripravení vám pomôcť.",
+        hero_subtitle: "Objavte náš prémiový výber repasovaných zariadení s plnou zárukou a špecializovanou technickou podporou. Kvalitná technológia za výnimočné ceny.",
+        shop_now: "Nakupovať",
+        benefit_free_shipping: "Doprava Zdarma",
+        benefit_free_shipping_desc: "Na všetky objednávky",
+        benefit_warranty: "1-ročná Záruka",
+        benefit_warranty_desc: "Na všetky produkty",
+        benefit_return: "Vrátenie do 30 Dní",
+        benefit_return_desc: "Zaručené vrátenie peňazí v plnej výške",
+        benefit_accessories: "Príslušenstvo v cene",
+        benefit_accessories_desc: "Kábel, krabica a ochranné sklo zdarma",
+
+        // WhatsApp & Banners
+        whatsapp_title: "Máte otázky?",
+        whatsapp_subtitle: "Chatujte s našimi expertmi pre osobné odporúčania a okamžitú podporu.",
+        whatsapp_button: "Chat na WhatsAppe",
+        whatsapp_general_greeting: "Dobrý deň! Mám otázku ohľadom vašich produktov.",
+        preorder_subtitle: "Buďte Prví",
+        preorder_title: "Predobjednávka na iPhone 17 je spustená!",
+        preorder_description: "Zabezpečte si svoj iPhone 17 ešte dnes a získajte exkluzívne ponuky v deň uvedenia na trh. Kontaktujte nás na WhatsAppe a objednajte si ho okamžite.",
+        preorder_button_text: "Predobjednať na WhatsAppe",
+        whatsapp_preorder_iphone17: "Dobrý deň! Mám záujem o iPhone 17. Prosím, informujte ma o predobjednávkach a dostupnosti.",
+
+        featured_products: "Odporúčané Produkty",
+        all: "Všetky",
+        iphones: "iPhony",
+        samsung: "Samsung",
+        audio: "Audio",
+        accessories: "Príslušenstvo",
+        add_to_cart: "Pridať do košíka",
+        available_in: "Dostupné v:",
+        free_shipping: "Doprava zdarma",
+        free_shipping_all: "Doprava zdarma na všetky objednávky",
+        new: "Novinka!",
+        certified: "Certifikované!",
+        hot: "Horúce!",
+        bestseller: "Najpredávanejšie!",
+        deal: "Akcia!",
+        value: "Skvelá Cena!",
+        premium: "Prémiové!",
+        top_rated: "Najlepšie hodnotené!",
+        popular: "Populárne!",
+        budget: "Výhodné!",
+        shopping_cart: "Nákupný Košík",
+        empty_cart: "Váš košík je prázdny",
+        subtotal: "Medzisúčet:",
+        shipping: "Doprava:",
+        total: "Celkom:",
+        checkout: "Pokračovať k pokladni",
+        continue_shopping: "Pokračovať v nákupe",
+        order_summary: "Súhrn Objednávky",
+        order_ref: "Referencia Objednávky:",
+        bank_transfer: "Bankový Prevod",
+        credit_card: "Kreditná Karta",
+        bank_details: "Bankové Údaje",
+        account_number: "Číslo Účtu:",
+        account_holder: "Majiteľ Účtu:",
+        reference: "Referencia:",
+        transfer_instructions: "Vykonajte prevod celkovej sumy a pošlite nám potvrdenie cez WhatsApp pre zrýchlené odoslanie.",
+        confirm_transfer: "Odoslať potvrdenie cez WhatsApp",
+        whatsapp_bank_confirmation: "Dobrý deň, dokončil som bankový prevod pre Objednávku {orderNumber}. Posielam doklad o zaplatení.",
+        bank_name: "Banka:",
+        card_details: "Údaje o Karte",
+        accepted: "Akceptované:",
+        secure_payment: "100% Bezpečná a Overená Platba",
+        cardholder_name: "Meno Držiteľ Karty",
+        card_number: "Číslo Karty",
+        expiry_date: "Dátum Platnosti",
+        cvc: "CVV",
+        ssl_secured: "Bezpečné SSL Spojenie - Vaše údaje sú chránené",
+        place_order: "Odoslať Objednávku",
+        delivery_inspection_notice: "Odporúčame všetkým zákazníkom, aby si pri doručení od kuriéra dôkladne skontrolovali svoju objednávku. Ak zistíte, že tovar je neuspokojivý alebo nezodpovedá očakávaniam, máte právo odmietnuť prevzatie balíka. V prípade odmietnutia máte nárok na vrátenie celej kúpnej sumy v súlade s našimi reklamačnými podmienkami.",
+        processing_secure: "Bezpečné Spracovanie",
+        processing_order: "Spracovávam vašu objednávku...",
+        processing_wait: "Prosím, nezatvárajte toto okno",
+        validating_payment: "Overovanie platobnej metódy",
+        confirming_inventory: "Potvrdzovanie skladových zásob",
+        generating_order: "Generovanie nákupnej objednávky",
+        order_confirmed: "Objednávka Potvrdená!",
+        order_success_msg: "Vaša objednávka bola úspešne spracovaná. Dostanete WhatsApp s podrobnosťami.",
+        order_number: "Číslo Objednávky:",
+        order_total: "Celkom:",
+        payment_method: "Spôsob Platby:",
+        estimated_delivery: "Predpokladané Doručenie:",
+        price_high_to_low: "Cena: od najvyššej po najnižšiu",
+        price_low_to_high: "Cena: od najnižšej po najvyššiu",
+        featured: "Odporúčané",
+        storage: "Úložisko",
+        condition: "Stav",
+        required: "*Povinné",
+        condition_guide: "Sprievodca stavom:",
+        condition_guide_desc: "Lepšie stavy znamenajú menšie opotrebenie a lepší vzhľad zariadenia.",
+        terms_agreement: "Súhlasím s",
+        terms_and_conditions: "Obchodnými Podmienkami",
+        quantity: "Množstvo:",
+        details: "Detaily",
+        choose_type: "Vyberte Typ",
+        security_verification: "Bezpečnostné Overenie",
+        verify_payment: "Overte Svoju Platbu",
+        otp_sent: "Na vaše telefónne číslo sme odoslali 6-miestny overovací kód. Zadajte ho nižšie na dokončenie nákupu.",
+        code_expires: "Kód vyprší o: ",
+        resend_code: "Znovu Odoslať Kód",
+        verify_code: "Overiť Kód",
+        invalid_code: "Neplatný kód. Skúste to prosím znova.",
+        reviews: "Recenzie",
+        split_payment_select_product: "1. Vyberte si produkt",
+        split_payment_choose_product: "-- Vyberte produkt --",
+        split_payment_select_storage: "2. Vyberte si úložisko",
+        split_payment_choose_storage: "-- Vyberte úložisko --",
+        split_payment_select_color: "3. Vyberte si farbu",
+        split_payment_choose_color: "-- Vyberte farbu --",
+        split_payment_choose_plan: "4. Vyberte si svoj plán",
+        split_payment_month_interest: "{months} Mesiacov (+{interest}% úrok)",
+        split_payment_summary: "Súhrn platby",
+        split_payment_product_price: "Cena produktu:",
+        split_payment_interest_rate: "Úrok",
+        split_payment_new_total: "Nová celková cena:",
+        split_payment_deposit: "Záloha (50%):",
+        split_payment_remaining: "Zostávajúca suma:",
+        split_payment_monthly: "Mesačná splátka:",
+        split_payment_your_info: "5. Vaše informácie",
+        split_payment_info_desc: "Prosím, poskytnite svoje údaje. Tieto informácie sú potrebné na spracovanie vášho splátkového plánu.",
+        split_payment_full_name: "Celé meno",
+        split_payment_email: "E-mailová adresa",
+        split_payment_phone: "Telefónne číslo (WhatsApp)",
+        split_payment_address: "Úplná adresa doručenia",
+        split_payment_upload_id: "Nahrajte fotku vášho občianskeho preukazu",
+        split_payment_agreement_title: "6. Zmluva o splátkovom pláne",
+        split_payment_agreement_intro: "Pokračovaním súhlasíte s nasledujúcimi podmienkami:",
+        split_payment_term_1: "Súhlasíte so zaplatením 50% zálohy z celkovej sumy dnes. Táto záloha je vratná v rámci našej 30-dňovej záruky vrátenia peňazí.",
+        split_payment_term_2: "Zostávajúca suma bude splatená v rovnakých mesačných splátkach počas zvoleného obdobia.",
+        split_payment_term_3: "Na pôvodnú cenu produktu sa vzťahuje úroková sadzba, ako je uvedené v súhrne.",
+        split_payment_term_4: "Produkt bude odoslaný ihneď po potvrdení platby 50% zálohy.",
+        split_payment_term_5: "Nezaplatenie mesačných splátok včas môže viesť k poplatkom z omeškania alebo odobratiu zariadenia.",
+        split_payment_term_6: "Všetky platby podliehajú našej 30-dňovej záruke vrátenia peňazí. Pre viac podrobností si prosím prečítajte naše úplné Obchodné podmienky.",
+        split_payment_agree_checkbox: "Prečítal som si a súhlasím s podmienkami pokračovaním v platbe zálohy.",
+        split_payment_download_draft: "Stiahnuť návrh zmluvy",
+        split_payment_what_next: "Čo sa stane ďalej?",
+        split_payment_what_next_desc: "Po zaplatení 50% zálohy vás náš tím bude kontaktovať cez WhatsApp na potvrdenie platby. Po potvrdení bude váš telefón okamžite odoslaný.",
+        split_payment_what_next_signature: "Konečná kópia zmluvy bude poskytnutá na váš podpis pri doručení.",
+        split_payment_pay_deposit: "Zaplatiť zálohu a začať plán",
+        split_payment_monthly_value: "{price} x {months} mesiacov",
+        rights_reserved: "Všetky práva vyhradené."
     },
     en: {
         home: "Home",
@@ -316,7 +473,8 @@ const translations = window.translations || {
         split_payment_what_next_desc: "After you pay the 50% deposit, our team will contact you via WhatsApp to confirm your payment. Once confirmed, your phone will be shipped immediately.",
         split_payment_what_next_signature: "A final copy of the agreement will be provided for your signature upon delivery.",
         split_payment_pay_deposit: "Pay Deposit & Start Plan",
-        split_payment_monthly_value: "{price} x {months} months"
+        split_payment_monthly_value: "{price} x {months} months",
+        rights_reserved: "All rights reserved."
     }
 };
 
@@ -355,23 +513,23 @@ function getCurrencySymbol(country) {
 }
 
 function convertPrice(priceInUSD, showBoth = false) {
-    const priceInEUR = priceInUSD * 0.92; // Approximate conversion from USD to EUR
-
-    if (typeof price !== 'number' || isNaN(price)) {
+    if (typeof priceInUSD !== 'number' || isNaN(priceInUSD)) {
         return ''; // Return empty string if price is not a valid number
     }
+
+    const priceInEUR = priceInUSD * 0.92; // Approximate conversion from USD to EUR
 
     const config = countryConfig[currentCountry];
     if (!config) return `${priceInEUR.toFixed(2)} €`;
 
-    const eurPrice = `${priceInEUR.toFixed(2)} €`;
+    const eurPrice = `${priceInEUR.toFixed(0)} €`; // Display as integer
 
     // For EUR countries, show EUR only
     if (config.currency === 'EUR') {
         return eurPrice;
     }
 
-    const convertedPrice = price * config.rate;
+    const convertedPrice = priceInUSD * config.rate;
     const symbol = getCurrencySymbol(currentCountry);
     const localFormattedPrice = convertedPrice.toLocaleString('en-US', {
         minimumFractionDigits: 0,
