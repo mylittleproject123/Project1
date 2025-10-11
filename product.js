@@ -4170,7 +4170,7 @@ function setupCountrySwitcherLinks() {
     const countryCodeForUrl = countryConfig[currentCountry]?.code || 'us';
     history.replaceState(null, '', `/${countryCodeForUrl}/product/${productId}`);
 
-    window.updateFooterFromBusinessAddress();
+    updateFooterFromBusinessAddress();
     setupCountrySwitcherLinks();
 
     // Initialize product database after language is set
