@@ -1292,6 +1292,60 @@ reviews: "Reviews"
             key; // fallback to key if translation is missing
     }
 
+// --- Utility Functions (moved from script.js) ---
+
+// Global variables
+let currentCountry = localStorage.getItem('selectedCountry') || 'cs';
+let currentLanguage = localStorage.getItem('selectedLanguage') || 'cs';
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+// Currency functions
+function getCurrencySymbol(country) {
+    const config = countryConfig[country];
+    if (!config) return '$';
+    switch (config.currency) {
+        case 'EUR': return '€';
+        case 'CZK': return 'Kč';
+        case 'HUF': return 'Ft';
+        default: return config.currency;
+    }
+}
+
+function convertPrice(priceInUSD, showBoth = false) {
+    if (typeof priceInUSD !== 'number' || isNaN(priceInUSD)) {
+        return ''; // Return empty string if price is not a valid number
+    }
+
+    const priceInEUR = priceInUSD * 0.92; // Approximate conversion from USD to EUR
+
+    const config = countryConfig[currentCountry];
+    if (!config) return `${priceInEUR.toFixed(2)} €`;
+
+    const eurPrice = `${priceInEUR.toFixed(0)} €`; // Display as integer
+
+    if (config.currency === 'EUR') {
+        return eurPrice;
+    }
+
+    const convertedPrice = priceInUSD * config.rate;
+    const symbol = getCurrencySymbol(currentCountry);
+    const localFormattedPrice = convertedPrice.toLocaleString('en-US', {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+    });
+    const localPrice = `${symbol}${localFormattedPrice}`;
+
+    return showBoth ? `${eurPrice} / ${localPrice}` : localPrice;
+}
+
+// Translation function
+function updateLanguage(lang) {
+    currentLanguage = lang;
+    document.querySelectorAll('[data-translate]').forEach(element => {
+        const key = element.getAttribute('data-translate');
+        element.textContent = t(key);
+    });
+}
 
 
 // Product database with detailed information
@@ -3211,6 +3265,25 @@ galaxys21ultra: {
     }
 }
 
+function updateFooterFromBusinessAddress() {
+    const businessAddress = getBusinessAddress();
+    const countryInfo = countryConfig[currentCountry];
+    if (!businessAddress || !countryInfo) return;
+
+    const fullAddress = `${businessAddress.address}, ${businessAddress.city}, ${businessAddress.country}`;
+    const phoneNumber = countryInfo.phone;
+    const email = `sales@swappie.shop`;
+    const companyName = `Swappie ${countryInfo.name}`;
+
+    const footerAddressEl = document.getElementById('footer-address');
+    const footerPhoneEl = document.getElementById('footer-phone');
+    const footerEmailEl = document.getElementById('footer-email');
+    const footerBottomEl = document.querySelector('.footer-bottom p');
+
+    if (footerBottomEl) {
+        footerBottomEl.innerHTML = `&copy; 2024 ${companyName}. <span data-translate="rights_reserved">All rights reserved.</span>`;
+    }
+}
 
 // Get product ID from URL parameters
 // Get product ID from URL path
