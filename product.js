@@ -3695,7 +3695,7 @@ function setupCountrySwitcherLinks() {
 }
 
 // Initialize page
-    // Only run this code on the product.html page
+document.addEventListener('DOMContentLoaded', async () => {    // Only run this code on the product.html page
     if (!document.querySelector('.product-detail')) {
         return;
     }
