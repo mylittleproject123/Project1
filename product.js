@@ -3280,49 +3280,6 @@ function loadProduct() {
         }
     }
 
-	// ---------------------
-// Render Features
-// ---------------------
-const featuresGrid = document.getElementById('features-grid');
-if (featuresGrid) {
-    featuresGrid.innerHTML = '';
-
-    if (Array.isArray(product.features)) {
-        product.features.forEach(feature => {
-            const featureCard = document.createElement('div');
-            featureCard.className = 'feature-card';
-            featureCard.innerHTML = `
-                <div class="feature-icon">
-                    <i class="${feature.icon}"></i>
-                </div>
-                <div class="feature-title">${feature.title}</div>
-                <div class="feature-desc">${feature.desc}</div>
-            `;
-            featuresGrid.appendChild(featureCard);
-        });
-    }
-}
-
-// ---------------------
-// Render Specifications
-// ---------------------
-const specsGrid = document.getElementById('specifications-grid');
-if (specsGrid) {
-    specsGrid.innerHTML = '';
-
-    if (product.specifications && typeof product.specifications === 'object') {
-        Object.entries(product.specifications).forEach(([label, value]) => {
-            const specItem = document.createElement('div');
-            specItem.className = 'spec-item';
-            specItem.innerHTML = `
-                <span class="spec-label">${label}:</span>
-                <span class="spec-value">${value}</span>
-            `;
-            specsGrid.appendChild(specItem);
-        });
-
-    }
-}
 }
 
 // Setup add to cart functionality
