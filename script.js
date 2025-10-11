@@ -318,7 +318,14 @@ const translations = window.translations || {
         split_payment_what_next_signature: "Konečná kópia zmluvy bude poskytnutá na váš podpis pri doručení.",
         split_payment_pay_deposit: "Zaplatiť zálohu a začať plán",
         split_payment_monthly_value: "{price} x {months} mesiacov",
-        rights_reserved: "Všetky práva vyhradené."
+        rights_reserved: "Všetky práva vyhradené.",
+        contact_us_title: "Kontaktujte Nás",
+        contact_us_subtitle: "Sme tu pre vás. Obráťte sa na nás s akýmikoľvek otázkami alebo obavami.",
+        our_office: "Naša Kancelária",
+        send_us_message: "Pošlite Nám Správu",
+        subject: "Predmet",
+        message: "Správa",
+        send_message: "Odoslať Správu"
     },
     en: {
         home: "Home",
@@ -474,7 +481,14 @@ const translations = window.translations || {
         split_payment_what_next_signature: "A final copy of the agreement will be provided for your signature upon delivery.",
         split_payment_pay_deposit: "Pay Deposit & Start Plan",
         split_payment_monthly_value: "{price} x {months} months",
-        rights_reserved: "All rights reserved."
+        rights_reserved: "All rights reserved.",
+        contact_us_title: "Contact Us",
+        contact_us_subtitle: "We're here to help. Reach out to us with any questions or concerns.",
+        our_office: "Our Office",
+        send_us_message: "Send Us a Message",
+        subject: "Subject",
+        message: "Message",
+        send_message: "Send Message"
     }
 };
 
@@ -1957,34 +1971,34 @@ function generateInvoice() {
 // Helper function to get business address
 function getBusinessAddress() {
     switch(currentCountry) {
-        case 'honduras':
+        case 'cs':
             return {
-                address: 'Col. Palmira, Avenida República de Chile',
-                city: 'Tegucigalpa',
-                country: 'Honduras'
+                address: 'Václavské náměstí 1',
+                city: 'Praha 1',
+                country: 'Česká republika'
             };
-        case 'nicaragua':
+        case 'sk':
             return {
-                address: 'Plaza España, Módulo E-4',
-                city: 'Managua',
-                country: 'Nicaragua'
+                address: 'Obchodná 25',
+                city: 'Bratislava',
+                country: 'Slovensko'
             };
-        case 'trinidad':
+        case 'hu':
             return {
-                address: '17-23 Charles St.',
-                city: 'Port of Spain',
-                country: 'Trinidad and Tobago'
+                address: 'Váci utca 10',
+                city: 'Budapest',
+                country: 'Maďarsko'
             };
-        case 'usa':
+        case 'at':
             return {
-                address: '1234 Tech Boulevard, Suite 100',
-                city: 'Miami, FL 33101',
-                country: 'United States'
+                address: 'Mariahilfer Str. 5',
+                city: 'Wien',
+                country: 'Rakúsko'
             };
         default:
             return {
-                address: 'Main Technology Center',
-                city: 'Central District',
+                address: 'Hlavná Technologická Ulica 1',
+                city: 'Hlavné Mesto',
                 country: countryConfig[currentCountry].name
             };
     }
@@ -1993,14 +2007,14 @@ function getBusinessAddress() {
 // Helper function to get business registration details
 function getBusinessRegistration() {
     switch(currentCountry) {
-        case 'honduras':
-            return 'RTN: 08011998123456 | Registro Mercantil: 123456-2024 | CAI: 8A-85-69-7E';
-        case 'nicaragua':
-            return 'RUC: J0310000123456 | Registro Mercantil: 45671-M | DGI: 001-001-01-1234567';
-        case 'trinidad':
-            return 'BIR: 123-456-789 | Company Registration: 123456 | VAT: TT123456789';
-        case 'usa':
-            return 'EIN: 12-3456789 | Florida Corp: P24000123456 | Sales Tax: FL-ST-123456';
+        case 'cs':
+            return 'IČO: 12345678 | DIČ: CZ12345678 | Spisová značka: C 12345, Městský soud v Praze';
+        case 'sk':
+            return 'IČO: 87654321 | DIČ: SK87654321 | Zapísaná v OR Okresného súdu Bratislava I, oddiel: Sro, vložka č.: 12345/B';
+        case 'hu':
+            return 'Cégjegyzékszám: 01-09-123456 | Adószám: 12345678-2-41';
+        case 'at':
+            return 'Firmenbuchnummer: FN 123456w | UID-Nummer: ATU12345678';
         default:
             return `Business Registration: ${currentCountry.toUpperCase()}-2024-001 | Tax ID: TX123456789`;
     }
@@ -2040,43 +2054,31 @@ function showInvoiceNotification() {
 function getBankName() {
     const config = countryConfig[currentCountry];
     switch (currentCountry) {
-        case 'nicaragua': return 'Banco Lafise';
-        case 'honduras': return 'Banco Atlántida';
-        case 'trinidad': return 'Republic Bank';
-        case 'elsalvador': return 'Banco Agrícola';
-        case 'paraguay': return 'Banco Continental';
-        case 'guatemala': return 'Banco Industrial';
-        case 'dominican': return 'Banco Popular Dominicano';
-        case 'usa': return 'Bank of America';
-        default: return 'Local Bank';
+        case 'cs': return 'Česká spořitelna';
+        case 'sk': return 'Slovenská sporiteľňa';
+        case 'hu': return 'OTP Bank';
+        case 'at': return 'Erste Bank';
+        default: return 'Miestna Banka';
     }
 }
 
 function getAccountNumber() {
     switch (currentCountry) {
-        case 'nicaragua': return '131010702';
-        case 'honduras': return '2345678901234567';
-        case 'trinidad': return '950036849701 (Chequins)';
-        case 'elsalvador': return '4567890123456789';
-        case 'paraguay': return '5678901234567890';
-        case 'guatemala': return '6789012345678901';
-        case 'dominican': return '7890123456789012';
-        case 'usa': return '8901234567890123';
+        case 'cs': return '1234567890/0800';
+        case 'sk': return 'SK12 3456 7890 1234 5678 9012';
+        case 'hu': return '11773123-12345678';
+        case 'at': return 'AT12 3456 7890 1234 5678';
         default: return '0000000000000000';
     }
 }
 
 function getAccountHolder() {
     switch (currentCountry) {
-        case 'nicaragua': return 'Alison Andrea';
-        case 'honduras': return 'TechZone';
-        case 'trinidad': return 'Jolie Xavier';
-        case 'elsalvador': return 'TechZone';
-        case 'paraguay': return 'TechZone';
-        case 'guatemala': return 'TechZone';
-        case 'dominican': return 'TechZone';
-        case 'usa': return 'TechZone';
-        default: return 'Account Holder';
+        case 'cs': return 'Swappie ČR s.r.o.';
+        case 'sk': return 'Swappie SK s.r.o.';
+        case 'hu': return 'Swappie Kft.';
+        case 'at': return 'Swappie GmbH';
+        default: return 'Majiteľ Účtu';
     }
 }
 
@@ -2669,47 +2671,4 @@ function showCardProcessingState() {
     if (confirmButton) {
         confirmButton.disabled = true;
     }
-}
- // Removed duplicate place-order event listeners - they're already handled in setupCheckoutEventListeners()
-
-// Remove duplicate event listeners - these are handled in setupCheckoutEventListeners()
-// which is called when the checkout modal is created dynamically
-
- // These event listeners are already handled in setupCheckoutEventListeners()
-function updateFooterFromBusinessAddress() {
-    const businessAddress = getBusinessAddress();
-    const countryInfo = countryConfig[currentCountry];
-    if (!businessAddress || !countryInfo) return;
-
-    const fullAddress = `${businessAddress.address}, ${businessAddress.city}, ${businessAddress.country}`;
-    const phoneNumber = countryInfo.phone;
-    const email = `sales@swappie.shop`; // Standardizing to match logo
-    const companyName = `Swappie ${countryInfo.name}`;
-
-    const footerAddressEl = document.getElementById('footer-address');
-    const footerPhoneEl = document.getElementById('footer-phone');
-    const footerEmailEl = document.getElementById('footer-email');
-    const footerBottomEl = document.querySelector('.footer-bottom p');
-
-    if (footerAddressEl) {
-        footerAddressEl.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${fullAddress}`;
-    }
-    if (footerPhoneEl) {
-        footerPhoneEl.innerHTML = `<i class="fas fa-phone"></i> <a href="tel:${phoneNumber.replace(/\s/g, '')}" style="color: inherit; text-decoration: none;">${phoneNumber}</a>`;
-    }
-    if (footerEmailEl) {
-        footerEmailEl.innerHTML = `<i class="fas fa-envelope"></i> <a href="mailto:${email}" style="color: inherit; text-decoration: none;">${email}</a>`;
-    }
-    if (footerBottomEl) {
-        footerBottomEl.innerHTML = `&copy; 2024 ${companyName}. <span data-translate="rights_reserved">All rights reserved.</span>`;
-    }
-}
-
-const form = document.querySelector('form');
-if (form) {
-    form.addEventListener('submit', (event) => {
-        event.preventDefault(); // stop the default form submission (which reloads the page)
-        
-        // your form submit logic here...
-    });
 }
