@@ -2177,6 +2177,20 @@ document.addEventListener('DOMContentLoaded', async function() { // Make the lis
         return;
     }
 
+    // --- 404 Redirect Handler ---
+    // Check if we were redirected from the 404.html page
+    const redirectPath = sessionStorage.getItem('redirectPath');
+    if (redirectPath) {
+        // Clear the flag so this doesn't run again on the next refresh
+        sessionStorage.removeItem('redirectPath');
+        
+        // Check if the path is a valid product URL (e.g., /sk/product/iphone16promax)
+        if (redirectPath.includes('/product/')) {
+            // Navigate to the intended product page
+            window.location.href = redirectPath;
+        }
+    }
+
     // Scroll to top of page immediately
     window.scrollTo(0, 0);
     document.documentElement.scrollTop = 0;
@@ -2249,7 +2263,8 @@ document.addEventListener('DOMContentLoaded', async function() { // Make the lis
                     const productCard = productLink.closest('.product-card[data-product-id]');
                     if (productCard) {
                         e.preventDefault(); // Prevent default link behavior
-                        window.location.href = `/product.html?id=${productCard.dataset.productId}`;
+                        const countryCode = countryConfig[currentCountry]?.code || 'sk';
+                        window.location.href = `/${countryCode}/product.html?id=${productCard.dataset.productId}`;
                     }
                 }
             });
