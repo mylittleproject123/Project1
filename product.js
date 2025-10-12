@@ -2836,11 +2836,6 @@ function updateFooterFromBusinessAddress() {
 
 // Get product ID from URL parameters
 // Get product ID from URL path
-function getProductId() {    
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('id') || 'iphone16promax'; // Default to a product if no ID is found
-}
-
 // Global variables
 let productDatabase;
 
@@ -2848,6 +2843,11 @@ let productDatabase;
 let currentMemory = null;
 let currentCondition = null;
 let currentVariant = null;
+
+function getProductId() {    
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('id') || 'iphone16promax'; // Default to a product if no ID is found
+}
 
 // Load and display product
 function loadProduct() {
@@ -3593,25 +3593,19 @@ function openCheckout() {
 
 function setupCountrySwitcherLinks() {
     const productId = getProductId();
-    const dropdown = document.getElementById('country-dropdown');
-    if (!dropdown || !productId) return;
+    const dropdown = document.getElementById('country-dropdown');    
+    if (!dropdown) return;
 
-    dropdown.innerHTML = ''; // Clear any static content
+    // Clear any static content
     dropdown.innerHTML = ''; // Clear static content
 
     Object.entries(countryConfig).forEach(([key, config]) => {
-        const link = document.createElement('a');
-        link.href = `?id=${productId}&country=${config.code}`;
-        link.href = `/${config.code}/product/${productId}`;
-        link.className = 'country-option';
-        link.dataset.country = key;
-        
-        link.innerHTML = `
-            <span class="flag-icon">${config.flag}</span>
-            <span>${config.name}</span>
-        `;
-        
-        dropdown.appendChild(link);
+        const link = document.createElement('a');        
+        link.href = `/product.html?id=${productId}&country=${config.code}`;
+        link.className = 'country-option';        
+        link.dataset.country = key;        
+        link.innerHTML = `<span class="flag-icon">${config.flag}</span><span>${config.name}</span>`;
+        dropdown.appendChild(link);    
     });
 }
 
@@ -3629,28 +3623,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // --- Country and Product Initialization ---
     async function initializeCountry() {
-        const pathParts = window.location.pathname.split('/').filter(p => p);
-        let countryCodeFromPath = null;
-
-        // Priority 1: Path (e.g., /ni/product/iphone16)
-        if (pathParts.length >= 2 && pathParts[pathParts.length - 2] === 'product') {
-            const potentialCode = pathParts[0];
-            if (Object.values(countryConfig).some(c => c.code === potentialCode)) {
-                countryCodeFromPath = potentialCode;
-            }
-        }
-        
         const urlParams = new URLSearchParams(window.location.search);
         const countryCodeFromParam = urlParams.get('country');
-        const countryCodeFromUrl = countryCodeFromPath || countryCodeFromParam;
 
-        if (countryCodeFromUrl) {
-            const countryKey = Object.keys(countryConfig).find(key => countryConfig[key].code === countryCodeFromUrl);
+        // Priority 1: URL Parameter (e.g., ?country=sk)
+        if (countryCodeFromParam) {
+            const countryKey = Object.keys(countryConfig).find(key => countryConfig[key].code === countryCodeFromParam);
             if (countryKey) {
                 currentCountry = countryKey;
                 currentLanguage = countryConfig[countryKey].lang;
                 localStorage.setItem('selectedCountry', currentCountry);
                 localStorage.setItem('selectedLanguage', currentLanguage);
+                // Clean the URL parameter after reading it
+                history.replaceState(null, '', `${window.location.pathname}?id=${getProductId()}`);
                 return; // Found country, exit
             }
         }
