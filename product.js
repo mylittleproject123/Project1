@@ -5,10 +5,9 @@ const countryConfig = {
     hu: { flag: '🇭🇺', name: 'Magyarország', currency: 'HUF', rate: 390, lang: 'hu', phone: '+36 1 123 4567', code: 'hu' },
     at: { flag: '🇦🇹', name: 'Österreich', currency: 'EUR', rate: 1, lang: 'de', phone: '+43 1 1234567', code: 'at' }
 };
-// Translation data - check if already defined to prevent duplicate declaration
-document.addEventListener('DOMContentLoaded', async () => {
-    if (typeof window.translations === 'undefined') {
-        window.translations = {
+
+// Translation data
+const translations = {
     sk: {
    home: "Domov",
   products: "Produkty",
@@ -789,15 +788,9 @@ reviews: "Reviews"
     spec_iphone16promax_resistance_value: "IP68",
     spec_iphone16promax_dimensions_value: "159.9 x 76.7 x 8.25 mm",
     spec_iphone16promax_weight_value: "227g"
-    };
-}
+};
+window.translations = translations; // Make it globally available
 
-    function t(key) {
-        const lang = window.currentLanguage || 'en'; // fallback to English if not set
-        return (window.translations[lang] && window.translations[lang][key]) ?
-            window.translations[lang][key] :
-            key; // fallback to key if translation is missing
-    }
 
 // --- Utility Functions (moved from script.js) ---
 
@@ -805,6 +798,13 @@ reviews: "Reviews"
 let currentCountry = localStorage.getItem('selectedCountry') || 'cs';
 let currentLanguage = localStorage.getItem('selectedLanguage') || 'cs';
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+function t(key) {
+    const lang = window.currentLanguage || 'en'; // fallback to English if not set
+    return (window.translations[lang] && window.translations[lang][key]) ?
+        window.translations[lang][key] :
+        key; // fallback to key if translation is missing
+}
 
 // Currency functions
 function getCurrencySymbol(country) {
@@ -3630,6 +3630,8 @@ function setupCountrySwitcherLinks() {
 }
 
 // Initialize page
+document.addEventListener('DOMContentLoaded', async () => {
+
     if (!document.querySelector('.product-detail')) {
         return;
     }
