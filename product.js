@@ -1,3 +1,72 @@
+// Country configuration - check if already defined to prevent duplicate declaration
+const countryConfig = {
+    cs: { flag: '🇨🇿', name: 'Česko', currency: 'CZK', rate: 25, lang: 'cs', phone: '+420 123 456 789', code: 'cs' },
+    sk: { flag: '🇸🇰', name: 'Slovensko', currency: 'EUR', rate: 1, lang: 'sk', phone: '+421 123 456 789', code: 'sk' },
+    hu: { flag: '🇭🇺', name: 'Magyarország', currency: 'HUF', rate: 390, lang: 'hu', phone: '+36 1 123 4567', code: 'hu' },
+    at: { flag: '🇦🇹', name: 'Österreich', currency: 'EUR', rate: 1, lang: 'de', phone: '+43 1 1234567', code: 'at' }
+};
+
+// Global variables
+let currentCountry = localStorage.getItem('selectedCountry') || 'sk';
+let currentLanguage = localStorage.getItem('selectedLanguage') || 'sk';
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+function t(key) {
+    const lang = window.currentLanguage || 'en'; // fallback to English if not set
+    return (window.translations && window.translations[lang] && window.translations[lang][key]) ?
+        window.translations[lang][key] :
+        key; // fallback to key if translation is missing
+}
+
+// Currency functions
+function getCurrencySymbol(country) {
+    const config = countryConfig[country];
+    if (!config) return '$';
+    switch (config.currency) {
+        case 'EUR': return '€';
+        case 'CZK': return 'Kč';
+        case 'HUF': return 'Ft';
+        default: return config.currency;
+    }
+}
+
+function convertPrice(priceInUSD, showBoth = false) {
+    if (typeof priceInUSD !== 'number' || isNaN(priceInUSD)) {
+        return ''; // Return empty string if price is not a valid number
+    }
+
+    const priceInEUR = priceInUSD * 0.92; // Approximate conversion from USD to EUR
+
+    const config = countryConfig[currentCountry];
+    if (!config) return `${priceInEUR.toFixed(2)} €`;
+
+    const eurPrice = `${priceInEUR.toFixed(0)} €`; // Display as integer
+
+    if (config.currency === 'EUR') {
+        return eurPrice;
+    }
+
+    const convertedPrice = priceInUSD * config.rate;
+    const symbol = getCurrencySymbol(currentCountry);
+    const localFormattedPrice = convertedPrice.toLocaleString('en-US', {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+    });
+    const localPrice = `${symbol}${localFormattedPrice}`;
+
+    return showBoth ? `${eurPrice} / ${localPrice}` : localPrice;
+}
+
+// Translation function
+function updateLanguage(lang) {
+    currentLanguage = lang;
+    document.querySelectorAll('[data-translate]').forEach(element => {
+        const key = element.getAttribute('data-translate');
+        element.textContent = t(key);
+    });
+}
+
+
 // Product database with detailed information
 function getProductDatabase() {
     return {
