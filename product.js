@@ -6,15 +6,9 @@ const countryConfig = {
     at: { flag: '🇦🇹', name: 'Österreich', currency: 'EUR', rate: 1, lang: 'de', phone: '+43 1 1234567', code: 'at' }
 };
 
-// Global variables
-let currentCountry = localStorage.getItem('selectedCountry') || 'sk';
-let currentLanguage = localStorage.getItem('selectedLanguage') || 'sk';
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
 function t(key) {
     const lang = window.currentLanguage || 'en'; // fallback to English if not set
-    return (window.translations && window.translations[lang] && window.translations[lang][key]) ?
-        window.translations[lang][key] :
+    return (window.translations && window.translations[lang] && window.translations[lang][key]) ? window.translations[lang][key] :
         key; // fallback to key if translation is missing
 }
 
@@ -22,7 +16,7 @@ function t(key) {
 function getCurrencySymbol(country) {
     const config = countryConfig[country];
     if (!config) return '$';
-    switch (config.currency) {
+    switch (config.currency) { 
         case 'EUR': return '€';
         case 'CZK': return 'Kč';
         case 'HUF': return 'Ft';
@@ -37,7 +31,7 @@ function convertPrice(priceInUSD, showBoth = false) {
 
     const priceInEUR = priceInUSD * 0.92; // Approximate conversion from USD to EUR
 
-    const config = countryConfig[currentCountry];
+    const config = countryConfig[window.currentCountry];
     if (!config) return `${priceInEUR.toFixed(2)} €`;
 
     const eurPrice = `${priceInEUR.toFixed(0)} €`; // Display as integer
@@ -47,7 +41,7 @@ function convertPrice(priceInUSD, showBoth = false) {
     }
 
     const convertedPrice = priceInUSD * config.rate;
-    const symbol = getCurrencySymbol(currentCountry);
+    const symbol = getCurrencySymbol(window.currentCountry);
     const localFormattedPrice = convertedPrice.toLocaleString('en-US', {
         minimumFractionDigits: 0,
         maximumFractionDigits: 0
@@ -59,7 +53,7 @@ function convertPrice(priceInUSD, showBoth = false) {
 
 // Translation function
 function updateLanguage(lang) {
-    currentLanguage = lang;
+    window.currentLanguage = lang;
     document.querySelectorAll('[data-translate]').forEach(element => {
         const key = element.getAttribute('data-translate');
         element.textContent = t(key);
@@ -2093,7 +2087,7 @@ function loadProduct() {
     // Update breadcrumb based on language
     const breadcrumbProduct = document.getElementById('breadcrumb-product');
     if (breadcrumbProduct) {
-        breadcrumbProduct.textContent = product.name;
+        breadcrumbProduct.textContent = product.name; 
     }
 
     // Function to update pricing based on current selections
@@ -2139,14 +2133,14 @@ function loadProduct() {
         conditionContainer.style.display = 'block';
 
         const conditionTitle = document.createElement('h3');
-        conditionTitle.style.cssText = 'font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; color: var(--secondary-color);';
-        conditionTitle.innerHTML = `${translations[currentLanguage].condition || 'Condition'} <span style="color: #ef4444; font-size: 0.9rem;">${translations[currentLanguage].required || '*Required'}</span>`;
+        conditionTitle.style.cssText = 'font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; color: var(--secondary-color);'; 
+        conditionTitle.innerHTML = `${window.translations[window.currentLanguage].condition || 'Condition'} <span style="color: #ef4444; font-size: 0.9rem;">${window.translations[window.currentLanguage].required || '*Required'}</span>`;
 
         const conditionGuide = document.createElement('div');
         conditionGuide.style.cssText = 'margin-bottom: 1rem; padding: 0.75rem; background: var(--background-light); border-radius: 6px; font-size: 0.875rem; color: var(--text-light);';
         conditionGuide.innerHTML = `
-            <i class="fas fa-info-circle" style="color: var(--primary-color); margin-right: 0.5rem;"></i>
-            <strong>${translations[currentLanguage].condition_guide || 'Condition Guide:'}</strong> ${translations[currentLanguage].condition_guide_desc || 'Better conditions indicate less wear and superior device appearance.'}
+            <i class="fas fa-info-circle" style="color: var(--primary-color); margin-right: 0.5rem;"></i> 
+            <strong>${window.translations[window.currentLanguage].condition_guide || 'Condition Guide:'}</strong> ${window.translations[window.currentLanguage].condition_guide_desc || 'Better conditions indicate less wear and superior device appearance.'}
         `;
 
         conditionContainer.innerHTML = '';
@@ -2170,8 +2164,8 @@ function loadProduct() {
                 background: ${key === currentCondition ? 'var(--background-light)' : 'white'};
             `;
 
-            const conditionName = translations[currentLanguage][key] || condition.name;
-            const conditionDesc = translations[currentLanguage][key + '_desc'] || condition.description;
+            const conditionName = window.translations[window.currentLanguage][key] || condition.name;
+            const conditionDesc = window.translations[window.currentLanguage][key + '_desc'] || condition.description;
 
             conditionOption.innerHTML = `
                 <h4 style="margin: 0 0 0.5rem 0; color: var(--secondary-color);">${conditionName}</h4>
@@ -2206,7 +2200,7 @@ function loadProduct() {
 
         const memoryTitle = document.createElement('h3');
         memoryTitle.style.cssText = 'font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; color: var(--secondary-color);';
-        memoryTitle.innerHTML = `${translations[currentLanguage].storage || 'Storage'} <span style="color: #ef4444; font-size: 0.9rem;">${translations[currentLanguage].required || '*Required'}</span>`;
+        memoryTitle.innerHTML = `${window.translations[window.currentLanguage].storage || 'Storage'} <span style="color: #ef4444; font-size: 0.9rem;">${window.translations[window.currentLanguage].required || '*Required'}</span>`;
 
         memoryContainer.innerHTML = '';
         memoryContainer.appendChild(memoryTitle);
@@ -2487,8 +2481,8 @@ if (product.variants && currentVariant && product.variants[currentVariant]) {
             productName += ` - ${currentMemory}`;
         }
         if (currentCondition && product.conditionOptions) {
-            const conditionName = translations[currentLanguage][currentCondition] || product.conditionOptions[currentCondition].name;
-            productName += ` - ${conditionName}`;
+            const conditionName = window.translations[window.currentLanguage][currentCondition] || product.conditionOptions[currentCondition].name;
+            productName += ` - ${conditionName}`; 
         }
 
         // Check if item already exists in cart (including all variants)
@@ -2571,8 +2565,8 @@ if (product.variants && currentVariant && product.variants[currentVariant]) {
 
         // Apply translations to dynamic content
         const giftBadge = cartItemDiv.querySelector('.free-gift-badge');
-        if (giftBadge && translations[currentLanguage] && translations[currentLanguage]['free_gift']) {
-            giftBadge.textContent = translations[currentLanguage]['free_gift'] || 'FREE GIFT';
+            if (giftBadge && window.translations[window.currentLanguage] && window.translations[window.currentLanguage]['free_gift']) {
+                giftBadge.textContent = window.translations[window.currentLanguage]['free_gift'] || 'FREE GIFT';
         }
             cartItemsContainer.appendChild(cartItemDiv);
         });
@@ -2596,7 +2590,7 @@ if (product.variants && currentVariant && product.variants[currentVariant]) {
 function updateCartCount() {
     const cartCount = document.getElementById('cart-count');
     if (cartCount) {
-        const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+        const totalItems = window.cart.reduce((total, item) => total + item.quantity, 0);
         cartCount.textContent = totalItems.toString();
         cartCount.style.display = totalItems > 0 ? 'flex' : 'none';
     }
@@ -2610,12 +2604,12 @@ function addToCart(product) {
             return;
         }
 
-        const existingItem = cart.find(item => item.id === product.id);
+        const existingItem = window.cart.find(item => item.id === product.id);
 
         if (existingItem) {
             existingItem.quantity += 1;
         } else {
-            const newItem = {
+            const newItem = { 
                 id: product.id,
                 name: product.name || 'Unknown Product',
                 price: parseFloat(product.price) || 0,
@@ -2623,9 +2617,9 @@ function addToCart(product) {
                 quantity: 1
             };
             cart.push(newItem);
-        }
+        } 
 
-        localStorage.setItem('cart', JSON.stringify(cart));
+        localStorage.setItem('cart', JSON.stringify(window.cart));
         updateCartCount();
         updateCartDisplay();
         showAddToCartFeedback();
@@ -2635,20 +2629,20 @@ function addToCart(product) {
 }
 
 function removeFromCart(productId) {
-    cart = cart.filter(item => item.id !== productId);
-    localStorage.setItem('cart', JSON.stringify(cart));
+    window.cart = window.cart.filter(item => item.id !== productId);
+    localStorage.setItem('cart', JSON.stringify(window.cart));
     updateCartCount();
     updateCartDisplay();
 }
 
 function updateQuantity(productId, newQuantity) {
-    const item = cart.find(item => item.id === productId);
+    const item = window.cart.find(item => item.id === productId);
     if (item) {
         if (newQuantity <= 0) {
             removeFromCart(productId);
         } else {
             item.quantity = newQuantity;
-            localStorage.setItem('cart', JSON.stringify(cart));
+            localStorage.setItem('cart', JSON.stringify(window.cart));
             updateCartCount();
             updateCartDisplay();
         }
@@ -2662,7 +2656,7 @@ function updateCartDisplay() {
 
     if (!cartItems) return;
 
-    if (cart.length === 0) {
+    if (window.cart.length === 0) {
         const emptyMessage = currentLanguage === 'es' ? 'Tu carrito está vacío' : 'Your cart is empty';
         cartItems.innerHTML = /*html*/`
             <div id="empty-cart-message" class="empty-cart-message">
@@ -2678,7 +2672,7 @@ function updateCartDisplay() {
     let subtotal = 0;
     let cartHTML = '';
 
-    cart.forEach((item) => {
+    window.cart.forEach((item) => {
         const itemTotal = item.price * item.quantity;
         subtotal += itemTotal;
 
@@ -2730,7 +2724,7 @@ function updateCartDisplay() {
 
             if (!itemId) return;
 
-            const item = cart.find(cartItem => cartItem.id === itemId);
+            const item = window.cart.find(cartItem => cartItem.id === itemId);
             if (!item) return;
 
             switch(action) {
@@ -2786,7 +2780,7 @@ function initializeCheckout() {
 
 function openCheckout() {
     try {
-        if (cart.length === 0) {
+        if (window.cart.length === 0) {
             alert(currentLanguage === 'es' ? 'Tu carrito está vacío' : 'Your cart is empty');
             return;
         }
@@ -2839,29 +2833,29 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Priority 1: URL Parameter (e.g., ?country=sk)
         if (countryCodeFromParam) {
             const countryKey = Object.keys(countryConfig).find(key => countryConfig[key].code === countryCodeFromParam);
-            if (countryKey) {
-                currentCountry = countryKey;
-                currentLanguage = countryConfig[countryKey].lang;
-                localStorage.setItem('selectedCountry', currentCountry);
-                localStorage.setItem('selectedLanguage', currentLanguage);
+            if (countryKey) { 
+                window.currentCountry = countryKey;
+                window.currentLanguage = countryConfig[countryKey].lang;
+                localStorage.setItem('selectedCountry', window.currentCountry);
+                localStorage.setItem('selectedLanguage', window.currentLanguage);
                 // Clean the URL parameter after reading it
                 history.replaceState(null, '', `${window.location.pathname}?id=${getProductId()}`);
                 return; // Found country, exit
-            }
+            } 
         }
 
         // Priority 2: Local Storage
         const countryFromStorage = localStorage.getItem('selectedCountry');
         if (countryFromStorage && countryConfig[countryFromStorage]) {
-            currentCountry = countryFromStorage;
-            currentLanguage = localStorage.getItem('selectedLanguage') || countryConfig[currentCountry].lang;
+            window.currentCountry = countryFromStorage;
+            window.currentLanguage = localStorage.getItem('selectedLanguage') || countryConfig[window.currentCountry].lang;
             return; // Found country, exit
         }
 
         // Priority 3: IP Geolocation
         try {
             const response = await fetch('https://ipapi.co/json/');
-            if (!response.ok) throw new Error('IP API request failed');
+            if (!response.ok) throw new Error('IP API request failed'); 
             const data = await response.json();
             const countryCodeFromIP = data.country_code.toLowerCase();
             const countryKey = Object.keys(countryConfig).find(key => countryConfig[key].code === countryCodeFromIP);
@@ -2869,8 +2863,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (countryKey) {
                 currentCountry = countryKey;
                 currentLanguage = countryConfig[countryKey].lang;
-                localStorage.setItem('selectedCountry', currentCountry);
-                localStorage.setItem('selectedLanguage', currentLanguage);
+                localStorage.setItem('selectedCountry', window.currentCountry);
+                localStorage.setItem('selectedLanguage', window.currentLanguage);
                 return; // Found country, exit
             }
         } catch (error) {
@@ -2878,23 +2872,23 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         // Priority 4: Default
-        currentCountry = 'honduras';
-        currentLanguage = countryConfig[currentCountry].lang;
+        window.currentCountry = 'honduras';
+        window.currentLanguage = countryConfig[window.currentCountry].lang;
     }
 
     await initializeCountry(); // Await the async function
 
     const currentFlag = document.getElementById('current-flag');
     const currentCountryEl = document.getElementById('current-country');
-    const initialConfig = countryConfig[currentCountry];
+    const initialConfig = countryConfig[window.currentCountry];
     if (initialConfig) {
-        currentLanguage = initialConfig.lang;
+        window.currentLanguage = initialConfig.lang;
 
         // Update country display
         if (currentFlag) currentFlag.textContent = initialConfig.flag;
         if (currentCountryEl) currentCountryEl.textContent = initialConfig.name;
 
-        updateLanguage(currentLanguage);
+        updateLanguage(window.currentLanguage);
     }
 
     updateFooterFromBusinessAddress();
