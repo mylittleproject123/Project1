@@ -2836,23 +2836,9 @@ function updateFooterFromBusinessAddress() {
 
 // Get product ID from URL parameters
 // Get product ID from URL path
-function getProductId() {
-    const pathParts = window.location.pathname.split('/').filter(p => p);
-
-    // Handles /product/id and /country/product/id
-    if (pathParts.length >= 2 && pathParts[pathParts.length - 2] === 'product') {
-        return pathParts[pathParts.length - 1];
-    }
-
-    // Fallback for old ?id=... URLs
+function getProductId() {    
     const urlParams = new URLSearchParams(window.location.search);
-    const idFromParam = urlParams.get('id');
-    if (idFromParam) {
-        // The URL will be cleaned up later in the DOMContentLoaded handler
-        return idFromParam;
-    }
-
-    return 'iphone16promax'; // Default product if no ID is found
+    return urlParams.get('id') || 'iphone16promax'; // Default to a product if no ID is found
 }
 
 // Global variables
@@ -3715,11 +3701,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         updateLanguage(currentLanguage);
     }
-
-    // Clean the URL to the standard /product/id format after initialization
-    const productId = getProductId();
-    const countryCodeForUrl = countryConfig[currentCountry]?.code || 'us';
-    history.replaceState(null, '', `/${countryCodeForUrl}/product/${productId}`);
 
     updateFooterFromBusinessAddress();
     setupCountrySwitcherLinks();
