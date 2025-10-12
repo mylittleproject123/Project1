@@ -2263,8 +2263,8 @@ document.addEventListener('DOMContentLoaded', async function() { // Make the lis
                     const productCard = productLink.closest('.product-card[data-product-id]');
                     if (productCard) {
                         e.preventDefault(); // Prevent default link behavior
-                        const countryCode = countryConfig[currentCountry]?.code || 'sk';
-                        window.location.href = `/${countryCode}/product.html?id=${productCard.dataset.productId}`;
+                        const countryCode = countryConfig[currentCountry]?.code || 'cs';
+                        window.location.href = `/product.html?id=${productCard.dataset.productId}&country=${countryCode}`;
                     }
                 }
             });
