@@ -18,13 +18,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   hero_subtitle: "Objavte náš prémiový výber repasovaných zariadení s plnou zárukou a odbornou technickou podporou. Kvalitná technika za výnimočné ceny.",
   shop_now: "Nakupovať teraz",
   benefit_free_shipping: "Doprava zdarma a doručenie nasledujúci deň",
-  benefit_free_shipping_desc: "Na všetky objednávky",
   benefit_warranty: "Záruka 1 rok",
-  benefit_warranty_desc: "Na všetky produkty",
   benefit_return: "Vrátenie do 30 dní",
-  benefit_return_desc: "Plné vrátenie peňazí garantované",
   benefit_accessories: "Príslušenstvo v cene",
-  benefit_accessories_desc: "Kábel, krabica a ochranné sklo zdarma",
   whatsapp_title: "Chcete vymeniť za nižší model alebo potrebujete viac informácií?",
   whatsapp_subtitle: "Chat s našimi odborníkmi na WhatsApp pre personalizované odporúčania a okamžitú podporu",
   whatsapp_button: "Chatovať na WhatsApp",
@@ -37,6 +33,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   add_to_cart: "Pridať do košíka",
   available_in: "Dostupné v:",
   free_shipping: "Doprava zdarma a doručenie nasledujúci deň",
+  benefit_free_shipping_desc: "Na všetky objednávky",
+  benefit_warranty: "Záruka 1 rok",
+  benefit_warranty_desc: "Na všetky produkty",
+  benefit_return: "Vrátenie do 30 dní",
+  benefit_return_desc: "Plné vrátenie peňazí garantované",
+  benefit_accessories: "Príslušenstvo v cene",
+  benefit_accessories_desc: "Kábel, krabica a ochranné sklo zdarma",
   free_shipping_all: "Doprava zdarma a doručenie nasledujúci deň na všetky objednávky",
   new: "Nové!",
   certified: "Certifikované!",
@@ -105,7 +108,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   verify_payment: "Overiť platbu",
   otp_sent: "Odoslali sme 6‑místny overovací kód na váš telefón. Prosím, zadajte ho nižšie, aby ste dokončili nákup.",
   code_expires: "Kód vyprší za: ",
-  resend_code: "Znovu odoslať kód",
   verify_code: "Overiť kód",
   spacegray: "Košmálne sivá",
   product_title: "Produkt",
@@ -114,7 +116,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   key_features: "Hlavné vlastnosti",
   technical_specs: "Technické špecifikácie",
   color: "Farba",
-  available_in: "Dostupné v:",
   delivery_time: "Doba doručenia",
   days_return: "14‑dňová politika vrátenia",
   model: "Model",
@@ -259,6 +260,32 @@ document.addEventListener('DOMContentLoaded', async () => {
   split_payment_monthly_value: "{price} x {months} mesiacov",
   galaxys21ultra_name: "Samsung Galaxy S21 Ultra 5G",
   galaxys21plus_name: "Samsung Galaxy S21+ 5G",
+  resend_code: "Znovu odoslať kód",
+  color_white: "Biela",
+  color_black: "Čierna",
+  color_black_titanium: "Čierny titán",
+  color_desert_titanium: "Púštny titán",
+  color_gold: "Zlatá",
+  color_silver: "Strieborná",
+  color_icy_blue: "Ľadovo modrá",
+  color_violet: "Fialová",
+  color_gray: "Sivá",
+  color_starlight: "Hviezdna biela",
+  color_sierra_blue: "Horská modrá",
+  color_space_gray: "Vesmírna šedá",
+  color_mystic_bronze: "Mystická bronzová",
+  color_mystic_green: "Mystická zelená",
+  color_mystic_black: "Mystická čierna",
+  color_aura_red: "Aura červená",
+  color_aura_glow: "Aura žiara",
+  color_aura_black: "Aura čierna",
+  color_prism_white: "Prizmatická biela",
+  color_cloud_navy: "Oblačná modrá",
+  color_cosmic_gray: "Kozmická šedá",
+  color_phantom_silver: "Fantómová strieborná",
+  color_phantom_black: "Fantómová čierna",
+  color_phantom_navy: "Fantómová tmavomodrá",
+  color_default: "Predvolená",
   galaxys20ultra_name: "Samsung Galaxy S20 Ultra 5G",
   galaxys20plus_name: "Samsung Galaxy S20+ 5G",
   galaxys20fe_name: "Samsung Galaxy S20 FE",
@@ -267,7 +294,21 @@ document.addEventListener('DOMContentLoaded', async () => {
   galaxynote10lite_name: "Samsung Galaxy Note 10 Lite",
   galaxynote10_name: "Samsung Galaxy Note 10",
   galaxynote10plus_name: "Samsung Galaxy Note 10+ 5G",
-  iphonexsmax_name: "iPhone XS Max"
+  iphonexsmax_name: "iPhone XS Max",
+  motogstylus5g_name: "Motorola Moto G Stylus 5G",
+  motorola_desc: "Telefón s dotykovým perom, veľkým displejom a dlhou výdržou batérie. Ideálny na poznámky a kreatívnu prácu.",
+  applewatchse2_name: "Apple Watch SE (2. gen)",
+  wearable_desc: "Sledujte svoju aktivitu, srdcový tep a notifikácie priamo na zápästí. Perfektný spoločník pre aktívny životný štýl.",
+  galaxywatch6_name: "Samsung Galaxy Watch 6",
+  miband8_name: "Xiaomi Mi Band 8",
+  pocof6_name: "Xiaomi Poco F6",
+  airpodspro2_name: "AirPods Pro (2. gen)",
+  spec_chip: "Čip",
+  spec_water_resistance: "Odolnosť voči vode",
+  spec_case: "Puzdro",
+  spec_spatial_audio: "Priestorový zvuk",
+  spec_noise_cancellation: "Potlačenie hluku",
+  value_pick: "Dobrá voľba!"
    },
     en: {
         home: "Home",
@@ -686,7 +727,20 @@ reviews: "Reviews"
         galaxynote10lite_name: "Samsung Galaxy Note 10 Lite",
         galaxynote10_name: "Samsung Galaxy Note 10",
         galaxynote10plus_name: "Samsung Galaxy Note 10+ 5G",
-        iphonexsmax_name: "iPhone XS Max"
+        iphonexsmax_name: "iPhone XS Max",
+        motogstylus5g_name: "Motorola Moto G Stylus 5G",
+        motorola_desc: "A phone with a stylus, large display, and long battery life. Ideal for notes and creative work.",
+        applewatchse2_name: "Apple Watch SE (2nd Gen)",
+        wearable_desc: "Track your activity, heart rate, and notifications right on your wrist. The perfect companion for an active lifestyle.",
+        galaxywatch6_name: "Samsung Galaxy Watch 6",
+        miband8_name: "Xiaomi Mi Band 8",
+        pocof6_name: "Xiaomi Poco F6",
+        airpodspro2_name: "AirPods Pro (2nd Gen)",
+        spec_chip: "Chip",
+        spec_water_resistance: "Water Resistance",
+        spec_case: "Case",
+        spec_spatial_audio: "Spatial Audio",
+        spec_noise_cancellation: "Noise Cancellation"
     },
     sk: {
         home: "Domov",
@@ -992,7 +1046,29 @@ reviews: "Reviews"
         galaxynote10lite_name: "Samsung Galaxy Note 10 Lite",
         galaxynote10_name: "Samsung Galaxy Note 10",
         galaxynote10plus_name: "Samsung Galaxy Note 10+ 5G",
-        iphonexsmax_name: "iPhone XS Max"    },
+        iphonexsmax_name: "iPhone XS Max",
+        motogstylus5g_name: "Motorola Moto G Stylus 5G",
+        motorola_desc: "Telefón s dotykovým perom, veľkým displejom a dlhou výdržou batérie. Ideálny na poznámky a kreatívnu prácu.",
+        applewatchse2_name: "Apple Watch SE (2. gen)",
+        wearable_desc: "Sledujte svoju aktivitu, srdcový tep a notifikácie priamo na zápästí. Perfektný spoločník pre aktívny životný štýl.",
+        galaxywatch6_name: "Samsung Galaxy Watch 6",
+        miband8_name: "Xiaomi Mi Band 8",
+        pocof6_name: "Xiaomi Poco F6",
+        airpodspro2_name: "AirPods Pro (2. gen)",
+        spec_chip: "Čip",
+        spec_water_resistance: "Odolnosť voči vode",
+        spec_case: "Puzdro",
+        spec_spatial_audio: "Priestorový zvuk",
+        spec_noise_cancellation: "Potlačenie hluku",
+        value_pick: "Dobrá voľba!",
+        color_white: "Biela",
+        color_black_titanium: "Čierny titán",
+        color_desert_titanium: "Púštny titán",
+        color_gold: "Zlatá",
+        color_space_gray: "Vesmírna šedá",
+        color_mystic_bronze: "Mystická bronzová",
+        color_mystic_green: "Mystická zelená"
+    },
     // Add new spec value translations here
     spec_iphone16promax_display_value: '6.9" Super Retina XDR OLED',
     spec_iphone16promax_processor_value: "Apple A18 Pro",
@@ -1084,7 +1160,7 @@ function getProductDatabase() {
     category: "phone",
     variants: {
         black: {
-            name: "Black Titanium",
+            name: t("color_black_titanium"),
             images: [
                 "https://m.media-amazon.com/images/I/61UMlmDXG+L.AC_SX466.jpg",
                 "https://m.media-amazon.com/images/I/51FEms6uxOL._AC_SY445_.jpg",
@@ -1092,7 +1168,7 @@ function getProductDatabase() {
             ]
         },
         gold: {
-            name: "Desert Titanium",
+            name: t("color_desert_titanium"),
             images: [
                 "https://m.media-amazon.com/images/I/61qYXb0BfXL._AC_SX569_.jpg",
                 "https://m.media-amazon.com/images/I/61Jv4TC20sL._AC_SX425_.jpg",
@@ -1139,9 +1215,9 @@ function getProductDatabase() {
     discount: 17,
     category: "phone",
     variants: {
-        black: { name: "Black Titanium", images: ["https://m.media-amazon.com/images/I/419CpsXXGQL.AC_SX466.jpg"] },
-        white: { name: "White", images: ["https://m.media-amazon.com/images/I/41HCeyEFICL._AC_SX425_.jpg"] },
-        teal: { name: "Teal", images: ["https://m.media-amazon.com/images/I/71dAfxOFDuL._AC_SX425_.jpg"] }
+        black: { name: t("color_black_titanium"), images: ["https://m.media-amazon.com/images/I/419CpsXXGQL.AC_SX466.jpg"] },
+        white: { name: t("color_white"), images: ["https://m.media-amazon.com/images/I/41HCeyEFICL._AC_SX425_.jpg"] },
+        teal: { name: t("color_blue"), images: ["https://m.media-amazon.com/images/I/71dAfxOFDuL._AC_SX425_.jpg"] }
     },
     memoryOptions: {
         "128GB": { price: 650, originalPrice: 699 },
@@ -1213,11 +1289,11 @@ iphone16e: {
     category: "phone",
     variants: {
         black: {
-            name: "Black",
+            name: t("color_black"),
             images: ["https://m.media-amazon.com/images/I/51H8+zCj2cL._AC_SX569_.jpg"]
         },
         white: {
-            name: "White",
+            name: t("color_white"),
             images: ["https://m.media-amazon.com/images/I/61Zsers1VBL._AC_SX425_.jpg"]
         }
     },
@@ -1253,11 +1329,11 @@ iphone15: {
   category: "phone",
   variants: {
     black: {
-      name: "Black",
+      name: t("color_black"),
       images: ["https://m.media-amazon.com/images/I/51PtFHUPjBL._AC_SY606_.jpg"]
     },
     blue: {
-      name: "Blue",
+      name: t("color_blue"),
       images: ["https://m.media-amazon.com/images/I/51-dI0OmzyL._AC_SX569_.jpg"]
     }
   },
@@ -1295,11 +1371,11 @@ iphone14promax: {
   category: "phone",
   variants: {
     black: {
-      name: "Black",
+      name: t("color_black"),
       images: ["https://m.media-amazon.com/images/I/51wqFSpP20L._AC_SL1000_.jpg"]
     },
     gold: {
-      name: "Gold",
+      name: t("color_gold"),
       images: ["https://m.media-amazon.com/images/I/51GZNF-UxFL._AC_SX569_.jpg"]
     }
   },
@@ -1337,11 +1413,11 @@ iphone14: {
 
   variants: {
     black: {
-      name: "Black",
+      name: t("color_black"),
       images: ["https://m.media-amazon.com/images/I/51Yz9FaNIGL._AC_SL1000_.jpg"]
     },
     starlight: {
-      name: "Starlight",
+      name: t("color_starlight"),
       images: ["https://m.media-amazon.com/images/I/51UE4EzWMDL._AC_SY606_.jpg"]
     }
   },
@@ -1380,11 +1456,11 @@ iphone13promax: {
   category: "phone",
   variants: {
     black: {
-      name: "Black",
+      name: t("color_black"),
       images: ["https://m.media-amazon.com/images/I/51UtM-A3fdL._AC_SX569_.jpg"]
     },
     sierraBlue: {
-      name: "Sierra Blue",
+      name: t("color_sierra_blue"),
       images: ["https://m.media-amazon.com/images/I/51UuPZLMaCL._AC_SX569_.jpg"]
     }
   },
@@ -1525,16 +1601,16 @@ iphonexsmax: {
     price: 170,
     category: "phone",
     variants: {
-        spacegray: { name: "Space Gray", images: ["https://m.media-amazon.com/images/I/518PnIKjQ3L._AC_SY606_.jpg"] },
-        gold: { name: "Gold", images: ["https://m.media-amazon.com/images/I/61k3k4QZftL._AC_SY606_.jpg"] }
+        spacegray: { name: t("color_space_gray"), images: ["https://m.media-amazon.com/images/I/518PnIKjQ3L._AC_SY606_.jpg"] },
+        gold: { name: t("color_gold"), images: ["https://m.media-amazon.com/images/I/61k3k4QZftL._AC_SY606_.jpg"] }
     },
     memoryOptions: {
         "512GB": { price: 170, originalPrice: 220 }
     },
     features: [
-        { icon: "fas fa-mobile-alt", title: "6.5\" Super Retina", desc: "Large OLED display" },
-        { icon: "fas fa-microchip", title: "A12 Bionic Chip", desc: "Fast and efficient" },
-        { icon: "fas fa-camera", title: "Dual 12MP cameras", desc: "With Portrait Mode" }
+        { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: "6.5\" Super Retina" },
+        { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: "A12 Bionic Chip" },
+        { icon: "fas fa-camera", title: t("feature_camera_title"), desc: "Dual 12MP cameras" }
     ],
     specifications: {
         [t("spec_display")]: "6.5\" OLED",
@@ -1557,15 +1633,15 @@ galaxys25ultra: {
   category: "phone",
   variants: {
     black: {
-      name: "Black",
+      name: t("color_black"),
       images: ["https://m.media-amazon.com/images/I/61n0lmxP5-L._AC_SX569_.jpg"]
     },
     silver: {
-      name: "Silver",
+      name: t("color_silver"),
       images: ["https://m.media-amazon.com/images/I/611uRZST+vL._AC_SX569_.jpg"]
     },
     icyBlue: {
-      name: "Icy Blue",
+      name: t("color_icy_blue"),
       images: ["https://m.media-amazon.com/images/I/61YvMOsT47L._AC_SX569_.jpg"]  // You can replace this with your actual Icy Blue image link
     }
   },
@@ -1602,11 +1678,11 @@ galaxyS25: {
     category: "phone",
     variants: {
         silver: {
-            name: "Silver",
+            name: t("color_silver"),
             images: ["https://m.media-amazon.com/images/I/61C17Al0dhL._AC_SX569_.jpg"]
         },
         blue: {
-            name: "Blue",
+            name: t("color_blue"),
             images: ["https://m.media-amazon.com/images/I/61C17Al0dhL._AC_SX569_.jpg"]
         }
     },
@@ -1643,11 +1719,11 @@ galaxys24ultra: {
     category: "phone",
     variants: {
         violet: {
-            name: "Violet",
+            name: t("color_violet"),
             images: ["https://m.media-amazon.com/images/I/51E3rux4DgL.__AC_SX300_SY300_QL70_FMwebp_.jpg"]
         },
         black: {
-            name: "Black",
+            name: t("color_black"),
             images: ["https://m.media-amazon.com/images/I/51A-Q4eMBxL._AC_SX425_.jpg"]
         }
     },
@@ -1683,11 +1759,11 @@ galaxys24: {
     category: "phone",
     variants: {
         black: {
-            name: "Black",
+            name: t("color_black"),
             images: ["https://m.media-amazon.com/images/I/61uakkLoHxL._AC_SX569_.jpg"]
         },
         gray: {
-            name: "Gray",
+            name: t("color_gray"),
             images: ["https://m.media-amazon.com/images/I/61bXUCHBw+L._AC_SX569_.jpg"]
         }
     },
@@ -1759,11 +1835,11 @@ galaxys23ultra: {
   category: "phone",
   variants: {
     black: {
-      name: "Black",
+      name: t("color_black"),
       images: ["https://m.media-amazon.com/images/I/513vXUcPFrL._AC_SX569_.jpg"]
     },
     pink: {
-      name: "Pink",
+      name: t("color_rose_gold"),
       images: ["https://m.media-amazon.com/images/I/51GvkWOYjIL._AC_SX569_.jpg"]
     }
   },
@@ -1799,11 +1875,11 @@ galaxys23ultra: {
   category: "phone",
   variants: {
     green: {
-      name: "Green",
+      name: t("color_green"),
       images: ["https://m.media-amazon.com/images/I/51xj0EFyXHL._AC_SX522_.jpg"]
     },
     cream: {
-      name: "Cream",
+      name: t("color_white"),
       images: ["https://m.media-amazon.com/images/I/61oXcVnOdAL._AC_SX522_.jpg"]
     }
   }, 
@@ -2555,7 +2631,7 @@ powerbank: {
     category: "accessories",
     variants: {
         default: {
-            name: "Black",
+            name: t("color_black"),
             images: ["https://m.media-amazon.com/images/I/61vXihj6QjL._AC_SX679_.jpg"]
         }
     },
@@ -2578,7 +2654,7 @@ screenprotector: {
     category: "accessories",
     variants: {
         default: {
-            name: "Clear",
+            name: t("color_white"),
             images: ["https://m.media-amazon.com/images/I/61NGYQsztvL._UF1000,1000_QL80_FMwebp_.jpg"]
         }
     },
@@ -2601,7 +2677,7 @@ motogstylus5g: {
     category: "phone",
     variants: {
         default: {
-            name: "Default",
+            name: t("color_default"),
             images: ["https://m.media-amazon.com/images/I/61LE9-6KxdL._AC_SX569_.jpg"]
         }
     },
@@ -2617,7 +2693,7 @@ applewatchse2: {
     category: "wearables",
     variants: {
         default: {
-            name: "Default",
+            name: t("color_default"),
             images: ["https://m.media-amazon.com/images/I/71LfnkRgZ4L._AC_SX679_.jpg"]
         }
     },
@@ -2633,7 +2709,7 @@ galaxywatch6: {
     category: "wearables",
     variants: {
         default: {
-            name: "Default",
+            name: t("color_default"),
             images: ["https://m.media-amazon.com/images/I/81Dm65eja8L._AC_SX425_.jpg"]
         }
     },
@@ -2649,7 +2725,7 @@ miband8: {
     category: "wearables",
     variants: {
         default: {
-            name: "Default",
+            name: t("color_default"),
             images: ["https://m.media-amazon.com/images/I/41zIT8cTQcL._AC_SX425_.jpg"]
         }
     },
@@ -2665,7 +2741,7 @@ pocof6: {
     category: "phone",
     variants: {
         default: {
-            name: "Default",
+            name: t("color_default"),
             images: ["https://m.media-amazon.com/images/I/61O1Ey0bwxL.__AC_SX300_SY300_QL70_FMwebp_.jpg"]
         }
     },
@@ -2692,7 +2768,7 @@ airpodspro2: {
     category: "audio",
     variants: {
         default: {
-            name: "White",
+            name: t("color_white"),
             images: ["https://m.media-amazon.com/images/I/61SUj2aKoEL._AC_SX679_.jpg"]
         }
     },
@@ -2717,17 +2793,17 @@ galaxynote20: {
     price: 108,
     category: "phone",
     variants: {
-        bronze: { name: "Mystic Bronze", images: ["https://m.media-amazon.com/images/I/81S-XYJ0-gL._AC_SX679_.jpg"] },
-        green: { name: "Mystic Green", images: ["https://m.media-amazon.com/images/I/816nFzoZ-SL._AC_SX679_.jpg"] },
-        black: { name: "Mystic Black", images: ["https://i.ebayimg.com/images/g/u78AAOSwDsdh2WXb/s-l960.webp"] }
+        bronze: { name: t("color_mystic_bronze"), images: ["https://m.media-amazon.com/images/I/81S-XYJ0-gL._AC_SX679_.jpg"] },
+        green: { name: t("color_mystic_green"), images: ["https://m.media-amazon.com/images/I/816nFzoZ-SL._AC_SX679_.jpg"] },
+        black: { name: t("color_mystic_black"), images: ["https://i.ebayimg.com/images/g/u78AAOSwDsdh2WXb/s-l960.webp"] }
     },
     memoryOptions: {
         "256GB": { price: 108, originalPrice: 149 },
     },
     features: [
-        { icon: "fas fa-pen-fancy", title: "S-Pen Included", desc: "Precision and control" },
-        { icon: "fas fa-camera", title: "Pro-Grade Camera", desc: "Capture stunning photos" },
-        { icon: "fas fa-battery-full", title: "All-Day Battery", desc: "Power through your day" }
+        { icon: "fas fa-pen-fancy", title: "S-Pen Included", desc: "Presnosť a ovládanie" },
+        { icon: "fas fa-camera", title: "Profi fotoaparát", desc: "Zachyťte úžasné fotografie" },
+        { icon: "fas fa-battery-full", title: "Celodenná batéria", desc: "Energia na celý deň" }
     ],
     specifications: {
         [t("spec_display")]: "6.7\" Super AMOLED Plus",
@@ -2746,17 +2822,17 @@ galaxynote10lite: {
     price: 122,
     category: "phone",
     variants: {
-        red: { name: "Aura Red", images: ["https://m.media-amazon.com/images/I/515c2WbyRJL._AC_SX679_.jpg"] },
-        glow: { name: "Aura Glow", images: ["https://m.media-amazon.com/images/I/71T0S6sQiKL._AC_SX679_.jpg"] },
-        black: { name: "Aura Black", images: ["https://m.media-amazon.com/images/I/71T0S6sQiKL._AC_SX679_.jpg"] }
+        red: { name: t("color_aura_red"), images: ["https://m.media-amazon.com/images/I/515c2WbyRJL._AC_SX679_.jpg"] },
+        glow: { name: t("color_aura_glow"), images: ["https://m.media-amazon.com/images/I/71T0S6sQiKL._AC_SX679_.jpg"] },
+        black: { name: t("color_aura_black"), images: ["https://m.media-amazon.com/images/I/71T0S6sQiKL._AC_SX679_.jpg"] }
     },
     memoryOptions: {
         "128GB": { price: 122, originalPrice: 160 },
     },
     features: [
-        { icon: "fas fa-pen-fancy", title: "S-Pen Included", desc: "For notes and drawing" },
-        { icon: "fas fa-camera", title: "Triple Camera System", desc: "Versatile photography" },
-        { icon: "fas fa-battery-full", title: "Large Battery", desc: "Long-lasting power" }
+        { icon: "fas fa-pen-fancy", title: "S-Pen v cene", desc: "Na poznámky a kreslenie" },
+        { icon: "fas fa-camera", title: "Trojitý fotoaparát", desc: "Všestranná fotografia" },
+        { icon: "fas fa-battery-full", title: "Veľká batéria", desc: "Dlhotrvajúca energia" }
     ],
     specifications: {
         [t("spec_display")]: "6.7\" Super AMOLED",
@@ -2775,15 +2851,15 @@ galaxynote10: {
     price: 135,
     category: "phone",
     variants: {
-        glow: { name: "Aura Glow", images: ["https://m.media-amazon.com/images/I/61gJyqFqX9L._AC_SX679_.jpg"] }
+        glow: { name: t("color_aura_glow"), images: ["https://m.media-amazon.com/images/I/61gJyqFqX9L._AC_SX679_.jpg"] }
     },
     memoryOptions: {
         "256GB": { price: 135, originalPrice: 180 },
     },
     features: [
-        { icon: "fas fa-pen-fancy", title: "S-Pen Included", desc: "Remote control features" },
-        { icon: "fas fa-film", title: "Cinematic Display", desc: "Edge-to-edge screen" },
-        { icon: "fas fa-camera", title: "Pro-Grade Camera", desc: "Live focus video" }
+        { icon: "fas fa-pen-fancy", title: "S-Pen v cene", desc: "Funkcie diaľkového ovládania" },
+        { icon: "fas fa-film", title: "Filmový displej", desc: "Obrazovka od okraja po okraj" },
+        { icon: "fas fa-camera", title: "Profi fotoaparát", desc: "Video so živým zaostrením" }
     ],
     specifications: {
         [t("spec_display")]: "6.3\" Dynamic AMOLED",
@@ -2802,15 +2878,15 @@ galaxynote10plus: {
     price: 184,
     category: "phone",
     variants: {
-        glow: { name: "Aura Glow", images: ["https://m.media-amazon.com/images/I/51S--oy0ASL._AC_SX679_.jpg"] }
+        glow: { name: t("color_aura_glow"), images: ["https://m.media-amazon.com/images/I/51S--oy0ASL._AC_SX679_.jpg"] }
     },
     memoryOptions: {
         "512GB": { price: 184, originalPrice: 240 },
     },
     features: [
-        { icon: "fas fa-pen-fancy", title: "Advanced S-Pen", desc: "Air actions and more" },
-        { icon: "fas fa-expand", title: "Large 6.8\" Display", desc: "Immersive viewing" },
-        { icon: "fas fa-camera-retro", title: "DepthVision Camera", desc: "For 3D scanning" }
+        { icon: "fas fa-pen-fancy", title: "Pokročilý S-Pen", desc: "Vzdušné gestá a viac" },
+        { icon: "fas fa-expand", title: "Veľký 6.8\" displej", desc: "Pohlcujúce sledovanie" },
+        { icon: "fas fa-camera-retro", title: "DepthVision kamera", desc: "Pre 3D skenovanie" }
     ],
     specifications: {
         [t("spec_display")]: "6.8\" Dynamic AMOLED",
@@ -2829,15 +2905,15 @@ galaxys10: {
     price: 114,
     category: "phone",
     variants: {
-        white: { name: "Prism White", images: ["https://www-konga-com-res.cloudinary.com/image/upload/f_auto,fl_lossy,dpr_auto,q_auto,w_1080/media/catalog/product/C/V/163129_1675444177.jpg"] }
+        white: { name: t("color_prism_white"), images: ["https://www-konga-com-res.cloudinary.com/image/upload/f_auto,fl_lossy,dpr_auto,q_auto,w_1080/media/catalog/product/C/V/163129_1675444177.jpg"] }
     },
     memoryOptions: {
         "128GB": { price: 114, originalPrice: 150 },
     },
     features: [
-        { icon: "fas fa-fingerprint", title: "Ultrasonic Fingerprint", desc: "Secure and fast" },
-        { icon: "fas fa-camera", title: "Triple Camera System", desc: "Ultra-wide lens" },
-        { icon: "fas fa-share-alt", title: "Wireless PowerShare", desc: "Charge other devices" }
+        { icon: "fas fa-fingerprint", title: "Ultrazvukový odtlačok", desc: "Bezpečný a rýchly" },
+        { icon: "fas fa-camera", title: "Trojitý fotoaparát", desc: "Ultraširokouhlý objektív" },
+        { icon: "fas fa-share-alt", title: "Bezdrôtové zdieľanie energie", desc: "Nabíjajte iné zariadenia" }
     ],
     specifications: {
         [t("spec_display")]: "6.1\" Dynamic AMOLED",
@@ -2856,15 +2932,15 @@ galaxys20fe: {
     price: 170,
     category: "phone",
     variants: {
-        navy: { name: "Cloud Navy", images: ["https://m.media-amazon.com/images/I/51yxI5nkPWL._AC_SX569_.jpg"] }
+        navy: { name: t("color_cloud_navy"), images: ["https://m.media-amazon.com/images/I/51yxI5nkPWL._AC_SX569_.jpg"] }
     },
     memoryOptions: {
         "128GB": { price: 170, originalPrice: 220 },
     },
     features: [
-        { icon: "fas fa-tachometer-alt", title: "120Hz Display", desc: "Super smooth scrolling" },
-        { icon: "fas fa-camera", title: "Pro-Grade Triple Camera", desc: "30x Space Zoom" },
-        { icon: "fas fa-battery-full", title: "All-Day Battery", desc: "4500 mAh capacity" }
+        { icon: "fas fa-tachometer-alt", title: "120Hz displej", desc: "Super plynulé posúvanie" },
+        { icon: "fas fa-camera", title: "Profi trojitý fotoaparát", desc: "30x Space Zoom" },
+        { icon: "fas fa-battery-full", title: "Celodenná batéria", desc: "Kapacita 4500 mAh" }
     ],
     specifications: {
         [t("spec_display")]: "6.5\" Super AMOLED, 120Hz",
@@ -2883,15 +2959,15 @@ galaxys20plus: {
     price: 192,
     category: "phone",
     variants: {
-        black: { name: "Cosmic Black", images: ["https://m.media-amazon.com/images/I/71C4k+Ej67L._AC_SX466_.jpg"] }
+        black: { name: t("color_cosmic_black"), images: ["https://m.media-amazon.com/images/I/71C4k+Ej67L._AC_SX466_.jpg"] }
     },
     memoryOptions: {
         "128GB": { price: 192, originalPrice: 250 },
     },
     features: [
-        { icon: "fas fa-video", title: "8K Video Snap", desc: "High-resolution video" },
-        { icon: "fas fa-camera", title: "64MP High-Res Camera", desc: "30x Space Zoom" },
-        { icon: "fas fa-tachometer-alt", title: "120Hz Display", desc: "Smooth and responsive" }
+        { icon: "fas fa-video", title: "8K Video Snap", desc: "Video vo vysokom rozlíšení" },
+        { icon: "fas fa-camera", title: "64MP fotoaparát", desc: "30x Space Zoom" },
+        { icon: "fas fa-tachometer-alt", title: "120Hz displej", desc: "Plynulý a responzívny" }
     ],
     specifications: {
         [t("spec_display")]: "6.7\" Dynamic AMOLED 2X, 120Hz",
@@ -2910,15 +2986,15 @@ galaxys20ultra: {
     price: 211,
     category: "phone",
     variants: {
-        gray: { name: "Cosmic Gray", images: ["https://m.media-amazon.com/images/I/51Tsn0W3XFL._AC_SX522_.jpg"] }
+        gray: { name: t("color_cosmic_gray"), images: ["https://m.media-amazon.com/images/I/51Tsn0W3XFL._AC_SX522_.jpg"] }
     },
     memoryOptions: {
         "512GB": { price: 211, originalPrice: 280 },
     },
     features: [
-        { icon: "fas fa-search-plus", title: "100x Space Zoom", desc: "Get incredibly close" },
-        { icon: "fas fa-camera", title: "108MP High-Res Camera", desc: "Stunning detail" },
-        { icon: "fas fa-video", title: "8K Video Recording", desc: "Cinema-quality video" }
+        { icon: "fas fa-search-plus", title: "100x Space Zoom", desc: "Priblížte sa neuveriteľne blízko" },
+        { icon: "fas fa-camera", title: "108MP fotoaparát", desc: "Úžasné detaily" },
+        { icon: "fas fa-video", title: "8K nahrávanie videa", desc: "Video v kvalite kina" }
     ],
     specifications: {
         [t("spec_display")]: "6.9\" Dynamic AMOLED 2X, 120Hz",
@@ -2937,15 +3013,15 @@ galaxys21plus: {
     price: 195,
     category: "phone",
     variants: {
-        silver: { name: "Phantom Silver", images: ["https://m.media-amazon.com/images/I/61yn+RcQ08S._AC_SX569_.jpg"] }
+        silver: { name: t("color_phantom_silver"), images: ["https://m.media-amazon.com/images/I/61yn+RcQ08S._AC_SX569_.jpg"] }
     },
     memoryOptions: {
         "256GB": { price: 195, originalPrice: 260 },
     },
     features: [
-        { icon: "fas fa-video", title: "8K Video Snap", desc: "Pull stills from video" },
-        { icon: "fas fa-camera", title: "Pro-Grade Camera", desc: "64MP telephoto lens" },
-        { icon: "fas fa-tachometer-alt", title: "120Hz Adaptive Display", desc: "Smooth and efficient" }
+        { icon: "fas fa-video", title: "8K Video Snap", desc: "Vytvárajte fotky z videa" },
+        { icon: "fas fa-camera", title: "Profi fotoaparát", desc: "64MP teleobjektív" },
+        { icon: "fas fa-tachometer-alt", title: "120Hz adaptívny displej", desc: "Plynulý a efektívny" }
     ],
     specifications: {
         [t("spec_display")]: "6.7\" Dynamic AMOLED 2X, 120Hz",
@@ -2964,16 +3040,16 @@ galaxys21ultra: {
     price: 246,
     category: "phone",
     variants: {
-        black: { name: "Phantom Black", images: ["https://m.media-amazon.com/images/I/610KvwSCMYL._AC_SX466_.jpg"] },
-        navy: { name: "Phantom Navy", images: ["https://m.media-amazon.com/images/I/51gfaY6FQwL._AC_SX569_.jpg"] }
+        black: { name: t("color_phantom_black"), images: ["https://m.media-amazon.com/images/I/610KvwSCMYL._AC_SX466_.jpg"] },
+        navy: { name: t("color_phantom_navy"), images: ["https://m.media-amazon.com/images/I/51gfaY6FQwL._AC_SX569_.jpg"] }
     },
     memoryOptions: {
         "512GB": { price: 246, originalPrice: 290 },
     },
     features: [
-        { icon: "fas fa-search-plus", title: "Dual-Tele Zoom", desc: "100x Space Zoom" },
-        { icon: "fas fa-pen-fancy", title: "S-Pen Compatible", desc: "First for Galaxy S" },
-        { icon: "fas fa-camera", title: "108MP Pro Sensor", desc: "Bright night photos" }
+        { icon: "fas fa-search-plus", title: "Dvojitý teleobjektív", desc: "100x Space Zoom" },
+        { icon: "fas fa-pen-fancy", title: "Kompatibilné s S-Pen", desc: "Prvýkrát pre Galaxy S" },
+        { icon: "fas fa-camera", title: "108MP Pro senzor", desc: "Jasné nočné fotografie" }
     ],
     specifications: {
         [t("spec_display")]: "6.8\" Dynamic AMOLED 2X, 120Hz",
