@@ -3174,160 +3174,6 @@ img { will-change: transform; }
 .btn:disabled:hover {
     transform: none !important;
     box-shadow: none !important;
-    background: #6b7280 !important;
-    color: #9ca3af !important;
-}
-
-/* Personal Details and Shipping Sections */
-.personal-details-section,
-.shipping-details-section {
-    margin-bottom: 2rem;
-    padding: 1.5rem;
-    background: var(--background-light);
-    border-radius: var(--border-radius);
-    border: 1px solid var(--border-color);
-}
-
-.personal-details-section h3,
-.shipping-details-section h3 {
-    margin-bottom: 1rem;
-    color: var(--secondary-color);
-    font-size: 1.1rem;
-    font-weight: 600;
-}
-
-.delivery-info-banner {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1rem;
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-    color: white;
-    border-radius: var(--border-radius);
-    margin-bottom: 1rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-}
-
-.delivery-info-banner i {
-    font-size: 1rem;
-}
-
-/* Bonus Offer Section */
-.bonus-offer {
-    margin-bottom: 2rem;
-    border: 2px solid var(--primary-color);
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    background: white;
-}
-
-.offer-header {
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-    color: white !important;
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-weight: 600;
-    font-size: 1rem;
-}
-
-.offer-header i {
-    font-size: 1.25rem;
-    color: white !important;
-}
-
-.offer-header span {
-    color: white !important;
-}
-
-.offer-content {
-    padding: 1.5rem;
-}
-
-.offer-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.offer-image {
-    width: 60px;
-    height: 60px;
-    border-radius: var(--border-radius);
-    object-fit: cover;
-    border: 2px solid var(--border-color);
-}
-
-.offer-details h4 {
-    margin: 0 0 0.25rem 0;
-    color: var(--secondary-color);
-    font-size: 1rem;
-    font-weight: 600;
-}
-
-.offer-details p {
-    margin: 0 0 0.5rem 0;
-    color: var(--text-light);
-    font-size: 0.875rem;
-}
-
-.offer-value {
-    background: var(--primary-color);
-    color: white;
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    display: inline-block;
-}
-
-/* Form Styling */
-.form-group {
-    margin-bottom: 1rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-    color: var(--secondary-color);
-    font-size: 0.875rem;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 1rem;
-    border: 2px solid var(--border-color);
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: var(--transition);
-    background: var(--background-light);
-    color: var(--text-color);
-    line-height: 1.4;
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    background: white;
-    box-shadow: 0 0 0 4px rgba(30, 58, 138, 0.1);
-}
-
-.form-group textarea {
-    resize: vertical;
-    min-height: 60px;
-}
-
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
 }
 
 /* Comprehensive checkout text styling */
@@ -4994,6 +4840,93 @@ img {
     color: var(--text-color);
 }
 
+/* Contact Page Specific Styles */
+.contact-page-content {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 3rem;
+    align-items: flex-start;
+}
+
+.contact-info-section h2,
+.contact-form-section h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.contact-info-section h2::after,
+.contact-form-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: var(--primary-color);
+    border-radius: 2px;
+}
+
+.contact-card {
+    background: var(--background-light);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    border-left: 5px solid var(--primary-color);
+    box-shadow: var(--shadow);
+}
+
+.contact-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+}
+
+.contact-card p {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    color: var(--text-light);
+    font-size: 1rem;
+}
+
+.contact-card p i {
+    color: var(--primary-color);
+    width: 20px;
+    text-align: center;
+}
+
+.contact-card p a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.contact-card p a:hover {
+    color: var(--primary-color);
+}
+
+.contact-form-section .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.contact-form-section .btn-primary {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    .contact-page-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
 .otp-error {
     background: #fee;
     border: 1px solid #fcc;
@@ -5204,6 +5137,7 @@ img {
     gap: 1rem;
     position: sticky;
     top: 2rem;
+    max-width: 100%; /* Prevents the container from growing too large */
     padding: 1rem 0;
 }
 
