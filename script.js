@@ -709,9 +709,9 @@ function t(key) {
 }
 
 // Global variables
-let currentCountry = localStorage.getItem('selectedCountry') || 'cs';
-let currentLanguage = localStorage.getItem('selectedLanguage') || 'sk';
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
+var currentCountry = localStorage.getItem('selectedCountry') || 'cs';
+var currentLanguage = localStorage.getItem('selectedLanguage') || 'sk';
+var cart = JSON.parse(localStorage.getItem('cart')) || [];
 // Global state for grid controls
 let currentFilterCategory = 'all';
 let currentSearchTerm = '';
