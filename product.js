@@ -2032,12 +2032,14 @@ function updatePricing(product) {
     let basePrice = 0;
     let baseOriginalPrice = 0;
 
-    if (product.memoryOptions && Object.keys(product.memoryOptions).length > 0 && currentMemory) {
+    // First, set the base price from the product itself.
+    basePrice = product.price;
+    baseOriginalPrice = product.originalPrice;
+
+    // Then, if memory options exist and are selected, override the base price.
+    if (product.memoryOptions && currentMemory && product.memoryOptions[currentMemory]) {
         basePrice = product.memoryOptions[currentMemory].price;
         baseOriginalPrice = product.memoryOptions[currentMemory].originalPrice;
-    } else {
-        basePrice = product.price;
-        baseOriginalPrice = product.originalPrice;
     }
 
     if (product.conditionOptions && currentCondition) {
