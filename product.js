@@ -2794,12 +2794,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         updateLanguage(window.currentLanguage);
     }
 
-    updateFooterFromBusinessAddress();
+    // This function is in script.js, call it safely
+    if (typeof updateFooterFromBusinessAddress === 'function') {
+        updateFooterFromBusinessAddress();
+    }
     setupCountrySwitcherLinks();
 
     // Initialize product database after language is set
     setTimeout(loadProduct, 0); // Use a timeout to ensure translations are processed
-    updateCartCount();
 
     // Country dropdown functionality
     const countryDropdownBtn = document.getElementById('country-dropdown-btn');
