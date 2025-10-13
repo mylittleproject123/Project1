@@ -1928,6 +1928,366 @@ function getProductId() {
     return urlParams.get('id') || 'iphone16promax'; // Default to a product if no ID is found
 }
 
+// Global variables for product page state
+let currentMemory = null;
+let currentCondition = null;
+let currentVariant = null;
+
+// Load and display product
+function loadProduct() {
+    const productDatabase = getProductDatabase(); // Build the database AFTER translations are ready
+    const productId = getProductId();
+    const product = productDatabase[productId];
+
+    if (!product) {
+        const container = document.querySelector('.product-detail-container');
+        if (container) {
+            container.innerHTML = `
+                <div style="text-align: center; padding: 3rem;">
+                    <h2>Producto no encontrado</h2>
+                    <p>El producto que buscas no existe.</p>
+                    <a href="index.html" class="btn btn-primary">Volver a la tienda</a>
+                </div>
+            `;
+        }
+        return;
+    }
+
+    // Initialize selection states
+    currentMemory = product.memoryOptions ? Object.keys(product.memoryOptions)[0] : null;
+    currentCondition = product.conditionOptions ? Object.keys(product.conditionOptions)[0] : null;
+    currentVariant = product.variants ? Object.keys(product.variants)[0] : null;
+
+    // Update page title and meta
+    document.title = `${product.name} - Swappie`;
+    const pageTitle = document.getElementById('product-page-title');
+    if (pageTitle) {
+        pageTitle.textContent = `${product.name} - Swappie`;
+    }
+
+    // Update breadcrumb based on language
+    const breadcrumbProduct = document.getElementById('breadcrumb-product');
+    if (breadcrumbProduct) {
+        breadcrumbProduct.textContent = product.name; 
+    }
+
+    // Function to update pricing based on current selections
+    function updatePricing() {
+        let basePrice = product.price;
+        let baseOriginalPrice = product.originalPrice;
+
+        // Apply memory pricing if available
+        if (product.memoryOptions && currentMemory) {
+            basePrice = product.memoryOptions[currentMemory].price;
+            baseOriginalPrice = product.memoryOptions[currentMemory].originalPrice;
+        }
+
+        // Apply condition adjustment if available
+        if (product.conditionOptions && currentCondition) {
+            const adjustment = product.conditionOptions[currentCondition].priceAdjustment || 0;
+            basePrice = basePrice + adjustment;
+            baseOriginalPrice = baseOriginalPrice + adjustment;
+        }
+
+        const priceEl = document.getElementById('product-price');
+        const originalPriceEl = document.getElementById('product-original-price');
+        if (priceEl) priceEl.textContent = convertPrice(basePrice);
+        if (originalPriceEl) originalPriceEl.textContent = convertPrice(baseOriginalPrice);
+    }
+
+    // Update product information
+    const titleEl = document.getElementById('product-title');
+    const subtitleEl = document.getElementById('product-subtitle');
+    const discountEl = document.getElementById('product-discount');
+
+    if (titleEl) titleEl.textContent = product.name;
+    if (subtitleEl) subtitleEl.textContent = product.subtitle;
+    if (discountEl) discountEl.textContent = `-${product.discount}%`;
+
+    updatePricing();
+
+    // Setup condition selection
+    const conditionContainer = document.getElementById('condition-selection-container');
+    const conditionOptions = document.getElementById('condition-options');
+
+    if (product.conditionOptions && conditionContainer && conditionOptions) {
+        conditionContainer.style.display = 'block';
+
+        const conditionTitle = document.createElement('h3');
+        conditionTitle.style.cssText = 'font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; color: var(--secondary-color);'; 
+        conditionTitle.innerHTML = `${window.translations[window.currentLanguage].condition || 'Condition'} <span style="color: #ef4444; font-size: 0.9rem;">${window.translations[window.currentLanguage].required || '*Required'}</span>`;
+
+        const conditionGuide = document.createElement('div');
+        conditionGuide.style.cssText = 'margin-bottom: 1rem; padding: 0.75rem; background: var(--background-light); border-radius: 6px; font-size: 0.875rem; color: var(--text-light);';
+        conditionGuide.innerHTML = `
+            <i class="fas fa-info-circle" style="color: var(--primary-color); margin-right: 0.5rem;"></i> 
+            <strong>${window.translations[window.currentLanguage].condition_guide || 'Condition Guide:'}</strong> ${window.translations[window.currentLanguage].condition_guide_desc || 'Better conditions indicate less wear and superior device appearance.'}
+        `;
+
+        conditionContainer.innerHTML = '';
+        conditionContainer.appendChild(conditionTitle);
+        conditionContainer.appendChild(conditionGuide);
+
+        const optionsContainer = document.createElement('div');
+        optionsContainer.id = 'condition-options';
+        optionsContainer.style.cssText = 'display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;';
+
+        // Add condition options with proper translations
+        Object.entries(product.conditionOptions).forEach(([key, condition]) => {
+            const conditionOption = document.createElement('div');
+            conditionOption.className = `condition-option ${key === currentCondition ? 'selected' : ''}`;
+            conditionOption.style.cssText = `
+                border: 2px solid ${key === currentCondition ? 'var(--primary-color)' : 'var(--border-color)'};
+                border-radius: 8px;
+                padding: 1rem;
+                cursor: pointer;
+                transition: all 0.3s;
+                background: ${key === currentCondition ? 'var(--background-light)' : 'white'};
+            `;
+
+            const conditionName = window.translations[window.currentLanguage][key] || condition.name;
+            const conditionDesc = window.translations[window.currentLanguage][key + '_desc'] || condition.description;
+
+            conditionOption.innerHTML = `
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--secondary-color);">${conditionName}</h4>
+                <p style="margin: 0; font-size: 0.875rem; color: var(--text-light);">${conditionDesc}</p>
+            `;
+
+            conditionOption.addEventListener('click', function() {
+                document.querySelectorAll('.condition-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                    opt.style.borderColor = 'var(--border-color)';
+                    opt.style.background = 'white';
+                });
+                this.classList.add('selected');
+                this.style.borderColor = 'var(--primary-color)';
+                this.style.background = 'var(--background-light)';
+                currentCondition = key;
+                updatePricing();
+                validateSelections(product);
+            });
+            optionsContainer.appendChild(conditionOption);
+        });
+
+        conditionContainer.appendChild(optionsContainer);
+    }
+
+    // Setup memory selection if available
+    const memoryContainer = document.getElementById('memory-selection-container');
+    const memoryOptions = document.getElementById('memory-options');
+
+    if (product.memoryOptions && memoryContainer && memoryOptions) {
+        memoryContainer.style.display = 'block';
+
+        const memoryTitle = document.createElement('h3');
+        memoryTitle.style.cssText = 'font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; color: var(--secondary-color);';
+        memoryTitle.innerHTML = `${window.translations[window.currentLanguage].storage || 'Storage'} <span style="color: #ef4444; font-size: 0.9rem;">${window.translations[window.currentLanguage].required || '*Required'}</span>`;
+
+        memoryContainer.innerHTML = '';
+        memoryContainer.appendChild(memoryTitle);
+
+        const optionsContainer = document.createElement('div');
+        optionsContainer.id = 'memory-options';
+        optionsContainer.style.cssText = 'display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem;';
+
+        Object.entries(product.memoryOptions).forEach(([memory, data]) => {
+            const memoryOption = document.createElement('div');
+            memoryOption.className = `memory-option ${memory === currentMemory ? 'selected' : ''}`;
+            memoryOption.textContent = memory;
+            memoryOption.style.cssText = `
+                padding: 0.75rem 1rem;
+                border: 2px solid ${memory === currentMemory ? 'var(--primary-color)' : 'var(--border-color)'};
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.3s;
+                background: ${memory === currentMemory ? 'var(--primary-color)' : 'white'};
+                color: ${memory === currentMemory ? 'white' : 'var(--text-color)'};
+                font-weight: 600;
+                text-align: center;
+            `;
+            memoryOption.addEventListener('click', function() {
+                document.querySelectorAll('.memory-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                    opt.style.borderColor = 'var(--border-color)';
+                    opt.style.background = 'white';
+                    opt.style.color = 'var(--text-color)';
+                });
+                this.classList.add('selected');
+                this.style.borderColor = 'var(--primary-color)';
+                this.style.background = 'var(--primary-color)';
+                this.style.color = 'white';
+                currentMemory = memory;
+                updatePricing();
+                validateSelections(product);
+            });
+            optionsContainer.appendChild(memoryOption);
+        });
+
+        memoryContainer.appendChild(optionsContainer);
+    }
+
+    // Setup color selection if variants exist
+    const colorContainer = document.getElementById('color-selection-container');
+    const colorSelect = document.getElementById('product-color-select');
+
+    if (product.variants && colorContainer && colorSelect) {
+        colorContainer.style.display = 'block';
+        colorSelect.innerHTML = '';
+
+        Object.entries(product.variants).forEach(([key, variant]) => {
+            const option = document.createElement('option');
+            option.value = key;
+            option.textContent = variant.name;
+            colorSelect.appendChild(option);
+        });
+
+        // Set initial value
+        if (currentVariant) {
+            colorSelect.value = currentVariant;
+        }
+
+        colorSelect.addEventListener('change', function() {
+            currentVariant = this.value;
+            const variant = product.variants[currentVariant];
+
+            // Update main image and thumbnails
+            updateProductImages(variant.images);
+
+            // Update product name
+            const titleEl = document.getElementById('product-title');
+            if (titleEl) {
+                titleEl.textContent = `${product.name} (${variant.name})`;
+            }
+
+            validateSelections(product);
+        });
+
+        // Initialize with current variant
+        const currentVariantData = product.variants[currentVariant];
+        if (currentVariantData) {
+            updateProductImages(currentVariantData.images);
+        }
+    } else {
+        // Use default images if no variants
+        updateProductImages(product.images);
+    }
+
+    function updateProductImages(images) {
+        const mainImage = document.getElementById('main-product-image');
+        const thumbnailContainer = document.getElementById('thumbnail-container');
+
+        if (!images || images.length === 0) {
+            console.log('No images provided for product');
+            if (mainImage) mainImage.src = 'https://placehold.co/400x400?text=No+Image';
+            if (thumbnailContainer) thumbnailContainer.innerHTML = '';
+            return;
+        }
+
+        // Helper to get a higher resolution image from Amazon URLs
+        const getHighResImageUrl = (url) => {
+            if (typeof url === 'string' && url.includes('amazon.com')) {
+                // This regex removes the size constraint part of an Amazon image URL (e.g., ._AC_SX466_)
+                // to request a higher resolution version. It's safer than replacing with a fixed size.
+                return url.replace(/\._AC_.*?_/, '');
+            }
+            return url;
+        };
+
+        // Set the main image to the high-resolution version of the first image
+        if (mainImage) {
+            const highResSrc = getHighResImageUrl(images[0]);
+            mainImage.src = highResSrc;
+            mainImage.alt = product.name;
+        }
+
+        if (thumbnailContainer) {
+            thumbnailContainer.innerHTML = '';
+            const fragment = document.createDocumentFragment();
+
+            images.forEach((image, index) => {
+                const thumbnail = document.createElement('img');
+                thumbnail.src = image; // Use original (smaller) image for fast-loading thumbnails
+                thumbnail.alt = `${product.name} view ${index + 1}`;
+                thumbnail.className = `thumbnail ${index === 0 ? 'active' : ''}`;
+                thumbnail.loading = 'lazy';
+                thumbnail.decoding = 'async';
+                // Defensive styling to ensure thumbnails are not too small
+                thumbnail.style.width = '80px';
+                thumbnail.style.height = '80px';
+                thumbnail.style.objectFit = 'contain';
+                thumbnail.style.cursor = 'pointer';
+
+                thumbnail.onerror = function() {
+                    console.log('Failed to load thumbnail:', image);
+                    this.src = 'https://placehold.co/120x120?text=No+Image';
+                };
+
+                thumbnail.addEventListener('click', () => {
+                    document.querySelectorAll('.thumbnail').forEach(t => {
+                        t.classList.remove('active');
+                        t.style.borderColor = 'transparent';
+                    });
+                    thumbnail.classList.add('active');
+                    thumbnail.style.borderColor = 'var(--primary-color)';
+
+                    // Update the main product image when a thumbnail is clicked
+                    if (mainImage) { // Load the high-resolution version on click
+                        mainImage.src = getHighResImageUrl(image);
+                    }
+                });
+
+                fragment.appendChild(thumbnail);
+            });
+
+            thumbnailContainer.appendChild(fragment);
+        }
+    }
+
+	// ---------------------
+    // Render Features
+    // ---------------------
+    const featuresGrid = document.getElementById('features-grid');
+    if (featuresGrid) {
+        featuresGrid.innerHTML = '';
+
+        if (Array.isArray(product.features)) {
+            product.features.forEach(feature => {
+                const featureCard = document.createElement('div');
+                featureCard.className = 'feature-card';
+                featureCard.innerHTML = `
+                    <div class="feature-icon">
+                        <i class="${feature.icon}"></i>
+                    </div>
+                    <div class="feature-title">${feature.title}</div>
+                    <div class="feature-desc">${feature.desc}</div>
+                `;
+                featuresGrid.appendChild(featureCard);
+            });
+        }
+    }
+
+    // ---------------------
+    // Render Specifications
+    // ---------------------
+    const specsGrid = document.getElementById('specifications-grid');
+    if (specsGrid) {
+        specsGrid.innerHTML = '';
+
+        if (product.specifications && typeof product.specifications === 'object') {
+            Object.entries(product.specifications).forEach(([label, value]) => {
+                const specItem = document.createElement('div');
+                specItem.className = 'spec-item';
+                specItem.innerHTML = `
+                    <span class="spec-label">${label}:</span>
+                    <span class="spec-value">${value}</span>
+                `;
+                specsGrid.appendChild(specItem);
+            });
+        }
+    }
+
+}
+
 // Setup add to cart functionality
 function setupAddToCart(product) {
     const quantityDisplay = document.getElementById('quantity');
