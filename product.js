@@ -1923,379 +1923,6 @@ galaxys21ultra: {
     }
 }
 
-// Get product ID from URL parameters
-function getProductId() {    
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('id') || 'iphone16promax'; // Default to a product if no ID is found
-}
-
-// Global variables for product page state
-let currentMemory = null;
-let currentCondition = null;
-let currentVariant = null;
-
-// Load and display product
-function loadProduct() {
-    if (typeof t !== 'function') {
-        console.error('Translation function t() is not defined.');
-        return;
-    }
-    const productDatabase = getProductDatabase();
-    const productId = getProductId();
-    const product = productDatabase[productId];
-
-    if (!product) {
-        const container = document.querySelector('.product-detail-container');
-        if (container) {
-            container.innerHTML = `
-                <div style="text-align: center; padding: 3rem;">
-                    <h2>Producto no encontrado</h2>
-                    <p>El producto que buscas no existe.</p>
-                    <a href="index.html" class="btn btn-primary">Volver a la tienda</a>
-                </div>
-            `;
-        }
-        return;
-    }
-
-    // Initialize selection states
-    currentMemory = product.memoryOptions ? Object.keys(product.memoryOptions)[0] : null;
-    currentCondition = product.conditionOptions ? Object.keys(product.conditionOptions)[0] : null;
-    currentVariant = product.variants ? Object.keys(product.variants)[0] : null
-
-    // Update page title and meta
-    document.title = `${product.name} - Swappie`;
-    const pageTitle = document.getElementById('product-page-title');
-    if (pageTitle) {
-        pageTitle.textContent = `${product.name} - Swappie`;
-    }
-
-    // Update breadcrumb based on language
-    const breadcrumbProduct = document.getElementById('breadcrumb-product');
-    if (breadcrumbProduct) {
-        breadcrumbProduct.textContent = product.name; 
-    }
-
-    // Function to update pricing based on current selections
-    function updatePricing() {
-        let basePrice = 0;
-        let baseOriginalPrice = 0;
-
-        // Apply memory pricing if available
-        if (product.memoryOptions && Object.keys(product.memoryOptions).length > 0 && currentMemory) {
-            basePrice = product.memoryOptions[currentMemory].price;
-            baseOriginalPrice = product.memoryOptions[currentMemory].originalPrice;
-        } else {
-            basePrice = product.price;
-            baseOriginalPrice = product.originalPrice;
-        }
-
-        // Apply condition adjustment if available
-        if (product.conditionOptions && currentCondition) {
-            const adjustment = product.conditionOptions[currentCondition].priceAdjustment || 0;
-            basePrice = basePrice + adjustment;
-            baseOriginalPrice = baseOriginalPrice + adjustment;
-        }
-
-        const priceEl = document.getElementById('product-price');
-        const originalPriceEl = document.getElementById('product-original-price');
-        if (priceEl) priceEl.textContent = convertPrice(basePrice);
-        if (originalPriceEl) originalPriceEl.textContent = convertPrice(baseOriginalPrice);
-    }
-
-    // Update product information
-    const titleEl = document.getElementById('product-title');
-    const subtitleEl = document.getElementById('product-subtitle');
-    const discountEl = document.getElementById('product-discount');
-
-    // Setup condition selection
-    const conditionContainer = document.getElementById('condition-selection-container');
-    const conditionOptions = document.getElementById('condition-options');
-
-    if (product.conditionOptions && conditionContainer && conditionOptions) {
-        conditionContainer.style.display = 'block';
-
-        const conditionTitle = document.createElement('h3');
-        conditionTitle.style.cssText = 'font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; color: var(--secondary-color);'; 
-        conditionTitle.innerHTML = `${window.translations[window.currentLanguage].condition || 'Condition'} <span style="color: #ef4444; font-size: 0.9rem;">${window.translations[window.currentLanguage].required || '*Required'}</span>`;
-
-        const conditionGuide = document.createElement('div');
-        conditionGuide.style.cssText = 'margin-bottom: 1rem; padding: 0.75rem; background: var(--background-light); border-radius: 6px; font-size: 0.875rem; color: var(--text-light);';
-        conditionGuide.innerHTML = `
-            <i class="fas fa-info-circle" style="color: var(--primary-color); margin-right: 0.5rem;"></i> 
-            <strong>${window.translations[window.currentLanguage].condition_guide || 'Condition Guide:'}</strong> ${window.translations[window.currentLanguage].condition_guide_desc || 'Better conditions indicate less wear and superior device appearance.'}
-        `;
-
-        conditionContainer.innerHTML = '';
-        conditionContainer.appendChild(conditionTitle);
-        conditionContainer.appendChild(conditionGuide);
-
-        const optionsContainer = document.createElement('div');
-        optionsContainer.id = 'condition-options';
-        optionsContainer.style.cssText = 'display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;';
-
-        // Add condition options with proper translations
-        Object.entries(product.conditionOptions).forEach(([key, condition]) => {
-            const conditionOption = document.createElement('div');
-            conditionOption.className = `condition-option ${key === currentCondition ? 'selected' : ''}`;
-            conditionOption.style.cssText = `
-                border: 2px solid ${key === currentCondition ? 'var(--primary-color)' : 'var(--border-color)'};
-                border-radius: 8px;
-                padding: 1rem;
-                cursor: pointer;
-                transition: all 0.3s;
-                background: ${key === currentCondition ? 'var(--background-light)' : 'white'};
-            `;
-
-            const conditionName = window.translations[window.currentLanguage][key] || condition.name;
-            const conditionDesc = window.translations[window.currentLanguage][key + '_desc'] || condition.description;
-
-            conditionOption.innerHTML = `
-                <h4 style="margin: 0 0 0.5rem 0; color: var(--secondary-color);">${conditionName}</h4>
-                <p style="margin: 0; font-size: 0.875rem; color: var(--text-light);">${conditionDesc}</p>
-            `;
-
-            conditionOption.addEventListener('click', function() {
-                document.querySelectorAll('.condition-option').forEach(opt => {
-                    opt.classList.remove('selected');
-                    opt.style.borderColor = 'var(--border-color)';
-                    opt.style.background = 'white';
-                });
-                this.classList.add('selected');
-                this.style.borderColor = 'var(--primary-color)';
-                this.style.background = 'var(--background-light)';
-                currentCondition = key;
-                updatePricing();
-                validateSelections(product);
-            });
-            optionsContainer.appendChild(conditionOption);
-        });
-
-        conditionContainer.appendChild(optionsContainer);
-    }
-
-    // Setup memory selection if available
-    const memoryContainer = document.getElementById('memory-selection-container');
-    const memoryOptions = document.getElementById('memory-options');
-
-    if (product.memoryOptions && memoryContainer && memoryOptions) {
-        memoryContainer.style.display = 'block';
-
-        const memoryTitle = document.createElement('h3');
-        memoryTitle.style.cssText = 'font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; color: var(--secondary-color);';
-        memoryTitle.innerHTML = `${window.translations[window.currentLanguage].storage || 'Storage'} <span style="color: #ef4444; font-size: 0.9rem;">${window.translations[window.currentLanguage].required || '*Required'}</span>`;
-
-        memoryContainer.innerHTML = '';
-        memoryContainer.appendChild(memoryTitle);
-
-        const optionsContainer = document.createElement('div');
-        optionsContainer.id = 'memory-options';
-        optionsContainer.style.cssText = 'display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 1rem;';
-
-        Object.entries(product.memoryOptions).forEach(([memory, data]) => {
-            const memoryOption = document.createElement('div');
-            memoryOption.className = `memory-option ${memory === currentMemory ? 'selected' : ''}`;
-            memoryOption.textContent = memory;
-            memoryOption.style.cssText = `
-                padding: 0.75rem 1rem;
-                border: 2px solid ${memory === currentMemory ? 'var(--primary-color)' : 'var(--border-color)'};
-                border-radius: 8px;
-                cursor: pointer;
-                transition: all 0.3s;
-                background: ${memory === currentMemory ? 'var(--primary-color)' : 'white'};
-                color: ${memory === currentMemory ? 'white' : 'var(--text-color)'};
-                font-weight: 600;
-                text-align: center;
-            `;
-            memoryOption.addEventListener('click', function() {
-                document.querySelectorAll('.memory-option').forEach(opt => {
-                    opt.classList.remove('selected');
-                    opt.style.borderColor = 'var(--border-color)';
-                    opt.style.background = 'white';
-                    opt.style.color = 'var(--text-color)';
-                });
-                this.classList.add('selected');
-                this.style.borderColor = 'var(--primary-color)';
-                this.style.background = 'var(--primary-color)';
-                this.style.color = 'white';
-                currentMemory = memory;
-                updatePricing();
-                validateSelections(product);
-            });
-            optionsContainer.appendChild(memoryOption);
-        });
-
-        memoryContainer.appendChild(optionsContainer);
-
-        // Update product information and pricing AFTER setting up options
-        if (titleEl) titleEl.textContent = product.name;
-        if (subtitleEl) subtitleEl.textContent = product.subtitle;
-        if (discountEl) discountEl.textContent = `-${product.discount}%`;
-        updatePricing(); // Call pricing update here
-    }
-
-    // Setup color selection if variants exist
-    const colorContainer = document.getElementById('color-selection-container');
-    const colorSelect = document.getElementById('product-color-select');
-
-    if (product.variants && colorContainer && colorSelect) {
-        colorContainer.style.display = 'block';
-        colorSelect.innerHTML = '';
-
-        Object.entries(product.variants).forEach(([key, variant]) => {
-            const option = document.createElement('option');
-            option.value = key;
-            option.textContent = variant.name;
-            colorSelect.appendChild(option);
-        });
-
-        // Set initial value
-        if (currentVariant) {
-            colorSelect.value = currentVariant;
-        }
-
-        colorSelect.addEventListener('change', function() {
-            currentVariant = this.value;
-            const variant = product.variants[currentVariant];
-
-            // Update main image and thumbnails
-            updateProductImages(variant.images);
-
-            // Update product name
-            const titleEl = document.getElementById('product-title');
-            if (titleEl) {
-                titleEl.textContent = `${product.name} (${variant.name})`;
-            }
-
-            validateSelections(product);
-        });
-
-        // Initialize with current variant
-        const currentVariantData = product.variants[currentVariant];
-        if (currentVariantData) {
-            updateProductImages(currentVariantData.images);
-        }
-    } else {
-        // Use default images if no variants
-        updateProductImages(product.images);
-    }
-
-    function updateProductImages(images) {
-        const mainImage = document.getElementById('main-product-image');
-        const thumbnailContainer = document.getElementById('thumbnail-container');
-
-        if (!images || images.length === 0) {
-            console.log('No images provided for product');
-            if (mainImage) mainImage.src = 'https://placehold.co/400x400?text=No+Image';
-            if (thumbnailContainer) thumbnailContainer.innerHTML = '';
-            return;
-        }
-
-        // Helper to get a higher resolution image from Amazon URLs
-        const getHighResImageUrl = (url) => {
-            if (typeof url === 'string' && url.includes('amazon.com')) {
-                // This regex removes the size constraint part of an Amazon image URL (e.g., ._AC_SX466_)
-                // to request a higher resolution version. It's safer than replacing with a fixed size.
-                return url.replace(/\._AC_.*?_/, '');
-            }
-            return url;
-        };
-
-        // Set the main image to the high-resolution version of the first image
-        if (mainImage) {
-            const highResSrc = getHighResImageUrl(images[0]);
-            mainImage.src = highResSrc;
-            mainImage.alt = product.name;
-        }
-
-        if (thumbnailContainer) {
-            thumbnailContainer.innerHTML = '';
-            const fragment = document.createDocumentFragment();
-
-            images.forEach((image, index) => {
-                const thumbnail = document.createElement('img');
-                thumbnail.src = image; // Use original (smaller) image for fast-loading thumbnails
-                thumbnail.alt = `${product.name} view ${index + 1}`;
-                thumbnail.className = `thumbnail ${index === 0 ? 'active' : ''}`;
-                thumbnail.loading = 'lazy';
-                thumbnail.decoding = 'async';
-                // Defensive styling to ensure thumbnails are not too small
-                thumbnail.style.width = '80px';
-                thumbnail.style.height = '80px';
-                thumbnail.style.objectFit = 'contain';
-                thumbnail.style.cursor = 'pointer';
-
-                thumbnail.onerror = function() {
-                    console.log('Failed to load thumbnail:', image);
-                    this.src = 'https://placehold.co/120x120?text=No+Image';
-                };
-
-                thumbnail.addEventListener('click', () => {
-                    document.querySelectorAll('.thumbnail').forEach(t => {
-                        t.classList.remove('active');
-                        t.style.borderColor = 'transparent';
-                    });
-                    thumbnail.classList.add('active');
-                    thumbnail.style.borderColor = 'var(--primary-color)';
-
-                    // Update the main product image when a thumbnail is clicked
-                    if (mainImage) { // Load the high-resolution version on click
-                        mainImage.src = getHighResImageUrl(image);
-                    }
-                });
-
-                fragment.appendChild(thumbnail);
-            });
-
-            thumbnailContainer.appendChild(fragment);
-        }
-    }
-
-	// ---------------------
-    // Render Features
-    // ---------------------
-    const featuresGrid = document.getElementById('features-grid');
-    if (featuresGrid) {
-        featuresGrid.innerHTML = '';
-
-        if (Array.isArray(product.features)) {
-            product.features.forEach(feature => {
-                const featureCard = document.createElement('div');
-                featureCard.className = 'feature-card';
-                featureCard.innerHTML = `
-                    <div class="feature-icon">
-                        <i class="${feature.icon}"></i>
-                    </div>
-                    <div class="feature-title">${feature.title}</div>
-                    <div class="feature-desc">${feature.desc}</div>
-                `;
-                featuresGrid.appendChild(featureCard);
-            });
-        }
-    }
-
-    // ---------------------
-    // Render Specifications
-    // ---------------------
-    const specsGrid = document.getElementById('specifications-grid');
-    if (specsGrid) {
-        specsGrid.innerHTML = '';
-
-        if (product.specifications && typeof product.specifications === 'object') {
-            Object.entries(product.specifications).forEach(([label, value]) => {
-                const specItem = document.createElement('div');
-                specItem.className = 'spec-item';
-                specItem.innerHTML = `
-                    <span class="spec-label">${label}:</span>
-                    <span class="spec-value">${value}</span>
-                `;
-                specsGrid.appendChild(specItem);
-            });
-        }
-    }
-
-}
-
 // Validate selections and enable/disable add to cart button
 function validateSelections(product) {
     const addToCartBtn = document.getElementById('add-to-cart-product');
@@ -2315,392 +1942,6 @@ function validateSelections(product) {
 }
 
 // Setup add to cart functionality
-function setupAddToCart(product) {
-    const quantityDisplay = document.getElementById('quantity');
-    const decreaseBtn = document.getElementById('decrease-qty');
-    const increaseBtn = document.getElementById('increase-qty');
-    const addToCartBtn = document.getElementById('add-to-cart-product');
-    const cartItemsContainer = document.getElementById('cart-items');
-
-    if (!quantityDisplay || !decreaseBtn || !increaseBtn || !addToCartBtn || !cartItemsContainer) {
-        console.log('Required cart elements not found');
-        return;
-    }
-
-    // Initial validation
-    validateSelections(product);
-
-    decreaseBtn.addEventListener('click', () => {
-        const current = parseInt(quantityDisplay.value);
-        if (current > 1) {
-            quantityDisplay.value = current - 1;
-        }
-    });
-
-    increaseBtn.addEventListener('click', () => {
-        const current = parseInt(quantityDisplay.value);
-        if (current < 10) {
-            quantityDisplay.value = current + 1;
-        }
-    });
-
-    addToCartBtn.addEventListener('click', () => {
-        // Validate selections before proceeding
-        if (!validateSelections(product)) {
-            return;
-        }
-
-        const quantity = parseInt(quantityDisplay.value);
-        const productId = getProductId();
-
-        // Get current pricing based on selections
-        let basePrice = 0;
-
-        // Apply memory pricing if available
-        if (product.memoryOptions && Object.keys(product.memoryOptions).length > 0 && currentMemory) {
-            basePrice = product.memoryOptions[currentMemory].price;
-        } else {
-            basePrice = product.price;
-        }
-
-        // Apply condition adjustment if available
-        if (product.conditionOptions && currentCondition) {
-            const adjustment = product.conditionOptions[currentCondition].priceAdjustment || 0;
-            basePrice = basePrice + adjustment;
-        }
-
-        // Get current variant info
-       let productName = product.name;
-let productImage = product.images?.[0] || "fallback.jpg";
-
-if (product.variants && currentVariant && product.variants[currentVariant]) {
-    const variant = product.variants[currentVariant];
-    productName = `${product.name} (${variant.name})`;
-
-    if (variant.images?.[0]) {
-        productImage = variant.images[0];
-    }
-}
-
-
-        // Add memory and condition info to product name
-        if (currentMemory) {
-            productName += ` - ${currentMemory}`;
-        }
-        if (currentCondition && product.conditionOptions) {
-            const conditionName = window.translations[window.currentLanguage][currentCondition] || product.conditionOptions[currentCondition].name;
-            productName += ` - ${conditionName}`; 
-        }
-
-        // Check if item already exists in cart (including all variants)
-        const cartItemId = `${productId}_${currentVariant || 'default'}_${currentMemory || 'default'}_${currentCondition || 'default'}`;
-        const existingItem = cart.find(item => item.id === cartItemId);
-
-        if (existingItem) {
-            existingItem.quantity += quantity;
-        } else {
-            cart.push({
-                id: cartItemId,
-                name: productName,
-                price: basePrice,
-                image: productImage,
-                quantity: quantity
-            });
-        }
-
-        // Save to localStorage
-        localStorage.setItem('cart', JSON.stringify(cart));
-
-        // Update cart count
-        updateCartCount();
-
-        // Show feedback
-        const originalText = addToCartBtn.innerHTML;
-        addToCartBtn.innerHTML = '<i class="fas fa-check"></i> <span>Added to Cart!</span>';
-        addToCartBtn.style.background = '#16a34a';
-
-        setTimeout(() => {
-            addToCartBtn.innerHTML = originalText;
-            addToCartBtn.style.background = '';
-        }, 2000);
-
-         // Update cart UI
-        updateCartUI();
-    });
-
-    // Function to update the cart UI
-    function updateCartUI() {
-        cartItemsContainer.innerHTML = ''; // Clear existing items
-        let subtotal = 0;
-
-        cart.forEach(item => {
-            const cartItemDiv = document.createElement('div');
-            cartItemDiv.className = 'cart-item';
-
-            const priceDisplay = convertPrice(item.price * item.quantity, false);
-            subtotal += item.price * item.quantity;
-
-            // Check if the item is a free gift (for future promotions)
-            const isFreeGift = item.name.toLowerCase().includes('free gift');
-
-            cartItemDiv.innerHTML = `
-            <div class="cart-item-image">
-                <img src="${item.image || 'https://placehold.co/60x60'}" alt="${item.name}" loading="lazy">
-                ${isFreeGift ? '<div class="gift-overlay"><i class="fas fa-gift"></i></div>' : ''}
-            </div>
-            <div class="cart-item-details">
-                <h4>${item.name}</h4>
-                <div class="cart-item-controls">
-                    ${isFreeGift ? 
-                        '<span class="free-gift-badge">FREE GIFT</span>' :
-                        `<div class="quantity-controls">
-                            <button type="button" data-action="decrease" data-id="${item.id}">-</button>
-                            <span class="quantity">${item.quantity}</span>
-                            <button type="button" data-action="increase" data-id="${item.id}">+</button>
-                        </div>`
-                    }
-                    <div class="item-price ${isFreeGift ? 'free-price' : ''}">${priceDisplay}</div>
-                    ${isFreeGift ? 
-                        '<span class="gift-icon"><i class="fas fa-gift"></i></span>' :
-                        `<button type="button" class="remove-item" data-action="remove" data-id="${item.id}">
-                            <i class="fas fa-trash"></i>
-                        </button>`
-                    }
-                </div>
-            </div>
-        `;
-
-        // Apply translations to dynamic content
-        const giftBadge = cartItemDiv.querySelector('.free-gift-badge');
-            if (giftBadge && window.translations[window.currentLanguage] && window.translations[window.currentLanguage]['free_gift']) {
-                giftBadge.textContent = window.translations[window.currentLanguage]['free_gift'] || 'FREE GIFT';
-        }
-            cartItemsContainer.appendChild(cartItemDiv);
-        });
-
-        // Update subtotal, shipping, and total
-        const subtotalElement = document.getElementById('cart-subtotal');
-        const totalElement = document.getElementById('cart-total');
-
-        if (subtotalElement) {
-            subtotalElement.textContent = convertPrice(subtotal, false);
-        }
-
-        if (totalElement) {
-            totalElement.textContent = convertPrice(subtotal, false);
-        }
-    }
-
-}
-
-// Update cart count
-function updateCartCount() {
-    const cartCount = document.getElementById('cart-count');
-    if (cartCount) {
-        const totalItems = window.cart.reduce((total, item) => total + item.quantity, 0);
-        cartCount.textContent = totalItems.toString();
-        cartCount.style.display = totalItems > 0 ? 'flex' : 'none';
-    }
-}
-
-// Cart functions
-function addToCart(product) {
-    try {
-        if (!product || !product.id) {
-            console.error('Invalid product data:', product);
-            return;
-        }
-
-        const existingItem = window.cart.find(item => item.id === product.id);
-
-        if (existingItem) {
-            existingItem.quantity += 1;
-        } else {
-            const newItem = { 
-                id: product.id,
-                name: product.name || 'Unknown Product',
-                price: parseFloat(product.price) || 0,
-                image: product.image || '',
-                quantity: 1
-            };
-            cart.push(newItem);
-        } 
-
-        localStorage.setItem('cart', JSON.stringify(window.cart));
-        updateCartCount();
-        updateCartDisplay();
-        showAddToCartFeedback();
-    } catch (error) {
-        console.error('Error adding to cart:', error);
-    }
-}
-
-function removeFromCart(productId) {
-    window.cart = window.cart.filter(item => item.id !== productId);
-    localStorage.setItem('cart', JSON.stringify(window.cart));
-    updateCartCount();
-    updateCartDisplay();
-}
-
-function updateQuantity(productId, newQuantity) {
-    const item = window.cart.find(item => item.id === productId);
-    if (item) {
-        if (newQuantity <= 0) {
-            removeFromCart(productId);
-        } else {
-            item.quantity = newQuantity;
-            localStorage.setItem('cart', JSON.stringify(window.cart));
-            updateCartCount();
-            updateCartDisplay();
-        }
-    }
-}
-
-function updateCartDisplay() {
-    const cartItems = document.getElementById('cart-items');
-    const cartSubtotal = document.getElementById('cart-subtotal');
-    const cartTotal = document.getElementById('cart-total');
-
-    if (!cartItems) return;
-
-    if (window.cart.length === 0) {
-        const emptyMessage = currentLanguage === 'es' ? 'Tu carrito está vacío' : 'Your cart is empty';
-        cartItems.innerHTML = /*html*/`
-            <div id="empty-cart-message" class="empty-cart-message">
-                <i class="fas fa-shopping-cart"></i>
-                <p>${emptyMessage}</p>
-            </div>
-        `;
-        if (cartSubtotal) cartSubtotal.textContent = convertPrice(0, false);
-        if (cartTotal) cartTotal.textContent = convertPrice(0, false);
-        return;
-    }
-
-    let subtotal = 0;
-    let cartHTML = '';
-
-    window.cart.forEach((item) => {
-        const itemTotal = item.price * item.quantity;
-        subtotal += itemTotal;
-
-        const isFreeGift = item.isFreeGift || item.price === 0;
-        const priceDisplay = isFreeGift ? 'FREE' : convertPrice(itemTotal, false);
-
-        cartHTML += /*html*/`
-            <div class="cart-item ${isFreeGift ? 'free-gift-item' : ''}" data-item-id="${item.id}">
-                <div class="cart-item-image">
-                    <img src="${item.image || 'https://placehold.co/60x60'}" alt="${item.name}" loading="lazy" class="cart-product-image">
-                    ${isFreeGift ? '<div class="gift-overlay"><i class="fas fa-gift"></i></div>' : ''}
-                </div>
-                <div class="cart-item-details">
-                    <h4>${item.name}</h4>
-                    <div class="cart-item-controls">
-                        ${isFreeGift ? 
-                            '<span class="free-gift-badge">FREE GIFT</span>' :
-                            `<div class="quantity-controls">
-                                <button type="button" data-action="decrease" data-item-id="${item.id}">-</button>
-                                <span class="quantity">${item.quantity}</span>
-                                <button type="button" data-action="increase" data-item-id="${item.id}">+</button>
-                            </div>`
-                        }
-                        <div class="item-price ${isFreeGift ? 'free-price' : ''}">${priceDisplay}</div>
-                        ${!isFreeGift ? 
-                            `<button type="button" class="remove-item" data-action="remove" data-item-id="${item.id}">
-                                <i class="fas fa-trash"></i>
-                            </button>` : ''
-                        }
-                    </div>
-                </div>
-            </div>
-        `;
-    });
-
-    cartItems.innerHTML = cartHTML;
-
-    const existingHandler = cartItems.getAttribute('data-handler-attached');
-    if (!existingHandler) {
-        cartItems.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            const button = e.target.closest('button[data-action]');
-            if (!button) return;
-
-            const action = button.getAttribute('data-action');
-            const itemId = button.getAttribute('data-item-id');
-
-            if (!itemId) return;
-
-            const item = window.cart.find(cartItem => cartItem.id === itemId);
-            if (!item) return;
-
-            switch(action) {
-                case 'increase':
-                    updateQuantity(itemId, item.quantity + 1);
-                    break;
-                case 'decrease':
-                    updateQuantity(itemId, item.quantity - 1);
-                    break;
-                case 'remove':
-                    removeFromCart(itemId);
-                    break;
-            }
-
-            return false;
-        });
-        cartItems.setAttribute('data-handler-attached', 'true');
-    }
-
-    if (cartSubtotal) cartSubtotal.textContent = convertPrice(subtotal, false);
-    if (cartTotal) cartTotal.textContent = convertPrice(subtotal, false);
-}
-
-function showAddToCartFeedback() {
-    const notification = document.createElement('div');
-    notification.className = 'cart-notification';
-    notification.innerHTML = '<i class="fas fa-check"></i> Product added to cart!';
-    notification.style.cssText = `
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        background: var(--primary-color);
-        color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
-        z-index: 10000;
-        animation: slideInRight 0.3s ease;
-    `;
-
-    document.body.appendChild(notification);
-    setTimeout(() => {
-        notification.remove();
-    }, 3000);
-}
-
-function initializeCheckout() {
-    const checkoutBtn = document.getElementById('checkout-btn');
-    if (checkoutBtn) {
-        checkoutBtn.removeEventListener('click', openCheckout);
-        checkoutBtn.addEventListener('click', openCheckout);
-    }
-}
-
-function openCheckout() {
-    try {
-        if (window.cart.length === 0) {
-            alert(currentLanguage === 'es' ? 'Tu carrito está vacío' : 'Your cart is empty');
-            return;
-        }
-
-        // Set a flag in sessionStorage to trigger checkout on the main page
-        sessionStorage.setItem('startCheckout', 'true');
-        // Redirect to the main page where the full checkout modal logic exists
-        window.location.href = '/index.html';
-    } catch (error) {
-        console.error('Error opening checkout:', error);
-        alert('Error opening checkout. Please try again.');
-    }
-}
 
 function setupCountrySwitcherLinks() {
     const productId = getProductId();
@@ -2720,138 +1961,250 @@ function setupCountrySwitcherLinks() {
     });
 }
 
+// Get product ID from URL parameters
+function getProductId() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('id') || 'iphone16promax'; // Default to a product if no ID is found
+}
+
+// Global variables for product page state
+let currentMemory = null;
+let currentCondition = null;
+let currentVariant = null;
+
 // Initialize page
 document.addEventListener('DOMContentLoaded', async () => {
 
+    // This script should only run on the product detail page.
     if (!document.querySelector('.product-detail')) {
         return;
     }
 
-    // Scroll to top of page immediately
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-
-    // --- Country and Product Initialization ---
-    async function initializeCountry() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const countryCodeFromParam = urlParams.get('country');
-
-        // Priority 1: URL Parameter (e.g., ?country=sk)
-        if (countryCodeFromParam) {
-            const countryKey = Object.keys(countryConfig).find(key => countryConfig[key].code === countryCodeFromParam);
-            if (countryKey) { 
-                window.currentCountry = countryKey;
-                window.currentLanguage = countryConfig[countryKey].lang;
-                localStorage.setItem('selectedCountry', window.currentCountry);
-                localStorage.setItem('selectedLanguage', window.currentLanguage);
-                // Clean the URL parameter after reading it
-                history.replaceState(null, '', `${window.location.pathname}?id=${getProductId()}`);
-                return; // Found country, exit
-            } 
-        }
-
-        // Priority 2: Local Storage
-        const countryFromStorage = localStorage.getItem('selectedCountry');
-        if (countryFromStorage && countryConfig[countryFromStorage]) {
-            window.currentCountry = countryFromStorage;
-            window.currentLanguage = localStorage.getItem('selectedLanguage') || countryConfig[window.currentCountry].lang;
-            return; // Found country, exit
-        }
-
-        // Priority 3: IP Geolocation
-        try {
-            const response = await fetch('https://ipapi.co/json/');
-            if (!response.ok) throw new Error('IP API request failed'); 
-            const data = await response.json();
-            const countryCodeFromIP = data.country_code.toLowerCase();
-            const countryKey = Object.keys(countryConfig).find(key => countryConfig[key].code === countryCodeFromIP);
-
-            if (countryKey) {
-                currentCountry = countryKey;
-                currentLanguage = countryConfig[countryKey].lang;
-                localStorage.setItem('selectedCountry', window.currentCountry);
-                localStorage.setItem('selectedLanguage', window.currentLanguage);
-                return; // Found country, exit
-            }
-        } catch (error) {
-            console.error("IP Geolocation failed, falling back to default:", error);
-        }
-
-        // Priority 4: Default
-        window.currentCountry = 'honduras';
-        window.currentLanguage = countryConfig[window.currentCountry].lang;
-    }
-
-    await initializeCountry(); // Await the async function
-
-    const currentFlag = document.getElementById('current-flag');
-    const currentCountryEl = document.getElementById('current-country');
-    const initialConfig = countryConfig[window.currentCountry];
-    if (initialConfig) {
-        window.currentLanguage = initialConfig.lang;
-
-        // Update country display
-        if (currentFlag) currentFlag.textContent = initialConfig.flag;
-        if (currentCountryEl) currentCountryEl.textContent = initialConfig.name;
-
-        updateLanguage(window.currentLanguage);
-    }
-
-    // This function is in script.js, call it safely
-    if (typeof updateFooterFromBusinessAddress === 'function') {
-        updateFooterFromBusinessAddress();
-    }
-    setupCountrySwitcherLinks();
-
-    // Initialize product database after language is set
-    setTimeout(loadProduct, 0); // Use a timeout to ensure translations are processed
-
-    // Country dropdown functionality
-    const countryDropdownBtn = document.getElementById('country-dropdown-btn');
-    const countryDropdown = document.getElementById('country-dropdown');
-
-    if (countryDropdownBtn && countryDropdown) {
-        countryDropdownBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            countryDropdown.classList.toggle('hidden');
-        });
-
-        document.addEventListener('click', function(e) {
-            if (!countryDropdownBtn.contains(e.target) && !countryDropdown.contains(e.target)) {
-                countryDropdown.classList.add('hidden');
-            }
-        });
-
-    }
-
-    // Cart functionality
-    const cartButton = document.getElementById('cart-button');
-    const cartOverlay = document.getElementById('cart-overlay');
-    const closeCartButton = document.getElementById('close-cart');
-
-    if (cartButton && cartOverlay) {
-        cartButton.addEventListener('click', function(e) {
-            e.preventDefault();
-            cartOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-    }
-
-    if (closeCartButton) {
-        closeCartButton.addEventListener('click', function() {
-            cartOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-    }
-
-    if (cartOverlay) {
-        cartOverlay.addEventListener('click', function(e) {
-            if (e.target === cartOverlay) {
-                cartOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-    }
+    // The main `script.js` already handles country/language initialization.
+    // We just need to load the product details.
+    loadProductDetails();
 });
+
+function loadProductDetails() {
+    const productId = getProductId();
+    const productDatabase = getProductDatabase(); // This uses the t() function
+    const product = productDatabase[productId];
+
+    if (!product) {
+        document.querySelector('main.container').innerHTML = '<h2>Product not found</h2>';
+        return;
+    }
+
+    // Initialize selection states
+    currentMemory = product.memoryOptions ? Object.keys(product.memoryOptions)[0] : null;
+    currentCondition = product.conditionOptions ? Object.keys(product.conditionOptions)[0] : null;
+    currentVariant = product.variants ? Object.keys(product.variants)[0] : null;
+
+    // Update page title and breadcrumb
+    document.title = `${product.name} - Swappie`;
+    document.getElementById('product-page-title').textContent = `${product.name} - Swappie`;
+    document.getElementById('breadcrumb-product').textContent = product.name;
+
+    // Update basic info
+    document.getElementById('product-title').textContent = product.name;
+    document.getElementById('product-subtitle').textContent = product.description;
+    document.getElementById('product-discount').textContent = `-${product.discount}%`;
+
+    // Render dynamic sections
+    renderColorOptions(product);
+    renderMemoryOptions(product);
+    renderFeatures(product);
+    renderSpecifications(product);
+
+    // Set initial price and image
+    updatePricing(product);
+    const initialVariant = product.variants ? product.variants[currentVariant] : null;
+    const initialImages = initialVariant ? initialVariant.images : product.images;
+    updateProductImages(product, initialImages);
+
+    // Setup interactive elements
+    setupQuantityControls();
+    setupAddToCartListener(product);
+    validateSelections(product);
+}
+
+function updatePricing(product) {
+    let basePrice = 0;
+    let baseOriginalPrice = 0;
+
+    if (product.memoryOptions && Object.keys(product.memoryOptions).length > 0 && currentMemory) {
+        basePrice = product.memoryOptions[currentMemory].price;
+        baseOriginalPrice = product.memoryOptions[currentMemory].originalPrice;
+    } else {
+        basePrice = product.price;
+        baseOriginalPrice = product.originalPrice;
+    }
+
+    if (product.conditionOptions && currentCondition) {
+        basePrice += product.conditionOptions[currentCondition].priceAdjustment || 0;
+        baseOriginalPrice += product.conditionOptions[currentCondition].priceAdjustment || 0;
+    }
+
+    document.getElementById('product-price').textContent = convertPrice(basePrice);
+    document.getElementById('product-original-price').textContent = convertPrice(baseOriginalPrice);
+}
+
+function renderColorOptions(product) {
+    const container = document.getElementById('color-selection-container');
+    const select = document.getElementById('product-color-select');
+    if (!product.variants || !container || !select) return;
+
+    container.style.display = 'block';
+    select.innerHTML = '';
+
+    Object.entries(product.variants).forEach(([key, variant]) => {
+        const option = document.createElement('option');
+        option.value = key;
+        option.textContent = variant.name;
+        select.appendChild(option);
+    });
+
+    select.value = currentVariant;
+
+    select.addEventListener('change', function() {
+        currentVariant = this.value;
+        const variant = product.variants[currentVariant];
+        updateProductImages(product, variant.images);
+        validateSelections(product);
+    });
+}
+
+function renderMemoryOptions(product) {
+    const container = document.getElementById('memory-selection-container');
+    const grid = document.getElementById('memory-options');
+    if (!product.memoryOptions || !container || !grid) return;
+
+    container.style.display = 'block';
+    grid.innerHTML = '';
+
+    Object.keys(product.memoryOptions).forEach(memory => {
+        const option = document.createElement('button');
+        option.className = 'memory-option';
+        option.textContent = memory;
+        option.dataset.memory = memory;
+        if (memory === currentMemory) {
+            option.classList.add('selected');
+        }
+        option.addEventListener('click', () => {
+            currentMemory = memory;
+            document.querySelectorAll('.memory-option').forEach(btn => btn.classList.remove('selected'));
+            option.classList.add('selected');
+            updatePricing(product);
+            validateSelections(product);
+        });
+        grid.appendChild(option);
+    });
+}
+
+function updateProductImages(product, images) {
+    const mainImage = document.getElementById('main-product-image');
+    const thumbnailContainer = document.getElementById('thumbnail-container');
+
+    if (!images || images.length === 0) {
+        mainImage.src = 'https://placehold.co/600x600?text=No+Image';
+        thumbnailContainer.innerHTML = '';
+        return;
+    }
+
+    mainImage.src = images[0];
+    mainImage.alt = product.name;
+
+    thumbnailContainer.innerHTML = '';
+    images.forEach((imgSrc, index) => {
+        const thumb = document.createElement('img');
+        thumb.src = imgSrc;
+        thumb.alt = `${product.name} thumbnail ${index + 1}`;
+        thumb.className = 'thumbnail';
+        if (index === 0) thumb.classList.add('active');
+        thumb.addEventListener('click', () => {
+            mainImage.src = imgSrc;
+            document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+            thumb.classList.add('active');
+        });
+        thumbnailContainer.appendChild(thumb);
+    });
+}
+
+function renderFeatures(product) {
+    const grid = document.getElementById('features-grid');
+    if (!grid || !product.features) return;
+    grid.innerHTML = product.features.map(feature => `
+        <div class="feature-card">
+            <div class="feature-icon"><i class="${feature.icon}"></i></div>
+            <div class="feature-title">${feature.title}</div>
+            <div class="feature-desc">${feature.desc}</div>
+        </div>
+    `).join('');
+}
+
+function renderSpecifications(product) {
+    const grid = document.getElementById('specifications-grid');
+    if (!grid || !product.specifications) return;
+    grid.innerHTML = Object.entries(product.specifications).map(([label, value]) => `
+        <div class="spec-item">
+            <span class="spec-label">${label}:</span>
+            <span class="spec-value">${value}</span>
+        </div>
+    `).join('');
+}
+
+function setupQuantityControls() {
+    const quantityDisplay = document.getElementById('quantity');
+    document.getElementById('decrease-qty').addEventListener('click', () => {
+        let current = parseInt(quantityDisplay.value);
+        if (current > 1) quantityDisplay.value = current - 1;
+    });
+    document.getElementById('increase-qty').addEventListener('click', () => {
+        let current = parseInt(quantityDisplay.value);
+        if (current < 10) quantityDisplay.value = current + 1;
+    });
+}
+
+function setupAddToCartListener(product) {
+    const btn = document.getElementById('add-to-cart-product');
+    btn.addEventListener('click', () => {
+        if (!validateSelections(product)) return;
+
+        const quantity = parseInt(document.getElementById('quantity').value);
+        let basePrice = 0;
+        let baseOriginalPrice = 0;
+
+        if (product.memoryOptions && currentMemory) {
+            basePrice = product.memoryOptions[currentMemory].price;
+        } else {
+            basePrice = product.price;
+        }
+
+        if (product.conditionOptions && currentCondition) {
+            basePrice += product.conditionOptions[currentCondition].priceAdjustment || 0;
+        }
+
+        let productName = product.name;
+        let productImage = (product.images && product.images[0]) || 'https://placehold.co/100x100';
+
+        if (product.variants && currentVariant) {
+            const variant = product.variants[currentVariant];
+            productName += ` (${variant.name})`;
+            if (variant.images && variant.images[0]) {
+                productImage = variant.images[0];
+            }
+        }
+        if (currentMemory) productName += ` - ${currentMemory}`;
+        if (currentCondition) productName += ` - ${t(currentCondition)}`;
+
+        const cartItem = {
+            id: `${getProductId()}_${currentVariant || 'd'}_${currentMemory || 'd'}_${currentCondition || 'd'}`,
+            name: productName,
+            price: basePrice,
+            image: productImage,
+            quantity: quantity
+        };
+
+        addToCart(cartItem); // This function is in script.js
+    });
+}
