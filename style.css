@@ -5183,6 +5183,27 @@ img {
     scrollbar-width: thin;
 }
 
+.thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: white;
+    padding: 0.25rem;
+}
+
+.thumbnail:hover {
+    border-color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+.thumbnail.active {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.2);
+}
 .thumbnails::-webkit-scrollbar {
     height: 4px;
 }
