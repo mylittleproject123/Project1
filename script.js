@@ -2814,60 +2814,6 @@ function updateFooterFromBusinessAddress() {
     }
 }
 
-function getBusinessAddress() {
-    switch(currentCountry) {
-        case 'cs':
-            return {
-                address: 'Václavské náměstí 1',
-                city: 'Praha 1',
-                country: 'Česká republika'
-            };
-        case 'sk':
-            return {
-                address: 'Obchodná 25',
-                city: 'Bratislava',
-                country: 'Slovensko'
-            };
-        case 'hu':
-            return {
-                address: 'Váci utca 10',
-                city: 'Budapest',
-                country: 'Maďarsko'
-            };
-        case 'at':
-            return {
-                address: 'Mariahilfer Str. 5',
-                city: 'Wien',
-                country: 'Rakúsko'
-            };
-        default:
-            return {
-                address: 'Hlavná Technologická Ulica 1',
-                city: 'Hlavné Mesto',
-                country: countryConfig[currentCountry].name
-            };
-    }
-}
-function updateFooterFromBusinessAddress() {
-    const businessAddress = getBusinessAddress();
-    const countryInfo = countryConfig[currentCountry];
-    if (!businessAddress || !countryInfo) return;
-
-    const fullAddress = `${businessAddress.address}, ${businessAddress.city}, ${businessAddress.country}`;
-    const phoneNumber = countryInfo.phone;
-    const email = `sales@swappie.shop`;
-    const companyName = `Swappie ${countryInfo.name}`;
-
-    const footerAddressEl = document.getElementById('footer-address');
-    const footerPhoneEl = document.getElementById('footer-phone');
-    const footerEmailEl = document.getElementById('footer-email');
-    const footerBottomEl = document.querySelector('.footer-bottom p');
-
-    if (footerBottomEl) {
-        footerBottomEl.innerHTML = `&copy; 2024 ${companyName}. <span data-translate="rights_reserved">All rights reserved.</span>`;
-    }
-}
-
 // Cleanup function
 function cleanup() {
     // Remove any event listeners if needed
