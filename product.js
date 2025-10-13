@@ -2000,12 +2000,6 @@ function loadProduct() {
     const subtitleEl = document.getElementById('product-subtitle');
     const discountEl = document.getElementById('product-discount');
 
-    if (titleEl) titleEl.textContent = product.name;
-    if (subtitleEl) subtitleEl.textContent = product.subtitle;
-    if (discountEl) discountEl.textContent = `-${product.discount}%`;
-
-    updatePricing();
-
     // Setup condition selection
     const conditionContainer = document.getElementById('condition-selection-container');
     const conditionOptions = document.getElementById('condition-options');
@@ -2124,6 +2118,12 @@ function loadProduct() {
         });
 
         memoryContainer.appendChild(optionsContainer);
+
+        // Update product information and pricing AFTER setting up options
+        if (titleEl) titleEl.textContent = product.name;
+        if (subtitleEl) subtitleEl.textContent = product.subtitle;
+        if (discountEl) discountEl.textContent = `-${product.discount}%`;
+        updatePricing(); // Call pricing update here
     }
 
     // Setup color selection if variants exist
