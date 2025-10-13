@@ -702,7 +702,7 @@ const translations = window.translations || {
 };
 
 function t(key) {
-    const lang = window.currentLanguage || 'en'; // fallback to English if not set
+    const lang = window.currentLanguage || 'sk'; // fallback to slovak if not set
     return (window.translations[lang] && window.translations[lang][key])
         ? window.translations[lang][key]
         : key; // fallback to key if translation is missing
@@ -712,6 +712,9 @@ function t(key) {
 var currentCountry = localStorage.getItem('selectedCountry') || 'cs';
 var currentLanguage = localStorage.getItem('selectedLanguage') || 'sk';
 var cart = JSON.parse(localStorage.getItem('cart')) || [];
+// Make translations globally available
+window.translations = translations;
+
 // Global state for grid controls
 let currentFilterCategory = 'all';
 let currentSearchTerm = '';
