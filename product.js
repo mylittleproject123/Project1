@@ -2099,6 +2099,9 @@ function renderMemoryOptions(product) {
         });
         grid.appendChild(option);
     });
+
+    // Explicitne zavolajte updatePricing po vykreslení, aby sa zobrazila počiatočná cena
+    updatePricing(product);
 }
 
 function updateProductImages(product, images) {
