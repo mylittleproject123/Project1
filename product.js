@@ -1935,7 +1935,7 @@ let currentVariant = null;
 
 // Load and display product
 function loadProduct() {
-    const productDatabase = getProductDatabase(); // Build the database AFTER translations are ready
+    const productDatabase = getProductDatabase();
     const productId = getProductId();
     const product = productDatabase[productId];
 
@@ -2776,7 +2776,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupCountrySwitcherLinks();
 
     // Initialize product database after language is set
-    loadProduct();
+    setTimeout(loadProduct, 0); // Use a timeout to ensure translations are processed
     updateCartCount();
 
     // Country dropdown functionality
