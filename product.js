@@ -1936,6 +1936,10 @@ let currentVariant = null;
 
 // Load and display product
 function loadProduct() {
+    if (typeof t !== 'function') {
+        console.error('Translation function t() is not defined.');
+        return;
+    }
     const productDatabase = getProductDatabase();
     const productId = getProductId();
     const product = productDatabase[productId];
@@ -1957,7 +1961,7 @@ function loadProduct() {
     // Initialize selection states
     currentMemory = product.memoryOptions ? Object.keys(product.memoryOptions)[0] : null;
     currentCondition = product.conditionOptions ? Object.keys(product.conditionOptions)[0] : null;
-    currentVariant = product.variants ? Object.keys(product.variants)[0] : null;
+    currentVariant = product.variants ? Object.keys(product.variants)[0] : null
 
     // Update page title and meta
     document.title = `${product.name} - Swappie`;
