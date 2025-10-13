@@ -1922,6 +1922,12 @@ galaxys21ultra: {
     }
 }
 
+// Get product ID from URL parameters
+function getProductId() {    
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('id') || 'iphone16promax'; // Default to a product if no ID is found
+}
+
 // Setup add to cart functionality
 function setupAddToCart(product) {
     const quantityDisplay = document.getElementById('quantity');
