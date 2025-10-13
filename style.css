@@ -5145,6 +5145,7 @@ img {
 .main-image-wrapper {
     width: 100%;
     aspect-ratio: 1 / 1;
+    max-width: 500px; /* This will constrain the image size */
     background: var(--background-light);
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
