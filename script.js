@@ -2723,7 +2723,7 @@ function initializePage() {
         updateCartUI();
         updatePrices();
         updateLanguage(currentLanguage);
-        updateFooterFromBusinessAddress(); // Moved here to ensure it runs on all pages
+        if (typeof updateFooterFromBusinessAddress === 'function') updateFooterFromBusinessAddress();
     } catch (error) {
         console.error('Error initializing page:', error);
     }
@@ -2772,6 +2772,7 @@ function sendOTPToUser(customerName, customerPhone) {
 if (typeof window !== 'undefined') {
     window.addEventListener('load', function() {
         // Scroll to top of page
+
         window.scrollTo({
             top: 0,
             left: 0,
