@@ -1973,13 +1973,16 @@ function loadProduct() {
 
     // Function to update pricing based on current selections
     function updatePricing() {
-        let basePrice = product.price;
-        let baseOriginalPrice = product.originalPrice;
+        let basePrice = 0;
+        let baseOriginalPrice = 0;
 
         // Apply memory pricing if available
-        if (product.memoryOptions && currentMemory) {
+        if (product.memoryOptions && Object.keys(product.memoryOptions).length > 0 && currentMemory) {
             basePrice = product.memoryOptions[currentMemory].price;
             baseOriginalPrice = product.memoryOptions[currentMemory].originalPrice;
+        } else {
+            basePrice = product.price;
+            baseOriginalPrice = product.originalPrice;
         }
 
         // Apply condition adjustment if available
@@ -2288,6 +2291,24 @@ function loadProduct() {
 
 }
 
+// Validate selections and enable/disable add to cart button
+function validateSelections(product) {
+    const addToCartBtn = document.getElementById('add-to-cart-product');
+    if (!addToCartBtn) return false;
+
+    let isValid = true;
+    if (product.memoryOptions && !currentMemory) isValid = false;
+    if (product.conditionOptions && !currentCondition) isValid = false;
+    if (product.variants && !currentVariant) isValid = false;
+
+    if (isValid) {
+        addToCartBtn.disabled = false;
+    } else {
+        addToCartBtn.disabled = true;
+    }
+    return isValid;
+}
+
 // Setup add to cart functionality
 function setupAddToCart(product) {
     const quantityDisplay = document.getElementById('quantity');
@@ -2328,13 +2349,13 @@ function setupAddToCart(product) {
         const productId = getProductId();
 
         // Get current pricing based on selections
-        let basePrice = product.price;
-        let baseOriginalPrice = product.originalPrice;
+        let basePrice = 0;
 
         // Apply memory pricing if available
-        if (product.memoryOptions && currentMemory) {
+        if (product.memoryOptions && Object.keys(product.memoryOptions).length > 0 && currentMemory) {
             basePrice = product.memoryOptions[currentMemory].price;
-            baseOriginalPrice = product.memoryOptions[currentMemory].originalPrice;
+        } else {
+            basePrice = product.price;
         }
 
         // Apply condition adjustment if available
