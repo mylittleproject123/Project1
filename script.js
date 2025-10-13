@@ -2582,8 +2582,6 @@ document.addEventListener('DOMContentLoaded', async function() { // Make the lis
         // Update prices
         updatePrices();
         setupDynamicWhatsAppLinks();
-        // createAndInsertPreorderBanner(); // Removed as per user request
-        updateFooterFromBusinessAddress();
 
         // --- Auto-open checkout if redirected from another page ---
         if (sessionStorage.getItem('startCheckout') === 'true') {
@@ -2620,13 +2618,16 @@ document.addEventListener('DOMContentLoaded', async function() { // Make the lis
         const continueShoppingButton = document.getElementById('continue-shopping');
 
         if (cartButton && cartOverlay) {
-            cartButton.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                cartOverlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                return false;
-            });
+            // Ensure this listener is only for the cart button, not other links
+            if (cartButton.tagName === 'A') {
+                cartButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    cartOverlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                    return false;
+                });
+            }
         }
 
         if (closeCartButton) {
@@ -2695,7 +2696,7 @@ document.addEventListener('DOMContentLoaded', async function() { // Make the lis
                     document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
                     filterBtn.classList.add('active');
                     currentFilterCategory = filterBtn.getAttribute('data-filter');
-                    updateProductGrid();
+                    if (typeof updateProductGrid === 'function') updateProductGrid();
                 }
 
                 if (sortBtn) {
@@ -2703,7 +2704,7 @@ document.addEventListener('DOMContentLoaded', async function() { // Make the lis
                     document.querySelectorAll('.sort-btn').forEach(btn => btn.classList.remove('active'));
                     sortBtn.classList.add('active');
                     currentSortBy = sortBtn.getAttribute('data-sort');
-                    updateProductGrid();
+                    if (typeof updateProductGrid === 'function') updateProductGrid();
                 }
             });
         }
@@ -2712,30 +2713,21 @@ document.addEventListener('DOMContentLoaded', async function() { // Make the lis
         initializeColorSelection('iphone15promax', 'iphone15promax-color', 'iphone15promax-image', 'add-to-cart-iphone15promax');
         initializeColorSelection('iphone16promax', 'iphone16promax-color', 'iphone16promax-image', 'add-to-cart-iphone16promax');
 
-	 // Add checkout button listener with null check
-        const checkoutBtn = document.getElementById('checkout-btn');
-        if (checkoutBtn) {
-            checkoutBtn.addEventListener('click', function() {
-                if (cart.length === 0) {
-                    alert(currentLanguage === 'es' ? 'Tu carrito está vacío' : 'Your cart is empty');
-                    return;
-                }
-
-                createCheckoutModal();
-            });
-        }
-
-        // Remove duplicate event listeners that cause null errors
-        const confirmBankTransferBtn = document.getElementById('confirm-bank-transfer');
-        const processOrderBtn = document.getElementById('process-order');
-        
-        // These buttons don't exist on page load, they're created dynamically in checkout
-        // So we don't need to add listeners here
-
     } catch (error) {
         console.error('Error during script initialization:', error);
     }
 });
+
+function initializePage() {
+    try {
+        updateCartUI();
+        updatePrices();
+        updateLanguage(currentLanguage);
+        updateFooterFromBusinessAddress(); // Moved here to ensure it runs on all pages
+    } catch (error) {
+        console.error('Error initializing page:', error);
+    }
+}
 
 function updateCartUI() {
     updateCartCount();
@@ -2751,17 +2743,6 @@ function getCartSubtotal() {
 
 function formatCurrency(amount) {
     return convertPrice(amount, false);
-}
-
-// Initialize all functionality when page loads
-function initializePage() {
-    try {
-        updateCartUI();
-        updatePrices();
-        updateLanguage(currentLanguage);
-    } catch (error) {
-        console.error('Error initializing page:', error);
-    }
 }
 
 // Cleanup function
@@ -2801,10 +2782,6 @@ if (typeof window !== 'undefined') {
         // Initialize page
         initializePage();
 
-        // Remove scroll class after animation
-        setTimeout(() => {
-            document.body.classList.remove('page-load-scroll-top');
-        }, 200);
     });
 }
 
