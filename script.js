@@ -173,7 +173,7 @@ const translations = window.translations || {
         quick_links: "Rýchle odkazy",
         policies: "Podmienky",
         payment_methods: "Spôsoby platby",
-        payment_info: "Prijímame bankové prevody, vklady a platby na dobierku.",
+        payment_info: "Prijímame platby kartou, bankové prevody a platby na dobierku.",
         support: "Technická podpora",
         warranty: "Záruka",
         privacy: "Ochrana osobných údajov",
@@ -182,6 +182,8 @@ const translations = window.translations || {
         shipping_policy: "Doprava",
         iphone16promax_name: "iPhone 16 Pro Max",
         iphone_desc: "Prémiový repasovaný iPhone s vynikajúcim výkonom. Zaručená 95% kondícia batérie. Zahŕňa 1-ročnú záruku a 30-dňovú lehotu na vrátenie.",
+        color_black_titanium: "Čierny titán",
+        color_desert_titanium: "Púštny titán",
         iphone_feature_battery_title: "29h Batéria",
         iphone_feature_battery_desc: "Prehrávanie videa",
         iphone_feature_chip_title: "Čip A18 Pro",
@@ -297,8 +299,6 @@ const translations = window.translations || {
         feature_108mp_pro_sensor: "108MP Pro senzor",
         feature_108mp_pro_sensor_bright_night_desc: "Jasné nočné fotografie",
         color_white: "Biela",
-        color_black_titanium: "Čierny titán",
-        color_desert_titanium: "Púštny titán",
         color_blue: "Modrá",
         color_gold: "Zlatá",
         color_starlight: "Hviezdna biela",
@@ -320,6 +320,8 @@ const translations = window.translations || {
         condition_excellent_desc: "Minimálne známky používania",
         condition_display_piece: "Vystavený kus, nepoužitý",
         condition_display_piece_desc: "Vystavený kus, nepoužitý, otvorená krabica",
+        condition_new_open_box: "Nový, otvorená krabica",
+        condition_new_open_box_desc: "Produkt je nový, nebol použitý, len krabica bola otvorená.",
         feature_spatial_audio: "Priestorový zvuk",
         feature_spatial_audio_desc: "Pohlcujúci 3D zvuk",
         feature_h1_chip: "Čip H1",
@@ -518,7 +520,7 @@ const translations = window.translations || {
         quick_links: "Quick Links",
         policies: "Policies",
         payment_methods: "Payment Methods",
-        payment_info: "We accept bank transfers, deposits and cash on delivery.",
+        payment_info: "We accept card payments, bank transfers, and cash on delivery.",
         support: "Technical Support",
         warranty: "Warranty",
         privacy: "Privacy",
@@ -665,6 +667,8 @@ const translations = window.translations || {
         condition_excellent_desc: "Minor signs of use",
         condition_display_piece: "Display piece, never used",
         condition_display_piece_desc: "Display piece, never used, open box",
+        condition_new_open_box: "New, open box",
+        condition_new_open_box_desc: "The product is new, has not been used, only the box has been opened.",
         feature_spatial_audio: "Spatial Audio",
         feature_spatial_audio_desc: "Immersive 3D sound",
         feature_h1_chip: "H1 Chip",
@@ -702,19 +706,16 @@ const translations = window.translations || {
 };
 
 function t(key) {
-    const lang = window.currentLanguage || 'sk'; // fallback to slovak if not set
+    const lang = window.currentLanguage || 'en'; // fallback to English if not set
     return (window.translations[lang] && window.translations[lang][key])
         ? window.translations[lang][key]
         : key; // fallback to key if translation is missing
 }
 
 // Global variables
-var currentCountry = localStorage.getItem('selectedCountry') || 'cs';
-var currentLanguage = localStorage.getItem('selectedLanguage') || 'sk';
-var cart = JSON.parse(localStorage.getItem('cart')) || [];
-// Make translations globally available
-window.translations = translations;
-
+let currentCountry = localStorage.getItem('selectedCountry') || 'cs';
+let currentLanguage = localStorage.getItem('selectedLanguage') || 'sk';
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
 // Global state for grid controls
 let currentFilterCategory = 'all';
 let currentSearchTerm = '';
@@ -2760,60 +2761,6 @@ function initializePage() {
         updateLanguage(currentLanguage);
     } catch (error) {
         console.error('Error initializing page:', error);
-    }
-}
-
-function getBusinessAddress() {
-    switch(currentCountry) {
-        case 'cs':
-            return {
-                address: 'Václavské náměstí 1',
-                city: 'Praha 1',
-                country: 'Česká republika'
-            };
-        case 'sk':
-            return {
-                address: 'Obchodná 25',
-                city: 'Bratislava',
-                country: 'Slovensko'
-            };
-        case 'hu':
-            return {
-                address: 'Váci utca 10',
-                city: 'Budapest',
-                country: 'Maďarsko'
-            };
-        case 'at':
-            return {
-                address: 'Mariahilfer Str. 5',
-                city: 'Wien',
-                country: 'Rakúsko'
-            };
-        default:
-            return {
-                address: 'Hlavná Technologická Ulica 1',
-                city: 'Hlavné Mesto',
-                country: countryConfig[currentCountry].name
-            };
-    }
-}
-function updateFooterFromBusinessAddress() {
-    const businessAddress = getBusinessAddress();
-    const countryInfo = countryConfig[currentCountry];
-    if (!businessAddress || !countryInfo) return;
-
-    const fullAddress = `${businessAddress.address}, ${businessAddress.city}, ${businessAddress.country}`;
-    const phoneNumber = countryInfo.phone;
-    const email = `sales@swappie.shop`;
-    const companyName = `Swappie ${countryInfo.name}`;
-
-    const footerAddressEl = document.getElementById('footer-address');
-    const footerPhoneEl = document.getElementById('footer-phone');
-    const footerEmailEl = document.getElementById('footer-email');
-    const footerBottomEl = document.querySelector('.footer-bottom p');
-
-    if (footerBottomEl) {
-        footerBottomEl.innerHTML = `&copy; 2024 ${companyName}. <span data-translate="rights_reserved">All rights reserved.</span>`;
     }
 }
 
