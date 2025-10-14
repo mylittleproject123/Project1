@@ -55,6 +55,123 @@ function getProductDatabase() {
     }
 },
 
+iphone17: {
+    name: t("iphone17_name"),
+    description: t("iphone_desc"),
+    price: 1199,
+    originalPrice: 1299,
+    discount: 8,
+    category: "phone",
+    variants: {
+        mistyblue: {
+            name: t("color_misty_blue"),
+            images: [
+                "https://image.alza.cz/products/RI054b3/RI054b3.jpg?width=500&height=500",
+            ]
+        },
+        sagegreen: {
+            name: t("color_sage_green"),
+            images: [
+                "https://image.alza.cz/products/RI054c4/RI054c4.jpg?width=500&height=500",
+            ]
+        },
+        black: {
+            name: t("color_black"),
+            images: [
+                "https://image.alza.cz/products/RI054b1/RI054b1-SK.jpg?width=500&height=500",
+            ]
+        }
+    },
+    memoryOptions: {
+        "256GB": { price: 1199, originalPrice: 1299 },
+        "512GB": { price: 1349, originalPrice: 1449 },
+    },
+    features: [
+        { icon: "fas fa-microchip", title: t("iphone_feature_chip_title"), desc: "A19 Chip" },
+        { icon: "fas fa-camera", title: t("iphone_feature_camera_title"), desc: "Advanced Dual-Camera" },
+        { icon: "fas fa-mobile-alt", title: t("iphone_feature_display_title"), desc: "6.3\" Super Retina XDR" }
+    ],
+    specifications: {
+        [t("spec_display")]: "6.3\" Super Retina XDR",
+        [t("spec_processor")]: "Apple A19",
+        [t("spec_storage")]: "256GB, 512GB",
+        [t("spec_ram")]: "8GB",
+        [t("spec_main_camera")]: "48MP Main, 12MP Ultrawide",
+        [t("spec_battery")]: "4000 mAh",
+        [t("spec_os")]: "iOS 19",
+        [t("spec_condition")]: t("spec_condition_new_open_box"),
+        [t("spec_battery_health")]: "100%"
+    }
+},
+
+iphone17pro: {
+    name: t("iphone17pro_name"),
+    description: t("iphone_desc"),
+    price: 1399,
+    originalPrice: 1499,
+    discount: 7,
+    category: "phone",
+    variants: {
+        midnight: { name: t("color_midnight"), images: ["https://image.alza.cz/products/RI055b1/RI055b1.jpg?width=500&height=500"] },
+        cosmicorange: { name: t("color_cosmic_orange"), images: ["https://image.alza.cz/products/RI055b2/RI055b2.jpg?width=500&height=500"] },
+        silver: { name: t("color_silver"), images: ["https://image.alza.cz/products/RI055c3/RI055c3.jpg?width=500&height=500"] }
+    },
+    memoryOptions: {
+        "256GB": { price: 1399, originalPrice: 1499 },
+        "512GB": { price: 1649, originalPrice: 1749 },
+        "1TB": { price: 1899, originalPrice: 1999 }
+    },
+    features: [
+        { icon: "fas fa-microchip", title: t("iphone_feature_chip_title"), desc: "A19 Pro Chip" },
+        { icon: "fas fa-camera", title: t("iphone_feature_camera_title"), desc: "Pro Camera System" },
+        { icon: "fas fa-mobile-alt", title: t("iphone_feature_display_title"), desc: "6.5\" ProMotion Display" }
+    ],
+    specifications: {
+        [t("spec_display")]: "6.5\" ProMotion XDR",
+        [t("spec_processor")]: "Apple A19 Pro",
+        [t("spec_storage")]: "256GB, 512GB, 1TB",
+        [t("spec_ram")]: "10GB",
+        [t("spec_main_camera")]: "48MP Main, 12MP Ultrawide, 12MP Telephoto",
+        [t("spec_battery")]: "4500 mAh",
+        [t("spec_os")]: "iOS 19",
+        [t("spec_condition")]: t("spec_condition_new_open_box"),
+        [t("spec_battery_health")]: "100%"
+    }
+},
+
+iphone17promax: {
+    name: t("iphone17promax_name"),
+    description: t("iphone_desc"),
+    price: 1799,
+    originalPrice: 1899,
+    discount: 5,
+    category: "phone",
+    variants: {
+        midnight: { name: t("color_midnight"), images: ["https://image.alza.cz/products/RI056c3/RI056c3.jpg?width=500&height=500"] },
+        cosmicorange: { name: t("color_cosmic_orange"), images: ["https://image.alza.cz/products/RI056b2/RI056b2.jpg?width=500&height=500"] },
+        silver: { name: t("color_silver"), images: ["https://image.alza.cz/products/RI056b1/RI056b1.jpg?width=500&height=500"] }
+    },
+    memoryOptions: {
+        "512GB": { price: 1799, originalPrice: 1899 },
+        "1TB": { price: 2099, originalPrice: 2199 },
+    },
+    features: [
+        { icon: "fas fa-microchip", title: t("iphone_feature_chip_title"), desc: "A19 Pro Chip" },
+        { icon: "fas fa-camera", title: t("iphone_feature_camera_title"), desc: "Pro Camera System" },
+        { icon: "fas fa-mobile-alt", title: t("iphone_feature_display_title"), desc: "6.9\" ProMotion Display" }
+    ],
+    specifications: {
+        [t("spec_display")]: "6.9\" ProMotion XDR",
+        [t("spec_processor")]: "Apple A19 Pro",
+        [t("spec_storage")]: "512GB, 1TB",
+        [t("spec_ram")]: "12GB",
+        [t("spec_main_camera")]: "48MP Main, 12MP Ultrawide, 12MP Periscope Telephoto",
+        [t("spec_battery")]: "5000 mAh",
+        [t("spec_os")]: "iOS 19",
+        [t("spec_condition")]: t("spec_condition_new_open_box"),
+        [t("spec_battery_health")]: "100%"
+    }
+},
 
   iphone16: {
     name: t("iphone16_name"),
