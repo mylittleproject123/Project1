@@ -1,416 +1,455 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const productSelect = document.getElementById('product-select');
-    const storageGroup = document.getElementById('storage-group');
-    const storageSelect = document.getElementById('storage-select');
-    const colorGroup = document.getElementById('color-group');
-    const colorSelect = document.getElementById('color-select');
-    const monthsGroup = document.getElementById('months-group');
-    const monthsSelect = document.getElementById('months-select');
-    const summary = document.getElementById('calculation-summary');
-    const checkoutBtn = document.getElementById('proceed-to-checkout');
-    const termsSection = document.getElementById('terms-section');
-    const customerInfoSection = document.getElementById('customer-info-section');
-    const customerInfoForm = document.getElementById('customer-info-form');
-    const idUpload = document.getElementById('id-upload');
-    const idPreview = document.getElementById('id-preview');
-    const termsCheckbox = document.getElementById('terms-agree-checkbox');
-    const downloadBtn = document.getElementById('download-agreement-btn');
+    // This script is for the wizard-style split payment page (iphone17-split-payment.html)
 
-    let selectedProduct = null;
-    let selectedVariant = null;
-    let selectedColor = null;
+    // Define products locally for this page to ensure it's self-contained.
+    const productsForSplitPaymentIphone17 = [        
+        {
+            id: 'iphone17',
+            name: 'iPhone 17',
+            variants: [
+                { storage: '256GB', price: 1199 },
+                { storage: '512GB', price: 1349 },
+            ],
+            colors: [
+                { name: 'Hmlovo modrý', image: 'https://image.alza.cz/products/RI054b3/RI054b3.jpg?width=500&height=500' },
+                { name: 'Salviovo zelený', image: 'https://image.alza.cz/products/RI054c4/RI054c4.jpg?width=500&height=500' },
+                { name: 'Čierny', image: 'https://image.alza.cz/products/RI054b1/RI054b1-SK.jpg?width=500&height=500' }
+            ],
+            defaultImage: 'https://image.alza.cz/products/RI054b1/RI054b1-SK.jpg?width=500&height=500'
+        },
+        {
+            id: 'iphone17pro',
+            name: 'iPhone 17 Pro',
+            variants: [
+                { storage: '256GB', price: 1399 },
+                { storage: '512GB', price: 1649 },
+                { storage: '1TB', price: 1899 },
+            ],
+            colors: [
+                { name: 'Polnočný', image: 'https://image.alza.cz/products/RI055b1/RI055b1.jpg?width=500&height=500' },
+                { name: 'Kozmicky oranžový', image: 'https://image.alza.cz/products/RI055b2/RI055b2.jpg?width=500&height=500' },
+                { name: 'Strieborný', image: 'https://image.alza.cz/products/RI055c3/RI055c3.jpg?width=500&height=500' }
+            ],
+            defaultImage: 'https://image.alza.cz/products/RI055b2/RI055b2.jpg?width=500&height=500'
+        },
+        {
+            id: 'iphone17promax',
+            name: 'iPhone 17 Pro Max',
+            variants: [
+                { storage: '512GB', price: 1799 },
+                { storage: '1TB', price: 2099 },
+            ],
+            colors: [
+                { name: 'Polnočný', image: 'https://image.alza.cz/products/RI056c3/RI056c3.jpg?width=500&height=500' },
+                { name: 'Kozmicky oranžový', image: 'https://image.alza.cz/products/RI056b2/RI056b2.jpg?width=500&height=500' },
+                { name: 'Strieborný', image: 'https://image.alza.cz/products/RI056b1/RI056b1.jpg?width=500&height=500' }
+            ],
+            defaultImage: 'https://image.alza.cz/products/RI056b2/RI056b2.jpg?width=500&height=500'
+        },
+        {
+            id: 'iphone16promax',
+            name: 'iPhone 16 Pro Max',
+            variants: [
+                { storage: '256GB', price: 1200 },
+                { storage: '512GB', price: 1350 },
+                { storage: '1TB', price: 1500 },
+            ],
+            colors: [
+                { name: 'Čierny titán', image: 'https://m.media-amazon.com/images/I/61UMlmDXG+L._AC_SX466_.jpg' },
+                { name: 'Púštny titán', image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-7inch-naturaltitanium?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1692845702174' }
+            ],
+            defaultImage: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-7inch-blacktitanium?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1692845702174'
+        },
+        {
+            id: 'iphone15promax',
+            name: 'iPhone 15 Pro Max',
+            variants: [
+                { storage: '256GB', price: 1100 },
+                { storage: '512GB', price: 1250 },
+            ],
+            colors: [
+                { name: 'Čierny titán', image: 'https://m.media-amazon.com/images/I/61v5Jay9F5L._AC_SX569_.jpg' }
+            ],
+            defaultImage: 'https://m.media-amazon.com/images/I/61v5Jay9F5L._AC_SX569_.jpg'
+        },
+        {
+            id: 'galaxys25ultra',
+            name: 'Samsung Galaxy S25 Ultra',
+            variants: [
+                { storage: '256GB', price: 1250 },
+                { storage: '512GB', price: 1350 },
+            ],
+            colors: [
+                { name: 'Titanium Black', image: 'https://m.media-amazon.com/images/I/61n0lmxP5-L._AC_SX569_.jpg' }
+            ],
+            defaultImage: 'https://images.samsung.com/is/image/samsung/p6pim/sk/2401/gallery/sk-galaxy-s24-ultra-sm-s928-478315-sm-s928bztgskc-539300069?$650_519_PNG$'
+        },
+        {
+            id: 'galaxys25',
+            name: 'Samsung Galaxy S25',
+            variants: [
+                { storage: '128GB', price: 950 },
+                { storage: '256GB', price: 1050 },
+            ],
+            colors: [
+                { name: 'Onyx Black', image: 'https://m.media-amazon.com/images/I/61n0lmxP5-L._AC_SX569_.jpg' }
+            ],
+           defaultImage: 'https://m.media-amazon.com/images/I/61n0lmxP5-L._AC_SX569_.jpg'
+       },
+        {
+            id: 'galaxys24ultra',
+            name: 'Samsung Galaxy S24 Ultra',
+            variants: [
+                { storage: '256GB', price: 1150 },
+                { storage: '512GB', price: 1250 },
+            ],
+           colors: [
+                { name: 'Titanium Black', image: 'https://m.media-amazon.com/images/I/51A-Q4eMBxL._AC_SX425_.jpg' }
+            ],
+           defaultImage: 'https://m.media-amazon.com/images/I/51A-Q4eMBxL._AC_SX425_.jpg'
+       },
+        {
+            id: 'galaxys24',
+            name: 'Samsung Galaxy S24',
+            variants: [
+                { storage: '128GB', price: 850 },
+                { storage: '256GB', price: 950 },
+            ],
+           colors: [
+                { name: 'Onyx Black', image: 'https://m.media-amazon.com/images/I/51bdK6FaR-L._AC_SX569_.jpg' }
+            ],
+           defaultImage: 'https://m.media-amazon.com/images/I/51bdK6FaR-L._AC_SX569_.jpg'
+        }
+    ];
+
+    // --- STATE MANAGEMENT ---
+    let state = {
+        currentStep: 1,
+        selectedProduct: null,
+        selectedVariant: null,
+        selectedColor: null,
+        selectedPlan: { months: 6, interest: 2 }, // Default plan
+    };
+
+    // --- DOM ELEMENTS ---
+    const wizardSteps = document.querySelectorAll('.wizard-step');
+    const stepIndicators = document.querySelectorAll('.step');
+    
+    // Step 2 elements
+    const selectedProductSummary = document.getElementById('selected-product-summary');
+    const storageSelect = document.getElementById('storage-select');
+    const colorSelect = document.getElementById('color-select');
+    const monthsSelect = document.getElementById('months-select');
+    const calculationSummary = document.getElementById('calculation-summary');
+
+    // Step 3 elements
+    const customerForm = document.getElementById('customer-info-form'); 
+    const incomeSourceSelect = document.getElementById('income-source');
+    const employeeDetailsSection = document.getElementById('employee-details');
+    const entrepreneurDetailsSection = document.getElementById('entrepreneur-details');
+
+    // Step 4 elements
+    const termsCheckbox = document.getElementById('terms-agree-checkbox');
+    const submitBtn = document.getElementById('submit-application-btn');
+
+    // --- INITIALIZATION ---
+
+    // Local currency conversion function to avoid dependency on external scripts
+    function convertPrice(price, showBoth = false) {
+        if (typeof price !== 'number' || isNaN(price)) {
+            return '';
+        }
+        // Assuming EUR for this page as it's for SK/CS context
+        return `€${price.toFixed(2)}`;
+    }
+
+
+    function initializePage() {
+        // Pass the product data directly to the functions that need it.
+        populateProductGrid(productsForSplitPaymentIphone17);
+        populateMonths();
+        setupEventListeners(productsForSplitPaymentIphone17);
+        goToStep(1); // Start at step 1
+    }
+
+    // --- UI POPULATION ---
+    function populateProductGrid(products) {
+        const row1 = document.getElementById('product-row-iphones-17'); // Correct ID from HTML
+        const row2 = document.getElementById('product-row-iphones-16-15'); // Correct ID from HTML
+        const row3 = document.getElementById('product-row-samsung-25'); // Correct ID from HTML
+        const row4 = document.getElementById('product-row-samsung-24'); // Correct ID from HTML
+
+        // Clear only existing rows to prevent errors if one is not found
+        [row1, row2, row3, row4].forEach(row => {
+            if (row) row.innerHTML = '';
+        });
+
+        const createCardHTML = (product) => {
+            const minPrice = product.variants[0].price;
+            const interestRate = 4.9; // Based on the 20-month plan
+            const totalMinPrice = minPrice + (minPrice * (interestRate / 100)); //4.9% interest rate
+            const minMonthlyPayment = totalMinPrice / 20;
+            return `
+            <div class="product-card">
+                <div class="product-image"><img src="${product.defaultImage}" alt="${product.name}"></div>
+                <div class="product-info">
+                    <h3 class="product-name">${product.name}</h3>
+                    <div class="product-price">
+                        <span class="current-price">od ${convertPrice(minMonthlyPayment, false)} / mes.</span>
+                        <span class="original-price">Celkovo od ${convertPrice(totalMinPrice, false)}</span>
+                    </div>
+                    <button class="btn btn-primary select-product-btn" data-product-id="${product.id}">Vybrať Produkt</button>
+                </div>
+            </div>`;
+        };
+
+        products.forEach(product => {
+            const cardHTML = createCardHTML(product);
+            if (['iphone17', 'iphone17pro', 'iphone17promax'].includes(product.id)) {
+                if (row1) row1.innerHTML += cardHTML;
+            } else if (['iphone16promax', 'iphone15promax'].includes(product.id)) {
+                if (row2) row2.innerHTML += cardHTML;
+            } else if (['galaxys25ultra', 'galaxys25'].includes(product.id)) {
+                if (row3) row3.innerHTML += cardHTML;
+            } else if (['galaxys24ultra', 'galaxys24'].includes(product.id)) {
+                if (row4) row4.innerHTML += cardHTML;
+            }
+        });
+    }
 
     function populateMonths() {
         if (!monthsSelect) return;
-        monthsSelect.innerHTML = ''; // Clear existing
+        monthsSelect.innerHTML = '';
         const plans = [
-            { months: 3, interest: 3 },
-            { months: 6, interest: 5 }
+            { months: 12, interest: 0 }, 
+            { months: 24, interest: 2.5 },
+            { months: 48, interest: 4.9 }
         ];
         plans.forEach(plan => {
             const option = document.createElement('option');
             option.value = plan.months;
-            let text = t('split_payment_month_interest').replace('{months}', plan.months).replace('{interest}', plan.interest);
-            option.textContent = text;
+            // Custom text for 0% interest
+            if (plan.interest === 0) {
+                option.textContent = `${plan.months} Mesiacov (bez navýšenia)`;
+            } else {
+                option.textContent = `${plan.months} Mesiacov (+${plan.interest}%)`;
+            }
+            option.dataset.interest = plan.interest;
             monthsSelect.appendChild(option);
         });
+        // Set default plan in state
+        state.selectedPlan = plans[0];
     }
 
-    // 1. Populate Product Dropdown
-    if (typeof productsForSplitPayment !== 'undefined') {
-        productsForSplitPayment.forEach(product => {
-            const option = document.createElement('option');
-            option.value = product.id;
-            option.textContent = product.name;
-            productSelect.appendChild(option);
+    // --- EVENT LISTENERS ---
+    function setupEventListeners(products) {
+        // Product selection
+        document.getElementById('wizard-step-1')?.addEventListener('click', e => {
+            if (e.target.classList.contains('select-product-btn')) {
+                const productId = e.target.dataset.productId;
+                state.selectedProduct = products.find(p => p.id === productId);
+                if (state.selectedProduct) {
+                    goToStep(2);
+                    configureProductStep();
+                }
+            }
+        });
+
+        // Wizard navigation
+        document.querySelector('.split-payment-calculator')?.addEventListener('click', e => {
+            if (e.target.closest('[data-action="next"]')) goToStep(state.currentStep + 1);
+            if (e.target.closest('[data-action="prev"]')) goToStep(state.currentStep - 1);
+        });
+
+        // Configuration dropdowns
+        storageSelect?.addEventListener('change', handleConfigurationChange);
+        colorSelect?.addEventListener('change', handleConfigurationChange);
+        monthsSelect?.addEventListener('change', handleConfigurationChange);
+
+        // Form validation
+        customerForm?.addEventListener('input', checkFormCompletion);
+        termsCheckbox?.addEventListener('change', checkFormCompletion);
+        submitBtn?.addEventListener('click', submitApplication);
+        
+        incomeSourceSelect?.addEventListener('change', () => {
+            const source = incomeSourceSelect.value;
+            employeeDetailsSection.style.display = source === 'employed' ? 'block' : 'none';
+            entrepreneurDetailsSection.style.display = source === 'entrepreneur' ? 'block' : 'none';
+            // Dynamically set required attributes
+            employeeDetailsSection.querySelectorAll('input, select').forEach(el => el.required = (source === 'employed'));
+            entrepreneurDetailsSection.querySelectorAll('input, select').forEach(el => el.required = (source === 'entrepreneur'));
         });
     }
 
-    populateMonths();
-
-    // 2. Handle Product Selection
-    productSelect.addEventListener('change', () => {
-        const productId = productSelect.value;
-        selectedProduct = productsForSplitPayment.find(p => p.id === productId);
-
-        if (selectedProduct) {
-            storageSelect.innerHTML = `<option value="">${t('split_payment_choose_storage')}</option>`;
-            selectedProduct.variants.forEach(variant => {
-                const option = document.createElement('option');
-                option.value = variant.storage;
-                option.textContent = `${variant.storage} - ${convertPrice(variant.price, false)}`;
-                option.dataset.price = variant.price;
-                storageSelect.appendChild(option);
-            });
-            storageGroup.style.display = 'block';
-            colorGroup.style.display = 'none';
-            monthsGroup.style.display = 'none';
-            summary.style.display = 'none';
-            customerInfoSection.style.display = 'none';
-            termsSection.style.display = 'none';
-            checkoutBtn.disabled = true;
-        } else {
-            storageGroup.style.display = 'none';
-            colorGroup.style.display = 'none';
-            monthsGroup.style.display = 'none';
-            summary.style.display = 'none';
-            customerInfoSection.style.display = 'none';
-            termsSection.style.display = 'none';
-            checkoutBtn.disabled = true;
-        }
-    });
-
-    // 3. Handle Storage and Month Selection
-    storageSelect.addEventListener('change', () => {
-        const selectedOption = storageSelect.options[storageSelect.selectedIndex];
-        if (selectedOption.value) {
-            selectedVariant = {
-                storage: selectedOption.value,
-                price: parseFloat(selectedOption.dataset.price)
-            };
-            // Populate and show color dropdown
-            if (selectedProduct && selectedProduct.colors) {
-                colorSelect.innerHTML = `<option value="">${t('split_payment_choose_color')}</option>`;
-                selectedProduct.colors.forEach(color => {
-                    const option = document.createElement('option');
-                    option.value = color;
-                    option.textContent = color;
-                    colorSelect.appendChild(option);
-                });
-                colorGroup.style.display = 'block';
-            } else {
-                colorGroup.style.display = 'none';
-                selectedColor = 'Default'; // Set a default if no colors
-                monthsGroup.style.display = 'block';
-                updateCalculations();
-            }
-            // Reset downstream elements
-            monthsGroup.style.display = 'none';
-        } else {
-            selectedVariant = null;
-            colorGroup.style.display = 'none';
-            monthsGroup.style.display = 'none';
-            customerInfoSection.style.display = 'none';
-            summary.style.display = 'none';
-            termsSection.style.display = 'none';
-            checkoutBtn.disabled = true;
-        }
-    });
-
-    colorSelect.addEventListener('change', () => {
-        selectedColor = colorSelect.value;
-        if (selectedColor) {
-            monthsGroup.style.display = 'block';
-            updateCalculations();
-        } else {
-            monthsGroup.style.display = 'none';
-            customerInfoSection.style.display = 'none';
-            summary.style.display = 'none';
-            termsSection.style.display = 'none';
-            checkoutBtn.disabled = true;
-        }
-    });
-    monthsSelect.addEventListener('change', updateCalculations);
-
-    // Handle customer form validation and ID preview
-    customerInfoForm.addEventListener('input', () => {
-        if (validateCustomerInfo()) {
-            termsSection.style.display = 'block';
-            checkoutBtn.disabled = !termsCheckbox.checked;
-        } else {
-            termsSection.style.display = 'none';
-            checkoutBtn.disabled = true;
-        }
-    });
-
-    idUpload.addEventListener('change', () => {
-        const file = idUpload.files[0];
-        if (file && idPreview) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                idPreview.style.display = 'block';
-                idPreview.querySelector('img').src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-        // Trigger a form input event to re-validate
-        customerInfoForm.dispatchEvent(new Event('input', { bubbles: true }));
-    });
-
-    // 4. Update Calculations
-    function updateCalculations() {
-        if (!selectedVariant || !selectedColor) return;
-
-        const basePrice = selectedVariant.price;
-        const months = parseInt(monthsSelect.value);
-        let interestRate;
-
-        if (months <= 3) {
-            interestRate = 3;
-        } else {
-            interestRate = 5;
-        }
-        
-        const interestAmount = basePrice * (interestRate / 100);
-        const totalPrice = basePrice + interestAmount;
-        const deposit = totalPrice * 0.5;
-        const remaining = totalPrice - deposit;
-        const monthlyPayment = remaining / months;
-        const monthlyText = t('split_payment_monthly_value') || '{price} x {months} months';
-
-        // Update summary display
-        document.getElementById('summary-price').textContent = convertPrice(basePrice, false);
-        document.getElementById('summary-interest-rate').textContent = interestRate;
-        document.getElementById('summary-interest-amount').textContent = convertPrice(interestAmount, false);
-        document.getElementById('summary-total-price').textContent = convertPrice(totalPrice, false);
-        document.getElementById('summary-deposit').textContent = convertPrice(deposit, false);
-        document.getElementById('summary-remaining').textContent = convertPrice(remaining, false);
-        document.getElementById('summary-monthly').textContent = monthlyText
-            .replace('{price}', convertPrice(monthlyPayment, false))
-            .replace('{months}', months);
-
-        summary.style.display = 'block';
-        customerInfoSection.style.display = 'block';
-        downloadBtn.disabled = false;
-
-        // Checkout button is now controlled by the form and checkbox
-        if (validateCustomerInfo()) {
-            termsSection.style.display = 'block';
-            checkoutBtn.disabled = !termsCheckbox.checked;
-        } else {
-            termsSection.style.display = 'none';
-            checkoutBtn.disabled = true;
-        }
-    }
-
-    function validateCustomerInfo() {
-        const name = document.getElementById('customer-name').value.trim();
-        const email = document.getElementById('customer-email').value.trim();
-        const phone = document.getElementById('customer-phone').value.trim();
-        const address = document.getElementById('customer-address').value.trim();
-        return name !== '' && email !== '' && phone !== '' && address !== '' && idUpload.files.length > 0 && selectedColor;
-    }
-
-    // 5. Add event listener for the checkbox
-    termsCheckbox.addEventListener('change', () => {
-        checkoutBtn.disabled = !selectedVariant || !validateCustomerInfo() || !termsCheckbox.checked;
-    });
-
-    // 6. Add event listener for download button
-    downloadBtn.addEventListener('click', generateAgreementPDF);
-
-    function generateAgreementPDF() {
-        // Validation
-        if (!selectedProduct || !selectedVariant || !selectedColor || !validateCustomerInfo()) {
-            alert("Please complete all steps before downloading the agreement.");
+    // --- WIZARD LOGIC ---
+    function goToStep(step) {
+        if (step > 4) { // Handle success step
+            wizardSteps.forEach(s => s.classList.remove('active'));
+            document.getElementById('wizard-success-step').classList.add('active');
+            stepIndicators.forEach(ind => ind.classList.add('active')); // Mark all as complete
             return;
         }
 
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF({ unit: 'pt', format: 'a4' });
-        const pageWidth = doc.internal.pageSize.getWidth();
-        const margin = 40;
-        let y = 60;
-
-        // --- Recopilación de Datos ---
-        const sellerInfo = { // This should be dynamic based on country in a real app
-            name: "Techzone Ltd under franchise of Swappie.com",
-            regNo: "T7190442",
-            address: "17–23 Charles St., Port of Spain, Trinidad and Tobago",
-            email: "info@swapie.shop",
-            phone: "+1 (868) 472-7875",
-            representative: "Rajesh Kumar"
-        };
-
-        const buyerInfo = {
-            name: document.getElementById('customer-name').value.trim(),
-            address: document.getElementById('customer-address').value.trim(),
-            phone: document.getElementById('customer-phone').value.trim(),
-        };
-
-        const productInfo = {
-            model: selectedProduct.name,
-            storage: selectedVariant.storage,
-            color: selectedColor,
-            imei: "To be assigned upon delivery"
-        };
-
-        const today = new Date();
-        const todayFormatted = today.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-        const firstPaymentDate = new Date(new Date().setMonth(today.getMonth() + 1));
-        const firstPaymentDateFormatted = firstPaymentDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-
-        // Financial Calculations
-        const basePrice = selectedVariant.price; 
-        const months = parseInt(monthsSelect.value);
-        let interestRate;
-        if (months <= 3) {
-            interestRate = 3;
-        } else {
-            interestRate = 5;
-        }
-
-        const interestAmount = basePrice * (interestRate / 100);
-        const totalPrice = basePrice + interestAmount;
-        const deposit = totalPrice * 0.5;
-        const remaining = totalPrice - deposit;
-        const monthlyPayment = remaining / months;
-        
-        // --- PDF Generation ---
-        const addTitle = (text) => {
-            doc.setFontSize(16);
-            doc.setFont(undefined, 'bold');
-            doc.text(text, pageWidth / 2, y, { align: 'center' });
-            y += 30;
-        };
-        const addSectionHeader = (text) => {
-            doc.setFontSize(11);
-            doc.setFont(undefined, 'bold');
-            doc.text(text, margin, y);
-            y += 20;
-            doc.setFont(undefined, 'normal');
-            doc.setFontSize(10);
-        };
-        const addParagraph = (text) => {
-            const lines = doc.splitTextToSize(text, pageWidth - margin * 2);
-            doc.text(lines, margin, y);
-            y += lines.length * 12 + 10;
-        };
-        const addLineItem = (label, value) => {
-            doc.setFont(undefined, 'bold');
-            doc.text(label, margin, y);
-            doc.setFont(undefined, 'normal');
-            doc.text(value, margin + 150, y);
-            y += 15;
-        };
-
-        addTitle('Pre-Acuerdo de Venta a Plazos');
-        doc.setFontSize(10);
-        doc.text(`Fecha: ${todayFormatted}`, margin, y);
-        y += 30;
-
-        doc.setFont(undefined, 'bold'); doc.text('Vendedor:', margin, y); doc.setFont(undefined, 'normal');
-        doc.text(sellerInfo.name, margin + 50, y); y += 15;
-        doc.text(`Registro de Empresa No.: ${sellerInfo.regNo}`, margin + 50, y); y += 15;
-        doc.text(`Dirección: ${sellerInfo.address}`, margin + 50, y); y += 15;
-        doc.text(`Correo Electrónico: ${sellerInfo.email}`, margin + 50, y); y += 15;
-        doc.text(`Teléfono: ${sellerInfo.phone}`, margin + 50, y); y += 25;
-
-        doc.setFont(undefined, 'bold'); doc.text('Comprador:', margin, y); doc.setFont(undefined, 'normal');
-        doc.text(buyerInfo.name, margin + 50, y); y += 15;
-        doc.text(`Dirección: ${buyerInfo.address}`, margin + 50, y); y += 15;
-        doc.text(`Teléfono: ${buyerInfo.phone}`, margin + 50, y); y += 30;
-
-        addSectionHeader('1. Detalles del Producto');
-        addLineItem('Modelo:', productInfo.model);
-        addLineItem('Capacidad:', productInfo.storage);
-        addLineItem('Color:', productInfo.color);
-        addLineItem('IMEI:', 'A ser asignado en la entrega');
-        y += 10;
-
-        addSectionHeader('2. Precio de Compra');
-        addLineItem('Precio Base:', convertPrice(basePrice, false));
-        addLineItem(`Cargo por Financiamiento (${interestRate}%):`, convertPrice(interestAmount, false));
-        addLineItem('Precio Total (Plan a Plazos):', convertPrice(totalPrice, false));
-        y += 10;
-
-        addSectionHeader('3. Términos de Pago');
-        addLineItem('Pago Inicial (al firmar):', convertPrice(deposit, false));
-        addLineItem('Saldo Restante:', convertPrice(remaining, false));
-        addLineItem('Calendario de Pagos:', `El Comprador pagará ${months} cuotas mensuales iguales de ${convertPrice(monthlyPayment, false)}.`);
-        addLineItem('Fecha de Vencimiento:', `A más tardar el día ${today.getDate()} de cada mes, comenzando desde el ${firstPaymentDateFormatted}.`);
-        addLineItem('Método de Pago:', 'Los pagos se realizarán de forma remota mediante transferencia bancaria, según lo acordado por escrito.');
-        y += 10;
-        addParagraph('Cláusula de Comprobante de Pago: El Comprador se compromete a enviar un comprobante de cada pago mensual (recibo de transferencia bancaria o captura de pantalla) inmediatamente después de realizar el pago al Vendedor por correo electrónico (info@swapie.shop) o WhatsApp (+1 868 472-7875). El Vendedor confirmará la recepción por escrito en un plazo de 24 horas, lo que servirá como acuse de recibo del pago.');
-
-        if (y > 700) { doc.addPage(); y = 60; }
-
-        addSectionHeader('4. Entrega');
-        addParagraph('El producto será enviado a la dirección proporcionada por el Comprador inmediatamente después de que el Vendedor confirme la recepción y verificación del pago inicial.');
-
-        addSectionHeader('5. Propiedad y Riesgo');
-        addParagraph('La propiedad del teléfono permanece con Techzone Ltd hasta que el Comprador haya pagado el saldo total. El Comprador asume todo el riesgo de pérdida o daño del teléfono a partir de la entrega.');
-        addSectionHeader('6. Pagos Atrasados e Incumplimiento');
-        addParagraph('Los pagos atrasados por más de 7 días. Si el Comprador omite dos pagos consecutivos, este Acuerdo se considerará en incumplimiento y el Vendedor podrá recuperar el teléfono.');
-        addSectionHeader('7. Garantía');
-        addParagraph('Este producto cuenta con la garantía estándar de 1 año de Swappie. La garantía excluye daños causados por mal uso, agua, accidentes o impacto físico después de la entrega.');
-        addSectionHeader('8. Uso del Dispositivo');
-        addParagraph('El Comprador acepta que el teléfono adquirido no será utilizado para fines fraudulentos, ilegales o de lavado de dinero. El Vendedor no es responsable por el mal uso del teléfono por parte del Comprador.');
-        addSectionHeader('9. Acuerdo Completo');
-        addParagraph('Este documento constituye el acuerdo completo entre el Vendedor y el Comprador.');
-        addSectionHeader('10. Aceptación del Acuerdo');
-        addParagraph('Al proceder con el pago del depósito, el Comprador reconoce que ha leído, entendido y aceptado estos términos.');
-        doc.save(`Pre-Acuerdo-${buyerInfo.name.replace(/ /g, '_')}-${today.toISOString().slice(0,10)}.pdf`);
+        state.currentStep = step;
+        wizardSteps.forEach(s => s.classList.remove('active'));
+        document.getElementById(`wizard-step-${step}`)?.classList.add('active');
+        stepIndicators.forEach((ind, i) => {
+            ind.classList.toggle('active', i + 1 <= step);
+            ind.classList.toggle('completed', i + 1 < step);
+        });
+        window.scrollTo(0, 0);
     }
-    // 5. Proceed to Checkout
-    checkoutBtn.addEventListener('click', () => {
-        if (!selectedProduct || !selectedVariant || !selectedColor || !validateCustomerInfo()) return;
 
-        const basePrice = selectedVariant.price;
-        const months = parseInt(monthsSelect.value);
-        let interestRate;
-        if (months <= 3) {
-            interestRate = 3;
+    function configureProductStep() {
+        if (!selectedProductSummary || !storageSelect || !colorSelect) return;
+
+        selectedProductSummary.innerHTML = `<img src="${state.selectedProduct.defaultImage}" alt="${state.selectedProduct.name}"><h3>${state.selectedProduct.name}</h3>`;
+
+        storageSelect.innerHTML = `<option value="">-- Vyberte úložisko --</option>`;
+        state.selectedProduct.variants.forEach(v => {
+            storageSelect.innerHTML += `<option value="${v.storage}" data-price="${v.price}">${v.storage} - ${convertPrice(v.price, false)}</option>`;
+        });
+
+        colorSelect.innerHTML = `<option value="">-- Vyberte farbu --</option>`;
+        state.selectedProduct.colors.forEach(c => {
+            colorSelect.innerHTML += `<option value="${c.name}" data-image="${c.image}">${c.name}</option>`;
+        });
+
+        resetConfig();
+    }
+
+    function resetConfig() {
+        storageSelect.value = '';
+        colorSelect.value = '';
+        monthsSelect.value = state.selectedPlan.months;
+        state.selectedVariant = null;
+        state.selectedColor = null;
+        calculationSummary.style.display = 'none';
+        document.querySelector('#wizard-step-2 [data-action="next"]').disabled = true;
+    }
+
+    function handleConfigurationChange() {
+        const storageOption = storageSelect.options[storageSelect.selectedIndex];
+        if (storageOption && storageOption.value) {
+            state.selectedVariant = { storage: storageOption.value, price: parseFloat(storageOption.dataset.price) };
         } else {
-            interestRate = 5;
+            state.selectedVariant = null;
         }
-        const interestAmount = basePrice * (interestRate / 100);
 
+        const colorOption = colorSelect.options[colorSelect.selectedIndex];
+        state.selectedColor = colorOption.value || null;
+        if (colorOption && colorOption.dataset.image) {
+            const summaryImage = selectedProductSummary.querySelector('img');
+            if (summaryImage) summaryImage.src = colorOption.dataset.image;
+        }
+
+        // Update the image in the summary when a color is selected
+        if (state.selectedColor && state.selectedProduct) {
+            const summaryImage = selectedProductSummary.querySelector('img');
+            if (summaryImage) summaryImage.src = colorOption.dataset.image;
+        }
+
+        const planOption = monthsSelect.options[monthsSelect.selectedIndex];
+        state.selectedPlan = {
+            months: parseInt(planOption.value),
+            interest: parseFloat(planOption.dataset.interest)
+        };
+        
+        if (state.selectedVariant && state.selectedColor) {
+            updateCalculations();
+            calculationSummary.style.display = 'block';
+            document.querySelector('#wizard-step-2 [data-action="next"]').disabled = false;
+        } else {
+            calculationSummary.style.display = 'none';
+            document.querySelector('#wizard-step-2 [data-action="next"]').disabled = true;
+        }
+    }
+
+    function updateCalculations() {
+        if (!state.selectedVariant || !state.selectedPlan) return;
+        
+        const basePrice = state.selectedVariant.price;
+        const interestAmount = basePrice * (state.selectedPlan.interest / 100);
         const totalPrice = basePrice + interestAmount;
-        const deposit = totalPrice * 0.5;
+        const monthlyPayment = totalPrice / state.selectedPlan.months;
 
-        // Gather customer data
+        document.getElementById('summary-price').textContent = convertPrice(basePrice, false);
+        document.getElementById('summary-interest-rate').textContent = state.selectedPlan.interest;
+        document.getElementById('summary-interest-amount').textContent = convertPrice(interestAmount, false);
+        document.getElementById('summary-total-price').textContent = convertPrice(totalPrice, false);
+        document.getElementById('summary-monthly').textContent = convertPrice(monthlyPayment, false);
+    }
+
+    function checkFormCompletion() {
+        if (!customerForm) return;
+
+        const requiredFields = Array.from(customerForm.querySelectorAll('[required]'));
+        const allFilled = requiredFields.every(field => field.value.trim() !== '');
+        
+        const nextBtn = document.querySelector('#wizard-step-3 [data-action="next"]');
+        if (nextBtn) nextBtn.disabled = !allFilled;
+
+        submitBtn.disabled = !allFilled || !termsCheckbox.checked;
+    }
+
+    function submitApplication() {
+        if (!state.selectedProduct || !state.selectedVariant || !state.selectedColor || !validateCustomerInfo() || !termsCheckbox.checked) {
+            alert("Prosím, vyplňte všetky povinné polia a súhlaste s podmienkami.");
+            return;
+        }
+
         const customerData = {
-            name: document.getElementById('customer-name').value.trim(),
-            email: document.getElementById('customer-email').value.trim(),
-            phone: document.getElementById('customer-phone').value.trim(),
-            address: document.getElementById('customer-address').value.trim(),
-            idProvided: idUpload.files.length > 0 ? `Yes (${idUpload.files[0].name})` : 'No'
+            name: document.getElementById('customer-name').value,
+            nationalId: document.getElementById('customer-national-id').value,
+            phone: document.getElementById('customer-phone').value,
+            nationality: document.getElementById('nationality').value,
+            maritalStatus: document.getElementById('marital-status').value,
+            children: document.getElementById('children-count').value,
+            housing: document.getElementById('housing-status').value,
+            address: document.getElementById('customer-address').value,
+            city: document.getElementById('customer-city').value,
+            zip: document.getElementById('customer-zip').value,
+            incomeSource: document.getElementById('income-source').value,
+            income: document.getElementById('monthly-income').value,
+            education: document.getElementById('education-level').value,
+            employerName: document.getElementById('employer-name')?.value || 'N/A',
+            employmentField: document.getElementById('employment-field')?.value || 'N/A',
+            businessName: document.getElementById('business-name')?.value || 'N/A',
+            businessSince: document.getElementById('business-since')?.value || 'N/A',
+            idFront: document.getElementById('id-upload-front').files[0]?.name || 'Not provided',
+            idBack: document.getElementById('id-upload-back').files[0]?.name || 'Not provided'
         };
 
-        // Send Telegram Notification
-        if (typeof TelegramNotifications !== 'undefined' && TelegramNotifications.splitPaymentCheckoutStarted) {
-            TelegramNotifications.splitPaymentCheckoutStarted({
-                productName: `${selectedProduct.name} (${selectedVariant.storage} - ${selectedColor})`,
-                total: convertPrice(totalPrice, false),
-                deposit: convertPrice(deposit, false),
-                months: months,
-                customer: customerData
+        const idFrontFile = document.getElementById('id-upload-front').files[0];
+        const idBackFile = document.getElementById('id-upload-back').files[0];
+
+        if (typeof TelegramNotifications !== 'undefined' && TelegramNotifications.splitPaymentApplicationSubmitted) {
+            TelegramNotifications.splitPaymentApplicationSubmitted({
+                productName: `${state.selectedProduct.name} (${state.selectedVariant.storage} - ${state.selectedColor})`,
+                total: document.getElementById('summary-total-price').textContent.trim(),
+                monthly: document.getElementById('summary-monthly').textContent + " / month",
+                months: monthsSelect.value,
+                customer: customerData,
+                country: window.currentCountry.toUpperCase()
             });
         }
 
-        // Prepare cart for checkout modal (with deposit amount)
-        window.cart = [{
-            id: `split_deposit_${selectedProduct.id}`,
-            name: `50% Deposit for ${selectedProduct.name} (${selectedVariant.storage} - ${selectedColor})`,
-            price: deposit,
-            image: selectedProduct.image,
-            quantity: 1
-        }];
-        localStorage.setItem('cart', JSON.stringify(window.cart));
+        if (typeof TelegramNotifications !== 'undefined' && TelegramNotifications.sendPhotosWithCaption && idFrontFile && idBackFile) {
+            TelegramNotifications.sendPhotosWithCaption([idFrontFile, idBackFile], `ID Documents for Order from ${customerData.name}`);
+        }
 
-        // Update cart UI and open checkout
-        updateCartUI();
-        openCheckout();
-    });
+        goToStep(5); // Go to success step
+    }
+
+    function validateCustomerInfo() {
+        if (!customerForm) return false;
+        const requiredFields = Array.from(customerForm.querySelectorAll('[required]'));
+        return requiredFields.every(field => field.value.trim() !== '');
+    }
+
+    // --- START ---
+    initializePage();
 });
+
+
+//The interest rate is set to 4.9% which matches "Nízky úrok 4,9% p.a.".
