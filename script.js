@@ -61,6 +61,22 @@ const translations = window.translations || {
         deal: "Akcia!",
         value: "Skvelá Cena!",
         premium: "Prémiové!",
+        shipping_information: "Dodacie údaje",
+        full_name: "Celé meno",
+        enter_full_name: "Zadajte vaše celé meno",
+        phone_number: "Telefónne číslo",
+        phone_number_placeholder: "Telefónne číslo",
+        country: "Krajina",
+        complete_address: "Úplná adresa",
+        complete_address_placeholder: "Úplná adresa: Ulica, číslo, mesto, PSČ...",
+        address_help: "Zahrňte všetky potrebné informácie pre doručenie",
+        city: "Mesto",
+        city_placeholder: "Mesto",
+        postal_code: "PSČ",
+        postal_code_placeholder: "PSČ",
+        continue_to_payment: "Pokračovať k platbe",
+        quantity_short: "Množ.",
+        free_gift_protector: "ZADARMO: Prémiové ochranné sklo Gorilla Glass",
         top_rated: "Najlepšie hodnotené!",
         popular: "Populárne!",
         budget: "Výhodné!",
@@ -70,6 +86,7 @@ const translations = window.translations || {
         shipping: "Doprava:",
         total: "Celkom:",
         checkout: "Pokračovať k pokladni",
+        free: "Zdarma",
         continue_shopping: "Pokračovať v nákupe",
         order_summary: "Súhrn Objednávky",
         order_ref: "Referencia Objednávky:",
@@ -209,6 +226,7 @@ const translations = window.translations || {
         spec_battery_health_value: "90% garantované",
         spec_condition_certified: "Certifikovaný repasovaný",
         spec_condition_new_open_box: "Nový (Otvorená krabica)",
+        iphone17promax_name: "iPhone 17 Pro Max",
         iphone17_name: "iPhone 17",
         iphone17pro_name: "iPhone 17 Pro",
         iphone16_name: "iPhone 16",
@@ -416,6 +434,22 @@ const translations = window.translations || {
         deal: "Deal!",
         value: "Great Value!",
         premium: "Premium!",
+        shipping_information: "Shipping Information",
+        full_name: "Full Name",
+        enter_full_name: "Enter your full name",
+        phone_number: "Phone Number",
+        phone_number_placeholder: "Phone number",
+        country: "Country",
+        complete_address: "Complete Address",
+        complete_address_placeholder: "Complete address: Street, number, city, postal code...",
+        address_help: "Include all necessary information for delivery",
+        city: "City",
+        city_placeholder: "City",
+        postal_code: "Postal Code",
+        postal_code_placeholder: "Postal code",
+        continue_to_payment: "Continue to Payment",
+        quantity_short: "Qty",
+        free_gift_protector: "FREE: Premium Gorilla Glass Screen Protector",
         top_rated: "Top Rated!",
         popular: "Popular!",
         budget: "Budget!",
@@ -425,6 +459,7 @@ const translations = window.translations || {
         shipping: "Shipping:",
         total: "Total:",
         checkout: "Proceed to Checkout",
+        free: "Free",
         continue_shopping: "Continue Shopping",
         order_summary: "Order Summary",
         order_ref: "Order Reference:",
@@ -566,6 +601,7 @@ const translations = window.translations || {
         spec_battery_health_value: "Guaranteed 90% health",
         spec_condition_certified: "Certified Refurbished",
         spec_condition_new_open_box: "New (Open Box)",
+        iphone17promax_name: "iPhone 17 Pro Max",
         iphone17_name: "iPhone 17",
         iphone17pro_name: "iPhone 17 Pro",
         iphone16_name: "iPhone 16",
@@ -1223,39 +1259,40 @@ function createCheckoutModal() {
             <!-- Step 1: Shipping Information -->
             <div id="checkout-step-1" class="checkout-step active">
             <div class="customer-info-section">
-                <h3>${(currentLanguage === 'es' ? 'Información de Envío' : 'Shipping Information')}</h3>
+                <h3 data-translate="shipping_information">Shipping Information</h3>
                 <div class="form-row">
                     <div class="form-group">
-                        <label>${(currentLanguage === 'es' ? 'Nombre Completo' : 'Full Name')} *</label>
-                        <input type="text" id="customer-name" required placeholder="${(currentLanguage === 'es' ? 'Ingrese su nombre completo' : 'Enter your full name')}" autocomplete="name">
+                        <label data-translate="full_name">Full Name</label> *
+                        <input type="text" id="customer-name" required data-translate-placeholder="enter_full_name" placeholder="Enter your full name" autocomplete="name">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>${(currentLanguage === 'es' ? 'Teléfono' : 'Phone Number')} *</label>
-                    <input type="tel" id="customer-phone" required placeholder="${(currentLanguage === 'es' ? 'Número de teléfono' : 'Phone number')}" autocomplete="tel">
+                    <label data-translate="phone_number">Phone Number</label> *
+                    <input type="tel" id="customer-phone" required data-translate-placeholder="phone_number_placeholder" placeholder="Phone number" autocomplete="tel">
                 </div>
                 <div class="form-group">
-                    <label>${(currentLanguage === 'es' ? 'País' : 'Country')} *</label>
+                    <label data-translate="country">Country</label> *
                     <input type="text" id="customer-country" required value="${countryConfig[currentCountry].name}" readonly autocomplete="country">
                 </div>
                 <div class="form-group">
-                    <label>${(currentLanguage === 'es' ? 'Dirección Completa' : 'Complete Address')} *</label>
-                    <textarea id="customer-address" required placeholder="${(currentLanguage === 'es' ? 'Dirección completa: Calle, número, ciudad, estado/provincia, código postal...' : 'Complete address: Street, number, city, state/province, postal code...')}" rows="4" class="responsive-textarea" autocomplete="street-address"></textarea>
-                    <div class="address-help"><i class="fas fa-info-circle"></i> ${(currentLanguage === 'es' ? 'Incluya toda la información necesaria para la entrega' : 'Include all necessary information for delivery')}</div>
+                    <label data-translate="complete_address">Complete Address</label> *
+                    <textarea id="customer-address" required data-translate-placeholder="complete_address_placeholder" placeholder="Complete address: Street, number, city, state/province, postal code..." rows="4" class="responsive-textarea" autocomplete="street-address"></textarea>
+                    <div class="address-help"><i class="fas fa-info-circle"></i> <span data-translate="address_help">Include all necessary information for delivery</span></div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label>${(currentLanguage === 'es' ? 'Ciudad' : 'City')} *</label>
-                        <input type="text" id="customer-city" required placeholder="${(currentLanguage === 'es' ? 'Ciudad' : 'City')}" autocomplete="address-level2">
+                        <label data-translate="city">City</label> *
+                        <input type="text" id="customer-city" required data-translate-placeholder="city_placeholder" placeholder="City" autocomplete="address-level2">
                     </div>
                     <div class="form-group">
-                        <label>${(currentLanguage === 'es' ? 'Código Postal' : 'Postal Code')}</label>
-                        <input type="text" id="customer-postal" placeholder="${(currentLanguage === 'es' ? 'Código postal' : 'Postal code')}" autocomplete="postal-code">
+                        <label data-translate="postal_code">Postal Code</label>
+                        <input type="text" id="customer-postal" data-translate-placeholder="postal_code_placeholder" placeholder="Postal code" autocomplete="postal-code">
                     </div>
                 </div>
                 <div class="step-actions">
                     <button id="next-to-payment" class="btn btn-primary checkout-next">
-                        ${(currentLanguage === 'es' ? 'Continuar al Pago' : 'Continue to Payment')} <i class="fas fa-arrow-right"></i>
+                        <span data-translate="continue_to_payment">Continue to
+                         Payment</span> <i class="fas fa-arrow-right"></i>
                     </button>
                 </div>
             </div>
@@ -1437,7 +1474,7 @@ function createCheckoutModal() {
         </div>
         <div class="checkout-right">
             <div class="order-summary-sticky">
-                <h3>${(currentLanguage === 'es' ? 'Resumen del Pedido' : 'Order Summary')}</h3>
+                <h3 data-translate="order_summary">Order Summary</h3>
                 <div class="checkout-items-summary">
                     ${cart.map(item => {
                         const itemPrice = (item.price === 0 || item.isFreeGift) ? 'FREE' : convertPrice(item.price * item.quantity, false);
@@ -1446,8 +1483,8 @@ function createCheckoutModal() {
                             <div class="checkout-item-compact ${isFreeGift ? 'free-gift-checkout-item' : ''}">
                                 <img src="${item.image}" alt="${item.name}">
                                 <div class="checkout-item-details-compact">
-                                    <h4>${item.name}</h4>
-                                    <p>Qty: ${item.quantity}</p>
+                                    <h4>${item.name.includes('Gorilla Glass') ? t('free_gift_protector') : item.name}</h4>
+                                    <p><span data-translate="quantity_short">Qty</span>: ${item.quantity}</p>
                                 </div>
                                 <span class="checkout-item-price">${itemPrice}</span>
                             </div>
@@ -1456,16 +1493,16 @@ function createCheckoutModal() {
                 </div>
                 <div class="checkout-totals">
                     <div class="totals-row">
-                        <span class="totals-label">${(currentLanguage === 'es' ? 'Subtotal' : 'Subtotal')}</span>
+                        <span class="totals-label" data-translate="subtotal">Subtotal</span>
                         <span class="totals-value" id="checkout-subtotal">${convertPrice(subtotal, false)}</span>
                     </div>
                     <div class="totals-row shipping-row">
-                        <span class="totals-label">${(currentLanguage === 'es' ? 'Envío' : 'Shipping')}</span>
-                        <span class="totals-value free-shipping"><i class="fas fa-shipping-fast"></i> ${(currentLanguage === 'es' ? 'Gratis' : 'Free')}</span>
+                        <span class="totals-label" data-translate="shipping">Shipping</span>
+                        <span class="totals-value free-shipping"><i class="fas fa-shipping-fast"></i> <span data-translate="free">Free</span></span>
                     </div>
                     <div class="totals-separator"></div>
                     <div class="totals-row total-row">
-                        <span class="totals-label total-label">${(currentLanguage === 'es' ? 'Total' : 'Total')}</span>
+                        <span class="totals-label total-label" data-translate="total">Total</span>
                         <span class="totals-value total-value" id="checkout-total">${convertPrice(subtotal, false)}</span>
                     </div>
                 </div>
@@ -1474,6 +1511,11 @@ function createCheckoutModal() {
     </div>`;
 
     modal.innerHTML = checkoutHTML;
+    
+    // Apply translations to the newly created modal content
+    modal.querySelectorAll('[data-translate]').forEach(el => el.textContent = t(el.dataset.translate));
+    modal.querySelectorAll('[data-translate-placeholder]').forEach(el => el.placeholder = t(el.dataset.translatePlaceholder));
+
 
     overlay.appendChild(modal);
     document.body.appendChild(overlay);
