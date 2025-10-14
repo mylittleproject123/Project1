@@ -1046,7 +1046,7 @@ function updateCartDisplay() {
                     ${isFreeGift ? '<div class="gift-overlay"><i class="fas fa-gift"></i></div>' : ''}
                 </div>
                 <div class="cart-item-details">
-                    <h4>${item.name}</h4>
+                    <h4>${item.id === 'free_gorilla_glass' ? t('free_gift_protector') : item.name}</h4>
                     <div class="cart-item-controls">
                         ${isFreeGift ? 
                             '<span class="free-gift-badge">FREE GIFT</span>' :
