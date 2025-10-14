@@ -1974,11 +1974,12 @@ let currentVariant = null;
 
 // Initialize page
 document.addEventListener('DOMContentLoaded', async () => {
-
     // This script should only run on the product detail page.
     if (!document.querySelector('.product-detail')) {
         return;
     }
+
+    setupCountrySwitcherLinks();
 
     // The main `script.js` already handles country/language initialization.
     // We just need to load the product details.
