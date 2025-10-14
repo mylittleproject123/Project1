@@ -1321,9 +1321,9 @@ redminote13pro: {
   memoryOptions: {},
   conditionOptions: {
     great: { name: t("condition_great"), priceAdjustment: 0, description: t("condition_great_desc") },
-    excellent: { name: t("condition_excellent"), priceAdjustment: 20, description: t("condition_excellent_desc") },
-    display_piece: { name: t("condition_display_piece"), priceAdjustment: 40, description: t("condition_display_piece_desc") },
-    new_open_box: { name: t("condition_new_open_box"), priceAdjustment: 50, description: t("condition_new_open_box_desc") }
+    excellent: { name: t("condition_excellent"), priceAdjustment: 20, description: t("condition_excellent_desc") },    
+    like_new_open_box: { name: t("condition_like_new_open_box"), priceAdjustment: 50, description: t("condition_like_new_open_box_desc") },
+    display_piece: { name: t("condition_display_piece"), priceAdjustment: 40, description: t("condition_display_piece_desc") }
   },
   images: ["https://m.media-amazon.com/images/I/61jcsHsFN8L.__AC_SY445_SX342_QL70_FMwebp_.jpg"],
   features: [
