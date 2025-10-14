@@ -104,9 +104,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 { storage: '512GB', price: 1250 },
             ],
            colors: [
-                { name: 'Titanium Black', image: 'https://m.media-amazon.com/images/I/51E3rux4DgL.__AC_SX300_SY300_QL70_FMwebp_.jpg' }
+                { name: 'Titanium Black', image: 'https://m.media-amazon.com/images/I/51A-Q4eMBxL._AC_SX425_.jpg' }
             ],
-           defaultImage: 'https://m.media-amazon.com/images/I/51E3rux4DgL.__AC_SX300_SY300_QL70_FMwebp_.jpg'
+           defaultImage: 'https://m.media-amazon.com/images/I/51A-Q4eMBxL._AC_SX425_.jpg'
        },
         {
             id: 'galaxys24',
@@ -256,7 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Wizard navigation
-        document.querySelector('.split-payment-wizard')?.addEventListener('click', e => {
+        document.querySelector('.split-payment-calculator')?.addEventListener('click', e => {
             if (e.target.closest('[data-action="next"]')) goToStep(state.currentStep + 1);
             if (e.target.closest('[data-action="prev"]')) goToStep(state.currentStep - 1);
         });
