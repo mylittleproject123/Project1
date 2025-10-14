@@ -2017,12 +2017,12 @@ function loadProductDetails() {
     renderFeatures(product);
     renderSpecifications(product);
 
-    // Set initial price and image
-    updatePricing(product);
     const initialVariant = product.variants ? product.variants[currentVariant] : null;
     const initialImages = initialVariant ? initialVariant.images : product.images;
     updateProductImages(product, initialImages);
 
+    // Set initial price after all options are rendered
+    updatePricing(product);
     // Setup interactive elements
     setupQuantityControls();
     setupAddToCartListener(product);
