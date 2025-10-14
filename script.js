@@ -14,10 +14,9 @@ const translations = window.translations || {
         products: "Produkty",
         about: "O nás",
         contact: "Kontakt",
-        hero_title: "Najlepšia Technológia za Najlepšiu Cenu",
         split_payment: "Platba na splátky",
-        split_payment_title: "Zaplatiť na splátky",
-        split_payment_desc: "Zaplaťte dnes 50% zálohu a zvyšok si rozdeľte až na 6 mesiacov.",
+        split_payment_title: "Na splátky bez navýšenia",
+        split_payment_desc: "Získajte nový telefón s 0% úrokom.",
         about_us_title: "O našej spoločnosti",
         about_us_p1: "Vitajte v našom e-shope! Sme odhodlaní poskytovať našim zákazníkom tie najlepšie produkty a služby. Našou misiou je prinášať kvalitu a hodnotu pri každom nákupe.",
         our_team_title: "Náš tím",
@@ -61,22 +60,6 @@ const translations = window.translations || {
         deal: "Akcia!",
         value: "Skvelá Cena!",
         premium: "Prémiové!",
-        shipping_information: "Dodacie údaje",
-        full_name: "Celé meno",
-        enter_full_name: "Zadajte vaše celé meno",
-        phone_number: "Telefónne číslo",
-        phone_number_placeholder: "Telefónne číslo",
-        country: "Krajina",
-        complete_address: "Úplná adresa",
-        complete_address_placeholder: "Úplná adresa: Ulica, číslo, mesto, PSČ...",
-        address_help: "Zahrňte všetky potrebné informácie pre doručenie",
-        city: "Mesto",
-        city_placeholder: "Mesto",
-        postal_code: "PSČ",
-        postal_code_placeholder: "PSČ",
-        continue_to_payment: "Pokračovať k platbe",
-        quantity_short: "Množ.",
-        free_gift_protector: "ZADARMO: Prémiové ochranné sklo Gorilla Glass",
         top_rated: "Najlepšie hodnotené!",
         popular: "Populárne!",
         budget: "Výhodné!",
@@ -86,7 +69,6 @@ const translations = window.translations || {
         shipping: "Doprava:",
         total: "Celkom:",
         checkout: "Pokračovať k pokladni",
-        free: "Zdarma",
         continue_shopping: "Pokračovať v nákupe",
         order_summary: "Súhrn Objednávky",
         order_ref: "Referencia Objednávky:",
@@ -143,7 +125,6 @@ const translations = window.translations || {
         verify_code: "Overiť Kód",
         invalid_code: "Neplatný kód. Skúste to prosím znova.",
         reviews: "Recenzie",
-        customer_reviews: "Čo hovoria naši zákazníci",
         split_payment_select_product: "1. Vyberte si produkt",
         split_payment_choose_product: "-- Vyberte produkt --",
         split_payment_select_storage: "2. Vyberte si úložisko",
@@ -199,7 +180,7 @@ const translations = window.translations || {
         returns: "Vrátenie tovaru",
         shipping_policy: "Doprava",
         iphone16promax_name: "iPhone 16 Pro Max",
-        iphone_desc: "Nový, otvorená krabica. Môže ísť o vrátený tovar od zákazníka alebo vystavený kus. Zaručená 95% kondícia batérie. Zahŕňa 1-ročnú záruku a 30-dňovú lehotu na vrátenie.",
+        iphone_desc: "Prémiový repasovaný iPhone s vynikajúcim výkonom. Zaručená 95% kondícia batérie. Zahŕňa 1-ročnú záruku a 30-dňovú lehotu na vrátenie.",
         iphone_feature_battery_title: "29h Batéria",
         iphone_feature_battery_desc: "Prehrávanie videa",
         iphone_feature_chip_title: "Čip A18 Pro",
@@ -225,10 +206,6 @@ const translations = window.translations || {
         spec_battery_health: "Zdravie batérie",
         spec_battery_health_value: "90% garantované",
         spec_condition_certified: "Certifikovaný repasovaný",
-        spec_condition_new_open_box: "Nový (Otvorená krabica)",
-        iphone17promax_name: "iPhone 17 Pro Max",
-        iphone17_name: "iPhone 17",
-        iphone17pro_name: "iPhone 17 Pro",
         iphone16_name: "iPhone 16",
         iphone15promax_name: "iPhone 15 Pro Max",
         iphone16e_name: "iPhone 16 e",
@@ -337,17 +314,12 @@ const translations = window.translations || {
         color_copper: "Medená",
         color_midnight_black: "Polnočná čierna",
         color_sage_green: "Šalviová zelená",
-        color_misty_blue: "Hmlovo modrý",
-        color_midnight: "Polnočný",
-        color_cosmic_orange: "Kozmicky oranžový",
         condition_great: "Skvelý",
         condition_great_desc: "Mierne opotrebenie, plne funkčný",
         condition_excellent: "Vynikajúci",
         condition_excellent_desc: "Minimálne známky používania",
         condition_display_piece: "Vystavený kus, nepoužitý",
         condition_display_piece_desc: "Vystavený kus, nepoužitý, otvorená krabica",
-        condition_like_new_open_box: "Ako nový (Otvorená krabica)",
-        condition_like_new_open_box_desc: "Stav ako nový, môže ísť o vrátený tovar alebo vystavený kus.",
         feature_spatial_audio: "Priestorový zvuk",
         feature_spatial_audio_desc: "Pohlcujúci 3D zvuk",
         feature_h1_chip: "Čip H1",
@@ -389,8 +361,8 @@ const translations = window.translations || {
         contact: "Contact",
         hero_title: "The Best Technology at the Best Price",
         split_payment: "Split Payment",
-        split_payment_title: "Pay in Installments",
-        split_payment_desc: "Pay a 50% deposit today and split the rest over up to 6 months.",
+        split_payment_title: "Installments without increase",
+        split_payment_desc: "Get a new phone with 0% interest.",
         about_us_title: "About Our Company",
         about_us_p1: "Welcome to our e-shop! We are dedicated to providing the best products and services to our customers. Our mission is to deliver quality and value with every purchase.",
         our_team_title: "Our Team",
@@ -434,22 +406,6 @@ const translations = window.translations || {
         deal: "Deal!",
         value: "Great Value!",
         premium: "Premium!",
-        shipping_information: "Shipping Information",
-        full_name: "Full Name",
-        enter_full_name: "Enter your full name",
-        phone_number: "Phone Number",
-        phone_number_placeholder: "Phone number",
-        country: "Country",
-        complete_address: "Complete Address",
-        complete_address_placeholder: "Complete address: Street, number, city, postal code...",
-        address_help: "Include all necessary information for delivery",
-        city: "City",
-        city_placeholder: "City",
-        postal_code: "Postal Code",
-        postal_code_placeholder: "Postal code",
-        continue_to_payment: "Continue to Payment",
-        quantity_short: "Qty",
-        free_gift_protector: "FREE: Premium Gorilla Glass Screen Protector",
         top_rated: "Top Rated!",
         popular: "Popular!",
         budget: "Budget!",
@@ -459,7 +415,6 @@ const translations = window.translations || {
         shipping: "Shipping:",
         total: "Total:",
         checkout: "Proceed to Checkout",
-        free: "Free",
         continue_shopping: "Continue Shopping",
         order_summary: "Order Summary",
         order_ref: "Order Reference:",
@@ -516,7 +471,6 @@ const translations = window.translations || {
         verify_code: "Verify Code",
         invalid_code: "Invalid code. Please try again.",
         reviews: "Reviews",
-        customer_reviews: "What Our Customers Say",
         split_payment_select_product: "1. Select a Product",
         split_payment_choose_product: "-- Choose a product --",
         split_payment_select_storage: "2. Select Storage",
@@ -572,7 +526,7 @@ const translations = window.translations || {
         returns: "Returns",
         shipping_policy: "Shipping",
         iphone16promax_name: "iPhone 16 Pro Max",
-        iphone_desc: "New, open box item. This may be a customer return or a display piece. 95% battery health guaranteed. Includes 1 year warranty and 30-day return.",
+        iphone_desc: "Premium refurbished iPhone with excellent performance. 95% battery health guaranteed. Includes 1 year warranty and 30-day return.",
         color_black_titanium: "Black Titanium",
         color_desert_titanium: "Desert Titanium",
         iphone_feature_battery_title: "29h Battery",
@@ -600,10 +554,6 @@ const translations = window.translations || {
         spec_battery_health: "Battery Health",
         spec_battery_health_value: "Guaranteed 90% health",
         spec_condition_certified: "Certified Refurbished",
-        spec_condition_new_open_box: "New (Open Box)",
-        iphone17promax_name: "iPhone 17 Pro Max",
-        iphone17_name: "iPhone 17",
-        iphone17pro_name: "iPhone 17 Pro",
         iphone16_name: "iPhone 16",
         iphone15promax_name: "iPhone 15 Pro Max",
         iphone16e_name: "iPhone 16 e",
@@ -709,17 +659,12 @@ const translations = window.translations || {
         color_copper: "Copper",
         color_midnight_black: "Midnight Black",
         color_sage_green: "Sage Green",
-        color_misty_blue: "Misty Blue",
-        color_midnight: "Midnight",
-        color_cosmic_orange: "Cosmic Orange",
         condition_great: "Great",
         condition_great_desc: "Light wear, fully functional",
         condition_excellent: "Excellent",
         condition_excellent_desc: "Minor signs of use",
         condition_display_piece: "Display piece, never used",
         condition_display_piece_desc: "Display piece, never used, open box",
-        condition_like_new_open_box: "Like New (Open Box)",
-        condition_like_new_open_box_desc: "Like-new condition, may be a customer return or display piece.",
         feature_spatial_audio: "Spatial Audio",
         feature_spatial_audio_desc: "Immersive 3D sound",
         feature_h1_chip: "H1 Chip",
@@ -1046,7 +991,7 @@ function updateCartDisplay() {
                     ${isFreeGift ? '<div class="gift-overlay"><i class="fas fa-gift"></i></div>' : ''}
                 </div>
                 <div class="cart-item-details">
-                    <h4>${item.id === 'free_gorilla_glass' ? t('free_gift_protector') : item.name}</h4>
+                    <h4>${item.name}</h4>
                     <div class="cart-item-controls">
                         ${isFreeGift ? 
                             '<span class="free-gift-badge">FREE GIFT</span>' :
@@ -1259,40 +1204,39 @@ function createCheckoutModal() {
             <!-- Step 1: Shipping Information -->
             <div id="checkout-step-1" class="checkout-step active">
             <div class="customer-info-section">
-                <h3 data-translate="shipping_information">Shipping Information</h3>
+                <h3>${(currentLanguage === 'es' ? 'Información de Envío' : 'Shipping Information')}</h3>
                 <div class="form-row">
                     <div class="form-group">
-                        <label data-translate="full_name">Full Name</label> *
-                        <input type="text" id="customer-name" required data-translate-placeholder="enter_full_name" placeholder="Enter your full name" autocomplete="name">
+                        <label>${(currentLanguage === 'es' ? 'Nombre Completo' : 'Full Name')} *</label>
+                        <input type="text" id="customer-name" required placeholder="${(currentLanguage === 'es' ? 'Ingrese su nombre completo' : 'Enter your full name')}" autocomplete="name">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label data-translate="phone_number">Phone Number</label> *
-                    <input type="tel" id="customer-phone" required data-translate-placeholder="phone_number_placeholder" placeholder="Phone number" autocomplete="tel">
+                    <label>${(currentLanguage === 'es' ? 'Teléfono' : 'Phone Number')} *</label>
+                    <input type="tel" id="customer-phone" required placeholder="${(currentLanguage === 'es' ? 'Número de teléfono' : 'Phone number')}" autocomplete="tel">
                 </div>
                 <div class="form-group">
-                    <label data-translate="country">Country</label> *
+                    <label>${(currentLanguage === 'es' ? 'País' : 'Country')} *</label>
                     <input type="text" id="customer-country" required value="${countryConfig[currentCountry].name}" readonly autocomplete="country">
                 </div>
                 <div class="form-group">
-                    <label data-translate="complete_address">Complete Address</label> *
-                    <textarea id="customer-address" required data-translate-placeholder="complete_address_placeholder" placeholder="Complete address: Street, number, city, state/province, postal code..." rows="4" class="responsive-textarea" autocomplete="street-address"></textarea>
-                    <div class="address-help"><i class="fas fa-info-circle"></i> <span data-translate="address_help">Include all necessary information for delivery</span></div>
+                    <label>${(currentLanguage === 'es' ? 'Dirección Completa' : 'Complete Address')} *</label>
+                    <textarea id="customer-address" required placeholder="${(currentLanguage === 'es' ? 'Dirección completa: Calle, número, ciudad, estado/provincia, código postal...' : 'Complete address: Street, number, city, state/province, postal code...')}" rows="4" class="responsive-textarea" autocomplete="street-address"></textarea>
+                    <div class="address-help"><i class="fas fa-info-circle"></i> ${(currentLanguage === 'es' ? 'Incluya toda la información necesaria para la entrega' : 'Include all necessary information for delivery')}</div>
                 </div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label data-translate="city">City</label> *
-                        <input type="text" id="customer-city" required data-translate-placeholder="city_placeholder" placeholder="City" autocomplete="address-level2">
+                        <label>${(currentLanguage === 'es' ? 'Ciudad' : 'City')} *</label>
+                        <input type="text" id="customer-city" required placeholder="${(currentLanguage === 'es' ? 'Ciudad' : 'City')}" autocomplete="address-level2">
                     </div>
                     <div class="form-group">
-                        <label data-translate="postal_code">Postal Code</label>
-                        <input type="text" id="customer-postal" data-translate-placeholder="postal_code_placeholder" placeholder="Postal code" autocomplete="postal-code">
+                        <label>${(currentLanguage === 'es' ? 'Código Postal' : 'Postal Code')}</label>
+                        <input type="text" id="customer-postal" placeholder="${(currentLanguage === 'es' ? 'Código postal' : 'Postal code')}" autocomplete="postal-code">
                     </div>
                 </div>
                 <div class="step-actions">
                     <button id="next-to-payment" class="btn btn-primary checkout-next">
-                        <span data-translate="continue_to_payment">Continue to
-                         Payment</span> <i class="fas fa-arrow-right"></i>
+                        ${(currentLanguage === 'es' ? 'Continuar al Pago' : 'Continue to Payment')} <i class="fas fa-arrow-right"></i>
                     </button>
                 </div>
             </div>
@@ -1474,7 +1418,7 @@ function createCheckoutModal() {
         </div>
         <div class="checkout-right">
             <div class="order-summary-sticky">
-                <h3 data-translate="order_summary">Order Summary</h3>
+                <h3>${(currentLanguage === 'es' ? 'Resumen del Pedido' : 'Order Summary')}</h3>
                 <div class="checkout-items-summary">
                     ${cart.map(item => {
                         const itemPrice = (item.price === 0 || item.isFreeGift) ? 'FREE' : convertPrice(item.price * item.quantity, false);
@@ -1483,8 +1427,8 @@ function createCheckoutModal() {
                             <div class="checkout-item-compact ${isFreeGift ? 'free-gift-checkout-item' : ''}">
                                 <img src="${item.image}" alt="${item.name}">
                                 <div class="checkout-item-details-compact">
-                                    <h4>${item.name.includes('Gorilla Glass') ? t('free_gift_protector') : item.name}</h4>
-                                    <p><span data-translate="quantity_short">Qty</span>: ${item.quantity}</p>
+                                    <h4>${item.name}</h4>
+                                    <p>Qty: ${item.quantity}</p>
                                 </div>
                                 <span class="checkout-item-price">${itemPrice}</span>
                             </div>
@@ -1493,16 +1437,16 @@ function createCheckoutModal() {
                 </div>
                 <div class="checkout-totals">
                     <div class="totals-row">
-                        <span class="totals-label" data-translate="subtotal">Subtotal</span>
+                        <span class="totals-label">${(currentLanguage === 'es' ? 'Subtotal' : 'Subtotal')}</span>
                         <span class="totals-value" id="checkout-subtotal">${convertPrice(subtotal, false)}</span>
                     </div>
                     <div class="totals-row shipping-row">
-                        <span class="totals-label" data-translate="shipping">Shipping</span>
-                        <span class="totals-value free-shipping"><i class="fas fa-shipping-fast"></i> <span data-translate="free">Free</span></span>
+                        <span class="totals-label">${(currentLanguage === 'es' ? 'Envío' : 'Shipping')}</span>
+                        <span class="totals-value free-shipping"><i class="fas fa-shipping-fast"></i> ${(currentLanguage === 'es' ? 'Gratis' : 'Free')}</span>
                     </div>
                     <div class="totals-separator"></div>
                     <div class="totals-row total-row">
-                        <span class="totals-label total-label" data-translate="total">Total</span>
+                        <span class="totals-label total-label">${(currentLanguage === 'es' ? 'Total' : 'Total')}</span>
                         <span class="totals-value total-value" id="checkout-total">${convertPrice(subtotal, false)}</span>
                     </div>
                 </div>
@@ -1511,11 +1455,6 @@ function createCheckoutModal() {
     </div>`;
 
     modal.innerHTML = checkoutHTML;
-    
-    // Apply translations to the newly created modal content
-    modal.querySelectorAll('[data-translate]').forEach(el => el.textContent = t(el.dataset.translate));
-    modal.querySelectorAll('[data-translate-placeholder]').forEach(el => el.placeholder = t(el.dataset.translatePlaceholder));
-
 
     overlay.appendChild(modal);
     document.body.appendChild(overlay);
@@ -2892,4 +2831,4 @@ function showCardProcessingState() {
     if (confirmButton) {
         confirmButton.disabled = true;
     }
-}
+}d
