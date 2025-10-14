@@ -3,8 +3,8 @@ function getProductDatabase() {
   iphone16promax: {
     name: t("iphone16promax_name"),
     description: t("iphone_desc"),
-    price: 853,
-    originalPrice: 1054,
+    price: 903,
+    originalPrice: 1104,
     discount: 25,
     category: "phone",
     variants: {
@@ -26,9 +26,9 @@ function getProductDatabase() {
         }
     },
     memoryOptions: {
-        "256GB": { price: 853, originalPrice: 944 },
-        "512GB": { price: 903, originalPrice: 1004 },
-        "1TB": { price: 974, originalPrice: 1154 }
+        "256GB": { price: 903, originalPrice: 994 },
+        "512GB": { price: 953, originalPrice: 1054 },
+        "1TB": { price: 1024, originalPrice: 1204 }
     },
     features: [
         { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
@@ -59,8 +59,8 @@ function getProductDatabase() {
   iphone16: {
     name: t("iphone16_name"),
     description: t("iphone_desc"),
-    price: 704,
-    originalPrice: 753,
+    price: 754,
+    originalPrice: 803,
     discount: 17,
     category: "phone",
     variants: {
@@ -69,8 +69,8 @@ function getProductDatabase() {
         teal: { name: t("color_blue"), images: ["https://m.media-amazon.com/images/I/71dAfxOFDuL._AC_SX425_.jpg"] }
     },
     memoryOptions: {
-        "128GB": { price: 704, originalPrice: 753 },
-        "256GB": { price: 779, originalPrice: 853 }
+        "128GB": { price: 754, originalPrice: 803 },
+        "256GB": { price: 829, originalPrice: 903 }
     },
     features: [
         { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
@@ -95,8 +95,8 @@ function getProductDatabase() {
 iphone15promax: {
     name: t("iphone15promax_name"),
     description: t("iphone_desc"),
-    price: 753,
-    originalPrice: 953,
+    price: 803,
+    originalPrice: 1003,
     discount: 28,
     category: "phone",
     variants: {
@@ -106,8 +106,8 @@ iphone15promax: {
         }
     },
     memoryOptions: {
-        "256GB": { price: 753, originalPrice: 853 },
-        "512GB": { price: 813, originalPrice: 913 }
+        "256GB": { price: 803, originalPrice: 903 },
+        "512GB": { price: 863, originalPrice: 963 }
     },
     features: [
         { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
@@ -132,8 +132,8 @@ iphone15promax: {
 iphone16e: {
     name: t("iphone16e_name"),
     description: t("iphone_desc"),
-    price: 563,
-    originalPrice: 953,
+    price: 613,
+    originalPrice: 1003,
     discount: 22,
     category: "phone",
     variants: {
@@ -147,8 +147,8 @@ iphone16e: {
         }
     },
     memoryOptions: {
-        "128GB": { price: 563, originalPrice: 653 },
-        "256GB": { price: 674, originalPrice: 753 }
+        "128GB": { price: 613, originalPrice: 703 },
+        "256GB": { price: 724, originalPrice: 803 }
     },
     features: [
         { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
@@ -172,8 +172,8 @@ iphone16e: {
 iphone15: {
   name: t("iphone15_name"),
   description: t("iphone_desc"),
-  price: 633,
-  originalPrice: 803,
+  price: 683,
+  originalPrice: 853,
   discount: 23,
   category: "phone",
   variants: {
@@ -188,8 +188,8 @@ iphone15: {
   },
 
     memoryOptions: {
-        "128GB": { price: 573, originalPrice: 703 },
-        "256GB": { price: 653, originalPrice: 903 }
+        "128GB": { price: 623, originalPrice: 753 },
+        "256GB": { price: 703, originalPrice: 953 }
     },
     features: [
         { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
@@ -214,8 +214,8 @@ iphone15: {
 iphone14promax: {
   name: t("iphone14promax_name"),
   description: t("iphone_desc"),
-  price: 583,
-  originalPrice: 753,
+  price: 633,
+  originalPrice: 803,
   discount: 39,
   category: "phone",
   variants: {
@@ -229,8 +229,8 @@ iphone14promax: {
     }
   },
   memoryOptions: {
-    "256GB": { price: 583, originalPrice: 753 },
-    "512GB": { price: 654, originalPrice: 853 }
+    "256GB": { price: 633, originalPrice: 803 },
+    "512GB": { price: 704, originalPrice: 903 }
   },
   features: [
     { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
@@ -255,8 +255,8 @@ iphone14promax: {
 iphone14: {
   name: t("iphone14_name"),
   description: t("iphone_desc"),
-  price: 453,
-  originalPrice: 653,
+  price: 503,
+  originalPrice: 703,
   discount: 33,
   category: "phone",
 
@@ -272,8 +272,8 @@ iphone14: {
   },
 
   memoryOptions: {
-    "256GB": { price: 433, originalPrice: 653 },
-    "512GB": { price: 483, originalPrice: 803 }
+    "256GB": { price: 483, originalPrice: 703 },
+    "512GB": { price: 533, originalPrice: 853 }
   },
 
   features: [
@@ -299,8 +299,8 @@ iphone14: {
 iphone13promax: {
   name: t("iphone13promax_name"),
   description: t("iphone_desc"),
-  price: 413,
-  originalPrice: 453,
+  price: 463,
+  originalPrice: 503,
   discount: 40,
   category: "phone",
   variants: {
@@ -314,8 +314,8 @@ iphone13promax: {
     }
   },
   memoryOptions: {
-    "256GB": { price: 413, originalPrice: 653 },
-    "512GB": { price: 603, originalPrice: 803 }
+    "256GB": { price: 463, originalPrice: 703 },
+    "512GB": { price: 653, originalPrice: 853 }
   },
   features: [
     { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
@@ -339,8 +339,8 @@ iphone13promax: {
 iphone12promax: {
     name: t("iphone12promax_name"),
     description: t("iphone_desc"),
-    price: 303,
-    originalPrice: 353,
+    price: 353,
+    originalPrice: 403,
     discount: 56,
     category: "phone",
     variants: {
@@ -350,8 +350,8 @@ iphone12promax: {
         }
     },
     memoryOptions: {
-        "256GB": { price: 303, originalPrice: 353 },
-        "512GB": { price: 333, originalPrice: 453 }
+        "256GB": { price: 353, originalPrice: 403 },
+        "512GB": { price: 383, originalPrice: 503 }
     },
     features: [
         { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
@@ -375,8 +375,8 @@ iphone12promax: {
 iphone11promax: {
     name: t("iphone11promax_name"),
     description: t("iphone_desc"),
-    price: 203,
-    originalPrice: 453,
+    price: 253,
+    originalPrice: 503,
     discount: 63,
     category: "phone",
     variants: {
@@ -386,8 +386,8 @@ iphone11promax: {
         }
     },
     memoryOptions: {
-        "128GB": { price: 203, originalPrice: 453 },
-        "256GB": { price: 253, originalPrice: 503 }
+        "128GB": { price: 253, originalPrice: 503 },
+        "256GB": { price: 303, originalPrice: 553 }
     },
     features: [
         { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
@@ -411,8 +411,8 @@ iphone11promax: {
 iphonexr: {
     name: t("iphonexr_name"),
     description: t("iphone_desc"),
-    price: 183,
-    originalPrice: 353,
+    price: 233,
+    originalPrice: 403,
     discount: 57,
     category: "phone",
     variants: {
@@ -422,8 +422,8 @@ iphonexr: {
         }
     },
     memoryOptions: {
-        "64GB": { price: 183, originalPrice: 353 },
-        "128GB": { price: 233, originalPrice: 403 }
+        "64GB": { price: 233, originalPrice: 403 },
+        "128GB": { price: 283, originalPrice: 453 }
     },
     features: [
         { icon: "fas fa-battery-full", title: t("iphone_feature_battery_title"), desc: t("iphone_feature_battery_desc") },
@@ -447,14 +447,14 @@ iphonexr: {
 iphonexsmax: {
     name: t("iphonexsmax_name"),
     description: t("iphone_desc"),
-    price: 224,
+    price: 274,
     category: "phone",
     variants: {
         spacegray: { name: t("color_space_gray"), images: ["https://m.media-amazon.com/images/I/518PnIKjQ3L._AC_SY606_.jpg"] },
         gold: { name: t("color_gold"), images: ["https://m.media-amazon.com/images/I/61k3k4QZftL._AC_SY606_.jpg"] }
     },
     memoryOptions: {
-        "512GB": { price: 224, originalPrice: 274 }
+        "512GB": { price: 274, originalPrice: 324 }
     },
     features: [
         { icon: "fas fa-mobile-alt", title: t("feature_6_5_display_title"), desc: t("feature_6_5_display_desc") },
@@ -480,8 +480,8 @@ iphonexsmax: {
 galaxys25ultra: {
   name: t("galaxys25ultra_name"),
   description: t("samsung_desc"),
-  price: 1353,
-  originalPrice: 1713,
+  price: 1403,
+  originalPrice: 1763,
   discount: 22,
   category: "phone",
   variants: {
@@ -499,9 +499,9 @@ galaxys25ultra: {
     }
   },
   memoryOptions: {
-    "256GB": { price: 773, originalPrice: 1713 },
-    "512GB": { price: 883, originalPrice: 1813 },
-    "1TB": { price: 1003, originalPrice: 1913 }
+    "256GB": { price: 823, originalPrice: 1763 },
+    "512GB": { price: 933, originalPrice: 1863 },
+    "1TB": { price: 1053, originalPrice: 1963 }
   },
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -525,8 +525,8 @@ galaxys25ultra: {
 galaxyS25: {
     name: t("galaxys25_name"),
     description: t("samsung_desc"),
-    price: 953,
-    originalPrice: 1153,
+    price: 1003,
+    originalPrice: 1203,
     discount: 18,
     category: "phone",
     variants: {
@@ -540,8 +540,8 @@ galaxyS25: {
         }
     },
     memoryOptions: {
-        "256GB": { price: 653, originalPrice: 1153 },
-        "512GB": { price: 703, originalPrice: 1253 }
+        "256GB": { price: 703, originalPrice: 1203 },
+        "512GB": { price: 753, originalPrice: 1303 }
     },
     features: [
         { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -566,8 +566,8 @@ galaxyS25: {
 galaxys24ultra: {
     name: t("galaxys24ultra_name"),
     description: t("samsung_desc"),
-    price: 533,
-    originalPrice: 654,
+    price: 583,
+    originalPrice: 704,
     discount: 23,
     category: "phone",
     variants: {
@@ -581,9 +581,9 @@ galaxys24ultra: {
         }
     },
     memoryOptions: {
-        "256GB": { price: 653, originalPrice: 654 },
-        "512GB": { price: 678, originalPrice: 684 },
-		"1TB": { price: 853, originalPrice: 904 },
+        "256GB": { price: 703, originalPrice: 704 },
+        "512GB": { price: 728, originalPrice: 734 },
+		"1TB": { price: 903, originalPrice: 954 },
     },
     features: [
         { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -606,8 +606,8 @@ galaxys24ultra: {
 galaxys24: {
     name: t("galaxys24_name"),
     description: t("samsung_desc"),
-    price: 583,
-    originalPrice: 1053,
+    price: 633,
+    originalPrice: 1103,
     discount: 25,
     category: "phone",
     variants: {
@@ -621,8 +621,8 @@ galaxys24: {
         }
     },
     memoryOptions: {
-        "256GB": { price: 503, originalPrice: 1053 },
-        "512GB": { price: 583, originalPrice: 1103 }
+        "256GB": { price: 553, originalPrice: 1103 },
+        "512GB": { price: 633, originalPrice: 1153 }
     },
     features: [
         { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -647,8 +647,8 @@ galaxys24: {
 galaxys24plus: {
   name: t("galaxys24plus_name"),
   description: t("samsung_desc"),
-  price: 753,
-  originalPrice: 903,
+  price: 803,
+  originalPrice: 953,
   discount: 18,
   category: "phone",
   variants: {
@@ -658,7 +658,7 @@ galaxys24plus: {
     }
   },
   memoryOptions: {
-    "256GB": { price: 613, originalPrice: 703 }
+    "256GB": { price: 663, originalPrice: 753 }
   },
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -682,8 +682,8 @@ galaxys24plus: {
 galaxys23ultra: {
   name: t("galaxys23ultra_name"),
   description: t("samsung_desc"),
-  price: 403,
-  originalPrice: 454,
+  price: 453,
+  originalPrice: 504,
   discount: 33,
   category: "phone",
   variants: {
@@ -697,8 +697,8 @@ galaxys23ultra: {
     }
   },
   memoryOptions: {
-    "256GB": { price: 403, originalPrice: 453 },
-    "512GB": { price: 453, originalPrice: 493 }
+    "256GB": { price: 453, originalPrice: 503 },
+    "512GB": { price: 503, originalPrice: 543 }
   },
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -722,8 +722,8 @@ galaxys23ultra: {
 	galaxys23: {
   name: t("galaxys23_name"),
   description: t("samsung_desc"),
-  price: 553,
-  originalPrice: 753,
+  price: 603,
+  originalPrice: 803,
   discount: 29,
   category: "phone",
   variants: {
@@ -737,8 +737,8 @@ galaxys23ultra: {
     }
   }, 
   memoryOptions: {
-    "256GB": { price: 303, originalPrice: 353 },
-    "512GB": { price: 333, originalPrice: 383 }
+    "256GB": { price: 353, originalPrice: 403 },
+    "512GB": { price: 383, originalPrice: 433 }
   },
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -763,8 +763,8 @@ galaxys23ultra: {
 galaxys22ultra: {
   name: t("galaxys22ultra_name"),
   description: t("samsung_desc"),
-  price: 293,
-  originalPrice: 853,
+  price: 343,
+  originalPrice: 903,
   discount: 38,
   category: "phone",
   variants: {
@@ -774,7 +774,7 @@ galaxys22ultra: {
     }
   },
   memoryOptions: {
-    "256GB": { price: 293, originalPrice: 354 }
+    "256GB": { price: 343, originalPrice: 404 }
   },
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -797,8 +797,8 @@ galaxys22ultra: {
 galaxys22: {
   name: t("galaxys22_name"),
   description: t("samsung_desc"),
-  price: 433,
-  originalPrice: 703,
+  price: 483,
+  originalPrice: 753,
   discount: 42,
   category: "phone",
   variants: {
@@ -808,8 +808,8 @@ galaxys22: {
     }
   },
   memoryOptions: {
-    "128GB": { price: 203, originalPrice: 703 },
-    "256GB": { price: 233, originalPrice: 753 }
+    "128GB": { price: 253, originalPrice: 753 },
+    "256GB": { price: 283, originalPrice: 803 }
   },
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -834,8 +834,8 @@ galaxys22: {
    galaxya545g: {
   name: t("galaxya545g_name"),
   description: t("samsung_desc"),
-  price: 443,
-  originalPrice: 553,
+  price: 493,
+  originalPrice: 603,
   discount: 22,
   category: "phone",
   variants: {
@@ -849,8 +849,8 @@ galaxys22: {
     }
   },
   memoryOptions: {
-    "128GB": { price: 403, originalPrice: 553 },
-    "256GB": { price: 453, originalPrice: 633 }
+    "128GB": { price: 453, originalPrice: 603 },
+    "256GB": { price: 503, originalPrice: 683 }
   },
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -874,8 +874,8 @@ galaxys22: {
 galaxya35: {
   name: t("galaxya35_name"),
   description: t("samsung_desc"),
-  price: 303,
-  originalPrice: 383,
+  price: 353,
+  originalPrice: 433,
   discount: 24,
   category: "phone",
   variants: {
@@ -885,8 +885,8 @@ galaxya35: {
     },
   },
   memoryOptions: {
-    "128GB": { price: 253, originalPrice: 383 },
-    "256GB": { price: 283, originalPrice: 433 }
+    "128GB": { price: 303, originalPrice: 433 },
+    "256GB": { price: 333, originalPrice: 483 }
   },
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -910,8 +910,8 @@ galaxya35: {
 galaxya155g: {
   name: t("galaxya155g_name"),
   description: t("samsung_desc"),
-  price: 243,
-  originalPrice: 303,
+  price: 293,
+  originalPrice: 353,
   discount: 24,
   category: "phone",
   variants: {
@@ -921,8 +921,8 @@ galaxya155g: {
     },
   },
   memoryOptions: {
-    "64GB": { price: 243, originalPrice: 303 },
-    "128GB": { price: 283, originalPrice: 343 }
+    "64GB": { price: 293, originalPrice: 353 },
+    "128GB": { price: 333, originalPrice: 393 }
   },
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -947,8 +947,8 @@ galaxya155g: {
 galaxya05s: {
   name: t("galaxya05s_name"),
   description: t("samsung_desc"),
-  price: 253,
-  originalPrice: 333,
+  price: 303,
+  originalPrice: 383,
   discount: 29,
   category: "phone",
   variants: {
@@ -958,8 +958,8 @@ galaxya05s: {
     },
   },
   memoryOptions: {
-    "64GB": { price: 183, originalPrice: 333 },
-    "128GB": { price: 203, originalPrice: 373 }
+    "64GB": { price: 233, originalPrice: 383 },
+    "128GB": { price: 253, originalPrice: 423 }
   },
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -983,8 +983,8 @@ galaxya05s: {
 galaxym15: {
   name: t("galaxym15_name"),
   description: t("samsung_desc"),
-  price: 283,
-  originalPrice: 353,
+  price: 333,
+  originalPrice: 403,
   discount: 23,
   category: "phone",
   variants: {
@@ -994,8 +994,8 @@ galaxym15: {
     },
   },
   memoryOptions: {
-    "64GB": { price: 169, originalPrice: 299 },
-    "128GB": { price: 209, originalPrice: 349 }
+    "64GB": { price: 219, originalPrice: 349 },
+    "128GB": { price: 259, originalPrice: 399 }
   },
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -1020,8 +1020,8 @@ galaxym15: {
 galaxym14: {
   name: t("galaxym14_name"),
   description: t("samsung_desc"),
-  price: 253,
-  originalPrice: 323,
+  price: 303,
+  originalPrice: 373,
   discount: 26,
   category: "phone",
   variants: {
@@ -1035,8 +1035,8 @@ galaxym14: {
     }
   },
   memoryOptions: {
-    "64GB": { price: 193, originalPrice: 323 },
-    "128GB": { price: 233, originalPrice: 373 }
+    "64GB": { price: 243, originalPrice: 373 },
+    "128GB": { price: 283, originalPrice: 423 }
   },
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -1060,8 +1060,8 @@ galaxym14: {
 redmi14c: {
   name: t("redmi14c_name"),
   description: t("xiaomi_desc"),
-  price: 223,
-  originalPrice: 253,
+  price: 273,
+  originalPrice: 303,
   discount: 15,
   category: "phone",
   variants: {
@@ -1075,9 +1075,9 @@ redmi14c: {
     }
   },
   memoryOptions: {
-    "4GB + 128GB": { price: 183, originalPrice: 253 },
-    "6GB + 128GB": { price: 233, originalPrice: 283 },
-    "8GB + 256GB": { price: 263, originalPrice: 323 }
+    "4GB + 128GB": { price: 233, originalPrice: 303 },
+    "6GB + 128GB": { price: 283, originalPrice: 333 },
+    "8GB + 256GB": { price: 313, originalPrice: 373 }
   },
   features: [
     { icon: "fas fa-mobile-alt", title: t("feature_display_title"), desc: t("feature_display_desc") },
@@ -1101,8 +1101,8 @@ redmi14c: {
 redminote14pro5g: {
   name: t("redminote14pro5g_name"),
   description: t("xiaomi_desc"),
-  price: 353,
-  originalPrice: 453,
+  price: 403,
+  originalPrice: 503,
   discount: 25,
   category: "phone",
   variants: {
@@ -1112,8 +1112,8 @@ redminote14pro5g: {
     }
   },
   memoryOptions: {
-    "8GB + 256GB": { price: 303, originalPrice: 453 },
-    "12GB + 512GB": { price: 373, originalPrice: 533 }
+    "8GB + 256GB": { price: 353, originalPrice: 503 },
+    "12GB + 512GB": { price: 423, originalPrice: 583 }
   },
   features: [
     { icon: "fas fa-camera", title: t("feature_camera_title"), desc: t("feature_camera_desc") },
@@ -1137,8 +1137,8 @@ redminote14pro5g: {
   pocox7pro: {
   name: t("pocox7pro_name"),
   description: t("poco_desc"),
-  price: 303,
-  originalPrice: 383,
+  price: 353,
+  originalPrice: 433,
   discount: 24,
   category: "phone",
   variants: {
@@ -1148,7 +1148,7 @@ redminote14pro5g: {
     }
   },
   memoryOptions: {
-    "8GB + 256GB": { price: 233, originalPrice: 383 }
+    "8GB + 256GB": { price: 283, originalPrice: 433 }
   },
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -1171,8 +1171,8 @@ redminote14pro5g: {
 redminote14pro5g: {
   name: t("redminote14pro5g_name"),
   description: t("xiaomi_desc"),
-  price: 253,
-  originalPrice: 303,
+  price: 303,
+  originalPrice: 353,
   discount: 20,
   category: "phone",
   variants: {
@@ -1182,7 +1182,7 @@ redminote14pro5g: {
     }
   },
   memoryOptions: {
-    "8GB + 256GB": { price: 199, originalPrice: 249 }
+    "8GB + 256GB": { price: 249, originalPrice: 299 }
   },
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -1206,8 +1206,8 @@ redminote14pro5g: {
 	redminote14: {
   name: t("redminote14_name"),
   description: t("xiaomi_desc"),
-  price: 261,
-  originalPrice: 313,
+  price: 311,
+  originalPrice: 363,
   discount: 20,
   category: "phone",
   variants: {
@@ -1217,7 +1217,7 @@ redminote14pro5g: {
     }
   },
   memoryOptions: {
-    "6GB + 128GB": { price: 207, originalPrice: 259 }
+    "6GB + 128GB": { price: 257, originalPrice: 309 }
   },
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -1240,8 +1240,8 @@ redminote14pro5g: {
 redminote13pro: {
   name: t("redminote13pro_name"),
   description: t("xiaomi_desc"),
-  price: 277,
-  originalPrice: 333,
+  price: 327,
+  originalPrice: 383,
   discount: 20,
   category: "phone",
   variants: {
@@ -1251,7 +1251,7 @@ redminote13pro: {
     }
   },
   memoryOptions: {
-    "8GB + 256GB": { price: 223, originalPrice: 279 }
+    "8GB + 256GB": { price: 273, originalPrice: 329 }
   },
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -1275,8 +1275,8 @@ redminote13pro: {
 	redminote13: {
   name: t("redminote13_name"),
   description: t("xiaomi_desc"),
-  price: 237,
-  originalPrice: 283,
+  price: 287,
+  originalPrice: 333,
   discount: 20,
   category: "phone",
   variants: {
@@ -1286,7 +1286,7 @@ redminote13pro: {
     }
   },
   memoryOptions: {
-    "6GB + 128GB": { price: 183, originalPrice: 229 }
+    "6GB + 128GB": { price: 233, originalPrice: 279 }
   },
   features: [
     { icon: "fas fa-microchip", title: t("feature_chip_title"), desc: t("feature_chip_desc") },
@@ -1527,7 +1527,7 @@ screenprotector: {
 motogstylus5g: {
     name: t("motogstylus5g_name"),
     description: t("motorola_desc"),
-    price: 233,
+    price: 283,
     category: "phone",
     variants: {
         default: {
@@ -1591,7 +1591,7 @@ miband8: {
 pocof6: {
     name: t("pocof6_name"),
     description: t("poco_desc"),
-    price: 383,
+    price: 433,
     category: "phone",
     variants: {
         default: {
@@ -1644,7 +1644,7 @@ airpodspro2: {
 galaxynote20: {
     name: t("galaxynote20_name"),
     description: t("samsung_desc"),
-    price: 162,
+    price: 212,
     category: "phone",
     variants: {
         bronze: { name: t("color_mystic_bronze"), images: ["https://m.media-amazon.com/images/I/81S-XYJ0-gL._AC_SX679_.jpg"] },
@@ -1652,7 +1652,7 @@ galaxynote20: {
         black: { name: t("color_mystic_black"), images: ["https://i.ebayimg.com/images/g/u78AAOSwDsdh2WXb/s-l960.webp"] }
     },
     memoryOptions: {
-        "256GB": { price: 108, originalPrice: 149 },
+        "256GB": { price: 158, originalPrice: 199 },
     },
     features: [
         { icon: "fas fa-pen-fancy", title: t("feature_spen_included"), desc: t("feature_spen_precision_desc") },
@@ -1677,7 +1677,7 @@ galaxynote20: {
 galaxynote10lite: {
     name: t("galaxynote10lite_name"),
     description: t("samsung_desc"),
-    price: 176,
+    price: 226,
     category: "phone",
     variants: {
         red: { name: t("color_aura_red"), images: ["https://m.media-amazon.com/images/I/515c2WbyRJL._AC_SX679_.jpg"] },
@@ -1685,7 +1685,7 @@ galaxynote10lite: {
         black: { name: t("color_aura_black"), images: ["https://m.media-amazon.com/images/I/71T0S6sQiKL._AC_SX679_.jpg"] }
     },
     memoryOptions: {
-        "128GB": { price: 122, originalPrice: 160 },
+        "128GB": { price: 172, originalPrice: 210 },
     },
     features: [
         { icon: "fas fa-pen-fancy", title: t("feature_spen_included"), desc: t("feature_spen_notes_drawing_desc") },
@@ -1706,13 +1706,13 @@ galaxynote10lite: {
 galaxynote10: {
     name: t("galaxynote10_name"),
     description: t("samsung_desc"),
-    price: 189,
+    price: 239,
     category: "phone",
     variants: {
         glow: { name: t("color_aura_glow"), images: ["https://m.media-amazon.com/images/I/61gJyqFqX9L._AC_SX679_.jpg"] }
     },
     memoryOptions: {
-        "256GB": { price: 135, originalPrice: 180 },
+        "256GB": { price: 185, originalPrice: 230 },
     },
     features: [
         { icon: "fas fa-pen-fancy", title: t("feature_spen_included"), desc: t("feature_spen_remote_control_desc") },
@@ -1733,13 +1733,13 @@ galaxynote10: {
 galaxynote10plus: {
     name: t("galaxynote10plus_name"),
     description: t("samsung_desc"),
-    price: 238,
+    price: 288,
     category: "phone",
     variants: {
         glow: { name: t("color_aura_glow"), images: ["https://m.media-amazon.com/images/I/51S--oy0ASL._AC_SX679_.jpg"] }
     },
     memoryOptions: {
-        "512GB": { price: 184, originalPrice: 240 },
+        "512GB": { price: 234, originalPrice: 290 },
     },
     features: [
         { icon: "fas fa-pen-fancy", title: t("feature_advanced_spen"), desc: t("feature_advanced_spen_air_actions_desc") },
@@ -1760,13 +1760,13 @@ galaxynote10plus: {
 galaxys10: {
     name: t("galaxys10_name"),
     description: t("samsung_desc"),
-    price: 168,
+    price: 218,
     category: "phone",
     variants: {
         white: { name: t("color_prism_white"), images: ["https://www-konga-com-res.cloudinary.com/image/upload/f_auto,fl_lossy,dpr_auto,q_auto,w_1080/media/catalog/product/C/V/163129_1675444177.jpg"] }
     },
     memoryOptions: {
-        "128GB": { price: 114, originalPrice: 150 },
+        "128GB": { price: 164, originalPrice: 200 },
     },
     features: [
         { icon: "fas fa-fingerprint", title: t("feature_ultrasonic_fingerprint"), desc: t("feature_ultrasonic_fingerprint_secure_desc") },
@@ -1787,13 +1787,13 @@ galaxys10: {
 galaxys20fe: {
     name: t("galaxys20fe_name"),
     description: t("samsung_desc"),
-    price: 224,
+    price: 274,
     category: "phone",
     variants: {
         navy: { name: t("color_cloud_navy"), images: ["https://m.media-amazon.com/images/I/51yxI5nkPWL._AC_SX569_.jpg"] }
     },
     memoryOptions: {
-        "128GB": { price: 170, originalPrice: 220 },
+        "128GB": { price: 220, originalPrice: 270 },
     },
     features: [
         { icon: "fas fa-tachometer-alt", title: t("feature_120hz_display"), desc: t("feature_120hz_display_smooth_scroll_desc") },
@@ -1814,13 +1814,13 @@ galaxys20fe: {
 galaxys20plus: {
     name: t("galaxys20plus_name"),
     description: t("samsung_desc"),
-    price: 246,
+    price: 296,
     category: "phone",
     variants: {
         black: { name: t("color_cosmic_black"), images: ["https://m.media-amazon.com/images/I/71C4k+Ej67L._AC_SX466_.jpg"] }
     },
     memoryOptions: {
-        "128GB": { price: 192, originalPrice: 250 },
+        "128GB": { price: 242, originalPrice: 300 },
     },
     features: [
         { icon: "fas fa-video", title: t("feature_8k_video_snap"), desc: t("feature_8k_video_snap_high_res_desc") },
@@ -1841,13 +1841,13 @@ galaxys20plus: {
 galaxys20ultra: {
     name: t("galaxys20ultra_name"),
     description: t("samsung_desc"),
-    price: 265,
+    price: 315,
     category: "phone",
     variants: {
         gray: { name: t("color_cosmic_gray"), images: ["https://m.media-amazon.com/images/I/51Tsn0W3XFL._AC_SX522_.jpg"] }
     },
     memoryOptions: {
-        "512GB": { price: 211, originalPrice: 280 },
+        "512GB": { price: 261, originalPrice: 330 },
     },
     features: [
         { icon: "fas fa-search-plus", title: t("feature_100x_space_zoom"), desc: t("feature_100x_space_zoom_close_desc") },
@@ -1868,13 +1868,13 @@ galaxys20ultra: {
 galaxys21plus: {
     name: t("galaxys21plus_name"),
     description: t("samsung_desc"),
-    price: 249,
+    price: 299,
     category: "phone",
     variants: {
         silver: { name: t("color_phantom_silver"), images: ["https://m.media-amazon.com/images/I/61yn+RcQ08S._AC_SX569_.jpg"] }
     },
     memoryOptions: {
-        "256GB": { price: 195, originalPrice: 260 },
+        "256GB": { price: 245, originalPrice: 310 },
     },
     features: [
         { icon: "fas fa-video", title: t("feature_8k_video_snap"), desc: t("feature_8k_video_snap_stills_desc") },
@@ -1895,14 +1895,14 @@ galaxys21plus: {
 galaxys21ultra: {
     name: t("galaxys21ultra_name"),
     description: t("samsung_desc"),
-    price: 300,
+    price: 350,
     category: "phone",
     variants: {
         black: { name: t("color_phantom_black"), images: ["https://m.media-amazon.com/images/I/610KvwSCMYL._AC_SX466_.jpg"] },
         navy: { name: t("color_phantom_navy"), images: ["https://m.media-amazon.com/images/I/51gfaY6FQwL._AC_SX569_.jpg"] }
     },
     memoryOptions: {
-        "512GB": { price: 246, originalPrice: 290 },
+        "512GB": { price: 296, originalPrice: 340 },
     },
     features: [
         { icon: "fas fa-search-plus", title: t("feature_dual_tele_zoom"), desc: t("feature_dual_tele_zoom_100x_desc") },
