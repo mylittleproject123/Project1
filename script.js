@@ -173,7 +173,7 @@ const translations = window.translations || {
         quick_links: "Rýchle odkazy",
         policies: "Podmienky",
         payment_methods: "Spôsoby platby",
-        payment_info: "Prijímame platby kartou, bankové prevody a platby na dobierku.",
+        payment_info: "Prijímame bankové prevody, vklady a platby na dobierku.",
         support: "Technická podpora",
         warranty: "Záruka",
         privacy: "Ochrana osobných údajov",
@@ -182,8 +182,6 @@ const translations = window.translations || {
         shipping_policy: "Doprava",
         iphone16promax_name: "iPhone 16 Pro Max",
         iphone_desc: "Prémiový repasovaný iPhone s vynikajúcim výkonom. Zaručená 95% kondícia batérie. Zahŕňa 1-ročnú záruku a 30-dňovú lehotu na vrátenie.",
-        color_black_titanium: "Čierny titán",
-        color_desert_titanium: "Púštny titán",
         iphone_feature_battery_title: "29h Batéria",
         iphone_feature_battery_desc: "Prehrávanie videa",
         iphone_feature_chip_title: "Čip A18 Pro",
@@ -299,7 +297,10 @@ const translations = window.translations || {
         feature_108mp_pro_sensor: "108MP Pro senzor",
         feature_108mp_pro_sensor_bright_night_desc: "Jasné nočné fotografie",
         color_white: "Biela",
+        color_black_titanium: "Čierny titán",
+        color_desert_titanium: "Púštny titán",
         color_blue: "Modrá",
+        color_black: "Čierna",
         color_gold: "Zlatá",
         color_starlight: "Hviezdna biela",
         color_sierra_blue: "Horská modrá",
@@ -320,8 +321,6 @@ const translations = window.translations || {
         condition_excellent_desc: "Minimálne známky používania",
         condition_display_piece: "Vystavený kus, nepoužitý",
         condition_display_piece_desc: "Vystavený kus, nepoužitý, otvorená krabica",
-        condition_new_open_box: "Nový, otvorená krabica",
-        condition_new_open_box_desc: "Produkt je nový, nebol použitý, len krabica bola otvorená.",
         feature_spatial_audio: "Priestorový zvuk",
         feature_spatial_audio_desc: "Pohlcujúci 3D zvuk",
         feature_h1_chip: "Čip H1",
@@ -520,7 +519,7 @@ const translations = window.translations || {
         quick_links: "Quick Links",
         policies: "Policies",
         payment_methods: "Payment Methods",
-        payment_info: "We accept card payments, bank transfers, and cash on delivery.",
+        payment_info: "We accept bank transfers, deposits and cash on delivery.",
         support: "Technical Support",
         warranty: "Warranty",
         privacy: "Privacy",
@@ -667,8 +666,6 @@ const translations = window.translations || {
         condition_excellent_desc: "Minor signs of use",
         condition_display_piece: "Display piece, never used",
         condition_display_piece_desc: "Display piece, never used, open box",
-        condition_new_open_box: "New, open box",
-        condition_new_open_box_desc: "The product is new, has not been used, only the box has been opened.",
         feature_spatial_audio: "Spatial Audio",
         feature_spatial_audio_desc: "Immersive 3D sound",
         feature_h1_chip: "H1 Chip",
@@ -706,16 +703,19 @@ const translations = window.translations || {
 };
 
 function t(key) {
-    const lang = window.currentLanguage || 'en'; // fallback to English if not set
+    const lang = window.currentLanguage || 'sk'; // fallback to slovak if not set
     return (window.translations[lang] && window.translations[lang][key])
         ? window.translations[lang][key]
         : key; // fallback to key if translation is missing
 }
 
 // Global variables
-let currentCountry = localStorage.getItem('selectedCountry') || 'cs';
-let currentLanguage = localStorage.getItem('selectedLanguage') || 'sk';
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
+var currentCountry = localStorage.getItem('selectedCountry') || 'cs';
+var currentLanguage = localStorage.getItem('selectedLanguage') || 'sk';
+var cart = JSON.parse(localStorage.getItem('cart')) || [];
+// Make translations globally available
+window.translations = translations;
+
 // Global state for grid controls
 let currentFilterCategory = 'all';
 let currentSearchTerm = '';
@@ -766,9 +766,6 @@ function convertPrice(priceInUSD, showBoth = false) {
 
     return showBoth ? `${eurPrice} / ${localPrice}` : localPrice;
 }
-
-// Make convertPrice globally available
-window.convertPrice = convertPrice;
 
 // Translation function
 function updateLanguage(lang) {
@@ -2196,7 +2193,7 @@ function getBusinessAddress() {
         case 'sk':
             return {
                 address: 'Obchodná 25',
-                city: 'Nitra',
+                city: 'Bratislava',
                 country: 'Slovensko'
             };
         case 'hu':
@@ -2585,6 +2582,8 @@ document.addEventListener('DOMContentLoaded', async function() { // Make the lis
         // Update prices
         updatePrices();
         setupDynamicWhatsAppLinks();
+        // createAndInsertPreorderBanner(); // Removed as per user request
+        updateFooterFromBusinessAddress();
 
         // --- Auto-open checkout if redirected from another page ---
         if (sessionStorage.getItem('startCheckout') === 'true') {
@@ -2621,16 +2620,13 @@ document.addEventListener('DOMContentLoaded', async function() { // Make the lis
         const continueShoppingButton = document.getElementById('continue-shopping');
 
         if (cartButton && cartOverlay) {
-            // Ensure this listener is only for the cart button, not other links
-            if (cartButton.tagName === 'A') {
-                cartButton.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    cartOverlay.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                    return false;
-                });
-            }
+            cartButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                cartOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                return false;
+            });
         }
 
         if (closeCartButton) {
@@ -2699,7 +2695,7 @@ document.addEventListener('DOMContentLoaded', async function() { // Make the lis
                     document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
                     filterBtn.classList.add('active');
                     currentFilterCategory = filterBtn.getAttribute('data-filter');
-                    if (typeof updateProductGrid === 'function') updateProductGrid();
+                    updateProductGrid();
                 }
 
                 if (sortBtn) {
@@ -2707,7 +2703,7 @@ document.addEventListener('DOMContentLoaded', async function() { // Make the lis
                     document.querySelectorAll('.sort-btn').forEach(btn => btn.classList.remove('active'));
                     sortBtn.classList.add('active');
                     currentSortBy = sortBtn.getAttribute('data-sort');
-                    if (typeof updateProductGrid === 'function') updateProductGrid();
+                    updateProductGrid();
                 }
             });
         }
@@ -2716,21 +2712,30 @@ document.addEventListener('DOMContentLoaded', async function() { // Make the lis
         initializeColorSelection('iphone15promax', 'iphone15promax-color', 'iphone15promax-image', 'add-to-cart-iphone15promax');
         initializeColorSelection('iphone16promax', 'iphone16promax-color', 'iphone16promax-image', 'add-to-cart-iphone16promax');
 
+	 // Add checkout button listener with null check
+        const checkoutBtn = document.getElementById('checkout-btn');
+        if (checkoutBtn) {
+            checkoutBtn.addEventListener('click', function() {
+                if (cart.length === 0) {
+                    alert(currentLanguage === 'es' ? 'Tu carrito está vacío' : 'Your cart is empty');
+                    return;
+                }
+
+                createCheckoutModal();
+            });
+        }
+
+        // Remove duplicate event listeners that cause null errors
+        const confirmBankTransferBtn = document.getElementById('confirm-bank-transfer');
+        const processOrderBtn = document.getElementById('process-order');
+        
+        // These buttons don't exist on page load, they're created dynamically in checkout
+        // So we don't need to add listeners here
+
     } catch (error) {
         console.error('Error during script initialization:', error);
     }
 });
-
-function initializePage() {
-    try {
-        updateCartUI();
-        updatePrices();
-        updateLanguage(currentLanguage);
-        if (typeof updateFooterFromBusinessAddress === 'function') updateFooterFromBusinessAddress();
-    } catch (error) {
-        console.error('Error initializing page:', error);
-    }
-}
 
 function updateCartUI() {
     updateCartCount();
@@ -2748,21 +2753,20 @@ function formatCurrency(amount) {
     return convertPrice(amount, false);
 }
 
-// Cleanup function
-function cleanup() {
-    // Remove any event listeners if needed
-    const overlay = document.getElementById('checkout-overlay');
-    if (overlay) {
-        overlay.remove();
+// Initialize all functionality when page loads
+function initializePage() {
+    try {
+        updateCartUI();
+        updatePrices();
+        updateLanguage(currentLanguage);
+        if (typeof updateFooterFromBusinessAddress === 'function') updateFooterFromBusinessAddress();
+    } catch (error) {
+        console.error('Error initializing page:', error);
     }
 }
 
-// Error handling utility
-function handleError(error, context) {
-    console.error('Error in ' + context + ':', error);
-    if (typeof error === 'object' && error.message) {
-        console.error('Error message:', error.message);
-    }
+// Cleanup function
+function cleanup() {
 }
 
 // Simulate OTP sending for demonstration
@@ -2775,7 +2779,6 @@ function sendOTPToUser(customerName, customerPhone) {
 if (typeof window !== 'undefined') {
     window.addEventListener('load', function() {
         // Scroll to top of page
-
         window.scrollTo({
             top: 0,
             left: 0,
@@ -2787,14 +2790,6 @@ if (typeof window !== 'undefined') {
         initializePage();
 
     });
-}
-
-// Additional functions
-function updateFooterInfo() {
-    const phoneElement = document.querySelector('.contact-phone');
-    if (phoneElement) {
-        phoneElement.textContent = countryConfig[currentCountry].phone;
-    }
 }
 
 let currentOrderRef = '';
