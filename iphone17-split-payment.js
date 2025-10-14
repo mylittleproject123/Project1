@@ -256,7 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Wizard navigation
-        document.querySelector('.split-payment-wizard')?.addEventListener('click', e => {
+        document.querySelector('.split-payment-calculator')?.addEventListener('click', e => {
             if (e.target.closest('[data-action="next"]')) goToStep(state.currentStep + 1);
             if (e.target.closest('[data-action="prev"]')) goToStep(state.currentStep - 1);
         });
