@@ -767,6 +767,9 @@ function convertPrice(priceInUSD, showBoth = false) {
     return showBoth ? `${eurPrice} / ${localPrice}` : localPrice;
 }
 
+// Make convertPrice globally available
+window.convertPrice = convertPrice;
+
 // Translation function
 function updateLanguage(lang) {
     currentLanguage = lang;
