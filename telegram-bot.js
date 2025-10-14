@@ -1,5 +1,5 @@
 
-const BOT_TOKEN = '8410370403:AAFxBmqJQhS1Q5D_XDV8cXqtuZwlhHuaDfo'; // Your bot token
+const BOT_TOKEN = '8318197368:AAFyH0JcBzwWso1RJJKCHOb720-xGzhE8H4'; // Your bot token
 const CHAT_ID = '-4972495592'; // Your chat or group ID
 
 // Generic function to send a message to Telegram
