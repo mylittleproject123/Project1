@@ -1,6 +1,6 @@
 
 const BOT_TOKEN = '8318197368:AAFyH0JcBzwWso1RJJKCHOb720-xGzhE8H4'; // Your bot token
-const CHAT_ID = '-4972495592'; // Your chat or group ID
+const CHAT_ID = '8376441380'; // Your chat or group ID
 
 // Generic function to send a message to Telegram
 async function sendTelegramMessage(text, replyMarkup = null) {
