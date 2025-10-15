@@ -2060,24 +2060,6 @@ function validateSelections(product) {
 
 // Setup add to cart functionality
 
-function setupCountrySwitcherLinks() {
-    const productId = getProductId();
-    const dropdown = document.getElementById('country-dropdown');    
-    if (!dropdown) return;
-
-    // Clear any static content
-    dropdown.innerHTML = ''; // Clear static content
-
-    Object.entries(countryConfig).forEach(([key, config]) => {
-        const link = document.createElement('a');        
-        link.href = `/product.html?id=${productId}&country=${config.code}`;
-        link.className = 'country-option';        
-        link.dataset.country = key;        
-        link.innerHTML = `<span class="flag-icon">${config.flag}</span><span>${config.name}</span>`;
-        dropdown.appendChild(link);    
-    });
-}
-
 // Get product ID from URL parameters
 function getProductId() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -2095,8 +2077,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!document.querySelector('.product-detail')) {
         return;
     }
-
-    setupCountrySwitcherLinks();
 
     // The main `script.js` already handles country/language initialization.
     // We just need to load the product details.
