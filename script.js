@@ -2804,6 +2804,26 @@ function initializePage() {
     }
 }
 
+function setupCountrySwitcherLinks() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
+    if (!productId) return; // Only run on product pages
+
+    const dropdown = document.getElementById('country-dropdown');
+    if (!dropdown) return;
+
+    dropdown.innerHTML = ''; // Clear static content
+
+    Object.entries(countryConfig).forEach(([key, config]) => {
+        const link = document.createElement('a');
+        link.href = `/product.html?id=${productId}&country=${config.code}`;
+        link.className = 'country-option';
+        link.dataset.country = key;
+        link.innerHTML = `<span class="flag-icon">${config.flag}</span><span>${config.name}</span>`;
+        dropdown.appendChild(link);
+    });
+}
+
 // Cleanup function
 function cleanup() {
 }
@@ -2827,6 +2847,11 @@ if (typeof window !== 'undefined') {
 
         // Initialize page
         initializePage();
+
+        // If on product page, setup country links
+        if (document.body.querySelector('.product-detail')) {
+            setupCountrySwitcherLinks();
+        }
 
     });
 }
