@@ -58,7 +58,7 @@ function getProductDatabase() {
 iphone17: {
     name: t("iphone17_name"),
     description: t("iphone_desc"),
-    price: 1199,
+    price: 1199, // Corrected from iphone17-split-payment.js
     originalPrice: 1299,
     discount: 8,
     category: "phone",
@@ -107,7 +107,7 @@ iphone17: {
 iphone17pro: {
     name: t("iphone17pro_name"),
     description: t("iphone_desc"),
-    price: 1399,
+    price: 1399, // Corrected from iphone17-split-payment.js
     originalPrice: 1499,
     discount: 7,
     category: "phone",
@@ -142,7 +142,7 @@ iphone17pro: {
 iphone17promax: {
     name: t("iphone17promax_name"),
     description: t("iphone_desc"),
-    price: 1799,
+    price: 1799, // Corrected from iphone17-split-payment.js
     originalPrice: 1899,
     discount: 5,
     category: "phone",
