@@ -1499,12 +1499,11 @@ function createCheckoutModal() {
                     ${cart.map(item => {
                         const itemPrice = (item.price === 0 || item.isFreeGift) ? 'FREE' : convertPrice(item.price * item.quantity, false);
                         const isFreeGift = item.price === 0 || item.isFreeGift;
+                        const itemName = item.name.includes('Gorilla Glass') ? t('free_gift_protector') : (t(item.name) || item.name);
                         return `
-                        const itemName = item.name.includes('Gorilla Glass') ? t('free_gift_protector') : t(item.name);                        return `
                             <div class="checkout-item-compact ${isFreeGift ? 'free-gift-checkout-item' : ''}">
                                 <img src="${item.image}" alt="${item.name}">
                                 <div class="checkout-item-details-compact">
-                                    <h4>${item.name.includes('Gorilla Glass') ? t('free_gift_protector') : item.name}</h4>
                                     <h4>${itemName}</h4>
                                     <p><span data-translate="quantity_short">Qty</span>: ${item.quantity}</p>
                                 </div>
